@@ -136,14 +136,12 @@
           <h2 id="overviewTitle">Overview</h2>
         </div>
         <section class="metrics" aria-label="Summary metrics">
-          <article class="metric priority"><span>Posts</span><strong id="metricPosts">-</strong><small>after filters</small></article>
-          <article class="metric"><span>Date Range</span><strong id="metricRange">-</strong><small>visible posts</small></article>
-          <article class="metric priority"><span>Total Engagement</span><strong id="metricEngagement">-</strong><small>likes + replies + retweets + quotes</small></article>
-          <article class="metric"><span>Avg Engagement</span><strong id="metricAverage">-</strong><small>mean per post</small></article>
-          <article class="metric priority"><span>Median Engagement</span><strong id="metricMedian">-</strong><small>raw median</small></article>
-          <article class="metric"><span>Active Posting Days</span><strong id="metricActiveDays">-</strong><small>unique dates</small></article>
-          <article class="metric"><span>Number of Brands</span><strong id="metricBrands">-</strong><small>visible data</small></article>
-          <article class="metric priority"><span>Viral Post Share</span><strong id="metricViralShare">-</strong><small>top 5 percent</small></article>
+          <article class="metric priority"><span>Total Posts</span><strong id="metricPosts">-</strong><em id="metricPostsTrend" class="metric-trend">current filter</em><small>posts in the visible analytical sample</small></article>
+          <article class="metric"><span>Date Range</span><strong id="metricRange">-</strong><em id="metricRangeTrend" class="metric-trend neutral">coverage</em><small>first to latest visible post date</small></article>
+          <article class="metric priority"><span>Median Engagement</span><strong id="metricMedian">-</strong><em id="metricMedianTrend" class="metric-trend">robust center</em><small>median likes + replies + retweets + quotes</small></article>
+          <article class="metric"><span>Total Engagement</span><strong id="metricEngagement">-</strong><em id="metricEngagementTrend" class="metric-trend">sample total</em><small>total observed interaction volume</small></article>
+          <article class="metric priority"><span>Viral Post Share</span><strong id="metricViralShare">-</strong><em id="metricViralTrend" class="metric-trend viral">top 5%</em><small>share above the engagement viral cutoff</small></article>
+          <article class="metric priority"><span>Positive Sentiment Share</span><strong id="metricPositiveShare">-</strong><em id="metricPositiveTrend" class="metric-trend positive">zero-shot</em><small>positive label share in visible posts</small></article>
         </section>
       </section>
 
@@ -154,12 +152,12 @@
         </div>
         <div id="descriptiveCards" class="analytics-card-grid"></div>
         <section class="grid two analytics-grid">
-          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Distribution</h3><span>histogram</span></div><canvas id="engagementHistogram" height="260"></canvas><p class="chart-note">Distribution of total engagement; taller bars indicate more posts in that range.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Boxplot by Brand</h3><span>raw spread</span></div><canvas id="brandBoxplotChart" height="260"></canvas><p class="chart-note">Box shows the middle engagement range; line marks median and whiskers show min/max.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Posts by Brand</h3><span>volume</span></div><canvas id="postsByBrandChart" height="260"></canvas><p class="chart-note">Compares visible posting volume by brand after filters.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Text Length Distribution</h3><span>characters</span></div><canvas id="textLengthChart" height="260"></canvas><p class="chart-note">Character-length distribution of visible post text.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Sentiment Share by Brand</h3><span>stacked share</span></div><canvas id="sentimentBrandChart" height="260"></canvas><p class="chart-note">Each row sums to 100%; segments show sentiment share within brand.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Topic Share by Brand</h3><span>stacked share</span></div><canvas id="topicBrandChart" height="260"></canvas><p class="chart-note">Top topic shares by brand; categories are limited to the most common topics.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Distribution</h3><span class="chart-badge">Distribution</span></div><p id="engagementHistogramInsight" class="insight-note">Loading insight...</p><canvas id="engagementHistogram" height="320" aria-label="Engagement distribution histogram"></canvas><p class="chart-note">Distribution of total engagement; taller bars indicate more posts in that range.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Boxplot by Brand</h3><span class="chart-badge">Spread</span></div><p id="brandBoxplotInsight" class="insight-note">Loading insight...</p><canvas id="brandBoxplotChart" height="320" aria-label="Engagement boxplot by brand"></canvas><p class="chart-note">Box shows the middle engagement range; line marks median and whiskers show min/max.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Posts by Brand</h3><span class="chart-badge">Volume</span></div><p id="postsByBrandInsight" class="insight-note">Loading insight...</p><canvas id="postsByBrandChart" height="320" aria-label="Posts by brand chart"></canvas><p class="chart-note">Compares visible posting volume by brand after filters.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Text Length Distribution</h3><span class="chart-badge">Text</span></div><p id="textLengthInsight" class="insight-note">Loading insight...</p><canvas id="textLengthChart" height="320" aria-label="Text length distribution chart"></canvas><p class="chart-note">Character-length distribution of visible post text.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Sentiment Share by Brand</h3><span class="chart-badge">Sentiment</span></div><p id="sentimentBrandInsight" class="insight-note">Loading insight...</p><canvas id="sentimentBrandChart" height="320" aria-label="Sentiment share by brand chart"></canvas><p class="chart-note">Each row sums to 100%; segments show sentiment share within brand.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Topic Share by Brand</h3><span class="chart-badge">Topics</span></div><p id="topicBrandInsight" class="insight-note">Loading insight...</p><canvas id="topicBrandChart" height="320" aria-label="Topic share by brand chart"></canvas><p class="chart-note">Top topic shares by brand; categories are limited to the most common topics.</p></article>
         </section>
       </section>
 
@@ -170,13 +168,13 @@
         </div>
         <section id="evidenceGrid" class="evidence-grid"></section>
         <section class="grid two analytics-grid">
-          <article class="panel chart-panel"><div class="panel-head"><h3>Brand Raw Comparison</h3><span>average engagement</span></div><canvas id="brandEngagementChart" height="260"></canvas><p class="chart-note">Average total engagement by brand.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Sentiment x Engagement</h3><span>median engagement</span></div><canvas id="sentimentEngagementChart" height="260"></canvas><p class="chart-note">Median total engagement grouped by zero-shot sentiment label.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Type Heatmap</h3><span>by sentiment</span></div><canvas id="sentimentHeatmapChart" height="260"></canvas><p class="chart-note">Darker cells indicate larger average engagement component.</p></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Daily Engagement Trend</h3><span>by brand</span></div><canvas id="dailyVolumeChart" height="260"></canvas><p class="chart-note">Recent daily average engagement, grouped by brand and date.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Brand Raw Comparison</h3><span class="chart-badge">Brand</span></div><p id="brandEngagementInsight" class="insight-note">Loading insight...</p><canvas id="brandEngagementChart" height="320" aria-label="Brand raw mean engagement comparison chart"></canvas><div id="brandRawStats" class="mini-summary" aria-label="Brand mean median and IQR summary"></div><p class="chart-note">Mean bars with median and IQR summarized below for each brand.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Sentiment x Engagement</h3><span class="chart-badge">Grouped</span></div><p id="sentimentEngagementInsight" class="insight-note">Loading insight...</p><canvas id="sentimentEngagementChart" height="320" aria-label="Brand by sentiment engagement grouped bar chart"></canvas><p class="chart-note">Median total engagement grouped by zero-shot sentiment label.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Type Heatmap</h3><span class="chart-badge">Heatmap</span></div><p id="sentimentHeatmapInsight" class="insight-note">Loading insight...</p><canvas id="sentimentHeatmapChart" height="320" aria-label="Engagement type heatmap"></canvas><p class="chart-note">Darker cells indicate larger average engagement component.</p></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Daily Posting Volume</h3><span class="chart-badge">Trend</span></div><p id="dailyVolumeInsight" class="insight-note">Loading insight...</p><canvas id="dailyVolumeChart" height="320" aria-label="Daily posting volume line chart"></canvas><p class="chart-note">Recent daily average engagement, grouped by brand and date.</p></article>
         </section>
         <section class="grid two analytics-grid">
-          <article class="panel"><div class="panel-head"><h3>Topic Engagement Ranking</h3><span>raw topics</span></div><div id="topicRankingTable" class="responsive-table"></div></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Topic Engagement Ranking</h3><span class="chart-badge">Ranking</span></div><p id="topicRankingInsight" class="insight-note">Loading insight...</p><canvas id="topicRankingChart" height="320" aria-label="Topic engagement ranking chart"></canvas><div id="topicRankingTable" class="responsive-table"></div></article>
           <article class="panel"><div class="panel-head"><h3>Viral Post Evidence</h3><span>top 5 percent</span></div><div id="viralEvidenceTable" class="responsive-table"></div></article>
         </section>
       </section>
@@ -189,12 +187,12 @@
         <section class="grid two">
           <article class="panel chart-panel">
             <div class="panel-head"><h3>Posting Volume</h3><span id="volumeCaption"></span></div>
-            <canvas id="volumeChart" height="260" aria-label="Posting volume chart"></canvas><p class="chart-note">Monthly posting count for the filtered dataset.</p>
+            <canvas id="volumeChart" height="320" aria-label="Posting volume chart"></canvas><p class="chart-note">Monthly posting count for the filtered dataset.</p>
             <div id="volumeLegend" class="chart-legend"></div>
           </article>
           <article class="panel chart-panel">
             <div class="panel-head"><h3>Engagement Mix</h3><span>click legend to toggle</span></div>
-            <canvas id="engagementChart" height="260" aria-label="Engagement mix chart"></canvas><p class="chart-note">Share of likes, replies, retweets, and quotes in total engagement.</p>
+            <canvas id="engagementChart" height="320" aria-label="Engagement mix chart"></canvas><p class="chart-note">Share of likes, replies, retweets, and quotes in total engagement.</p>
             <div id="engagementLegend" class="chart-legend"></div>
           </article>
         </section>
@@ -214,7 +212,7 @@
         <article id="sentiment" class="panel section-block" aria-labelledby="sentimentTitle">
           <div class="panel-head"><h3 id="sentimentTitle">Zero-Shot Sentiment</h3><span id="sentimentMeta"></span></div>
           <div id="sentimentSummary" class="sentiment-summary"></div>
-          <canvas id="sentimentChart" height="230" aria-label="Sentiment distribution chart"></canvas><p class="chart-note">Zero-shot sentiment label distribution.</p>
+          <canvas id="sentimentChart" height="320" aria-label="Sentiment distribution chart"></canvas><p class="chart-note">Zero-shot sentiment label distribution.</p>
           <div id="sentimentLegend" class="chart-legend"></div>
         </article>
       </section>

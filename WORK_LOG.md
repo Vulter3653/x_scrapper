@@ -914,3 +914,40 @@ Validation completed:
 - `git diff --check` passed.
 - Static search confirmed old fixed 10px/11px font declarations were replaced with `canvasFont()`.
 - 360px mobile DOM/Canvas mock render against real JSON data passed.
+
+
+### Dashboard Visualization UI/UX Redesign
+
+Date: 2026-05-22
+
+User requested a report-grade redesign of the deployed X Brand Intelligence dashboard visualization UI while preserving the existing sections: Overview, Descriptives, Model-free Evidence, Posting, Topics, Sentiment, and Posts.
+
+Changes made:
+
+- Rebuilt Overview KPI cards around Total Posts, Date Range, Median Engagement, Total Engagement, Viral Post Share, and Positive Sentiment Share.
+- Added KPI trend/helper badges for active brands, active days, per-post engagement, viral count, and positive post count.
+- Added per-chart insight sentences for descriptive and model-free evidence charts.
+- Updated Descriptives chart cards with analysis badges, clearer descriptions, responsive chart heights, and aria labels.
+- Added Topic Engagement Ranking as a horizontal bar chart in addition to the ranking table.
+- Changed Sentiment x Engagement into a brand-by-sentiment grouped bar chart.
+- Changed Daily Posting Volume into a line chart by brand.
+- Added Brand Raw Comparison summary chips showing mean, median, and IQR.
+- Standardized dashboard design tokens: background, surfaces, borders, text colors, Wendy's color, Coca-Cola color, sentiment colors, viral/non-viral colors.
+- Standardized chart cards with 16px radius, subtle border, soft shadow, white tooltip styling, chart badges, and readable insight notes.
+- Reworked chart height logic to be fluid but capped by viewport width: 360px -> 240px, 390px -> 257px, 768/1024px -> 300px, 1440px -> 320px in render validation.
+- Fixed viral filtering and KPI calculations to consistently use the derived `is_viral` field.
+- Made ResizeObserver usage safe across browser and test environments.
+- Kept Run Actions removed from the dashboard, per prior user instruction.
+
+Validation completed:
+
+- `node --check dashboard/app.js` passed.
+- `git diff --check` passed.
+- Searched dashboard files for removed Run Actions/client workflow references; none remained.
+- Node DOM/Canvas render mock passed at 360px, 390px, 768px, 1024px, and 1440px widths.
+- Render mock confirmed chart heights: 240px, 257px, 300px, 300px, and 320px respectively.
+- Local static server returned `HTTP/1.0 200 OK` for `dashboard/index.html`.
+
+Verification limitation:
+
+- Headless Chromium screenshot capture timed out in this workspace, so visual verification relied on DOM/Canvas render mocks and local HTTP checks.
