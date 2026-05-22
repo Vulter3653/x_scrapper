@@ -43,15 +43,11 @@ jobs:
           set -euxo pipefail
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          # Ensure twikit is installed even if requirements.txt failed or was missing
-          pip install twikit
 
       - name: 5. Run scraper
         shell: bash
         env:
-          X_USERNAME: ${{ secrets.X_USERNAME }}
-          X_EMAIL: ${{ secrets.X_EMAIL }}
-          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           TARGET_USER: 'Wendys'
         run: |
           set -euxo pipefail
@@ -81,9 +77,6 @@ jobs:
           fi
 
           git add -A
-          # cookies.json 등 gitignore된 파일이 생성되었을 경우를 대비해 강제 추가 시도
-          git add -f cookies.json || true
-          
           git commit -m "Update scraped data"
 
           echo "Current branch:"
