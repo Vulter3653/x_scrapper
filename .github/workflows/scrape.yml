@@ -7,30 +7,18 @@ on:
         description: 'X screen name to scrape'
         required: true
         default: 'Wendys'
-      tweet_types:
-        description: 'Comma-separated timeline types: Tweets,Replies,Media,Likes'
+      max_scrolls:
+        description: 'Maximum browser scroll attempts'
         required: true
-        default: 'Tweets,Replies'
-      page_size:
-        description: 'Requested tweets per page'
+        default: '2500'
+      scroll_delay_seconds:
+        description: 'Delay after each scroll'
         required: true
-        default: '100'
-      max_pages_per_type:
-        description: '0 means keep going until X returns no next cursor'
+        default: '1.25'
+      idle_scroll_limit:
+        description: 'Stop after this many scrolls without new posts'
         required: true
-        default: '0'
-      page_delay_seconds:
-        description: 'Delay between cursor pages per timeline'
-        required: true
-        default: '0.5'
-      reset_cursor:
-        description: 'Start from newest page instead of saved cursor'
-        required: true
-        type: choice
-        options:
-          - 'false'
-          - 'true'
-        default: 'false'
+        default: '60'
 
 permissions:
   contents: write
@@ -66,6 +54,7 @@ jobs:
           set -euxo pipefail
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
 
       - name: 4. Validate scraper secrets
         shell: bash
@@ -94,14 +83,10 @@ jobs:
           X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           X_CT0: ${{ secrets.X_CT0 }}
           TARGET_USER: ${{ inputs.target_user }}
-          TWEET_TYPES: ${{ inputs.tweet_types }}
-          PAGE_SIZE: ${{ inputs.page_size }}
-          MAX_PAGES_PER_TYPE: ${{ inputs.max_pages_per_type }}
-          PAGE_DELAY_SECONDS: ${{ inputs.page_delay_seconds }}
-          RESET_CURSOR: ${{ inputs.reset_cursor }}
-          PARALLEL_TYPES: '2'
-          MAX_RETRIES: '8'
-          RETRY_BASE_SECONDS: '10'
+          MAX_SCROLLS: ${{ inputs.max_scrolls }}
+          SCROLL_DELAY_SECONDS: ${{ inputs.scroll_delay_seconds }}
+          IDLE_SCROLL_LIMIT: ${{ inputs.idle_scroll_limit }}
+          HEADLESS: 'true'
         run: |
           set -o pipefail
           python scrape_x.py 2>&1 | tee scraper.log

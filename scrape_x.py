@@ -7,27 +7,21 @@ import traceback
 from pathlib import Path
 from typing import Any
 
-from twikit import Client
+from playwright.async_api import TimeoutError as PlaywrightTimeoutError
+from playwright.async_api import async_playwright
 
 TARGET_USER = os.getenv('TARGET_USER', 'Wendys').lstrip('@')
 OUTPUT_FILE = Path(os.getenv('OUTPUT_FILE', f'{TARGET_USER.lower()}_posts.json'))
 STATE_FILE = Path(os.getenv('STATE_FILE', f'{TARGET_USER.lower()}_scrape_state.json'))
-TWEET_TYPES = [
-    item.strip().capitalize()
-    for item in os.getenv('TWEET_TYPES', 'Tweets,Replies').split(',')
-    if item.strip()
-]
-PAGE_SIZE = int(os.getenv('PAGE_SIZE', '100'))
-MAX_PAGES_PER_TYPE = int(os.getenv('MAX_PAGES_PER_TYPE', '0'))
-PAGE_DELAY_SECONDS = float(os.getenv('PAGE_DELAY_SECONDS', '0.5'))
-MAX_RETRIES = int(os.getenv('MAX_RETRIES', '5'))
-RETRY_BASE_SECONDS = float(os.getenv('RETRY_BASE_SECONDS', '5'))
-PARALLEL_TYPES = int(os.getenv('PARALLEL_TYPES', str(max(1, min(len(TWEET_TYPES), 2)))))
-RESET_CURSOR = os.getenv('RESET_CURSOR', 'false').lower() in {'1', 'true', 'yes'}
+HEADLESS = os.getenv('HEADLESS', 'true').lower() in {'1', 'true', 'yes'}
+MAX_SCROLLS = int(os.getenv('MAX_SCROLLS', '2500'))
+SCROLL_DELAY_SECONDS = float(os.getenv('SCROLL_DELAY_SECONDS', '1.25'))
+IDLE_SCROLL_LIMIT = int(os.getenv('IDLE_SCROLL_LIMIT', '60'))
+PAGE_TIMEOUT_MS = int(os.getenv('PAGE_TIMEOUT_MS', '60000'))
+PROFILE_URL = f'https://x.com/{TARGET_USER}'
 
 AUTH_TOKEN = os.getenv('X_AUTH_TOKEN')
 CT0 = os.getenv('X_CT0')
-VALID_TWEET_TYPES = {'Tweets', 'Replies', 'Media', 'Likes'}
 
 
 def load_json(path: Path, default: Any) -> Any:
@@ -45,206 +39,249 @@ def save_json(path: Path, data: Any) -> None:
     tmp_path.replace(path)
 
 
-def tweet_to_record(tweet: Any, source_type: str) -> dict[str, Any]:
-    return {
-        'id': str(tweet.id),
-        'created_at': getattr(tweet, 'created_at', None),
-        'text': getattr(tweet, 'text', ''),
-        'retweet_count': getattr(tweet, 'retweet_count', None),
-        'favorite_count': getattr(tweet, 'favorite_count', None),
-        'reply_count': getattr(tweet, 'reply_count', None),
-        'quote_count': getattr(tweet, 'quote_count', None),
-        'view_count': getattr(tweet, 'view_count', None),
-        'lang': getattr(tweet, 'lang', None),
-        'source_type': source_type,
-    }
-
-
-def merge_records(existing: list[dict[str, Any]], incoming: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    by_id = records_to_map(existing)
-    for record in incoming:
-        tweet_id = str(record.get('id', ''))
-        if not tweet_id:
-            continue
-        current = by_id.get(tweet_id, {})
-        merged = {**current, **record}
-        if current.get('source_type') and record.get('source_type'):
-            sources = set(str(current['source_type']).split(',')) | set(str(record['source_type']).split(','))
-            merged['source_type'] = ','.join(sorted(sources))
-        by_id[tweet_id] = merged
-
-    return records_from_map(by_id)
-
-
 def records_to_map(records: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     return {str(record['id']): record for record in records if record.get('id')}
 
 
 def records_from_map(records_by_id: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    return sorted(records_by_id.values(), key=lambda item: int(item['id']), reverse=True)
-
-
-def merge_records_into_map(
-    records_by_id: dict[str, dict[str, Any]],
-    incoming: list[dict[str, Any]],
-) -> None:
-    merged_records = merge_records(list(records_by_id.values()), incoming)
-    records_by_id.clear()
-    records_by_id.update(records_to_map(merged_records))
-
-
-async def fetch_with_retry(client: Client, user_id: str, tweet_type: str, cursor: str | None):
-    for attempt in range(1, MAX_RETRIES + 1):
+    def sort_key(item: dict[str, Any]) -> int:
         try:
-            if cursor:
-                return await client.get_user_tweets(user_id, tweet_type, count=PAGE_SIZE, cursor=cursor)
-            return await client.get_user_tweets(user_id, tweet_type, count=PAGE_SIZE)
-        except Exception as exc:
-            if attempt == MAX_RETRIES:
-                raise
-            wait_seconds = RETRY_BASE_SECONDS * attempt
-            print(
-                f'[{tweet_type}] 요청 실패 ({attempt}/{MAX_RETRIES}): {exc}. '
-                f'{wait_seconds:.1f}초 후 재시도합니다.',
-                flush=True,
-            )
-            await asyncio.sleep(wait_seconds)
+            return int(item['id'])
+        except (KeyError, TypeError, ValueError):
+            return 0
+
+    return sorted(records_by_id.values(), key=sort_key, reverse=True)
 
 
-async def scrape_timeline(
-    client: Client,
-    user_id: str,
-    tweet_type: str,
-    state: dict[str, Any],
-    records_by_id: dict[str, dict[str, Any]],
-    semaphore: asyncio.Semaphore,
-    state_lock: asyncio.Lock,
-    output_lock: asyncio.Lock,
-) -> int:
-    if tweet_type not in VALID_TWEET_TYPES:
-        raise ValueError(f'지원하지 않는 TWEET_TYPES 값입니다: {tweet_type}')
+def merge_record(records_by_id: dict[str, dict[str, Any]], record: dict[str, Any]) -> bool:
+    tweet_id = str(record.get('id', ''))
+    if not tweet_id:
+        return False
 
-    cursor_key = f'{tweet_type.lower()}_cursor'
-    cursor = None if RESET_CURSOR else state.get(cursor_key)
-    collected_count = 0
-    pages = 0
-    seen_page_cursors: set[str] = set()
+    existing = records_by_id.get(tweet_id)
+    if existing is None:
+        records_by_id[tweet_id] = record
+        return True
 
-    print(f'[{tweet_type}] 수집 시작: cursor={"resume" if cursor else "start"}', flush=True)
+    merged = {**existing, **record}
+    records_by_id[tweet_id] = merged
+    return False
 
-    while True:
-        if MAX_PAGES_PER_TYPE and pages >= MAX_PAGES_PER_TYPE:
-            print(f'[{tweet_type}] MAX_PAGES_PER_TYPE={MAX_PAGES_PER_TYPE}에 도달했습니다.', flush=True)
-            break
 
-        async with semaphore:
-            page = await fetch_with_retry(client, user_id, tweet_type, cursor)
+def walk_json(value: Any):
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            yield from walk_json(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from walk_json(child)
 
-        if not page:
-            print(f'[{tweet_type}] 더 이상 결과가 없습니다.', flush=True)
-            async with state_lock:
-                state[cursor_key] = None
-                save_json(STATE_FILE, state)
-            break
 
-        page_records = [tweet_to_record(tweet, tweet_type) for tweet in page]
-        pages += 1
-        collected_count += len(page_records)
+def unwrap_tweet_result(value: Any) -> dict[str, Any] | None:
+    if not isinstance(value, dict):
+        return None
 
-        async with output_lock:
-            before_count = len(records_by_id)
-            merge_records_into_map(records_by_id, page_records)
-            save_json(OUTPUT_FILE, records_from_map(records_by_id))
-            total_unique = len(records_by_id)
+    result = value.get('result') if 'result' in value else value
+    if not isinstance(result, dict):
+        return None
 
-        next_cursor = getattr(page, 'next_cursor', None)
+    while isinstance(result, dict) and result.get('__typename') == 'TweetWithVisibilityResults':
+        result = result.get('tweet')
+
+    if isinstance(result, dict) and result.get('__typename') == 'Tweet':
+        return result
+    return None
+
+
+def extract_tweet_record(tweet: dict[str, Any]) -> dict[str, Any] | None:
+    legacy = tweet.get('legacy')
+    rest_id = tweet.get('rest_id')
+    if not isinstance(legacy, dict) or not rest_id:
+        return None
+
+    user_result = tweet.get('core', {}).get('user_results', {}).get('result', {})
+    user_legacy = user_result.get('legacy', {}) if isinstance(user_result, dict) else {}
+    screen_name = user_legacy.get('screen_name')
+    if screen_name and screen_name.lower() != TARGET_USER.lower():
+        return None
+
+    views = tweet.get('views') if isinstance(tweet.get('views'), dict) else {}
+    note_tweet = tweet.get('note_tweet') if isinstance(tweet.get('note_tweet'), dict) else {}
+    note_results = note_tweet.get('note_tweet_results') if isinstance(note_tweet.get('note_tweet_results'), dict) else {}
+    note_result = note_results.get('result') if isinstance(note_results.get('result'), dict) else {}
+    note_text = note_result.get('text')
+
+    tweet_url = f'https://x.com/{TARGET_USER}/status/{rest_id}'
+
+    return {
+        'id': str(rest_id),
+        'tweet_url': tweet_url,
+        'created_at': legacy.get('created_at'),
+        'text': note_text or legacy.get('full_text') or legacy.get('text') or '',
+        'reply_count': legacy.get('reply_count'),
+        'favorite_count': legacy.get('favorite_count'),
+        'retweet_count': legacy.get('retweet_count'),
+        'quote_count': legacy.get('quote_count'),
+        'bookmark_count': legacy.get('bookmark_count'),
+        'view_count': views.get('count'),
+        'lang': legacy.get('lang'),
+        'conversation_id': str(legacy.get('conversation_id_str') or ''),
+        'is_quote_status': legacy.get('is_quote_status'),
+        'source': 'browser_graphql',
+        'scraped_at': int(time.time()),
+    }
+
+
+def extract_records_from_payload(payload: Any) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for node in walk_json(payload):
+        if 'tweet_results' in node:
+            tweet = unwrap_tweet_result(node.get('tweet_results'))
+        elif node.get('__typename') in {'Tweet', 'TweetWithVisibilityResults'}:
+            tweet = unwrap_tweet_result(node)
+        else:
+            continue
+
+        if not tweet:
+            continue
+        record = extract_tweet_record(tweet)
+        if not record or record['id'] in seen:
+            continue
+        seen.add(record['id'])
+        records.append(record)
+
+    return records
+
+
+async def install_response_collector(page, records_by_id: dict[str, dict[str, Any]], state: dict[str, Any]):
+    async def handle_response(response):
+        url = response.url
+        if '/graphql/' not in url:
+            return
+        if not any(key in url for key in ('UserTweets', 'UserTweetsAndReplies', 'UserMedia', 'TweetDetail')):
+            return
+
+        try:
+            payload = await response.json()
+        except Exception:
+            return
+
+        records = extract_records_from_payload(payload)
+        if not records:
+            return
+
+        new_count = 0
+        for record in records:
+            if merge_record(records_by_id, record):
+                new_count += 1
+
+        state['target_user'] = TARGET_USER
+        state['profile_url'] = PROFILE_URL
+        state['total_unique_posts'] = len(records_by_id)
+        state['last_response_url'] = url.split('?')[0]
+        state['last_saved_at'] = int(time.time())
+        save_json(OUTPUT_FILE, records_from_map(records_by_id))
+        save_json(STATE_FILE, state)
         print(
-            f'[{tweet_type}] page={pages}, page_items={len(page_records)}, '
-            f'new_unique={total_unique - before_count}, total_unique={total_unique}, '
-            f'next_cursor={"yes" if next_cursor else "no"}',
+            f'captured={len(records)}, new={new_count}, total_unique={len(records_by_id)}',
             flush=True,
         )
 
-        if not next_cursor or next_cursor == cursor or next_cursor in seen_page_cursors:
-            async with state_lock:
-                state[cursor_key] = None
-                save_json(STATE_FILE, state)
-            break
+    def on_response(response):
+        asyncio.create_task(handle_response(response))
 
-        seen_page_cursors.add(next_cursor)
-        async with state_lock:
-            state[cursor_key] = next_cursor
-            save_json(STATE_FILE, state)
-        cursor = next_cursor
-
-        if PAGE_DELAY_SECONDS > 0:
-            await asyncio.sleep(PAGE_DELAY_SECONDS)
-
-    async with state_lock:
-        state[f'{tweet_type.lower()}_pages_scraped'] = state.get(f'{tweet_type.lower()}_pages_scraped', 0) + pages
-        state[f'{tweet_type.lower()}_last_run_at'] = int(time.time())
-        save_json(STATE_FILE, state)
-    return collected_count
+    page.on('response', on_response)
 
 
-async def main() -> None:
+async def scrape_profile() -> None:
     if not AUTH_TOKEN or not CT0:
         print('Error: X_AUTH_TOKEN 또는 X_CT0 환경 변수가 설정되지 않았습니다.')
         sys.exit(1)
 
-    client = Client('en-US')
-    client.set_cookies({'auth_token': AUTH_TOKEN, 'ct0': CT0})
-
     existing_records = load_json(OUTPUT_FILE, [])
     records_by_id = records_to_map(existing_records)
     state = load_json(STATE_FILE, {})
-    if RESET_CURSOR:
-        state = {key: value for key, value in state.items() if not key.endswith('_cursor')}
 
     print(
-        f'@{TARGET_USER} 수집 시작: types={TWEET_TYPES}, page_size={PAGE_SIZE}, '
-        f'parallel_types={PARALLEL_TYPES}, existing={len(existing_records)}',
+        f'@{TARGET_USER} browser scrape start: existing={len(records_by_id)}, '
+        f'max_scrolls={MAX_SCROLLS}, idle_limit={IDLE_SCROLL_LIMIT}',
         flush=True,
     )
 
-    user = await client.get_user_by_screen_name(TARGET_USER)
-    semaphore = asyncio.Semaphore(max(1, PARALLEL_TYPES))
-    state_lock = asyncio.Lock()
-    output_lock = asyncio.Lock()
-    tasks = [
-        scrape_timeline(
-            client,
-            user.id,
-            tweet_type,
-            state,
-            records_by_id,
-            semaphore,
-            state_lock,
-            output_lock,
+    async with async_playwright() as playwright:
+        browser = await playwright.chromium.launch(
+            headless=HEADLESS,
+            args=['--disable-blink-features=AutomationControlled'],
         )
-        for tweet_type in TWEET_TYPES
-    ]
-    results = await asyncio.gather(*tasks)
+        context = await browser.new_context(
+            viewport={'width': 1440, 'height': 1800},
+            user_agent=(
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                'AppleWebKit/537.36 (KHTML, like Gecko) '
+                'Chrome/125.0.0.0 Safari/537.36'
+            ),
+            locale='en-US',
+        )
+        await context.add_cookies([
+            {'name': 'auth_token', 'value': AUTH_TOKEN, 'domain': '.x.com', 'path': '/', 'httpOnly': True, 'secure': True},
+            {'name': 'ct0', 'value': CT0, 'domain': '.x.com', 'path': '/', 'secure': True},
+        ])
 
-    incoming_count = sum(results)
+        page = await context.new_page()
+        await install_response_collector(page, records_by_id, state)
+
+        await page.goto(PROFILE_URL, wait_until='domcontentloaded', timeout=PAGE_TIMEOUT_MS)
+        try:
+            await page.wait_for_selector('[data-testid="tweet"]', timeout=PAGE_TIMEOUT_MS)
+        except PlaywrightTimeoutError:
+            current_url = page.url
+            title = await page.title()
+            raise RuntimeError(
+                f'X profile did not render tweets. url={current_url}, title={title}. '
+                '쿠키가 만료됐거나 GitHub Actions 접속이 X에서 차단됐을 수 있습니다.'
+            )
+
+        idle_scrolls = 0
+        previous_total = len(records_by_id)
+        for scroll_index in range(1, MAX_SCROLLS + 1):
+            await page.mouse.wheel(0, 2200)
+            await page.wait_for_timeout(int(SCROLL_DELAY_SECONDS * 1000))
+
+            current_total = len(records_by_id)
+            if current_total > previous_total:
+                idle_scrolls = 0
+                previous_total = current_total
+            else:
+                idle_scrolls += 1
+
+            if scroll_index % 10 == 0:
+                print(
+                    f'scroll={scroll_index}, total_unique={current_total}, idle_scrolls={idle_scrolls}',
+                    flush=True,
+                )
+
+            if idle_scrolls >= IDLE_SCROLL_LIMIT:
+                print(f'No new posts after {idle_scrolls} scrolls. Stopping.', flush=True)
+                break
+
+        await context.close()
+        await browser.close()
+
     save_json(OUTPUT_FILE, records_from_map(records_by_id))
-
     state['target_user'] = TARGET_USER
-    state['output_file'] = str(OUTPUT_FILE)
+    state['profile_url'] = PROFILE_URL
     state['total_unique_posts'] = len(records_by_id)
     state['last_completed_at'] = int(time.time())
     save_json(STATE_FILE, state)
-
-    print(
-        f'완료: 이번 실행 {incoming_count}개 수집, '
-        f'누적 고유 포스트 {len(records_by_id)}개 저장 -> {OUTPUT_FILE}',
-        flush=True,
-    )
+    print(f'완료: 누적 고유 포스트 {len(records_by_id)}개 저장 -> {OUTPUT_FILE}', flush=True)
 
 
 if __name__ == '__main__':
     try:
-        asyncio.run(main())
+        asyncio.run(scrape_profile())
     except Exception as exc:
         print(f'Fatal scraper error: {type(exc).__name__}: {exc}', flush=True)
         traceback.print_exc()
