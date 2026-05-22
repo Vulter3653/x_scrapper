@@ -870,3 +870,24 @@ Validation completed:
 - Searched dashboard files for Run Actions/client dispatch references; none remained.
 - Node DOM/Canvas mock render against real JSON data succeeded with `1,825 posts loaded across 2 brands`.
 - Static checks confirmed chart notes, gridline helper, label truncation, mobile breakpoint, and desktop/mobile Post Explorer behavior.
+
+
+### Mobile Chart Axis Compression
+
+Date: 2026-05-22
+
+User reported that graph y-axes were excessively long on mobile.
+
+Changes made:
+
+- Reduced mobile chart left padding for vertical bar charts, horizontal bar charts, stacked share charts, and heatmaps.
+- Reduced mobile y-axis tick count from four ticks to two ticks for vertical bar charts.
+- Lowered `setupCanvas()` minimum width from 280px to 220px and allowed parent container width fallback, preventing charts from forcing oversized horizontal canvas geometry on narrow mobile screens.
+- Shortened mobile y-axis/group labels more aggressively.
+- Added mobile CSS to cap chart canvas height and truncate long chart header helper text.
+
+Validation completed:
+
+- `node --check dashboard/app.js` passed.
+- `git diff --check` passed.
+- Node DOM/Canvas mock render at 360px width against real JSON data passed.

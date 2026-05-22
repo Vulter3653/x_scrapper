@@ -476,7 +476,7 @@ function drawHorizontalBars(canvas, rows, valueLabel = '') {
   if (!sortedRows.length) return drawEmptyChart(canvas, 'No data available for this section');
   const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
   const compact = width < 420;
-  const pad = { top: 18, right: compact ? 42 : 66, bottom: 22, left: compact ? 78 : 118 };
+  const pad = { top: 18, right: compact ? 30 : 66, bottom: 22, left: compact ? 54 : 118 };
   const chartW = Math.max(1, width - pad.left - pad.right);
   const rowH = Math.max(20, (height - pad.top - pad.bottom) / sortedRows.length);
   const max = Math.max(...sortedRows.map((row) => row.value), 1);
@@ -491,7 +491,7 @@ function drawHorizontalBars(canvas, rows, valueLabel = '') {
     ctx.fillRect(pad.left, y + 4, barW, Math.max(10, rowH - 9));
     ctx.fillStyle = '#607076';
     ctx.textAlign = 'right';
-    ctx.fillText(shortLabel(row.label, compact ? 10 : 16), pad.left - 8, y + rowH * 0.65);
+    ctx.fillText(shortLabel(row.label, compact ? 7 : 16), pad.left - 6, y + rowH * 0.65);
     ctx.textAlign = 'left';
     ctx.fillText(formatEngagement(Math.round(row.value)), pad.left + barW + 6, y + rowH * 0.65);
     points.push({ x: pad.left, y, w: Math.max(barW, 8), h: rowH, text: `${row.label}: ${formatEngagement(Math.round(row.value))}${valueLabel}` });
@@ -515,7 +515,7 @@ function drawStackedShare(canvas, groups, categories) {
   if (!groupEntries.length || !categories.length) return drawEmptyChart(canvas, 'No data available for this section');
   const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
   const compact = width < 420;
-  const pad = { top: 18, right: 14, bottom: compact ? 56 : 46, left: compact ? 70 : 92 };
+  const pad = { top: 18, right: 14, bottom: compact ? 56 : 46, left: compact ? 50 : 92 };
   const chartW = width - pad.left - pad.right;
   const rowH = Math.max(26, (height - pad.top - pad.bottom) / groupEntries.length);
   const points = [];
@@ -539,7 +539,7 @@ function drawStackedShare(canvas, groups, categories) {
     ctx.fillStyle = '#607076';
     ctx.font = '11px system-ui, sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText(shortLabel(group, compact ? 9 : 13), pad.left - 8, y + rowH * 0.55);
+    ctx.fillText(shortLabel(group, compact ? 6 : 13), pad.left - 6, y + rowH * 0.55);
   });
   ctx.textAlign = 'left';
   categories.slice(0, compact ? 4 : 8).forEach((cat, i) => {
@@ -582,7 +582,7 @@ function drawHeatmap(canvas, groups, metrics) {
   if (!entries.length) return drawEmptyChart(canvas, 'No data available for this section');
   const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
   const compact = width < 420;
-  const pad = { top: 20, right: 12, bottom: 42, left: compact ? 70 : 88 };
+  const pad = { top: 20, right: 12, bottom: 42, left: compact ? 50 : 88 };
   const cellW = (width - pad.left - pad.right) / metrics.length;
   const cellH = Math.max(30, (height - pad.top - pad.bottom) / entries.length);
   const matrix = entries.map(([label, rows]) => metrics.map(([name, getter]) => average(rows.map(getter))));
@@ -592,7 +592,7 @@ function drawHeatmap(canvas, groups, metrics) {
     ctx.fillStyle = '#607076';
     ctx.font = '11px system-ui, sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText(shortLabel(label, compact ? 9 : 12), pad.left - 6, pad.top + r * cellH + cellH * 0.6);
+    ctx.fillText(shortLabel(label, compact ? 6 : 12), pad.left - 5, pad.top + r * cellH + cellH * 0.6);
     metrics.forEach(([name], c) => {
       const value = matrix[r][c];
       const alpha = Math.max(0.15, value / max);
@@ -687,6 +687,7 @@ function shortLabel(value, limit = 12) {
 }
 
 function drawGrid(ctx, pad, width, height, max, ticks = 4) {
+  const compact = width < 420;
   const chartW = width - pad.left - pad.right;
   const chartH = height - pad.top - pad.bottom;
   ctx.strokeStyle = '#eef3f4';
@@ -700,13 +701,13 @@ function drawGrid(ctx, pad, width, height, max, ticks = 4) {
     ctx.moveTo(pad.left, y);
     ctx.lineTo(pad.left + chartW, y);
     ctx.stroke();
-    ctx.fillText(formatEngagement(Math.round(value)), pad.left - 8, y + 4);
+    ctx.fillText(compact ? formatEngagement(Math.round(value)).replace('.0', '') : formatEngagement(Math.round(value)), pad.left - 5, y + 4);
   }
 }
 
 function setupCanvas(canvas, height) {
   const ctx = canvas.getContext('2d');
-  const width = Math.max(280, Math.floor(canvas.clientWidth || 600));
+  const width = Math.max(220, Math.floor(canvas.clientWidth || canvas.parentElement?.clientWidth || 320));
   const dpr = window.devicePixelRatio || 1;
   canvas.width = width * dpr;
   canvas.height = height * dpr;
@@ -732,7 +733,7 @@ function drawBarChart(canvas, labels, values, color) {
   }
   const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
   const compact = width < 420;
-  const pad = { top: 18, right: 16, bottom: compact ? 54 : 42, left: compact ? 48 : 64 };
+  const pad = { top: 18, right: 12, bottom: compact ? 54 : 42, left: compact ? 36 : 64 };
   const chartW = Math.max(1, width - pad.left - pad.right);
   const chartH = Math.max(1, height - pad.top - pad.bottom);
   const max = Math.max(...values, 1);
@@ -740,7 +741,7 @@ function drawBarChart(canvas, labels, values, color) {
   const barW = Math.max(3, chartW / values.length - gap);
   const points = [];
 
-  drawGrid(ctx, pad, width, height, max, 4);
+  drawGrid(ctx, pad, width, height, max, compact ? 2 : 4);
   ctx.strokeStyle = '#d9e1e4';
   ctx.beginPath();
   ctx.moveTo(pad.left, pad.top + chartH);

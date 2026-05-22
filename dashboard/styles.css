@@ -463,3 +463,19 @@ canvas { width: 100%; max-width: 100%; display: block; touch-action: manipulatio
 .chart-panel canvas {
   margin-top: 8px;
 }
+
+@media (max-width: 639px) {
+  .chart-panel canvas {
+    min-height: 210px;
+    max-height: 240px;
+  }
+  .chart-panel .panel-head {
+    gap: 8px;
+  }
+  .chart-panel .panel-head span {
+    max-width: 44%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
