@@ -1,30 +1,35 @@
 # Zero-Shot Sentiment for @Wendys
 
-- Posts analyzed: 100
+- Posts analyzed: 959
 - Model: `typeform/distilbert-base-uncased-mnli`
 
 ## Label Counts
-- negative: 51
-- positive: 39
-- neutral: 10
+- negative: 516
+- positive: 398
+- neutral: 45
 
 ## Average Scores
-- negative: 0.4486
-- positive: 0.4055
-- neutral: 0.1460
+- negative: 0.4463
+- positive: 0.4266
+- neutral: 0.1271
 
 ## Highest Confidence Examples
-- positive (0.999) [2033326344264888604](https://x.com/Wendys/status/2033326344264888604): Congrats to our Aunt on winning Best Supporting Actress! https://t.co/5EVi2wrFcH
-- negative (0.999) [2035411565797634404](https://x.com/Wendys/status/2035411565797634404): YAXEL LENDEBORG. ABSOLUTELY DISGUSTING.
+- positive (1.000) [1661089747027017748](https://x.com/Wendys/status/1661089747027017748): Thank you to everyone who participated in our little breakfast experimeat. If you missed it, we hope you can figure yourself out and grab some $3 Breakfast.
+- positive (1.000) [1359919274958196736](https://x.com/Wendys/status/1359919274958196736): Congrats on being the world’s first stale flavored chip.  #NationalRoastDay
+- positive (0.999) [1581683892016205825](https://x.com/Wendys/status/1581683892016205825): Bravoholics enjoying @Wendys French Toast Sticks for brunch at Bravopalooza? As Wendy's partner @LisaBarlow7 would say... we love that. #ad #BravoCon https://t.co/AjP2o8PAYT
+- positive (0.999) [1278697516540866568](https://x.com/Wendys/status/1278697516540866568): Excited to partner with @tmcf_hbcu. We want to give them this platform to tell you who they are, what they do, and how we can help them make a difference. 
 
-#MarchMadness https://t.co/GzFu2ZqKzo
-- positive (0.999) [2040186917312979266](https://x.com/Wendys/status/2040186917312979266): Oh good you made it. Introducing: The Official Dunks Menu 🏀 Order in the Wendy’s app all March Madness® long for the chance to win prizes in the Dunkstakes https://t.co/hI3HxiD7VV
-- negative (0.998) [2035415108646490534](https://x.com/Wendys/status/2035415108646490534): I hope Yaxel doesn’t dunk his fries in his Frosty this violently https://t.co/l75Yp2p6YX
-- positive (0.996) [2039789214120996993](https://x.com/Wendys/status/2039789214120996993): Congrats to these Official Wendy’s Dunk Team athletes on making it to the Final Four. You dunked into hoops. You dunked into Frosty. You dunked into our hearts. https://t.co/b6IeqJW8YD
-- positive (0.995) [2041286930231373912](https://x.com/Wendys/status/2041286930231373912): You: Wow I hope so and so team wins
+Follow along 👇
+- positive (0.999) [1493720865254428676](https://x.com/Wendys/status/1493720865254428676): Come hang with the cool kids while we watch @eNASCARCocaCola Series opener of the @iRacing Series at Daytona tonight! Starts at 9pm EST on Twitch. I’m cheering for @Dr_Bob41 in that Wendy’s car. 🏎 
 
-Me: DUNKS DUNKS DUNKS DUNKS
-- negative (0.991) [2022846838726922625](https://x.com/Wendys/status/2022846838726922625): Based on the results from today’s dunk contest this would blow the judges minds https://t.co/6nP4bbhJ2h
-- positive (0.991) [2050307931778732264](https://x.com/Wendys/status/2050307931778732264): I'm trying to get as crispy as the bacon on our Baconator this Girls Trip 😎☀️🌺 https://t.co/8oGyl5S3GO
-- positive (0.989) [2052513071906619715](https://x.com/Wendys/status/2052513071906619715): The necklace of every mom’s dreams is here. Tag a mom and tell us why she deserves one below and we might just surprise a few ❤️ https://t.co/p9208Rvu4D
-- negative (0.979) [2041241219603554599](https://x.com/Wendys/status/2041241219603554599): Tonight we are anti lay ups and anti fundamentals and pro massive jams
+https://t.co/uEukJGdbM6
+- positive (0.999) [1555554802075156480](https://x.com/Wendys/status/1555554802075156480): Congrats to the happy duo! and to @ChaosYT__ on free fries for a year! When you #ChooseHotAndCrispy every hour is golden ✨ https://t.co/wUpxKoP0AF
+- positive (0.999) [1252250012676997123](https://x.com/Wendys/status/1252250012676997123): Everyone could use some extra love right now, so we’re trading our usual roasting for a little toasting.
+
+Let’s use this thread to shout out the special people in our lives that we think deserve some shine right now.
+- positive (0.999) [1405225063415177224](https://x.com/Wendys/status/1405225063415177224): try it and see what happens*
+
+*You'll get a free Jr Bacon Cheeseburger with any purchase in the app
+**this one is just for fun
+- positive (0.999) [1278698388054310913](https://x.com/Wendys/status/1278698388054310913): Black College Communities deserve to be honored and celebrated. Thanks @tmcf_hbcu for taking the time and sharing all of this great info today.
+- positive (0.999) [1254847872614502402](https://x.com/Wendys/status/1254847872614502402): Wendy Morty is waiting for you. This Morty loves two things: Being fresh, and never being frozen. @Wendys #ad https://t.co/tgPq7bl7rb
