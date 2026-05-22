@@ -1,12 +1,43 @@
-name: Scrape
+name: Scrape Wendy's X Posts
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
+    inputs:
+      target_user:
+        description: 'X screen name to scrape'
+        required: true
+        default: 'Wendys'
+      tweet_types:
+        description: 'Comma-separated timeline types: Tweets,Replies,Media,Likes'
+        required: true
+        default: 'Tweets,Replies'
+      page_size:
+        description: 'Requested tweets per page'
+        required: true
+        default: '100'
+      max_pages_per_type:
+        description: '0 means keep going until X returns no next cursor'
+        required: true
+        default: '0'
+      page_delay_seconds:
+        description: 'Delay between cursor pages per timeline'
+        required: true
+        default: '0.5'
+      reset_cursor:
+        description: 'Start from newest page instead of saved cursor'
+        required: true
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+        default: 'false'
 
 permissions:
   contents: write
+
+concurrency:
+  group: scrape-${{ github.ref }}
+  cancel-in-progress: false
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
@@ -14,6 +45,7 @@ env:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
 
     steps:
       - name: 1. Checkout repository
@@ -22,57 +54,59 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: 2. Debug Git environment
-        shell: bash
-        run: |
-          set -euxo pipefail
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git status
-
-      - name: 3. Set up Python
+      - name: 2. Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: 4. Install dependencies
+      - name: 3. Install dependencies
         shell: bash
         run: |
           set -euxo pipefail
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 5. Run scraper
+      - name: 4. Run scraper until exhausted or timeout
         shell: bash
         env:
           X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           X_CT0: ${{ secrets.X_CT0 }}
-          TARGET_USER: 'Wendys'
+          TARGET_USER: ${{ inputs.target_user }}
+          TWEET_TYPES: ${{ inputs.tweet_types }}
+          PAGE_SIZE: ${{ inputs.page_size }}
+          MAX_PAGES_PER_TYPE: ${{ inputs.max_pages_per_type }}
+          PAGE_DELAY_SECONDS: ${{ inputs.page_delay_seconds }}
+          RESET_CURSOR: ${{ inputs.reset_cursor }}
+          PARALLEL_TYPES: '2'
+          MAX_RETRIES: '8'
+          RETRY_BASE_SECONDS: '10'
         run: |
           set -euxo pipefail
           python scrape_x.py
 
-      - name: 6. Inspect changed files
+      - name: 5. Inspect changed files
         shell: bash
         run: |
           set -euxo pipefail
           git status --short
 
-      - name: 7. Commit and push changes
+      - name: 6. Commit and push results
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euxo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes to commit."
+            echo 'No changes to commit.'
             exit 0
           fi
 
           git add -A
-          git commit -m "Update scraped data (Scraper mode)"
+          git commit -m "Update scraped X posts"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push origin HEAD:main

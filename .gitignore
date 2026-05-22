@@ -3,6 +3,5 @@ __pycache__/
 *.pyc
 credentials.json
 .idx/
-# cookies.json은 보안을 위해 기본적으로 무시하지만, 
-# 자동화 스크립트에서는 --force 옵션으로 관리할 예정입니다.
-# 결과물인 JSON 파일은 저장소에 기록되어야 하므로 제외하지 않습니다.
+*.json.tmp
+# 결과물 JSON과 scrape_state JSON은 수집 재개를 위해 저장소에 기록합니다.
