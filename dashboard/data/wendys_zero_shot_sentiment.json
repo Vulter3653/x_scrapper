@@ -1,0 +1,1423 @@
+{
+  "target_user": "Wendys",
+  "input_file": "wendys_posts.json",
+  "model": "typeform/distilbert-base-uncased-mnli",
+  "labels": [
+    "positive",
+    "neutral",
+    "negative"
+  ],
+  "post_count": 100,
+  "label_counts": {
+    "positive": 39,
+    "negative": 51,
+    "neutral": 10
+  },
+  "average_scores": {
+    "positive": 0.4054629710887093,
+    "neutral": 0.1459688585452386,
+    "negative": 0.44856816989864456
+  },
+  "posts": [
+    {
+      "id": "2057593602490970314",
+      "tweet_url": "https://x.com/Wendys/status/2057593602490970314",
+      "created_at": "Thu May 21 22:45:17 +0000 2026",
+      "text": "Hi @KenJennings",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.529750645160675,
+      "scores": {
+        "positive": 0.529750645160675,
+        "negative": 0.37298253178596497,
+        "neutral": 0.09726683050394058
+      }
+    },
+    {
+      "id": "2057590511653794039",
+      "tweet_url": "https://x.com/Wendys/status/2057590511653794039",
+      "created_at": "Thu May 21 22:33:00 +0000 2026",
+      "text": "This isn’t my living room btw I was at a friends house",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.866488516330719,
+      "scores": {
+        "negative": 0.866488516330719,
+        "neutral": 0.1220145970582962,
+        "positive": 0.011496953666210175
+      }
+    },
+    {
+      "id": "2057590262373785937",
+      "tweet_url": "https://x.com/Wendys/status/2057590262373785937",
+      "created_at": "Thu May 21 22:32:01 +0000 2026",
+      "text": "@James_Holzhauer",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.6220192909240723,
+      "scores": {
+        "negative": 0.6220192909240723,
+        "positive": 0.27814170718193054,
+        "neutral": 0.0998389720916748
+      }
+    },
+    {
+      "id": "2057589742649192842",
+      "tweet_url": "https://x.com/Wendys/status/2057589742649192842",
+      "created_at": "Thu May 21 22:29:57 +0000 2026",
+      "text": "it's not roasting if it's true 😌 @Jeopardy https://t.co/Da3mvCbEFB",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.6575787663459778,
+      "scores": {
+        "neutral": 0.6575787663459778,
+        "positive": 0.2010461688041687,
+        "negative": 0.1413750797510147
+      }
+    },
+    {
+      "id": "2057509387422380064",
+      "tweet_url": "https://x.com/Wendys/status/2057509387422380064",
+      "created_at": "Thu May 21 17:10:39 +0000 2026",
+      "text": "From one redheaded baddie to another, we just wanted to formally invite you to compete in our Wendy’s look-alike contest this weekend for #worldredheadday\n\nhttps://t.co/Plz0ZCapd2",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5910692811012268,
+      "scores": {
+        "negative": 0.5910692811012268,
+        "positive": 0.34133821725845337,
+        "neutral": 0.06759248673915863
+      }
+    },
+    {
+      "id": "2056803537636467033",
+      "tweet_url": "https://x.com/Wendys/status/2056803537636467033",
+      "created_at": "Tue May 19 18:25:51 +0000 2026",
+      "text": "might change my name to Wemby’s and only serve french fries after last night’s game",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4557994604110718,
+      "scores": {
+        "negative": 0.4557994604110718,
+        "positive": 0.3237142562866211,
+        "neutral": 0.22048625349998474
+      }
+    },
+    {
+      "id": "2056485781707821429",
+      "tweet_url": "https://x.com/Wendys/status/2056485781707821429",
+      "created_at": "Mon May 18 21:23:12 +0000 2026",
+      "text": "If you have flaming locks of auburn hair and a face card that never declines, we have the perfect contest for you 😉\nWendy’s Look-Alike Contest is 3:30-5:30pm May 26th at Seaport Square in NYC! https://t.co/sEUa15Db7G",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.6829878091812134,
+      "scores": {
+        "positive": 0.6829878091812134,
+        "negative": 0.2978452146053314,
+        "neutral": 0.019166963174939156
+      }
+    },
+    {
+      "id": "2054933542442848652",
+      "tweet_url": "https://x.com/Wendys/status/2054933542442848652",
+      "created_at": "Thu May 14 14:35:09 +0000 2026",
+      "text": "🟨🟦🍟 https://t.co/y9M33fb83V",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.38399967551231384,
+      "scores": {
+        "negative": 0.38399967551231384,
+        "positive": 0.35713666677474976,
+        "neutral": 0.258863627910614
+      }
+    },
+    {
+      "id": "2054257059399389281",
+      "tweet_url": "https://x.com/Wendys/status/2054257059399389281",
+      "created_at": "Tue May 12 17:47:03 +0000 2026",
+      "text": "Did you know? One cookie dough frosty is the equivalent of 12 dancing fruit videos?",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.8708403706550598,
+      "scores": {
+        "negative": 0.8708403706550598,
+        "positive": 0.08908550441265106,
+        "neutral": 0.04007409140467644
+      }
+    },
+    {
+      "id": "2052863834503700774",
+      "tweet_url": "https://x.com/Wendys/status/2052863834503700774",
+      "created_at": "Fri May 08 21:30:53 +0000 2026",
+      "text": "Their love story is almost as fresh as our beef ❤️ https://t.co/OydNIkjSGV",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9689221382141113,
+      "scores": {
+        "positive": 0.9689221382141113,
+        "neutral": 0.01596766524016857,
+        "negative": 0.015110192820429802
+      }
+    },
+    {
+      "id": "2052727809756348567",
+      "tweet_url": "https://x.com/Wendys/status/2052727809756348567",
+      "created_at": "Fri May 08 12:30:22 +0000 2026",
+      "text": "Sir, this is a banana https://t.co/mtSrVrahpo",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9480029344558716,
+      "scores": {
+        "negative": 0.9480029344558716,
+        "positive": 0.04425430670380592,
+        "neutral": 0.007742757443338633
+      }
+    },
+    {
+      "id": "2052536825336729602",
+      "tweet_url": "https://x.com/Wendys/status/2052536825336729602",
+      "created_at": "Thu May 07 23:51:28 +0000 2026",
+      "text": "Rick Devens after last night’s tribal council \n@Rick_Devens @MrBeast #Survivor50",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5369619131088257,
+      "scores": {
+        "negative": 0.5369619131088257,
+        "positive": 0.39257296919822693,
+        "neutral": 0.07046502828598022
+      }
+    },
+    {
+      "id": "2052513071906619715",
+      "tweet_url": "https://x.com/Wendys/status/2052513071906619715",
+      "created_at": "Thu May 07 22:17:04 +0000 2026",
+      "text": "The necklace of every mom’s dreams is here. Tag a mom and tell us why she deserves one below and we might just surprise a few ❤️ https://t.co/p9208Rvu4D",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9891644716262817,
+      "scores": {
+        "positive": 0.9891644716262817,
+        "negative": 0.0062376451678574085,
+        "neutral": 0.004597884137183428
+      }
+    },
+    {
+      "id": "2050328345645133837",
+      "tweet_url": "https://x.com/Wendys/status/2050328345645133837",
+      "created_at": "Fri May 01 21:35:45 +0000 2026",
+      "text": "new spicy chicken sandwich slaps https://t.co/nDUnSsL79R",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.6335039138793945,
+      "scores": {
+        "negative": 0.6335039138793945,
+        "positive": 0.3096957206726074,
+        "neutral": 0.05680030956864357
+      }
+    },
+    {
+      "id": "2050307931778732264",
+      "tweet_url": "https://x.com/Wendys/status/2050307931778732264",
+      "created_at": "Fri May 01 20:14:38 +0000 2026",
+      "text": "I'm trying to get as crispy as the bacon on our Baconator this Girls Trip 😎☀️🌺 https://t.co/8oGyl5S3GO",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9905345439910889,
+      "scores": {
+        "positive": 0.9905345439910889,
+        "negative": 0.007592882961034775,
+        "neutral": 0.0018725258996710181
+      }
+    },
+    {
+      "id": "2050243908991328359",
+      "tweet_url": "https://x.com/Wendys/status/2050243908991328359",
+      "created_at": "Fri May 01 16:00:14 +0000 2026",
+      "text": "that bow is not just blue, it's not turquoise, it's not lapis, it's actually cerulean. https://t.co/mswbnGHkgg",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.4297296702861786,
+      "scores": {
+        "neutral": 0.4297296702861786,
+        "negative": 0.3162415325641632,
+        "positive": 0.254028856754303
+      }
+    },
+    {
+      "id": "2048730947017654333",
+      "tweet_url": "https://x.com/Wendys/status/2048730947017654333",
+      "created_at": "Mon Apr 27 11:48:16 +0000 2026",
+      "text": "Sweet &amp; Sour is BACK… but only for a limited time unless y’all get loud. Go get the sauce in-restaurant + like, comment and share this post to save it. SWEET &amp; SOUR ARMY DO UR THING. https://t.co/ndF0vOrTpo",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.7470568418502808,
+      "scores": {
+        "positive": 0.7470568418502808,
+        "negative": 0.24756909906864166,
+        "neutral": 0.005374064669013023
+      }
+    },
+    {
+      "id": "2047463502583869524",
+      "tweet_url": "https://x.com/Wendys/status/2047463502583869524",
+      "created_at": "Thu Apr 23 23:51:53 +0000 2026",
+      "text": "THIS would happen at Wendy's 👀 https://t.co/lNjM2bD6pb",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.4303804337978363,
+      "scores": {
+        "positive": 0.4303804337978363,
+        "negative": 0.42172208428382874,
+        "neutral": 0.14789743721485138
+      }
+    },
+    {
+      "id": "2042359791239024659",
+      "tweet_url": "https://x.com/Wendys/status/2042359791239024659",
+      "created_at": "Thu Apr 09 21:51:34 +0000 2026",
+      "text": "She a baddie with her baddie friend (I'm the baddie friend)",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5103421807289124,
+      "scores": {
+        "negative": 0.5103421807289124,
+        "neutral": 0.26189863681793213,
+        "positive": 0.2277592122554779
+      }
+    },
+    {
+      "id": "2042345361310957745",
+      "tweet_url": "https://x.com/Wendys/status/2042345361310957745",
+      "created_at": "Thu Apr 09 20:54:13 +0000 2026",
+      "text": "still rich still craving @wendys new spicy chicken sandwich #wendyspartner",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9067912101745605,
+      "scores": {
+        "positive": 0.9067912101745605,
+        "negative": 0.0830012708902359,
+        "neutral": 0.010207531973719597
+      }
+    },
+    {
+      "id": "2042276646711894177",
+      "tweet_url": "https://x.com/Wendys/status/2042276646711894177",
+      "created_at": "Thu Apr 09 16:21:10 +0000 2026",
+      "text": "WE’VE GOT OUR WINNER🏆 the Pretzel Bacon Pub Burger is coming back to the menu soon https://t.co/jdeIQgJBnp",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.45427677035331726,
+      "scores": {
+        "positive": 0.45427677035331726,
+        "negative": 0.4355027377605438,
+        "neutral": 0.11022047698497772
+      }
+    },
+    {
+      "id": "2041987332509782141",
+      "tweet_url": "https://x.com/Wendys/status/2041987332509782141",
+      "created_at": "Wed Apr 08 21:11:33 +0000 2026",
+      "text": "The universe called. It said add me on Co-Star. @ wendys_official https://t.co/7HYmQbBfv7",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.6095014810562134,
+      "scores": {
+        "positive": 0.6095014810562134,
+        "negative": 0.33214691281318665,
+        "neutral": 0.05835157260298729
+      }
+    },
+    {
+      "id": "2041526924149690528",
+      "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
+      "created_at": "Tue Apr 07 14:42:03 +0000 2026",
+      "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.5038310289382935,
+      "scores": {
+        "neutral": 0.5038310289382935,
+        "negative": 0.28324973583221436,
+        "positive": 0.2129192352294922
+      }
+    },
+    {
+      "id": "2041526852036988999",
+      "tweet_url": "https://x.com/Wendys/status/2041526852036988999",
+      "created_at": "Tue Apr 07 14:41:45 +0000 2026",
+      "text": "🫵 YOU GET A FREE FRY AND FROSTY 🫵 AND YOU GET A FREE FRY AND FROSTY 🫵 AND YOU GET A FREE FRY AND FROSTY 🫵 https://t.co/OQ2OI18i5U",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.3841358423233032,
+      "scores": {
+        "positive": 0.3841358423233032,
+        "neutral": 0.3288508951663971,
+        "negative": 0.2870132625102997
+      }
+    },
+    {
+      "id": "2041332734883201293",
+      "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
+      "created_at": "Tue Apr 07 01:50:24 +0000 2026",
+      "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.5038310289382935,
+      "scores": {
+        "neutral": 0.5038310289382935,
+        "negative": 0.28324973583221436,
+        "positive": 0.2129192352294922
+      }
+    },
+    {
+      "id": "2041332610928951432",
+      "tweet_url": "https://x.com/Wendys/status/2041332610928951432",
+      "created_at": "Tue Apr 07 01:49:55 +0000 2026",
+      "text": "WE HAVE A DUNK 🚨that means all of America gets free small fry and Frosty on April 7th. Not to be dramatic, but that was the greatest moment in dunk history.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9654165506362915,
+      "scores": {
+        "positive": 0.9654165506362915,
+        "negative": 0.021394168958067894,
+        "neutral": 0.013189215213060379
+      }
+    },
+    {
+      "id": "2041332103036412007",
+      "tweet_url": "https://x.com/Wendys/status/2041332103036412007",
+      "created_at": "Tue Apr 07 01:47:54 +0000 2026",
+      "text": "GET UP RODDY GAYLE 🤯 https://t.co/Yz0SkHVdwC",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4884103536605835,
+      "scores": {
+        "negative": 0.4884103536605835,
+        "positive": 0.3749655485153198,
+        "neutral": 0.13662415742874146
+      }
+    },
+    {
+      "id": "2041317545412546926",
+      "tweet_url": "https://x.com/Wendys/status/2041317545412546926",
+      "created_at": "Tue Apr 07 00:50:03 +0000 2026",
+      "text": "Tip off time here we goooooo 🫣🏀",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5486670732498169,
+      "scores": {
+        "negative": 0.5486670732498169,
+        "positive": 0.3923130929470062,
+        "neutral": 0.059019800275564194
+      }
+    },
+    {
+      "id": "2041286930231373912",
+      "tweet_url": "https://x.com/Wendys/status/2041286930231373912",
+      "created_at": "Mon Apr 06 22:48:24 +0000 2026",
+      "text": "You: Wow I hope so and so team wins\n\nMe: DUNKS DUNKS DUNKS DUNKS",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9948904514312744,
+      "scores": {
+        "positive": 0.9948904514312744,
+        "neutral": 0.002761438023298979,
+        "negative": 0.002348068868741393
+      }
+    },
+    {
+      "id": "2041274861461586245",
+      "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
+      "created_at": "Mon Apr 06 22:00:26 +0000 2026",
+      "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.5038310289382935,
+      "scores": {
+        "neutral": 0.5038310289382935,
+        "negative": 0.28324973583221436,
+        "positive": 0.2129192352294922
+      }
+    },
+    {
+      "id": "2041274790418485741",
+      "tweet_url": "https://x.com/Wendys/status/2041274790418485741",
+      "created_at": "Mon Apr 06 22:00:09 +0000 2026",
+      "text": "Who shall fulfill the prophecy?!?!?!?!\n\nTag us when you see who unlocks it 👀 https://t.co/mmdG7uqh7a",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5947851538658142,
+      "scores": {
+        "negative": 0.5947851538658142,
+        "positive": 0.3590680956840515,
+        "neutral": 0.0461466982960701
+      }
+    },
+    {
+      "id": "2041273129272824054",
+      "tweet_url": "https://x.com/Wendys/status/2041273129272824054",
+      "created_at": "Mon Apr 06 21:53:33 +0000 2026",
+      "text": "Get your votes in!",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.4846687316894531,
+      "scores": {
+        "positive": 0.4846687316894531,
+        "negative": 0.43986976146698,
+        "neutral": 0.07546153664588928
+      }
+    },
+    {
+      "id": "2041272778461258077",
+      "tweet_url": "https://x.com/Wendys/status/2041272778461258077",
+      "created_at": "Mon Apr 06 21:52:10 +0000 2026",
+      "text": "The Bourbon Bacon Cheeseburger and Pretzel Bacon Pub Burger have made it to our championship! Get your votes in to decide who will be crowned the winner and end up back on the menu https://t.co/VIgjuIMDNF",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5205617547035217,
+      "scores": {
+        "positive": 0.5205617547035217,
+        "negative": 0.4118983745574951,
+        "neutral": 0.06753987073898315
+      }
+    },
+    {
+      "id": "2041270386478780749",
+      "tweet_url": "https://x.com/Wendys/status/2041270386478780749",
+      "created_at": "Mon Apr 06 21:42:39 +0000 2026",
+      "text": "ONLY A FEW HOURS UNTIL SOMEONE DUNKS THEIR WAY INTO AMERICAN HISTORY",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.6759414076805115,
+      "scores": {
+        "negative": 0.6759414076805115,
+        "positive": 0.25633421540260315,
+        "neutral": 0.06772436946630478
+      }
+    },
+    {
+      "id": "2041241219603554599",
+      "tweet_url": "https://x.com/Wendys/status/2041241219603554599",
+      "created_at": "Mon Apr 06 19:46:45 +0000 2026",
+      "text": "Tonight we are anti lay ups and anti fundamentals and pro massive jams",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9790749549865723,
+      "scores": {
+        "negative": 0.9790749549865723,
+        "neutral": 0.011923753656446934,
+        "positive": 0.009001257829368114
+      }
+    },
+    {
+      "id": "2041187810728727004",
+      "tweet_url": "https://x.com/Wendys/status/2041187810728727004",
+      "created_at": "Mon Apr 06 16:14:32 +0000 2026",
+      "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.5038310289382935,
+      "scores": {
+        "neutral": 0.5038310289382935,
+        "negative": 0.28324973583221436,
+        "positive": 0.2129192352294922
+      }
+    },
+    {
+      "id": "2041187699764163013",
+      "tweet_url": "https://x.com/Wendys/status/2041187699764163013",
+      "created_at": "Mon Apr 06 16:14:05 +0000 2026",
+      "text": "woke up thinking about who’s gonna dunk in the national championship game tonight to unlock a free small fry and Frosty for America tomorrow",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.602581799030304,
+      "scores": {
+        "negative": 0.602581799030304,
+        "positive": 0.2710670828819275,
+        "neutral": 0.12635108828544617
+      }
+    },
+    {
+      "id": "2040186917312979266",
+      "tweet_url": "https://x.com/Wendys/status/2040186917312979266",
+      "created_at": "Fri Apr 03 21:57:20 +0000 2026",
+      "text": "Oh good you made it. Introducing: The Official Dunks Menu 🏀 Order in the Wendy’s app all March Madness® long for the chance to win prizes in the Dunkstakes https://t.co/hI3HxiD7VV",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9985042214393616,
+      "scores": {
+        "positive": 0.9985042214393616,
+        "neutral": 0.0008488759049214423,
+        "negative": 0.0006469212821684778
+      }
+    },
+    {
+      "id": "2040186893468393651",
+      "tweet_url": "https://x.com/Wendys/status/2040186893468393651",
+      "created_at": "Fri Apr 03 21:57:14 +0000 2026",
+      "text": "YOU COULD GO ALL THE WAY https://t.co/JG6srzZZTh",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.4969756603240967,
+      "scores": {
+        "positive": 0.4969756603240967,
+        "negative": 0.3301090896129608,
+        "neutral": 0.17291522026062012
+      }
+    },
+    {
+      "id": "2040186885704683992",
+      "tweet_url": "https://x.com/Wendys/status/2040186885704683992",
+      "created_at": "Fri Apr 03 21:57:13 +0000 2026",
+      "text": "Scroll for a #MarchMadness surprise 👀 🏀 https://t.co/FJ4PuPVkOq",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4775877594947815,
+      "scores": {
+        "negative": 0.4775877594947815,
+        "positive": 0.3936784267425537,
+        "neutral": 0.128733828663826
+      }
+    },
+    {
+      "id": "2039915068729541060",
+      "tweet_url": "https://x.com/Wendys/status/2039915068729541060",
+      "created_at": "Fri Apr 03 03:57:06 +0000 2026",
+      "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4336990714073181,
+      "scores": {
+        "negative": 0.4336990714073181,
+        "neutral": 0.33294689655303955,
+        "positive": 0.23335403203964233
+      }
+    },
+    {
+      "id": "2039900754387869992",
+      "tweet_url": "https://x.com/Wendys/status/2039900754387869992",
+      "created_at": "Fri Apr 03 03:00:14 +0000 2026",
+      "text": "Help us give the people what they want! If there’s a dunk during the natty everyone in America gets a free small fry and classic Frosty on April 7th https://t.co/UnfLgpYclZ",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.6622028350830078,
+      "scores": {
+        "positive": 0.6622028350830078,
+        "negative": 0.2911197245121002,
+        "neutral": 0.04667745903134346
+      }
+    },
+    {
+      "id": "2039789214120996993",
+      "tweet_url": "https://x.com/Wendys/status/2039789214120996993",
+      "created_at": "Thu Apr 02 19:37:00 +0000 2026",
+      "text": "Congrats to these Official Wendy’s Dunk Team athletes on making it to the Final Four. You dunked into hoops. You dunked into Frosty. You dunked into our hearts. https://t.co/b6IeqJW8YD",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9957098960876465,
+      "scores": {
+        "positive": 0.9957098960876465,
+        "neutral": 0.0023574461229145527,
+        "negative": 0.0019327100599184632
+      }
+    },
+    {
+      "id": "2039714223337463977",
+      "tweet_url": "https://x.com/Wendys/status/2039714223337463977",
+      "created_at": "Thu Apr 02 14:39:01 +0000 2026",
+      "text": "Vote!",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5583500266075134,
+      "scores": {
+        "positive": 0.5583500266075134,
+        "negative": 0.3610265851020813,
+        "neutral": 0.08062335848808289
+      }
+    },
+    {
+      "id": "2039714041212358979",
+      "tweet_url": "https://x.com/Wendys/status/2039714041212358979",
+      "created_at": "Thu Apr 02 14:38:18 +0000 2026",
+      "text": "Vote!",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5583500266075134,
+      "scores": {
+        "positive": 0.5583500266075134,
+        "negative": 0.3610265851020813,
+        "neutral": 0.08062335848808289
+      }
+    },
+    {
+      "id": "2039713760378487274",
+      "tweet_url": "https://x.com/Wendys/status/2039713760378487274",
+      "created_at": "Thu Apr 02 14:37:11 +0000 2026",
+      "text": "We’ve got our final four! It’s time to decide who will make it to the championship and ultimately end up back on the menu. Get your votes in now! https://t.co/Yat9QPbeFA",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.475069522857666,
+      "scores": {
+        "negative": 0.475069522857666,
+        "positive": 0.39120855927467346,
+        "neutral": 0.13372185826301575
+      }
+    },
+    {
+      "id": "2038738065678811271",
+      "tweet_url": "https://x.com/Wendys/status/2038738065678811271",
+      "created_at": "Mon Mar 30 22:00:07 +0000 2026",
+      "text": "Vote!",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5583500266075134,
+      "scores": {
+        "positive": 0.5583500266075134,
+        "negative": 0.3610265851020813,
+        "neutral": 0.08062335848808289
+      }
+    },
+    {
+      "id": "2038737809075565002",
+      "tweet_url": "https://x.com/Wendys/status/2038737809075565002",
+      "created_at": "Mon Mar 30 21:59:06 +0000 2026",
+      "text": "Vote!",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5583500266075134,
+      "scores": {
+        "positive": 0.5583500266075134,
+        "negative": 0.3610265851020813,
+        "neutral": 0.08062335848808289
+      }
+    },
+    {
+      "id": "2038737532473803096",
+      "tweet_url": "https://x.com/Wendys/status/2038737532473803096",
+      "created_at": "Mon Mar 30 21:58:00 +0000 2026",
+      "text": "Vote!",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5583500266075134,
+      "scores": {
+        "positive": 0.5583500266075134,
+        "negative": 0.3610265851020813,
+        "neutral": 0.08062335848808289
+      }
+    },
+    {
+      "id": "2038737391863869923",
+      "tweet_url": "https://x.com/Wendys/status/2038737391863869923",
+      "created_at": "Mon Mar 30 21:57:26 +0000 2026",
+      "text": "Vote!",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5583500266075134,
+      "scores": {
+        "positive": 0.5583500266075134,
+        "negative": 0.3610265851020813,
+        "neutral": 0.08062335848808289
+      }
+    },
+    {
+      "id": "2038736376653554124",
+      "tweet_url": "https://x.com/Wendys/status/2038736376653554124",
+      "created_at": "Mon Mar 30 21:53:24 +0000 2026",
+      "text": "After a tough fight to make it on the bracket, we have our finalists! America, we want to hear from you! Tell us what you want to see back on the menu. Voting starts… NOW!\n\nBetter luck next time to the Sunroom, Salad SuperBar, Giant JBC, and Trex burger. https://t.co/Ypg0dTCSnT",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5237441062927246,
+      "scores": {
+        "positive": 0.5237441062927246,
+        "negative": 0.4327377676963806,
+        "neutral": 0.04351814463734627
+      }
+    },
+    {
+      "id": "2037346325923278851",
+      "tweet_url": "https://x.com/Wendys/status/2037346325923278851",
+      "created_at": "Fri Mar 27 01:49:50 +0000 2026",
+      "text": "Okay not a dunk but that’s STILL OUR GUY @jmilly2410",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.7542354464530945,
+      "scores": {
+        "neutral": 0.7542354464530945,
+        "positive": 0.18790072202682495,
+        "negative": 0.05786380171775818
+      }
+    },
+    {
+      "id": "2037342589230408021",
+      "tweet_url": "https://x.com/Wendys/status/2037342589230408021",
+      "created_at": "Fri Mar 27 01:34:59 +0000 2026",
+      "text": "TREY KAUFMAN-RENN GAME-WINNER 🚨\n\nPURDUE ADVANCES TO THE ELITE 8 🤯 https://t.co/CYj7ltsGXT",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.40187695622444153,
+      "scores": {
+        "negative": 0.40187695622444153,
+        "positive": 0.39428994059562683,
+        "neutral": 0.20383314788341522
+      }
+    },
+    {
+      "id": "2036210859299455486",
+      "tweet_url": "https://x.com/Wendys/status/2036210859299455486",
+      "created_at": "Mon Mar 23 22:37:54 +0000 2026",
+      "text": "“Fries + Frosty = The Best of Both Worlds” https://t.co/ixuIhrXwcR",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9331820011138916,
+      "scores": {
+        "positive": 0.9331820011138916,
+        "neutral": 0.04697398096323013,
+        "negative": 0.019844086840748787
+      }
+    },
+    {
+      "id": "2035444365800214846",
+      "tweet_url": "https://x.com/Wendys/status/2035444365800214846",
+      "created_at": "Sat Mar 21 19:52:08 +0000 2026",
+      "text": "On and off the court, Coen Carr can’t stop (won’t stop) dunking. https://t.co/pvLNEM1zSj",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.47694116830825806,
+      "scores": {
+        "negative": 0.47694116830825806,
+        "positive": 0.3470683693885803,
+        "neutral": 0.1759905219078064
+      }
+    },
+    {
+      "id": "2035438297070096829",
+      "tweet_url": "https://x.com/Wendys/status/2035438297070096829",
+      "created_at": "Sat Mar 21 19:28:01 +0000 2026",
+      "text": "Fears ➡️ Carr 🔨 https://t.co/Y7Wa3vl7X5",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9698682427406311,
+      "scores": {
+        "negative": 0.9698682427406311,
+        "positive": 0.02077602408826351,
+        "neutral": 0.009355736896395683
+      }
+    },
+    {
+      "id": "2035415108646490534",
+      "tweet_url": "https://x.com/Wendys/status/2035415108646490534",
+      "created_at": "Sat Mar 21 17:55:52 +0000 2026",
+      "text": "I hope Yaxel doesn’t dunk his fries in his Frosty this violently https://t.co/l75Yp2p6YX",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9982447624206543,
+      "scores": {
+        "negative": 0.9982447624206543,
+        "positive": 0.0012825726298615336,
+        "neutral": 0.00047269058995880187
+      }
+    },
+    {
+      "id": "2035414922763350398",
+      "tweet_url": "https://x.com/Wendys/status/2035414922763350398",
+      "created_at": "Sat Mar 21 17:55:08 +0000 2026",
+      "text": "Tarris Reed stat line: buckets, boards, and dunks. Basically a Dunk Menu combo. https://t.co/rktHfBeiwV",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.4910520017147064,
+      "scores": {
+        "positive": 0.4910520017147064,
+        "negative": 0.44888171553611755,
+        "neutral": 0.06006630137562752
+      }
+    },
+    {
+      "id": "2035411565797634404",
+      "tweet_url": "https://x.com/Wendys/status/2035411565797634404",
+      "created_at": "Sat Mar 21 17:41:48 +0000 2026",
+      "text": "YAXEL LENDEBORG. ABSOLUTELY DISGUSTING.\n\n#MarchMadness https://t.co/GzFu2ZqKzo",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9988566040992737,
+      "scores": {
+        "negative": 0.9988566040992737,
+        "neutral": 0.000762268784455955,
+        "positive": 0.00038116704672574997
+      }
+    },
+    {
+      "id": "2035213787020575096",
+      "tweet_url": "https://x.com/Wendys/status/2035213787020575096",
+      "created_at": "Sat Mar 21 04:35:53 +0000 2026",
+      "text": "Tarris Reed throws it down 🔨 https://t.co/kGW6Ewxnon",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.6662442684173584,
+      "scores": {
+        "negative": 0.6662442684173584,
+        "neutral": 0.1953519880771637,
+        "positive": 0.1384037435054779
+      }
+    },
+    {
+      "id": "2035089780396953839",
+      "tweet_url": "https://x.com/Wendys/status/2035089780396953839",
+      "created_at": "Fri Mar 20 20:23:08 +0000 2026",
+      "text": "“Hold my Frosty” – Coen Carr, probably. @Coencarr2 https://t.co/8hGMcWQRSr",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9508981108665466,
+      "scores": {
+        "negative": 0.9508981108665466,
+        "neutral": 0.046182483434677124,
+        "positive": 0.0029194026719778776
+      }
+    },
+    {
+      "id": "2035036863413805229",
+      "tweet_url": "https://x.com/Wendys/status/2035036863413805229",
+      "created_at": "Fri Mar 20 16:52:52 +0000 2026",
+      "text": "A championship-caliber roster that dunks on and off the court: introducing the Official Wendy’s Dunk Team 🤝Tune in for the dunks, then try your own with the Dunk Menu, only in the app. https://t.co/ACwbEmgmQE",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9198188185691833,
+      "scores": {
+        "positive": 0.9198188185691833,
+        "neutral": 0.0460357628762722,
+        "negative": 0.03414536267518997
+      }
+    },
+    {
+      "id": "2034753037797904417",
+      "tweet_url": "https://x.com/Wendys/status/2034753037797904417",
+      "created_at": "Thu Mar 19 22:05:02 +0000 2026",
+      "text": "Coen Carr AGAIN 😤 https://t.co/Hwfed2ciRF",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4404815435409546,
+      "scores": {
+        "negative": 0.4404815435409546,
+        "positive": 0.3260520100593567,
+        "neutral": 0.2334664911031723
+      }
+    },
+    {
+      "id": "2033636564551524646",
+      "tweet_url": "https://x.com/Wendys/status/2033636564551524646",
+      "created_at": "Mon Mar 16 20:08:34 +0000 2026",
+      "text": "truly life changing https://t.co/0tX6CyMW2P",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.4643422067165375,
+      "scores": {
+        "positive": 0.4643422067165375,
+        "negative": 0.4632560908794403,
+        "neutral": 0.07240168750286102
+      }
+    },
+    {
+      "id": "2033326344264888604",
+      "tweet_url": "https://x.com/Wendys/status/2033326344264888604",
+      "created_at": "Sun Mar 15 23:35:52 +0000 2026",
+      "text": "Congrats to our Aunt on winning Best Supporting Actress! https://t.co/5EVi2wrFcH",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.999004602432251,
+      "scores": {
+        "positive": 0.999004602432251,
+        "neutral": 0.0005236404831521213,
+        "negative": 0.0004718203272204846
+      }
+    },
+    {
+      "id": "2032563031024996510",
+      "tweet_url": "https://x.com/Wendys/status/2032563031024996510",
+      "created_at": "Fri Mar 13 21:02:44 +0000 2026",
+      "text": "Head to https://t.co/lkd5mlJoiZ to see how to apply. WHAT ARE YOU WAITING FOR?!?!?!?! IT’S $100,000 !!!!!\n\nNo purch nec. 50 US/DC, 18+. Ends 3/30. Rules: https://t.co/mNIqecbPOQ\n\n#WendysCTOContest https://t.co/WD3ZxE9iee",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.7747791409492493,
+      "scores": {
+        "negative": 0.7747791409492493,
+        "positive": 0.18101471662521362,
+        "neutral": 0.044206127524375916
+      }
+    },
+    {
+      "id": "2031884901557965271",
+      "tweet_url": "https://x.com/Wendys/status/2031884901557965271",
+      "created_at": "Thu Mar 12 00:08:05 +0000 2026",
+      "text": "What the fries at the bottom of my biggie bag see when I go scavenging for them https://t.co/qO9JGCgaXs",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.7464627027511597,
+      "scores": {
+        "negative": 0.7464627027511597,
+        "positive": 0.13156990706920624,
+        "neutral": 0.1219673901796341
+      }
+    },
+    {
+      "id": "2031738937870364955",
+      "tweet_url": "https://x.com/Wendys/status/2031738937870364955",
+      "created_at": "Wed Mar 11 14:28:05 +0000 2026",
+      "text": "travis gonna love the drive thru at his mom's house https://t.co/ssjGEuifjO",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.9578202366828918,
+      "scores": {
+        "positive": 0.9578202366828918,
+        "neutral": 0.027220511808991432,
+        "negative": 0.014959204941987991
+      }
+    },
+    {
+      "id": "2030448455412252800",
+      "tweet_url": "https://x.com/Wendys/status/2030448455412252800",
+      "created_at": "Sun Mar 08 01:00:10 +0000 2026",
+      "text": "Travis and Jason Kelce’s mom, Donna Kelce, is in the middle of a home renovation ... TMZ has learned.\n\nRead more: https://t.co/4KursdUOlk https://t.co/FsAv2tPWyz",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.525726318359375,
+      "scores": {
+        "negative": 0.525726318359375,
+        "positive": 0.40994793176651,
+        "neutral": 0.06432579457759857
+      }
+    },
+    {
+      "id": "2030030225254359259",
+      "tweet_url": "https://x.com/Wendys/status/2030030225254359259",
+      "created_at": "Fri Mar 06 21:18:16 +0000 2026",
+      "text": "No purch nec. 50 US/DC, 18+. Ends 3/30. Rules: https://t.co/mNIqecbPOQ. To qualify tag @Wendys and #WendysCTOcontest",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.371099591255188,
+      "scores": {
+        "negative": 0.371099591255188,
+        "positive": 0.3286823034286499,
+        "neutral": 0.3002180755138397
+      }
+    },
+    {
+      "id": "2030030060720164942",
+      "tweet_url": "https://x.com/Wendys/status/2030030060720164942",
+      "created_at": "Fri Mar 06 21:17:37 +0000 2026",
+      "text": ".@GenoSmith3 in case things don’t work out in free agency we’re looking for a Chief Tasting Officer…",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4927096366882324,
+      "scores": {
+        "negative": 0.4927096366882324,
+        "positive": 0.3498196005821228,
+        "neutral": 0.15747083723545074
+      }
+    },
+    {
+      "id": "2030021566528893409",
+      "tweet_url": "https://x.com/Wendys/status/2030021566528893409",
+      "created_at": "Fri Mar 06 20:43:52 +0000 2026",
+      "text": ".@maurahiggins Since being a faithful fell through, here’s a job to get u more Birkins \nhttps://t.co/mNIqecbPOQ.\n\nNo purch nec. 50 US/DC, 18+. Ends 3/30. Rules: To qualify tag @Wendys and #WendysCTOContest https://t.co/RWQGC4PJmA",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4655773341655731,
+      "scores": {
+        "negative": 0.4655773341655731,
+        "positive": 0.32810866832733154,
+        "neutral": 0.20631393790245056
+      }
+    },
+    {
+      "id": "2029952811224514866",
+      "tweet_url": "https://x.com/Wendys/status/2029952811224514866",
+      "created_at": "Fri Mar 06 16:10:39 +0000 2026",
+      "text": "Breaking: The Raiders are releasing last season’s starting QB Geno Smith, barring a trade before the start of the new league year, sources tell @AdamSchefter.  \n\nBy releasing Smith, the Raiders will open up $8M in salary cap space while taking on $18.5M in dead money.\n\nGet breaking news alerts from Adam Schefter through the ESPN App: https://t.co/wLAog0kJUB",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.7310056090354919,
+      "scores": {
+        "negative": 0.7310056090354919,
+        "positive": 0.20186464488506317,
+        "neutral": 0.06712979078292847
+      }
+    },
+    {
+      "id": "2029687889098068156",
+      "tweet_url": "https://x.com/Wendys/status/2029687889098068156",
+      "created_at": "Thu Mar 05 22:37:57 +0000 2026",
+      "text": "Our first Chief Tasting Officer application is in, and lets just say the bar is LOW. Apply now and make your video more than a McNibble.  Link in bio to enter the first #WendysCTOcontest https://t.co/JXujBHw5pP",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4897586703300476,
+      "scores": {
+        "negative": 0.4897586703300476,
+        "positive": 0.27878451347351074,
+        "neutral": 0.23145677149295807
+      }
+    },
+    {
+      "id": "2029585417066946625",
+      "tweet_url": "https://x.com/Wendys/status/2029585417066946625",
+      "created_at": "Thu Mar 05 15:50:45 +0000 2026",
+      "text": "Ever wish you could eat Wendy’s professionally? Now you can (oh and make $100k). See how to apply at https://t.co/mNIqecbPOQ #WendysCTOcontest https://t.co/bQZSEBjfAx",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.45656248927116394,
+      "scores": {
+        "positive": 0.45656248927116394,
+        "negative": 0.39963284134864807,
+        "neutral": 0.14380469918251038
+      }
+    },
+    {
+      "id": "2029290891425529996",
+      "tweet_url": "https://x.com/Wendys/status/2029290891425529996",
+      "created_at": "Wed Mar 04 20:20:25 +0000 2026",
+      "text": "This is what it looks like when you don’t have to pretend to like your “product”",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.5897471904754639,
+      "scores": {
+        "positive": 0.5897471904754639,
+        "negative": 0.2862319052219391,
+        "neutral": 0.12402091175317764
+      }
+    },
+    {
+      "id": "2029249180762341501",
+      "tweet_url": "https://x.com/Wendys/status/2029249180762341501",
+      "created_at": "Wed Mar 04 17:34:40 +0000 2026",
+      "text": "Wendy’s US President posts new video amid burger battle with McDonald’s &amp; Burger King. https://t.co/R6IALUetCC",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5284485816955566,
+      "scores": {
+        "negative": 0.5284485816955566,
+        "positive": 0.32181644439697266,
+        "neutral": 0.1497349739074707
+      }
+    },
+    {
+      "id": "2027127868791431190",
+      "tweet_url": "https://x.com/Wendys/status/2027127868791431190",
+      "created_at": "Thu Feb 26 21:05:20 +0000 2026",
+      "text": "No trowaway votes around here… https://t.co/KuKsN6ZoOj",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4710470736026764,
+      "scores": {
+        "negative": 0.4710470736026764,
+        "neutral": 0.33055251836776733,
+        "positive": 0.1984003633260727
+      }
+    },
+    {
+      "id": "2027105501260202278",
+      "tweet_url": "https://x.com/Wendys/status/2027105501260202278",
+      "created_at": "Thu Feb 26 19:36:27 +0000 2026",
+      "text": "i’ll take ew for 400 https://t.co/ShRmiSgG6W",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4628782570362091,
+      "scores": {
+        "negative": 0.4628782570362091,
+        "positive": 0.4471903443336487,
+        "neutral": 0.0899314284324646
+      }
+    },
+    {
+      "id": "2026335579764343176",
+      "tweet_url": "https://x.com/Wendys/status/2026335579764343176",
+      "created_at": "Tue Feb 24 16:37:04 +0000 2026",
+      "text": "McDonald's is launching the Big Arch burger in the US on March 3 https://t.co/U5n8YWn3U4",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.4460331201553345,
+      "scores": {
+        "positive": 0.4460331201553345,
+        "negative": 0.4009336531162262,
+        "neutral": 0.1530332714319229
+      }
+    },
+    {
+      "id": "2022846838726922625",
+      "tweet_url": "https://x.com/Wendys/status/2022846838726922625",
+      "created_at": "Sun Feb 15 01:34:03 +0000 2026",
+      "text": "Based on the results from today’s dunk contest this would blow the judges minds https://t.co/6nP4bbhJ2h",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9913033246994019,
+      "scores": {
+        "negative": 0.9913033246994019,
+        "neutral": 0.004876064136624336,
+        "positive": 0.0038206721656024456
+      }
+    },
+    {
+      "id": "2021355348100313369",
+      "tweet_url": "https://x.com/Wendys/status/2021355348100313369",
+      "created_at": "Tue Feb 10 22:47:24 +0000 2026",
+      "text": "Sir this is a DAYTONA discount code",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.799380898475647,
+      "scores": {
+        "positive": 0.799380898475647,
+        "negative": 0.18105222284793854,
+        "neutral": 0.019566861912608147
+      }
+    },
+    {
+      "id": "2021268433296367729",
+      "tweet_url": "https://x.com/Wendys/status/2021268433296367729",
+      "created_at": "Tue Feb 10 17:02:02 +0000 2026",
+      "text": "We're cooking something up.\n\nUse code DAYTONA in the @Wendys app to get a $1 Classic or Spicy Chicken Sandwich with purchase, starting at the beginning of the race on Sunday 2/15 and available all day Monday 2/16. https://t.co/nsXc16Pwpj",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4774401783943176,
+      "scores": {
+        "negative": 0.4774401783943176,
+        "positive": 0.4521174430847168,
+        "neutral": 0.07044237852096558
+      }
+    },
+    {
+      "id": "2020685488789815407",
+      "tweet_url": "https://x.com/Wendys/status/2020685488789815407",
+      "created_at": "Mon Feb 09 02:25:37 +0000 2026",
+      "text": "Has a kicker ever won MVP?",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.4763433635234833,
+      "scores": {
+        "negative": 0.4763433635234833,
+        "positive": 0.46768876910209656,
+        "neutral": 0.05596788972616196
+      }
+    },
+    {
+      "id": "2019221773569728518",
+      "tweet_url": "https://x.com/Wendys/status/2019221773569728518",
+      "created_at": "Thu Feb 05 01:29:20 +0000 2026",
+      "text": "also okc receives a first round pick somehow @ShamsCharania https://t.co/WUoYrt9zY7",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.4247124195098877,
+      "scores": {
+        "positive": 0.4247124195098877,
+        "negative": 0.338161438703537,
+        "neutral": 0.2371261566877365
+      }
+    },
+    {
+      "id": "2015935710449009033",
+      "tweet_url": "https://x.com/Wendys/status/2015935710449009033",
+      "created_at": "Mon Jan 26 23:51:42 +0000 2026",
+      "text": "kind of seems like you just wanted a reason to eat nothing but wendys chili for a month?",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.4218933880329132,
+      "scores": {
+        "neutral": 0.4218933880329132,
+        "negative": 0.41974544525146484,
+        "positive": 0.15836119651794434
+      }
+    },
+    {
+      "id": "2014446063961178239",
+      "tweet_url": "https://x.com/Wendys/status/2014446063961178239",
+      "created_at": "Thu Jan 22 21:12:22 +0000 2026",
+      "text": "If Scottie Scheffler wins this week I will only eat Wendy’s chili for a month. It’s not happening folks. ZERO chance.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.41469907760620117,
+      "scores": {
+        "neutral": 0.41469907760620117,
+        "negative": 0.35047268867492676,
+        "positive": 0.23482824862003326
+      }
+    },
+    {
+      "id": "2014093064155889768",
+      "tweet_url": "https://x.com/Wendys/status/2014093064155889768",
+      "created_at": "Wed Jan 21 21:49:41 +0000 2026",
+      "text": "We don’t chikin out on Sundays https://t.co/pA1BXe0Sc0",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "neutral",
+      "top_score": 0.3681199848651886,
+      "scores": {
+        "neutral": 0.3681199848651886,
+        "negative": 0.36666399240493774,
+        "positive": 0.26521605253219604
+      }
+    },
+    {
+      "id": "2012261535259726070",
+      "tweet_url": "https://x.com/Wendys/status/2012261535259726070",
+      "created_at": "Fri Jan 16 20:31:50 +0000 2026",
+      "text": "CLOWNS ARE GOIN DOWN. We’re live right now over on\nhttps://t.co/P0GZ7DIn5g",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9044473767280579,
+      "scores": {
+        "negative": 0.9044473767280579,
+        "neutral": 0.0695604532957077,
+        "positive": 0.025992153212428093
+      }
+    },
+    {
+      "id": "2012226909820621147",
+      "tweet_url": "https://x.com/Wendys/status/2012226909820621147",
+      "created_at": "Fri Jan 16 18:14:15 +0000 2026",
+      "text": "TENDYS VS CLOWNS. WHO U GOT? Streaming some College Football ‘26 later today on twitch https://t.co/FJANT6bsl5",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5657326579093933,
+      "scores": {
+        "negative": 0.5657326579093933,
+        "positive": 0.30349475145339966,
+        "neutral": 0.13077259063720703
+      }
+    },
+    {
+      "id": "2009777266847363171",
+      "tweet_url": "https://x.com/Wendys/status/2009777266847363171",
+      "created_at": "Sat Jan 10 00:00:14 +0000 2026",
+      "text": "life is so crazy bc wdym i’m giving out bogo dave’s singles or doubles on doordash just bc some lady asked where’s the beef 42 years ago",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9777899980545044,
+      "scores": {
+        "negative": 0.9777899980545044,
+        "positive": 0.013452334329485893,
+        "neutral": 0.00875766295939684
+      }
+    },
+    {
+      "id": "2007833761703223723",
+      "tweet_url": "https://x.com/Wendys/status/2007833761703223723",
+      "created_at": "Sun Jan 04 15:17:27 +0000 2026",
+      "text": "We should play wide receiver cuz we're wide open on Sunday. Score a FREE 3pc Tendy's on @UberEats w/ $10 purchase today (Sunday) https://t.co/f252WJhD40",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.43455564975738525,
+      "scores": {
+        "positive": 0.43455564975738525,
+        "negative": 0.3735680878162384,
+        "neutral": 0.1918763667345047
+      }
+    },
+    {
+      "id": "2001787208093614204",
+      "tweet_url": "https://x.com/Wendys/status/2001787208093614204",
+      "created_at": "Thu Dec 18 22:50:36 +0000 2025",
+      "text": "DMing myself 75% off an energy drink rn lol",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "positive",
+      "top_score": 0.59812331199646,
+      "scores": {
+        "positive": 0.59812331199646,
+        "negative": 0.3726935088634491,
+        "neutral": 0.029183151200413704
+      }
+    },
+    {
+      "id": "2001787158034866204",
+      "tweet_url": "https://x.com/Wendys/status/2001787158034866204",
+      "created_at": "Thu Dec 18 22:50:24 +0000 2025",
+      "text": "We’ll go first! Here’s my sleep score 😴 https://t.co/TPfPApvtJj",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.43808308243751526,
+      "scores": {
+        "negative": 0.43808308243751526,
+        "positive": 0.4161143898963928,
+        "neutral": 0.1458025425672531
+      }
+    },
+    {
+      "id": "2001787068914225487",
+      "tweet_url": "https://x.com/Wendys/status/2001787068914225487",
+      "created_at": "Thu Dec 18 22:50:03 +0000 2025",
+      "text": "Attn insomniacs\n\ndrop your sleep score below &amp; i’ll give you an energy drink deal based on how much your score sucks (but hurry bc you have to share it by 12/22)",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.9750751852989197,
+      "scores": {
+        "negative": 0.9750751852989197,
+        "positive": 0.01655062846839428,
+        "neutral": 0.008374219760298729
+      }
+    },
+    {
+      "id": "1996659770724696551",
+      "tweet_url": "https://x.com/Wendys/status/1996659770724696551",
+      "created_at": "Thu Dec 04 19:16:00 +0000 2025",
+      "text": "im hot and im cold https://t.co/BVtiB1CiRA",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.6467761397361755,
+      "scores": {
+        "negative": 0.6467761397361755,
+        "neutral": 0.19571875035762787,
+        "positive": 0.1575050950050354
+      }
+    },
+    {
+      "id": "1996272892787778047",
+      "tweet_url": "https://x.com/Wendys/status/1996272892787778047",
+      "created_at": "Wed Dec 03 17:38:41 +0000 2025",
+      "text": "we would never do “a nicer ham restaurant.”  Or would we, Tim Robinson? https://t.co/ztdidCUJQ5",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.5127103328704834,
+      "scores": {
+        "negative": 0.5127103328704834,
+        "neutral": 0.3475709855556488,
+        "positive": 0.1397186666727066
+      }
+    },
+    {
+      "id": "1993735456609972272",
+      "tweet_url": "https://x.com/Wendys/status/1993735456609972272",
+      "created_at": "Wed Nov 26 17:35:49 +0000 2025",
+      "text": "Let’s get u to bed wendy https://t.co/DY3BoVEDUi",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.48786982893943787,
+      "scores": {
+        "negative": 0.48786982893943787,
+        "positive": 0.2985830008983612,
+        "neutral": 0.21354718506336212
+      }
+    },
+    {
+      "id": "1991966149815496874",
+      "tweet_url": "https://x.com/Wendys/status/1991966149815496874",
+      "created_at": "Fri Nov 21 20:25:13 +0000 2025",
+      "text": "don’t ask for her ig, ask for her wendy's order https://t.co/97FPbtJodn",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.3965633511543274,
+      "scores": {
+        "negative": 0.3965633511543274,
+        "neutral": 0.3635348081588745,
+        "positive": 0.23990179598331451
+      }
+    },
+    {
+      "id": "1988671571091980633",
+      "tweet_url": "https://x.com/Wendys/status/1988671571091980633",
+      "created_at": "Wed Nov 12 18:13:44 +0000 2025",
+      "text": ".@fibulaa said we’re Tendy’s now and who are we to argue? Try our new chicken tendys today! https://t.co/8FccP5qRR5",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "top_label": "negative",
+      "top_score": 0.6247996091842651,
+      "scores": {
+        "negative": 0.6247996091842651,
+        "positive": 0.19312922656536102,
+        "neutral": 0.18207117915153503
+      }
+    }
+  ]
+}
