@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
   scrape:
@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -38,10 +40,20 @@ jobs:
 
       - name: Commit and Push results
         run: |
+          # Git 보안 설정 (128 에러 해결책)
+          git config --global --add safe.directory /github/workspace
+          
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # 결과 파일과 쿠키 파일을 강제로 추가 (gitignore 무시)
-          git add *_posts.json
-          git add -f cookies.json || echo "No cookies.json to add"
-          git commit -m "Update scraped data [skip ci]" || echo "No changes to commit"
-          git push origin main
+          
+          # 변경사항 확인 및 커밋
+          git add -A
+          # cookies.json 등 무시된 파일이 있을 수 있으므로 강제 추가 시도
+          git add -f cookies.json || echo "No cookies.json"
+          
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update scraped data [skip ci]"
+            git push origin main
+          fi
