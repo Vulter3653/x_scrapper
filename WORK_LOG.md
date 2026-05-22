@@ -732,3 +732,42 @@ Validation:
 
 - Searched dashboard files for `Run Actions`, `adminToken`, `runScrapeButton`, `dispatchWorkflow`, and `/api/dispatch`; no client-side references remained.
 - Ran `node --check dashboard/app.js` successfully.
+
+
+### Responsive and Interactive Dashboard UI Update
+
+Date: 2026-05-22
+
+User requested a responsive and interactive dashboard update for desktop, tablet, and mobile. The latest request also required preserving `Run Scraper`, `Run LDA`, and `Run Sentiment`, so the previously removed dashboard action controls were restored as a compact collapsible panel.
+
+Implemented changes:
+
+- Reworked `dashboard/index.html` into section-based layout: Overview, Descriptives, Model-free Evidence, Topics, Sentiment, and Posts.
+- Added sticky section navigation with smooth scrolling; mobile uses bottom horizontal navigation.
+- Added responsive dashboard shell with max-width and responsive padding.
+- Added breakpoints for desktop, tablet (`max-width: 1024px`), and mobile (`max-width: 639px`).
+- Added collapsible filter panel with brand, date range, year, sentiment, topic, viral, search, and sort controls.
+- Added Reset Filters button.
+- Added expanded summary metrics: Total Posts, Date Range, Median Engagement, Total Engagement, Viral Post Share, and Positive Sentiment Share.
+- Added Model-free Evidence cards.
+- Added chart tooltips for canvas charts.
+- Added clickable chart legends that toggle visible series.
+- Added Post Explorer pagination.
+- Desktop Post Explorer renders a table inside a horizontal-scroll wrapper.
+- Mobile Post Explorer renders cards with brand, date, sentiment, topic, total engagement, and viral badges.
+- Mobile post cards include Show more / Show less text expansion.
+- Restored dashboard workflow dispatch controls for scraper, LDA, and sentiment workflows.
+- Added loading skeleton and localized empty states using `No data available for this section`.
+- Added memoization for filtered post results via `state.cache`.
+
+Validation completed:
+
+- `node --check dashboard/app.js` passed.
+- `node --check functions/api/dispatch.js` passed.
+- `git diff --check` passed.
+- Local preview server returned dashboard HTML through `curl http://127.0.0.1:4173/index.html`.
+- Static requirement checks verified the responsive breakpoints, max-width shell, mobile post cards, desktop table wrapper, bottom mobile navigation, 44px touch target rule, dispatch restoration, chart tooltip logic, pagination, memo cache, sentiment/topic/viral filters, and Show more / Show less support.
+
+Verification limitation:
+
+- Attempted Chromium headless screenshot/DOM verification for mobile viewport. The local environment's Chromium process repeatedly failed or timed out with DBus/font/Harfbuzz errors unrelated to the dashboard code, so screenshot-based viewport verification could not be completed in this environment. Static and syntax validations were completed instead.

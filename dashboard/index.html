@@ -8,119 +8,215 @@
 </head>
 <body>
   <header class="topbar">
-    <div>
+    <div class="brand-head">
       <h1>X Brand Intelligence</h1>
       <p id="dataStatus">Loading datasets...</p>
     </div>
-    <div class="account-tabs" role="tablist" aria-label="Account selector">
-      <button class="tab active" data-account="wendys" type="button">Wendy's</button>
-      <button class="tab" data-account="cocacola" type="button">Coca-Cola</button>
+    <div class="account-tabs" role="tablist" aria-label="Brand selector">
+      <button class="tab active" data-account="wendys" type="button" aria-label="Show Wendy's dashboard">Wendy's</button>
+      <button class="tab" data-account="cocacola" type="button" aria-label="Show Coca-Cola dashboard">Coca-Cola</button>
     </div>
   </header>
 
-  <main class="layout">
-    <aside class="sidebar" aria-label="Dashboard filters">
-      <section class="panel compact">
-        <h2>Filters</h2>
-        <label class="field">
-          <span>Search text</span>
-          <input id="searchInput" type="search" placeholder="keyword, phrase, URL">
-        </label>
-        <label class="field">
-          <span>Year</span>
-          <select id="yearSelect"></select>
-        </label>
-        <label class="field">
-          <span>Sort posts</span>
-          <select id="sortSelect">
-            <option value="date_desc">Newest first</option>
-            <option value="engagement_desc">Highest engagement</option>
-            <option value="likes_desc">Most liked</option>
-            <option value="replies_desc">Most replied</option>
-            <option value="retweets_desc">Most retweeted</option>
-          </select>
-        </label>
-      </section>
+  <nav class="section-nav" aria-label="Dashboard sections">
+    <a href="#overview">Overview</a>
+    <a href="#descriptives">Descriptives</a>
+    <a href="#evidence">Model-free Evidence</a>
+    <a href="#topics">Topics</a>
+    <a href="#sentiment">Sentiment</a>
+    <a href="#posts">Posts</a>
+  </nav>
 
-      <section class="panel compact">
-        <h2>Analysis Status</h2>
+  <main class="dashboard-shell">
+    <aside class="sidebar" aria-label="Dashboard controls">
+      <details class="panel compact filter-panel" id="filterDetails" open>
+        <summary>
+          <span>Filters</span>
+          <strong id="activeFilterCount">0 active</strong>
+        </summary>
+        <div class="filter-body">
+          <fieldset>
+            <legend>Brand</legend>
+            <p id="brandFilterLabel">Wendy's</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Date range</legend>
+            <div class="field-grid two-fields">
+              <label class="field">
+                <span>From</span>
+                <input id="dateFromInput" type="date" aria-label="Filter start date">
+              </label>
+              <label class="field">
+                <span>To</span>
+                <input id="dateToInput" type="date" aria-label="Filter end date">
+              </label>
+            </div>
+            <label class="field">
+              <span>Year quick filter</span>
+              <select id="yearSelect" aria-label="Filter by year"></select>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Analysis filters</legend>
+            <label class="field">
+              <span>Sentiment</span>
+              <select id="sentimentSelect" aria-label="Filter by sentiment">
+                <option value="all">All sentiment labels</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Topic</span>
+              <select id="topicFilterSelect" aria-label="Filter by LDA topic">
+                <option value="all">All topics</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Viral flag</span>
+              <select id="viralSelect" aria-label="Filter by viral flag">
+                <option value="all">All posts</option>
+                <option value="viral">Viral only</option>
+                <option value="nonviral">Non-viral only</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Text and sort</legend>
+            <label class="field">
+              <span>Search text</span>
+              <input id="searchInput" type="search" placeholder="keyword, phrase, URL" aria-label="Search post text">
+            </label>
+            <label class="field">
+              <span>Sort posts</span>
+              <select id="sortSelect" aria-label="Sort posts">
+                <option value="date_desc">Newest first</option>
+                <option value="engagement_desc">Highest engagement</option>
+                <option value="likes_desc">Most liked</option>
+                <option value="replies_desc">Most replied</option>
+                <option value="retweets_desc">Most retweeted</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <div class="filter-actions">
+            <button id="resetFiltersButton" class="secondary-button" type="button" aria-label="Reset all filters">Reset Filters</button>
+          </div>
+        </div>
+      </details>
+
+      <section class="panel compact" aria-labelledby="analysisStatusTitle">
+        <h2 id="analysisStatusTitle">Analysis Status</h2>
         <div id="analysisStatus" class="status-list"></div>
       </section>
 
+      <details class="panel compact action-panel">
+        <summary>
+          <span>Run Actions</span>
+          <strong>manual</strong>
+        </summary>
+        <div class="action-body">
+          <label class="field">
+            <span>Admin token</span>
+            <input id="adminTokenInput" type="password" placeholder="Cloudflare dashboard token" aria-label="Cloudflare dashboard admin token">
+          </label>
+          <label class="field">
+            <span>Max scrolls</span>
+            <input id="actionMaxScrolls" type="number" min="1" value="2500" aria-label="Scraper max scrolls">
+          </label>
+          <label class="field">
+            <span>Analysis max posts</span>
+            <input id="actionMaxPosts" type="number" min="0" value="0" aria-label="Analysis max posts">
+          </label>
+          <div class="action-buttons">
+            <button id="runScrapeButton" type="button" aria-label="Run scraper workflow">Run Scraper</button>
+            <button id="runLdaButton" type="button" aria-label="Run LDA workflow">Run LDA</button>
+            <button id="runSentimentButton" type="button" aria-label="Run sentiment workflow">Run Sentiment</button>
+          </div>
+          <div id="actionResult" class="action-result" role="status">No action submitted.</div>
+        </div>
+      </details>
     </aside>
 
     <section class="content">
-      <section class="metrics" aria-label="Summary metrics">
-        <article class="metric">
-          <span>Posts</span>
-          <strong id="metricPosts">-</strong>
-        </article>
-        <article class="metric">
-          <span>Date Range</span>
-          <strong id="metricRange">-</strong>
-        </article>
-        <article class="metric">
-          <span>Total Engagement</span>
-          <strong id="metricEngagement">-</strong>
-        </article>
-        <article class="metric">
-          <span>Avg Engagement</span>
-          <strong id="metricAverage">-</strong>
-        </article>
+      <section id="overview" class="section-block" aria-labelledby="overviewTitle">
+        <div class="section-heading">
+          <span>Dataset Overview</span>
+          <h2 id="overviewTitle">Overview</h2>
+        </div>
+        <section class="metrics" aria-label="Summary metrics">
+          <article class="metric priority"><span>Total Posts</span><strong id="metricPosts">-</strong><small>after filters</small></article>
+          <article class="metric"><span>Date Range</span><strong id="metricRange">-</strong><small>visible posts</small></article>
+          <article class="metric priority"><span>Median Engagement</span><strong id="metricMedian">-</strong><small>likes + replies + retweets + quotes</small></article>
+          <article class="metric"><span>Total Engagement</span><strong id="metricEngagement">-</strong><small>visible posts</small></article>
+          <article class="metric priority"><span>Viral Post Share</span><strong id="metricViralShare">-</strong><small>top decile engagement</small></article>
+          <article class="metric priority"><span>Positive Sentiment Share</span><strong id="metricPositiveShare">-</strong><small>zero-shot label</small></article>
+        </section>
       </section>
 
-      <section class="grid two">
-        <article class="panel chart-panel">
-          <div class="panel-head">
-            <h2>Posting Volume</h2>
-            <span id="volumeCaption"></span>
-          </div>
-          <canvas id="volumeChart" height="220"></canvas>
-        </article>
-
-        <article class="panel chart-panel">
-          <div class="panel-head">
-            <h2>Engagement Mix</h2>
-            <span>likes, replies, retweets, quotes</span>
-          </div>
-          <canvas id="engagementChart" height="220"></canvas>
-        </article>
+      <section id="descriptives" class="section-block" aria-labelledby="descriptivesTitle">
+        <div class="section-heading">
+          <span>Descriptive Statistics</span>
+          <h2 id="descriptivesTitle">Posting and Engagement Patterns</h2>
+        </div>
+        <section class="grid two">
+          <article class="panel chart-panel">
+            <div class="panel-head"><h3>Posting Volume</h3><span id="volumeCaption"></span></div>
+            <canvas id="volumeChart" height="230" aria-label="Posting volume chart"></canvas>
+            <div id="volumeLegend" class="chart-legend"></div>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-head"><h3>Engagement Mix</h3><span>click legend to toggle</span></div>
+            <canvas id="engagementChart" height="230" aria-label="Engagement mix chart"></canvas>
+            <div id="engagementLegend" class="chart-legend"></div>
+          </article>
+        </section>
       </section>
 
-      <section class="grid two">
-        <article class="panel lda-panel">
-          <div class="panel-head">
-            <h2>LDA Topics</h2>
-            <span id="topicMeta"></span>
-          </div>
+      <section id="evidence" class="section-block" aria-labelledby="evidenceTitle">
+        <div class="section-heading">
+          <span>Model-free Evidence</span>
+          <h2 id="evidenceTitle">Observed Signals</h2>
+        </div>
+        <section id="evidenceGrid" class="evidence-grid"></section>
+      </section>
+
+      <section class="grid two topic-sentiment-grid">
+        <article id="topics" class="panel lda-panel section-block" aria-labelledby="topicsTitle">
+          <div class="panel-head"><h3 id="topicsTitle">LDA Topics</h3><span id="topicMeta"></span></div>
           <label class="field inline-field">
             <span>Topic search</span>
-            <input id="topicSearchInput" type="search" placeholder="term or representative post text">
+            <input id="topicSearchInput" type="search" placeholder="term or representative post text" aria-label="Search topics">
           </label>
           <div id="topicList" class="topic-list interactive"></div>
           <div id="topicDetail" class="topic-detail"></div>
         </article>
 
-        <article class="panel">
-          <div class="panel-head">
-            <h2>Zero-Shot Sentiment</h2>
-            <span id="sentimentMeta"></span>
-          </div>
+        <article id="sentiment" class="panel section-block" aria-labelledby="sentimentTitle">
+          <div class="panel-head"><h3 id="sentimentTitle">Zero-Shot Sentiment</h3><span id="sentimentMeta"></span></div>
           <div id="sentimentSummary" class="sentiment-summary"></div>
-          <canvas id="sentimentChart" height="180"></canvas>
+          <canvas id="sentimentChart" height="190" aria-label="Sentiment distribution chart"></canvas>
+          <div id="sentimentLegend" class="chart-legend"></div>
         </article>
       </section>
 
-      <section class="panel">
-        <div class="panel-head">
-          <h2>Post Explorer</h2>
-          <span id="postCountLabel"></span>
+      <section id="posts" class="panel section-block" aria-labelledby="postsTitle">
+        <div class="panel-head post-head">
+          <div><h3 id="postsTitle">Post Explorer</h3><span id="postCountLabel"></span></div>
+          <div class="pagination-controls" aria-label="Post pagination">
+            <button id="prevPageButton" type="button" aria-label="Previous posts page">Prev</button>
+            <span id="pageLabel">1 / 1</span>
+            <button id="nextPageButton" type="button" aria-label="Next posts page">Next</button>
+          </div>
         </div>
-        <div id="postList" class="post-list"></div>
+        <div id="postTableWrap" class="post-table-wrap"></div>
+        <div id="postCards" class="post-cards"></div>
       </section>
     </section>
   </main>
 
+  <div id="chartTooltip" class="chart-tooltip" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
 </body>
 </html>
