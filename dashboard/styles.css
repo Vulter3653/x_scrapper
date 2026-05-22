@@ -397,16 +397,6 @@ canvas { width: 100%; max-width: 100%; display: block; touch-action: manipulatio
 .header-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; color: var(--muted); font-size: 12px; }
 .header-meta span { min-width: 0; overflow-wrap: anywhere; }
 .header-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; }
-.primary-action {
-  min-height: 44px;
-  border: 0;
-  border-radius: 10px;
-  padding: 0 16px;
-  color: var(--surface);
-  background: var(--ink);
-  font-weight: 800;
-}
-.primary-action:hover { background: var(--cyan); }
 .state-badge {
   display: inline-flex;
   align-items: center;
@@ -443,28 +433,7 @@ canvas { width: 100%; max-width: 100%; display: block; touch-action: manipulatio
   background: var(--ink);
   border-color: var(--ink);
 }
-.action-buttons { display: grid; gap: 8px; }
-.action-buttons button {
-  min-height: 44px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  color: var(--surface);
-  background: var(--ink);
-  font-weight: 800;
-}
-.action-buttons button:hover { background: var(--cyan); }
-.action-buttons button:disabled { cursor: wait; opacity: 0.65; }
-.action-result {
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--muted);
-  background: var(--surface-2);
-  font-size: 12px;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-.chart-panel canvas { min-height: 190px; }
+.chart-panel canvas { min-height: 230px; }
 @media (max-width: 1024px) {
   .header-actions { justify-content: flex-start; }
   .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -474,7 +443,23 @@ canvas { width: 100%; max-width: 100%; display: block; touch-action: manipulatio
 }
 @media (max-width: 639px) {
   .header-actions { flex-direction: column; align-items: stretch; }
-  .primary-action { width: 100%; }
   .metrics { grid-template-columns: 1fr; }
   .control-title { display: none; }
+}
+
+.chart-note {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.chart-panel {
+  border-color: rgba(96, 112, 118, 0.28);
+}
+.chart-panel .panel-head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--surface-2);
+}
+.chart-panel canvas {
+  margin-top: 8px;
 }

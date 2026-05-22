@@ -842,3 +842,31 @@ Validation completed:
 Verification limitation:
 
 - Attempted 390px headless Chromium screenshot verification, but Chromium timed out in the local environment. This is consistent with previous DBus/font/headless Chromium failures in this workspace. Static responsive validation and render mock validation were completed instead.
+
+
+### Remove Run Actions and Improve Chart Readability
+
+Date: 2026-05-22
+
+User requested removing Run Actions again and improving chart readability because the current graphs were hard to interpret.
+
+Changes made:
+
+- Removed the Header Run Actions button.
+- Removed the Run Actions control panel from the dashboard UI.
+- Removed client-side workflow dispatch functions and event handlers from `dashboard/app.js`.
+- Removed unused Run Actions CSS.
+- Increased chart canvas heights across descriptive, model-free, posting, engagement, and sentiment charts.
+- Added explanatory `chart-note` text below chart canvases.
+- Improved bar chart readability with y-axis gridlines, compact value ticks, clearer axis padding, truncated labels, and rotated mobile labels.
+- Improved horizontal bar charts by sorting values descending, using clearer left labels, and showing formatted values near bars.
+- Improved stacked share charts with in-segment percentage labels where space allows and a compact legend.
+- Improved heatmap charts by showing formatted values inside cells and increasing cell spacing.
+
+Validation completed:
+
+- `node --check dashboard/app.js` passed.
+- `git diff --check` passed.
+- Searched dashboard files for Run Actions/client dispatch references; none remained.
+- Node DOM/Canvas mock render against real JSON data succeeded with `1,825 posts loaded across 2 brands`.
+- Static checks confirmed chart notes, gridline helper, label truncation, mobile breakpoint, and desktop/mobile Post Explorer behavior.

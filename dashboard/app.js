@@ -472,24 +472,28 @@ function colorAt(index) {
 }
 
 function drawHorizontalBars(canvas, rows, valueLabel = '') {
-  if (!rows.length) return drawEmptyChart(canvas, 'No data available for this section');
-  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
-  const pad = { top: 18, right: 18, bottom: 22, left: 96 };
+  const sortedRows = [...rows].filter((row) => Number.isFinite(row.value)).sort((a, b) => b.value - a.value).slice(0, 12);
+  if (!sortedRows.length) return drawEmptyChart(canvas, 'No data available for this section');
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
+  const compact = width < 420;
+  const pad = { top: 18, right: compact ? 42 : 66, bottom: 22, left: compact ? 78 : 118 };
   const chartW = Math.max(1, width - pad.left - pad.right);
-  const rowH = Math.max(18, (height - pad.top - pad.bottom) / rows.length);
-  const max = Math.max(...rows.map((row) => row.value), 1);
+  const rowH = Math.max(20, (height - pad.top - pad.bottom) / sortedRows.length);
+  const max = Math.max(...sortedRows.map((row) => row.value), 1);
   const points = [];
-  rows.forEach((row, index) => {
+  ctx.strokeStyle = '#eef3f4';
+  ctx.fillStyle = '#607076';
+  ctx.font = '11px system-ui, sans-serif';
+  sortedRows.forEach((row, index) => {
     const y = pad.top + index * rowH;
-    const barW = (row.value / max) * chartW;
+    const barW = Math.max(2, (row.value / max) * chartW);
     ctx.fillStyle = colorAt(index);
-    ctx.fillRect(pad.left, y + 3, barW, Math.max(8, rowH - 8));
+    ctx.fillRect(pad.left, y + 4, barW, Math.max(10, rowH - 9));
     ctx.fillStyle = '#607076';
-    ctx.font = '11px system-ui, sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText(String(row.label).slice(0, 16), pad.left - 8, y + rowH * 0.65);
+    ctx.fillText(shortLabel(row.label, compact ? 10 : 16), pad.left - 8, y + rowH * 0.65);
     ctx.textAlign = 'left';
-    ctx.fillText(formatEngagement(Math.round(row.value)), pad.left + barW + 5, y + rowH * 0.65);
+    ctx.fillText(formatEngagement(Math.round(row.value)), pad.left + barW + 6, y + rowH * 0.65);
     points.push({ x: pad.left, y, w: Math.max(barW, 8), h: rowH, text: `${row.label}: ${formatEngagement(Math.round(row.value))}${valueLabel}` });
   });
   state.charts[canvas.id] = { type: 'bar', points };
@@ -509,23 +513,43 @@ function drawHistogram(canvas, values, bins = 12) {
 function drawStackedShare(canvas, groups, categories) {
   const groupEntries = [...groups.entries()];
   if (!groupEntries.length || !categories.length) return drawEmptyChart(canvas, 'No data available for this section');
-  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
-  const pad = { top: 18, right: 14, bottom: 38, left: 78 };
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
+  const compact = width < 420;
+  const pad = { top: 18, right: 14, bottom: compact ? 56 : 46, left: compact ? 70 : 92 };
   const chartW = width - pad.left - pad.right;
-  const rowH = Math.max(22, (height - pad.top - pad.bottom) / groupEntries.length);
+  const rowH = Math.max(26, (height - pad.top - pad.bottom) / groupEntries.length);
   const points = [];
   groupEntries.forEach(([group, rows], gi) => {
     let x = pad.left;
-    const y = pad.top + gi * rowH + 4;
+    const y = pad.top + gi * rowH + 5;
     categories.forEach((cat, ci) => {
       const count = rows.filter((row) => row.category === cat).length;
       const w = rows.length ? (count / rows.length) * chartW : 0;
       ctx.fillStyle = colorAt(ci);
-      ctx.fillRect(x, y, w, Math.max(10, rowH - 9));
-      points.push({ x, y, w, h: rowH, text: `${group} ${cat}: ${percentFmt.format(ratio(count, rows.length))}` });
+      ctx.fillRect(x, y, w, Math.max(12, rowH - 11));
+      if (w > 38) {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '10px system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`${Math.round(ratio(count, rows.length) * 100)}%`, x + w / 2, y + rowH * 0.48);
+      }
+      points.push({ x, y, w: Math.max(w, 1), h: rowH, text: `${group} ${cat}: ${percentFmt.format(ratio(count, rows.length))}` });
       x += w;
     });
-    ctx.fillStyle = '#607076'; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'right'; ctx.fillText(String(group).slice(0, 14), pad.left - 8, y + rowH * 0.55);
+    ctx.fillStyle = '#607076';
+    ctx.font = '11px system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(shortLabel(group, compact ? 9 : 13), pad.left - 8, y + rowH * 0.55);
+  });
+  ctx.textAlign = 'left';
+  categories.slice(0, compact ? 4 : 8).forEach((cat, i) => {
+    const x = pad.left + (i % 4) * (compact ? 72 : 92);
+    const y = height - (compact && i >= 4 ? 12 : 22) + Math.floor(i / 4) * 12;
+    ctx.fillStyle = colorAt(i);
+    ctx.fillRect(x, y - 8, 9, 9);
+    ctx.fillStyle = '#607076';
+    ctx.font = '10px system-ui, sans-serif';
+    ctx.fillText(shortLabel(cat, 10), x + 13, y);
   });
   state.charts[canvas.id] = { type: 'bar', points };
 }
@@ -556,24 +580,39 @@ function drawBoxplot(canvas, groups) {
 function drawHeatmap(canvas, groups, metrics) {
   const entries = [...groups.entries()];
   if (!entries.length) return drawEmptyChart(canvas, 'No data available for this section');
-  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
-  const pad = { top: 20, right: 12, bottom: 34, left: 80 };
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
+  const compact = width < 420;
+  const pad = { top: 20, right: 12, bottom: 42, left: compact ? 70 : 88 };
   const cellW = (width - pad.left - pad.right) / metrics.length;
-  const cellH = Math.max(24, (height - pad.top - pad.bottom) / entries.length);
+  const cellH = Math.max(30, (height - pad.top - pad.bottom) / entries.length);
   const matrix = entries.map(([label, rows]) => metrics.map(([name, getter]) => average(rows.map(getter))));
   const max = Math.max(...matrix.flat(), 1);
   const points = [];
   entries.forEach(([label], r) => {
-    ctx.fillStyle = '#607076'; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'right'; ctx.fillText(label.slice(0, 12), pad.left - 6, pad.top + r * cellH + cellH * 0.6);
+    ctx.fillStyle = '#607076';
+    ctx.font = '11px system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(shortLabel(label, compact ? 9 : 12), pad.left - 6, pad.top + r * cellH + cellH * 0.6);
     metrics.forEach(([name], c) => {
       const value = matrix[r][c];
-      ctx.fillStyle = `rgba(34,124,145,${Math.max(0.12, value / max)})`;
-      const x = pad.left + c * cellW, y = pad.top + r * cellH;
-      ctx.fillRect(x, y, cellW - 3, cellH - 3);
-      points.push({ x, y, w: cellW, h: cellH, text: `${label} ${name}: ${fmt.format(Math.round(value))}` });
+      const alpha = Math.max(0.15, value / max);
+      ctx.fillStyle = `rgba(34,124,145,${alpha})`;
+      const x = pad.left + c * cellW;
+      const y = pad.top + r * cellH;
+      ctx.fillRect(x, y, cellW - 4, cellH - 4);
+      ctx.fillStyle = alpha > 0.55 ? '#ffffff' : '#1c2427';
+      ctx.font = '10px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(formatEngagement(Math.round(value)), x + cellW / 2, y + cellH * 0.58);
+      points.push({ x, y, w: cellW, h: cellH, text: `${label} ${name}: ${formatEngagement(Math.round(value))}` });
     });
   });
-  metrics.forEach(([name], c) => { ctx.fillStyle = '#607076'; ctx.textAlign = 'center'; ctx.fillText(name, pad.left + c * cellW + cellW / 2, height - 12); });
+  metrics.forEach(([name], c) => {
+    ctx.fillStyle = '#607076';
+    ctx.textAlign = 'center';
+    ctx.font = '11px system-ui, sans-serif';
+    ctx.fillText(shortLabel(name, 9), pad.left + c * cellW + cellW / 2, height - 14);
+  });
   state.charts[canvas.id] = { type: 'bar', points };
 }
 
@@ -642,6 +681,29 @@ function renderEvidence(posts) {
   ].map(([label, value]) => `<article class="evidence-card"><span>${label}</span><strong>${escapeHtml(value)}</strong></article>`).join('');
 }
 
+function shortLabel(value, limit = 12) {
+  const text = String(value || '');
+  return text.length > limit ? `${text.slice(0, limit - 1)}…` : text;
+}
+
+function drawGrid(ctx, pad, width, height, max, ticks = 4) {
+  const chartW = width - pad.left - pad.right;
+  const chartH = height - pad.top - pad.bottom;
+  ctx.strokeStyle = '#eef3f4';
+  ctx.fillStyle = '#607076';
+  ctx.font = '11px system-ui, sans-serif';
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= ticks; i += 1) {
+    const value = (max / ticks) * i;
+    const y = pad.top + chartH - (chartH / ticks) * i;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, y);
+    ctx.lineTo(pad.left + chartW, y);
+    ctx.stroke();
+    ctx.fillText(formatEngagement(Math.round(value)), pad.left - 8, y + 4);
+  }
+}
+
 function setupCanvas(canvas, height) {
   const ctx = canvas.getContext('2d');
   const width = Math.max(280, Math.floor(canvas.clientWidth || 600));
@@ -668,42 +730,48 @@ function drawBarChart(canvas, labels, values, color) {
     drawEmptyChart(canvas, 'No data available for this section');
     return;
   }
-  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 230);
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 260);
   const compact = width < 420;
-  const pad = { top: 18, right: 14, bottom: compact ? 42 : 36, left: compact ? 34 : 48 };
+  const pad = { top: 18, right: 16, bottom: compact ? 54 : 42, left: compact ? 48 : 64 };
   const chartW = Math.max(1, width - pad.left - pad.right);
   const chartH = Math.max(1, height - pad.top - pad.bottom);
   const max = Math.max(...values, 1);
-  const gap = compact ? 2 : 4;
-  const barW = Math.max(2, chartW / values.length - gap);
+  const gap = compact ? 2 : 5;
+  const barW = Math.max(3, chartW / values.length - gap);
   const points = [];
 
+  drawGrid(ctx, pad, width, height, max, 4);
   ctx.strokeStyle = '#d9e1e4';
   ctx.beginPath();
-  ctx.moveTo(pad.left, pad.top);
-  ctx.lineTo(pad.left, pad.top + chartH);
+  ctx.moveTo(pad.left, pad.top + chartH);
   ctx.lineTo(pad.left + chartW, pad.top + chartH);
   ctx.stroke();
 
   values.forEach((value, index) => {
     const x = pad.left + index * (barW + gap);
-    const barH = (value / max) * chartH;
+    const barH = Math.max(value ? 2 : 0, (value / max) * chartH);
     const y = pad.top + chartH - barH;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, barW, barH);
-    points.push({ x, y, w: barW, h: barH, label: labels[index], value, text: `${labels[index]}: ${formatEngagement(value)} posts` });
+    points.push({ x, y, w: barW, h: Math.max(barH, 8), label: labels[index], value, text: `${labels[index]}: ${formatEngagement(value)}` });
   });
 
   ctx.fillStyle = '#607076';
   ctx.font = '11px system-ui, sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText(formatEngagement(max), 4, pad.top + 10);
   ctx.textAlign = 'center';
-  const step = compact ? Math.max(1, Math.floor(labels.length / 3)) : Math.max(1, Math.floor(labels.length / 6));
+  const step = compact ? Math.max(1, Math.ceil(labels.length / 4)) : Math.max(1, Math.ceil(labels.length / 7));
   labels.forEach((label, index) => {
     if (index % step !== 0 && index !== labels.length - 1) return;
     const x = pad.left + index * (barW + gap) + barW / 2;
-    ctx.fillText(label, x, height - 14);
+    ctx.save();
+    if (compact) {
+      ctx.translate(x, height - 12);
+      ctx.rotate(-Math.PI / 6);
+      ctx.fillText(shortLabel(label, 8), 0, 0);
+    } else {
+      ctx.fillText(shortLabel(label, 11), x, height - 14);
+    }
+    ctx.restore();
   });
   state.charts[canvas.id] = { type: 'bar', points };
 }
@@ -1003,52 +1071,6 @@ async function render() {
 }
 
 
-async function dispatchWorkflow(kind) {
-  const token = el('adminTokenInput').value.trim();
-  const account = state.account;
-  const maxScrolls = el('actionMaxScrolls').value || '2500';
-  const maxPosts = el('actionMaxPosts').value || '0';
-  const result = el('actionResult');
-  if (!token) {
-    result.textContent = 'Admin token is required.';
-    el('actionStateLabel').textContent = 'Token needed';
-    return;
-  }
-  result.textContent = `Submitting ${kind} for ${accounts[account].label}...`;
-  el('actionStateLabel').textContent = `${kind} running`;
-  setActionButtons(true);
-  try {
-    const response = await fetch('/api/dispatch', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-      body: JSON.stringify({ kind, account, maxScrolls, analysisMaxPosts: maxPosts })
-    });
-    const body = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(body.error || `HTTP ${response.status}`);
-    result.textContent = `${kind} workflow dispatched for ${accounts[account].label}. Check GitHub Actions for progress.`;
-    el('actionStateLabel').textContent = 'Submitted';
-  } catch (error) {
-    result.textContent = `Dispatch failed: ${error.message}`;
-    el('actionStateLabel').textContent = 'Error';
-  } finally {
-    setActionButtons(false);
-  }
-}
-
-function setActionButtons(disabled) {
-  ['runScrapeButton', 'runLdaButton', 'runSentimentButton'].forEach((id) => {
-    const button = el(id);
-    if (button) button.disabled = disabled;
-  });
-}
-
-function openActionPanel() {
-  const panel = document.querySelector('.action-panel');
-  if (panel) {
-    panel.open = true;
-    panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-}
 
 function setActiveNav() {
   const sections = [...document.querySelectorAll('.section-block')];
@@ -1132,10 +1154,6 @@ function bindEvents() {
   el('viralSelect').addEventListener('change', async (event) => { state.viral = event.target.value; state.page = 1; await render(); });
   el('sortSelect').addEventListener('change', async (event) => { state.sort = event.target.value; state.page = 1; await render(); });
   el('resetFiltersButton').addEventListener('click', async () => { resetFilters(); await render(); });
-  el('headerRunActionsButton').addEventListener('click', openActionPanel);
-  el('runScrapeButton').addEventListener('click', () => dispatchWorkflow('scrape'));
-  el('runLdaButton').addEventListener('click', () => dispatchWorkflow('lda'));
-  el('runSentimentButton').addEventListener('click', () => dispatchWorkflow('sentiment'));
   el('prevPageButton').addEventListener('click', async () => { state.page -= 1; await render(); });
   el('nextPageButton').addEventListener('click', async () => { state.page += 1; await render(); });
   ['volumeChart', 'engagementChart', 'sentimentChart', 'engagementHistogram', 'brandBoxplotChart', 'postsByBrandChart', 'textLengthChart', 'sentimentBrandChart', 'topicBrandChart', 'brandEngagementChart', 'sentimentEngagementChart', 'sentimentHeatmapChart', 'dailyVolumeChart'].forEach((id) => bindChartTooltip(el(id)));
