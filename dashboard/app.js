@@ -4,6 +4,7 @@ const accounts = {
     posts: 'data/wendys_posts.json',
     lda: 'data/wendys_lda_topics.json',
     sentiment: 'data/wendys_zero_shot_sentiment.json',
+    scrapeState: 'data/wendys_scrape_state.json',
     color: '#d6223a'
   },
   cocacola: {
@@ -11,6 +12,7 @@ const accounts = {
     posts: 'data/cocacola_posts.json',
     lda: 'data/cocacola_lda_topics.json',
     sentiment: 'data/cocacola_zero_shot_sentiment.json',
+    scrapeState: 'data/cocacola_scrape_state.json',
     color: '#b57912'
   }
 };
@@ -45,6 +47,7 @@ const state = {
 const el = (id) => document.getElementById(id);
 const fmt = new Intl.NumberFormat('en-US');
 const percentFmt = new Intl.NumberFormat('en-US', { style: 'percent', maximumFractionDigits: 1 });
+const compactFmt = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 
 function parseDate(value) {
   const date = new Date(value);
@@ -54,6 +57,10 @@ function parseDate(value) {
 function isoDate(value) {
   const date = parseDate(value);
   return date ? date.toISOString().slice(0, 10) : '';
+}
+
+function formatEngagement(value) {
+  return Math.abs(Number(value) || 0) >= 1000 ? compactFmt.format(value) : fmt.format(value);
 }
 
 function numberValue(value) {
@@ -124,11 +131,12 @@ async function loadJson(path) {
 async function loadAccount(accountKey) {
   if (state.datasets[accountKey]) return state.datasets[accountKey];
   const config = accounts[accountKey];
-  const dataset = { posts: [], lda: null, sentiment: null, errors: {} };
+  const dataset = { posts: [], lda: null, sentiment: null, scrapeState: null, errors: {} };
 
   try { dataset.posts = await loadJson(config.posts); } catch (error) { dataset.errors.posts = error.message; }
   try { dataset.lda = await loadJson(config.lda); } catch (error) { dataset.errors.lda = error.message; }
   try { dataset.sentiment = await loadJson(config.sentiment); } catch (error) { dataset.errors.sentiment = error.message; }
+  try { dataset.scrapeState = await loadJson(config.scrapeState); } catch (error) { dataset.errors.scrapeState = error.message; }
 
   state.datasets[accountKey] = dataset;
   return dataset;
@@ -310,11 +318,28 @@ function resetFilters() {
   el('sortSelect').value = 'date_desc';
 }
 
+function setDatasetState(stateName, message) {
+  const badge = el('datasetStateBadge');
+  badge.className = `state-badge ${stateName}`;
+  badge.textContent = stateName.charAt(0).toUpperCase() + stateName.slice(1);
+  el('dataStatus').textContent = message;
+}
+
+function latestTimestamp(datasets) {
+  const values = Object.values(datasets).flatMap((dataset) => [
+    dataset.scrapeState?.updated_at, dataset.scrapeState?.scraped_at, dataset.lda?.generated_at, dataset.sentiment?.generated_at
+  ]).filter(Boolean).map((value) => new Date(value)).filter((date) => !Number.isNaN(date.getTime()));
+  if (!values.length) return 'unknown';
+  return values.sort((a, b) => b - a)[0].toISOString().slice(0, 19).replace('T', ' ');
+}
+
 function showLoading() {
-  el('dataStatus').textContent = 'Loading datasets...';
-  ['metricPosts', 'metricRange', 'metricMedian', 'metricEngagement', 'metricViralShare', 'metricPositiveShare'].forEach((id) => {
+  setDatasetState('loading', 'Loading datasets...');
+  ['metricPosts', 'metricRange', 'metricMedian', 'metricEngagement', 'metricAverage', 'metricActiveDays', 'metricBrands', 'metricViralShare'].forEach((id) => {
     el(id).textContent = '-';
   });
+  el('descriptiveCards').innerHTML = '<div class="skeleton"></div>';
+  el('evidenceGrid').innerHTML = '<div class="skeleton"></div>';
   el('postTableWrap').innerHTML = '<div class="skeleton"></div>';
   el('postCards').innerHTML = '';
 }
@@ -464,8 +489,8 @@ function drawHorizontalBars(canvas, rows, valueLabel = '') {
     ctx.textAlign = 'right';
     ctx.fillText(String(row.label).slice(0, 16), pad.left - 8, y + rowH * 0.65);
     ctx.textAlign = 'left';
-    ctx.fillText(fmt.format(Math.round(row.value)), pad.left + barW + 5, y + rowH * 0.65);
-    points.push({ x: pad.left, y, w: Math.max(barW, 8), h: rowH, text: `${row.label}: ${fmt.format(Math.round(row.value))}${valueLabel}` });
+    ctx.fillText(formatEngagement(Math.round(row.value)), pad.left + barW + 5, y + rowH * 0.65);
+    points.push({ x: pad.left, y, w: Math.max(barW, 8), h: rowH, text: `${row.label}: ${formatEngagement(Math.round(row.value))}${valueLabel}` });
   });
   state.charts[canvas.id] = { type: 'bar', points };
 }
@@ -568,7 +593,7 @@ function renderModelFreeEvidence(posts) {
   drawHorizontalBars(el('brandEngagementChart'), [...groupBy(posts, (post) => post.brand).entries()].map(([label, rows]) => ({ label, value: average(rows.map((post) => post.total_engagement)) })));
   drawHorizontalBars(el('sentimentEngagementChart'), [...groupBy(posts, (post) => sentimentBucket(post.sentiment_label)).entries()].map(([label, rows]) => ({ label, value: median(rows.map((post) => post.total_engagement)) })));
   drawHeatmap(el('sentimentHeatmapChart'), groupBy(posts, (post) => sentimentBucket(post.sentiment_label)), [['likes', (p) => p.likes_count], ['replies', (p) => p.replies_count], ['retweets', (p) => p.retweets_count], ['quotes', (p) => p.quotes_count]]);
-  const dailyRows = [...groupBy(posts, (post) => `${post.brand} ${post.date_iso}`).entries()].slice(-40).map(([label, rows]) => ({ label: label.replace(/^(.{1,12}).*/, '$1'), value: rows.length }));
+  const dailyRows = [...groupBy(posts, (post) => `${post.brand} ${post.date_iso}`).entries()].sort((a, b) => a[0].localeCompare(b[0])).slice(-40).map(([label, rows]) => ({ label: label.replace(/^(.{1,18}).*/, '$1'), value: average(rows.map((post) => post.total_engagement)) }));
   drawHorizontalBars(el('dailyVolumeChart'), dailyRows.slice(-12));
   renderTopicRanking(posts);
   renderViralEvidence(posts);
@@ -590,13 +615,16 @@ function renderViralEvidence(posts) {
 function renderMetrics(posts) {
   const totalEngagement = posts.reduce((sum, post) => sum + post.total_engagement, 0);
   const viralCount = posts.filter((post) => post.viral).length;
-  const positiveCount = posts.filter((post) => post.sentiment_label === 'positive').length;
+  const activeDays = new Set(posts.map((post) => post.date_iso).filter(Boolean)).size;
+  const brandCount = new Set(posts.map((post) => post.brand)).size;
   el('metricPosts').textContent = fmt.format(posts.length);
   el('metricRange').textContent = dateRange(posts);
-  el('metricMedian').textContent = fmt.format(median(posts.map((post) => post.total_engagement)));
-  el('metricEngagement').textContent = fmt.format(totalEngagement);
+  el('metricEngagement').textContent = formatEngagement(totalEngagement);
+  el('metricAverage').textContent = posts.length ? formatEngagement(Math.round(totalEngagement / posts.length)) : '-';
+  el('metricMedian').textContent = formatEngagement(median(posts.map((post) => post.total_engagement)));
+  el('metricActiveDays').textContent = fmt.format(activeDays);
+  el('metricBrands').textContent = fmt.format(brandCount);
   el('metricViralShare').textContent = posts.length ? percentFmt.format(viralCount / posts.length) : '-';
-  el('metricPositiveShare').textContent = posts.length ? percentFmt.format(positiveCount / posts.length) : '-';
 }
 
 function renderEvidence(posts) {
@@ -663,13 +691,13 @@ function drawBarChart(canvas, labels, values, color) {
     const y = pad.top + chartH - barH;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, barW, barH);
-    points.push({ x, y, w: barW, h: barH, label: labels[index], value, text: `${labels[index]}: ${fmt.format(value)} posts` });
+    points.push({ x, y, w: barW, h: barH, label: labels[index], value, text: `${labels[index]}: ${formatEngagement(value)} posts` });
   });
 
   ctx.fillStyle = '#607076';
   ctx.font = '11px system-ui, sans-serif';
   ctx.textAlign = 'left';
-  ctx.fillText(fmt.format(max), 4, pad.top + 10);
+  ctx.fillText(formatEngagement(max), 4, pad.top + 10);
   ctx.textAlign = 'center';
   const step = compact ? Math.max(1, Math.floor(labels.length / 3)) : Math.max(1, Math.floor(labels.length / 6));
   labels.forEach((label, index) => {
@@ -702,7 +730,7 @@ function drawDonut(canvas, rows) {
     ctx.closePath();
     ctx.fillStyle = row.color;
     ctx.fill();
-    points.push({ cx, cy, r: radius, start, end: start + angle, text: `${row.label}: ${fmt.format(row.value)} (${percentFmt.format(row.value / total)})` });
+    points.push({ cx, cy, r: radius, start, end: start + angle, text: `${row.label}: ${formatEngagement(row.value)} (${percentFmt.format(row.value / total)})` });
     start += angle;
   });
 
@@ -713,7 +741,7 @@ function drawDonut(canvas, rows) {
   ctx.fillStyle = '#1c2427';
   ctx.font = '600 17px system-ui, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(fmt.format(total), cx, cy + 6);
+  ctx.fillText(formatEngagement(total), cx, cy + 6);
   state.charts[canvas.id] = { type: 'donut', points };
 }
 
@@ -722,7 +750,7 @@ function renderLegend(containerId, rows, groupName) {
   container.innerHTML = rows.map((row) => {
     const active = row.active !== false;
     return `<button type="button" class="legend-item ${active ? 'active' : ''}" data-chart-group="${groupName}" data-series="${escapeHtml(row.label)}" aria-pressed="${active}">
-      <span style="--legend-color:${row.color}"></span>${escapeHtml(row.label)}<strong>${fmt.format(row.value)}</strong>
+      <span style="--legend-color:${row.color}"></span>${escapeHtml(row.label)}<strong>${formatEngagement(row.value)}</strong>
     </button>`;
   }).join('');
   container.querySelectorAll('[data-series]').forEach((button) => {
@@ -959,6 +987,10 @@ async function render() {
   populateFilterOptions(allPosts, dataset);
   syncInputs();
   const visible = filteredPosts(allPosts);
+  const hasErrors = Object.values(datasets).some((dataset) => dataset.errors.posts);
+  if (!allPosts.length) setDatasetState(hasErrors ? 'error' : 'empty', hasErrors ? 'Failed to load dataset. Please check the data source or API response.' : 'No dataset loaded yet. Run scraper or check dataset source.');
+  else setDatasetState('ready', `${fmt.format(allPosts.length)} posts loaded across ${fmt.format(Object.keys(datasets).length)} brands`);
+  el('lastUpdatedLabel').textContent = `Last updated: ${latestTimestamp(datasets)}`;
   renderStatus(dataset);
   renderMetrics(visible);
   renderDescriptives(visible);
@@ -967,7 +999,65 @@ async function render() {
   renderTopics(dataset.lda);
   renderSentiment(dataset.sentiment);
   renderPosts(visible);
-  el('dataStatus').textContent = `${fmt.format(allPosts.length)} posts loaded across ${fmt.format(Object.keys(datasets).length)} brands`;
+
+}
+
+
+async function dispatchWorkflow(kind) {
+  const token = el('adminTokenInput').value.trim();
+  const account = state.account;
+  const maxScrolls = el('actionMaxScrolls').value || '2500';
+  const maxPosts = el('actionMaxPosts').value || '0';
+  const result = el('actionResult');
+  if (!token) {
+    result.textContent = 'Admin token is required.';
+    el('actionStateLabel').textContent = 'Token needed';
+    return;
+  }
+  result.textContent = `Submitting ${kind} for ${accounts[account].label}...`;
+  el('actionStateLabel').textContent = `${kind} running`;
+  setActionButtons(true);
+  try {
+    const response = await fetch('/api/dispatch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ kind, account, maxScrolls, analysisMaxPosts: maxPosts })
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(body.error || `HTTP ${response.status}`);
+    result.textContent = `${kind} workflow dispatched for ${accounts[account].label}. Check GitHub Actions for progress.`;
+    el('actionStateLabel').textContent = 'Submitted';
+  } catch (error) {
+    result.textContent = `Dispatch failed: ${error.message}`;
+    el('actionStateLabel').textContent = 'Error';
+  } finally {
+    setActionButtons(false);
+  }
+}
+
+function setActionButtons(disabled) {
+  ['runScrapeButton', 'runLdaButton', 'runSentimentButton'].forEach((id) => {
+    const button = el(id);
+    if (button) button.disabled = disabled;
+  });
+}
+
+function openActionPanel() {
+  const panel = document.querySelector('.action-panel');
+  if (panel) {
+    panel.open = true;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function setActiveNav() {
+  const sections = [...document.querySelectorAll('.section-block')];
+  const links = [...document.querySelectorAll('.section-nav a')];
+  let current = sections[0]?.id;
+  sections.forEach((section) => {
+    if (section.getBoundingClientRect().top < 180) current = section.id;
+  });
+  links.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
 }
 
 function chartPointFromEvent(canvas, event) {
@@ -1042,10 +1132,17 @@ function bindEvents() {
   el('viralSelect').addEventListener('change', async (event) => { state.viral = event.target.value; state.page = 1; await render(); });
   el('sortSelect').addEventListener('change', async (event) => { state.sort = event.target.value; state.page = 1; await render(); });
   el('resetFiltersButton').addEventListener('click', async () => { resetFilters(); await render(); });
+  el('headerRunActionsButton').addEventListener('click', openActionPanel);
+  el('runScrapeButton').addEventListener('click', () => dispatchWorkflow('scrape'));
+  el('runLdaButton').addEventListener('click', () => dispatchWorkflow('lda'));
+  el('runSentimentButton').addEventListener('click', () => dispatchWorkflow('sentiment'));
   el('prevPageButton').addEventListener('click', async () => { state.page -= 1; await render(); });
   el('nextPageButton').addEventListener('click', async () => { state.page += 1; await render(); });
   ['volumeChart', 'engagementChart', 'sentimentChart', 'engagementHistogram', 'brandBoxplotChart', 'postsByBrandChart', 'textLengthChart', 'sentimentBrandChart', 'topicBrandChart', 'brandEngagementChart', 'sentimentEngagementChart', 'sentimentHeatmapChart', 'dailyVolumeChart'].forEach((id) => bindChartTooltip(el(id)));
   window.addEventListener('resize', () => render());
+  window.addEventListener('scroll', setActiveNav, { passive: true });
+  setActiveNav();
+  if (window.innerWidth < 640) el('filterDetails').open = false;
 }
 
 function escapeHtml(value) {

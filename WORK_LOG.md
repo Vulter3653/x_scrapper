@@ -810,3 +810,35 @@ Validation completed:
 - Searched dashboard client files for `Run Actions`, `runScrapeButton`, `dispatchWorkflow`, and `/api/dispatch`; no UI/client references remained.
 - Ran a Node DOM/Canvas mock against real dashboard JSON data. Render completed with 1,825 posts loaded across 2 brands, Descriptive Statistics rendered, Model-free Evidence rendered, and Post Explorer table generated.
 - Ran a Python data check confirming sample `total_engagement` fallback calculation, parseable date field presence, and missing numeric values treated as zero.
+
+
+### Dashboard Redesign Based on Deployed Pages UI and Canvas Reference
+
+Date: 2026-05-22
+
+User requested redesigning the currently deployed `https://x-scrapper.pages.dev/` dashboard using the Canvas example as the target structure while preserving existing functionality. The deployed page was checked and showed the static dashboard with Header, filters, Analysis Status, Overview, Descriptives, Model-free Evidence, Posting, Topics, Sentiment, and Posts sections.
+
+Implementation notes:
+
+- Kept the existing static HTML/CSS/Vanilla JS architecture and Canvas charts rather than introducing React/Recharts dependencies.
+- Reworked Header with subtitle, dataset state badge, dataset status text, last-updated label, brand selector, and a header Run Actions button.
+- Restored Run Actions in a collapsible panel: admin token, max scrolls, analysis max posts, Run Scraper, Run LDA, Run Sentiment, and action status message.
+- Added active sticky section navigation for Overview, Descriptives, Evidence, Posting, Topics, Sentiment, and Posts.
+- Updated KPI cards to the requested presentation structure: Posts, Date Range, Total Engagement, Avg Engagement, Median Engagement, Active Posting Days, Number of Brands, Viral Post Share.
+- Added dataset state handling for `loading`, `ready`, `empty`, and `error`.
+- Added compact engagement formatting for chart labels and KPI values, e.g. K/M notation.
+- Kept desktop table and mobile card Post Explorer behavior.
+- Kept per-card empty states using `No data available for this section`.
+
+Validation completed:
+
+- `node --check dashboard/app.js` passed.
+- `node --check functions/api/dispatch.js` passed.
+- `git diff --check` passed.
+- Local preview server returned updated HTML through `curl http://127.0.0.1:4173/index.html`.
+- Node DOM/Canvas mock render against real dashboard JSON succeeded with `1,825 posts loaded across 2 brands`.
+- Static responsive checks confirmed mobile `<640px`, tablet `<=1024px`, 1440px max-width shell, desktop six-column KPI grid, mobile one-column KPI grid, desktop table, mobile post cards, sticky active nav, Run Actions retention, per-chart empty state, and touch tooltip support.
+
+Verification limitation:
+
+- Attempted 390px headless Chromium screenshot verification, but Chromium timed out in the local environment. This is consistent with previous DBus/font/headless Chromium failures in this workspace. Static responsive validation and render mock validation were completed instead.

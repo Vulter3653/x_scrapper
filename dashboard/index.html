@@ -9,19 +9,29 @@
 <body>
   <header class="topbar">
     <div class="brand-head">
-      <h1>X Brand Intelligence</h1>
-      <p id="dataStatus">Loading datasets...</p>
+      <div class="title-row">
+        <h1>X Brand Intelligence</h1>
+        <span id="datasetStateBadge" class="state-badge loading">Loading</span>
+      </div>
+      <p>Brand-level social media intelligence from X posts</p>
+      <div class="header-meta">
+        <span id="dataStatus">Loading datasets...</span>
+        <span id="lastUpdatedLabel">Last updated: unknown</span>
+      </div>
     </div>
-    <div class="account-tabs" role="tablist" aria-label="Brand selector">
-      <button class="tab active" data-account="wendys" type="button" aria-label="Show Wendy's dashboard">Wendy's</button>
-      <button class="tab" data-account="cocacola" type="button" aria-label="Show Coca-Cola dashboard">Coca-Cola</button>
+    <div class="header-actions">
+      <div class="account-tabs" role="tablist" aria-label="Brand selector">
+        <button class="tab active" data-account="wendys" type="button" aria-label="Show Wendy's dashboard">Wendy's</button>
+        <button class="tab" data-account="cocacola" type="button" aria-label="Show Coca-Cola dashboard">Coca-Cola</button>
+      </div>
+      <button id="headerRunActionsButton" class="primary-action" type="button" aria-label="Open workflow action controls">Run Actions</button>
     </div>
   </header>
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#overview">Overview</a>
     <a href="#descriptives">Descriptives</a>
-    <a href="#evidence">Model-free Evidence</a>
+    <a href="#evidence">Evidence</a>
     <a href="#posting">Posting</a>
     <a href="#topics">Topics</a>
     <a href="#sentiment">Sentiment</a>
@@ -30,6 +40,7 @@
 
   <main class="dashboard-shell">
     <aside class="sidebar" aria-label="Dashboard controls">
+      <div class="control-title"><span>Control Panel</span><strong>Filters and workflow controls</strong></div>
       <details class="panel compact filter-panel" id="filterDetails" open>
         <summary>
           <span>Filters</span>
@@ -117,6 +128,33 @@
         <h2 id="analysisStatusTitle">Analysis Status</h2>
         <div id="analysisStatus" class="status-list"></div>
       </section>
+
+      <details class="panel compact action-panel">
+        <summary>
+          <span>Run Actions</span>
+          <strong id="actionStateLabel">Ready</strong>
+        </summary>
+        <div class="action-body">
+          <label class="field" for="adminTokenInput">
+            <span>Admin token</span>
+            <input id="adminTokenInput" type="password" placeholder="Cloudflare dashboard token" aria-label="Cloudflare dashboard admin token">
+          </label>
+          <label class="field" for="actionMaxScrolls">
+            <span>Max scrolls</span>
+            <input id="actionMaxScrolls" type="number" min="1" value="2500" aria-label="Scraper max scrolls">
+          </label>
+          <label class="field" for="actionMaxPosts">
+            <span>Analysis max posts</span>
+            <input id="actionMaxPosts" type="number" min="0" value="0" aria-label="Analysis max posts">
+          </label>
+          <div class="action-buttons">
+            <button id="runScrapeButton" type="button" aria-label="Run scraper workflow">Run Scraper</button>
+            <button id="runLdaButton" type="button" aria-label="Run LDA workflow">Run LDA</button>
+            <button id="runSentimentButton" type="button" aria-label="Run sentiment workflow">Run Sentiment</button>
+          </div>
+          <div id="actionResult" class="action-result" role="status">No action submitted.</div>
+        </div>
+      </details>
     </aside>
 
     <section class="content">
@@ -126,12 +164,14 @@
           <h2 id="overviewTitle">Overview</h2>
         </div>
         <section class="metrics" aria-label="Summary metrics">
-          <article class="metric priority"><span>Total Posts</span><strong id="metricPosts">-</strong><small>after filters</small></article>
+          <article class="metric priority"><span>Posts</span><strong id="metricPosts">-</strong><small>after filters</small></article>
           <article class="metric"><span>Date Range</span><strong id="metricRange">-</strong><small>visible posts</small></article>
-          <article class="metric priority"><span>Median Engagement</span><strong id="metricMedian">-</strong><small>likes + replies + retweets + quotes</small></article>
-          <article class="metric"><span>Total Engagement</span><strong id="metricEngagement">-</strong><small>visible posts</small></article>
-          <article class="metric priority"><span>Viral Post Share</span><strong id="metricViralShare">-</strong><small>top decile engagement</small></article>
-          <article class="metric priority"><span>Positive Sentiment Share</span><strong id="metricPositiveShare">-</strong><small>zero-shot label</small></article>
+          <article class="metric priority"><span>Total Engagement</span><strong id="metricEngagement">-</strong><small>likes + replies + retweets + quotes</small></article>
+          <article class="metric"><span>Avg Engagement</span><strong id="metricAverage">-</strong><small>mean per post</small></article>
+          <article class="metric priority"><span>Median Engagement</span><strong id="metricMedian">-</strong><small>raw median</small></article>
+          <article class="metric"><span>Active Posting Days</span><strong id="metricActiveDays">-</strong><small>unique dates</small></article>
+          <article class="metric"><span>Number of Brands</span><strong id="metricBrands">-</strong><small>visible data</small></article>
+          <article class="metric priority"><span>Viral Post Share</span><strong id="metricViralShare">-</strong><small>top 5 percent</small></article>
         </section>
       </section>
 
@@ -161,7 +201,7 @@
           <article class="panel chart-panel"><div class="panel-head"><h3>Brand Raw Comparison</h3><span>average engagement</span></div><canvas id="brandEngagementChart" height="220"></canvas></article>
           <article class="panel chart-panel"><div class="panel-head"><h3>Sentiment x Engagement</h3><span>median engagement</span></div><canvas id="sentimentEngagementChart" height="220"></canvas></article>
           <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Type Heatmap</h3><span>by sentiment</span></div><canvas id="sentimentHeatmapChart" height="220"></canvas></article>
-          <article class="panel chart-panel"><div class="panel-head"><h3>Daily Posting Volume</h3><span>by brand</span></div><canvas id="dailyVolumeChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Daily Engagement Trend</h3><span>by brand</span></div><canvas id="dailyVolumeChart" height="220"></canvas></article>
         </section>
         <section class="grid two analytics-grid">
           <article class="panel"><div class="panel-head"><h3>Topic Engagement Ranking</h3><span>raw topics</span></div><div id="topicRankingTable" class="responsive-table"></div></article>
