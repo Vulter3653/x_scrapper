@@ -65,13 +65,19 @@ jobs:
           fi
           rm -f sentiment_analysis.log
 
-      - name: 5. Inspect changed files
+      - name: 5. Sync dashboard data
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python sync_dashboard_data.py
+
+      - name: 6. Inspect changed files
         shell: bash
         run: |
           set -euxo pipefail
           git status --short
 
-      - name: 6. Commit and push analysis results
+      - name: 7. Commit and push analysis results
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

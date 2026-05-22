@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X Brand Intelligence Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>X Brand Intelligence</h1>
+      <p id="dataStatus">Loading datasets...</p>
+    </div>
+    <div class="account-tabs" role="tablist" aria-label="Account selector">
+      <button class="tab active" data-account="wendys" type="button">Wendy's</button>
+      <button class="tab" data-account="cocacola" type="button">Coca-Cola</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Dashboard filters">
+      <section class="panel compact">
+        <h2>Filters</h2>
+        <label class="field">
+          <span>Search text</span>
+          <input id="searchInput" type="search" placeholder="keyword, phrase, URL">
+        </label>
+        <label class="field">
+          <span>Year</span>
+          <select id="yearSelect"></select>
+        </label>
+        <label class="field">
+          <span>Sort posts</span>
+          <select id="sortSelect">
+            <option value="date_desc">Newest first</option>
+            <option value="engagement_desc">Highest engagement</option>
+            <option value="likes_desc">Most liked</option>
+            <option value="replies_desc">Most replied</option>
+            <option value="retweets_desc">Most retweeted</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="panel compact">
+        <h2>Analysis Status</h2>
+        <div id="analysisStatus" class="status-list"></div>
+      </section>
+
+
+      <section class="panel compact">
+        <h2>Run Actions</h2>
+        <label class="field">
+          <span>Admin token</span>
+          <input id="adminTokenInput" type="password" placeholder="Cloudflare dashboard token">
+        </label>
+        <label class="field">
+          <span>Max scrolls</span>
+          <input id="actionMaxScrolls" type="number" min="1" value="2500">
+        </label>
+        <label class="field">
+          <span>Analysis max posts</span>
+          <input id="actionMaxPosts" type="number" min="0" value="0">
+        </label>
+        <div class="action-buttons">
+          <button id="runScrapeButton" type="button">Run Scraper</button>
+          <button id="runLdaButton" type="button">Run LDA</button>
+          <button id="runSentimentButton" type="button">Run Sentiment</button>
+        </div>
+        <div id="actionResult" class="action-result">No action submitted.</div>
+      </section>
+    </aside>
+
+    <section class="content">
+      <section class="metrics" aria-label="Summary metrics">
+        <article class="metric">
+          <span>Posts</span>
+          <strong id="metricPosts">-</strong>
+        </article>
+        <article class="metric">
+          <span>Date Range</span>
+          <strong id="metricRange">-</strong>
+        </article>
+        <article class="metric">
+          <span>Total Engagement</span>
+          <strong id="metricEngagement">-</strong>
+        </article>
+        <article class="metric">
+          <span>Avg Engagement</span>
+          <strong id="metricAverage">-</strong>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="panel chart-panel">
+          <div class="panel-head">
+            <h2>Posting Volume</h2>
+            <span id="volumeCaption"></span>
+          </div>
+          <canvas id="volumeChart" height="220"></canvas>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="panel-head">
+            <h2>Engagement Mix</h2>
+            <span>likes, replies, retweets, quotes</span>
+          </div>
+          <canvas id="engagementChart" height="220"></canvas>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <div class="panel-head">
+            <h2>LDA Topics</h2>
+            <span id="topicMeta"></span>
+          </div>
+          <div id="topicList" class="topic-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Zero-Shot Sentiment</h2>
+            <span id="sentimentMeta"></span>
+          </div>
+          <div id="sentimentSummary" class="sentiment-summary"></div>
+          <canvas id="sentimentChart" height="180"></canvas>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Post Explorer</h2>
+          <span id="postCountLabel"></span>
+        </div>
+        <div id="postList" class="post-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

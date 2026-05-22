@@ -119,3 +119,45 @@ GitHub Actions 무료 실행 시간을 줄이고 싶으면 `analysis_max_posts=3
 - 쿠키 값은 비밀번호와 유사하게 취급해야 하며 저장소에 커밋하지 마세요.
 - X가 응답 제한, 로그인 검증, 일시 차단을 걸 수 있습니다. 이 경우 재시도 후에도 실패할 수 있습니다.
 - 너무 낮은 `PAGE_DELAY_SECONDS` 값은 수집 실패 가능성을 높입니다.
+
+
+## Cloudflare 대시보드
+
+정적 대시보드는 `dashboard/` 폴더에 있습니다.
+
+Cloudflare Pages 설정:
+
+- Build command: 비워둠
+- Build output directory: `dashboard`
+- Functions directory: 기본값 `functions`
+- Framework preset: None/static
+
+대시보드 기능:
+
+- Wendy's / CocaCola 계정 전환
+- 포스트 수, 기간, 참여 지표 요약
+- 월별 포스팅량 차트
+- 좋아요/댓글/리트윗/인용 비중 차트
+- 포스트 검색, 연도 필터, 정렬
+- LDA 결과 표시
+- zero-shot 감성분석 결과 표시
+- Cloudflare Function을 통한 GitHub Actions 실행
+
+GitHub Actions 실행 버튼을 쓰려면 Cloudflare 환경변수를 설정해야 합니다.
+
+- `DASHBOARD_ADMIN_TOKEN`: 대시보드에서 입력할 관리자 토큰
+- `GH_ACTIONS_TOKEN`: GitHub Actions workflow dispatch 권한이 있는 GitHub token
+- `GITHUB_OWNER`: 기본값 `Vulter3653`
+- `GITHUB_REPO`: 기본값 `x_scrapper`
+- `GITHUB_REF`: 기본값 `main`
+
+보안 원칙:
+
+- GitHub token은 브라우저에 절대 노출하지 않습니다.
+- 브라우저는 `/api/dispatch`에 관리자 토큰만 보내고, Cloudflare Function이 GitHub API를 호출합니다.
+- 공개 대시보드라면 `DASHBOARD_ADMIN_TOKEN`을 충분히 길고 예측 불가능하게 설정하세요.
+
+데이터 동기화:
+
+- `sync_dashboard_data.py`가 루트의 `{account}_*.json` 결과를 `dashboard/data/`로 복사합니다.
+- Scrape, LDA, Sentiment workflow는 결과 생성 후 자동으로 이 동기화 스크립트를 실행합니다.

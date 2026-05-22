@@ -573,6 +573,57 @@ Push status:
 - These changes were intentionally kept local at the user's request.
 - They should be committed and pushed only after the currently running scraper Action is complete or after user approval.
 
+
+### Cloudflare Dashboard and Action Dispatch
+
+User requested an interactive Cloudflare dashboard that can inspect scraped data, LDA results, and zero-shot sentiment results. User also asked whether dashboard buttons can run Actions.
+
+Implementation:
+
+- Added `dashboard/index.html`, `dashboard/styles.css`, and `dashboard/app.js`.
+- Added static data directory `dashboard/data/`.
+- Added `sync_dashboard_data.py` to copy root JSON outputs into `dashboard/data/`.
+- Updated scrape, LDA, and sentiment workflows to run `python sync_dashboard_data.py` before committing results.
+- Added `functions/api/dispatch.js` as a Cloudflare Pages Function.
+- Dashboard can call `/api/dispatch` to trigger one of:
+  - `scrape.yml`
+  - `lda.yml`
+  - `sentiment.yml`
+
+Security design:
+
+- The GitHub Actions token is not stored in client-side JavaScript.
+- Cloudflare Function reads `GH_ACTIONS_TOKEN` from Cloudflare environment secrets.
+- Dashboard user must provide `DASHBOARD_ADMIN_TOKEN`, which the Function validates before dispatching GitHub workflows.
+- GitHub dispatch target defaults:
+  - owner: `Vulter3653`
+  - repo: `x_scrapper`
+  - ref: `main`
+
+Cloudflare required environment variables:
+
+```text
+DASHBOARD_ADMIN_TOKEN
+GH_ACTIONS_TOKEN
+GITHUB_OWNER optional, default Vulter3653
+GITHUB_REPO optional, default x_scrapper
+GITHUB_REF optional, default main
+```
+
+Deployment settings:
+
+```text
+Build command: empty
+Build output directory: dashboard
+Functions directory: functions
+```
+
+Dashboard limitations:
+
+- Workflow dispatch buttons only work after deployment to Cloudflare Pages with Functions enabled.
+- Opening `dashboard/index.html` locally will show data but cannot call `/api/dispatch` unless a compatible local Functions server is running.
+- The dashboard can trigger workflows, but workflow completion and progress are still monitored in GitHub Actions.
+
 ## Known Limitations and Risks
 
 1. X may block GitHub Actions browser sessions or mark them suspicious.
