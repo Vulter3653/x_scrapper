@@ -1,0 +1,553 @@
+{
+  "target_user": "Wendys",
+  "input_file": "wendys_posts.json",
+  "document_count": 90,
+  "num_topics": 10,
+  "topic_selection": {
+    "method": "NPMI coherence over candidate topic counts",
+    "min_topics": 2,
+    "max_topics": 10,
+    "selected_num_topics": 10,
+    "selected_coherence_npmi": 0.6465768484383505,
+    "selected_perplexity": 190.70334346157568,
+    "evaluations": [
+      {
+        "num_topics": 2,
+        "coherence_npmi": 0.5021269024559346,
+        "perplexity": 181.69084149242656
+      },
+      {
+        "num_topics": 3,
+        "coherence_npmi": 0.5106388477268727,
+        "perplexity": 183.58342405579262
+      },
+      {
+        "num_topics": 4,
+        "coherence_npmi": 0.6028981226332358,
+        "perplexity": 172.55611812662625
+      },
+      {
+        "num_topics": 5,
+        "coherence_npmi": 0.5440374633868178,
+        "perplexity": 189.1035763500438
+      },
+      {
+        "num_topics": 6,
+        "coherence_npmi": 0.5927611464172188,
+        "perplexity": 185.5700395346681
+      },
+      {
+        "num_topics": 7,
+        "coherence_npmi": 0.5815612594330398,
+        "perplexity": 185.41571418382475
+      },
+      {
+        "num_topics": 8,
+        "coherence_npmi": 0.5640499678978858,
+        "perplexity": 186.4783477834685
+      },
+      {
+        "num_topics": 9,
+        "coherence_npmi": 0.5529465897098965,
+        "perplexity": 195.9984252799727
+      },
+      {
+        "num_topics": 10,
+        "coherence_npmi": 0.6465768484383505,
+        "perplexity": 190.70334346157568
+      }
+    ]
+  },
+  "topics": [
+    {
+      "topic_id": 0,
+      "top_terms": [
+        "wendysctocontest",
+        "tag",
+        "rules",
+        "nec",
+        "purch nec",
+        "purch",
+        "ends",
+        "ends rules",
+        "dc",
+        "dc ends",
+        "nec dc",
+        "apply"
+      ],
+      "representative_posts": [
+        {
+          "id": "2030030225254359259",
+          "tweet_url": "https://x.com/Wendys/status/2030030225254359259",
+          "score": 0.943749972248299,
+          "text": "No purch nec. 50 US/DC, 18+. Ends 3/30. Rules: https://t.co/mNIqecbPOQ. To qualify tag @Wendys and #WendysCTOcontest"
+        },
+        {
+          "id": "2030021566528893409",
+          "tweet_url": "https://x.com/Wendys/status/2030021566528893409",
+          "score": 0.943749972248299,
+          "text": ".@maurahiggins Since being a faithful fell through, here’s a job to get u more Birkins \nhttps://t.co/mNIqecbPOQ.\n\nNo purch nec. 50 US/DC, 18+. Ends 3/30. Rules: To qualify tag @Wendys and #WendysCTOContest https://t.co/RWQGC4PJmA"
+        },
+        {
+          "id": "2032563031024996510",
+          "tweet_url": "https://x.com/Wendys/status/2032563031024996510",
+          "score": 0.9249999996606684,
+          "text": "Head to https://t.co/lkd5mlJoiZ to see how to apply. WHAT ARE YOU WAITING FOR?!?!?!?! IT’S $100,000 !!!!!\n\nNo purch nec. 50 US/DC, 18+. Ends 3/30. Rules: https://t.co/mNIqecbPOQ\n\n#WendysCTOContest https://t.co/WD3ZxE9iee"
+        },
+        {
+          "id": "2029687889098068156",
+          "tweet_url": "https://x.com/Wendys/status/2029687889098068156",
+          "score": 0.9181759560497509,
+          "text": "Our first Chief Tasting Officer application is in, and lets just say the bar is LOW. Apply now and make your video more than a McNibble.  Link in bio to enter the first #WendysCTOcontest https://t.co/JXujBHw5pP"
+        },
+        {
+          "id": "2035213787020575096",
+          "tweet_url": "https://x.com/Wendys/status/2035213787020575096",
+          "score": 0.7749999981337095,
+          "text": "Tarris Reed throws it down 🔨 https://t.co/kGW6Ewxnon"
+        }
+      ]
+    },
+    {
+      "topic_id": 1,
+      "top_terms": [
+        "frosty",
+        "dunk",
+        "fry",
+        "free",
+        "fry frosty",
+        "just",
+        "america",
+        "free small",
+        "small fry",
+        "small",
+        "th",
+        "bc"
+      ],
+      "representative_posts": [
+        {
+          "id": "2041332610928951432",
+          "tweet_url": "https://x.com/Wendys/status/2041332610928951432",
+          "score": 0.9526306971159331,
+          "text": "WE HAVE A DUNK 🚨that means all of America gets free small fry and Frosty on April 7th. Not to be dramatic, but that was the greatest moment in dunk history."
+        },
+        {
+          "id": "2041526852036988999",
+          "tweet_url": "https://x.com/Wendys/status/2041526852036988999",
+          "score": 0.9307678200848909,
+          "text": "🫵 YOU GET A FREE FRY AND FROSTY 🫵 AND YOU GET A FREE FRY AND FROSTY 🫵 AND YOU GET A FREE FRY AND FROSTY 🫵 https://t.co/OQ2OI18i5U"
+        },
+        {
+          "id": "2057509387422380064",
+          "tweet_url": "https://x.com/Wendys/status/2057509387422380064",
+          "score": 0.9249894711605513,
+          "text": "From one redheaded baddie to another, we just wanted to formally invite you to compete in our Wendy’s look-alike contest this weekend for #worldredheadday\n\nhttps://t.co/Plz0ZCapd2"
+        },
+        {
+          "id": "2009777266847363171",
+          "tweet_url": "https://x.com/Wendys/status/2009777266847363171",
+          "score": 0.8499944352952313,
+          "text": "life is so crazy bc wdym i’m giving out bogo dave’s singles or doubles on doordash just bc some lady asked where’s the beef 42 years ago"
+        },
+        {
+          "id": "2022846838726922625",
+          "tweet_url": "https://x.com/Wendys/status/2022846838726922625",
+          "score": 0.8199864321378282,
+          "text": "Based on the results from today’s dunk contest this would blow the judges minds https://t.co/6nP4bbhJ2h"
+        }
+      ]
+    },
+    {
+      "topic_id": 2,
+      "top_terms": [
+        "dunks",
+        "score",
+        "today",
+        "time",
+        "ll",
+        "got",
+        "want",
+        "menu",
+        "mom",
+        "make",
+        "sleep score",
+        "sleep"
+      ],
+      "representative_posts": [
+        {
+          "id": "2039713760378487274",
+          "tweet_url": "https://x.com/Wendys/status/2039713760378487274",
+          "score": 0.9307648314544551,
+          "text": "We’ve got our final four! It’s time to decide who will make it to the championship and ultimately end up back on the menu. Get your votes in now! https://t.co/Yat9QPbeFA"
+        },
+        {
+          "id": "2001787068914225487",
+          "tweet_url": "https://x.com/Wendys/status/2001787068914225487",
+          "score": 0.9249989874840114,
+          "text": "Attn insomniacs\n\ndrop your sleep score below &amp; i’ll give you an energy drink deal based on how much your score sucks (but hurry bc you have to share it by 12/22)"
+        },
+        {
+          "id": "2038736376653554124",
+          "tweet_url": "https://x.com/Wendys/status/2038736376653554124",
+          "score": 0.8999913095393481,
+          "text": "After a tough fight to make it on the bracket, we have our finalists! America, we want to hear from you! Tell us what you want to see back on the menu. Voting starts… NOW!\n\nBetter luck next time to the Sunroom, Salad SuperBar, Giant JBC, and Trex burger. https://t.co/Ypg0dTCSnT"
+        },
+        {
+          "id": "2041286930231373912",
+          "tweet_url": "https://x.com/Wendys/status/2041286930231373912",
+          "score": 0.8874929859164625,
+          "text": "You: Wow I hope so and so team wins\n\nMe: DUNKS DUNKS DUNKS DUNKS"
+        },
+        {
+          "id": "1988671571091980633",
+          "tweet_url": "https://x.com/Wendys/status/1988671571091980633",
+          "score": 0.8874901961316886,
+          "text": ".@fibulaa said we’re Tendy’s now and who are we to argue? Try our new chicken tendys today! https://t.co/8FccP5qRR5"
+        }
+      ]
+    },
+    {
+      "topic_id": 3,
+      "top_terms": [
+        "small",
+        "free",
+        "restaurant",
+        "offer",
+        "purchase",
+        "classic",
+        "april",
+        "small fry",
+        "free small",
+        "fry",
+        "frosty",
+        "wendy"
+      ],
+      "representative_posts": [
+        {
+          "id": "2039915068729541060",
+          "tweet_url": "https://x.com/Wendys/status/2039915068729541060",
+          "score": 0.9785709403578905,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions."
+        },
+        {
+          "id": "2041187810728727004",
+          "tweet_url": "https://x.com/Wendys/status/2041187810728727004",
+          "score": 0.977499529731789,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
+        },
+        {
+          "id": "2041274861461586245",
+          "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
+          "score": 0.977499529731789,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
+        },
+        {
+          "id": "2041332734883201293",
+          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
+          "score": 0.977499529731789,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
+        },
+        {
+          "id": "2041526924149690528",
+          "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
+          "score": 0.977499529731789,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "top_terms": [
+        "fries",
+        "baddie",
+        "frosty",
+        "fries frosty",
+        "night",
+        "yaxel",
+        "open",
+        "way",
+        "hope",
+        "tell",
+        "new",
+        "starting"
+      ],
+      "representative_posts": [
+        {
+          "id": "2035415108646490534",
+          "tweet_url": "https://x.com/Wendys/status/2035415108646490534",
+          "score": 0.871420488665036,
+          "text": "I hope Yaxel doesn’t dunk his fries in his Frosty this violently https://t.co/l75Yp2p6YX"
+        },
+        {
+          "id": "2029952811224514866",
+          "tweet_url": "https://x.com/Wendys/status/2029952811224514866",
+          "score": 0.8499923060259283,
+          "text": "Breaking: The Raiders are releasing last season’s starting QB Geno Smith, barring a trade before the start of the new league year, sources tell @AdamSchefter.  \n\nBy releasing Smith, the Raiders will open up $8M in salary cap space while taking on $18.5M in dead money.\n\nGet breaking news alerts from Adam Schefter through the ESPN App: https://t.co/wLAog0kJUB"
+        },
+        {
+          "id": "2042359791239024659",
+          "tweet_url": "https://x.com/Wendys/status/2042359791239024659",
+          "score": 0.7749991304981946,
+          "text": "She a baddie with her baddie friend (I'm the baddie friend)"
+        },
+        {
+          "id": "2036210859299455486",
+          "tweet_url": "https://x.com/Wendys/status/2036210859299455486",
+          "score": 0.6200475616320664,
+          "text": "“Fries + Frosty = The Best of Both Worlds” https://t.co/ixuIhrXwcR"
+        },
+        {
+          "id": "2031884901557965271",
+          "tweet_url": "https://x.com/Wendys/status/2031884901557965271",
+          "score": 0.5499999989131177,
+          "text": "What the fries at the bottom of my biggie bag see when I go scavenging for them https://t.co/qO9JGCgaXs"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "top_terms": [
+        "bacon",
+        "coen carr",
+        "carr",
+        "coen",
+        "winner",
+        "love",
+        "pretzel",
+        "pretzel bacon",
+        "pub burger",
+        "pub",
+        "bacon pub",
+        "burger"
+      ],
+      "representative_posts": [
+        {
+          "id": "2041272778461258077",
+          "tweet_url": "https://x.com/Wendys/status/2041272778461258077",
+          "score": 0.943748021968947,
+          "text": "The Bourbon Bacon Cheeseburger and Pretzel Bacon Pub Burger have made it to our championship! Get your votes in to decide who will be crowned the winner and end up back on the menu https://t.co/VIgjuIMDNF"
+        },
+        {
+          "id": "2031738937870364955",
+          "tweet_url": "https://x.com/Wendys/status/2031738937870364955",
+          "score": 0.849991274364516,
+          "text": "travis gonna love the drive thru at his mom's house https://t.co/ssjGEuifjO"
+        },
+        {
+          "id": "2035089780396953839",
+          "tweet_url": "https://x.com/Wendys/status/2035089780396953839",
+          "score": 0.8199773891305767,
+          "text": "“Hold my Frosty” – Coen Carr, probably. @Coencarr2 https://t.co/8hGMcWQRSr"
+        },
+        {
+          "id": "2034753037797904417",
+          "tweet_url": "https://x.com/Wendys/status/2034753037797904417",
+          "score": 0.7749999991221674,
+          "text": "Coen Carr AGAIN 😤 https://t.co/Hwfed2ciRF"
+        },
+        {
+          "id": "2052863834503700774",
+          "tweet_url": "https://x.com/Wendys/status/2052863834503700774",
+          "score": 0.6999961789659087,
+          "text": "Their love story is almost as fresh as our beef ❤️ https://t.co/OydNIkjSGV"
+        }
+      ]
+    },
+    {
+      "topic_id": 6,
+      "top_terms": [
+        "wendy",
+        "dunks",
+        "official",
+        "dunk",
+        "menu",
+        "contest",
+        "app",
+        "introducing official",
+        "introducing",
+        "wendy dunk",
+        "dunk team",
+        "official wendy"
+      ],
+      "representative_posts": [
+        {
+          "id": "2035036863413805229",
+          "tweet_url": "https://x.com/Wendys/status/2035036863413805229",
+          "score": 0.9526302976740032,
+          "text": "A championship-caliber roster that dunks on and off the court: introducing the Official Wendy’s Dunk Team 🤝Tune in for the dunks, then try your own with the Dunk Menu, only in the app. https://t.co/ACwbEmgmQE"
+        },
+        {
+          "id": "2040186917312979266",
+          "tweet_url": "https://x.com/Wendys/status/2040186917312979266",
+          "score": 0.9249980865935755,
+          "text": "Oh good you made it. Introducing: The Official Dunks Menu 🏀 Order in the Wendy’s app all March Madness® long for the chance to win prizes in the Dunkstakes https://t.co/hI3HxiD7VV"
+        },
+        {
+          "id": "2056485781707821429",
+          "tweet_url": "https://x.com/Wendys/status/2056485781707821429",
+          "score": 0.90999656711462,
+          "text": "If you have flaming locks of auburn hair and a face card that never declines, we have the perfect contest for you 😉\nWendy’s Look-Alike Contest is 3:30-5:30pm May 26th at Seaport Square in NYC! https://t.co/sEUa15Db7G"
+        },
+        {
+          "id": "2048730947017654333",
+          "tweet_url": "https://x.com/Wendys/status/2048730947017654333",
+          "score": 0.819979097706479,
+          "text": "Sweet &amp; Sour is BACK… but only for a limited time unless y’all get loud. Go get the sauce in-restaurant + like, comment and share this post to save it. SWEET &amp; SOUR ARMY DO UR THING. https://t.co/ndF0vOrTpo"
+        },
+        {
+          "id": "2039789214120996993",
+          "tweet_url": "https://x.com/Wendys/status/2039789214120996993",
+          "score": 0.7213444380300272,
+          "text": "Congrats to these Official Wendy’s Dunk Team athletes on making it to the Final Four. You dunked into hoops. You dunked into Frosty. You dunked into our hearts. https://t.co/b6IeqJW8YD"
+        }
+      ]
+    },
+    {
+      "topic_id": 7,
+      "top_terms": [
+        "don",
+        "votes",
+        "tasting officer",
+        "chief",
+        "officer",
+        "tasting",
+        "chief tasting",
+        "travis",
+        "mom",
+        "free",
+        "order",
+        "wendy"
+      ],
+      "representative_posts": [
+        {
+          "id": "2030030060720164942",
+          "tweet_url": "https://x.com/Wendys/status/2030030060720164942",
+          "score": 0.8874966919615214,
+          "text": ".@GenoSmith3 in case things don’t work out in free agency we’re looking for a Chief Tasting Officer…"
+        },
+        {
+          "id": "2030448455412252800",
+          "tweet_url": "https://x.com/Wendys/status/2030448455412252800",
+          "score": 0.6999885852668217,
+          "text": "Travis and Jason Kelce’s mom, Donna Kelce, is in the middle of a home renovation ... TMZ has learned.\n\nRead more: https://t.co/4KursdUOlk https://t.co/FsAv2tPWyz"
+        },
+        {
+          "id": "2014093064155889768",
+          "tweet_url": "https://x.com/Wendys/status/2014093064155889768",
+          "score": 0.5499967128953889,
+          "text": "We don’t chikin out on Sundays https://t.co/pA1BXe0Sc0"
+        },
+        {
+          "id": "2041273129272824054",
+          "tweet_url": "https://x.com/Wendys/status/2041273129272824054",
+          "score": 0.5499924277380025,
+          "text": "Get your votes in!"
+        },
+        {
+          "id": "2027127868791431190",
+          "tweet_url": "https://x.com/Wendys/status/2027127868791431190",
+          "score": 0.5499924277380025,
+          "text": "No trowaway votes around here… https://t.co/KuKsN6ZoOj"
+        }
+      ]
+    },
+    {
+      "topic_id": 8,
+      "top_terms": [
+        "chicken",
+        "spicy chicken",
+        "sandwich",
+        "spicy",
+        "chicken sandwich",
+        "game",
+        "like",
+        "new",
+        "new spicy",
+        "code",
+        "daytona",
+        "sir"
+      ],
+      "representative_posts": [
+        {
+          "id": "2021268433296367729",
+          "tweet_url": "https://x.com/Wendys/status/2021268433296367729",
+          "score": 0.9357114906285363,
+          "text": "We're cooking something up.\n\nUse code DAYTONA in the @Wendys app to get a $1 Classic or Spicy Chicken Sandwich with purchase, starting at the beginning of the race on Sunday 2/15 and available all day Monday 2/16. https://t.co/nsXc16Pwpj"
+        },
+        {
+          "id": "2050328345645133837",
+          "tweet_url": "https://x.com/Wendys/status/2050328345645133837",
+          "score": 0.8874990761006272,
+          "text": "new spicy chicken sandwich slaps https://t.co/nDUnSsL79R"
+        },
+        {
+          "id": "2042345361310957745",
+          "tweet_url": "https://x.com/Wendys/status/2042345361310957745",
+          "score": 0.8874990761006272,
+          "text": "still rich still craving @wendys new spicy chicken sandwich #wendyspartner"
+        },
+        {
+          "id": "2021355348100313369",
+          "tweet_url": "https://x.com/Wendys/status/2021355348100313369",
+          "score": 0.8199993831777633,
+          "text": "Sir this is a DAYTONA discount code"
+        },
+        {
+          "id": "2029290891425529996",
+          "tweet_url": "https://x.com/Wendys/status/2029290891425529996",
+          "score": 0.7749713194365849,
+          "text": "This is what it looks like when you don’t have to pretend to like your “product”"
+        }
+      ]
+    },
+    {
+      "topic_id": 9,
+      "top_terms": [
+        "burger",
+        "eat",
+        "wendy",
+        "mcdonald",
+        "month",
+        "chili month",
+        "chili",
+        "eat wendy",
+        "wins",
+        "new",
+        "chance",
+        "video"
+      ],
+      "representative_posts": [
+        {
+          "id": "2014446063961178239",
+          "tweet_url": "https://x.com/Wendys/status/2014446063961178239",
+          "score": 0.8999983510177616,
+          "text": "If Scottie Scheffler wins this week I will only eat Wendy’s chili for a month. It’s not happening folks. ZERO chance."
+        },
+        {
+          "id": "2029249180762341501",
+          "tweet_url": "https://x.com/Wendys/status/2029249180762341501",
+          "score": 0.8714233519134515,
+          "text": "Wendy’s US President posts new video amid burger battle with McDonald’s &amp; Burger King. https://t.co/R6IALUetCC"
+        },
+        {
+          "id": "2026335579764343176",
+          "tweet_url": "https://x.com/Wendys/status/2026335579764343176",
+          "score": 0.5250396984409381,
+          "text": "McDonald's is launching the Big Arch burger in the US on March 3 https://t.co/U5n8YWn3U4"
+        },
+        {
+          "id": "2015935710449009033",
+          "tweet_url": "https://x.com/Wendys/status/2015935710449009033",
+          "score": 0.4555783584490632,
+          "text": "kind of seems like you just wanted a reason to eat nothing but wendys chili for a month?"
+        },
+        {
+          "id": "2029585417066946625",
+          "tweet_url": "https://x.com/Wendys/status/2029585417066946625",
+          "score": 0.3338558314430642,
+          "text": "Ever wish you could eat Wendy’s professionally? Now you can (oh and make $100k). See how to apply at https://t.co/mNIqecbPOQ #WendysCTOcontest https://t.co/bQZSEBjfAx"
+        }
+      ]
+    }
+  ]
+}
