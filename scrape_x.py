@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import sys
 from twikit import Client
 
 # 설정
@@ -32,9 +33,10 @@ async def login(client):
                 username = creds.get('username')
                 email = creds.get('email')
                 password = creds.get('password')
-        else:
-            print("Error: 로그인 정보(환경 변수 또는 credentials.json)가 없습니다.")
-            return False
+        
+    if not (username and email and password):
+        print("Error: 로그인 정보(환경 변수 또는 credentials.json)가 없습니다.")
+        return False
     
     print(f"계정({username})으로 로그인을 시도합니다...")
     try:
@@ -86,23 +88,24 @@ async def scrape_all_tweets(client, username):
         return all_tweets
     except Exception as e:
         print(f"스크레이핑 중 에러 발생: {e}")
-        return []
+        return None # 에러 발생 시 None 반환
 
 async def main():
     client = Client('en-US')
     
     if not await login(client):
         print("로그인 실패. 설정을 확인해 주세요.")
-        return
+        sys.exit(1)
 
     tweets = await scrape_all_tweets(client, TARGET_USER)
     
-    if tweets:
+    if tweets is not None:
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             json.dump(tweets, f, ensure_ascii=False, indent=4)
         print(f"완료! 총 {len(tweets)}개의 포스트가 {OUTPUT_FILE}에 저장되었습니다.")
     else:
-        print("수집된 포스트가 없습니다.")
+        print("수집 중 에러가 발생했습니다.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     asyncio.run(main())
