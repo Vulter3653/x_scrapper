@@ -97,6 +97,7 @@ jobs:
             echo "::error title=Scraper failed::$last_error"
             exit "$status"
           fi
+          rm -f scraper.log scraper_failure.log
 
       - name: 6. Inspect changed files
         shell: bash
