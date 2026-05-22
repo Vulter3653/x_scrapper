@@ -239,12 +239,34 @@ function renderTopics(lda) {
   }
   const selection = lda.topic_selection;
   el('topicMeta').textContent = selection ? `${selection.selected_num_topics} selected topics` : `${lda.num_topics} topics`;
-  container.innerHTML = lda.topics.map((topic) => {
+
+  const evaluations = selection?.evaluations || [];
+  const minCoherence = evaluations.length ? Math.min(...evaluations.map((row) => Number(row.coherence_npmi || 0))) : 0;
+  const maxCoherence = evaluations.length ? Math.max(...evaluations.map((row) => Number(row.coherence_npmi || 0))) : 1;
+  const selectionHtml = selection ? `<section class="lda-selection">
+    <div class="lda-score-card"><span>Selected Topics</span><strong>${selection.selected_num_topics}</strong></div>
+    <div class="lda-score-card"><span>Coherence NPMI</span><strong>${Number(selection.selected_coherence_npmi || 0).toFixed(4)}</strong></div>
+    <div class="lda-score-card"><span>Perplexity</span><strong>${Number(selection.selected_perplexity || 0).toFixed(1)}</strong></div>
+    <div class="coherence-list">
+      ${evaluations.map((row) => {
+        const coherence = Number(row.coherence_npmi || 0);
+        const width = maxCoherence === minCoherence ? 100 : Math.max(8, ((coherence - minCoherence) / (maxCoherence - minCoherence)) * 100);
+        return `<div class="coherence-row ${row.num_topics === selection.selected_num_topics ? 'selected' : ''}" style="--bar-width:${width}%">
+          <span>${row.num_topics} topics</span>
+          <strong>${coherence.toFixed(4)}</strong>
+        </div>`;
+      }).join('')}
+    </div>
+  </section>` : '';
+
+  const topicsHtml = lda.topics.map((topic) => {
     const terms = (topic.top_terms || []).slice(0, 12).map((term) => `<span class="term">${escapeHtml(term)}</span>`).join('');
     const example = topic.representative_posts?.[0];
     const exampleHtml = example ? `<div class="example">${escapeHtml(example.text || '')}</div>` : '';
     return `<section class="topic-item"><h3>Topic ${topic.topic_id}</h3><div class="topic-terms">${terms}</div>${exampleHtml}</section>`;
   }).join('');
+
+  container.innerHTML = selectionHtml + topicsHtml;
 }
 
 function renderSentiment(sentiment) {

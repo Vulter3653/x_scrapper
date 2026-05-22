@@ -220,3 +220,84 @@ canvas { width: 100%; max-width: 100%; }
   line-height: 1.45;
   overflow-wrap: anywhere;
 }
+
+.lda-selection {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lda-score-card {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.lda-score-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.lda-score-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.coherence-list {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 6px;
+}
+
+.coherence-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 120px) 1fr;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.coherence-row::before,
+.coherence-row::after {
+  content: '';
+  display: block;
+  height: 7px;
+  grid-column: 2;
+  grid-row: 1;
+  border-radius: 999px;
+}
+
+.coherence-row::before {
+  background: var(--line);
+}
+
+.coherence-row::after {
+  width: var(--bar-width, 0%);
+  background: var(--cyan);
+}
+
+.coherence-row.selected::after {
+  background: var(--green);
+}
+
+.coherence-row strong {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  z-index: 1;
+  padding-left: 6px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.coherence-row.selected span,
+.coherence-row.selected strong {
+  color: var(--green);
+  font-weight: 700;
+}
