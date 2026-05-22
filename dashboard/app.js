@@ -376,50 +376,6 @@ async function render() {
 }
 
 
-async function dispatchWorkflow(kind) {
-  const token = el('adminTokenInput').value.trim();
-  const account = state.account;
-  const maxScrolls = el('actionMaxScrolls').value || '2500';
-  const maxPosts = el('actionMaxPosts').value || '0';
-  const result = el('actionResult');
-
-  if (!token) {
-    result.textContent = 'Admin token is required.';
-    return;
-  }
-
-  const payload = { kind, account, maxScrolls, analysisMaxPosts: maxPosts };
-  result.textContent = `Submitting ${kind} for ${accounts[account].label}...`;
-  setActionButtons(true);
-
-  try {
-    const response = await fetch('/api/dispatch', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(payload)
-    });
-    const body = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(body.error || `HTTP ${response.status}`);
-    }
-    result.textContent = `${kind} workflow dispatched for ${accounts[account].label}. Check GitHub Actions for progress.`;
-  } catch (error) {
-    result.textContent = `Dispatch failed: ${error.message}`;
-  } finally {
-    setActionButtons(false);
-  }
-}
-
-function setActionButtons(disabled) {
-  ['runScrapeButton', 'runLdaButton', 'runSentimentButton'].forEach((id) => {
-    const button = el(id);
-    if (button) button.disabled = disabled;
-  });
-}
-
 function bindEvents() {
   document.querySelectorAll('.tab').forEach((button) => {
     button.addEventListener('click', async () => {
@@ -447,9 +403,6 @@ function bindEvents() {
     state.sort = event.target.value;
     await render();
   });
-  el('runScrapeButton').addEventListener('click', () => dispatchWorkflow('scrape'));
-  el('runLdaButton').addEventListener('click', () => dispatchWorkflow('lda'));
-  el('runSentimentButton').addEventListener('click', () => dispatchWorkflow('sentiment'));
   window.addEventListener('resize', () => render());
 }
 

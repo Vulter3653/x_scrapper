@@ -713,3 +713,22 @@ X_CT0
 ```
 
 These are copied from an authenticated browser session on `https://x.com` and must be treated like sensitive login credentials.
+
+
+### Dashboard Action Controls Removed
+
+Date: 2026-05-22
+
+User requested removing the GitHub Actions execution controls from the dashboard screen.
+
+Changes made:
+
+- Removed the `Run Actions` panel from `dashboard/index.html`.
+- Removed client-side workflow dispatch logic from `dashboard/app.js`.
+- Removed Action button/result styles from `dashboard/styles.css`.
+- Left `functions/api/dispatch.js` in place so the backend endpoint can be restored or reused later without exposing it in the dashboard UI.
+
+Validation:
+
+- Searched dashboard files for `Run Actions`, `adminToken`, `runScrapeButton`, `dispatchWorkflow`, and `/api/dispatch`; no client-side references remained.
+- Ran `node --check dashboard/app.js` successfully.

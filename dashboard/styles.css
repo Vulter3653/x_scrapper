@@ -190,37 +190,6 @@ canvas { width: 100%; max-width: 100%; }
   .sentiment-summary { grid-template-columns: 1fr; }
 }
 
-.action-buttons {
-  display: grid;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.action-buttons button {
-  min-height: 38px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--surface);
-  background: var(--ink);
-  cursor: pointer;
-}
-
-.action-buttons button:hover { background: var(--cyan); }
-.action-buttons button:disabled { cursor: wait; opacity: 0.65; }
-
-.action-result {
-  margin-top: 12px;
-  min-height: 38px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--muted);
-  background: var(--surface-2);
-  font-size: 12px;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-
 .lda-selection {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
