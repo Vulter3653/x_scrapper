@@ -18,6 +18,7 @@ const accounts = {
 const pageSize = 40;
 const state = {
   account: 'wendys',
+  brand: 'all',
   datasets: {},
   enriched: {},
   cache: new Map(),
@@ -60,8 +61,44 @@ function numberValue(value) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function firstValue(row, names, fallback = '') {
+  for (const name of names) {
+    if (row && row[name] !== undefined && row[name] !== null && row[name] !== '') return row[name];
+  }
+  return fallback;
+}
+
+function metricValue(row, names) {
+  return numberValue(firstValue(row, names, 0));
+}
+
+function textValue(row) {
+  return String(firstValue(row, ['text', 'content', 'tweet_text', 'post_text'], ''));
+}
+
+function dateValue(row) {
+  return firstValue(row, ['date', 'created_at', 'timestamp'], '');
+}
+
+function brandValue(row, fallback) {
+  return String(firstValue(row, ['brand', 'company', 'account'], fallback));
+}
+
+function likes(row) { return metricValue(row, ['likes', 'like_count', 'favorite_count']); }
+function replies(row) { return metricValue(row, ['replies', 'reply_count']); }
+function retweets(row) { return metricValue(row, ['retweets', 'retweet_count', 'reposts']); }
+function quotes(row) { return metricValue(row, ['quotes', 'quote_count']); }
+
 function engagement(post) {
-  return numberValue(post.favorite_count) + numberValue(post.reply_count) + numberValue(post.retweet_count) + numberValue(post.quote_count);
+  return likes(post) + replies(post) + retweets(post) + quotes(post);
+}
+
+function words(text) {
+  return String(text || '').trim().split(/\s+/).filter(Boolean);
+}
+
+function countMatches(text, pattern) {
+  return (String(text || '').match(pattern) || []).length;
 }
 
 function median(values) {
@@ -97,6 +134,16 @@ async function loadAccount(accountKey) {
   return dataset;
 }
 
+
+async function loadAllAccounts() {
+  const entries = await Promise.all(Object.keys(accounts).map(async (key) => [key, await loadAccount(key)]));
+  return Object.fromEntries(entries);
+}
+
+function buildAllEnrichedPosts(datasets) {
+  return Object.entries(datasets).flatMap(([key, dataset]) => buildEnrichedDataset(key, dataset).posts);
+}
+
 function buildEnrichedDataset(accountKey, dataset) {
   const cacheKey = `${accountKey}:${dataset.posts.length}:${dataset.sentiment?.post_count || 0}:${dataset.lda?.num_topics || 0}`;
   if (state.enriched[cacheKey]) return state.enriched[cacheKey];
@@ -114,7 +161,7 @@ function buildEnrichedDataset(accountKey, dataset) {
   });
 
   const engagements = dataset.posts.map(engagement);
-  const viralThreshold = percentile(engagements, 0.9);
+  const viralThreshold = percentile(engagements, 0.95);
   const posts = dataset.posts.map((post) => {
     const id = String(post.id);
     const sentiment = sentimentById.get(id);
@@ -124,14 +171,26 @@ function buildEnrichedDataset(accountKey, dataset) {
       ...post,
       id,
       account: accountKey,
-      brand: accounts[accountKey].label,
-      date_iso: isoDate(post.created_at),
+      brand: brandValue(post, accounts[accountKey].label),
+      date_iso: isoDate(dateValue(post)),
+      text_normalized: textValue(post),
+      likes_count: likes(post),
+      replies_count: replies(post),
+      retweets_count: retweets(post),
+      quotes_count: quotes(post),
       total_engagement: totalEngagement,
+      log_total_engagement: Math.log1p(totalEngagement),
+      text_length: textValue(post).length,
+      word_count: words(textValue(post)).length,
+      has_url: /(https?:\/\/|www\.)/i.test(textValue(post)),
+      hashtag_count: countMatches(textValue(post), /(^|\s)#[\p{L}\p{N}_]+/gu),
+      mention_count: countMatches(textValue(post), /(^|\s)@[A-Za-z0-9_]+/g),
       sentiment_label: sentiment?.top_label || 'unknown',
       sentiment_score: numberValue(sentiment?.top_score),
       topic_id: topic?.topic_id ?? null,
       topic_terms: topic?.top_terms || [],
       topic_score: numberValue(topic?.score),
+      is_viral: totalEngagement >= viralThreshold && totalEngagement > 0,
       viral: totalEngagement >= viralThreshold && totalEngagement > 0
     };
   });
@@ -144,6 +203,7 @@ function buildEnrichedDataset(accountKey, dataset) {
 function cacheKeyForFilters() {
   return JSON.stringify({
     account: state.account,
+    brand: state.brand,
     search: state.search,
     year: state.year,
     dateFrom: state.dateFrom,
@@ -163,8 +223,9 @@ function filteredPosts(posts) {
   const to = state.dateTo ? new Date(`${state.dateTo}T23:59:59Z`) : null;
 
   const rows = posts.filter((post) => {
-    const date = parseDate(post.created_at);
+    const date = parseDate(post.date_iso || dateValue(post));
     const year = date ? String(date.getUTCFullYear()) : 'unknown';
+    if (state.brand !== 'all' && post.account !== state.brand) return false;
     if (state.year !== 'all' && year !== state.year) return false;
     if (from && (!date || date < from)) return false;
     if (to && (!date || date > to)) return false;
@@ -173,14 +234,15 @@ function filteredPosts(posts) {
     if (state.viral === 'viral' && !post.viral) return false;
     if (state.viral === 'nonviral' && post.viral) return false;
     if (!query) return true;
-    return [post.text, post.tweet_url, post.lang, post.sentiment_label, post.topic_terms.join(' ')].some((value) => String(value || '').toLowerCase().includes(query));
+    return [post.text_normalized, post.tweet_url, post.lang, post.sentiment_label, post.topic_terms.join(' ')].some((value) => String(value || '').toLowerCase().includes(query));
   });
 
   rows.sort((a, b) => {
     if (state.sort === 'engagement_desc') return b.total_engagement - a.total_engagement;
-    if (state.sort === 'likes_desc') return numberValue(b.favorite_count) - numberValue(a.favorite_count);
-    if (state.sort === 'replies_desc') return numberValue(b.reply_count) - numberValue(a.reply_count);
-    if (state.sort === 'retweets_desc') return numberValue(b.retweet_count) - numberValue(a.retweet_count);
+    if (state.sort === 'likes_desc') return b.likes_count - a.likes_count;
+    if (state.sort === 'replies_desc') return b.replies_count - a.replies_count;
+    if (state.sort === 'retweets_desc') return b.retweets_count - a.retweets_count;
+    if (state.sort === 'text_length_desc') return b.text_length - a.text_length;
     return numberValue(b.id) - numberValue(a.id);
   });
   state.cache.set(key, rows);
@@ -188,18 +250,18 @@ function filteredPosts(posts) {
 }
 
 function dateRange(posts) {
-  const dates = posts.map((post) => parseDate(post.created_at)).filter(Boolean).sort((a, b) => a - b);
+  const dates = posts.map((post) => parseDate(post.date_iso || dateValue(post))).filter(Boolean).sort((a, b) => a - b);
   if (!dates.length) return '-';
   return `${dates[0].toISOString().slice(0, 10)} to ${dates[dates.length - 1].toISOString().slice(0, 10)}`;
 }
 
 function countActiveFilters() {
   return [state.search, state.dateFrom, state.dateTo].filter(Boolean).length +
-    ['year', 'sentiment', 'topic', 'viral'].filter((key) => state[key] !== 'all').length;
+    ['brand', 'year', 'sentiment', 'topic', 'viral'].filter((key) => state[key] !== 'all').length;
 }
 
 function populateFilterOptions(posts, dataset) {
-  const years = [...new Set(posts.map((post) => parseDate(post.created_at)).filter(Boolean).map((date) => date.getUTCFullYear()))].sort((a, b) => b - a);
+  const years = [...new Set(posts.map((post) => parseDate(dateValue(post))).filter(Boolean).map((date) => date.getUTCFullYear()))].sort((a, b) => b - a);
   const yearSelect = el('yearSelect');
   const currentYear = state.year;
   yearSelect.innerHTML = '<option value="all">All years</option>' + years.map((year) => `<option value="${year}">${year}</option>`).join('');
@@ -221,12 +283,17 @@ function populateFilterOptions(posts, dataset) {
   state.topic = topics.some((topic) => String(topic.topic_id) === state.topic) ? state.topic : 'all';
   topicSelect.value = state.topic;
 
-  el('brandFilterLabel').textContent = accounts[state.account].label;
+  const brandSelect = el('brandSelect');
+  const brands = Object.entries(accounts);
+  brandSelect.innerHTML = '<option value="all">All brands</option>' + brands.map(([key, cfg]) => `<option value="${key}">${escapeHtml(cfg.label)}</option>`).join('');
+  if (state.brand !== 'all' && !accounts[state.brand]) state.brand = 'all';
+  brandSelect.value = state.brand;
   el('activeFilterCount').textContent = `${countActiveFilters()} active`;
 }
 
 function resetFilters() {
   state.search = '';
+  state.brand = 'all';
   state.year = 'all';
   state.dateFrom = '';
   state.dateTo = '';
@@ -236,6 +303,7 @@ function resetFilters() {
   state.sort = 'date_desc';
   state.page = 1;
   el('searchInput').value = '';
+  el('brandSelect').value = 'all';
   el('dateFromInput').value = '';
   el('dateToInput').value = '';
   el('viralSelect').value = 'all';
@@ -260,6 +328,265 @@ function renderStatus(dataset) {
   el('analysisStatus').innerHTML = rows.map(([name, value, cls]) => `<div class="status-item ${cls}"><span>${name}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
 }
 
+
+function groupBy(rows, getter) {
+  const map = new Map();
+  rows.forEach((row) => {
+    const key = getter(row) ?? 'unknown';
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(row);
+  });
+  return map;
+}
+
+function average(values) {
+  const valid = values.map(numberValue).filter((value) => Number.isFinite(value));
+  return valid.length ? valid.reduce((sum, value) => sum + value, 0) / valid.length : 0;
+}
+
+function ratio(count, total) {
+  return total ? count / total : 0;
+}
+
+function summarizeValues(values) {
+  const nums = values.map(numberValue).filter((value) => Number.isFinite(value));
+  return {
+    total: nums.reduce((sum, value) => sum + value, 0),
+    avg: average(nums),
+    median: median(nums),
+    p75: percentile(nums, 0.75),
+    p90: percentile(nums, 0.90),
+    p95: percentile(nums, 0.95),
+    max: nums.length ? Math.max(...nums) : 0
+  };
+}
+
+function metricRows(title, rows) {
+  return `<article class="analytics-card"><h3>${escapeHtml(title)}</h3><dl>${rows.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl></article>`;
+}
+
+function sentimentBucket(label) {
+  const value = String(label || '').toLowerCase();
+  if (value === 'positive' || value === 'neutral' || value === 'negative') return value;
+  return 'other';
+}
+
+function topEntry(entries, valueGetter) {
+  return [...entries].sort((a, b) => valueGetter(b) - valueGetter(a))[0];
+}
+
+function computeDescriptiveStats(posts) {
+  const total = posts.length;
+  const engagementStats = summarizeValues(posts.map((post) => post.total_engagement));
+  const textStats = summarizeValues(posts.map((post) => post.text_length));
+  const wordStats = summarizeValues(posts.map((post) => post.word_count));
+  const dates = posts.map((post) => parseDate(post.date_iso || dateValue(post))).filter(Boolean);
+  const activeDays = new Set(dates.map((date) => date.toISOString().slice(0, 10))).size;
+  const normalizedTexts = posts.map((post) => post.text_normalized.trim().toLowerCase()).filter(Boolean);
+  const duplicateTexts = normalizedTexts.length - new Set(normalizedTexts).size;
+  const sentimentCounts = groupBy(posts, (post) => sentimentBucket(post.sentiment_label));
+  const topicGroups = groupBy(posts.filter((post) => post.topic_id !== null), (post) => `Topic ${post.topic_id}`);
+  const largestTopic = topEntry(topicGroups.entries(), ([, rows]) => rows.length);
+  const topMedianTopic = topEntry(topicGroups.entries(), ([, rows]) => median(rows.map((post) => post.total_engagement)));
+  return {
+    total,
+    activeDays,
+    brands: new Set(posts.map((post) => post.brand)).size,
+    engagementStats,
+    textStats,
+    wordStats,
+    missingTextRatio: ratio(posts.filter((post) => !post.text_normalized.trim()).length, total),
+    duplicateTextRatio: ratio(duplicateTexts, total),
+    averagePostsPerDay: activeDays ? total / activeDays : 0,
+    urlRatio: ratio(posts.filter((post) => post.has_url).length, total),
+    avgHashtags: average(posts.map((post) => post.hashtag_count)),
+    avgMentions: average(posts.map((post) => post.mention_count)),
+    sentimentShares: Object.fromEntries(['positive', 'neutral', 'negative', 'other'].map((key) => [key, ratio((sentimentCounts.get(key) || []).length, total)])),
+    topicCount: topicGroups.size,
+    largestTopicShare: largestTopic ? ratio(largestTopic[1].length, total) : 0,
+    topTopicByCount: largestTopic ? largestTopic[0] : '-',
+    topTopicByMedian: topMedianTopic ? `${topMedianTopic[0]} (${fmt.format(median(topMedianTopic[1].map((post) => post.total_engagement)))})` : '-'
+  };
+}
+
+function renderDescriptiveCards(posts) {
+  if (!posts.length) {
+    el('descriptiveCards').innerHTML = '<div class="empty">No data available for this section</div>';
+    return;
+  }
+  const stats = computeDescriptiveStats(posts);
+  el('descriptiveCards').innerHTML = [
+    metricRows('Dataset Overview', [
+      ['Total Posts', fmt.format(stats.total)], ['Number of Brands', fmt.format(stats.brands)], ['Date Range', dateRange(posts)],
+      ['Active Posting Days', fmt.format(stats.activeDays)], ['Average Posts per Day', stats.averagePostsPerDay.toFixed(2)],
+      ['Missing Text Ratio', percentFmt.format(stats.missingTextRatio)], ['Duplicate Text Ratio', percentFmt.format(stats.duplicateTextRatio)]
+    ]),
+    metricRows('Engagement Summary', [
+      ['Total Engagement', fmt.format(stats.engagementStats.total)], ['Average Engagement', fmt.format(Math.round(stats.engagementStats.avg))],
+      ['Median Engagement', fmt.format(stats.engagementStats.median)], ['P75 Engagement', fmt.format(stats.engagementStats.p75)],
+      ['P90 Engagement', fmt.format(stats.engagementStats.p90)], ['P95 Engagement', fmt.format(stats.engagementStats.p95)], ['Max Engagement', fmt.format(stats.engagementStats.max)]
+    ]),
+    metricRows('Text Summary', [
+      ['Average Text Length', fmt.format(Math.round(stats.textStats.avg))], ['Median Text Length', fmt.format(stats.textStats.median)],
+      ['Average Word Count', fmt.format(Math.round(stats.wordStats.avg))], ['URL Included Ratio', percentFmt.format(stats.urlRatio)],
+      ['Average Hashtag Count', stats.avgHashtags.toFixed(2)], ['Average Mention Count', stats.avgMentions.toFixed(2)]
+    ]),
+    metricRows('Sentiment Summary', [
+      ['Positive Share', percentFmt.format(stats.sentimentShares.positive)], ['Neutral Share', percentFmt.format(stats.sentimentShares.neutral)],
+      ['Negative Share', percentFmt.format(stats.sentimentShares.negative)], ['Other Share', percentFmt.format(stats.sentimentShares.other)]
+    ]),
+    metricRows('Topic Summary', [
+      ['Number of Topics', fmt.format(stats.topicCount)], ['Largest Topic Share', percentFmt.format(stats.largestTopicShare)],
+      ['Top Topic by Post Count', stats.topTopicByCount], ['Top Topic by Median Engagement', stats.topTopicByMedian]
+    ])
+  ].join('');
+}
+
+function colorAt(index) {
+  return ['#d6223a', '#227c91', '#2d7d5f', '#b57912', '#607076', '#2d7d5f'][index % 6];
+}
+
+function drawHorizontalBars(canvas, rows, valueLabel = '') {
+  if (!rows.length) return drawEmptyChart(canvas, 'No data available for this section');
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
+  const pad = { top: 18, right: 18, bottom: 22, left: 96 };
+  const chartW = Math.max(1, width - pad.left - pad.right);
+  const rowH = Math.max(18, (height - pad.top - pad.bottom) / rows.length);
+  const max = Math.max(...rows.map((row) => row.value), 1);
+  const points = [];
+  rows.forEach((row, index) => {
+    const y = pad.top + index * rowH;
+    const barW = (row.value / max) * chartW;
+    ctx.fillStyle = colorAt(index);
+    ctx.fillRect(pad.left, y + 3, barW, Math.max(8, rowH - 8));
+    ctx.fillStyle = '#607076';
+    ctx.font = '11px system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(String(row.label).slice(0, 16), pad.left - 8, y + rowH * 0.65);
+    ctx.textAlign = 'left';
+    ctx.fillText(fmt.format(Math.round(row.value)), pad.left + barW + 5, y + rowH * 0.65);
+    points.push({ x: pad.left, y, w: Math.max(barW, 8), h: rowH, text: `${row.label}: ${fmt.format(Math.round(row.value))}${valueLabel}` });
+  });
+  state.charts[canvas.id] = { type: 'bar', points };
+}
+
+function drawHistogram(canvas, values, bins = 12) {
+  const nums = values.filter((value) => Number.isFinite(value));
+  if (!nums.length) return drawEmptyChart(canvas, 'No data available for this section');
+  const max = Math.max(...nums);
+  const min = Math.min(...nums);
+  const step = Math.max(1, (max - min) / bins);
+  const counts = Array.from({ length: bins }, () => 0);
+  nums.forEach((value) => { counts[Math.min(bins - 1, Math.floor((value - min) / step))] += 1; });
+  drawBarChart(canvas, counts.map((_, i) => `${Math.round(min + i * step)}`), counts, '#227c91');
+}
+
+function drawStackedShare(canvas, groups, categories) {
+  const groupEntries = [...groups.entries()];
+  if (!groupEntries.length || !categories.length) return drawEmptyChart(canvas, 'No data available for this section');
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
+  const pad = { top: 18, right: 14, bottom: 38, left: 78 };
+  const chartW = width - pad.left - pad.right;
+  const rowH = Math.max(22, (height - pad.top - pad.bottom) / groupEntries.length);
+  const points = [];
+  groupEntries.forEach(([group, rows], gi) => {
+    let x = pad.left;
+    const y = pad.top + gi * rowH + 4;
+    categories.forEach((cat, ci) => {
+      const count = rows.filter((row) => row.category === cat).length;
+      const w = rows.length ? (count / rows.length) * chartW : 0;
+      ctx.fillStyle = colorAt(ci);
+      ctx.fillRect(x, y, w, Math.max(10, rowH - 9));
+      points.push({ x, y, w, h: rowH, text: `${group} ${cat}: ${percentFmt.format(ratio(count, rows.length))}` });
+      x += w;
+    });
+    ctx.fillStyle = '#607076'; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'right'; ctx.fillText(String(group).slice(0, 14), pad.left - 8, y + rowH * 0.55);
+  });
+  state.charts[canvas.id] = { type: 'bar', points };
+}
+
+function drawBoxplot(canvas, groups) {
+  const rows = [...groups.entries()].map(([label, posts]) => ({ label, values: posts.map((post) => post.total_engagement).sort((a, b) => a - b) })).filter((row) => row.values.length);
+  if (!rows.length) return drawEmptyChart(canvas, 'No data available for this section');
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
+  const max = Math.max(...rows.flatMap((row) => row.values), 1);
+  const pad = { top: 20, right: 18, bottom: 34, left: 52 };
+  const band = (width - pad.left - pad.right) / rows.length;
+  const points = [];
+  rows.forEach((row, i) => {
+    const q1 = percentile(row.values, 0.25), med = median(row.values), q3 = percentile(row.values, 0.75), hi = Math.max(...row.values), lo = Math.min(...row.values);
+    const x = pad.left + i * band + band / 2;
+    const y = (v) => pad.top + (height - pad.top - pad.bottom) * (1 - v / max);
+    ctx.strokeStyle = colorAt(i); ctx.fillStyle = 'rgba(34,124,145,0.18)';
+    ctx.beginPath(); ctx.moveTo(x, y(lo)); ctx.lineTo(x, y(hi)); ctx.stroke();
+    ctx.fillRect(x - band * 0.25, y(q3), band * 0.5, Math.max(4, y(q1) - y(q3)));
+    ctx.strokeRect(x - band * 0.25, y(q3), band * 0.5, Math.max(4, y(q1) - y(q3)));
+    ctx.beginPath(); ctx.moveTo(x - band * 0.28, y(med)); ctx.lineTo(x + band * 0.28, y(med)); ctx.stroke();
+    ctx.fillStyle = '#607076'; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(row.label.slice(0, 10), x, height - 12);
+    points.push({ x: x - band * 0.3, y: y(q3), w: band * 0.6, h: Math.max(12, y(q1) - y(q3)), text: `${row.label}: median ${fmt.format(med)}, P95 ${fmt.format(percentile(row.values, 0.95))}` });
+  });
+  state.charts[canvas.id] = { type: 'bar', points };
+}
+
+function drawHeatmap(canvas, groups, metrics) {
+  const entries = [...groups.entries()];
+  if (!entries.length) return drawEmptyChart(canvas, 'No data available for this section');
+  const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
+  const pad = { top: 20, right: 12, bottom: 34, left: 80 };
+  const cellW = (width - pad.left - pad.right) / metrics.length;
+  const cellH = Math.max(24, (height - pad.top - pad.bottom) / entries.length);
+  const matrix = entries.map(([label, rows]) => metrics.map(([name, getter]) => average(rows.map(getter))));
+  const max = Math.max(...matrix.flat(), 1);
+  const points = [];
+  entries.forEach(([label], r) => {
+    ctx.fillStyle = '#607076'; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'right'; ctx.fillText(label.slice(0, 12), pad.left - 6, pad.top + r * cellH + cellH * 0.6);
+    metrics.forEach(([name], c) => {
+      const value = matrix[r][c];
+      ctx.fillStyle = `rgba(34,124,145,${Math.max(0.12, value / max)})`;
+      const x = pad.left + c * cellW, y = pad.top + r * cellH;
+      ctx.fillRect(x, y, cellW - 3, cellH - 3);
+      points.push({ x, y, w: cellW, h: cellH, text: `${label} ${name}: ${fmt.format(Math.round(value))}` });
+    });
+  });
+  metrics.forEach(([name], c) => { ctx.fillStyle = '#607076'; ctx.textAlign = 'center'; ctx.fillText(name, pad.left + c * cellW + cellW / 2, height - 12); });
+  state.charts[canvas.id] = { type: 'bar', points };
+}
+
+function renderDescriptives(posts) {
+  renderDescriptiveCards(posts);
+  drawHistogram(el('engagementHistogram'), posts.map((post) => post.total_engagement), 12);
+  drawBoxplot(el('brandBoxplotChart'), groupBy(posts, (post) => post.brand));
+  drawHorizontalBars(el('postsByBrandChart'), [...groupBy(posts, (post) => post.brand).entries()].map(([label, rows]) => ({ label, value: rows.length })));
+  drawHistogram(el('textLengthChart'), posts.map((post) => post.text_length), 12);
+  drawStackedShare(el('sentimentBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: sentimentBucket(post.sentiment_label) }))])), ['positive', 'neutral', 'negative', 'other']);
+  const topicCats = [...new Set(posts.filter((post) => post.topic_id !== null).map((post) => `Topic ${post.topic_id}`))].slice(0, 8);
+  drawStackedShare(el('topicBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: post.topic_id === null ? 'Unknown' : `Topic ${post.topic_id}` }))])), topicCats);
+}
+
+function renderModelFreeEvidence(posts) {
+  renderEvidence(posts);
+  drawHorizontalBars(el('brandEngagementChart'), [...groupBy(posts, (post) => post.brand).entries()].map(([label, rows]) => ({ label, value: average(rows.map((post) => post.total_engagement)) })));
+  drawHorizontalBars(el('sentimentEngagementChart'), [...groupBy(posts, (post) => sentimentBucket(post.sentiment_label)).entries()].map(([label, rows]) => ({ label, value: median(rows.map((post) => post.total_engagement)) })));
+  drawHeatmap(el('sentimentHeatmapChart'), groupBy(posts, (post) => sentimentBucket(post.sentiment_label)), [['likes', (p) => p.likes_count], ['replies', (p) => p.replies_count], ['retweets', (p) => p.retweets_count], ['quotes', (p) => p.quotes_count]]);
+  const dailyRows = [...groupBy(posts, (post) => `${post.brand} ${post.date_iso}`).entries()].slice(-40).map(([label, rows]) => ({ label: label.replace(/^(.{1,12}).*/, '$1'), value: rows.length }));
+  drawHorizontalBars(el('dailyVolumeChart'), dailyRows.slice(-12));
+  renderTopicRanking(posts);
+  renderViralEvidence(posts);
+}
+
+function renderTopicRanking(posts) {
+  const rows = [...groupBy(posts.filter((post) => post.topic_id !== null), (post) => `Topic ${post.topic_id}`).entries()].map(([topic, items]) => ({ topic, count: items.length, avg: average(items.map((p) => p.total_engagement)), med: median(items.map((p) => p.total_engagement)), sentiment: topEntry(groupBy(items, (p) => sentimentBucket(p.sentiment_label)).entries(), ([, r]) => r.length)?.[0] || '-', reps: [...items].sort((a,b)=>b.total_engagement-a.total_engagement).slice(0,3) })).sort((a,b)=>b.med-a.med).slice(0,12);
+  el('topicRankingTable').innerHTML = rows.length ? `<table><thead><tr><th>Topic</th><th>Posts</th><th>Avg</th><th>Median</th><th>Sentiment</th><th>Top posts</th></tr></thead><tbody>${rows.map((r)=>`<tr><td>${r.topic}</td><td>${fmt.format(r.count)}</td><td>${fmt.format(Math.round(r.avg))}</td><td>${fmt.format(r.med)}</td><td>${escapeHtml(r.sentiment)}</td><td>${r.reps.map((p)=>`<a href="${p.tweet_url}" target="_blank" rel="noreferrer">${fmt.format(p.total_engagement)}</a>`).join(' ')}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">No data available for this section</div>';
+}
+
+function renderViralEvidence(posts) {
+  const viral = posts.filter((post) => post.is_viral).sort((a,b)=>b.total_engagement-a.total_engagement).slice(0,15);
+  const viralAvg = average(posts.filter((p)=>p.is_viral).map((p)=>p.total_engagement));
+  const nonAvg = average(posts.filter((p)=>!p.is_viral).map((p)=>p.total_engagement));
+  const summary = `<div class="mini-summary"><span>Viral avg ${fmt.format(Math.round(viralAvg))}</span><span>Non-viral avg ${fmt.format(Math.round(nonAvg))}</span></div>`;
+  el('viralEvidenceTable').innerHTML = viral.length ? summary + `<table><thead><tr><th>Brand</th><th>Date</th><th>Sentiment</th><th>Topic</th><th>Total</th><th>Post</th></tr></thead><tbody>${viral.map((p)=>`<tr><td>${escapeHtml(p.brand)}</td><td>${escapeHtml(p.date_iso)}</td><td>${escapeHtml(p.sentiment_label)}</td><td>${p.topic_id === null ? 'unknown' : `Topic ${p.topic_id}`}</td><td>${fmt.format(p.total_engagement)}</td><td><a href="${p.tweet_url}" target="_blank" rel="noreferrer">Open</a></td></tr>`).join('')}</tbody></table>` : '<div class="empty">No data available for this section</div>';
+}
+
 function renderMetrics(posts) {
   const totalEngagement = posts.reduce((sum, post) => sum + post.total_engagement, 0);
   const viralCount = posts.filter((post) => post.viral).length;
@@ -278,7 +605,7 @@ function renderEvidence(posts) {
   const mostCommonSentiment = [...bySentiment.entries()].sort((a, b) => b[1] - a[1])[0];
   const viralPosts = posts.filter((post) => post.viral);
   const topPost = [...posts].sort((a, b) => b.total_engagement - a.total_engagement)[0];
-  const avgReplies = posts.length ? Math.round(posts.reduce((sum, post) => sum + numberValue(post.reply_count), 0) / posts.length) : 0;
+  const avgReplies = posts.length ? Math.round(posts.reduce((sum, post) => sum + numberValue(post.replies_count), 0) / posts.length) : 0;
   el('evidenceGrid').innerHTML = [
     ['Dominant Sentiment', mostCommonSentiment ? `${mostCommonSentiment[0]} (${fmt.format(mostCommonSentiment[1])})` : 'No data available for this section'],
     ['Viral Posts', posts.length ? `${fmt.format(viralPosts.length)} posts` : 'No data available for this section'],
@@ -410,7 +737,7 @@ function renderLegend(containerId, rows, groupName) {
 function renderCharts(posts, account) {
   const byMonth = new Map();
   posts.forEach((post) => {
-    const date = parseDate(post.created_at);
+    const date = parseDate(post.date_iso || dateValue(post));
     if (!date) return;
     const key = `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}`;
     byMonth.set(key, (byMonth.get(key) || 0) + 1);
@@ -423,10 +750,10 @@ function renderCharts(posts, account) {
   renderLegend('volumeLegend', [{ label: 'Posts', value: posts.length, color: accounts[account].color, active: state.chartSeries.volume.Posts }], 'volume');
 
   const mix = [
-    { label: 'Likes', value: posts.reduce((s, p) => s + numberValue(p.favorite_count), 0), color: '#d6223a' },
-    { label: 'Replies', value: posts.reduce((s, p) => s + numberValue(p.reply_count), 0), color: '#227c91' },
-    { label: 'Retweets', value: posts.reduce((s, p) => s + numberValue(p.retweet_count), 0), color: '#2d7d5f' },
-    { label: 'Quotes', value: posts.reduce((s, p) => s + numberValue(p.quote_count), 0), color: '#b57912' }
+    { label: 'Likes', value: posts.reduce((s, p) => s + p.likes_count, 0), color: '#d6223a' },
+    { label: 'Replies', value: posts.reduce((s, p) => s + p.replies_count, 0), color: '#227c91' },
+    { label: 'Retweets', value: posts.reduce((s, p) => s + p.retweets_count, 0), color: '#2d7d5f' },
+    { label: 'Quotes', value: posts.reduce((s, p) => s + p.quotes_count, 0), color: '#b57912' }
   ].map((row) => ({ ...row, active: state.chartSeries.engagement[row.label] !== false }));
   drawDonut(el('engagementChart'), mix);
   renderLegend('engagementLegend', mix, 'engagement');
@@ -450,7 +777,7 @@ function renderTopicDetail(topic) {
   const terms = (topic.top_terms || []).map((term) => `<span class="term">${escapeHtml(term)}</span>`).join('');
   const posts = (topic.representative_posts || []).map((post) => `<article class="topic-post">
     <div><a href="${post.tweet_url}" target="_blank" rel="noreferrer">${escapeHtml(post.id)}</a><span>score ${Number(post.score || 0).toFixed(3)}</span></div>
-    <p>${escapeHtml(post.text || '')}</p>
+    <p>${escapeHtml(post.text_normalized || '')}</p>
   </article>`).join('');
   detail.innerHTML = `<section class="topic-detail-inner">
     <div class="panel-head compact-head"><h4>Topic ${topic.topic_id} Detail</h4><span>${(topic.representative_posts || []).length} representative posts</span></div>
@@ -565,14 +892,25 @@ function renderPosts(posts) {
     return;
   }
 
-  el('postTableWrap').innerHTML = `<table class="post-table">
-    <thead><tr><th>Date</th><th>Post</th><th>Sentiment</th><th>Topic</th><th>Engagement</th><th>Link</th></tr></thead>
+  el('postTableWrap').innerHTML = `<table class="post-table wide">
+    <thead><tr><th>Brand</th><th>Date</th><th>Text</th><th>Topic</th><th>Sentiment</th><th>Likes</th><th>Replies</th><th>Retweets</th><th>Quotes</th><th>Total</th><th>Log</th><th>Viral</th><th>Length</th><th>Hashtags</th><th>Mentions</th><th>URL</th><th>Link</th></tr></thead>
     <tbody>${rows.map((post) => `<tr>
+      <td>${escapeHtml(post.brand)}</td>
       <td>${escapeHtml(post.date_iso || 'unknown')}</td>
-      <td>${escapeHtml(post.text || '')}</td>
-      <td>${escapeHtml(post.sentiment_label)}</td>
+      <td>${escapeHtml(post.text_normalized || '')}</td>
       <td>${post.topic_id === null ? 'unknown' : `Topic ${post.topic_id}`}</td>
+      <td>${escapeHtml(post.sentiment_label)}</td>
+      <td>${fmt.format(post.likes_count)}</td>
+      <td>${fmt.format(post.replies_count)}</td>
+      <td>${fmt.format(post.retweets_count)}</td>
+      <td>${fmt.format(post.quotes_count)}</td>
       <td>${fmt.format(post.total_engagement)}</td>
+      <td>${post.log_total_engagement.toFixed(2)}</td>
+      <td>${post.is_viral ? 'Viral' : 'Standard'}</td>
+      <td>${fmt.format(post.text_length)}</td>
+      <td>${fmt.format(post.hashtag_count)}</td>
+      <td>${fmt.format(post.mention_count)}</td>
+      <td>${post.has_url ? 'Yes' : 'No'}</td>
       <td><a href="${post.tweet_url}" target="_blank" rel="noreferrer">Open</a></td>
     </tr>`).join('')}</tbody>
   </table>`;
@@ -582,13 +920,13 @@ function renderPosts(posts) {
     const textClass = expanded ? 'post-text expanded' : 'post-text';
     return `<article class="post-card">
       <div class="post-badges">${postBadges(post)}</div>
-      <p class="${textClass}" id="post-text-${post.id}">${escapeHtml(post.text || '')}</p>
+      <p class="${textClass}" id="post-text-${post.id}">${escapeHtml(post.text_normalized || '')}</p>
       <button class="text-toggle" type="button" data-post-id="${post.id}" aria-expanded="${expanded}" aria-controls="post-text-${post.id}">${expanded ? 'Show less' : 'Show more'}</button>
       <div class="metric-badges">
-        ${badge(`likes ${fmt.format(numberValue(post.favorite_count))}`)}
-        ${badge(`replies ${fmt.format(numberValue(post.reply_count))}`)}
-        ${badge(`retweets ${fmt.format(numberValue(post.retweet_count))}`)}
-        ${badge(`quotes ${fmt.format(numberValue(post.quote_count))}`)}
+        ${badge(`likes ${fmt.format(numberValue(post.likes_count))}`)}
+        ${badge(`replies ${fmt.format(numberValue(post.replies_count))}`)}
+        ${badge(`retweets ${fmt.format(numberValue(post.retweets_count))}`)}
+        ${badge(`quotes ${fmt.format(numberValue(post.quotes_count))}`)}
       </div>
       <a class="post-link" href="${post.tweet_url}" target="_blank" rel="noreferrer">Open X post</a>
     </article>`;
@@ -605,6 +943,7 @@ function renderPosts(posts) {
 }
 
 function syncInputs() {
+  el('brandSelect').value = state.brand;
   el('searchInput').value = state.search;
   el('dateFromInput').value = state.dateFrom;
   el('dateToInput').value = state.dateTo;
@@ -614,51 +953,21 @@ function syncInputs() {
 }
 
 async function render() {
-  const dataset = await loadAccount(state.account);
-  const enriched = buildEnrichedDataset(state.account, dataset);
-  populateFilterOptions(enriched.posts, dataset);
+  const datasets = await loadAllAccounts();
+  const dataset = datasets[state.account];
+  const allPosts = buildAllEnrichedPosts(datasets);
+  populateFilterOptions(allPosts, dataset);
   syncInputs();
-  const visible = filteredPosts(enriched.posts);
+  const visible = filteredPosts(allPosts);
   renderStatus(dataset);
   renderMetrics(visible);
-  renderEvidence(visible);
+  renderDescriptives(visible);
+  renderModelFreeEvidence(visible);
   renderCharts(visible, state.account);
   renderTopics(dataset.lda);
   renderSentiment(dataset.sentiment);
   renderPosts(visible);
-  el('dataStatus').textContent = `${accounts[state.account].label}: ${fmt.format(dataset.posts.length)} posts loaded`;
-}
-
-async function dispatchWorkflow(kind) {
-  const token = el('adminTokenInput').value.trim();
-  const account = state.account;
-  const maxScrolls = el('actionMaxScrolls').value || '2500';
-  const maxPosts = el('actionMaxPosts').value || '0';
-  const result = el('actionResult');
-  if (!token) {
-    result.textContent = 'Admin token is required.';
-    return;
-  }
-  result.textContent = `Submitting ${kind} for ${accounts[account].label}...`;
-  setActionButtons(true);
-  try {
-    const response = await fetch('/api/dispatch', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-      body: JSON.stringify({ kind, account, maxScrolls, analysisMaxPosts: maxPosts })
-    });
-    const body = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(body.error || `HTTP ${response.status}`);
-    result.textContent = `${kind} workflow dispatched for ${accounts[account].label}. Check GitHub Actions for progress.`;
-  } catch (error) {
-    result.textContent = `Dispatch failed: ${error.message}`;
-  } finally {
-    setActionButtons(false);
-  }
-}
-
-function setActionButtons(disabled) {
-  ['runScrapeButton', 'runLdaButton', 'runSentimentButton'].forEach((id) => { el(id).disabled = disabled; });
+  el('dataStatus').textContent = `${fmt.format(allPosts.length)} posts loaded across ${fmt.format(Object.keys(datasets).length)} brands`;
 }
 
 function chartPointFromEvent(canvas, event) {
@@ -723,6 +1032,7 @@ function bindEvents() {
   });
 
   el('topicSearchInput').addEventListener('input', async (event) => { state.topicSearch = event.target.value; await render(); });
+  el('brandSelect').addEventListener('change', async (event) => { state.brand = event.target.value; state.page = 1; await render(); });
   el('searchInput').addEventListener('input', async (event) => { state.search = event.target.value; state.page = 1; await render(); });
   el('yearSelect').addEventListener('change', async (event) => { state.year = event.target.value; state.page = 1; await render(); });
   el('dateFromInput').addEventListener('change', async (event) => { state.dateFrom = event.target.value; state.page = 1; await render(); });
@@ -734,10 +1044,7 @@ function bindEvents() {
   el('resetFiltersButton').addEventListener('click', async () => { resetFilters(); await render(); });
   el('prevPageButton').addEventListener('click', async () => { state.page -= 1; await render(); });
   el('nextPageButton').addEventListener('click', async () => { state.page += 1; await render(); });
-  el('runScrapeButton').addEventListener('click', () => dispatchWorkflow('scrape'));
-  el('runLdaButton').addEventListener('click', () => dispatchWorkflow('lda'));
-  el('runSentimentButton').addEventListener('click', () => dispatchWorkflow('sentiment'));
-  ['volumeChart', 'engagementChart', 'sentimentChart'].forEach((id) => bindChartTooltip(el(id)));
+  ['volumeChart', 'engagementChart', 'sentimentChart', 'engagementHistogram', 'brandBoxplotChart', 'postsByBrandChart', 'textLengthChart', 'sentimentBrandChart', 'topicBrandChart', 'brandEngagementChart', 'sentimentEngagementChart', 'sentimentHeatmapChart', 'dailyVolumeChart'].forEach((id) => bindChartTooltip(el(id)));
   window.addEventListener('resize', () => render());
 }
 

@@ -22,6 +22,7 @@
     <a href="#overview">Overview</a>
     <a href="#descriptives">Descriptives</a>
     <a href="#evidence">Model-free Evidence</a>
+    <a href="#posting">Posting</a>
     <a href="#topics">Topics</a>
     <a href="#sentiment">Sentiment</a>
     <a href="#posts">Posts</a>
@@ -37,7 +38,12 @@
         <div class="filter-body">
           <fieldset>
             <legend>Brand</legend>
-            <p id="brandFilterLabel">Wendy's</p>
+            <label class="field">
+              <span>Brand</span>
+              <select id="brandSelect" aria-label="Filter by brand">
+                <option value="all">All brands</option>
+              </select>
+            </label>
           </fieldset>
 
           <fieldset>
@@ -96,6 +102,7 @@
                 <option value="likes_desc">Most liked</option>
                 <option value="replies_desc">Most replied</option>
                 <option value="retweets_desc">Most retweeted</option>
+                <option value="text_length_desc">Longest text</option>
               </select>
             </label>
           </fieldset>
@@ -110,33 +117,6 @@
         <h2 id="analysisStatusTitle">Analysis Status</h2>
         <div id="analysisStatus" class="status-list"></div>
       </section>
-
-      <details class="panel compact action-panel">
-        <summary>
-          <span>Run Actions</span>
-          <strong>manual</strong>
-        </summary>
-        <div class="action-body">
-          <label class="field">
-            <span>Admin token</span>
-            <input id="adminTokenInput" type="password" placeholder="Cloudflare dashboard token" aria-label="Cloudflare dashboard admin token">
-          </label>
-          <label class="field">
-            <span>Max scrolls</span>
-            <input id="actionMaxScrolls" type="number" min="1" value="2500" aria-label="Scraper max scrolls">
-          </label>
-          <label class="field">
-            <span>Analysis max posts</span>
-            <input id="actionMaxPosts" type="number" min="0" value="0" aria-label="Analysis max posts">
-          </label>
-          <div class="action-buttons">
-            <button id="runScrapeButton" type="button" aria-label="Run scraper workflow">Run Scraper</button>
-            <button id="runLdaButton" type="button" aria-label="Run LDA workflow">Run LDA</button>
-            <button id="runSentimentButton" type="button" aria-label="Run sentiment workflow">Run Sentiment</button>
-          </div>
-          <div id="actionResult" class="action-result" role="status">No action submitted.</div>
-        </div>
-      </details>
     </aside>
 
     <section class="content">
@@ -158,7 +138,41 @@
       <section id="descriptives" class="section-block" aria-labelledby="descriptivesTitle">
         <div class="section-heading">
           <span>Descriptive Statistics</span>
-          <h2 id="descriptivesTitle">Posting and Engagement Patterns</h2>
+          <h2 id="descriptivesTitle">Data Structure and Distributions</h2>
+        </div>
+        <div id="descriptiveCards" class="analytics-card-grid"></div>
+        <section class="grid two analytics-grid">
+          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Distribution</h3><span>histogram</span></div><canvas id="engagementHistogram" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Boxplot by Brand</h3><span>raw spread</span></div><canvas id="brandBoxplotChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Posts by Brand</h3><span>volume</span></div><canvas id="postsByBrandChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Text Length Distribution</h3><span>characters</span></div><canvas id="textLengthChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Sentiment Share by Brand</h3><span>stacked share</span></div><canvas id="sentimentBrandChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Topic Share by Brand</h3><span>stacked share</span></div><canvas id="topicBrandChart" height="220"></canvas></article>
+        </section>
+      </section>
+
+      <section id="evidence" class="section-block" aria-labelledby="evidenceTitle">
+        <div class="section-heading">
+          <span>Model-free Evidence</span>
+          <h2 id="evidenceTitle">Raw Comparisons Without a Regression Model</h2>
+        </div>
+        <section id="evidenceGrid" class="evidence-grid"></section>
+        <section class="grid two analytics-grid">
+          <article class="panel chart-panel"><div class="panel-head"><h3>Brand Raw Comparison</h3><span>average engagement</span></div><canvas id="brandEngagementChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Sentiment x Engagement</h3><span>median engagement</span></div><canvas id="sentimentEngagementChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Engagement Type Heatmap</h3><span>by sentiment</span></div><canvas id="sentimentHeatmapChart" height="220"></canvas></article>
+          <article class="panel chart-panel"><div class="panel-head"><h3>Daily Posting Volume</h3><span>by brand</span></div><canvas id="dailyVolumeChart" height="220"></canvas></article>
+        </section>
+        <section class="grid two analytics-grid">
+          <article class="panel"><div class="panel-head"><h3>Topic Engagement Ranking</h3><span>raw topics</span></div><div id="topicRankingTable" class="responsive-table"></div></article>
+          <article class="panel"><div class="panel-head"><h3>Viral Post Evidence</h3><span>top 5 percent</span></div><div id="viralEvidenceTable" class="responsive-table"></div></article>
+        </section>
+      </section>
+
+      <section id="posting" class="section-block" aria-labelledby="postingTitle">
+        <div class="section-heading">
+          <span>Posting Volume</span>
+          <h2 id="postingTitle">Posting and Engagement Mix</h2>
         </div>
         <section class="grid two">
           <article class="panel chart-panel">
@@ -172,14 +186,6 @@
             <div id="engagementLegend" class="chart-legend"></div>
           </article>
         </section>
-      </section>
-
-      <section id="evidence" class="section-block" aria-labelledby="evidenceTitle">
-        <div class="section-heading">
-          <span>Model-free Evidence</span>
-          <h2 id="evidenceTitle">Observed Signals</h2>
-        </div>
-        <section id="evidenceGrid" class="evidence-grid"></section>
       </section>
 
       <section class="grid two topic-sentiment-grid">

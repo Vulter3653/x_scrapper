@@ -771,3 +771,42 @@ Validation completed:
 Verification limitation:
 
 - Attempted Chromium headless screenshot/DOM verification for mobile viewport. The local environment's Chromium process repeatedly failed or timed out with DBus/font/Harfbuzz errors unrelated to the dashboard code, so screenshot-based viewport verification could not be completed in this environment. Static and syntax validations were completed instead.
+
+
+### Descriptive Statistics and Model-free Evidence Dashboard Update
+
+Date: 2026-05-22
+
+User requested full Descriptive Statistics and Model-free Evidence sections for the X Brand Intelligence Dashboard, while removing Run Actions from the dashboard UI.
+
+Structure verified before implementation:
+
+- Frontend framework: none; static HTML/CSS with vanilla JavaScript.
+- Main dashboard files: `dashboard/index.html`, `dashboard/app.js`, `dashboard/styles.css`.
+- Data loading: browser `fetch()` reads JSON files from `dashboard/data/`.
+- Chart library: none; charts are drawn directly on Canvas.
+- Styling: custom CSS, no Tailwind.
+- Posts schema currently exposes X-style fields such as `text`, `created_at`, `favorite_count`, `reply_count`, `retweet_count`, `quote_count`, `tweet_url`.
+- Sentiment schema exposes `posts[].top_label`, `posts[].top_score`, and `label_counts`.
+- LDA schema exposes `topics[].topic_id`, `topics[].top_terms`, and `topics[].representative_posts`.
+
+Implemented changes:
+
+- Removed Run Actions panel and client-side workflow dispatch references from the dashboard screen.
+- Added brand filter with `All brands` support.
+- Added fallback-based derived variables: `total_engagement`, `log_total_engagement`, `text_length`, `word_count`, `has_url`, `hashtag_count`, `mention_count`, and top-5-percent `is_viral`.
+- Added fallback column handling for likes, replies, retweets, quotes, text, date, brand, sentiment, and topic.
+- Added Descriptive Statistics cards for dataset overview, engagement summary, text summary, sentiment summary, and topic summary.
+- Added Descriptive Statistics charts: engagement histogram, brand engagement boxplot, posts by brand, text length histogram, sentiment share by brand, and topic share by brand.
+- Added Model-free Evidence cards and charts for brand comparisons, sentiment x engagement, sentiment heatmap by engagement type, daily posting volume, topic ranking, and viral post evidence.
+- Expanded Post Explorer columns to include brand, date, text, topic, sentiment, likes, replies, retweets, quotes, total engagement, log engagement, viral flag, text length, hashtag count, mention count, and URL included.
+- Added sort by text length.
+- Preserved existing LDA, Zero-Shot Sentiment, Posting Volume, Engagement Mix, filters, responsive layout, and post card behavior.
+
+Validation completed:
+
+- `node --check dashboard/app.js` passed.
+- `git diff --check` passed.
+- Searched dashboard client files for `Run Actions`, `runScrapeButton`, `dispatchWorkflow`, and `/api/dispatch`; no UI/client references remained.
+- Ran a Node DOM/Canvas mock against real dashboard JSON data. Render completed with 1,825 posts loaded across 2 brands, Descriptive Statistics rendered, Model-free Evidence rendered, and Post Explorer table generated.
+- Ran a Python data check confirming sample `total_engagement` fallback calculation, parseable date field presence, and missing numeric values treated as zero.
