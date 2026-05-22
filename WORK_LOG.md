@@ -891,3 +891,26 @@ Validation completed:
 - `node --check dashboard/app.js` passed.
 - `git diff --check` passed.
 - Node DOM/Canvas mock render at 360px width against real JSON data passed.
+
+
+### Mobile Chart Text and Render Reliability Fix
+
+Date: 2026-05-22
+
+User reported that mobile chart text was too small and that some charts failed to load.
+
+Changes made:
+
+- Removed mobile canvas max-height constraint that could visually compress charts.
+- Increased mobile chart render height to at least 270px.
+- Added `canvasFont()` helper so mobile chart text renders at readable 12-13px sizes instead of fixed 10-11px labels.
+- Increased donut center text size on mobile/desktop through the same helper.
+- Added `safeChart()` wrapper for Descriptive Statistics and Model-free Evidence charts so one chart rendering issue falls back to `No data available for this section` instead of blocking subsequent charts.
+- Kept 360px mobile axis compression from the prior update while improving text size and chart render reliability.
+
+Validation completed:
+
+- `node --check dashboard/app.js` passed.
+- `git diff --check` passed.
+- Static search confirmed old fixed 10px/11px font declarations were replaced with `canvasFont()`.
+- 360px mobile DOM/Canvas mock render against real JSON data passed.

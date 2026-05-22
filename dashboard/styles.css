@@ -466,8 +466,7 @@ canvas { width: 100%; max-width: 100%; display: block; touch-action: manipulatio
 
 @media (max-width: 639px) {
   .chart-panel canvas {
-    min-height: 210px;
-    max-height: 240px;
+    min-height: 270px;
   }
   .chart-panel .panel-head {
     gap: 8px;
@@ -477,5 +476,11 @@ canvas { width: 100%; max-width: 100%; display: block; touch-action: manipulatio
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+}
+
+@media (max-width: 390px) {
+  .chart-note {
+    font-size: 13px;
   }
 }

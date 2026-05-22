@@ -471,6 +471,22 @@ function colorAt(index) {
   return ['#d6223a', '#227c91', '#2d7d5f', '#b57912', '#607076', '#2d7d5f'][index % 6];
 }
 
+
+function canvasFont(width, size = 12, weight = '') {
+  const adjusted = width < 420 ? Math.max(12, size + 1) : size;
+  return `${weight ? `${weight} ` : ''}${adjusted}px system-ui, sans-serif`;
+}
+
+function safeChart(canvasId, drawFn) {
+  try {
+    drawFn();
+  } catch (error) {
+    console.warn(`Chart render failed: ${canvasId}`, error);
+    const canvas = el(canvasId);
+    if (canvas) drawEmptyChart(canvas, 'No data available for this section');
+  }
+}
+
 function drawHorizontalBars(canvas, rows, valueLabel = '') {
   const sortedRows = [...rows].filter((row) => Number.isFinite(row.value)).sort((a, b) => b.value - a.value).slice(0, 12);
   if (!sortedRows.length) return drawEmptyChart(canvas, 'No data available for this section');
@@ -483,7 +499,7 @@ function drawHorizontalBars(canvas, rows, valueLabel = '') {
   const points = [];
   ctx.strokeStyle = '#eef3f4';
   ctx.fillStyle = '#607076';
-  ctx.font = '11px system-ui, sans-serif';
+  ctx.font = canvasFont(width, 12);
   sortedRows.forEach((row, index) => {
     const y = pad.top + index * rowH;
     const barW = Math.max(2, (row.value / max) * chartW);
@@ -529,7 +545,7 @@ function drawStackedShare(canvas, groups, categories) {
       ctx.fillRect(x, y, w, Math.max(12, rowH - 11));
       if (w > 38) {
         ctx.fillStyle = '#ffffff';
-        ctx.font = '10px system-ui, sans-serif';
+        ctx.font = canvasFont(width, 11);
         ctx.textAlign = 'center';
         ctx.fillText(`${Math.round(ratio(count, rows.length) * 100)}%`, x + w / 2, y + rowH * 0.48);
       }
@@ -537,7 +553,7 @@ function drawStackedShare(canvas, groups, categories) {
       x += w;
     });
     ctx.fillStyle = '#607076';
-    ctx.font = '11px system-ui, sans-serif';
+    ctx.font = canvasFont(width, 12);
     ctx.textAlign = 'right';
     ctx.fillText(shortLabel(group, compact ? 6 : 13), pad.left - 6, y + rowH * 0.55);
   });
@@ -548,7 +564,7 @@ function drawStackedShare(canvas, groups, categories) {
     ctx.fillStyle = colorAt(i);
     ctx.fillRect(x, y - 8, 9, 9);
     ctx.fillStyle = '#607076';
-    ctx.font = '10px system-ui, sans-serif';
+    ctx.font = canvasFont(width, 11);
     ctx.fillText(shortLabel(cat, 10), x + 13, y);
   });
   state.charts[canvas.id] = { type: 'bar', points };
@@ -571,7 +587,7 @@ function drawBoxplot(canvas, groups) {
     ctx.fillRect(x - band * 0.25, y(q3), band * 0.5, Math.max(4, y(q1) - y(q3)));
     ctx.strokeRect(x - band * 0.25, y(q3), band * 0.5, Math.max(4, y(q1) - y(q3)));
     ctx.beginPath(); ctx.moveTo(x - band * 0.28, y(med)); ctx.lineTo(x + band * 0.28, y(med)); ctx.stroke();
-    ctx.fillStyle = '#607076'; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(row.label.slice(0, 10), x, height - 12);
+    ctx.fillStyle = '#607076'; ctx.font = canvasFont(width, 12); ctx.textAlign = 'center'; ctx.fillText(shortLabel(row.label, width < 420 ? 7 : 10), x, height - 12);
     points.push({ x: x - band * 0.3, y: y(q3), w: band * 0.6, h: Math.max(12, y(q1) - y(q3)), text: `${row.label}: median ${fmt.format(med)}, P95 ${fmt.format(percentile(row.values, 0.95))}` });
   });
   state.charts[canvas.id] = { type: 'bar', points };
@@ -590,7 +606,7 @@ function drawHeatmap(canvas, groups, metrics) {
   const points = [];
   entries.forEach(([label], r) => {
     ctx.fillStyle = '#607076';
-    ctx.font = '11px system-ui, sans-serif';
+    ctx.font = canvasFont(width, 12);
     ctx.textAlign = 'right';
     ctx.fillText(shortLabel(label, compact ? 6 : 12), pad.left - 5, pad.top + r * cellH + cellH * 0.6);
     metrics.forEach(([name], c) => {
@@ -601,7 +617,7 @@ function drawHeatmap(canvas, groups, metrics) {
       const y = pad.top + r * cellH;
       ctx.fillRect(x, y, cellW - 4, cellH - 4);
       ctx.fillStyle = alpha > 0.55 ? '#ffffff' : '#1c2427';
-      ctx.font = '10px system-ui, sans-serif';
+      ctx.font = canvasFont(width, 11);
       ctx.textAlign = 'center';
       ctx.fillText(formatEngagement(Math.round(value)), x + cellW / 2, y + cellH * 0.58);
       points.push({ x, y, w: cellW, h: cellH, text: `${label} ${name}: ${formatEngagement(Math.round(value))}` });
@@ -610,7 +626,7 @@ function drawHeatmap(canvas, groups, metrics) {
   metrics.forEach(([name], c) => {
     ctx.fillStyle = '#607076';
     ctx.textAlign = 'center';
-    ctx.font = '11px system-ui, sans-serif';
+    ctx.font = canvasFont(width, 12);
     ctx.fillText(shortLabel(name, 9), pad.left + c * cellW + cellW / 2, height - 14);
   });
   state.charts[canvas.id] = { type: 'bar', points };
@@ -618,22 +634,22 @@ function drawHeatmap(canvas, groups, metrics) {
 
 function renderDescriptives(posts) {
   renderDescriptiveCards(posts);
-  drawHistogram(el('engagementHistogram'), posts.map((post) => post.total_engagement), 12);
-  drawBoxplot(el('brandBoxplotChart'), groupBy(posts, (post) => post.brand));
-  drawHorizontalBars(el('postsByBrandChart'), [...groupBy(posts, (post) => post.brand).entries()].map(([label, rows]) => ({ label, value: rows.length })));
-  drawHistogram(el('textLengthChart'), posts.map((post) => post.text_length), 12);
-  drawStackedShare(el('sentimentBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: sentimentBucket(post.sentiment_label) }))])), ['positive', 'neutral', 'negative', 'other']);
+  safeChart('engagementHistogram', () => drawHistogram(el('engagementHistogram'), posts.map((post) => post.total_engagement), 12));
+  safeChart('brandBoxplotChart', () => drawBoxplot(el('brandBoxplotChart'), groupBy(posts, (post) => post.brand)));
+  safeChart('postsByBrandChart', () => drawHorizontalBars(el('postsByBrandChart'), [...groupBy(posts, (post) => post.brand).entries()].map(([label, rows]) => ({ label, value: rows.length }))));
+  safeChart('textLengthChart', () => drawHistogram(el('textLengthChart'), posts.map((post) => post.text_length), 12));
+  safeChart('sentimentBrandChart', () => drawStackedShare(el('sentimentBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: sentimentBucket(post.sentiment_label) }))])), ['positive', 'neutral', 'negative', 'other']));
   const topicCats = [...new Set(posts.filter((post) => post.topic_id !== null).map((post) => `Topic ${post.topic_id}`))].slice(0, 8);
-  drawStackedShare(el('topicBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: post.topic_id === null ? 'Unknown' : `Topic ${post.topic_id}` }))])), topicCats);
+  safeChart('topicBrandChart', () => drawStackedShare(el('topicBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: post.topic_id === null ? 'Unknown' : `Topic ${post.topic_id}` }))])), topicCats));
 }
 
 function renderModelFreeEvidence(posts) {
   renderEvidence(posts);
-  drawHorizontalBars(el('brandEngagementChart'), [...groupBy(posts, (post) => post.brand).entries()].map(([label, rows]) => ({ label, value: average(rows.map((post) => post.total_engagement)) })));
-  drawHorizontalBars(el('sentimentEngagementChart'), [...groupBy(posts, (post) => sentimentBucket(post.sentiment_label)).entries()].map(([label, rows]) => ({ label, value: median(rows.map((post) => post.total_engagement)) })));
-  drawHeatmap(el('sentimentHeatmapChart'), groupBy(posts, (post) => sentimentBucket(post.sentiment_label)), [['likes', (p) => p.likes_count], ['replies', (p) => p.replies_count], ['retweets', (p) => p.retweets_count], ['quotes', (p) => p.quotes_count]]);
+  safeChart('brandEngagementChart', () => drawHorizontalBars(el('brandEngagementChart'), [...groupBy(posts, (post) => post.brand).entries()].map(([label, rows]) => ({ label, value: average(rows.map((post) => post.total_engagement)) }))));
+  safeChart('sentimentEngagementChart', () => drawHorizontalBars(el('sentimentEngagementChart'), [...groupBy(posts, (post) => sentimentBucket(post.sentiment_label)).entries()].map(([label, rows]) => ({ label, value: median(rows.map((post) => post.total_engagement)) }))));
+  safeChart('sentimentHeatmapChart', () => drawHeatmap(el('sentimentHeatmapChart'), groupBy(posts, (post) => sentimentBucket(post.sentiment_label)), [['likes', (p) => p.likes_count], ['replies', (p) => p.replies_count], ['retweets', (p) => p.retweets_count], ['quotes', (p) => p.quotes_count]]));
   const dailyRows = [...groupBy(posts, (post) => `${post.brand} ${post.date_iso}`).entries()].sort((a, b) => a[0].localeCompare(b[0])).slice(-40).map(([label, rows]) => ({ label: label.replace(/^(.{1,18}).*/, '$1'), value: average(rows.map((post) => post.total_engagement)) }));
-  drawHorizontalBars(el('dailyVolumeChart'), dailyRows.slice(-12));
+  safeChart('dailyVolumeChart', () => drawHorizontalBars(el('dailyVolumeChart'), dailyRows.slice(-12)));
   renderTopicRanking(posts);
   renderViralEvidence(posts);
 }
@@ -692,7 +708,7 @@ function drawGrid(ctx, pad, width, height, max, ticks = 4) {
   const chartH = height - pad.top - pad.bottom;
   ctx.strokeStyle = '#eef3f4';
   ctx.fillStyle = '#607076';
-  ctx.font = '11px system-ui, sans-serif';
+  ctx.font = canvasFont(width, 12);
   ctx.textAlign = 'right';
   for (let i = 0; i <= ticks; i += 1) {
     const value = (max / ticks) * i;
@@ -708,10 +724,12 @@ function drawGrid(ctx, pad, width, height, max, ticks = 4) {
 function setupCanvas(canvas, height) {
   const ctx = canvas.getContext('2d');
   const width = Math.max(220, Math.floor(canvas.clientWidth || canvas.parentElement?.clientWidth || 320));
+  const renderHeight = width < 420 ? Math.max(270, height) : height;
   const dpr = window.devicePixelRatio || 1;
   canvas.width = width * dpr;
-  canvas.height = height * dpr;
-  canvas.style.height = `${height}px`;
+  canvas.height = renderHeight * dpr;
+  canvas.style.height = `${renderHeight}px`;
+  height = renderHeight;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, width, height);
   return { ctx, width, height };
@@ -720,7 +738,7 @@ function setupCanvas(canvas, height) {
 function drawEmptyChart(canvas, message) {
   const { ctx, width, height } = setupCanvas(canvas, Number(canvas.getAttribute('height')) || 220);
   ctx.fillStyle = '#607076';
-  ctx.font = '13px system-ui, sans-serif';
+  ctx.font = canvasFont(width, 13);
   ctx.textAlign = 'center';
   ctx.fillText(message, width / 2, height / 2);
   state.charts[canvas.id] = { points: [] };
@@ -758,7 +776,7 @@ function drawBarChart(canvas, labels, values, color) {
   });
 
   ctx.fillStyle = '#607076';
-  ctx.font = '11px system-ui, sans-serif';
+  ctx.font = canvasFont(width, 12);
   ctx.textAlign = 'center';
   const step = compact ? Math.max(1, Math.ceil(labels.length / 4)) : Math.max(1, Math.ceil(labels.length / 7));
   labels.forEach((label, index) => {
@@ -808,7 +826,7 @@ function drawDonut(canvas, rows) {
   ctx.fillStyle = '#ffffff';
   ctx.fill();
   ctx.fillStyle = '#1c2427';
-  ctx.font = '600 17px system-ui, sans-serif';
+  ctx.font = canvasFont(width, 18, '600');
   ctx.textAlign = 'center';
   ctx.fillText(formatEngagement(total), cx, cy + 6);
   state.charts[canvas.id] = { type: 'donut', points };
