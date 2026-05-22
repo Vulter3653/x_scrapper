@@ -20,7 +20,9 @@ const state = {
   datasets: {},
   search: '',
   year: 'all',
-  sort: 'date_desc'
+  sort: 'date_desc',
+  topicSearch: '',
+  selectedTopicId: null
 };
 
 const el = (id) => document.getElementById(id);
@@ -230,11 +232,39 @@ function renderStatus(dataset) {
   el('analysisStatus').innerHTML = rows.map(([name, value, cls]) => `<div class="status-item ${cls}"><span>${name}</span><strong>${value}</strong></div>`).join('');
 }
 
+function topicMatches(topic, query) {
+  if (!query) return true;
+  const haystack = [
+    ...(topic.top_terms || []),
+    ...(topic.representative_posts || []).map((post) => post.text || '')
+  ].join(' ').toLowerCase();
+  return haystack.includes(query);
+}
+
+function renderTopicDetail(topic) {
+  const detail = el('topicDetail');
+  if (!topic) {
+    detail.innerHTML = '<div class="empty">Select a topic to inspect top terms and representative posts.</div>';
+    return;
+  }
+  const terms = (topic.top_terms || []).map((term) => `<span class="term">${escapeHtml(term)}</span>`).join('');
+  const posts = (topic.representative_posts || []).map((post) => `<article class="topic-post">
+    <div><a href="${post.tweet_url}" target="_blank" rel="noreferrer">${escapeHtml(post.id)}</a><span> score ${Number(post.score || 0).toFixed(3)}</span></div>
+    <p>${escapeHtml(post.text || '')}</p>
+  </article>`).join('');
+  detail.innerHTML = `<section class="topic-detail-inner">
+    <div class="panel-head compact-head"><h3>Topic ${topic.topic_id} Detail</h3><span>${(topic.representative_posts || []).length} representative posts</span></div>
+    <div class="topic-terms detail-terms">${terms}</div>
+    <div class="topic-posts">${posts || '<div class="empty">No representative posts available.</div>'}</div>
+  </section>`;
+}
+
 function renderTopics(lda) {
   const container = el('topicList');
   if (!lda || !Array.isArray(lda.topics) || !lda.topics.length) {
     el('topicMeta').textContent = 'not generated';
     container.innerHTML = '<div class="empty">Run the LDA workflow to populate topic clusters and representative posts.</div>';
+    el('topicDetail').innerHTML = '';
     return;
   }
   const selection = lda.topic_selection;
@@ -259,14 +289,32 @@ function renderTopics(lda) {
     </div>
   </section>` : '';
 
-  const topicsHtml = lda.topics.map((topic) => {
-    const terms = (topic.top_terms || []).slice(0, 12).map((term) => `<span class="term">${escapeHtml(term)}</span>`).join('');
+  const query = state.topicSearch.trim().toLowerCase();
+  const matchingTopics = lda.topics.filter((topic) => topicMatches(topic, query));
+  if (!matchingTopics.some((topic) => topic.topic_id === state.selectedTopicId)) {
+    state.selectedTopicId = matchingTopics[0]?.topic_id ?? lda.topics[0].topic_id;
+  }
+
+  const topicsHtml = matchingTopics.map((topic) => {
+    const terms = (topic.top_terms || []).slice(0, 8).map((term) => `<span class="term">${escapeHtml(term)}</span>`).join('');
     const example = topic.representative_posts?.[0];
     const exampleHtml = example ? `<div class="example">${escapeHtml(example.text || '')}</div>` : '';
-    return `<section class="topic-item"><h3>Topic ${topic.topic_id}</h3><div class="topic-terms">${terms}</div>${exampleHtml}</section>`;
+    const active = topic.topic_id === state.selectedTopicId ? 'active' : '';
+    return `<button class="topic-item topic-button ${active}" type="button" data-topic-id="${topic.topic_id}">
+      <span class="topic-title">Topic ${topic.topic_id}</span>
+      <span class="topic-terms">${terms}</span>
+      ${exampleHtml}
+    </button>`;
   }).join('');
 
-  container.innerHTML = selectionHtml + topicsHtml;
+  container.innerHTML = selectionHtml + (topicsHtml || '<div class="empty">No topics match the current topic search.</div>');
+  container.querySelectorAll('[data-topic-id]').forEach((button) => {
+    button.addEventListener('click', () => {
+      state.selectedTopicId = Number(button.dataset.topicId);
+      renderTopics(lda);
+    });
+  });
+  renderTopicDetail(lda.topics.find((topic) => topic.topic_id === state.selectedTopicId));
 }
 
 function renderSentiment(sentiment) {
@@ -383,6 +431,10 @@ function bindEvents() {
     });
   });
 
+  el('topicSearchInput').addEventListener('input', async (event) => {
+    state.topicSearch = event.target.value;
+    await render();
+  });
   el('searchInput').addEventListener('input', async (event) => {
     state.search = event.target.value;
     await render();

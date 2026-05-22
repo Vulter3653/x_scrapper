@@ -110,12 +110,17 @@
       </section>
 
       <section class="grid two">
-        <article class="panel">
+        <article class="panel lda-panel">
           <div class="panel-head">
             <h2>LDA Topics</h2>
             <span id="topicMeta"></span>
           </div>
-          <div id="topicList" class="topic-list"></div>
+          <label class="field inline-field">
+            <span>Topic search</span>
+            <input id="topicSearchInput" type="search" placeholder="term or representative post text">
+          </label>
+          <div id="topicList" class="topic-list interactive"></div>
+          <div id="topicDetail" class="topic-detail"></div>
         </article>
 
         <article class="panel">
