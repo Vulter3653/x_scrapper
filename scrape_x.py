@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import time
+import traceback
 from pathlib import Path
 from typing import Any
 
@@ -242,4 +243,9 @@ async def main() -> None:
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except Exception as exc:
+        print(f'Fatal scraper error: {type(exc).__name__}: {exc}', flush=True)
+        traceback.print_exc()
+        sys.exit(1)

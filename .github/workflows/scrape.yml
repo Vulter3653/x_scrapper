@@ -103,8 +103,15 @@ jobs:
           MAX_RETRIES: '8'
           RETRY_BASE_SECONDS: '10'
         run: |
-          set -euxo pipefail
-          python scrape_x.py
+          set -o pipefail
+          python scrape_x.py 2>&1 | tee scraper.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            tail -n 40 scraper.log
+            last_error=$(tail -n 1 scraper.log | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+            echo "::error title=Scraper failed::$last_error"
+            exit "$status"
+          fi
 
       - name: 6. Inspect changed files
         shell: bash
