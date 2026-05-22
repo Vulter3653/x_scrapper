@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import re
@@ -6,9 +7,6 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
-from sklearn.decomposition import LatentDirichletAllocation
-from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
-from transformers import pipeline
 
 TARGET_USER = os.getenv('TARGET_USER', 'Wendys').lstrip('@')
 PREFIX = TARGET_USER.lower()
@@ -45,7 +43,7 @@ CUSTOM_STOP_WORDS = {
     'x',
     'com',
 }
-STOP_WORDS = sorted(set(ENGLISH_STOP_WORDS) | CUSTOM_STOP_WORDS)
+
 
 
 def load_posts() -> list[dict[str, Any]]:
@@ -73,6 +71,10 @@ def text_for_analysis(post: dict[str, Any]) -> str:
 
 
 def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    from sklearn.decomposition import LatentDirichletAllocation
+    from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
+
+    stop_words = sorted(set(ENGLISH_STOP_WORDS) | CUSTOM_STOP_WORDS)
     documents = [text_for_analysis(post) for post in posts]
     indexed_documents = [(idx, doc) for idx, doc in enumerate(documents) if len(doc.split()) >= 3]
     if len(indexed_documents) < 2:
@@ -92,7 +94,7 @@ def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
     topic_count = min(LDA_NUM_TOPICS, max(1, len(source_documents) // 2))
 
     vectorizer = CountVectorizer(
-        stop_words=STOP_WORDS,
+        stop_words=stop_words,
         max_features=LDA_MAX_FEATURES,
         min_df=2,
         max_df=0.85,
@@ -151,6 +153,8 @@ def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    from transformers import pipeline
+
     cached: dict[str, Any] = {}
     if SENTIMENT_FILE.exists():
         try:
@@ -233,12 +237,25 @@ def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description='Analyze scraped X posts.')
+    parser.add_argument(
+        '--task',
+        choices=('all', 'lda', 'sentiment'),
+        default=os.getenv('ANALYSIS_TASK', 'all'),
+        help='Analysis task to run.',
+    )
+    args = parser.parse_args()
+
     posts = load_posts()
-    print(f'Analyzing {len(posts)} posts from {INPUT_FILE}', flush=True)
-    lda_result = run_lda(posts)
-    print(f"LDA complete: {len(lda_result.get('topics', []))} topics", flush=True)
-    sentiment_result = run_zero_shot_sentiment(posts)
-    print(f"Zero-shot sentiment complete: {sentiment_result['post_count']} posts", flush=True)
+    print(f'Analyzing {len(posts)} posts from {INPUT_FILE} with task={args.task}', flush=True)
+
+    if args.task in ('all', 'lda'):
+        lda_result = run_lda(posts)
+        print(f"LDA complete: {len(lda_result.get('topics', []))} topics", flush=True)
+
+    if args.task in ('all', 'sentiment'):
+        sentiment_result = run_zero_shot_sentiment(posts)
+        print(f"Zero-shot sentiment complete: {sentiment_result['post_count']} posts", flush=True)
 
 
 if __name__ == '__main__':

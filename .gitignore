@@ -8,3 +8,5 @@ credentials.json
 scraper.log
 scraper_failure.log
 analysis.log
+lda_analysis.log
+sentiment_analysis.log

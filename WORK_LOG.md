@@ -525,6 +525,26 @@ Local untracked/ignored or sensitive files noted:
 - `scraper.log`: ignored.
 - `analysis.log`: ignored.
 
+
+### Workflow Separation for Parallel Operation
+
+User requested that scraper, LDA, and sentiment analysis be runnable separately and in parallel.
+
+Implementation:
+
+- `Scrape X Posts` workflow now only scrapes posts and commits `{account}_posts.json` plus `{account}_scrape_state.json`.
+- `Run LDA Analysis` workflow runs only `python analyze_posts.py --task lda`.
+- `Run Zero-Shot Sentiment` workflow runs only `python analyze_posts.py --task sentiment`.
+- `analyze_posts.py` supports `--task all`, `--task lda`, and `--task sentiment`.
+- LDA and sentiment workflows can be started at the same time against an existing `{account}_posts.json`.
+- Push retry/rebase logic is retained in each workflow to reduce non-fast-forward failures when workflows finish close together.
+
+Operational rule:
+
+- If a fresh scrape is required, run `Scrape X Posts` first and wait until its result files are pushed.
+- After the posts JSON exists, run `Run LDA Analysis` and `Run Zero-Shot Sentiment` concurrently.
+- Running analysis before the posts JSON exists will fail with `Input file not found`.
+
 ## Known Limitations and Risks
 
 1. X may block GitHub Actions browser sessions or mark them suspicious.

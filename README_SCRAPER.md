@@ -53,9 +53,15 @@ python scrape_x.py
 워크플로우는 최대 6시간 실행되며 결과 파일과 상태 파일을 커밋합니다. 실행 도중 타임아웃되더라도 마지막으로 저장된 페이지까지는 워크스페이스에 기록되지만, GitHub Actions가 강제 종료되면 커밋 단계까지 도달하지 못할 수 있습니다. 이 경우 같은 입력값으로 다시 실행하면 저장소에 남은 상태 파일 기준으로 이어받습니다.
 
 
-## LDA 및 Zero-Shot 감성분석
+## 독립 실행 및 병렬 처리
 
-GitHub Actions에서 `run_analysis=true`로 실행하면 스크래핑 후 자동으로 분석을 수행합니다.
+GitHub Actions는 세 개 workflow로 분리되어 있습니다.
+
+- `Scrape X Posts`: X 포스트 수집만 실행
+- `Run LDA Analysis`: 기존 `{account}_posts.json`을 읽어 LDA만 실행
+- `Run Zero-Shot Sentiment`: 기존 `{account}_posts.json`을 읽어 zero-shot 감성분석만 실행
+
+따라서 스크래퍼, LDA, 감성분석을 각각 따로 실행할 수 있고, 이미 `{account}_posts.json`이 있는 경우 LDA와 감성분석은 동시에 실행할 수 있습니다. 새 수집 결과를 분석해야 한다면 먼저 `Scrape X Posts`가 결과 파일을 push한 뒤 LDA/감성분석을 실행하세요.
 
 분석 결과 파일:
 
@@ -72,12 +78,19 @@ Zero-shot 감성분석 기본값:
 - 후보 라벨: `positive`, `neutral`, `negative`
 - 기준 문장: `This post expresses a {} sentiment.`
 
-Actions 입력값:
+LDA workflow 입력값:
 
-- `run_analysis`: `true`이면 LDA와 zero-shot 감성분석 실행
+- `target_user`: 분석 대상 계정명
 - `analysis_max_posts`: `0`이면 전체 포스트 분석, 숫자를 넣으면 최신 N개만 분석
+- `lda_num_topics`: LDA 토픽 수
 
-GitHub Actions 무료 실행 시간을 줄이고 싶으면 `analysis_max_posts=300`처럼 먼저 샘플 분석을 권장합니다. 전체 분석은 모델 다운로드와 zero-shot 추론 때문에 시간이 더 걸립니다.
+감성분석 workflow 입력값:
+
+- `target_user`: 분석 대상 계정명
+- `analysis_max_posts`: `0`이면 전체 포스트 분석, 숫자를 넣으면 최신 N개만 분석
+- `sentiment_labels`: zero-shot 후보 라벨 목록
+
+GitHub Actions 무료 실행 시간을 줄이고 싶으면 `analysis_max_posts=300`처럼 먼저 샘플 분석을 권장합니다. 전체 감성분석은 모델 다운로드와 zero-shot 추론 때문에 시간이 더 걸립니다.
 
 ## 결과 파일
 
