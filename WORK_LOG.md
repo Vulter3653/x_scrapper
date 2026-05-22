@@ -545,6 +545,34 @@ Operational rule:
 - After the posts JSON exists, run `Run LDA Analysis` and `Run Zero-Shot Sentiment` concurrently.
 - Running analysis before the posts JSON exists will fail with `Input file not found`.
 
+
+### Local Update: Automatic LDA Topic Count Selection
+
+User requested that `Number of LDA topics` must not be a direct fixed input. Also requested no push while a scraper Action is currently running.
+
+Local-only changes made:
+
+- `analyze_posts.py` no longer uses fixed `LDA_NUM_TOPICS`.
+- Added candidate topic range settings:
+  - `LDA_MIN_TOPICS`, default `2`
+  - `LDA_MAX_TOPICS`, default `12`
+- For each candidate topic count, the script trains an LDA model.
+- It computes an NPMI-style topic coherence score from top topic words and document co-occurrence.
+- It selects the topic count with the highest coherence score.
+- LDA output JSON now includes `topic_selection` metadata:
+  - method
+  - candidate range
+  - selected topic count
+  - selected coherence
+  - selected perplexity
+  - all candidate evaluations
+- `Run LDA Analysis` workflow now asks for `lda_min_topics` and `lda_max_topics`, not a fixed topic count.
+
+Push status:
+
+- These changes were intentionally kept local at the user's request.
+- They should be committed and pushed only after the currently running scraper Action is complete or after user approval.
+
 ## Known Limitations and Risks
 
 1. X may block GitHub Actions browser sessions or mark them suspicious.

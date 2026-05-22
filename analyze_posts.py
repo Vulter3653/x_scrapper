@@ -4,6 +4,8 @@ import os
 import re
 import sys
 from collections import Counter, defaultdict
+from itertools import combinations
+from math import log
 from pathlib import Path
 from typing import Any
 
@@ -16,7 +18,8 @@ LDA_REPORT_FILE = Path(os.getenv('LDA_REPORT_FILE', f'{PREFIX}_lda_topics.md'))
 SENTIMENT_FILE = Path(os.getenv('SENTIMENT_FILE', f'{PREFIX}_zero_shot_sentiment.json'))
 SENTIMENT_REPORT_FILE = Path(os.getenv('SENTIMENT_REPORT_FILE', f'{PREFIX}_zero_shot_sentiment.md'))
 
-LDA_NUM_TOPICS = int(os.getenv('LDA_NUM_TOPICS', '8'))
+LDA_MIN_TOPICS = int(os.getenv('LDA_MIN_TOPICS', '2'))
+LDA_MAX_TOPICS = int(os.getenv('LDA_MAX_TOPICS', '12'))
 LDA_WORDS_PER_TOPIC = int(os.getenv('LDA_WORDS_PER_TOPIC', '12'))
 LDA_MAX_FEATURES = int(os.getenv('LDA_MAX_FEATURES', '3000'))
 ANALYSIS_MAX_POSTS = int(os.getenv('ANALYSIS_MAX_POSTS', '0'))
@@ -70,8 +73,87 @@ def text_for_analysis(post: dict[str, Any]) -> str:
     return clean_text(str(post.get('text') or ''))
 
 
-def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
+def topic_npmi_score(topic_words: list[str], document_tokens: list[set[str]]) -> float:
+    pairs = list(combinations(topic_words, 2))
+    if not pairs or not document_tokens:
+        return 0.0
+
+    document_count = len(document_tokens)
+    token_document_counts = Counter()
+    pair_document_counts = Counter()
+
+    for tokens in document_tokens:
+        topic_tokens = [word for word in topic_words if word in tokens]
+        for token in topic_tokens:
+            token_document_counts[token] += 1
+        for pair in combinations(sorted(set(topic_tokens)), 2):
+            pair_document_counts[pair] += 1
+
+    scores = []
+    smoothing = 1e-12
+    for word_a, word_b in pairs:
+        pair_key = tuple(sorted((word_a, word_b)))
+        p_a = token_document_counts[word_a] / document_count
+        p_b = token_document_counts[word_b] / document_count
+        p_ab = pair_document_counts[pair_key] / document_count
+        if p_a <= 0 or p_b <= 0 or p_ab <= 0:
+            continue
+        pmi = log((p_ab + smoothing) / (p_a * p_b + smoothing))
+        npmi = pmi / (-log(p_ab + smoothing))
+        scores.append(npmi)
+
+    if not scores:
+        return 0.0
+    return sum(scores) / len(scores)
+
+
+def model_coherence_score(components, feature_names, document_tokens: list[set[str]]) -> float:
+    topic_scores = []
+    words_per_topic = min(10, len(feature_names))
+    for topic in components:
+        top_indices = topic.argsort()[-words_per_topic:][::-1]
+        topic_words = [feature_names[i] for i in top_indices]
+        topic_scores.append(topic_npmi_score(topic_words, document_tokens))
+    return sum(topic_scores) / len(topic_scores) if topic_scores else 0.0
+
+
+def choose_topic_count(source_documents: list[str], matrix, feature_names):
     from sklearn.decomposition import LatentDirichletAllocation
+
+    max_feasible_topics = max(1, min(LDA_MAX_TOPICS, len(source_documents) // 2, matrix.shape[1]))
+    min_feasible_topics = max(1, min(LDA_MIN_TOPICS, max_feasible_topics))
+    candidate_counts = list(range(min_feasible_topics, max_feasible_topics + 1))
+    document_tokens = [set(doc.split()) for doc in source_documents]
+
+    evaluations = []
+    best = None
+    for topic_count in candidate_counts:
+        lda = LatentDirichletAllocation(
+            n_components=topic_count,
+            random_state=42,
+            learning_method='batch',
+            max_iter=25,
+        )
+        topic_matrix = lda.fit_transform(matrix)
+        coherence = model_coherence_score(lda.components_, feature_names, document_tokens)
+        perplexity = float(lda.perplexity(matrix))
+        evaluation = {
+            'num_topics': topic_count,
+            'coherence_npmi': float(coherence),
+            'perplexity': perplexity,
+        }
+        evaluations.append(evaluation)
+        if best is None or coherence > best['coherence_npmi']:
+            best = {
+                **evaluation,
+                'model': lda,
+                'topic_matrix': topic_matrix,
+            }
+
+    return best, evaluations
+
+
+def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
     from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
 
     stop_words = sorted(set(ENGLISH_STOP_WORDS) | CUSTOM_STOP_WORDS)
@@ -91,7 +173,6 @@ def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
 
     source_indices = [idx for idx, _ in indexed_documents]
     source_documents = [doc for _, doc in indexed_documents]
-    topic_count = min(LDA_NUM_TOPICS, max(1, len(source_documents) // 2))
 
     vectorizer = CountVectorizer(
         stop_words=stop_words,
@@ -103,13 +184,22 @@ def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
     matrix = vectorizer.fit_transform(source_documents)
     feature_names = vectorizer.get_feature_names_out()
 
-    lda = LatentDirichletAllocation(
-        n_components=topic_count,
-        random_state=42,
-        learning_method='batch',
-        max_iter=25,
-    )
-    topic_matrix = lda.fit_transform(matrix)
+    if matrix.shape[1] < 2:
+        result = {
+            'target_user': TARGET_USER,
+            'input_file': str(INPUT_FILE),
+            'document_count': len(source_documents),
+            'topics': [],
+            'message': 'Not enough vocabulary for LDA.',
+        }
+        LDA_TOPICS_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        LDA_REPORT_FILE.write_text('# LDA Topics\n\nNot enough vocabulary for LDA.\n', encoding='utf-8')
+        return result
+
+    best_model, topic_evaluations = choose_topic_count(source_documents, matrix, feature_names)
+    lda = best_model['model']
+    topic_matrix = best_model['topic_matrix']
+    topic_count = best_model['num_topics']
 
     topics = []
     for topic_index, topic in enumerate(lda.components_):
@@ -136,11 +226,38 @@ def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
         'input_file': str(INPUT_FILE),
         'document_count': len(source_documents),
         'num_topics': topic_count,
+        'topic_selection': {
+            'method': 'NPMI coherence over candidate topic counts',
+            'min_topics': LDA_MIN_TOPICS,
+            'max_topics': LDA_MAX_TOPICS,
+            'selected_num_topics': topic_count,
+            'selected_coherence_npmi': best_model['coherence_npmi'],
+            'selected_perplexity': best_model['perplexity'],
+            'evaluations': topic_evaluations,
+        },
         'topics': topics,
     }
     LDA_TOPICS_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-    lines = [f'# LDA Topics for @{TARGET_USER}', '', f'- Documents analyzed: {len(source_documents)}', f'- Topics: {topic_count}', '']
+    lines = [
+        f'# LDA Topics for @{TARGET_USER}',
+        '',
+        f'- Documents analyzed: {len(source_documents)}',
+        f'- Selected topics: {topic_count}',
+        f"- Selection method: NPMI coherence, candidates {LDA_MIN_TOPICS}-{LDA_MAX_TOPICS}",
+        f"- Selected coherence: {best_model['coherence_npmi']:.4f}",
+        f"- Selected perplexity: {best_model['perplexity']:.4f}",
+        '',
+        '## Topic Count Evaluation',
+        '',
+    ]
+    for evaluation in topic_evaluations:
+        lines.append(
+            f"- {evaluation['num_topics']} topics: "
+            f"coherence={evaluation['coherence_npmi']:.4f}, "
+            f"perplexity={evaluation['perplexity']:.4f}"
+        )
+    lines.append('')
     for topic in topics:
         lines.append(f"## Topic {topic['topic_id']}")
         lines.append(', '.join(topic['top_terms']))

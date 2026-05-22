@@ -11,10 +11,14 @@ on:
         description: '0 means analyze all posts; use a smaller number for faster test runs'
         required: true
         default: '0'
-      lda_num_topics:
-        description: 'Number of LDA topics'
+      lda_min_topics:
+        description: 'Minimum candidate topic count for automatic selection'
         required: true
-        default: '8'
+        default: '2'
+      lda_max_topics:
+        description: 'Maximum candidate topic count for automatic selection'
+        required: true
+        default: '12'
 
 permissions:
   contents: write
@@ -52,7 +56,8 @@ jobs:
         env:
           TARGET_USER: ${{ inputs.target_user }}
           ANALYSIS_MAX_POSTS: ${{ inputs.analysis_max_posts }}
-          LDA_NUM_TOPICS: ${{ inputs.lda_num_topics }}
+          LDA_MIN_TOPICS: ${{ inputs.lda_min_topics }}
+          LDA_MAX_TOPICS: ${{ inputs.lda_max_topics }}
         run: |
           set -o pipefail
           python analyze_posts.py --task lda 2>&1 | tee lda_analysis.log

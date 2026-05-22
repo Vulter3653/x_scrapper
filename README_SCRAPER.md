@@ -67,6 +67,8 @@ GitHub Actions는 세 개 workflow로 분리되어 있습니다.
 
 - `{account}_lda_topics.json`
 - `{account}_lda_topics.md`
+
+LDA는 입력된 고정 토픽 수를 사용하지 않고, 후보 범위 안에서 여러 LDA 모델을 학습한 뒤 토픽 단어의 NPMI coherence가 가장 높은 토픽 수를 자동 선택합니다.
 - `{account}_zero_shot_sentiment.json`
 - `{account}_zero_shot_sentiment.md`
 
@@ -82,7 +84,8 @@ LDA workflow 입력값:
 
 - `target_user`: 분석 대상 계정명
 - `analysis_max_posts`: `0`이면 전체 포스트 분석, 숫자를 넣으면 최신 N개만 분석
-- `lda_num_topics`: LDA 토픽 수
+- `lda_min_topics`: 자동 선택 후보 토픽 수의 최솟값
+- `lda_max_topics`: 자동 선택 후보 토픽 수의 최댓값
 
 감성분석 workflow 입력값:
 
