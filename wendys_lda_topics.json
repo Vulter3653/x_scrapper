@@ -2,14 +2,14 @@
   "target_user": "Wendys",
   "input_file": "wendys_posts.json",
   "document_count": 867,
-  "num_topics": 11,
+  "num_topics": 6,
   "topic_selection": {
     "method": "NPMI coherence over candidate topic counts",
     "min_topics": 2,
-    "max_topics": 12,
-    "selected_num_topics": 11,
-    "selected_coherence_npmi": 0.2562967580672143,
-    "selected_perplexity": 1426.2792381398333,
+    "max_topics": 9,
+    "selected_num_topics": 6,
+    "selected_coherence_npmi": 0.20549938972788043,
+    "selected_perplexity": 1365.461219315308,
     "evaluations": [
       {
         "num_topics": 2,
@@ -50,21 +50,6 @@
         "num_topics": 9,
         "coherence_npmi": 0.1855395277898595,
         "perplexity": 1417.562960483844
-      },
-      {
-        "num_topics": 10,
-        "coherence_npmi": 0.21049277069813668,
-        "perplexity": 1426.2127033302077
-      },
-      {
-        "num_topics": 11,
-        "coherence_npmi": 0.2562967580672143,
-        "perplexity": 1426.2792381398333
-      },
-      {
-        "num_topics": 12,
-        "coherence_npmi": 0.2542811245686265,
-        "perplexity": 1500.224869924065
       }
     ]
   },
@@ -73,47 +58,47 @@
       "topic_id": 0,
       "top_terms": [
         "free",
-        "purchase",
-        "app",
         "wendy",
+        "app",
         "breakfast",
-        "small",
-        "frosty",
-        "wendy app",
-        "baconator",
-        "purchase app",
+        "purchase",
+        "dave",
+        "single",
+        "got",
+        "dave single",
         "fry",
-        "spicy"
+        "wendy app",
+        "small"
       ],
       "representative_posts": [
         {
           "id": "2039915068729541060",
           "tweet_url": "https://x.com/Wendys/status/2039915068729541060",
-          "score": 0.9797978138545242,
+          "score": 0.9814671932283073,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions."
-        },
-        {
-          "id": "2041187810728727004",
-          "tweet_url": "https://x.com/Wendys/status/2041187810728727004",
-          "score": 0.9772725994245427,
-          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
         {
           "id": "2041274861461586245",
           "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
-          "score": 0.9772725994245427,
+          "score": 0.9791509482390242,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
         {
-          "id": "2041332734883201293",
-          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
-          "score": 0.9772725994245427,
+          "id": "2041187810728727004",
+          "tweet_url": "https://x.com/Wendys/status/2041187810728727004",
+          "score": 0.9791509482390242,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
         {
           "id": "2041526924149690528",
           "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
-          "score": 0.9772725994245427,
+          "score": 0.9791509482390242,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
+        },
+        {
+          "id": "2041332734883201293",
+          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
+          "score": 0.9791509482390242,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         }
       ]
@@ -121,49 +106,49 @@
     {
       "topic_id": 1,
       "top_terms": [
-        "breakfast",
-        "tweet",
-        "big",
-        "thing",
         "free",
-        "bogo",
-        "wanna",
+        "wendy",
+        "nuggets",
+        "pc",
+        "today",
+        "free pc",
+        "ll",
+        "drive",
+        "said",
         "like",
-        "let",
-        "friends",
-        "miss",
-        "eat"
+        "tweet",
+        "bogo"
       ],
       "representative_posts": [
         {
+          "id": "1252355382657216512",
+          "tweet_url": "https://x.com/Wendys/status/1252355382657216512",
+          "score": 0.9746303246201067,
+          "text": "Not gonna lie, all this love y’all are showing has inspired us. We wish we could give you a hug, but instead…how about a nug? This Friday, we’ll be giving out free 4pc spicy and crispy nugs at every Wendy’s drive-thru.\n \nNo purchase necessary, not a single string attached."
+        },
+        {
+          "id": "1252619450748219393",
+          "tweet_url": "https://x.com/Wendys/status/1252619450748219393",
+          "score": 0.9601796498557622,
+          "text": "Come to Wendy’s drive-thru this Friday and get FREE 4pc nuggets. No purchase necessary and not a single string attached. https://t.co/tRx2bZQn2M"
+        },
+        {
           "id": "1433133572324532224",
           "tweet_url": "https://x.com/Wendys/status/1433133572324532224",
-          "score": 0.9567082653432535,
+          "score": 0.9601453433616348,
           "text": "Introducing Wendy’s BOGO $1 Big Brain Bean Bag Chair. The FIRST ever chair that transforms the knowledge of great deals into back support. And it can be YOURS! Stay tuned for deets on how to win. #BOGOBigBrain https://t.co/7wEgIhajgN"
         },
         {
-          "id": "1278388817301512195",
-          "tweet_url": "https://x.com/Wendys/status/1278388817301512195",
-          "score": 0.9567082525409675,
-          "text": "Tomorrow we’re putting these Twitter fingers to work and you won’t want to miss it. We’ll see you all bright and early as we tweet with our friends @tmcf_hbcu to talk about their organization and how we can support the Black College Community."
+          "id": "1258441499085242369",
+          "tweet_url": "https://x.com/Wendys/status/1258441499085242369",
+          "score": 0.9601080591867346,
+          "text": "Cyber Search day 4 is here. Follow a clue, DM us the code, and if you win, we'll message you back the deets for a big ol' Wendy's gift card. https://t.co/H9bM7rWONS https://t.co/9kK4uPoxOZ"
         },
         {
           "id": "1252379047335608320",
           "tweet_url": "https://x.com/Wendys/status/1252379047335608320",
-          "score": 0.9545442948365341,
+          "score": 0.958276703255889,
           "text": "We’re giving America a GroupNug this Friday. ♥ this tweet and we’ll remind you when to get your free 4pc nuggets! https://t.co/AKWHpSXdD6"
-        },
-        {
-          "id": "1252704850711842817",
-          "tweet_url": "https://x.com/Wendys/status/1252704850711842817",
-          "score": 0.9545442948365341,
-          "text": "RT @Wendys: We’re giving America a GroupNug this Friday. ♥ this tweet and we’ll remind you when to get your free 4pc nuggets! https://t.co/…"
-        },
-        {
-          "id": "1252980092113993730",
-          "tweet_url": "https://x.com/Wendys/status/1252980092113993730",
-          "score": 0.9465228052454332,
-          "text": "Everyone has become their own hairstylist. We all need a nug. This Friday ONLY, we’re giving America a big GroupNug. Get FREE 4pc nuggets when you visit our drive-thru. https://t.co/dXYeMJFsWu"
         }
       ]
     },
@@ -171,440 +156,195 @@
       "topic_id": 2,
       "top_terms": [
         "wendy",
+        "chicken",
         "frosty",
-        "codes",
+        "honey",
         "free",
-        "cyber",
-        "search",
-        "cyber search",
-        "win",
-        "ll",
-        "ve",
-        "best",
-        "did"
+        "biscuit",
+        "new",
+        "butter chicken",
+        "butter",
+        "honey butter",
+        "chicken biscuit",
+        "codes"
       ],
       "representative_posts": [
         {
           "id": "1257325300704215047",
           "tweet_url": "https://x.com/Wendys/status/1257325300704215047",
-          "score": 0.972451158926809,
+          "score": 0.9746203595213697,
           "text": "Welcome to Wendy's Cyber Search. All week we'll be sharing hints to codes hidden across the internet to win Wendy’s gift cards. Each worth a little something, some worth a lot of something. DM us the code on Twitter for your chance to win. Happy hunting! https://t.co/H9bM7rWONS"
         },
         {
-          "id": "1257082671118913537",
-          "tweet_url": "https://x.com/Wendys/status/1257082671118913537",
-          "score": 0.9604727275111998,
-          "text": "This week, we will be hiding codes. Lots of codes. Codes that will score you free Wendy's. Hidden across our entire internet presence. The clues start Monday. Think you can solve the Cyber Search? https://t.co/FB2IXQSyAq"
+          "id": "1370109813070381066",
+          "tweet_url": "https://x.com/Wendys/status/1370109813070381066",
+          "score": 0.9738822713154951,
+          "text": "It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free Honey Butter Chicken Biscuit. https://t.co/YuVPLdfMj9"
         },
         {
-          "id": "1258049228502433792",
-          "tweet_url": "https://x.com/Wendys/status/1258049228502433792",
-          "score": 0.9567090144623311,
-          "text": "For Cyber Search Day 3 we’ve hidden 9 codes totaling $1000 in free Wendy’s. You’ve got to be the first to DM us a code after we share the hint. And if you’re not first, well, we’re here all week… https://t.co/H9bM7rWONS"
+          "id": "1385655564835901449",
+          "tweet_url": "https://x.com/Wendys/status/1385655564835901449",
+          "score": 0.9738151838058893,
+          "text": "Wendy, Honey, Butter and Chicken Biscuit are on the hunt again. Watch us stream Monster Hunter Rise on Twitch and grab a Honey Butter Chicken Biscuit for a $1.99 the next time you get breakfast. https://t.co/P0GZ7DIn5g"
         },
         {
-          "id": "1395802538310606852",
-          "tweet_url": "https://x.com/Wendys/status/1395802538310606852",
-          "score": 0.9567085048827291,
-          "text": "Wendy’s Frosty-ccino is cold brew with Frosty creamer. Overwatch is a video game celebrating its 5th anniversary. Twitch is where they meet. https://t.co/P0GZ7DIn5g"
+          "id": "1425503905832701956",
+          "tweet_url": "https://x.com/Wendys/status/1425503905832701956",
+          "score": 0.9720498577169115,
+          "text": "Do you love Wendy’s? Do you love Wendy’s Spicy Nuggs? Do you also love Discord? Then you’re going to triple love our Genshin Impact stream on Twitch. Watch us live or hang out in our new Spice Club channel on Discord https://t.co/P0GZ7DIn5g"
         },
         {
-          "id": "1242110241573163016",
-          "tweet_url": "https://x.com/Wendys/status/1242110241573163016",
-          "score": 0.9521489904432835,
-          "text": "The little things can make all the difference sometimes. Get a free Jr. Frosty with every Wendy’s drive-thru order starting today. https://t.co/1divI5HhFw"
+          "id": "1379418884504236037",
+          "tweet_url": "https://x.com/Wendys/status/1379418884504236037",
+          "score": 0.9652341909700465,
+          "text": "RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…"
         }
       ]
     },
     {
       "topic_id": 3,
       "top_terms": [
-        "getting",
-        "breakfast",
-        "right",
-        "gonna",
-        "frosty",
-        "big",
-        "think",
-        "free",
-        "week",
-        "tomorrow",
+        "bacon",
+        "day",
+        "cheeseburger",
         "good",
-        "bacon"
+        "tomorrow",
+        "pretzel",
+        "getting",
+        "big",
+        "pub",
+        "right",
+        "bacon pub",
+        "pretzel bacon"
       ],
       "representative_posts": [
         {
+          "id": "1370124888049061895",
+          "tweet_url": "https://x.com/Wendys/status/1370124888049061895",
+          "score": 0.9753595350142292,
+          "text": "It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.\n\n❤️ this tweet and we’ll hit you up when it’s time to vote in each tourney round. https://t.co/rvWMGK1xv6"
+        },
+        {
+          "id": "1509591862335655943",
+          "tweet_url": "https://x.com/Wendys/status/1509591862335655943",
+          "score": 0.9721294223557906,
+          "text": "The  #BestOfTweets Brand Bracket Semifinals are here.\n\nIn this round, Conversation Starters and Iconic Mascots collide. But you pick who will advance to the finals. \n\n✈️ @Delta’s travel tips\nVS\n🍟 @Wendys infamous spice\n\nVote now!"
+        },
+        {
+          "id": "1371097041837916163",
+          "tweet_url": "https://x.com/Wendys/status/1371097041837916163",
+          "score": 0.9651797460035852,
+          "text": "RT @Wendys: It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.\n\n❤️ this twee…"
+        },
+        {
           "id": "1654276971214299136",
           "tweet_url": "https://x.com/Wendys/status/1654276971214299136",
-          "score": 0.9621201812138571,
+          "score": 0.9651618154080005,
           "text": "Dearest @Wendys — if you help promote our Remember Right Now 20 Year Anniversary Tour with a RT, we will send *you* free food for a month! [wsg on select dates: @RookieOfTheYear + @ValenciaShane + @heybobnanna] 🖤🖤🖤 TICKETS: https://t.co/5bxGHadYA7 https://t.co/JspQNpNNjr"
         },
         {
           "id": "1441794626281607179",
           "tweet_url": "https://x.com/Wendys/status/1441794626281607179",
-          "score": 0.9604738888975182,
+          "score": 0.963729936093357,
           "text": "The game of the week is finally here!\n\nCatch Notre Dame vs Wisconsin with @RJ_Young, @geoffschwartz and special guests @deshonekizer &amp; @Chris_Guwap live from Soldier Field (brought to you by @Wendys) https://t.co/hi4YcW15Ri"
-        },
-        {
-          "id": "1440121644920365059",
-          "tweet_url": "https://x.com/Wendys/status/1440121644920365059",
-          "score": 0.9567095653583412,
-          "text": "Another fun week of College Football is in the books 🙌\n\nSet a reminder to join @RJ_Young and @GeoffSchwartz tomorrow as they discuss all the biggest storylines from Week 3 (Brought to you by @Wendys) 🏈⬇️\n\nhttps://t.co/1pZF6U42I1"
-        },
-        {
-          "id": "1441797252536692744",
-          "tweet_url": "https://x.com/Wendys/status/1441797252536692744",
-          "score": 0.9545452523372844,
-          "text": "RT @CFBONFOX: The game of the week is finally here!\n\nCatch Notre Dame vs Wisconsin with @RJ_Young, @geoffschwartz and special guests @desho…"
-        },
-        {
-          "id": "1654284843490988033",
-          "tweet_url": "https://x.com/Wendys/status/1654284843490988033",
-          "score": 0.9545445208146102,
-          "text": "RT @Spitalfield98: Dearest @Wendys — if you help promote our Remember Right Now 20 Year Anniversary Tour with a RT, we will send *you* free…"
         }
       ]
     },
     {
       "topic_id": 4,
       "top_terms": [
-        "live",
-        "pm",
         "time",
-        "frosty",
-        "watch",
+        "live",
         "et",
+        "pm",
+        "breakfast",
+        "ll",
+        "frosty",
+        "wendy",
+        "know",
+        "strawberry",
         "pm et",
-        "rick",
-        "morty",
-        "just",
-        "say",
-        "tonight"
+        "croissant"
       ],
       "representative_posts": [
         {
-          "id": "1269040852350971906",
-          "tweet_url": "https://x.com/Wendys/status/1269040852350971906",
-          "score": 0.9604736151520176,
-          "text": "No🧢...all facts, @Wendys is supporting the Black College Community and we're ecstatic that their donation will provide opportunities for our #HBCU talent! Together we can make a difference!"
+          "id": "1498426568946892801",
+          "tweet_url": "https://x.com/Wendys/status/1498426568946892801",
+          "score": 0.9773667200529994,
+          "text": "Wendy’s Pick ‘Em is BACK, baby! \n\nHit the ❤️, and we’ll hit you up when it’s time to make your picks for EVERY round of March Madness. \n\nWinning picks win sweet deals, so Choose Wisely #ForTheWendys https://t.co/7l8jasWATw"
         },
         {
-          "id": "1378453149044850688",
-          "tweet_url": "https://x.com/Wendys/status/1378453149044850688",
-          "score": 0.9521529619925286,
-          "text": "#FinalFour Twitter Live presented by @Wendys is LIVE!\n\nWatch @BaylorMBB &amp; @UHCougarMBK in a Texas showdown for a #NationalChampionship spot. #MarchMadness\n\n@RexChapman | @AdamLefkoe | @bwood_33 https://t.co/fw7fOmcneX"
+          "id": "1423726854154821635",
+          "tweet_url": "https://x.com/Wendys/status/1423726854154821635",
+          "score": 0.9720317020556729,
+          "text": "Did somebody say FREE Sausage or Bacon, Egg &amp; Swiss Croissant? Yep, it was us. ❤️ this Tweet and we’ll remind you when it’s go time on Friday 8/13 and Saturday 8/14. https://t.co/pzsEgNdykw"
         },
         {
-          "id": "1375509321744719874",
-          "tweet_url": "https://x.com/Wendys/status/1375509321744719874",
-          "score": 0.9494923315384342,
-          "text": "It’s a new season of Fall Guys and we’re out to SECURE THE BAG. Get yourself a $5 Biggie Bag and come watch us grab that #1 spot on Twitch. https://t.co/P0GZ7DZXWO"
+          "id": "1510656447528542212",
+          "tweet_url": "https://x.com/Wendys/status/1510656447528542212",
+          "score": 0.9701285938315074,
+          "text": "Who do you have to WIN. IT. ALL?!  8. North Carolina or 1. Kansas?\n\nTweet your CHAMP and we’ll @ you with how you did plus send a Wendy’s offer just for you. \n\nChoose Wisely #ForTheWendys"
         },
         {
-          "id": "1550150187624046592",
-          "tweet_url": "https://x.com/Wendys/status/1550150187624046592",
-          "score": 0.9465236537097951,
-          "text": "Get your fill of Strawberry Frosty before it’s poly-gone...sorry. Also, Frosty Mountain Village is live on Horizon Worlds. https://t.co/EKBDCviiEn https://t.co/GEYnCiT2KA"
+          "id": "1504835309258817538",
+          "tweet_url": "https://x.com/Wendys/status/1504835309258817538",
+          "score": 0.9690957767294031,
+          "text": "Rounding out the first week of #BestOfTweets Brand Bracket.\n\nOn deck: top hats and hot takes. \n🥜 @MrPeanut’s nonstop nuttiness\nVS\n🍟 @Wendys infamous spice\n\nVote now!"
         },
         {
-          "id": "1493720865254428676",
-          "tweet_url": "https://x.com/Wendys/status/1493720865254428676",
-          "score": 0.9465207034043698,
-          "text": "Come hang with the cool kids while we watch @eNASCARCocaCola Series opener of the @iRacing Series at Daytona tonight! Starts at 9pm EST on Twitch. I’m cheering for @Dr_Bob41 in that Wendy’s car. 🏎 \n\nhttps://t.co/uEukJGdbM6"
+          "id": "1508851162983723016",
+          "tweet_url": "https://x.com/Wendys/status/1508851162983723016",
+          "score": 0.9679197969550941,
+          "text": "Quarterfinals of the #BestOfTweets Brand Bracket is a matter of taste.\n\nWhose Tweets satisfy your appetite? \n\n🍉 @SourPatchKids’ sweet mischief\nVS\n🍟 @Wendys infamous spice\n\nVote now!"
         }
       ]
     },
     {
       "topic_id": 5,
       "top_terms": [
-        "wendy",
-        "burger",
-        "got",
-        "nationalroastday",
-        "day",
-        "roast",
-        "don",
-        "app",
-        "order",
         "new",
-        "know",
-        "favorite"
+        "don",
+        "nationalroastday",
+        "fries",
+        "just",
+        "like",
+        "wendy",
+        "app",
+        "chicken",
+        "stream",
+        "bag",
+        "crispy"
       ],
       "representative_posts": [
         {
+          "id": "1641560467918270465",
+          "tweet_url": "https://x.com/Wendys/status/1641560467918270465",
+          "score": 0.9738594877831629,
+          "text": "Your hour starts now!\n\nFrom now until 7 PM EDT get up to ❗️$30 off❗️ when you add a Biggie Bag to your Wendy's DoorDash order. DON'T FORGET: make sure your cart has at least a $12 subtotal before you apply the code. \n\nPromo code BIGGIE"
+        },
+        {
           "id": "1435261233364615177",
           "tweet_url": "https://x.com/Wendys/status/1435261233364615177",
-          "score": 0.9663284314696491,
+          "score": 0.9690052337184133,
           "text": "Attn: ✨ 🧠  𝔹𝕀𝔾 𝔹ℝ𝔸𝕀ℕ𝕊 🧠 ✨  the Wendy’s Big Brain Bean Bag Chair is up for grabs. Compete in our Tetris 99 tournament TODAY at https://t.co/P0GZ7DIn5g @ 4 PM EST. Winner takes home this intelligent piece of furniture. https://t.co/ZKC1qBpjXc https://t.co/jx8wYbrxkq"
         },
         {
           "id": "1435333827812106244",
           "tweet_url": "https://x.com/Wendys/status/1435333827812106244",
-          "score": 0.9650340789314549,
+          "score": 0.9678005527130388,
           "text": "Use your big brain to win the right to sit on your big brain. Our Tetris 99 tournament for the Wendy’s Big Brain Bean Bag Chair starts NOW at https://t.co/P0GZ7DIn5g https://t.co/ZKC1qBpjXc"
-        },
-        {
-          "id": "1904565120010723568",
-          "tweet_url": "https://x.com/Wendys/status/1904565120010723568",
-          "score": 0.9586765209049427,
-          "text": "For all of March Madness®, get a $1 JBC or Double Stack in the Wendy’s app. Don’t worry about forgetting, we have a simple hashtag to help you remember: #DollarJBCorDoubleStackinWendysAppWithOfferLegalSaidToIncludeWithAdditionalPurchase"
-        },
-        {
-          "id": "1316077291592716289",
-          "tweet_url": "https://x.com/Wendys/status/1316077291592716289",
-          "score": 0.9586764426959669,
-          "text": "Don’t thank us, thank yourselves. 10.8K RT’s means y’all made this coupon worth up to 30% off any Wendy’s breakfast order. Use code WENDYS30 in the @UberEats app Wednesday through Friday to treat yo self. https://t.co/DSsRWbFuA6"
-        },
-        {
-          "id": "2035036863413805229",
-          "tweet_url": "https://x.com/Wendys/status/2035036863413805229",
-          "score": 0.9545441781814852,
-          "text": "A championship-caliber roster that dunks on and off the court: introducing the Official Wendy’s Dunk Team 🤝Tune in for the dunks, then try your own with the Dunk Menu, only in the app. https://t.co/ACwbEmgmQE"
-        }
-      ]
-    },
-    {
-      "topic_id": 6,
-      "top_terms": [
-        "time",
-        "ll",
-        "croissant",
-        "just",
-        "wendy",
-        "free",
-        "games",
-        "pick",
-        "biggie",
-        "got",
-        "breakfast",
-        "march"
-      ],
-      "representative_posts": [
-        {
-          "id": "1370124888049061895",
-          "tweet_url": "https://x.com/Wendys/status/1370124888049061895",
-          "score": 0.9732617333271731,
-          "text": "It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.\n\n❤️ this tweet and we’ll hit you up when it’s time to vote in each tourney round. https://t.co/rvWMGK1xv6"
-        },
-        {
-          "id": "1641560467918270465",
-          "tweet_url": "https://x.com/Wendys/status/1641560467918270465",
-          "score": 0.9715898960030842,
-          "text": "Your hour starts now!\n\nFrom now until 7 PM EDT get up to ❗️$30 off❗️ when you add a Biggie Bag to your Wendy's DoorDash order. DON'T FORGET: make sure your cart has at least a $12 subtotal before you apply the code. \n\nPromo code BIGGIE"
-        },
-        {
-          "id": "1423726854154821635",
-          "tweet_url": "https://x.com/Wendys/status/1423726854154821635",
-          "score": 0.969696294961795,
-          "text": "Did somebody say FREE Sausage or Bacon, Egg &amp; Swiss Croissant? Yep, it was us. ❤️ this Tweet and we’ll remind you when it’s go time on Friday 8/13 and Saturday 8/14. https://t.co/pzsEgNdykw"
-        },
-        {
-          "id": "1425134843923517449",
-          "tweet_url": "https://x.com/Wendys/status/1425134843923517449",
-          "score": 0.9650342547578902,
-          "text": "RT @Wendys: Did somebody say FREE Sausage or Bacon, Egg &amp; Swiss Croissant? Yep, it was us. ❤️ this Tweet and we’ll remind you when it’s go…"
-        },
-        {
-          "id": "1371097041837916163",
-          "tweet_url": "https://x.com/Wendys/status/1371097041837916163",
-          "score": 0.9621209908508912,
-          "text": "RT @Wendys: It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.\n\n❤️ this twee…"
-        }
-      ]
-    },
-    {
-      "topic_id": 7,
-      "top_terms": [
-        "wendy",
-        "new",
-        "sandwich",
-        "spicy",
-        "chicken",
-        "free",
-        "chicken sandwich",
-        "love",
-        "pc",
-        "purchase",
-        "stream",
-        "come"
-      ],
-      "representative_posts": [
-        {
-          "id": "1252355382657216512",
-          "tweet_url": "https://x.com/Wendys/status/1252355382657216512",
-          "score": 0.9724507031066246,
-          "text": "Not gonna lie, all this love y’all are showing has inspired us. We wish we could give you a hug, but instead…how about a nug? This Friday, we’ll be giving out free 4pc spicy and crispy nugs at every Wendy’s drive-thru.\n \nNo purchase necessary, not a single string attached."
-        },
-        {
-          "id": "1425503905832701956",
-          "tweet_url": "https://x.com/Wendys/status/1425503905832701956",
-          "score": 0.9696961411252354,
-          "text": "Do you love Wendy’s? Do you love Wendy’s Spicy Nuggs? Do you also love Discord? Then you’re going to triple love our Genshin Impact stream on Twitch. Watch us live or hang out in our new Spice Club channel on Discord https://t.co/P0GZ7DIn5g"
         },
         {
           "id": "1296530892731682818",
           "tweet_url": "https://x.com/Wendys/status/1296530892731682818",
-          "score": 0.9586767931486087,
+          "score": 0.9619904049628087,
           "text": "The 444 squad is heating things up in Fortnite today. Grab a new Spicy Crispy Chicken Sandwich in the 444 and check out our squad stream on Twitch. https://t.co/P0GZ7DIn5g"
         },
         {
-          "id": "1254067898349428737",
-          "tweet_url": "https://x.com/Wendys/status/1254067898349428737",
-          "score": 0.9586755269218837,
-          "text": "We gave you a GroupNug, now send some to a friend. Use Postmates code: NUGHUG and send a loved one free 10pc. nugs with free delivery fee by ordering Wendy’s through Postmates! This weekend only."
-        },
-        {
-          "id": "1252619450748219393",
-          "tweet_url": "https://x.com/Wendys/status/1252619450748219393",
-          "score": 0.9567085691186274,
-          "text": "Come to Wendy’s drive-thru this Friday and get FREE 4pc nuggets. No purchase necessary and not a single string attached. https://t.co/tRx2bZQn2M"
-        }
-      ]
-    },
-    {
-      "topic_id": 8,
-      "top_terms": [
-        "chicken",
-        "biscuit",
-        "honey",
-        "butter chicken",
-        "honey butter",
-        "butter",
-        "chicken biscuit",
-        "fries",
-        "wendy",
-        "free",
-        "french",
-        "free honey"
-      ],
-      "representative_posts": [
-        {
-          "id": "1370109813070381066",
-          "tweet_url": "https://x.com/Wendys/status/1370109813070381066",
-          "score": 0.9715902787457515,
-          "text": "It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free Honey Butter Chicken Biscuit. https://t.co/YuVPLdfMj9"
-        },
-        {
-          "id": "1385655564835901449",
-          "tweet_url": "https://x.com/Wendys/status/1385655564835901449",
-          "score": 0.971590175065397,
-          "text": "Wendy, Honey, Butter and Chicken Biscuit are on the hunt again. Watch us stream Monster Hunter Rise on Twitch and grab a Honey Butter Chicken Biscuit for a $1.99 the next time you get breakfast. https://t.co/P0GZ7DIn5g"
-        },
-        {
-          "id": "1376979649578872837",
-          "tweet_url": "https://x.com/Wendys/status/1376979649578872837",
-          "score": 0.9621206429464884,
-          "text": "What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://t.co/0xe5ukedCm"
-        },
-        {
-          "id": "1379418884504236037",
-          "tweet_url": "https://x.com/Wendys/status/1379418884504236037",
-          "score": 0.9621206429464884,
-          "text": "RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…"
-        },
-        {
-          "id": "1371831384575197186",
-          "tweet_url": "https://x.com/Wendys/status/1371831384575197186",
-          "score": 0.9621200813785348,
-          "text": "RT @Wendys: It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free…"
-        }
-      ]
-    },
-    {
-      "topic_id": 9,
-      "top_terms": [
-        "pretzel",
-        "bacon",
-        "pub",
-        "good",
-        "dave",
-        "pretzel bacon",
-        "bacon pub",
-        "dave single",
-        "single",
-        "ad",
-        "just",
-        "cheeseburger"
-      ],
-      "representative_posts": [
-        {
-          "id": "1301938615392636929",
-          "tweet_url": "https://x.com/Wendys/status/1301938615392636929",
-          "score": 0.9567072747925894,
-          "text": "We didn’t just bring back the pretzel bun, we brought you the Pretzel Bacon Pub Cheeseburger. And now Postmates will bring it to you for FREE with a $15 minimum purchase. https://t.co/eM8HxPFLq7"
-        },
-        {
-          "id": "1248679862384185347",
-          "tweet_url": "https://x.com/Wendys/status/1248679862384185347",
-          "score": 0.9431793079032633,
-          "text": "Shout out to LostMermaid. It's never too late to reply back. Even if it has been like...a year. The internet can see you. \n\nLet's grab that Free Dave's Single while we wait."
-        },
-        {
-          "id": "1318226099516678147",
-          "tweet_url": "https://x.com/Wendys/status/1318226099516678147",
-          "score": 0.9350642258757185,
-          "text": "Check out Chef @Mike_Haracz chowing down on the Pretzel Bacon Pub Cheeseburger.\n \nYeah, it’s really that good.  #WendysPretzelPubTasting https://t.co/cyvXw3yOmw"
-        },
-        {
-          "id": "1248715778649722880",
-          "tweet_url": "https://x.com/Wendys/status/1248715778649722880",
-          "score": 0.9350640628227638,
-          "text": "A relationship based solely on crocs and pineapple pizza may not be the greatest foundation, but we're willing to find out. Hit Josh with the reply mystery girl."
-        },
-        {
-          "id": "1248678101598470144",
-          "tweet_url": "https://x.com/Wendys/status/1248678101598470144",
-          "score": 0.935061977171668,
-          "text": "At times like these Braden, we just hope it wasn't Cats. \n\nNow you can cue up a movie and chill with a Free Dave's Single."
-        }
-      ]
-    },
-    {
-      "topic_id": 10,
-      "top_terms": [
-        "wendy",
-        "brand",
-        "bracket",
-        "bestoftweets",
-        "bestoftweets brand",
-        "brand bracket",
-        "wake",
-        "vote",
-        "thanks",
-        "taking",
-        "ll",
-        "meeting"
-      ],
-      "representative_posts": [
-        {
-          "id": "1510656447528542212",
-          "tweet_url": "https://x.com/Wendys/status/1510656447528542212",
-          "score": 0.967531329780502,
-          "text": "Who do you have to WIN. IT. ALL?!  8. North Carolina or 1. Kansas?\n\nTweet your CHAMP and we’ll @ you with how you did plus send a Wendy’s offer just for you. \n\nChoose Wisely #ForTheWendys"
-        },
-        {
-          "id": "1504835309258817538",
-          "tweet_url": "https://x.com/Wendys/status/1504835309258817538",
-          "score": 0.9663297512513013,
-          "text": "Rounding out the first week of #BestOfTweets Brand Bracket.\n\nOn deck: top hats and hot takes. \n🥜 @MrPeanut’s nonstop nuttiness\nVS\n🍟 @Wendys infamous spice\n\nVote now!"
-        },
-        {
-          "id": "1508851162983723016",
-          "tweet_url": "https://x.com/Wendys/status/1508851162983723016",
-          "score": 0.9650348166601082,
-          "text": "Quarterfinals of the #BestOfTweets Brand Bracket is a matter of taste.\n\nWhose Tweets satisfy your appetite? \n\n🍉 @SourPatchKids’ sweet mischief\nVS\n🍟 @Wendys infamous spice\n\nVote now!"
-        },
-        {
-          "id": "1510996113079296010",
-          "tweet_url": "https://x.com/Wendys/status/1510996113079296010",
-          "score": 0.9621205186148997,
-          "text": "Oh it’s on! @Wendys and @Skittles faced fierce competition, but now it’s time to decide once and for all who the best brand on Twitter is. And it’s all up to you.\n\nWho should win #BestOfTweets Brand Bracket ‘22?\n\n🍟 @Wendys\nVS\n🌈 @Skittles\n\nVote now!"
-        },
-        {
-          "id": "1504898843703402502",
-          "tweet_url": "https://x.com/Wendys/status/1504898843703402502",
-          "score": 0.954545211892594,
-          "text": "RT @TwitterMktg: Rounding out the first week of #BestOfTweets Brand Bracket.\n\nOn deck: top hats and hot takes. \n🥜 @MrPeanut’s nonstop nutti…"
+          "id": "1316077291592716289",
+          "tweet_url": "https://x.com/Wendys/status/1316077291592716289",
+          "score": 0.9618996384246729,
+          "text": "Don’t thank us, thank yourselves. 10.8K RT’s means y’all made this coupon worth up to 30% off any Wendy’s breakfast order. Use code WENDYS30 in the @UberEats app Wednesday through Friday to treat yo self. https://t.co/DSsRWbFuA6"
         }
       ]
     }
