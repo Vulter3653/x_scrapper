@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
@@ -23,14 +26,8 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
-          pwd
-          ls -la
-          git --version
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git status
-          git branch --show-current
-          git remote -v | sed -E 's#https://[^@]+@github.com/#https://***@github.com/#g'
 
       - name: 3. Set up Python
         uses: actions/setup-python@v5
@@ -42,12 +39,13 @@ jobs:
         run: |
           set -euxo pipefail
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install -r requirements.txt
 
       - name: 5. Run scraper
         shell: bash
         env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
           TARGET_USER: 'Wendys'
         run: |
           set -euxo pipefail
@@ -58,7 +56,6 @@ jobs:
         run: |
           set -euxo pipefail
           git status --short
-          git diff --stat || true
 
       - name: 7. Commit and push changes
         shell: bash
@@ -66,26 +63,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euxo pipefail
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes to commit. Exiting successfully."
+            echo "No changes to commit."
             exit 0
           fi
 
           git add -A
-          git commit -m "Update scraped data"
-
-          echo "Current branch:"
-          git branch --show-current
-
-          echo "Current status:"
-          git status
-
+          git commit -m "Update scraped data (Scraper mode)"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git remote -v | sed -E 's#https://[^@]+@github.com/#https://***@github.com/#g'
-
           git push origin HEAD:main

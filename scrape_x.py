@@ -1,61 +1,78 @@
-import os
+import asyncio
 import json
-import requests
+import os
+import sys
+from twikit import Client
 
-TARGET_USER = os.getenv("TARGET_USER", "Wendys")
-BEARER_TOKEN = os.getenv("X_BEARER_TOKEN")
-OUTPUT_FILE = f"{TARGET_USER.lower()}_posts.json"
+# 설정
+TARGET_USER = os.getenv('TARGET_USER', 'Wendys')
+OUTPUT_FILE = f'{TARGET_USER.lower()}_posts.json'
 
-if not BEARER_TOKEN:
-    raise RuntimeError("X_BEARER_TOKEN secret is missing.")
+# 필수 쿠키 (브라우저에서 추출 필요)
+AUTH_TOKEN = os.getenv('X_AUTH_TOKEN')
+CT0 = os.getenv('X_CT0')
 
-headers = {
-    "Authorization": f"Bearer {BEARER_TOKEN}"
-}
+async def scrape_all_tweets(client, username):
+    print(f"@{username}의 포스트 수집을 시작합니다...")
+    try:
+        user = await client.get_user_by_screen_name(username)
+        user_id = user.id
+        
+        all_tweets = []
+        # 최신 트윗 가져오기
+        tweets = await client.get_user_tweets(user_id, 'Tweets')
+        
+        while tweets:
+            for tweet in tweets:
+                all_tweets.append({
+                    'id': tweet.id,
+                    'created_at': tweet.created_at,
+                    'text': tweet.text,
+                    'retweet_count': tweet.retweet_count,
+                    'favorite_count': tweet.favorite_count,
+                    'reply_count': tweet.reply_count,
+                    'lang': tweet.lang
+                })
+            
+            print(f"현재 {len(all_tweets)}개의 포스트를 수집했습니다...")
+            
+            # 다음 페이지로 이동
+            tweets = await tweets.next()
+            if not tweets:
+                break
+                
+            # X의 탐지를 피하기 위한 지연 시간
+            await asyncio.sleep(3)
+            
+        return all_tweets
+    except Exception as e:
+        print(f"수집 중 에러 발생: {e}")
+        return None
 
-print(f"@{TARGET_USER}의 정보를 가져오는 중...")
+async def main():
+    if not AUTH_TOKEN or not CT0:
+        print("Error: X_AUTH_TOKEN 또는 X_CT0 환경 변수가 설정되지 않았습니다.")
+        sys.exit(1)
 
-# 1. username -> user id
-user_url = f"https://api.x.com/2/users/by/username/{TARGET_USER}"
-user_resp = requests.get(user_url, headers=headers, timeout=30)
-user_resp.raise_for_status()
-
-user_data = user_resp.json().get("data")
-if not user_data:
-    raise RuntimeError(f"User @{TARGET_USER}를 찾을 수 없습니다.")
-
-user_id = user_data["id"]
-
-# 2. user id -> tweets
-tweets_url = f"https://api.x.com/2/users/{user_id}/tweets"
-params = {
-    "max_results": 100,
-    "tweet.fields": "created_at,lang,public_metrics"
-}
-
-all_tweets = []
-pagination_token = None
-
-print("포스트 수집 시작...")
-
-while True:
-    if pagination_token:
-        params["pagination_token"] = pagination_token
-
-    resp = requests.get(tweets_url, headers=headers, params=params, timeout=30)
-    resp.raise_for_status()
-
-    data = resp.json()
-    tweets = data.get("data", [])
-    all_tweets.extend(tweets)
+    client = Client('en-US')
     
-    print(f"현재 {len(all_tweets)}개의 포스트를 수집했습니다...")
+    # 쿠키를 직접 주입 (로그인 과정 생략)
+    client.set_cookies({
+        'auth_token': AUTH_TOKEN,
+        'ct0': CT0
+    })
+    
+    print("쿠키를 사용하여 세션을 설정했습니다.")
 
-    pagination_token = data.get("meta", {}).get("next_token")
-    if not pagination_token or not tweets:
-        break
+    tweets = await scrape_all_tweets(client, TARGET_USER)
+    
+    if tweets is not None:
+        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+            json.dump(tweets, f, ensure_ascii=False, indent=4)
+        print(f"완료! 총 {len(tweets)}개의 포스트가 {OUTPUT_FILE}에 저장되었습니다.")
+    else:
+        print("수집에 실패했습니다.")
+        sys.exit(1)
 
-with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    json.dump(all_tweets, f, ensure_ascii=False, indent=4)
-
-print(f"완료! 총 {len(all_tweets)}개의 포스트가 {OUTPUT_FILE}에 저장되었습니다.")
+if __name__ == "__main__":
+    asyncio.run(main())
