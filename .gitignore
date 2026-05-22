@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+credentials.json
+cookies.json
+*_posts.json
+.idx/

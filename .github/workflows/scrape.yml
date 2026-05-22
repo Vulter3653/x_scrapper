@@ -1,0 +1,39 @@
+name: Daily X Scraper
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 매일 자정(UTC)에 실행
+  workflow_dispatch: # 수동 실행 버튼 활성화
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install twikit
+
+      - name: Run Scraper
+        env:
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_EMAIL: ${{ secrets.X_EMAIL }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          TARGET_USER: 'Wendys'
+        run: python scrape_x.py
+
+      - name: Commit and Push results
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add wendys_posts.json cookies.json
+          git commit -m "Update scraped data [skip ci]" || echo "No changes to commit"
+          git push
