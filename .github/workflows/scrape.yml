@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   scrape:
@@ -37,10 +37,11 @@ jobs:
         run: python scrape_x.py
 
       - name: Commit and Push results
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Update scraped data [skip ci]"
-          file_pattern: '*_posts.json cookies.json'
-          commit_user_name: 'github-actions[bot]'
-          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          # 결과 파일과 쿠키 파일을 강제로 추가 (gitignore 무시)
+          git add *_posts.json
+          git add -f cookies.json || echo "No cookies.json to add"
+          git commit -m "Update scraped data [skip ci]" || echo "No changes to commit"
+          git push origin main
