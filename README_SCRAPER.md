@@ -52,6 +52,33 @@ python scrape_x.py
 
 워크플로우는 최대 6시간 실행되며 결과 파일과 상태 파일을 커밋합니다. 실행 도중 타임아웃되더라도 마지막으로 저장된 페이지까지는 워크스페이스에 기록되지만, GitHub Actions가 강제 종료되면 커밋 단계까지 도달하지 못할 수 있습니다. 이 경우 같은 입력값으로 다시 실행하면 저장소에 남은 상태 파일 기준으로 이어받습니다.
 
+
+## LDA 및 Zero-Shot 감성분석
+
+GitHub Actions에서 `run_analysis=true`로 실행하면 스크래핑 후 자동으로 분석을 수행합니다.
+
+분석 결과 파일:
+
+- `{account}_lda_topics.json`
+- `{account}_lda_topics.md`
+- `{account}_zero_shot_sentiment.json`
+- `{account}_zero_shot_sentiment.md`
+
+예: `target_user=Wendys`이면 `wendys_lda_topics.json`, `wendys_zero_shot_sentiment.json`이 생성됩니다.
+
+Zero-shot 감성분석 기본값:
+
+- 모델: `typeform/distilbert-base-uncased-mnli`
+- 후보 라벨: `positive`, `neutral`, `negative`
+- 기준 문장: `This post expresses a {} sentiment.`
+
+Actions 입력값:
+
+- `run_analysis`: `true`이면 LDA와 zero-shot 감성분석 실행
+- `analysis_max_posts`: `0`이면 전체 포스트 분석, 숫자를 넣으면 최신 N개만 분석
+
+GitHub Actions 무료 실행 시간을 줄이고 싶으면 `analysis_max_posts=300`처럼 먼저 샘플 분석을 권장합니다. 전체 분석은 모델 다운로드와 zero-shot 추론 때문에 시간이 더 걸립니다.
+
 ## 결과 파일
 
 `wendys_posts.json`은 다음 필드를 포함합니다.

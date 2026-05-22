@@ -19,6 +19,18 @@ on:
         description: 'Stop after this many scrolls without new posts'
         required: true
         default: '60'
+      run_analysis:
+        description: 'Run LDA and zero-shot sentiment after scraping'
+        required: true
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+        default: 'true'
+      analysis_max_posts:
+        description: '0 means analyze all posts; use a smaller number for faster zero-shot runs'
+        required: true
+        default: '0'
 
 permissions:
   contents: write
@@ -99,13 +111,31 @@ jobs:
           fi
           rm -f scraper.log scraper_failure.log
 
-      - name: 6. Inspect changed files
+      - name: 6. Run LDA and zero-shot sentiment analysis
+        if: ${{ inputs.run_analysis == 'true' }}
+        shell: bash
+        env:
+          TARGET_USER: ${{ inputs.target_user }}
+          ANALYSIS_MAX_POSTS: ${{ inputs.analysis_max_posts }}
+        run: |
+          set -o pipefail
+          python analyze_posts.py 2>&1 | tee analysis.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            tail -n 60 analysis.log
+            last_error=$(tail -n 1 analysis.log | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+            echo "::error title=Analysis failed::$last_error"
+            exit "$status"
+          fi
+          rm -f analysis.log
+
+      - name: 7. Inspect changed files
         shell: bash
         run: |
           set -euxo pipefail
           git status --short
 
-      - name: 7. Commit and push results
+      - name: 8. Commit and push results
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
