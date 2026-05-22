@@ -40,20 +40,20 @@ jobs:
 
       - name: Commit and Push results
         run: |
-          # Git 보안 설정 (128 에러 해결책)
-          git config --global --add safe.directory /github/workspace
+          set -x  # 실행되는 모든 명령어를 로그에 출력 (디버깅용)
           
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # 변경사항 확인 및 커밋
+          # 파일 추가 (결과 JSON 및 쿠키)
           git add -A
-          # cookies.json 등 무시된 파일이 있을 수 있으므로 강제 추가 시도
-          git add -f cookies.json || echo "No cookies.json"
+          git add -f cookies.json || true
           
-          if git diff-index --quiet HEAD --; then
-            echo "No changes to commit"
-          else
+          # 변경 사항이 있는지 확인 후 커밋 및 푸시
+          if [ -n "$(git status --porcelain)" ]; then
             git commit -m "Update scraped data [skip ci]"
-            git push origin main
+            # 토큰을 URL에 명시적으로 포함하여 푸시 (권한 문제 원천 차단)
+            git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main
+          else
+            echo "No changes to commit"
           fi
