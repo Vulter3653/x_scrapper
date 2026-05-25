@@ -374,6 +374,75 @@ Verification required after Cloudflare Pages deployment:
 - Confirm automatic insights appear in Korean.
 - Confirm CSV export still works.
 
+## Dashboard Stability Hotfix
+
+Date: 2026-05-26
+
+The user reported that site stability had decreased after adding brand-level visualization overlays. The observed behavior was that individual brand tabs repeatedly switched back and forth with the all-brand view.
+
+### Cause
+
+The instability was caused by external DOM overlay scripts that were added outside the React state lifecycle:
+
+- `dashboard/brand-view-ko.js`
+- `dashboard/humor-matrix.js`
+
+The `brand-view-ko.js` overlay used a `MutationObserver` to watch React-rendered DOM and then inserted/remounted additional visual sections. Because React also re-rendered the same area after tab changes and localization updates, this created a feedback loop:
+
+```text
+React tab state update
+→ DOM changes
+→ external MutationObserver runs
+→ overlay inserts/removes DOM
+→ React/localization DOM changes again
+→ tab view appears to oscillate between all-brand and brand-specific content
+```
+
+### Stabilization Action
+
+To restore dashboard stability, the external overlay scripts were removed from `dashboard/index.html`.
+
+Removed runtime scripts:
+
+```html
+<script src="humor-matrix.js?...">
+<script src="brand-view-ko.js?...">
+```
+
+The stable version now loads only:
+
+```html
+<script src="app.js?v=20260526-stable-tabs"></script>
+<script src="localize-ko.js?v=20260526-stable-tabs"></script>
+```
+
+This ensures that tab state and brand-specific analysis scope are controlled only by the main React app.
+
+Related commit:
+
+```text
+bb24dd8194a5061e0b1467380428954b97ef1ab5 Stabilize dashboard tabs by removing DOM overlay scripts
+```
+
+### Result
+
+The dashboard should no longer oscillate between `All Brands` and brand-specific tabs. The current stable behavior is:
+
+- `All Brands` tab: integrated all-brand analysis and cross-brand comparison.
+- `Wendy's`, `Coca-Cola`, `MoonPie` tabs: analysis sections are scoped to the selected brand by the React app.
+
+### Follow-Up Implementation Guidance
+
+Future brand-level visualizations, including the HSQ 2×2 humor matrix, should be implemented directly inside `dashboard/app.js` as React components rather than by external DOM injection scripts.
+
+Recommended stable approach:
+
+- Add `BrandScopeSummary` as a React component.
+- Add `HumorQuadrantMatrix` as a React component.
+- Render these components conditionally based on the existing `selected` React state.
+- Avoid external `MutationObserver` scripts for UI insertion.
+- Avoid manipulating `.content` or `.tabs` outside React.
+
 ## Commit Notes
 
 The dashboard refactor was committed through GitHub file updates. Because each file update through the contents API creates an individual commit, the React redesign appears across multiple commits rather than one local squashed commit.
@@ -390,6 +459,7 @@ Fix dashboard app syntax error
 Bump dashboard app cache after syntax fix
 Add Korean localization layer for dashboard
 Load Korean dashboard localization layer
+Stabilize dashboard tabs by removing DOM overlay scripts
 ```
 
 ## Follow-Up Recommendations
@@ -400,3 +470,4 @@ Load Korean dashboard localization layer
 4. Consider adding sampling audit logic for zero-shot sentiment and HSQ humor classification quality checks.
 5. Add a dashboard syntax validation step or preview smoke test before future dashboard pushes.
 6. If deeper Korean localization is required, replace the presentation-layer translation file with source-level Korean strings in `dashboard/app.js`.
+7. Re-implement brand-level visualization and 2×2 humor matrix inside the React component tree instead of as DOM overlays.
