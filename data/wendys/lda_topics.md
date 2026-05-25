@@ -21,8 +21,8 @@
 free, wendy, app, breakfast, purchase, dave, single, got, dave single, fry, wendy app, small
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
-- [2041332734883201293](https://x.com/Wendys/status/2041332734883201293): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 - [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 
 ## Topic 1
 free, wendy, nuggets, pc, today, free pc, ll, drive, said, like, tweet, bogo
@@ -41,7 +41,7 @@ wendy, chicken, frosty, honey, free, biscuit, new, butter chicken, butter, honey
 - [1385655564835901449](https://x.com/Wendys/status/1385655564835901449): Wendy, Honey, Butter and Chicken Biscuit are on the hunt again. Watch us stream Monster Hunter Rise on Twitch and grab a Honey Butter Chicken Biscuit for a $1.99 the next time you get breakfast. https://t.co/P0GZ7DIn5g
 
 ## Topic 3
-bacon, day, cheeseburger, good, tomorrow, pretzel, getting, big, pub, right, pretzel bacon, bacon pub
+bacon, day, cheeseburger, good, tomorrow, pretzel, getting, big, pub, right, bacon pub, pretzel bacon
 
 - [1370124888049061895](https://x.com/Wendys/status/1370124888049061895): It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.
 

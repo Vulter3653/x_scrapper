@@ -14,17 +14,17 @@
       {
         "num_topics": 2,
         "coherence_npmi": 0.10536947159908697,
-        "perplexity": 1158.495935000006
+        "perplexity": 1158.495935000003
       },
       {
         "num_topics": 3,
         "coherence_npmi": 0.13299222199654867,
-        "perplexity": 1238.424591491197
+        "perplexity": 1238.424591491198
       },
       {
         "num_topics": 4,
         "coherence_npmi": 0.18617444508550607,
-        "perplexity": 1273.2065569732845
+        "perplexity": 1273.2065569732858
       },
       {
         "num_topics": 5,
@@ -39,7 +39,7 @@
       {
         "num_topics": 7,
         "coherence_npmi": 0.20027968074004304,
-        "perplexity": 1379.6077864697738
+        "perplexity": 1379.6077864697713
       },
       {
         "num_topics": 8,
@@ -78,12 +78,6 @@
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions."
         },
         {
-          "id": "2041332734883201293",
-          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
-          "score": 0.9791509482390242,
-          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
-        },
-        {
           "id": "2041274861461586245",
           "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
           "score": 0.9791509482390242,
@@ -98,6 +92,12 @@
         {
           "id": "2041526924149690528",
           "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
+          "score": 0.9791509482390242,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
+        },
+        {
+          "id": "2041332734883201293",
+          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
           "score": 0.9791509482390242,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         }
@@ -141,7 +141,7 @@
         {
           "id": "1258441499085242369",
           "tweet_url": "https://x.com/Wendys/status/1258441499085242369",
-          "score": 0.9601080591867347,
+          "score": 0.9601080591867346,
           "text": "Cyber Search day 4 is here. Follow a clue, DM us the code, and if you win, we'll message you back the deets for a big ol' Wendy's gift card. https://t.co/H9bM7rWONS https://t.co/9kK4uPoxOZ"
         },
         {
@@ -194,10 +194,10 @@
           "text": "Do you love Wendy’s? Do you love Wendy’s Spicy Nuggs? Do you also love Discord? Then you’re going to triple love our Genshin Impact stream on Twitch. Watch us live or hang out in our new Spice Club channel on Discord https://t.co/P0GZ7DIn5g"
         },
         {
-          "id": "1376979649578872837",
-          "tweet_url": "https://x.com/Wendys/status/1376979649578872837",
+          "id": "1379418884504236037",
+          "tweet_url": "https://x.com/Wendys/status/1379418884504236037",
           "score": 0.9652341909700465,
-          "text": "What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://t.co/0xe5ukedCm"
+          "text": "RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…"
         }
       ]
     },
@@ -214,8 +214,8 @@
         "big",
         "pub",
         "right",
-        "pretzel bacon",
-        "bacon pub"
+        "bacon pub",
+        "pretzel bacon"
       ],
       "representative_posts": [
         {
