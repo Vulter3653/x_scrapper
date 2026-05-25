@@ -75,7 +75,7 @@ Captain: Haha yeah
 - [1006210484004184067](https://x.com/MoonPie/status/1006210484004184067): We've worked really hard for like 100 years to get people to remember our brand name so if it's cool with everyone we're just going to stick with MoonPie thank you
 
 ## Topic 2
-tweet, day, like, moonpies, today, twitter, social, account, social media, media, time, ve
+tweet, day, like, moonpies, today, twitter, social, account, media, social media, time, ve
 
 - [913052856990814208](https://x.com/MoonPie/status/913052856990814208): This account has been asked to test Twitter's new 280 character limit, but as a 100-year-old brand, we believe our fans most enjoy traditional tweets with brevity, so we declined. We hope to continue to provide a fun, positive place to discuss MoonPies moving forward. Thank you.
 - [928074891022229505](https://x.com/MoonPie/status/928074891022229505): We’ve been informed that this account has been given the 280 character limit despite our public protest. While we’re still deciding on our next course of action, we will work to ensure our tweets continue fall under the traditional 140 characters that all of us enjoy. Thank you. https://t.co/fOuBQ8iyEY

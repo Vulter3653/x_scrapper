@@ -14,17 +14,17 @@
       {
         "num_topics": 2,
         "coherence_npmi": 0.04415888684660083,
-        "perplexity": 866.6641763378059
+        "perplexity": 866.6641763378043
       },
       {
         "num_topics": 3,
         "coherence_npmi": 0.05113784074060911,
-        "perplexity": 960.846998479577
+        "perplexity": 960.8469984795762
       },
       {
         "num_topics": 4,
         "coherence_npmi": 0.056455403358199915,
-        "perplexity": 1042.609777702541
+        "perplexity": 1042.609777702543
       },
       {
         "num_topics": 5,
@@ -163,8 +163,8 @@
         "twitter",
         "social",
         "account",
-        "social media",
         "media",
+        "social media",
         "time",
         "ve"
       ],
