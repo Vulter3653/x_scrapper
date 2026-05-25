@@ -2,7 +2,7 @@ name: Scrape X Posts
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '1 15 * * *'
   workflow_dispatch:
     inputs:
       target_user:
@@ -50,7 +50,7 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: 3. Install dependencies
+      - name: 3. Install scraper dependencies
         shell: bash
         run: |
           set -euxo pipefail
@@ -101,19 +101,46 @@ jobs:
           fi
           rm -f scraper.log scraper_failure.log
 
-      - name: 6. Sync dashboard data
+      - name: 6. Install analysis dependencies
+        shell: bash
+        run: |
+          set -euxo pipefail
+          pip install -r requirements-lda.txt
+          pip install -r requirements-sentiment.txt
+
+      - name: 7. Run LDA and sentiment analysis
+        shell: bash
+        env:
+          TARGET_USER: ${{ matrix.target_user }}
+          ANALYSIS_MAX_POSTS: '0'
+          LDA_MIN_TOPICS: '2'
+          LDA_MAX_TOPICS: '9'
+          SENTIMENT_LABELS: 'positive,neutral,negative'
+        run: |
+          set -o pipefail
+          python analyze_posts.py --task all 2>&1 | tee analysis.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            tail -n 60 analysis.log
+            last_error=$(tail -n 1 analysis.log | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+            echo "::error title=Analysis failed::$last_error"
+            exit "$status"
+          fi
+          rm -f analysis.log
+
+      - name: 8. Sync dashboard data
         shell: bash
         run: |
           set -euxo pipefail
           python sync_dashboard_data.py
 
-      - name: 7. Inspect changed files
+      - name: 9. Inspect changed files
         shell: bash
         run: |
           set -euxo pipefail
           git status --short
 
-      - name: 8. Commit and push scrape results
+      - name: 10. Commit and push scrape and analysis results
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -129,7 +156,7 @@ jobs:
           fi
 
           git add -A
-          git commit -m "Update scraped X posts for ${{ matrix.target_user }}"
+          git commit -m "Update scraped and analyzed X data for ${{ matrix.target_user }}"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
           for attempt in 1 2 3; do

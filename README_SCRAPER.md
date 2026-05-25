@@ -36,7 +36,7 @@ python scrape_x.py
 
 ## GitHub Actions 즉시 실행
 
-현재 `Scrape X Posts` 워크플로우는 매일 UTC 03:00에 자동 실행됩니다. 스케줄 실행에서는 `Wendys`, `CocaCola`, `MoonPie`를 matrix로 병렬 수집하고, 수동 실행에서는 입력한 `target_user` 한 계정만 수집합니다.
+현재 `Scrape X Posts` 워크플로우는 매일 한국시간 00:01(KST)에 자동 실행됩니다. GitHub Actions cron 기준으로는 전날 UTC 15:01입니다. 스케줄 실행에서는 `Wendys`, `CocaCola`, `MoonPie`를 matrix로 병렬 수집하고, 수동 실행에서는 입력한 `target_user` 한 계정만 수집합니다.
 
 필수 repository secrets:
 
@@ -45,9 +45,11 @@ python scrape_x.py
 
 자동 스케줄:
 
-- cron: `0 3 * * *`
+- cron: `1 15 * * *` UTC, 즉 한국시간 매일 00:01
 - 대상: `Wendys`, `CocaCola`, `MoonPie`
 - 각 계정 job은 병렬 matrix로 실행되며, push 충돌 시 rebase 후 재시도합니다.
+- 수집이 끝나면 같은 job에서 LDA와 zero-shot 감성분석을 자동 실행합니다.
+- 자동 LDA coherence 후보 범위는 최소 2개, 최대 9개 토픽입니다.
 
 권장 수동 실행 입력값:
 
@@ -91,7 +93,7 @@ LDA workflow 입력값:
 - `target_user`: 분석 대상 계정명
 - `analysis_max_posts`: `0`이면 전체 포스트 분석, 숫자를 넣으면 최신 N개만 분석
 - `lda_min_topics`: 자동 선택 후보 토픽 수의 최솟값
-- `lda_max_topics`: 자동 선택 후보 토픽 수의 최댓값
+- `lda_max_topics`: 자동 선택 후보 토픽 수의 최댓값, 기본값 `9`
 
 감성분석 workflow 입력값:
 

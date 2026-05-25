@@ -1001,3 +1001,27 @@ Validation planned/completed:
 - `python -m py_compile scrape_x.py analyze_posts.py sync_dashboard_data.py`
 - `git diff --check`
 - Local HTTP checks for MoonPie dashboard data paths.
+
+
+### KST 00:01 Daily Scrape and Automatic Analysis
+
+Date: 2026-05-25
+
+User requested changing the daily scrape schedule to Korean time 00:01 and automatically running analysis after collection, including LDA coherence search from 2 to 9 topics.
+
+Changes made:
+
+- Changed `Scrape X Posts` schedule from `0 3 * * *` UTC to `1 15 * * *` UTC.
+- This corresponds to Korean time 00:01 every day.
+- Kept scheduled matrix targets: `Wendys`, `CocaCola`, and `MoonPie`.
+- Added automatic analysis after the scraper step in the same workflow job.
+- The automatic analysis runs `python analyze_posts.py --task all`, so it generates/updates both LDA and zero-shot sentiment outputs.
+- Set automatic LDA candidate range to `LDA_MIN_TOPICS=2` and `LDA_MAX_TOPICS=9`.
+- Updated the standalone `Run LDA Analysis` workflow default max topic count from 12 to 9.
+- Updated README schedule and analysis documentation.
+
+Validation completed:
+
+- `python -m py_compile scrape_x.py analyze_posts.py sync_dashboard_data.py` passed.
+- `node --check dashboard/app.js` passed.
+- `git diff --check` passed.

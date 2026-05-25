@@ -18,7 +18,7 @@ on:
       lda_max_topics:
         description: 'Maximum candidate topic count for automatic selection'
         required: true
-        default: '12'
+        default: '9'
 
 permissions:
   contents: write
