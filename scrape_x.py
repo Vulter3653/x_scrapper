@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import traceback
+import re
 from pathlib import Path
 from typing import Any
 
@@ -11,8 +12,10 @@ from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 from playwright.async_api import async_playwright
 
 TARGET_USER = os.getenv('TARGET_USER', 'Wendys').lstrip('@')
-OUTPUT_FILE = Path(os.getenv('OUTPUT_FILE', f'{TARGET_USER.lower()}_posts.json'))
-STATE_FILE = Path(os.getenv('STATE_FILE', f'{TARGET_USER.lower()}_scrape_state.json'))
+BRAND_SLUG = re.sub(r'[^a-z0-9]+', '', TARGET_USER.lower()) or 'brand'
+BRAND_DIR = Path(os.getenv('BRAND_DIR', Path('data') / BRAND_SLUG))
+OUTPUT_FILE = Path(os.getenv('OUTPUT_FILE', BRAND_DIR / 'posts.json'))
+STATE_FILE = Path(os.getenv('STATE_FILE', BRAND_DIR / 'scrape_state.json'))
 HEADLESS = os.getenv('HEADLESS', 'true').lower() in {'1', 'true', 'yes'}
 MAX_SCROLLS = int(os.getenv('MAX_SCROLLS', '2500'))
 SCROLL_DELAY_SECONDS = float(os.getenv('SCROLL_DELAY_SECONDS', '1.25'))
@@ -32,6 +35,7 @@ def load_json(path: Path, default: Any) -> Any:
 
 
 def save_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_suffix(path.suffix + '.tmp')
     with tmp_path.open('w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False, indent=2)

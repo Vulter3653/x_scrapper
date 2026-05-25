@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       target_user:
-        description: 'X screen name whose *_posts.json should be analyzed'
+        description: 'X screen name whose data/<account>/posts.json should be analyzed'
         required: true
         default: 'Wendys'
       analysis_max_posts:

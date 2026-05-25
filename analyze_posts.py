@@ -11,12 +11,13 @@ from typing import Any
 
 
 TARGET_USER = os.getenv('TARGET_USER', 'Wendys').lstrip('@')
-PREFIX = TARGET_USER.lower()
-INPUT_FILE = Path(os.getenv('INPUT_FILE', f'{PREFIX}_posts.json'))
-LDA_TOPICS_FILE = Path(os.getenv('LDA_TOPICS_FILE', f'{PREFIX}_lda_topics.json'))
-LDA_REPORT_FILE = Path(os.getenv('LDA_REPORT_FILE', f'{PREFIX}_lda_topics.md'))
-SENTIMENT_FILE = Path(os.getenv('SENTIMENT_FILE', f'{PREFIX}_zero_shot_sentiment.json'))
-SENTIMENT_REPORT_FILE = Path(os.getenv('SENTIMENT_REPORT_FILE', f'{PREFIX}_zero_shot_sentiment.md'))
+PREFIX = re.sub(r'[^a-z0-9]+', '', TARGET_USER.lower()) or 'brand'
+BRAND_DIR = Path(os.getenv('BRAND_DIR', Path('data') / PREFIX))
+INPUT_FILE = Path(os.getenv('INPUT_FILE', BRAND_DIR / 'posts.json'))
+LDA_TOPICS_FILE = Path(os.getenv('LDA_TOPICS_FILE', BRAND_DIR / 'lda_topics.json'))
+LDA_REPORT_FILE = Path(os.getenv('LDA_REPORT_FILE', BRAND_DIR / 'lda_topics.md'))
+SENTIMENT_FILE = Path(os.getenv('SENTIMENT_FILE', BRAND_DIR / 'zero_shot_sentiment.json'))
+SENTIMENT_REPORT_FILE = Path(os.getenv('SENTIMENT_REPORT_FILE', BRAND_DIR / 'zero_shot_sentiment.md'))
 
 LDA_MIN_TOPICS = int(os.getenv('LDA_MIN_TOPICS', '2'))
 LDA_MAX_TOPICS = int(os.getenv('LDA_MAX_TOPICS', '12'))
@@ -50,11 +51,15 @@ CUSTOM_STOP_WORDS = {
 
 
 def load_posts() -> list[dict[str, Any]]:
-    if not INPUT_FILE.exists():
+    input_file = INPUT_FILE
+    legacy_file = Path(f'{PREFIX}_posts.json')
+    if not input_file.exists() and legacy_file.exists():
+        input_file = legacy_file
+    if not input_file.exists():
         raise FileNotFoundError(f'Input file not found: {INPUT_FILE}')
-    posts = json.loads(INPUT_FILE.read_text(encoding='utf-8'))
+    posts = json.loads(input_file.read_text(encoding='utf-8'))
     if not isinstance(posts, list):
-        raise ValueError(f'Expected list in {INPUT_FILE}')
+        raise ValueError(f'Expected list in {input_file}')
     if ANALYSIS_MAX_POSTS > 0:
         return posts[:ANALYSIS_MAX_POSTS]
     return posts
@@ -154,6 +159,8 @@ def choose_topic_count(source_documents: list[str], matrix, feature_names):
 
 
 def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    LDA_TOPICS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    LDA_REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
     from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
 
     stop_words = sorted(set(ENGLISH_STOP_WORDS) | CUSTOM_STOP_WORDS)
@@ -270,6 +277,8 @@ def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    SENTIMENT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    SENTIMENT_REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
     from transformers import pipeline
 
     cached: dict[str, Any] = {}

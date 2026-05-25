@@ -951,3 +951,28 @@ Validation completed:
 Verification limitation:
 
 - Headless Chromium screenshot capture timed out in this workspace, so visual verification relied on DOM/Canvas render mocks and local HTTP checks.
+
+
+### Brand Folder Data Storage
+
+Date: 2026-05-25
+
+User requested saving outputs by company folder instead of flat root-level files.
+
+Changes made:
+
+- Changed scraper defaults from `{account}_posts.json` and `{account}_scrape_state.json` to `data/<account>/posts.json` and `data/<account>/scrape_state.json`.
+- Changed analysis defaults from flat LDA/sentiment result files to `data/<account>/lda_topics.json`, `data/<account>/lda_topics.md`, `data/<account>/zero_shot_sentiment.json`, and `data/<account>/zero_shot_sentiment.md`.
+- Updated dashboard data paths to read from `dashboard/data/<account>/...`.
+- Reworked `sync_dashboard_data.py` to copy `data/<account>/` into `dashboard/data/<account>/`.
+- Added a legacy migration path so old flat files, if present, are copied into `data/<account>/` before dashboard sync.
+- Migrated current Wendy's and Coca-Cola JSON outputs into `data/wendys/`, `data/cocacola/`, `dashboard/data/wendys/`, and `dashboard/data/cocacola/`.
+- Removed tracked flat JSON outputs from the repo so the canonical structure is company-folder based.
+- Updated README and workflow input descriptions to reference the new folder layout.
+
+Validation completed:
+
+- `python -m py_compile scrape_x.py analyze_posts.py sync_dashboard_data.py` passed.
+- `node --check dashboard/app.js` passed.
+- `git diff --check` passed.
+- `python sync_dashboard_data.py` migrated and copied 8 current data files into brand folders.

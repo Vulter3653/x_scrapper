@@ -1,18 +1,18 @@
 const accounts = {
   wendys: {
     label: "Wendy's",
-    posts: 'data/wendys_posts.json',
-    lda: 'data/wendys_lda_topics.json',
-    sentiment: 'data/wendys_zero_shot_sentiment.json',
-    scrapeState: 'data/wendys_scrape_state.json',
+    posts: 'data/wendys/posts.json',
+    lda: 'data/wendys/lda_topics.json',
+    sentiment: 'data/wendys/zero_shot_sentiment.json',
+    scrapeState: 'data/wendys/scrape_state.json',
     color: '#E2231A'
   },
   cocacola: {
     label: 'Coca-Cola',
-    posts: 'data/cocacola_posts.json',
-    lda: 'data/cocacola_lda_topics.json',
-    sentiment: 'data/cocacola_zero_shot_sentiment.json',
-    scrapeState: 'data/cocacola_scrape_state.json',
+    posts: 'data/cocacola/posts.json',
+    lda: 'data/cocacola/lda_topics.json',
+    sentiment: 'data/cocacola/zero_shot_sentiment.json',
+    scrapeState: 'data/cocacola/scrape_state.json',
     color: '#111827'
   }
 };
@@ -469,7 +469,7 @@ function renderDescriptiveCards(posts) {
 }
 
 function colorAt(index) {
-  return ['#d6223a', '#227c91', '#2d7d5f', '#b57912', '#607076', '#2d7d5f'][index % 6];
+  return ['#E2231A', '#111827', '#2563EB', '#16A34A', '#F97316', '#94A3B8', '#DC2626', '#475569'][index % 8];
 }
 
 
@@ -567,7 +567,7 @@ function drawStackedShare(canvas, groups, categories) {
     ctx.fillRect(x, y - 8, 9, 9);
     ctx.fillStyle = '#64748B';
     ctx.font = canvasFont(width, 11);
-    ctx.fillText(shortLabel(cat, 10), x + 13, y);
+    ctx.fillText(shortLabel(cat, width < 420 ? 8 : 12), x + 13, y);
   });
   state.charts[canvas.id] = { type: 'bar', points };
 }
@@ -675,8 +675,28 @@ function renderDescriptives(posts) {
   safeChart('sentimentBrandChart', () => drawStackedShare(el('sentimentBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: sentimentBucket(post.sentiment_label) }))])), ['positive', 'neutral', 'negative', 'other']));
   const topicCats = [...new Set(posts.filter((post) => post.topic_id !== null).map((post) => `Topic ${post.topic_id}`))].slice(0, 8);
   safeChart('topicBrandChart', () => drawStackedShare(el('topicBrandChart'), new Map([...groupBy(posts, (post) => post.brand).entries()].map(([brand, rows]) => [brand, rows.map((post) => ({ category: post.topic_id === null ? 'Unknown' : `Topic ${post.topic_id}` }))])), topicCats));
+  renderTopicShareLegend(posts, topicCats);
 }
 
+function renderTopicShareLegend(posts, topicCats) {
+  const container = el('topicShareLegend');
+  if (!container) return;
+  if (!posts.length || !topicCats.length) {
+    container.innerHTML = '<div class="empty">No data available for this section</div>';
+    return;
+  }
+  const total = posts.filter((post) => post.topic_id !== null).length || 1;
+  container.innerHTML = topicCats.map((topicLabel, index) => {
+    const id = Number(String(topicLabel).replace('Topic ', ''));
+    const rows = posts.filter((post) => post.topic_id === id);
+    const terms = rows.find((post) => post.topic_terms?.length)?.topic_terms?.slice(0, 4) || [];
+    return `<span class="topic-share-chip" style="--topic-color:${colorAt(index)}">
+      <strong>${escapeHtml(topicLabel)}</strong>
+      <em>${percentFmt.format(rows.length / total)} / ${fmt.format(rows.length)} posts</em>
+      <small>${escapeHtml(terms.join(', ') || 'no terms')}</small>
+    </span>`;
+  }).join('');
+}
 
 function drawGroupedBars(canvas, labels, series) {
   if (!labels.length || !series.length) return drawEmptyChart(canvas, 'No data available for this section');
@@ -1070,12 +1090,17 @@ function renderTopics(lda) {
     state.selectedTopicId = matchingTopics[0]?.topic_id ?? lda.topics[0].topic_id;
   }
 
-  const topicsHtml = matchingTopics.map((topic) => {
+  const topicsHtml = matchingTopics.map((topic, index) => {
     const terms = (topic.top_terms || []).slice(0, 8).map((term) => `<span class="term">${escapeHtml(term)}</span>`).join('');
     const example = topic.representative_posts?.[0];
     const active = topic.topic_id === state.selectedTopicId ? 'active' : '';
-    return `<button class="topic-item topic-button ${active}" type="button" data-topic-id="${topic.topic_id}" aria-label="Inspect topic ${topic.topic_id}">
-      <span class="topic-title">Topic ${topic.topic_id}</span>
+    const scores = (topic.representative_posts || []).map((post) => numberValue(post.score));
+    const strength = Math.max(0, Math.min(100, average(scores) * 100));
+    const leadTerms = (topic.top_terms || []).slice(0, 3).join(' / ') || `Topic ${topic.topic_id}`;
+    return `<button class="topic-item topic-button ${active}" type="button" data-topic-id="${topic.topic_id}" aria-label="Inspect topic ${topic.topic_id}" style="--topic-color:${colorAt(index)};--topic-strength:${strength}%">
+      <span class="topic-title-row"><strong>Topic ${topic.topic_id}</strong><em>${strength.toFixed(1)}% representative fit</em></span>
+      <span class="topic-lead">${escapeHtml(leadTerms)}</span>
+      <span class="topic-strength" aria-hidden="true"><i></i></span>
       <span class="topic-terms">${terms}</span>
       ${example ? `<span class="example">${escapeHtml(example.text || '')}</span>` : ''}
     </button>`;
