@@ -1,6 +1,8 @@
 name: Scrape X Posts
 
 on:
+  schedule:
+    - cron: '0 3 * * *'
   workflow_dispatch:
     inputs:
       target_user:
@@ -30,6 +32,10 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        target_user: ${{ fromJson(github.event_name == 'schedule' && '["Wendys","CocaCola","MoonPie"]' || format('["{0}"]', inputs.target_user)) }}
 
     steps:
       - name: 1. Checkout repository
@@ -78,10 +84,10 @@ jobs:
         env:
           X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           X_CT0: ${{ secrets.X_CT0 }}
-          TARGET_USER: ${{ inputs.target_user }}
-          MAX_SCROLLS: ${{ inputs.max_scrolls }}
-          SCROLL_DELAY_SECONDS: ${{ inputs.scroll_delay_seconds }}
-          IDLE_SCROLL_LIMIT: ${{ inputs.idle_scroll_limit }}
+          TARGET_USER: ${{ matrix.target_user }}
+          MAX_SCROLLS: ${{ github.event_name == 'workflow_dispatch' && inputs.max_scrolls || '2500' }}
+          SCROLL_DELAY_SECONDS: ${{ github.event_name == 'workflow_dispatch' && inputs.scroll_delay_seconds || '1.25' }}
+          IDLE_SCROLL_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.idle_scroll_limit || '60' }}
           HEADLESS: 'true'
         run: |
           set -o pipefail
@@ -123,7 +129,7 @@ jobs:
           fi
 
           git add -A
-          git commit -m "Update scraped X posts for ${{ inputs.target_user }}"
+          git commit -m "Update scraped X posts for ${{ matrix.target_user }}"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
           for attempt in 1 2 3; do

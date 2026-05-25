@@ -14,6 +14,14 @@ const accounts = {
     sentiment: 'data/cocacola/zero_shot_sentiment.json',
     scrapeState: 'data/cocacola/scrape_state.json',
     color: '#111827'
+  },
+  moonpie: {
+    label: 'MoonPie',
+    posts: 'data/moonpie/posts.json',
+    lda: 'data/moonpie/lda_topics.json',
+    sentiment: 'data/moonpie/zero_shot_sentiment.json',
+    scrapeState: 'data/moonpie/scrape_state.json',
+    color: '#F97316'
   }
 };
 

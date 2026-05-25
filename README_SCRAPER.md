@@ -36,12 +36,18 @@ python scrape_x.py
 
 ## GitHub Actions 즉시 실행
 
-이제 매일 자동 실행하지 않습니다. 전체 수집이 필요할 때 GitHub Actions의 `Scrape Wendy's X Posts` 워크플로우를 수동 실행합니다.
+현재 `Scrape X Posts` 워크플로우는 매일 UTC 03:00에 자동 실행됩니다. 스케줄 실행에서는 `Wendys`, `CocaCola`, `MoonPie`를 matrix로 병렬 수집하고, 수동 실행에서는 입력한 `target_user` 한 계정만 수집합니다.
 
 필수 repository secrets:
 
 - `X_AUTH_TOKEN`: X 브라우저 쿠키의 `auth_token`
 - `X_CT0`: X 브라우저 쿠키의 `ct0`
+
+자동 스케줄:
+
+- cron: `0 3 * * *`
+- 대상: `Wendys`, `CocaCola`, `MoonPie`
+- 각 계정 job은 병렬 matrix로 실행되며, push 충돌 시 rebase 후 재시도합니다.
 
 권장 수동 실행 입력값:
 
@@ -134,7 +140,7 @@ Cloudflare Pages 설정:
 
 대시보드 기능:
 
-- Wendy's / CocaCola 계정 전환
+- Wendy's / CocaCola / MoonPie 계정 전환
 - 포스트 수, 기간, 참여 지표 요약
 - 월별 포스팅량 차트
 - 좋아요/댓글/리트윗/인용 비중 차트
@@ -146,7 +152,7 @@ Cloudflare Pages 설정:
 
 - 원본/분석 산출물은 `data/<account>/` 아래에 저장합니다.
 - 대시보드 배포용 복사본은 `dashboard/data/<account>/` 아래에 저장합니다.
-- 예: `data/wendys/posts.json`, `data/wendys/lda_topics.json`, `data/wendys/zero_shot_sentiment.json`
+- 예: `data/wendys/posts.json`, `data/cocacola/posts.json`, `data/moonpie/posts.json`
 
 데이터 동기화:
 

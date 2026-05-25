@@ -976,3 +976,28 @@ Validation completed:
 - `node --check dashboard/app.js` passed.
 - `git diff --check` passed.
 - `python sync_dashboard_data.py` migrated and copied 8 current data files into brand folders.
+
+
+### MoonPie Dashboard and Daily Scrape Schedule
+
+Date: 2026-05-25
+
+User requested adding MoonPie to the dashboard and asked whether daily data collection can be managed through a scheduler.
+
+Changes made:
+
+- Added `MoonPie` to the dashboard account configuration.
+- Added a `MoonPie` account tab in the dashboard header.
+- Wired MoonPie data paths to `dashboard/data/moonpie/posts.json`, `dashboard/data/moonpie/scrape_state.json`, `dashboard/data/moonpie/lda_topics.json`, and `dashboard/data/moonpie/zero_shot_sentiment.json`.
+- Updated account tab layout to support three brands on desktop and mobile.
+- Added a daily GitHub Actions schedule to `Scrape X Posts`: `0 3 * * *` UTC.
+- Scheduled runs use a matrix over `Wendys`, `CocaCola`, and `MoonPie`.
+- Manual workflow dispatch still scrapes only the user-selected `target_user`.
+- Updated README with the daily scheduler behavior and MoonPie dashboard availability.
+
+Validation planned/completed:
+
+- `node --check dashboard/app.js`
+- `python -m py_compile scrape_x.py analyze_posts.py sync_dashboard_data.py`
+- `git diff --check`
+- Local HTTP checks for MoonPie dashboard data paths.
