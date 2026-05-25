@@ -1,0 +1,66 @@
+.panel-copy {
+  color: var(--secondary);
+  font-size: 13px;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.insight-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.primary-action {
+  min-height: 44px;
+  border: 0;
+  border-radius: 14px;
+  padding: 0 16px;
+  color: #ffffff;
+  background: var(--ink);
+  font-weight: 900;
+}
+.humor-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.humor-cell {
+  display: grid;
+  gap: 7px;
+  min-height: 132px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-2);
+}
+.humor-cell.danger {
+  border-color: rgba(220, 38, 38, 0.35);
+  background: #fff7f7;
+}
+.humor-axis {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+.humor-cell strong {
+  font-size: 17px;
+  line-height: 1.25;
+}
+.humor-cell b {
+  font-size: 14px;
+}
+.humor-cell small {
+  color: var(--secondary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+@media (max-width: 760px) {
+  .humor-matrix {
+    grid-template-columns: 1fr;
+  }
+}
