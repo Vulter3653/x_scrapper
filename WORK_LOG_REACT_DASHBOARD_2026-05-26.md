@@ -334,6 +334,46 @@ The dashboard should now be verified manually for the following functional items
 - Post Explorer shows sentiment, humor, topic, engagement, and original X link columns.
 - Mobile layout remains readable.
 
+## Korean Localization Update
+
+Date: 2026-05-26
+
+User requested that dashboard analysis results and dashboard text be displayed in Korean.
+
+Implemented changes:
+
+- Added `dashboard/localize-ko.js` as a Korean localization layer.
+- Connected `localize-ko.js` from `dashboard/index.html` after `app.js`.
+- Updated `dashboard/index.html` title and boot fallback text to Korean.
+- Updated boot error text to Korean.
+- Added Korean translations for static UI labels, section names, filters, table headers, metric labels, empty states, pagination labels, sentiment labels, and HSQ humor labels.
+- Added dynamic Korean pattern replacement for generated dashboard strings such as:
+  - `Last updated: ...`
+  - `... posts after filters. Page ... of ...`
+  - `... brand(s), ... active day(s)`
+  - `Positive ... / Negative ...`
+  - automatic insight sentences
+  - HSQ humor labels inside compound text
+- Preserved the underlying JSON schema and analytical calculations.
+- Preserved the existing React dashboard logic by applying localization as a presentation layer.
+
+Related commits:
+
+```text
+0dc5f1678b8495d9d7105a9d5e0eff8e752edd0d Add Korean localization layer for dashboard
+b2727bc2ab235e533785d35a806bb21b2a3169e7 Load Korean dashboard localization layer
+```
+
+Verification required after Cloudflare Pages deployment:
+
+- Open `https://x-scrapper.pages.dev/`.
+- Confirm the dashboard title appears as `X 브랜드 인텔리전스 대시보드`.
+- Confirm navigation labels appear in Korean, e.g., `개요`, `고급 분석`, `데이터 상태`, `기술통계`, `유머 분석`.
+- Confirm sentiment labels appear as `긍정`, `중립`, `부정`, `미분류`.
+- Confirm HSQ humor labels appear as `친화적 유머`, `자기고양적 유머`, `공격적 유머`, `자기패배적 유머`.
+- Confirm automatic insights appear in Korean.
+- Confirm CSV export still works.
+
 ## Commit Notes
 
 The dashboard refactor was committed through GitHub file updates. Because each file update through the contents API creates an individual commit, the React redesign appears across multiple commits rather than one local squashed commit.
@@ -348,6 +388,8 @@ Hotfix dashboard boot loading and cache busting
 Fix dashboard React boot scripts
 Fix dashboard app syntax error
 Bump dashboard app cache after syntax fix
+Add Korean localization layer for dashboard
+Load Korean dashboard localization layer
 ```
 
 ## Follow-Up Recommendations
@@ -357,3 +399,4 @@ Bump dashboard app cache after syntax fix
 3. Add a lightweight smoke-test workflow for dashboard render checks if future iterations require automated UI validation.
 4. Consider adding sampling audit logic for zero-shot sentiment and HSQ humor classification quality checks.
 5. Add a dashboard syntax validation step or preview smoke test before future dashboard pushes.
+6. If deeper Korean localization is required, replace the presentation-layer translation file with source-level Korean strings in `dashboard/app.js`.
