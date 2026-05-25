@@ -241,6 +241,99 @@ Manual browser checks recommended after deployment:
 - Confirm Post Explorer shows humor labels and scores
 - Confirm mobile layout does not break
 
+## Boot Error and Recovery Log
+
+After Cloudflare Pages reflected the React dashboard files, the user reported that the deployed dashboard initially showed only a blank white screen.
+
+### Blank Screen Diagnosis
+
+The first deployed symptom was a blank screen. A fallback boot message was added to `dashboard/index.html` so the page would no longer fail silently if React or `app.js` did not mount correctly.
+
+Observed fallback message:
+
+```text
+X Brand Intelligence Dashboard
+Loading React dashboard...
+```
+
+This confirmed that `index.html` was being served by Cloudflare Pages but the React app was not mounting.
+
+### Boot Script and Cache Hotfix
+
+A hotfix was applied to `dashboard/index.html`:
+
+- Added a visible boot fallback inside `#root`.
+- Added cache-busting query strings for `styles.css` and `app.js`.
+- Changed React script loading and added a JavaScript error display path.
+- Added a visible `Dashboard boot error` block for runtime or syntax errors.
+
+Related commit:
+
+```text
+2ea98ea529314da9fc8d03c75f46e37c5728e0a4 Hotfix dashboard boot loading and cache busting
+```
+
+A follow-up boot script fix was also applied:
+
+```text
+2d8da186fd218f6a13df8f1a4e6461ec07ad14e3 Fix dashboard React boot scripts
+```
+
+### JavaScript Syntax Error
+
+After the fallback error display was added, the browser showed the following error:
+
+```text
+Dashboard boot error
+Uncaught SyntaxError: Unexpected token ')'
+```
+
+This confirmed that the issue was not Cloudflare deployment, not the data files, and not the React CDN. The failure was caused by a syntax error inside `dashboard/app.js`.
+
+### Syntax Fix
+
+The compressed one-line-style React implementation in `dashboard/app.js` was replaced with a more readable multi-function React implementation to reduce parenthesis mismatch risk.
+
+Fixes applied:
+
+- Rewrote `dashboard/app.js` using an IIFE wrapper.
+- Added explicit React/ReactDOM availability checks.
+- Reorganized the dashboard into named functions and components.
+- Preserved the same major sections: Overview, Dataset Status, Descriptives, Brand Comparison, Model-Free Evidence, Posting, Sentiment, Humor, Topics, and Post Explorer.
+- Preserved the existing JSON data paths and post-level enrichment logic.
+- Preserved All Brands and brand-specific views.
+
+Related commit:
+
+```text
+186eac8d595b987b5727a3abb1ef684c87a9caa1 Fix dashboard app syntax error
+```
+
+A final cache-busting update was applied to force Cloudflare/browser clients to load the corrected `app.js`:
+
+```text
+9be8edf0911b4e3ca100e31955993655974a5a3d Bump dashboard app cache after syntax fix
+```
+
+### Final Verification
+
+After the syntax fix and cache-busting update, the user confirmed that the dashboard was visible and functioning.
+
+Final observed status:
+
+```text
+Dashboard visible on Cloudflare Pages
+```
+
+The dashboard should now be verified manually for the following functional items:
+
+- `All Brands` tab renders.
+- Wendy's, Coca-Cola, and MoonPie tabs switch correctly.
+- Dataset Status shows Posts, LDA, Sentiment, and HSQ Humor availability.
+- Humor Analysis section appears.
+- Post Explorer shows sentiment, humor, topic, engagement, and original X link columns.
+- Mobile layout remains readable.
+
 ## Commit Notes
 
 The dashboard refactor was committed through GitHub file updates. Because each file update through the contents API creates an individual commit, the React redesign appears across multiple commits rather than one local squashed commit.
@@ -250,6 +343,11 @@ Known commit messages used:
 ```text
 Refactor dashboard into React analytics interface
 Document React dashboard redesign and current schedule
+Record React dashboard redesign work log
+Hotfix dashboard boot loading and cache busting
+Fix dashboard React boot scripts
+Fix dashboard app syntax error
+Bump dashboard app cache after syntax fix
 ```
 
 ## Follow-Up Recommendations
@@ -258,3 +356,4 @@ Document React dashboard redesign and current schedule
 2. If the React UMD CDN is not desirable for production, convert the dashboard to a Vite-based build later.
 3. Add a lightweight smoke-test workflow for dashboard render checks if future iterations require automated UI validation.
 4. Consider adding sampling audit logic for zero-shot sentiment and HSQ humor classification quality checks.
+5. Add a dashboard syntax validation step or preview smoke test before future dashboard pushes.
