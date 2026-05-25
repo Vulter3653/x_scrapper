@@ -31,12 +31,14 @@ jobs:
           test -f dashboard/styles.css
           test -f dashboard/brand-visual.css
           test -f dashboard/low-confidence-review.js
+          test -f dashboard/humor-sentiment-engagement.js
 
       - name: Check dashboard JavaScript syntax
         run: |
           node --check dashboard/app.js
           node --check dashboard/localize-ko.js
           node --check dashboard/low-confidence-review.js
+          node --check dashboard/humor-sentiment-engagement.js
 
       - name: Check deprecated overlay scripts are not loaded
         run: |
@@ -54,3 +56,9 @@ jobs:
           grep -q 'confidence-root' dashboard/index.html
           grep -q 'low-confidence-review.js' dashboard/index.html
           grep -q 'Low-confidence Review' dashboard/low-confidence-review.js
+
+      - name: Check humor sentiment engagement component is loaded
+        run: |
+          grep -q 'humor-sentiment-root' dashboard/index.html
+          grep -q 'humor-sentiment-engagement.js' dashboard/index.html
+          grep -q '유머-감성 결합 효과 요약' dashboard/humor-sentiment-engagement.js
