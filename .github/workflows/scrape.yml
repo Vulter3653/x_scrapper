@@ -108,7 +108,7 @@ jobs:
           pip install -r requirements-lda.txt
           pip install -r requirements-sentiment.txt
 
-      - name: 7. Run LDA and sentiment analysis
+      - name: 7. Run LDA, sentiment, and HSQ humor analysis
         shell: bash
         env:
           TARGET_USER: ${{ matrix.target_user }}

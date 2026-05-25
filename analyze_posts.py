@@ -18,6 +18,8 @@ LDA_TOPICS_FILE = Path(os.getenv('LDA_TOPICS_FILE', BRAND_DIR / 'lda_topics.json
 LDA_REPORT_FILE = Path(os.getenv('LDA_REPORT_FILE', BRAND_DIR / 'lda_topics.md'))
 SENTIMENT_FILE = Path(os.getenv('SENTIMENT_FILE', BRAND_DIR / 'zero_shot_sentiment.json'))
 SENTIMENT_REPORT_FILE = Path(os.getenv('SENTIMENT_REPORT_FILE', BRAND_DIR / 'zero_shot_sentiment.md'))
+HUMOR_FILE = Path(os.getenv('HUMOR_FILE', BRAND_DIR / 'hsq_humor_classification.json'))
+HUMOR_REPORT_FILE = Path(os.getenv('HUMOR_REPORT_FILE', BRAND_DIR / 'hsq_humor_classification.md'))
 
 LDA_MIN_TOPICS = int(os.getenv('LDA_MIN_TOPICS', '2'))
 LDA_MAX_TOPICS = int(os.getenv('LDA_MAX_TOPICS', '12'))
@@ -31,6 +33,14 @@ SENTIMENT_LABELS = [
     if label.strip()
 ]
 HYPOTHESIS_TEMPLATE = os.getenv('HYPOTHESIS_TEMPLATE', 'This post expresses a {} sentiment.')
+HUMOR_MODEL = os.getenv('HUMOR_MODEL', ZERO_SHOT_MODEL)
+HUMOR_LABELS = [
+    'Affiliative humor',
+    'Self-enhancing humor',
+    'Aggressive humor',
+    'Self-defeating humor',
+]
+HUMOR_HYPOTHESIS_TEMPLATE = os.getenv('HUMOR_HYPOTHESIS_TEMPLATE', 'This post uses {}.')
 
 CUSTOM_STOP_WORDS = {
     PREFIX,
@@ -362,11 +372,115 @@ def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
     return summary
 
 
+def run_zero_shot_humor(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    """Classify posts into HSQ humor styles from the local codebook."""
+    HUMOR_FILE.parent.mkdir(parents=True, exist_ok=True)
+    HUMOR_REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    from transformers import pipeline
+
+    codebook_path = Path('HSQ_zero_shot_humor_classification_codebook.md')
+    codebook_title = 'HSQ zero-shot humor classification codebook'
+    if codebook_path.exists():
+        for line in codebook_path.read_text(encoding='utf-8').splitlines():
+            if line.startswith('# '):
+                codebook_title = line[2:].strip()
+                break
+
+    cached: dict[str, Any] = {}
+    if HUMOR_FILE.exists():
+        try:
+            previous = json.loads(HUMOR_FILE.read_text(encoding='utf-8'))
+            for item in previous.get('posts', []):
+                if item.get('id') and item.get('text'):
+                    cached[str(item['id'])] = item
+        except Exception:
+            cached = {}
+
+    classifier = pipeline('zero-shot-classification', model=HUMOR_MODEL)
+    results = []
+    counts: Counter[str] = Counter()
+    score_sums: defaultdict[str, float] = defaultdict(float)
+
+    for index, post in enumerate(posts, start=1):
+        post_id = str(post.get('id') or '')
+        text = str(post.get('text') or '').strip()
+        if not post_id or not text:
+            continue
+
+        cached_item = cached.get(post_id)
+        if (
+            cached_item
+            and cached_item.get('text') == text
+            and cached_item.get('model') == HUMOR_MODEL
+            and cached_item.get('labels') == HUMOR_LABELS
+        ):
+            item = cached_item
+        else:
+            output = classifier(
+                text[:1000],
+                candidate_labels=HUMOR_LABELS,
+                hypothesis_template=HUMOR_HYPOTHESIS_TEMPLATE,
+                multi_label=False,
+            )
+            labels = output['labels']
+            scores = output['scores']
+            item = {
+                'id': post_id,
+                'tweet_url': post.get('tweet_url'),
+                'created_at': post.get('created_at'),
+                'text': text,
+                'model': HUMOR_MODEL,
+                'codebook': codebook_title,
+                'labels': HUMOR_LABELS,
+                'top_label': labels[0],
+                'top_score': float(scores[0]),
+                'scores': {label: float(score) for label, score in zip(labels, scores)},
+            }
+
+        results.append(item)
+        counts[item['top_label']] += 1
+        for label, score in item.get('scores', {}).items():
+            score_sums[label] += float(score)
+
+        if index % 50 == 0:
+            print(f'HSQ humor analyzed {index}/{len(posts)} posts', flush=True)
+
+    averages = {label: score_sums[label] / max(1, len(results)) for label in HUMOR_LABELS}
+    summary = {
+        'target_user': TARGET_USER,
+        'input_file': str(INPUT_FILE),
+        'model': HUMOR_MODEL,
+        'codebook': codebook_title,
+        'labels': HUMOR_LABELS,
+        'hypothesis_template': HUMOR_HYPOTHESIS_TEMPLATE,
+        'post_count': len(results),
+        'label_counts': dict(counts),
+        'average_scores': averages,
+        'posts': results,
+    }
+    HUMOR_FILE.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+    lines = [f'# HSQ Zero-Shot Humor Classification for @{TARGET_USER}', '', f'- Posts analyzed: {len(results)}', f'- Model: `{HUMOR_MODEL}`', f'- Codebook: {codebook_title}', '']
+    lines.append('## Label Counts')
+    for label, count in counts.most_common():
+        lines.append(f'- {label}: {count}')
+    lines.append('')
+    lines.append('## Average Scores')
+    for label, score in sorted(averages.items(), key=lambda item: item[1], reverse=True):
+        lines.append(f'- {label}: {score:.4f}')
+    lines.append('')
+    lines.append('## Highest Confidence Examples')
+    for item in sorted(results, key=lambda row: row.get('top_score', 0), reverse=True)[:10]:
+        lines.append(f"- {item['top_label']} ({item['top_score']:.3f}) [{item['id']}]({item['tweet_url']}): {item['text']}")
+    HUMOR_REPORT_FILE.write_text('\n'.join(lines), encoding='utf-8')
+    return summary
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description='Analyze scraped X posts.')
     parser.add_argument(
         '--task',
-        choices=('all', 'lda', 'sentiment'),
+        choices=('all', 'lda', 'sentiment', 'humor'),
         default=os.getenv('ANALYSIS_TASK', 'all'),
         help='Analysis task to run.',
     )
@@ -382,6 +496,10 @@ def main() -> None:
     if args.task in ('all', 'sentiment'):
         sentiment_result = run_zero_shot_sentiment(posts)
         print(f"Zero-shot sentiment complete: {sentiment_result['post_count']} posts", flush=True)
+
+    if args.task in ('all', 'humor'):
+        humor_result = run_zero_shot_humor(posts)
+        print(f"HSQ humor classification complete: {humor_result['post_count']} posts", flush=True)
 
 
 if __name__ == '__main__':

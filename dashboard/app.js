@@ -4,6 +4,7 @@ const accounts = {
     posts: 'data/wendys/posts.json',
     lda: 'data/wendys/lda_topics.json',
     sentiment: 'data/wendys/zero_shot_sentiment.json',
+    humor: 'data/wendys/hsq_humor_classification.json',
     scrapeState: 'data/wendys/scrape_state.json',
     color: '#E2231A'
   },
@@ -12,6 +13,7 @@ const accounts = {
     posts: 'data/cocacola/posts.json',
     lda: 'data/cocacola/lda_topics.json',
     sentiment: 'data/cocacola/zero_shot_sentiment.json',
+    humor: 'data/cocacola/hsq_humor_classification.json',
     scrapeState: 'data/cocacola/scrape_state.json',
     color: '#111827'
   },
@@ -20,6 +22,7 @@ const accounts = {
     posts: 'data/moonpie/posts.json',
     lda: 'data/moonpie/lda_topics.json',
     sentiment: 'data/moonpie/zero_shot_sentiment.json',
+    humor: 'data/moonpie/hsq_humor_classification.json',
     scrapeState: 'data/moonpie/scrape_state.json',
     color: '#F97316'
   }
@@ -144,6 +147,7 @@ async function loadAccount(accountKey) {
   try { dataset.posts = await loadJson(config.posts); } catch (error) { dataset.errors.posts = error.message; }
   try { dataset.lda = await loadJson(config.lda); } catch (error) { dataset.errors.lda = error.message; }
   try { dataset.sentiment = await loadJson(config.sentiment); } catch (error) { dataset.errors.sentiment = error.message; }
+  try { dataset.humor = await loadJson(config.humor); } catch (error) { dataset.errors.humor = error.message; }
   try { dataset.scrapeState = await loadJson(config.scrapeState); } catch (error) { dataset.errors.scrapeState = error.message; }
 
   state.datasets[accountKey] = dataset;
@@ -161,10 +165,11 @@ function buildAllEnrichedPosts(datasets) {
 }
 
 function buildEnrichedDataset(accountKey, dataset) {
-  const cacheKey = `${accountKey}:${dataset.posts.length}:${dataset.sentiment?.post_count || 0}:${dataset.lda?.num_topics || 0}`;
+  const cacheKey = `${accountKey}:${dataset.posts.length}:${dataset.sentiment?.post_count || 0}:${dataset.humor?.post_count || 0}:${dataset.lda?.num_topics || 0}`;
   if (state.enriched[cacheKey]) return state.enriched[cacheKey];
 
   const sentimentById = new Map((dataset.sentiment?.posts || []).map((row) => [String(row.id), row]));
+  const humorById = new Map((dataset.humor?.posts || []).map((row) => [String(row.id), row]));
   const topicById = new Map();
   (dataset.lda?.topics || []).forEach((topic) => {
     (topic.representative_posts || []).forEach((post) => {
@@ -181,6 +186,7 @@ function buildEnrichedDataset(accountKey, dataset) {
   const posts = dataset.posts.map((post) => {
     const id = String(post.id);
     const sentiment = sentimentById.get(id);
+    const humor = humorById.get(id);
     const topic = topicById.get(id);
     const totalEngagement = engagement(post);
     return {
@@ -203,6 +209,8 @@ function buildEnrichedDataset(accountKey, dataset) {
       mention_count: countMatches(textValue(post), /(^|\s)@[A-Za-z0-9_]+/g),
       sentiment_label: sentiment?.top_label || 'unknown',
       sentiment_score: numberValue(sentiment?.top_score),
+      humor_label: humor?.top_label || 'unknown',
+      humor_score: numberValue(humor?.top_score),
       topic_id: topic?.topic_id ?? null,
       topic_terms: topic?.top_terms || [],
       topic_score: numberValue(topic?.score),
@@ -335,7 +343,7 @@ function setDatasetState(stateName, message) {
 
 function latestTimestamp(datasets) {
   const values = Object.values(datasets).flatMap((dataset) => [
-    dataset.scrapeState?.updated_at, dataset.scrapeState?.scraped_at, dataset.lda?.generated_at, dataset.sentiment?.generated_at
+    dataset.scrapeState?.updated_at, dataset.scrapeState?.scraped_at, dataset.lda?.generated_at, dataset.sentiment?.generated_at, dataset.humor?.generated_at
   ]).filter(Boolean).map((value) => new Date(value)).filter((date) => !Number.isNaN(date.getTime()));
   if (!values.length) return 'unknown';
   return values.sort((a, b) => b - a)[0].toISOString().slice(0, 19).replace('T', ' ');
@@ -357,7 +365,8 @@ function renderStatus(dataset) {
   const rows = [
     ['Posts', dataset.posts.length ? `${fmt.format(dataset.posts.length)} loaded` : `missing${dataset.errors.posts ? `: ${dataset.errors.posts}` : ''}`, dataset.posts.length ? 'ok' : 'warn'],
     ['LDA', dataset.lda ? 'available' : `not generated${dataset.errors.lda ? `: ${dataset.errors.lda}` : ''}`, dataset.lda ? 'ok' : 'warn'],
-    ['Zero-shot', dataset.sentiment ? 'available' : `not generated${dataset.errors.sentiment ? `: ${dataset.errors.sentiment}` : ''}`, dataset.sentiment ? 'ok' : 'warn']
+    ['Zero-shot', dataset.sentiment ? 'available' : `not generated${dataset.errors.sentiment ? `: ${dataset.errors.sentiment}` : ''}`, dataset.sentiment ? 'ok' : 'warn'],
+    ['HSQ Humor', dataset.humor ? 'available' : `not generated${dataset.errors.humor ? `: ${dataset.errors.humor}` : ''}`, dataset.humor ? 'ok' : 'warn']
   ];
   el('analysisStatus').innerHTML = rows.map(([name, value, cls]) => `<div class="status-item ${cls}"><span>${name}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
 }
@@ -1154,6 +1163,7 @@ function postBadges(post) {
     badge(post.brand, 'brand'),
     badge(post.date_iso || 'unknown date'),
     badge(post.sentiment_label, `sentiment-${post.sentiment_label}`),
+    badge(post.humor_label === 'unknown' ? 'Humor unknown' : post.humor_label),
     badge(post.topic_id === null ? 'Topic unknown' : `Topic ${post.topic_id}`),
     badge(fmt.format(post.total_engagement), 'engagement'),
     badge(post.is_viral ? 'Viral' : 'Standard', post.is_viral ? 'viral' : '')
@@ -1177,13 +1187,14 @@ function renderPosts(posts) {
   }
 
   el('postTableWrap').innerHTML = `<table class="post-table wide">
-    <thead><tr><th>Brand</th><th>Date</th><th>Text</th><th>Topic</th><th>Sentiment</th><th>Likes</th><th>Replies</th><th>Retweets</th><th>Quotes</th><th>Total</th><th>Log</th><th>Viral</th><th>Length</th><th>Hashtags</th><th>Mentions</th><th>URL</th><th>Link</th></tr></thead>
+    <thead><tr><th>Brand</th><th>Date</th><th>Text</th><th>Topic</th><th>Sentiment</th><th>HSQ Humor</th><th>Likes</th><th>Replies</th><th>Retweets</th><th>Quotes</th><th>Total</th><th>Log</th><th>Viral</th><th>Length</th><th>Hashtags</th><th>Mentions</th><th>URL</th><th>Link</th></tr></thead>
     <tbody>${rows.map((post) => `<tr>
       <td>${escapeHtml(post.brand)}</td>
       <td>${escapeHtml(post.date_iso || 'unknown')}</td>
       <td>${escapeHtml(post.text_normalized || '')}</td>
       <td>${post.topic_id === null ? 'unknown' : `Topic ${post.topic_id}`}</td>
       <td>${escapeHtml(post.sentiment_label)}</td>
+      <td>${escapeHtml(post.humor_label)}</td>
       <td>${fmt.format(post.likes_count)}</td>
       <td>${fmt.format(post.replies_count)}</td>
       <td>${fmt.format(post.retweets_count)}</td>

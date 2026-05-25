@@ -48,7 +48,7 @@ python scrape_x.py
 - cron: `1 15 * * *` UTC, 즉 한국시간 매일 00:01
 - 대상: `Wendys`, `CocaCola`, `MoonPie`
 - 각 계정 job은 병렬 matrix로 실행되며, push 충돌 시 rebase 후 재시도합니다.
-- 수집이 끝나면 같은 job에서 LDA와 zero-shot 감성분석을 자동 실행합니다.
+- 수집이 끝나면 같은 job에서 LDA, zero-shot 감성분석, HSQ 기반 zero-shot 유머 유형 분류를 자동 실행합니다.
 - 자동 LDA coherence 후보 범위는 최소 2개, 최대 9개 토픽입니다.
 
 권장 수동 실행 입력값:
@@ -63,11 +63,12 @@ python scrape_x.py
 
 ## 독립 실행 및 병렬 처리
 
-GitHub Actions는 세 개 workflow로 분리되어 있습니다.
+GitHub Actions는 네 개 workflow로 분리되어 있습니다.
 
 - `Scrape X Posts`: X 포스트 수집만 실행
 - `Run LDA Analysis`: 기존 `data/{account}/posts.json`을 읽어 LDA만 실행
 - `Run Zero-Shot Sentiment`: 기존 `data/{account}/posts.json`을 읽어 zero-shot 감성분석만 실행
+- `Run HSQ Humor Classification`: 기존 `data/{account}/posts.json`을 읽어 HSQ 기반 zero-shot 유머 유형 분류만 실행
 
 따라서 스크래퍼, LDA, 감성분석을 각각 따로 실행할 수 있고, 이미 `data/{account}/posts.json`이 있는 경우 LDA와 감성분석은 동시에 실행할 수 있습니다. 새 수집 결과를 분석해야 한다면 먼저 `Scrape X Posts`가 결과 파일을 push한 뒤 LDA/감성분석을 실행하세요.
 
@@ -79,8 +80,16 @@ GitHub Actions는 세 개 workflow로 분리되어 있습니다.
 LDA는 입력된 고정 토픽 수를 사용하지 않고, 후보 범위 안에서 여러 LDA 모델을 학습한 뒤 토픽 단어의 NPMI coherence가 가장 높은 토픽 수를 자동 선택합니다.
 - `data/{account}/zero_shot_sentiment.json`
 - `data/{account}/zero_shot_sentiment.md`
+- `data/{account}/hsq_humor_classification.json`
+- `data/{account}/hsq_humor_classification.md`
 
 예: `target_user=Wendys`이면 `data/wendys/lda_topics.json`, `data/wendys/zero_shot_sentiment.json`이 생성됩니다.
+
+HSQ 기반 유머 유형 분류:
+
+- 코드북: `HSQ_zero_shot_humor_classification_codebook.md`
+- 후보 라벨: `Affiliative humor`, `Self-enhancing humor`, `Aggressive humor`, `Self-defeating humor`
+- 실행 태스크: `python analyze_posts.py --task humor`
 
 Zero-shot 감성분석 기본값:
 

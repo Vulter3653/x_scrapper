@@ -11,6 +11,7 @@ FILE_MAP = {
     'scrape_state.json': '_scrape_state.json',
     'lda_topics.json': '_lda_topics.json',
     'zero_shot_sentiment.json': '_zero_shot_sentiment.json',
+    'hsq_humor_classification.json': '_hsq_humor_classification.json',
 }
 
 

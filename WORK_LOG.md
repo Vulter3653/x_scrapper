@@ -1025,3 +1025,30 @@ Validation completed:
 - `python -m py_compile scrape_x.py analyze_posts.py sync_dashboard_data.py` passed.
 - `node --check dashboard/app.js` passed.
 - `git diff --check` passed.
+
+
+### HSQ Zero-Shot Humor Classification
+
+Date: 2026-05-25
+
+User requested adding zero-shot classification based on `HSQ_zero_shot_humor_classification_codebook.md`.
+
+Changes made:
+
+- Added HSQ humor classification to `analyze_posts.py`.
+- Added fixed codebook labels: `Affiliative humor`, `Self-enhancing humor`, `Aggressive humor`, and `Self-defeating humor`.
+- Added output files under each brand folder: `hsq_humor_classification.json` and `hsq_humor_classification.md`.
+- Extended `--task` choices to include `humor`; `--task all` now runs LDA, sentiment, and HSQ humor classification.
+- Added caching for previously classified humor posts by post id/text/model/label set.
+- Added `HSQ_zero_shot_humor_classification_codebook.md` title into the humor output metadata.
+- Added `Run HSQ Humor Classification` GitHub Actions workflow for standalone execution.
+- Updated the daily scrape workflow step name and behavior so automatic post-scrape analysis includes HSQ humor classification.
+- Updated dashboard data sync to copy `hsq_humor_classification.json`.
+- Connected dashboard account configs, analysis status, enriched posts, post badges, and Post Explorer table to HSQ humor labels.
+- Updated README with HSQ humor classification outputs and labels.
+
+Validation planned/completed:
+
+- `python -m py_compile analyze_posts.py sync_dashboard_data.py scrape_x.py`
+- `node --check dashboard/app.js`
+- `git diff --check`
