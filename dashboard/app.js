@@ -2,7 +2,7 @@
 (function () {
   const root = document.getElementById('root');
   if (!window.React || !window.ReactDOM) {
-    root.innerHTML = '<div class="boot-error"><strong>Dashboard boot error</strong><span>React or ReactDOM failed to load.</span></div>';
+    root.innerHTML = '<div class="boot-error"><strong>대시보드 실행 오류</strong><span>React 또는 ReactDOM을 불러오지 못했습니다.</span></div>';
     return;
   }
 
@@ -10,173 +10,232 @@
   const { useEffect, useMemo, useState } = React;
 
   const ACCOUNTS = {
-    wendys: { label: "Wendy's", color: '#E2231A', base: 'data/wendys' },
-    cocacola: { label: 'Coca-Cola', color: '#111827', base: 'data/cocacola' },
-    moonpie: { label: 'MoonPie', color: '#F97316', base: 'data/moonpie' }
+    wendys: { label: "Wendy's", base: 'data/wendys', color: '#E2231A' },
+    cocacola: { label: 'Coca-Cola', base: 'data/cocacola', color: '#111827' },
+    moonpie: { label: 'MoonPie', base: 'data/moonpie', color: '#F97316' }
   };
-  Object.values(ACCOUNTS).forEach((a) => {
-    a.posts = `${a.base}/posts.json`;
-    a.lda = `${a.base}/lda_topics.json`;
-    a.sentiment = `${a.base}/zero_shot_sentiment.json`;
-    a.humor = `${a.base}/hsq_humor_classification.json`;
-    a.scrapeState = `${a.base}/scrape_state.json`;
+
+  Object.values(ACCOUNTS).forEach((account) => {
+    account.posts = `${account.base}/posts.json`;
+    account.lda = `${account.base}/lda_topics.json`;
+    account.sentiment = `${account.base}/zero_shot_sentiment.json`;
+    account.humor = `${account.base}/hsq_humor_classification.json`;
+    account.scrapeState = `${account.base}/scrape_state.json`;
   });
 
   const HUMOR_LABELS = ['Affiliative humor', 'Self-enhancing humor', 'Aggressive humor', 'Self-defeating humor'];
   const SENTIMENT_LABELS = ['positive', 'neutral', 'negative', 'unknown'];
-  const fmt = new Intl.NumberFormat('en-US');
-  const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
-  const percent = new Intl.NumberFormat('en-US', { style: 'percent', maximumFractionDigits: 1 });
-  const scoreFmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 });
+  const HUMOR_KO = {
+    'Affiliative humor': '친화적 유머',
+    'Self-enhancing humor': '자기고양적 유머',
+    'Aggressive humor': '공격적 유머',
+    'Self-defeating humor': '자기패배적 유머',
+    unknown: '미분류'
+  };
+  const SENTIMENT_KO = { positive: '긍정', neutral: '중립', negative: '부정', unknown: '미분류' };
+  const QUADRANTS = [
+    { key: 'Self-enhancing humor', title: '자기고양적 유머', axis: '자기 지향 × 적응적/긍정적' },
+    { key: 'Affiliative humor', title: '친화적 유머', axis: '타인 지향 × 적응적/긍정적' },
+    { key: 'Self-defeating humor', title: '자기패배적 유머', axis: '자기 지향 × 부적응적/부정적' },
+    { key: 'Aggressive humor', title: '공격적 유머', axis: '타인 지향 × 부적응적/부정적' }
+  ];
 
-  const num = (v) => Number.isFinite(Number(v)) ? Number(v) : 0;
-  const cv = (v) => Math.abs(num(v)) >= 1000 ? compact.format(num(v)) : fmt.format(Math.round(num(v)));
-  const txt = (p) => String((p && (p.text || p.content || p.tweet_text || p.post_text)) || '');
-  const rawDate = (p) => (p && (p.date || p.created_at || p.timestamp)) || '';
-  const parsed = (v) => { const d = new Date(v); return Number.isNaN(d.getTime()) ? null : d; };
-  const iso = (v) => { const d = parsed(v); return d ? d.toISOString().slice(0, 10) : ''; };
-  const month = (v) => { const d = parsed(v); return d ? d.toISOString().slice(0, 7) : 'unknown'; };
-  const likes = (p) => num(p && (p.likes || p.like_count || p.favorite_count));
-  const replies = (p) => num(p && (p.replies || p.reply_count));
-  const retweets = (p) => num(p && (p.retweets || p.retweet_count || p.reposts));
-  const quotes = (p) => num(p && (p.quotes || p.quote_count));
-  const engagement = (p) => likes(p) + replies(p) + retweets(p) + quotes(p);
+  const fmt = new Intl.NumberFormat('ko-KR');
+  const compact = new Intl.NumberFormat('ko-KR', { notation: 'compact', maximumFractionDigits: 1 });
+  const pct = new Intl.NumberFormat('ko-KR', { style: 'percent', maximumFractionDigits: 1 });
+  const scoreFmt = new Intl.NumberFormat('ko-KR', { maximumFractionDigits: 3 });
 
-  function median(vals) {
-    const a = vals.map(num).filter(Number.isFinite).sort((x, y) => x - y);
-    if (!a.length) return 0;
-    const m = Math.floor(a.length / 2);
-    return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+  const n = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
+  const cv = (value) => Math.abs(n(value)) >= 1000 ? compact.format(n(value)) : fmt.format(Math.round(n(value)));
+  const textOf = (post) => String((post && (post.text || post.content || post.tweet_text || post.post_text)) || '');
+  const dateOf = (post) => (post && (post.date || post.created_at || post.timestamp)) || '';
+  const parseDate = (value) => {
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? null : date;
+  };
+  const isoDate = (value) => {
+    const date = parseDate(value);
+    return date ? date.toISOString().slice(0, 10) : '';
+  };
+  const monthKey = (value) => {
+    const date = parseDate(value);
+    return date ? date.toISOString().slice(0, 7) : '미상';
+  };
+  const likes = (post) => n(post && (post.likes || post.like_count || post.favorite_count));
+  const replies = (post) => n(post && (post.replies || post.reply_count));
+  const retweets = (post) => n(post && (post.retweets || post.retweet_count || post.reposts));
+  const quotes = (post) => n(post && (post.quotes || post.quote_count));
+  const engagement = (post) => likes(post) + replies(post) + retweets(post) + quotes(post);
+
+  function median(values) {
+    const arr = values.map(n).filter(Number.isFinite).sort((a, b) => a - b);
+    if (!arr.length) return 0;
+    const mid = Math.floor(arr.length / 2);
+    return arr.length % 2 ? arr[mid] : (arr[mid - 1] + arr[mid]) / 2;
   }
-  function avg(vals) {
-    const a = vals.map(num).filter(Number.isFinite);
-    return a.length ? a.reduce((s, v) => s + v, 0) / a.length : 0;
+
+  function average(values) {
+    const arr = values.map(n).filter(Number.isFinite);
+    return arr.length ? arr.reduce((sum, value) => sum + value, 0) / arr.length : 0;
   }
-  function perc(vals, r) {
-    const a = vals.map(num).filter(Number.isFinite).sort((x, y) => x - y);
-    if (!a.length) return 0;
-    return a[Math.min(a.length - 1, Math.max(0, Math.ceil(a.length * r) - 1))];
+
+  function percentile(values, ratio) {
+    const arr = values.map(n).filter(Number.isFinite).sort((a, b) => a - b);
+    if (!arr.length) return 0;
+    return arr[Math.min(arr.length - 1, Math.max(0, Math.ceil(arr.length * ratio) - 1))];
   }
-  function group(rows, getter) {
-    const m = new Map();
+
+  function groupRows(rows, getter) {
+    const map = new Map();
     rows.forEach((row) => {
-      const k = getter(row) || 'unknown';
-      if (!m.has(k)) m.set(k, []);
-      m.get(k).push(row);
+      const key = getter(row) || 'unknown';
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(row);
     });
-    return m;
+    return map;
   }
+
   function counts(rows, getter) {
-    return Array.from(group(rows, getter).entries()).map(([key, rows]) => ({ key, rows, value: rows.length })).sort((a, b) => b.value - a.value);
+    return Array.from(groupRows(rows, getter).entries())
+      .map(([key, grouped]) => ({ key, rows: grouped, value: grouped.length }))
+      .sort((a, b) => b.value - a.value);
   }
 
   async function loadJson(path) {
-    const r = await fetch(path, { cache: 'no-store' });
-    if (!r.ok) throw new Error(`${path}: ${r.status}`);
-    return r.json();
-  }
-  async function loadAccount(key) {
-    const c = ACCOUNTS[key];
-    const ds = { key, posts: [], lda: null, sentiment: null, humor: null, scrapeState: null, errors: {} };
-    for (const [name, path] of Object.entries({ posts: c.posts, lda: c.lda, sentiment: c.sentiment, humor: c.humor, scrapeState: c.scrapeState })) {
-      try { ds[name] = await loadJson(path); } catch (err) { ds.errors[name] = err.message; }
-    }
-    return ds;
+    const response = await fetch(path, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`${path}: ${response.status}`);
+    return response.json();
   }
 
-  function enrich(key, ds) {
-    const c = ACCOUNTS[key];
-    const sentiment = new Map(((ds.sentiment && ds.sentiment.posts) || []).map((r) => [String(r.id), r]));
-    const humor = new Map(((ds.humor && ds.humor.posts) || []).map((r) => [String(r.id), r]));
-    const topics = new Map();
-    ((ds.lda && ds.lda.topics) || []).forEach((topic) => {
+  async function loadAccount(accountKey) {
+    const config = ACCOUNTS[accountKey];
+    const dataset = { key: accountKey, posts: [], lda: null, sentiment: null, humor: null, scrapeState: null, errors: {} };
+    const targets = {
+      posts: config.posts,
+      lda: config.lda,
+      sentiment: config.sentiment,
+      humor: config.humor,
+      scrapeState: config.scrapeState
+    };
+    for (const [name, path] of Object.entries(targets)) {
+      try {
+        dataset[name] = await loadJson(path);
+      } catch (error) {
+        dataset.errors[name] = error.message;
+      }
+    }
+    return dataset;
+  }
+
+  function enrich(accountKey, dataset) {
+    const config = ACCOUNTS[accountKey];
+    const sentimentById = new Map(((dataset.sentiment && dataset.sentiment.posts) || []).map((row) => [String(row.id), row]));
+    const humorById = new Map(((dataset.humor && dataset.humor.posts) || []).map((row) => [String(row.id), row]));
+    const topicById = new Map();
+    ((dataset.lda && dataset.lda.topics) || []).forEach((topic) => {
       (topic.representative_posts || []).forEach((post) => {
-        topics.set(String(post.id), { id: topic.topic_id, terms: topic.top_terms || [], score: num(post.score) });
+        topicById.set(String(post.id), { id: topic.topic_id, terms: topic.top_terms || [], score: n(post.score) });
       });
     });
-    const threshold = perc((ds.posts || []).map(engagement), 0.95);
-    return (ds.posts || []).map((post) => {
+    const viralThreshold = percentile((dataset.posts || []).map(engagement), 0.95);
+    return (dataset.posts || []).map((post) => {
       const id = String(post.id);
-      const s = sentiment.get(id) || {};
-      const h = humor.get(id) || {};
-      const topic = topics.get(id) || null;
-      const text = txt(post);
+      const sentiment = sentimentById.get(id) || {};
+      const humor = humorById.get(id) || {};
+      const topic = topicById.get(id) || null;
+      const text = textOf(post);
       const total = engagement(post);
       return Object.assign({}, post, {
-        id, account: key, brand: c.label, brand_color: c.color,
-        date_iso: iso(rawDate(post)), month_key: month(rawDate(post)),
+        id,
+        account: accountKey,
+        brand: config.label,
+        brand_color: config.color,
+        date_iso: isoDate(dateOf(post)),
+        month_key: monthKey(dateOf(post)),
         text_normalized: text,
-        likes_count: likes(post), replies_count: replies(post), retweets_count: retweets(post), quotes_count: quotes(post),
+        likes_count: likes(post),
+        replies_count: replies(post),
+        retweets_count: retweets(post),
+        quotes_count: quotes(post),
         total_engagement: total,
         text_length: text.length,
         word_count: text.trim().split(/\s+/).filter(Boolean).length,
         has_url: /(https?:\/\/|www\.)/i.test(text),
         hashtag_count: (text.match(/(^|\s)#[\p{L}\p{N}_]+/gu) || []).length,
         mention_count: (text.match(/(^|\s)@[A-Za-z0-9_]+/g) || []).length,
-        sentiment_label: s.top_label || 'unknown', sentiment_score: num(s.top_score),
-        humor_label: h.top_label || 'unknown', humor_score: num(h.top_score),
-        topic_id: topic ? topic.id : null, topic_terms: topic ? topic.terms : [], topic_score: topic ? topic.score : 0,
-        is_viral: total >= threshold && total > 0
+        sentiment_label: sentiment.top_label || 'unknown',
+        sentiment_score: n(sentiment.top_score),
+        humor_label: humor.top_label || 'unknown',
+        humor_score: n(humor.top_score),
+        topic_id: topic ? topic.id : null,
+        topic_terms: topic ? topic.terms : [],
+        topic_score: topic ? topic.score : 0,
+        is_viral: total >= viralThreshold && total > 0
       });
     });
   }
 
-  function stats(rows) {
+  function computeStats(rows) {
     const total = rows.length;
-    const dates = rows.map((r) => parsed(r.date_iso)).filter(Boolean).sort((a, b) => a - b);
-    const hTop = counts(rows, (r) => r.humor_label).filter((r) => r.key !== 'unknown')[0];
-    const sTop = counts(rows, (r) => r.sentiment_label).filter((r) => r.key !== 'unknown')[0];
+    const dates = rows.map((row) => parseDate(row.date_iso)).filter(Boolean).sort((a, b) => a - b);
+    const topHumor = counts(rows, (row) => row.humor_label).filter((row) => row.key !== 'unknown')[0];
+    const topSentiment = counts(rows, (row) => row.sentiment_label).filter((row) => row.key !== 'unknown')[0];
     return {
       total,
       range: dates.length ? `${dates[0].toISOString().slice(0, 10)} - ${dates[dates.length - 1].toISOString().slice(0, 10)}` : '-',
-      brands: new Set(rows.map((r) => r.account)).size,
-      days: new Set(rows.map((r) => r.date_iso).filter(Boolean)).size,
-      engagement: rows.reduce((s, r) => s + r.total_engagement, 0),
-      avg: avg(rows.map((r) => r.total_engagement)),
-      med: median(rows.map((r) => r.total_engagement)),
-      p95: perc(rows.map((r) => r.total_engagement), 0.95),
-      viral: total ? rows.filter((r) => r.is_viral).length / total : 0,
-      pos: total ? rows.filter((r) => r.sentiment_label === 'positive').length / total : 0,
-      neg: total ? rows.filter((r) => r.sentiment_label === 'negative').length / total : 0,
-      humor: hTop ? hTop.key : '-',
-      sent: sTop ? sTop.key : '-'
+      brands: new Set(rows.map((row) => row.account)).size,
+      days: new Set(rows.map((row) => row.date_iso).filter(Boolean)).size,
+      engagement: rows.reduce((sum, row) => sum + row.total_engagement, 0),
+      avg: average(rows.map((row) => row.total_engagement)),
+      med: median(rows.map((row) => row.total_engagement)),
+      p95: percentile(rows.map((row) => row.total_engagement), 0.95),
+      viral: total ? rows.filter((row) => row.is_viral).length / total : 0,
+      pos: total ? rows.filter((row) => row.sentiment_label === 'positive').length / total : 0,
+      neg: total ? rows.filter((row) => row.sentiment_label === 'negative').length / total : 0,
+      humor: topHumor ? topHumor.key : '-',
+      sent: topSentiment ? topSentiment.key : '-'
     };
   }
 
   function defaultFilters() {
     return { brand: 'all', search: '', from: '', to: '', sentiment: 'all', humor: 'all', topic: 'all', viral: 'all', minHumorScore: '0', minSentimentScore: '0', sort: 'date' };
   }
+
   function applyFilters(rows, filters) {
-    const q = filters.search.trim().toLowerCase();
+    const query = filters.search.trim().toLowerCase();
     const from = filters.from ? new Date(`${filters.from}T00:00:00Z`) : null;
     const to = filters.to ? new Date(`${filters.to}T23:59:59Z`) : null;
-    const filtered = rows.filter((p) => {
-      const d = parsed(p.date_iso);
-      if (filters.brand !== 'all' && p.account !== filters.brand) return false;
-      if (filters.sentiment !== 'all' && p.sentiment_label !== filters.sentiment) return false;
-      if (filters.humor !== 'all' && p.humor_label !== filters.humor) return false;
-      if (filters.topic !== 'all' && String(p.topic_id) !== filters.topic) return false;
-      if (filters.viral === 'viral' && !p.is_viral) return false;
-      if (filters.viral === 'nonviral' && p.is_viral) return false;
-      if (p.humor_score < num(filters.minHumorScore)) return false;
-      if (p.sentiment_score < num(filters.minSentimentScore)) return false;
-      if (from && (!d || d < from)) return false;
-      if (to && (!d || d > to)) return false;
-      if (!q) return true;
-      return [p.text_normalized, p.brand, p.sentiment_label, p.humor_label, p.topic_terms.join(' '), p.tweet_url].some((v) => String(v || '').toLowerCase().includes(q));
+    const filtered = rows.filter((post) => {
+      const date = parseDate(post.date_iso);
+      if (filters.brand !== 'all' && post.account !== filters.brand) return false;
+      if (filters.sentiment !== 'all' && post.sentiment_label !== filters.sentiment) return false;
+      if (filters.humor !== 'all' && post.humor_label !== filters.humor) return false;
+      if (filters.topic !== 'all' && String(post.topic_id) !== filters.topic) return false;
+      if (filters.viral === 'viral' && !post.is_viral) return false;
+      if (filters.viral === 'nonviral' && post.is_viral) return false;
+      if (post.humor_score < n(filters.minHumorScore)) return false;
+      if (post.sentiment_score < n(filters.minSentimentScore)) return false;
+      if (from && (!date || date < from)) return false;
+      if (to && (!date || date > to)) return false;
+      if (!query) return true;
+      return [post.text_normalized, post.brand, post.sentiment_label, post.humor_label, post.topic_terms.join(' '), post.tweet_url]
+        .some((value) => String(value || '').toLowerCase().includes(query));
     });
     filtered.sort((a, b) => {
       if (filters.sort === 'engagement') return b.total_engagement - a.total_engagement;
       if (filters.sort === 'humor') return b.humor_score - a.humor_score;
       if (filters.sort === 'sentiment') return b.sentiment_score - a.sentiment_score;
-      return (parsed(b.date_iso)?.getTime() || 0) - (parsed(a.date_iso)?.getTime() || 0);
+      return (parseDate(b.date_iso)?.getTime() || 0) - (parseDate(a.date_iso)?.getTime() || 0);
     });
     return filtered;
   }
 
-  function csvEscape(value) { return `"${String(value == null ? '' : value).replace(/"/g, '""')}"`; }
+  function csvEscape(value) {
+    return `"${String(value == null ? '' : value).replace(/"/g, '""')}"`;
+  }
+
   function downloadCsv(rows) {
-    const columns = ['date_iso','brand','id','tweet_url','text_normalized','total_engagement','likes_count','replies_count','retweets_count','quotes_count','sentiment_label','sentiment_score','humor_label','humor_score','topic_id','topic_terms','is_viral'];
+    const columns = ['date_iso', 'brand', 'id', 'tweet_url', 'text_normalized', 'total_engagement', 'likes_count', 'replies_count', 'retweets_count', 'quotes_count', 'sentiment_label', 'sentiment_score', 'humor_label', 'humor_score', 'topic_id', 'topic_terms', 'is_viral'];
     const body = rows.map((row) => columns.map((column) => csvEscape(column === 'topic_terms' ? row.topic_terms.join('|') : row[column])).join(','));
     const blob = new Blob([[columns.join(','), ...body].join('\n')], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -190,47 +249,50 @@
   }
 
   function insights(rows) {
-    if (!rows.length) return ['No posts match the current filters.'];
-    const brand = counts(rows, (r) => r.brand).map((r) => ({ key: r.key, value: median(r.rows.map((p) => p.total_engagement)), count: r.value })).sort((a, b) => b.value - a.value)[0];
-    const humor = counts(rows, (r) => r.humor_label).filter((r) => r.key !== 'unknown').map((r) => ({ key: r.key, value: median(r.rows.map((p) => p.total_engagement)), count: r.value })).sort((a, b) => b.value - a.value)[0];
-    const aggressive = rows.filter((r) => r.humor_label === 'Aggressive humor');
-    const unknownHumor = rows.filter((r) => r.humor_label === 'unknown').length / rows.length;
+    if (!rows.length) return ['현재 필터 조건에 해당하는 게시물이 없습니다.'];
+    const bestBrand = counts(rows, (row) => row.brand).map((row) => ({ key: row.key, value: median(row.rows.map((post) => post.total_engagement)), count: row.value })).sort((a, b) => b.value - a.value)[0];
+    const bestHumor = counts(rows, (row) => row.humor_label).filter((row) => row.key !== 'unknown').map((row) => ({ key: row.key, value: median(row.rows.map((post) => post.total_engagement)), count: row.value })).sort((a, b) => b.value - a.value)[0];
+    const aggressive = rows.filter((row) => row.humor_label === 'Aggressive humor');
+    const unknownHumor = rows.filter((row) => row.humor_label === 'unknown').length / rows.length;
     const out = [];
-    if (brand) out.push(`${brand.key} has the highest median engagement in the current view (${cv(brand.value)} across ${fmt.format(brand.count)} posts).`);
-    if (humor) out.push(`${humor.key} has the highest median engagement among visible HSQ humor types (${cv(humor.value)}).`);
-    out.push(`Negative sentiment accounts for ${percent.format(rows.filter((r) => r.sentiment_label === 'negative').length / rows.length)} of visible posts.`);
-    out.push(`Aggressive humor accounts for ${percent.format(aggressive.length / rows.length)} of visible posts, with ${cv(median(aggressive.map((p) => p.total_engagement)))} median engagement.`);
-    if (unknownHumor > 0.1) out.push(`Humor coverage needs attention: ${percent.format(unknownHumor)} of visible posts have unknown humor labels.`);
+    if (bestBrand) out.push(`현재 보기에서 ${bestBrand.key}의 중앙값 참여도가 가장 높습니다(${cv(bestBrand.value)}, ${fmt.format(bestBrand.count)}개 게시물 기준).`);
+    if (bestHumor) out.push(`현재 보기의 HSQ 유머 유형 중 ${HUMOR_KO[bestHumor.key] || bestHumor.key}의 중앙값 참여도가 가장 높습니다(${cv(bestHumor.value)}).`);
+    out.push(`현재 표시된 게시물 중 부정 감성 비중은 ${pct.format(rows.filter((row) => row.sentiment_label === 'negative').length / rows.length)}입니다.`);
+    out.push(`현재 표시된 게시물 중 공격적 유머 비중은 ${pct.format(aggressive.length / rows.length)}이며, 중앙값 참여도는 ${cv(median(aggressive.map((post) => post.total_engagement)))}입니다.`);
+    if (unknownHumor > 0.1) out.push(`유머 분류 커버리지 점검이 필요합니다. 현재 표시된 게시물 중 ${pct.format(unknownHumor)}가 유머 미분류 상태입니다.`);
     return out;
   }
 
   function qualityRows(rows) {
     const total = rows.length || 1;
     return [
-      ['Missing text', fmt.format(rows.filter((r) => !r.text_normalized.trim()).length), percent.format(rows.filter((r) => !r.text_normalized.trim()).length / total)],
-      ['Unknown sentiment', fmt.format(rows.filter((r) => r.sentiment_label === 'unknown').length), percent.format(rows.filter((r) => r.sentiment_label === 'unknown').length / total)],
-      ['Unknown humor', fmt.format(rows.filter((r) => r.humor_label === 'unknown').length), percent.format(rows.filter((r) => r.humor_label === 'unknown').length / total)],
-      ['Missing topic assignment', fmt.format(rows.filter((r) => r.topic_id === null).length), percent.format(rows.filter((r) => r.topic_id === null).length / total)],
-      ['Zero engagement', fmt.format(rows.filter((r) => r.total_engagement === 0).length), percent.format(rows.filter((r) => r.total_engagement === 0).length / total)]
+      ['본문 누락', fmt.format(rows.filter((row) => !row.text_normalized.trim()).length), pct.format(rows.filter((row) => !row.text_normalized.trim()).length / total)],
+      ['감성 미분류', fmt.format(rows.filter((row) => row.sentiment_label === 'unknown').length), pct.format(rows.filter((row) => row.sentiment_label === 'unknown').length / total)],
+      ['유머 미분류', fmt.format(rows.filter((row) => row.humor_label === 'unknown').length), pct.format(rows.filter((row) => row.humor_label === 'unknown').length / total)],
+      ['토픽 배정 누락', fmt.format(rows.filter((row) => row.topic_id === null).length), pct.format(rows.filter((row) => row.topic_id === null).length / total)],
+      ['참여도 0', fmt.format(rows.filter((row) => row.total_engagement === 0).length), pct.format(rows.filter((row) => row.total_engagement === 0).length / total)]
     ];
   }
 
   function Metric({ label, value, help, tone }) {
     return e('article', { className: `metric ${tone || ''}` }, e('span', null, label), e('strong', null, value), help ? e('small', null, help) : null);
   }
+
   function Section({ id, kicker, title, children }) {
     return e('section', { id, className: 'section' }, e('div', { className: 'section-title' }, e('span', null, kicker), e('h2', null, title)), children);
   }
+
   function Bars({ rows, asPercent }) {
-    if (!rows.length) return e('div', { className: 'empty' }, 'No data available');
-    const max = Math.max(...rows.map((r) => r.value), 1);
-    return e('div', { className: 'bars' }, rows.map((r, i) => e('div', { className: 'bar', key: `${r.key}-${i}` },
-      e('div', { className: 'bar-meta' }, e('span', { title: r.key }, r.key), e('b', null, asPercent ? percent.format(r.value) : cv(r.value))),
-      e('div', { className: 'track' }, e('i', { style: { width: `${Math.max(2, r.value / max * 100)}%`, background: r.color || undefined } }))
+    if (!rows.length) return e('div', { className: 'empty' }, '사용 가능한 데이터가 없습니다.');
+    const max = Math.max(...rows.map((row) => row.value), 1);
+    return e('div', { className: 'bars' }, rows.map((row, index) => e('div', { className: 'bar', key: `${row.key}-${index}` },
+      e('div', { className: 'bar-meta' }, e('span', { title: row.key }, row.key), e('b', null, asPercent ? pct.format(row.value) : cv(row.value))),
+      e('div', { className: 'track' }, e('i', { style: { width: `${Math.max(2, row.value / max * 100)}%`, background: row.color || undefined } }))
     )));
   }
+
   function DataTable({ heads, rows }) {
-    if (!rows.length) return e('div', { className: 'empty' }, 'No data available');
+    if (!rows.length) return e('div', { className: 'empty' }, '사용 가능한 데이터가 없습니다.');
     return e('div', { className: 'table-wrap' }, e('table', null,
       e('thead', null, e('tr', null, heads.map((head) => e('th', { key: head }, head)))),
       e('tbody', null, rows.map((row, index) => e('tr', { key: index }, row.map((cell, cellIndex) => e('td', { key: cellIndex }, cell)))))
@@ -238,14 +300,15 @@
   }
 
   function Header({ selected, setSelected, status, lastUpdated }) {
+    const statusText = status === 'ready' ? '준비 완료' : status === 'loading' ? '로딩 중' : '오류';
     return e('header', { className: 'top' },
       e('div', null,
-        e('div', { className: 'title' }, e('h1', null, 'X Brand Intelligence Dashboard'), e('em', { className: status }, status)),
-        e('p', null, 'Advanced React analytics for all-brand and brand-specific X posts, sentiment, topics, and HSQ humor.'),
-        e('small', null, `Last updated: ${lastUpdated}`)
+        e('div', { className: 'title' }, e('h1', null, 'X 브랜드 인텔리전스 대시보드'), e('em', { className: status }, statusText)),
+        e('p', null, '전체 브랜드 및 브랜드별 X 게시물, 감성, 토픽, HSQ 유머 분석을 제공합니다.'),
+        e('small', null, `최종 업데이트: ${lastUpdated}`)
       ),
       e('nav', { className: 'tabs' },
-        e('button', { className: selected === 'all' ? 'on' : '', onClick: () => setSelected('all') }, 'All Brands'),
+        e('button', { className: selected === 'all' ? 'on' : '', onClick: () => setSelected('all') }, '전체 브랜드'),
         Object.entries(ACCOUNTS).map(([key, account]) => e('button', { key, className: selected === key ? 'on' : '', onClick: () => setSelected(key) }, account.label))
       )
     );
@@ -254,161 +317,213 @@
   function Filters({ filters, setFilters, topics, count }) {
     const update = (key, value) => setFilters(Object.assign({}, filters, { [key]: value }));
     return e('aside', { className: 'filters' },
-      e('div', { className: 'filter-head' }, e('b', null, 'Filters'), e('span', null, `${fmt.format(count)} posts`)),
-      e('label', null, 'Brand', e('select', { value: filters.brand, onChange: (ev) => update('brand', ev.target.value) }, e('option', { value: 'all' }, 'All brands'), Object.entries(ACCOUNTS).map(([key, account]) => e('option', { key, value: key }, account.label)))),
-      e('label', null, 'Search', e('input', { type: 'search', value: filters.search, onChange: (ev) => update('search', ev.target.value), placeholder: 'text, humor, sentiment, topic' })),
-      e('div', { className: 'two' },
-        e('label', null, 'From', e('input', { type: 'date', value: filters.from, onChange: (ev) => update('from', ev.target.value) })),
-        e('label', null, 'To', e('input', { type: 'date', value: filters.to, onChange: (ev) => update('to', ev.target.value) }))
-      ),
-      e('label', null, 'Sentiment', e('select', { value: filters.sentiment, onChange: (ev) => update('sentiment', ev.target.value) }, e('option', { value: 'all' }, 'All sentiment'), SENTIMENT_LABELS.map((label) => e('option', { key: label, value: label }, label)))),
-      e('label', null, 'HSQ Humor', e('select', { value: filters.humor, onChange: (ev) => update('humor', ev.target.value) }, e('option', { value: 'all' }, 'All humor'), HUMOR_LABELS.map((label) => e('option', { key: label, value: label }, label)), e('option', { value: 'unknown' }, 'unknown'))),
-      e('label', null, 'Topic', e('select', { value: filters.topic, onChange: (ev) => update('topic', ev.target.value) }, e('option', { value: 'all' }, 'All topics'), topics.map((topic) => e('option', { key: topic, value: topic }, `Topic ${topic}`)))),
-      e('label', null, 'Viral', e('select', { value: filters.viral, onChange: (ev) => update('viral', ev.target.value) }, e('option', { value: 'all' }, 'All posts'), e('option', { value: 'viral' }, 'Viral only'), e('option', { value: 'nonviral' }, 'Non-viral only'))),
-      e('div', { className: 'two' },
-        e('label', null, 'Min Humor Score', e('input', { type: 'number', min: '0', max: '1', step: '0.05', value: filters.minHumorScore, onChange: (ev) => update('minHumorScore', ev.target.value) })),
-        e('label', null, 'Min Sentiment Score', e('input', { type: 'number', min: '0', max: '1', step: '0.05', value: filters.minSentimentScore, onChange: (ev) => update('minSentimentScore', ev.target.value) }))
-      ),
-      e('label', null, 'Sort', e('select', { value: filters.sort, onChange: (ev) => update('sort', ev.target.value) }, e('option', { value: 'date' }, 'Newest'), e('option', { value: 'engagement' }, 'Engagement'), e('option', { value: 'humor' }, 'Humor score'), e('option', { value: 'sentiment' }, 'Sentiment score'))),
-      e('button', { onClick: () => setFilters(defaultFilters()) }, 'Reset')
-    );
-  }
-
-  function Status({ datasets }) {
-    return e(Section, { id: 'status', kicker: 'Data readiness', title: 'Dataset Status' },
-      e(DataTable, { heads: ['Brand', 'Posts', 'LDA', 'Sentiment', 'HSQ Humor'], rows: Object.entries(ACCOUNTS).map(([key, account]) => {
-        const d = datasets[key] || {};
-        return [account.label, d.posts && d.posts.length ? `${fmt.format(d.posts.length)} loaded` : 'missing', d.lda ? 'available' : 'missing', d.sentiment ? 'available' : 'missing', d.humor ? 'available' : 'missing'];
-      }) })
+      e('div', { className: 'filter-head' }, e('b', null, '필터'), e('span', null, `${fmt.format(count)}개 게시물`)),
+      e('label', null, '브랜드', e('select', { value: filters.brand, onChange: (event) => update('brand', event.target.value) }, e('option', { value: 'all' }, '전체 브랜드'), Object.entries(ACCOUNTS).map(([key, account]) => e('option', { key, value: key }, account.label)))),
+      e('label', null, '검색', e('input', { type: 'search', value: filters.search, onChange: (event) => update('search', event.target.value), placeholder: '본문, 유머, 감성, 토픽' })),
+      e('div', { className: 'two' }, e('label', null, '시작일', e('input', { type: 'date', value: filters.from, onChange: (event) => update('from', event.target.value) })), e('label', null, '종료일', e('input', { type: 'date', value: filters.to, onChange: (event) => update('to', event.target.value) }))),
+      e('label', null, '감성', e('select', { value: filters.sentiment, onChange: (event) => update('sentiment', event.target.value) }, e('option', { value: 'all' }, '전체 감성'), SENTIMENT_LABELS.map((label) => e('option', { key: label, value: label }, SENTIMENT_KO[label] || label)))),
+      e('label', null, 'HSQ 유머', e('select', { value: filters.humor, onChange: (event) => update('humor', event.target.value) }, e('option', { value: 'all' }, '전체 유머'), HUMOR_LABELS.map((label) => e('option', { key: label, value: label }, HUMOR_KO[label] || label)), e('option', { value: 'unknown' }, '미분류'))),
+      e('label', null, '토픽', e('select', { value: filters.topic, onChange: (event) => update('topic', event.target.value) }, e('option', { value: 'all' }, '전체 토픽'), topics.map((topic) => e('option', { key: topic, value: topic }, `토픽 ${topic}`)))),
+      e('label', null, '바이럴', e('select', { value: filters.viral, onChange: (event) => update('viral', event.target.value) }, e('option', { value: 'all' }, '전체 게시물'), e('option', { value: 'viral' }, '바이럴만'), e('option', { value: 'nonviral' }, '비바이럴만'))),
+      e('div', { className: 'two' }, e('label', null, '최소 유머 점수', e('input', { type: 'number', min: '0', max: '1', step: '0.05', value: filters.minHumorScore, onChange: (event) => update('minHumorScore', event.target.value) })), e('label', null, '최소 감성 점수', e('input', { type: 'number', min: '0', max: '1', step: '0.05', value: filters.minSentimentScore, onChange: (event) => update('minSentimentScore', event.target.value) }))),
+      e('label', null, '정렬', e('select', { value: filters.sort, onChange: (event) => update('sort', event.target.value) }, e('option', { value: 'date' }, '최신순'), e('option', { value: 'engagement' }, '참여도'), e('option', { value: 'humor' }, '유머 점수'), e('option', { value: 'sentiment' }, '감성 점수'))),
+      e('button', { onClick: () => setFilters(defaultFilters()) }, '초기화')
     );
   }
 
   function Overview({ summary, selected }) {
-    return e(Section, { id: 'overview', kicker: 'Executive summary', title: selected === 'all' ? 'All Brands Overview' : `${ACCOUNTS[selected].label} Overview` },
+    return e(Section, { id: 'overview', kicker: '핵심 요약', title: selected === 'all' ? '전체 브랜드 개요' : `${ACCOUNTS[selected].label} 개요` },
       e('div', { className: 'metrics' },
-        e(Metric, { label: 'Total Posts', value: fmt.format(summary.total), help: `${summary.brands} brand(s), ${summary.days} active day(s)`, tone: 'red' }),
-        e(Metric, { label: 'Date Range', value: summary.range, help: 'parsed post timestamps' }),
-        e(Metric, { label: 'Total Engagement', value: cv(summary.engagement), help: `Avg ${cv(summary.avg)} per post` }),
-        e(Metric, { label: 'Median Engagement', value: cv(summary.med), help: `P95 ${cv(summary.p95)}` }),
-        e(Metric, { label: 'Viral Share', value: percent.format(summary.viral), help: 'top 5% by engagement' }),
-        e(Metric, { label: 'Dominant Humor', value: summary.humor, help: `Positive ${percent.format(summary.pos)} / Negative ${percent.format(summary.neg)}`, tone: 'blue' })
+        e(Metric, { label: '총 게시물 수', value: fmt.format(summary.total), help: `${summary.brands}개 브랜드, ${summary.days}일 활동`, tone: 'red' }),
+        e(Metric, { label: '수집 기간', value: summary.range, help: '게시물 작성일 기준' }),
+        e(Metric, { label: '총 참여도', value: cv(summary.engagement), help: `게시물당 평균 ${cv(summary.avg)}` }),
+        e(Metric, { label: '중앙값 참여도', value: cv(summary.med), help: `95백분위수 ${cv(summary.p95)}` }),
+        e(Metric, { label: '바이럴 비중', value: pct.format(summary.viral), help: '참여도 상위 5% 기준' }),
+        e(Metric, { label: '주요 유머 유형', value: HUMOR_KO[summary.humor] || summary.humor, help: `긍정 ${pct.format(summary.pos)} / 부정 ${pct.format(summary.neg)}`, tone: 'blue' })
       )
     );
   }
 
-  function Advanced({ rows }) {
-    const confidenceRows = [
-      ['Average sentiment score', scoreFmt.format(avg(rows.map((r) => r.sentiment_score)))],
-      ['Average humor score', scoreFmt.format(avg(rows.map((r) => r.humor_score)))],
-      ['Posts with sentiment score ≥ .70', fmt.format(rows.filter((r) => r.sentiment_score >= 0.7).length)],
-      ['Posts with humor score ≥ .70', fmt.format(rows.filter((r) => r.humor_score >= 0.7).length)]
-    ];
-    return e(Section, { id: 'advanced', kicker: 'Advanced analytics', title: 'Insights, Quality Audit, and Export' },
+  function BrandScopeVisual({ selected, rows, allPosts }) {
+    if (selected === 'all') {
+      const brandRows = Object.entries(ACCOUNTS).map(([key, account]) => {
+        const scoped = allPosts.filter((row) => row.account === key);
+        const s = computeStats(scoped);
+        return { key, account, scoped, s };
+      });
+      return e(Section, { id: 'brand-visual', kicker: '전체 브랜드 비교', title: '브랜드별 분석 요약' },
+        e('div', { className: 'grid' },
+          e('article', { className: 'panel' }, e('h3', null, '브랜드별 게시물 수'), e(Bars, { rows: brandRows.map((item) => ({ key: item.account.label, value: item.scoped.length, color: item.account.color })) })),
+          e('article', { className: 'panel' }, e('h3', null, '브랜드별 총 참여도'), e(Bars, { rows: brandRows.map((item) => ({ key: item.account.label, value: item.s.engagement, color: item.account.color })) })),
+          e('article', { className: 'panel' }, e('h3', null, '브랜드별 중앙값 참여도'), e(Bars, { rows: brandRows.map((item) => ({ key: item.account.label, value: item.s.med, color: item.account.color })) })),
+          e('article', { className: 'panel' }, e('h3', null, '브랜드별 주요 유머 유형'), e(DataTable, { heads: ['브랜드', '주요 유머', '긍정 감성', '부정 감성'], rows: brandRows.map((item) => [item.account.label, HUMOR_KO[item.s.humor] || item.s.humor, pct.format(item.s.pos), pct.format(item.s.neg)]) }))
+        )
+      );
+    }
+
+    const account = ACCOUNTS[selected];
+    const s = computeStats(rows);
+    const monthlyPosts = counts(rows, (row) => row.month_key).filter((row) => row.key !== '미상').slice(0, 12).reverse().map((row) => ({ key: row.key, value: row.value }));
+    const monthlyEngagement = counts(rows, (row) => row.month_key).filter((row) => row.key !== '미상').slice(0, 12).reverse().map((row) => ({ key: row.key, value: row.rows.reduce((sum, post) => sum + post.total_engagement, 0) }));
+    const sentimentRows = counts(rows, (row) => row.sentiment_label).map((row) => ({ key: SENTIMENT_KO[row.key] || row.key, value: rows.length ? row.value / rows.length : 0 }));
+    const topicRows = counts(rows.filter((row) => row.topic_id !== null), (row) => `토픽 ${row.topic_id}`).slice(0, 8).map((row) => ({ key: row.key, value: row.value }));
+
+    return e(Section, { id: 'brand-visual', kicker: '브랜드 단위 시각화', title: `${account.label} 분석 결과` },
+      e('p', { className: 'panel-copy' }, '선택한 브랜드 탭에서는 모든 분석이 해당 브랜드 게시물만을 기준으로 계산됩니다.'),
+      e('div', { className: 'metrics' },
+        e(Metric, { label: '브랜드 게시물 수', value: fmt.format(s.total), help: `${account.label} 기준`, tone: 'red' }),
+        e(Metric, { label: '브랜드 총 참여도', value: cv(s.engagement), help: '좋아요·답글·리트윗·인용 합계' }),
+        e(Metric, { label: '중앙값 참여도', value: cv(s.med), help: '극단값 영향을 줄인 대표 반응' }),
+        e(Metric, { label: '주요 감성', value: SENTIMENT_KO[s.sent] || s.sent, help: '최빈 감성 라벨' }),
+        e(Metric, { label: '주요 유머', value: HUMOR_KO[s.humor] || s.humor, help: '최빈 HSQ 유머 유형', tone: 'blue' }),
+        e(Metric, { label: '평균 유머 점수', value: scoreFmt.format(average(rows.map((row) => row.humor_score))), help: 'zero-shot confidence 평균' })
+      ),
       e('div', { className: 'grid' },
-        e('article', { className: 'panel' }, e('h3', null, 'Auto Insights'), e('ul', { className: 'insight-list' }, insights(rows).map((item, i) => e('li', { key: i }, item)))),
-        e('article', { className: 'panel' }, e('h3', null, 'Data Quality Audit'), e(DataTable, { heads: ['Check', 'Count', 'Share'], rows: qualityRows(rows) })),
-        e('article', { className: 'panel' }, e('h3', null, 'Confidence Diagnostics'), e(DataTable, { heads: ['Metric', 'Value'], rows: confidenceRows })),
-        e('article', { className: 'panel' }, e('h3', null, 'Export Current View'), e('p', { className: 'panel-copy' }, 'Download the currently filtered post-level dataset with sentiment, humor, topic, and engagement fields.'), e('button', { className: 'primary-action', disabled: !rows.length, onClick: () => downloadCsv(rows) }, 'Download filtered CSV')),
-        e('article', { className: 'panel wide' }, e('h3', null, 'Top Engagement Posts'), e(PostList, { rows: rows.slice().sort((a, b) => b.total_engagement - a.total_engagement).slice(0, 5) }))
+        e('article', { className: 'panel' }, e('h3', null, '월별 게시량'), e(Bars, { rows: monthlyPosts })),
+        e('article', { className: 'panel' }, e('h3', null, '월별 참여도'), e(Bars, { rows: monthlyEngagement })),
+        e('article', { className: 'panel' }, e('h3', null, '감성 분포'), e(Bars, { rows: sentimentRows, asPercent: true })),
+        e('article', { className: 'panel' }, e('h3', null, '토픽 분포'), e(Bars, { rows: topicRows })),
+        e(HumorQuadrantMatrix, { rows }),
+        e('article', { className: 'panel wide' }, e('h3', null, '브랜드 내 참여도 상위 게시물'), e(PostList, { rows: rows.slice().sort((a, b) => b.total_engagement - a.total_engagement).slice(0, 5) }))
+      )
+    );
+  }
+
+  function HumorQuadrantMatrix({ rows }) {
+    return e('article', { className: 'panel wide' },
+      e('h3', null, '유머 유형 2×2 분포도'),
+      e('p', { className: 'panel-copy' }, '가로축은 자기 지향-타인 지향, 세로축은 적응적/긍정적-부적응적/부정적 기준입니다.'),
+      e('div', { className: 'humor-matrix' }, QUADRANTS.map((quadrant) => {
+        const scoped = rows.filter((row) => row.humor_label === quadrant.key);
+        return e('div', { key: quadrant.key, className: `humor-cell ${quadrant.key === 'Aggressive humor' ? 'danger' : ''}` },
+          e('span', { className: 'humor-axis' }, quadrant.axis),
+          e('strong', null, quadrant.title),
+          e('b', null, `${fmt.format(scoped.length)}개 · ${pct.format(rows.length ? scoped.length / rows.length : 0)}`),
+          e('small', null, `중앙값 참여도 ${cv(median(scoped.map((row) => row.total_engagement)))} · 평균 점수 ${scoreFmt.format(average(scoped.map((row) => row.humor_score)))}`)
+        );
+      }))
+    );
+  }
+
+  function Status({ datasets }) {
+    return e(Section, { id: 'status', kicker: '데이터 준비 상태', title: '데이터셋 상태' },
+      e(DataTable, { heads: ['브랜드', '게시물', 'LDA', '감성', 'HSQ 유머'], rows: Object.entries(ACCOUNTS).map(([key, account]) => {
+        const dataset = datasets[key] || {};
+        return [account.label, dataset.posts && dataset.posts.length ? `${fmt.format(dataset.posts.length)}개 로드됨` : '누락', dataset.lda ? '사용 가능' : '누락', dataset.sentiment ? '사용 가능' : '누락', dataset.humor ? '사용 가능' : '누락'];
+      }) })
+    );
+  }
+
+  function Advanced({ rows }) {
+    return e(Section, { id: 'advanced', kicker: '고급 분석', title: '인사이트, 데이터 품질 점검 및 내보내기' },
+      e('div', { className: 'grid' },
+        e('article', { className: 'panel' }, e('h3', null, '자동 인사이트'), e('ul', { className: 'insight-list' }, insights(rows).map((item, index) => e('li', { key: index }, item)))),
+        e('article', { className: 'panel' }, e('h3', null, '데이터 품질 점검'), e(DataTable, { heads: ['점검 항목', '개수', '비중'], rows: qualityRows(rows) })),
+        e('article', { className: 'panel' }, e('h3', null, '분류 신뢰도 진단'), e(DataTable, { heads: ['지표', '값'], rows: [['평균 감성 점수', scoreFmt.format(average(rows.map((row) => row.sentiment_score)))], ['평균 유머 점수', scoreFmt.format(average(rows.map((row) => row.humor_score)))], ['감성 점수 .70 이상 게시물', fmt.format(rows.filter((row) => row.sentiment_score >= 0.7).length)], ['유머 점수 .70 이상 게시물', fmt.format(rows.filter((row) => row.humor_score >= 0.7).length)]] })),
+        e('article', { className: 'panel' }, e('h3', null, '현재 보기 내보내기'), e('p', { className: 'panel-copy' }, '현재 필터가 적용된 게시물 단위 데이터셋을 CSV로 다운로드합니다.'), e('button', { className: 'primary-action', disabled: !rows.length, onClick: () => downloadCsv(rows) }, '필터링 결과 CSV 다운로드')),
+        e('article', { className: 'panel wide' }, e('h3', null, '참여도 상위 게시물'), e(PostList, { rows: rows.slice().sort((a, b) => b.total_engagement - a.total_engagement).slice(0, 5) }))
       )
     );
   }
 
   function Descriptives({ rows }) {
-    const s = stats(rows);
-    const brandRows = counts(rows, (r) => r.brand).map((r) => ({ key: r.key, value: median(r.rows.map((p) => p.total_engagement)), color: r.rows[0] && r.rows[0].brand_color }));
-    return e(Section, { id: 'descriptives', kicker: 'Descriptive statistics', title: 'Dataset and Engagement Profile' },
+    const s = computeStats(rows);
+    const brandRows = counts(rows, (row) => row.brand).map((row) => ({ key: row.key, value: median(row.rows.map((post) => post.total_engagement)), color: row.rows[0] && row.rows[0].brand_color }));
+    return e(Section, { id: 'descriptives', kicker: '기술통계', title: '데이터셋 및 참여도 프로파일' },
       e('div', { className: 'grid' },
-        e('article', { className: 'panel' }, e('h3', null, 'Summary'), e(DataTable, { heads: ['Metric', 'Value'], rows: [['Posts', fmt.format(s.total)], ['Date range', s.range], ['Total engagement', cv(s.engagement)], ['Average engagement', cv(s.avg)], ['Median engagement', cv(s.med)], ['Dominant sentiment', s.sent], ['Dominant humor', s.humor]] })),
-        e('article', { className: 'panel' }, e('h3', null, 'Median Engagement by Brand'), e(Bars, { rows: brandRows }))
+        e('article', { className: 'panel' }, e('h3', null, '요약'), e(DataTable, { heads: ['지표', '값'], rows: [['게시물', fmt.format(s.total)], ['수집 기간', s.range], ['총 참여도', cv(s.engagement)], ['평균 참여도', cv(s.avg)], ['중앙값 참여도', cv(s.med)], ['주요 감성', SENTIMENT_KO[s.sent] || s.sent], ['주요 유머', HUMOR_KO[s.humor] || s.humor]] })),
+        e('article', { className: 'panel' }, e('h3', null, '브랜드별 중앙값 참여도'), e(Bars, { rows: brandRows }))
       )
     );
   }
 
   function Comparison({ rows, selected }) {
-    if (selected !== 'all') return e(Section, { id: 'comparison', kicker: 'Cross-brand analysis', title: 'Brand Comparison' }, e('div', { className: 'empty' }, 'Brand comparison is shown in the All Brands view.'));
+    if (selected !== 'all') return e(Section, { id: 'comparison', kicker: '브랜드 간 분석', title: '브랜드 비교' }, e('div', { className: 'empty' }, '브랜드 비교는 전체 브랜드 보기에서 표시됩니다.'));
     const items = Object.entries(ACCOUNTS).map(([key, account]) => {
-      const scoped = rows.filter((r) => r.account === key);
-      return { account, rows: scoped, s: stats(scoped) };
+      const scoped = rows.filter((row) => row.account === key);
+      return { account, rows: scoped, s: computeStats(scoped) };
     });
-    return e(Section, { id: 'comparison', kicker: 'Cross-brand analysis', title: 'Brand Comparison' },
+    return e(Section, { id: 'comparison', kicker: '브랜드 간 분석', title: '브랜드 비교' },
       e('div', { className: 'grid' },
-        e('article', { className: 'panel' }, e('h3', null, 'Post Count by Brand'), e(Bars, { rows: items.map((it) => ({ key: it.account.label, value: it.rows.length, color: it.account.color })) })),
-        e('article', { className: 'panel' }, e('h3', null, 'Total Engagement by Brand'), e(Bars, { rows: items.map((it) => ({ key: it.account.label, value: it.s.engagement, color: it.account.color })) })),
-        e('article', { className: 'panel wide' }, e('h3', null, 'Brand Summary'), e(DataTable, { heads: ['Brand', 'Posts', 'Median Engagement', 'Positive', 'Negative', 'Viral', 'Dominant Humor'], rows: items.map((it) => [it.account.label, fmt.format(it.rows.length), cv(it.s.med), percent.format(it.s.pos), percent.format(it.s.neg), percent.format(it.s.viral), it.s.humor]) }))
+        e('article', { className: 'panel' }, e('h3', null, '브랜드별 게시물 수'), e(Bars, { rows: items.map((item) => ({ key: item.account.label, value: item.rows.length, color: item.account.color })) })),
+        e('article', { className: 'panel' }, e('h3', null, '브랜드별 총 참여도'), e(Bars, { rows: items.map((item) => ({ key: item.account.label, value: item.s.engagement, color: item.account.color })) })),
+        e('article', { className: 'panel wide' }, e('h3', null, '브랜드 요약'), e(DataTable, { heads: ['브랜드', '게시물', '중앙값 참여도', '긍정', '부정', '바이럴', '주요 유머'], rows: items.map((item) => [item.account.label, fmt.format(item.rows.length), cv(item.s.med), pct.format(item.s.pos), pct.format(item.s.neg), pct.format(item.s.viral), HUMOR_KO[item.s.humor] || item.s.humor]) }))
       )
     );
   }
 
   function Evidence({ rows }) {
-    const viral = rows.filter((r) => r.is_viral);
-    return e(Section, { id: 'evidence', kicker: 'Model-free evidence', title: 'Observed Patterns Before Modeling' },
+    const viral = rows.filter((row) => row.is_viral);
+    return e(Section, { id: 'evidence', kicker: '모델 프리 근거', title: '모형화 이전 관찰 패턴' },
       e('div', { className: 'grid' },
-        e('article', { className: 'panel' }, e('h3', null, 'Humor Type → Median Engagement'), e(Bars, { rows: counts(rows, (r) => r.humor_label).map((r) => ({ key: r.key, value: median(r.rows.map((p) => p.total_engagement)) })) })),
-        e('article', { className: 'panel' }, e('h3', null, 'Sentiment → Median Engagement'), e(Bars, { rows: counts(rows, (r) => r.sentiment_label).map((r) => ({ key: r.key, value: median(r.rows.map((p) => p.total_engagement)) })) })),
-        e('article', { className: 'panel' }, e('h3', null, 'Viral Humor Composition'), e(Bars, { asPercent: true, rows: counts(viral, (r) => r.humor_label).map((r) => ({ key: r.key, value: viral.length ? r.value / viral.length : 0, color: r.key === 'Aggressive humor' ? '#DC2626' : undefined })) })),
-        e('article', { className: 'panel' }, e('h3', null, 'Humor × Sentiment Cells'), e(DataTable, { heads: ['Cell', 'Posts', 'Median Engagement'], rows: counts(rows, (r) => `${r.humor_label} / ${r.sentiment_label}`).slice(0, 8).map((r) => [r.key, fmt.format(r.value), cv(median(r.rows.map((p) => p.total_engagement)))]) }))
+        e('article', { className: 'panel' }, e('h3', null, '유머 유형 → 중앙값 참여도'), e(Bars, { rows: counts(rows, (row) => row.humor_label).map((row) => ({ key: HUMOR_KO[row.key] || row.key, value: median(row.rows.map((post) => post.total_engagement)) })) })),
+        e('article', { className: 'panel' }, e('h3', null, '감성 → 중앙값 참여도'), e(Bars, { rows: counts(rows, (row) => row.sentiment_label).map((row) => ({ key: SENTIMENT_KO[row.key] || row.key, value: median(row.rows.map((post) => post.total_engagement)) })) })),
+        e('article', { className: 'panel' }, e('h3', null, '바이럴 게시물의 유머 구성'), e(Bars, { asPercent: true, rows: counts(viral, (row) => row.humor_label).map((row) => ({ key: HUMOR_KO[row.key] || row.key, value: viral.length ? row.value / viral.length : 0, color: row.key === 'Aggressive humor' ? '#DC2626' : undefined })) })),
+        e('article', { className: 'panel' }, e('h3', null, '유머 × 감성 조합'), e(DataTable, { heads: ['조합', '게시물', '중앙값 참여도'], rows: counts(rows, (row) => `${HUMOR_KO[row.humor_label] || row.humor_label} / ${SENTIMENT_KO[row.sentiment_label] || row.sentiment_label}`).slice(0, 8).map((row) => [row.key, fmt.format(row.value), cv(median(row.rows.map((post) => post.total_engagement)))]) }))
       )
     );
   }
 
   function Posting({ rows }) {
-    const months = counts(rows, (r) => r.month_key).filter((r) => r.key !== 'unknown').slice(0, 18).reverse();
+    const months = counts(rows, (row) => row.month_key).filter((row) => row.key !== '미상').slice(0, 18).reverse();
     const mix = [
-      { key: 'Likes', value: rows.reduce((s, r) => s + r.likes_count, 0) },
-      { key: 'Replies', value: rows.reduce((s, r) => s + r.replies_count, 0) },
-      { key: 'Retweets', value: rows.reduce((s, r) => s + r.retweets_count, 0) },
-      { key: 'Quotes', value: rows.reduce((s, r) => s + r.quotes_count, 0) }
+      { key: '좋아요', value: rows.reduce((sum, row) => sum + row.likes_count, 0) },
+      { key: '답글', value: rows.reduce((sum, row) => sum + row.replies_count, 0) },
+      { key: '리트윗', value: rows.reduce((sum, row) => sum + row.retweets_count, 0) },
+      { key: '인용', value: rows.reduce((sum, row) => sum + row.quotes_count, 0) }
     ];
-    return e(Section, { id: 'posting', kicker: 'Posting and engagement', title: 'Posting Volume and Interaction Mix' }, e('div', { className: 'grid' }, e('article', { className: 'panel' }, e('h3', null, 'Recent Monthly Posting Volume'), e(Bars, { rows: months })), e('article', { className: 'panel' }, e('h3', null, 'Engagement Mix'), e(Bars, { rows: mix }))));
+    return e(Section, { id: 'posting', kicker: '게시 및 참여도', title: '게시량 및 상호작용 구성' }, e('div', { className: 'grid' }, e('article', { className: 'panel' }, e('h3', null, '최근 월별 게시량'), e(Bars, { rows: months })), e('article', { className: 'panel' }, e('h3', null, '참여도 구성'), e(Bars, { rows: mix }))));
   }
 
   function Sentiment({ rows, selected }) {
-    const distribution = counts(rows, (r) => r.sentiment_label).map((r) => ({ key: r.key, value: rows.length ? r.value / rows.length : 0, color: r.key === 'positive' ? '#16A34A' : r.key === 'negative' ? '#DC2626' : '#94A3B8' }));
-    return e(Section, { id: 'sentiment', kicker: 'Zero-shot sentiment', title: 'Sentiment Analysis' },
+    const distribution = counts(rows, (row) => row.sentiment_label).map((row) => ({ key: SENTIMENT_KO[row.key] || row.key, value: rows.length ? row.value / rows.length : 0, color: row.key === 'positive' ? '#16A34A' : row.key === 'negative' ? '#DC2626' : '#94A3B8' }));
+    return e(Section, { id: 'sentiment', kicker: '제로샷 감성 분석', title: '감성 분석' },
       e('div', { className: 'grid' },
-        e('article', { className: 'panel' }, e('h3', null, 'Sentiment Distribution'), e(Bars, { rows: distribution, asPercent: true })),
-        e('article', { className: 'panel' }, e('h3', null, selected === 'all' ? 'Sentiment by Brand' : 'Representative Negative Posts'), selected === 'all' ? e(DataTable, { heads: ['Brand', 'Positive', 'Neutral', 'Negative'], rows: Object.entries(ACCOUNTS).map(([key, account]) => { const scoped = rows.filter((r) => r.account === key); return [account.label, percent.format(scoped.length ? scoped.filter((r) => r.sentiment_label === 'positive').length / scoped.length : 0), percent.format(scoped.length ? scoped.filter((r) => r.sentiment_label === 'neutral').length / scoped.length : 0), percent.format(scoped.length ? scoped.filter((r) => r.sentiment_label === 'negative').length / scoped.length : 0)]; }) }) : e(PostList, { rows: rows.filter((r) => r.sentiment_label === 'negative').slice(0, 5) }))
+        e('article', { className: 'panel' }, e('h3', null, '감성 분포'), e(Bars, { rows: distribution, asPercent: true })),
+        e('article', { className: 'panel' }, e('h3', null, selected === 'all' ? '브랜드별 감성' : '대표 부정 게시물'), selected === 'all' ? e(DataTable, { heads: ['브랜드', '긍정', '중립', '부정'], rows: Object.entries(ACCOUNTS).map(([key, account]) => { const scoped = rows.filter((row) => row.account === key); return [account.label, pct.format(scoped.length ? scoped.filter((row) => row.sentiment_label === 'positive').length / scoped.length : 0), pct.format(scoped.length ? scoped.filter((row) => row.sentiment_label === 'neutral').length / scoped.length : 0), pct.format(scoped.length ? scoped.filter((row) => row.sentiment_label === 'negative').length / scoped.length : 0)]; }) }) : e(PostList, { rows: rows.filter((row) => row.sentiment_label === 'negative').slice(0, 5) }))
       )
     );
   }
 
   function Humor({ rows, selected }) {
-    const aggressive = rows.filter((r) => r.humor_label === 'Aggressive humor');
-    const ag = stats(aggressive);
-    const distribution = counts(rows, (r) => r.humor_label).map((r) => ({ key: r.key, value: rows.length ? r.value / rows.length : 0, color: r.key === 'Aggressive humor' ? '#DC2626' : r.key === 'Self-enhancing humor' ? '#2563EB' : undefined }));
-    return e(Section, { id: 'humor', kicker: 'HSQ humor classification', title: 'Humor Analysis' },
+    const aggressive = rows.filter((row) => row.humor_label === 'Aggressive humor');
+    const ag = computeStats(aggressive);
+    const distribution = counts(rows, (row) => row.humor_label).map((row) => ({ key: HUMOR_KO[row.key] || row.key, value: rows.length ? row.value / rows.length : 0, color: row.key === 'Aggressive humor' ? '#DC2626' : row.key === 'Self-enhancing humor' ? '#2563EB' : undefined }));
+    return e(Section, { id: 'humor', kicker: 'HSQ 유머 분류', title: '유머 분석' },
       e('div', { className: 'grid' },
-        e('article', { className: 'panel' }, e('h3', null, 'Humor Type Distribution'), e(Bars, { rows: distribution, asPercent: true })),
-        e('article', { className: 'panel' }, e('h3', null, 'Aggressive Humor Focus'), e('div', { className: 'focus' }, e(Metric, { label: 'Aggressive Posts', value: fmt.format(aggressive.length), help: percent.format(rows.length ? aggressive.length / rows.length : 0), tone: 'danger' }), e(Metric, { label: 'Median Engagement', value: cv(ag.med), help: 'aggressive posts' }), e(Metric, { label: 'Negative Share', value: percent.format(ag.neg), help: 'within aggressive humor' }))),
-        e('article', { className: 'panel wide' }, e('h3', null, selected === 'all' ? 'Humor Type by Brand' : 'Representative Humor Posts'), selected === 'all' ? e(DataTable, { heads: ['Brand', 'Affiliative', 'Self-enhancing', 'Aggressive', 'Self-defeating'], rows: Object.entries(ACCOUNTS).map(([key, account]) => { const scoped = rows.filter((r) => r.account === key); return [account.label].concat(HUMOR_LABELS.map((label) => percent.format(scoped.length ? scoped.filter((r) => r.humor_label === label).length / scoped.length : 0))); }) }) : e(PostList, { rows: rows.slice(0, 6) }))
+        e('article', { className: 'panel' }, e('h3', null, '유머 유형 분포'), e(Bars, { rows: distribution, asPercent: true })),
+        e('article', { className: 'panel' }, e('h3', null, '공격적 유머 집중 분석'), e('div', { className: 'focus' }, e(Metric, { label: '공격적 유머 게시물', value: fmt.format(aggressive.length), help: pct.format(rows.length ? aggressive.length / rows.length : 0), tone: 'danger' }), e(Metric, { label: '중앙값 참여도', value: cv(ag.med), help: '공격적 유머 게시물 기준' }), e(Metric, { label: '부정 감성 비중', value: pct.format(ag.neg), help: '공격적 유머 내 비중' }))),
+        e('article', { className: 'panel wide' }, e('h3', null, selected === 'all' ? '브랜드별 유머 유형' : '대표 유머 게시물'), selected === 'all' ? e(DataTable, { heads: ['브랜드', '친화적', '자기고양적', '공격적', '자기패배적'], rows: Object.entries(ACCOUNTS).map(([key, account]) => { const scoped = rows.filter((row) => row.account === key); return [account.label].concat(HUMOR_LABELS.map((label) => pct.format(scoped.length ? scoped.filter((row) => row.humor_label === label).length / scoped.length : 0))); }) }) : e(PostList, { rows: rows.slice(0, 6) }))
       )
     );
   }
 
   function Topics({ rows }) {
-    const topicRows = counts(rows.filter((r) => r.topic_id !== null), (r) => String(r.topic_id)).slice(0, 12);
-    return e(Section, { id: 'topics', kicker: 'LDA topics', title: 'Topic Analysis' },
+    const topicRows = counts(rows.filter((row) => row.topic_id !== null), (row) => String(row.topic_id)).slice(0, 12);
+    return e(Section, { id: 'topics', kicker: 'LDA 토픽', title: '토픽 분석' },
       e('div', { className: 'grid' },
-        e('article', { className: 'panel' }, e('h3', null, 'Topic Share'), e(Bars, { rows: topicRows.map((r) => ({ key: `Topic ${r.key}`, value: r.value })) })),
-        e('article', { className: 'panel wide' }, e('h3', null, 'Topic × Engagement × Humor'), e(DataTable, { heads: ['Topic', 'Top Terms', 'Posts', 'Median Engagement', 'Dominant Humor'], rows: topicRows.map((r) => [`Topic ${r.key}`, r.rows[0] && r.rows[0].topic_terms ? r.rows[0].topic_terms.slice(0, 6).join(', ') : '-', fmt.format(r.value), cv(median(r.rows.map((p) => p.total_engagement))), counts(r.rows, (p) => p.humor_label)[0] ? counts(r.rows, (p) => p.humor_label)[0].key : '-']) }))
+        e('article', { className: 'panel' }, e('h3', null, '토픽 비중'), e(Bars, { rows: topicRows.map((row) => ({ key: `토픽 ${row.key}`, value: row.value })) })),
+        e('article', { className: 'panel wide' }, e('h3', null, '토픽 × 참여도 × 유머'), e(DataTable, { heads: ['토픽', '주요 단어', '게시물', '중앙값 참여도', '주요 유머'], rows: topicRows.map((row) => [`토픽 ${row.key}`, row.rows[0] && row.rows[0].topic_terms ? row.rows[0].topic_terms.slice(0, 6).join(', ') : '-', fmt.format(row.value), cv(median(row.rows.map((post) => post.total_engagement))), counts(row.rows, (post) => post.humor_label)[0] ? HUMOR_KO[counts(row.rows, (post) => post.humor_label)[0].key] || counts(row.rows, (post) => post.humor_label)[0].key : '-']) }))
       )
     );
   }
 
   function PostList({ rows }) {
-    if (!rows.length) return e('div', { className: 'empty' }, 'No data available');
-    return e('div', { className: 'post-mini' }, rows.map((post) => e('a', { key: post.id, href: post.tweet_url, target: '_blank', rel: 'noreferrer' }, e('b', null, `${post.brand} · ${post.date_iso}`), e('span', null, post.text_normalized || '(no text)'), e('small', null, `${post.humor_label} · ${post.sentiment_label} · ${cv(post.total_engagement)} engagement`))));
+    if (!rows.length) return e('div', { className: 'empty' }, '사용 가능한 데이터가 없습니다.');
+    return e('div', { className: 'post-mini' }, rows.map((post) => e('a', { key: post.id, href: post.tweet_url, target: '_blank', rel: 'noreferrer' }, e('b', null, `${post.brand} · ${post.date_iso}`), e('span', null, post.text_normalized || '(본문 없음)'), e('small', null, `${HUMOR_KO[post.humor_label] || post.humor_label} · ${SENTIMENT_KO[post.sentiment_label] || post.sentiment_label} · 참여도 ${cv(post.total_engagement)}`))));
   }
 
   function Explorer({ rows }) {
     const [page, setPage] = useState(1);
     useEffect(() => setPage(1), [rows.length]);
-    const pageSize = 30, pages = Math.max(1, Math.ceil(rows.length / pageSize)), current = Math.min(page, pages), visible = rows.slice((current - 1) * pageSize, current * pageSize);
-    return e(Section, { id: 'posts', kicker: 'Post-level evidence', title: 'Post Explorer' },
-      e('div', { className: 'post-head' }, e('p', null, `${fmt.format(rows.length)} posts after filters. Page ${current} of ${pages}.`), e('div', null, e('button', { disabled: current <= 1, onClick: () => setPage(current - 1) }, 'Prev'), e('button', { disabled: current >= pages, onClick: () => setPage(current + 1) }, 'Next'))),
-      e(DataTable, { heads: ['Date', 'Brand', 'Text', 'Engagement', 'Sentiment', 'Humor', 'Topic', 'Link'], rows: visible.map((post) => [post.date_iso, post.brand, e('span', { className: 'post-text' }, post.text_normalized || '(no text)'), cv(post.total_engagement), `${post.sentiment_label} (${scoreFmt.format(post.sentiment_score)})`, `${post.humor_label} (${scoreFmt.format(post.humor_score)})`, post.topic_id === null ? '-' : `Topic ${post.topic_id}`, post.tweet_url ? e('a', { href: post.tweet_url, target: '_blank', rel: 'noreferrer' }, 'Open') : '-']) }),
-      e('div', { className: 'cards' }, visible.map((post) => e('article', { key: post.id }, e('b', null, `${post.brand} · ${post.date_iso}`), e('p', null, post.text_normalized || '(no text)'), e('small', null, `${cv(post.total_engagement)} engagement · ${post.sentiment_label} · ${post.humor_label}`), post.tweet_url ? e('a', { href: post.tweet_url, target: '_blank', rel: 'noreferrer' }, 'Open post') : null)))
+    const pageSize = 30;
+    const pages = Math.max(1, Math.ceil(rows.length / pageSize));
+    const current = Math.min(page, pages);
+    const visible = rows.slice((current - 1) * pageSize, current * pageSize);
+    return e(Section, { id: 'posts', kicker: '게시물 단위 근거', title: '게시물 탐색기' },
+      e('div', { className: 'post-head' }, e('p', null, `필터 적용 후 ${fmt.format(rows.length)}개 게시물. ${current} / ${pages} 페이지.`), e('div', null, e('button', { disabled: current <= 1, onClick: () => setPage(current - 1) }, '이전'), e('button', { disabled: current >= pages, onClick: () => setPage(current + 1) }, '다음'))),
+      e(DataTable, { heads: ['날짜', '브랜드', '본문', '참여도', '감성', '유머', '토픽', '링크'], rows: visible.map((post) => [post.date_iso, post.brand, e('span', { className: 'post-text' }, post.text_normalized || '(본문 없음)'), cv(post.total_engagement), `${SENTIMENT_KO[post.sentiment_label] || post.sentiment_label} (${scoreFmt.format(post.sentiment_score)})`, `${HUMOR_KO[post.humor_label] || post.humor_label} (${scoreFmt.format(post.humor_score)})`, post.topic_id === null ? '-' : `토픽 ${post.topic_id}`, post.tweet_url ? e('a', { href: post.tweet_url, target: '_blank', rel: 'noreferrer' }, '열기') : '-']) }),
+      e('div', { className: 'cards' }, visible.map((post) => e('article', { key: post.id }, e('b', null, `${post.brand} · ${post.date_iso}`), e('p', null, post.text_normalized || '(본문 없음)'), e('small', null, `${cv(post.total_engagement)} 참여도 · ${SENTIMENT_KO[post.sentiment_label] || post.sentiment_label} · ${HUMOR_KO[post.humor_label] || post.humor_label}`), post.tweet_url ? e('a', { href: post.tweet_url, target: '_blank', rel: 'noreferrer' }, '게시물 열기') : null)))
     );
   }
 
@@ -432,25 +547,27 @@
       Object.entries(datasets).forEach(([key, dataset]) => { result[key] = enrich(key, dataset); });
       return result;
     }, [datasets]);
-
     const allPosts = useMemo(() => Object.values(enrichedByAccount).flat(), [enrichedByAccount]);
     const scoped = selected === 'all' ? allPosts : (enrichedByAccount[selected] || []);
-    const topics = Array.from(new Set(scoped.filter((p) => p.topic_id !== null).map((p) => String(p.topic_id)))).sort((a, b) => Number(a) - Number(b));
-    const effective = selected === 'all' ? filters : Object.assign({}, filters, { brand: 'all' });
-    const visible = useMemo(() => applyFilters(scoped, effective), [scoped, effective]);
-    const summary = stats(visible);
+    const topics = Array.from(new Set(scoped.filter((post) => post.topic_id !== null).map((post) => String(post.topic_id)))).sort((a, b) => Number(a) - Number(b));
+    const effectiveFilters = selected === 'all' ? filters : Object.assign({}, filters, { brand: 'all' });
+    const visible = useMemo(() => applyFilters(scoped, effectiveFilters), [scoped, effectiveFilters]);
+    const summary = computeStats(visible);
     const latestValues = Object.values(datasets).flatMap((dataset) => [dataset.scrapeState && dataset.scrapeState.updated_at, dataset.scrapeState && dataset.scrapeState.scraped_at, dataset.lda && dataset.lda.generated_at, dataset.sentiment && dataset.sentiment.generated_at, dataset.humor && dataset.humor.generated_at]).filter(Boolean).map((value) => new Date(value)).filter((date) => !Number.isNaN(date.getTime()));
     const lastUpdated = latestValues.length ? latestValues.sort((a, b) => b - a)[0].toISOString().slice(0, 19).replace('T', ' ') : 'unknown';
 
     return e(React.Fragment, null,
       e(Header, { selected, setSelected, status: loading ? 'loading' : error ? 'error' : 'ready', lastUpdated }),
-      e('nav', { className: 'section-nav' }, ['overview', 'advanced', 'status', 'descriptives', 'comparison', 'evidence', 'posting', 'sentiment', 'humor', 'topics', 'posts'].map((id) => e('a', { href: `#${id}`, key: id }, id))),
+      e('nav', { className: 'section-nav' }, [
+        ['overview', '개요'], ['brand-visual', '브랜드 시각화'], ['advanced', '고급 분석'], ['status', '데이터 상태'], ['descriptives', '기술통계'], ['comparison', '브랜드 비교'], ['evidence', '모델 프리 근거'], ['posting', '게시 및 참여'], ['sentiment', '감성 분석'], ['humor', '유머 분석'], ['topics', '토픽 분석'], ['posts', '게시물 탐색']
+      ].map(([id, label]) => e('a', { href: `#${id}`, key: id }, label))),
       e('main', { className: 'layout' },
         e(Filters, { filters, setFilters, topics, count: visible.length }),
         e('div', { className: 'content' },
-          loading ? e('div', { className: 'notice' }, 'Loading dashboard datasets...') : null,
+          loading ? e('div', { className: 'notice' }, '대시보드 데이터를 불러오는 중입니다...') : null,
           error ? e('div', { className: 'notice error' }, error) : null,
           e(Overview, { summary, selected }),
+          e(BrandScopeVisual, { selected, rows: visible, allPosts }),
           e(Advanced, { rows: visible }),
           e(Status, { datasets }),
           e(Descriptives, { rows: visible }),
