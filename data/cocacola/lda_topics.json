@@ -9,7 +9,7 @@
     "max_topics": 9,
     "selected_num_topics": 4,
     "selected_coherence_npmi": 0.35350870132726375,
-    "selected_perplexity": 1217.2472081332678,
+    "selected_perplexity": 1217.2472081332699,
     "evaluations": [
       {
         "num_topics": 2,
@@ -19,17 +19,17 @@
       {
         "num_topics": 3,
         "coherence_npmi": 0.26105398216400477,
-        "perplexity": 1201.5350944946003
+        "perplexity": 1201.5350944945972
       },
       {
         "num_topics": 4,
         "coherence_npmi": 0.35350870132726375,
-        "perplexity": 1217.2472081332678
+        "perplexity": 1217.2472081332699
       },
       {
         "num_topics": 5,
         "coherence_npmi": 0.2902623130833346,
-        "perplexity": 1256.3313351436339
+        "perplexity": 1256.3313351436361
       },
       {
         "num_topics": 6,
@@ -49,7 +49,7 @@
       {
         "num_topics": 9,
         "coherence_npmi": 0.2711478620713522,
-        "perplexity": 1344.6406835690118
+        "perplexity": 1344.6406835690132
       }
     ]
   },
@@ -92,7 +92,7 @@
         {
           "id": "1146798575315247104",
           "tweet_url": "https://x.com/CocaCola/status/1146798575315247104",
-          "score": 0.9641692336906165,
+          "score": 0.9641692336906166,
           "text": "Ɛsƃuᴉɥ┴ɹǝƃuɐɹʇS# ǝʞoƆǝʌɐS# sƃɐʇɥsɐɥ ǝɥʇ ppɐ oʇ ʇǝƃɹoɟ ʇ’uop ¡spᴉʞ suᴉʞʍɐH ǝɥʇ ǝʌɐs oʇ ǝƃɐssǝɯ uǝppᴉɥ ǝɥʇ ʇǝǝʍ┴ ˙sǝnlɔ ǝɥʇ llɐ ʇɔǝlloɔ oʇ ɯooz puɐ ɥɔuᴉԀ ¿ɹǝɥʇǝƃoʇ sǝɔǝᴉd ǝɥʇ ʇnd oʇ sǝʞɐʇ ʇᴉ ʇɐɥʍ ʇoƃ noʎ ʞuᴉɥ┴ https://t.co/iMEzTZG5oy"
         },
         {
@@ -178,7 +178,7 @@
         {
           "id": "1247977516972695552",
           "tweet_url": "https://x.com/CocaCola/status/1247977516972695552",
-          "score": 0.9745757661783854,
+          "score": 0.9745757661783855,
           "text": "Right now, so many health care workers and support staff are on the frontlines of this #COVID19 fight -- putting their lives on the line every day to protect ours.\n\nAdd your name to @HRC's thank you letter and let them know you have their backs! \n\nhttps://t.co/Nb889LhhJ5"
         },
         {
