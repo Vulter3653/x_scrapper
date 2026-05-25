@@ -1,6 +1,6 @@
 {
   "target_user": "CocaCola",
-  "input_file": "cocacola_posts.json",
+  "input_file": "data/cocacola/posts.json",
   "model": "typeform/distilbert-base-uncased-mnli",
   "labels": [
     "positive",
