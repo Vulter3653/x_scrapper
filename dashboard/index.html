@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>X Brand Intelligence Dashboard</title>
-  <link rel="stylesheet" href="styles.css?v=20260526-syntaxfix">
+  <title>X 브랜드 인텔리전스 대시보드</title>
+  <link rel="stylesheet" href="styles.css?v=20260526-ko-localized">
 </head>
 <body>
   <div id="root">
     <div class="boot-fallback">
-      <strong>X Brand Intelligence Dashboard</strong>
-      <span>Loading React dashboard...</span>
+      <strong>X 브랜드 인텔리전스 대시보드</strong>
+      <span>React 대시보드를 불러오는 중입니다...</span>
     </div>
   </div>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -19,10 +19,11 @@
     window.addEventListener('error', function (event) {
       var node = document.getElementById('root');
       if (!node) return;
-      if (node.textContent && node.textContent.indexOf('Loading React dashboard') === -1) return;
-      node.innerHTML = '<div class="boot-error"><strong>Dashboard boot error</strong><span>' + String(event.message || 'Unknown JavaScript error') + '</span><small>Open browser console for details.</small></div>';
+      if (node.textContent && node.textContent.indexOf('React 대시보드를 불러오는 중입니다') === -1 && node.textContent.indexOf('Loading React dashboard') === -1) return;
+      node.innerHTML = '<div class="boot-error"><strong>대시보드 실행 오류</strong><span>' + String(event.message || '알 수 없는 JavaScript 오류') + '</span><small>자세한 내용은 브라우저 콘솔을 확인하십시오.</small></div>';
     });
   </script>
-  <script src="app.js?v=20260526-syntaxfix"></script>
+  <script src="app.js?v=20260526-ko-localized"></script>
+  <script src="localize-ko.js?v=20260526-ko-localized"></script>
 </body>
 </html>
