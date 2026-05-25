@@ -1,6 +1,6 @@
 {
   "target_user": "Wendys",
-  "input_file": "wendys_posts.json",
+  "input_file": "data/wendys/posts.json",
   "model": "typeform/distilbert-base-uncased-mnli",
   "labels": [
     "positive",
