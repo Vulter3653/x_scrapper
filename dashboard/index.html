@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>X Brand Intelligence Dashboard</title>
-  <link rel="stylesheet" href="styles.css?v=20260526-react-hotfix">
+  <link rel="stylesheet" href="styles.css?v=20260526-react-bootfix2">
 </head>
 <body>
   <div id="root">
@@ -13,18 +13,16 @@
       <span>Loading React dashboard...</span>
     </div>
   </div>
-  <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script>
-    if (!window.React) {
-      document.write('<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"><\\/script>');
-    }
+    window.addEventListener('error', function (event) {
+      var node = document.getElementById('root');
+      if (!node) return;
+      if (node.textContent && node.textContent.indexOf('Loading React dashboard') === -1) return;
+      node.innerHTML = '<div class="boot-error"><strong>Dashboard boot error</strong><span>' + String(event.message || 'Unknown JavaScript error') + '</span><small>Open browser console for details.</small></div>';
+    });
   </script>
-  <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script>
-    if (!window.ReactDOM) {
-      document.write('<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"><\\/script>');
-    }
-  </script>
-  <script src="app.js?v=20260526-react-hotfix"></script>
+  <script src="app.js?v=20260526-react-bootfix2"></script>
 </body>
 </html>
