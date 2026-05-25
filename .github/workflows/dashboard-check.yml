@@ -1,0 +1,48 @@
+name: Dashboard Check
+
+on:
+  push:
+    paths:
+      - 'dashboard/**'
+      - '.github/workflows/dashboard-check.yml'
+  pull_request:
+    paths:
+      - 'dashboard/**'
+      - '.github/workflows/dashboard-check.yml'
+  workflow_dispatch:
+
+jobs:
+  dashboard-check:
+    name: Validate dashboard static files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check required dashboard files
+        run: |
+          test -f dashboard/index.html
+          test -f dashboard/app.js
+          test -f dashboard/styles.css
+          test -f dashboard/brand-visual.css
+
+      - name: Check dashboard JavaScript syntax
+        run: |
+          node --check dashboard/app.js
+          node --check dashboard/localize-ko.js
+
+      - name: Check deprecated overlay scripts are not loaded
+        run: |
+          ! grep -q 'brand-view-ko.js' dashboard/index.html
+          ! grep -q 'humor-matrix.js' dashboard/index.html
+
+      - name: Check integrated React brand visualization is loaded
+        run: |
+          grep -q 'brand-visual.css' dashboard/index.html
+          grep -q 'BrandScopeVisual' dashboard/app.js
+          grep -q 'HumorQuadrantMatrix' dashboard/app.js
