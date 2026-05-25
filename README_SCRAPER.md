@@ -63,6 +63,7 @@ python scrape_x.py
 - `Run LDA Analysis`: 기존 `posts.json`을 기준으로 LDA만 실행합니다.
 - `Run Zero-Shot Sentiment`: 기존 `posts.json`을 기준으로 zero-shot sentiment만 실행합니다.
 - `Run HSQ Humor Classification`: 기존 `posts.json`을 기준으로 HSQ humor classification만 실행합니다.
+- `Dashboard Check`: dashboard 정적 파일과 JavaScript 문법, deprecated overlay script 미사용 여부를 검증합니다.
 
 ### Daily Schedule
 
@@ -82,6 +83,30 @@ python analyze_posts.py --task all
 ```
 
 자동 분석의 LDA 후보 범위는 기본적으로 2-9 topics입니다.
+
+### Dashboard Check Workflow
+
+`dashboard-check.yml`은 dashboard 관련 파일이 변경될 때 실행됩니다. 주요 검증 항목은 다음과 같습니다.
+
+```text
+필수 파일 존재 여부
+- dashboard/index.html
+- dashboard/app.js
+- dashboard/styles.css
+- dashboard/brand-visual.css
+
+JavaScript 문법 검증
+- node --check dashboard/app.js
+- node --check dashboard/localize-ko.js
+
+불안정 overlay script 미사용 확인
+- brand-view-ko.js가 index.html에 로드되지 않는지 확인
+- humor-matrix.js가 index.html에 로드되지 않는지 확인
+
+React 내부 통합 여부 확인
+- BrandScopeVisual 컴포넌트 존재
+- HumorQuadrantMatrix 컴포넌트 존재
+```
 
 ## Analysis Outputs
 
@@ -129,6 +154,7 @@ React dashboard의 주요 기능은 다음과 같습니다.
 - Executive Summary: 총 포스트 수, 기간, engagement, viral share, dominant humor 표시
 - Descriptive Analysis: 데이터셋 및 engagement profile 요약
 - Brand Comparison: 브랜드별 posting volume, engagement, sentiment, humor 비교
+- Brand-Level Visualization: 선택한 브랜드 기준 월별 게시량, 월별 참여도, 감성 분포, 토픽 분포, 2×2 유머 분포도, 상위 게시물 표시
 - Model-Free Evidence: humor type, sentiment, viral composition 기반 관찰 패턴 제시
 - Posting & Engagement: 월별 posting volume 및 engagement mix
 - Sentiment Analysis: zero-shot sentiment 분포 및 브랜드별 비교
@@ -145,6 +171,24 @@ dashboard/data/<account>/lda_topics.json
 dashboard/data/<account>/zero_shot_sentiment.json
 dashboard/data/<account>/hsq_humor_classification.json
 dashboard/data/<account>/scrape_state.json
+```
+
+## Dashboard Stability Rules
+
+대시보드 안정성을 위해 다음 원칙을 유지합니다.
+
+```text
+모든 UI는 dashboard/app.js 내부 React 컴포넌트에서 렌더링한다.
+React 외부에서 .content, .tabs, #root 내부 DOM을 직접 삽입하거나 제거하지 않는다.
+MutationObserver 기반 overlay script를 사용하지 않는다.
+브랜드별 시각화와 2×2 유머 분포도는 React state(selected)를 기준으로 렌더링한다.
+```
+
+Deprecated overlay 파일은 제거되었습니다.
+
+```text
+dashboard/brand-view-ko.js
+dashboard/humor-matrix.js
 ```
 
 ## Data Synchronization
