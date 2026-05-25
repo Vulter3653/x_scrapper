@@ -30,8 +30,11 @@ jobs:
           test -f dashboard/app.js
           test -f dashboard/styles.css
           test -f dashboard/brand-visual.css
+          test -f dashboard/localize-ko.js
           test -f dashboard/low-confidence-review.js
           test -f dashboard/humor-sentiment-engagement.js
+          test -f dashboard/engagement-robustness.js
+          test -f dashboard/brand-interpretation.js
 
       - name: Check dashboard JavaScript syntax
         run: |
@@ -39,6 +42,19 @@ jobs:
           node --check dashboard/localize-ko.js
           node --check dashboard/low-confidence-review.js
           node --check dashboard/humor-sentiment-engagement.js
+          node --check dashboard/engagement-robustness.js
+          node --check dashboard/brand-interpretation.js
+
+      - name: Check index static references
+        run: |
+          grep -q 'styles.css' dashboard/index.html
+          grep -q 'brand-visual.css' dashboard/index.html
+          grep -q 'app.js' dashboard/index.html
+          grep -q 'localize-ko.js' dashboard/index.html
+          grep -q 'low-confidence-review.js' dashboard/index.html
+          grep -q 'humor-sentiment-engagement.js' dashboard/index.html
+          grep -q 'engagement-robustness.js' dashboard/index.html
+          grep -q 'brand-interpretation.js' dashboard/index.html
 
       - name: Check deprecated overlay scripts are not loaded
         run: |
@@ -62,3 +78,12 @@ jobs:
           grep -q 'humor-sentiment-root' dashboard/index.html
           grep -q 'humor-sentiment-engagement.js' dashboard/index.html
           grep -q '유머-감성 결합 효과 요약' dashboard/humor-sentiment-engagement.js
+
+      - name: Check robustness and interpretation components are loaded
+        run: |
+          grep -q 'engagement-robustness-root' dashboard/index.html
+          grep -q 'brand-interpretation-root' dashboard/index.html
+          grep -q 'engagement-robustness.js' dashboard/index.html
+          grep -q 'brand-interpretation.js' dashboard/index.html
+          grep -q '유머 유형별 Engagement Robustness' dashboard/engagement-robustness.js
+          grep -q '브랜드 커뮤니케이션 해석' dashboard/brand-interpretation.js
