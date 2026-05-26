@@ -97,11 +97,11 @@ jobs:
         run: |
           grep -q 'research-review-root' dashboard/review.html
           grep -q 'research-review.js' dashboard/review.html
-          grep -q '수동 검토 대시보드' dashboard/research-review.js
-          grep -q 'Sampling Audit Editor' dashboard/research-review.js
-          grep -q 'Zero-shot Label & Template Review' dashboard/research-review.js
-          grep -q 'LDA Stopword Review' dashboard/research-review.js
-          grep -q 'LDA Topic Review' dashboard/research-review.js
-          grep -q 'Export & Apply' dashboard/research-review.js
+          grep -q '수동 검토 가이드' dashboard/research-review.js
+          grep -q 'Sampling Audit 판단 기준' dashboard/research-review.js
+          grep -q 'Zero-shot 감성/유머 분류 가이드라인' dashboard/research-review.js
+          grep -q 'LDA Stopword 추가 가이드라인' dashboard/research-review.js
+          grep -q 'LDA Topic 해석 가이드라인' dashboard/research-review.js
+          grep -q '수정 반영 절차' dashboard/research-review.js
           grep -q 'sampling_audit_candidates.json' dashboard/research-review.js
           grep -q 'joined_posts.json' dashboard/research-review.js
