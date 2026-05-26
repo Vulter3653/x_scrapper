@@ -5,31 +5,42 @@
 - Codebook: HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook
 
 ## Label Counts
-- Self-enhancing humor: 901
-- Affiliative humor: 22
-- Aggressive humor: 20
-- Self-defeating humor: 16
+- Non-humorous brand message: 600
+- Self-enhancing humor: 341
+- Aggressive humor: 9
+- Affiliative humor: 5
+- Self-defeating humor: 4
 
 ## Average Scores
-- Self-enhancing humor: 0.5431
-- Affiliative humor: 0.1665
-- Aggressive humor: 0.1502
-- Self-defeating humor: 0.1402
+- Non-humorous brand message: 0.3489
+- Self-enhancing humor: 0.2913
+- Affiliative humor: 0.1308
+- Self-defeating humor: 0.1149
+- Aggressive humor: 0.1140
 
 ## Highest Confidence Examples
-- Self-enhancing humor (0.997) [1864694795936899378](https://x.com/Wendys/status/1864694795936899378): Meet Pantone's Color of the Year 2025: PANTONE 17-1230 Mocha Mousse 🍫☕
-A rich, warming brown inspired by chocolate, and coffee. Earthy, elegant, and comforting—Mocha Mousse connects us to nature and modern refinement.
-Explore more via https://t.co/T8fKMpL4Pm #MochaMousse https://t.co/2b428qm7iy
-- Self-enhancing humor (0.996) [1454154005559627781](https://x.com/Wendys/status/1454154005559627781): Add a spooky thrill with a quick story of fright and freezing to your next drive thru visit. Don't worry, you're safe…you’re at Wendy's...right? https://t.co/7R4UXJ3WiK
-- Self-enhancing humor (0.995) [2042345361310957745](https://x.com/Wendys/status/2042345361310957745): still rich still craving @wendys new spicy chicken sandwich #wendyspartner
-- Self-enhancing humor (0.995) [1783192374044184957](https://x.com/Wendys/status/1783192374044184957): You can get chili for $1 with purchase in the app today.
-Which means you should get a @Cinnabon Pull-Apart to go with it and then like walk around and make people mad or sumthn. https://t.co/FGv8IS89zC
-- Self-enhancing humor (0.994) [1433133572324532224](https://x.com/Wendys/status/1433133572324532224): Introducing Wendy’s BOGO $1 Big Brain Bean Bag Chair. The FIRST ever chair that transforms the knowledge of great deals into back support. And it can be YOURS! Stay tuned for deets on how to win. #BOGOBigBrain https://t.co/7wEgIhajgN
-- Self-enhancing humor (0.994) [1893347732040880523](https://x.com/Wendys/status/1893347732040880523): Your outie dips their fries in their Thin Mints Frosty 
-Your outie keeps their thin mints in the freezer 
-Your outie uses X in light mode
-- Self-enhancing humor (0.994) [1581683892016205825](https://x.com/Wendys/status/1581683892016205825): Bravoholics enjoying @Wendys French Toast Sticks for brunch at Bravopalooza? As Wendy's partner @LisaBarlow7 would say... we love that. #ad #BravoCon https://t.co/AjP2o8PAYT
-- Self-enhancing humor (0.994) [1906741707875483676](https://x.com/Wendys/status/1906741707875483676): Get a $1 JBC or Double Stack all March Madness®. And now for the legal, but we added an emoji to make it cute.
-#INTHEWENDYSAPPWITHOFFERANDADDITIONALPURCHASE
-- Aggressive humor (0.993) [2050328345645133837](https://x.com/Wendys/status/2050328345645133837): new spicy chicken sandwich slaps https://t.co/nDUnSsL79R
-- Self-enhancing humor (0.991) [1359919274958196736](https://x.com/Wendys/status/1359919274958196736): Congrats on being the world’s first stale flavored chip.  #NationalRoastDay
+- Non-humorous brand message (0.995) [6083264102](https://x.com/Wendys/status/6083264102): Happy Thanksgiving
+- Non-humorous brand message (0.993) [1405545529300369411](https://x.com/Wendys/status/1405545529300369411): nice
+- Non-humorous brand message (0.993) [1197590633571082241](https://x.com/Wendys/status/1197590633571082241): nice
+- Self-enhancing humor (0.992) [1435261233364615177](https://x.com/Wendys/status/1435261233364615177): Attn: ✨ 🧠  𝔹𝕀𝔾 𝔹ℝ𝔸𝕀ℕ𝕊 🧠 ✨  the Wendy’s Big Brain Bean Bag Chair is up for grabs. Compete in our Tetris 99 tournament TODAY at https://t.co/P0GZ7DIn5g @ 4 PM EST. Winner takes home this intelligent piece of furniture. https://t.co/ZKC1qBpjXc https://t.co/jx8wYbrxkq
+- Self-enhancing humor (0.990) [1263145989583536129](https://x.com/Wendys/status/1263145989583536129): Shoutout to @Wendys for winning the Ultimate Wendy’s Invitational yesterday. Is quality your recipe? It’s your turn to prove it. Download a Wendy Mii using these Smash Bros codes &amp; enter our Queen of the Hill Tournament tomorrow. Wendys only. https://t.co/h71vxeQ6RN
+- Self-enhancing humor (0.990) [2040186917312979266](https://x.com/Wendys/status/2040186917312979266): Oh good you made it. Introducing: The Official Dunks Menu 🏀 Order in the Wendy’s app all March Madness® long for the chance to win prizes in the Dunkstakes https://t.co/hI3HxiD7VV
+- Self-enhancing humor (0.989) [1433133572324532224](https://x.com/Wendys/status/1433133572324532224): Introducing Wendy’s BOGO $1 Big Brain Bean Bag Chair. The FIRST ever chair that transforms the knowledge of great deals into back support. And it can be YOURS! Stay tuned for deets on how to win. #BOGOBigBrain https://t.co/7wEgIhajgN
+- Self-enhancing humor (0.988) [1374769284631629825](https://x.com/Wendys/status/1374769284631629825): 🏆 Sweet or spicy? It’s time to decide this #BestOfTweets Brand Bracket food fight.
+
+Which brand’s Tweets satisfy your craving for quality content? 
+🍟 @Wendys infamous spice
+VS
+🌈 @Skittles’ colorful personality  
+
+Vote now!
+- Self-enhancing humor (0.987) [1508851162983723016](https://x.com/Wendys/status/1508851162983723016): Quarterfinals of the #BestOfTweets Brand Bracket is a matter of taste.
+
+Whose Tweets satisfy your appetite? 
+
+🍉 @SourPatchKids’ sweet mischief
+VS
+🍟 @Wendys infamous spice
+
+Vote now!
+- Non-humorous brand message (0.985) [2021355348100313369](https://x.com/Wendys/status/2021355348100313369): Sir this is a DAYTONA discount code
