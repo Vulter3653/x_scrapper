@@ -4,7 +4,7 @@ This document defines the human-in-the-loop workflow for improving zero-shot cla
 
 ## 1. Open Review Dashboard
 
-Use the deployed dashboard section `Research Review Workspace` or open the local dashboard. The review workspace supports:
+Open the separated review dashboard at `/review.html` on the deployed site, or open `dashboard/review.html` locally. The review workspace supports:
 
 - Sampling Audit editing
 - Human sentiment label selection
@@ -14,7 +14,7 @@ Use the deployed dashboard section `Research Review Workspace` or open the local
 - LDA topic review CSV export
 - Humor label configuration export
 
-Because the dashboard is static on Cloudflare Pages, edits are kept in the browser until downloaded. Downloaded files should be committed back into the repository.
+Because the dashboard is static on Cloudflare Pages, edits are kept in the browser until downloaded. Downloaded files should be copied into the corresponding `config/` or `data/analysis/` files and committed back into the repository.
 
 ## 2. Sampling Audit
 

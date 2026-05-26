@@ -306,7 +306,8 @@
       e('div', null,
         e('div', { className: 'title' }, e('h1', null, 'X 브랜드 인텔리전스 대시보드'), e('em', { className: status }, statusText)),
         e('p', null, '전체 브랜드 및 브랜드별 X 게시물, 감성, 토픽, HSQ 유머 분석을 제공합니다.'),
-        e('small', null, `최종 업데이트: ${lastUpdated}`)
+        e('small', null, `최종 업데이트: ${lastUpdated}`),
+        e('a', { className: 'review-link', href: 'review.html', 'aria-label': '수동 검토 대시보드 열기' }, '수동 검토 대시보드')
       ),
       e('nav', { className: 'tabs' },
         e('button', { className: selected === 'all' ? 'on' : '', onClick: () => setSelected('all') }, '전체 브랜드'),
@@ -560,7 +561,7 @@
     return e(React.Fragment, null,
       e(Header, { selected, setSelected, status: loading ? 'loading' : error ? 'error' : 'ready', lastUpdated }),
       e('nav', { className: 'section-nav' }, [
-        ['overview', '개요'], ['research-review', '수동 검토'], ['brand-visual', '브랜드 시각화'], ['advanced', '고급 분석'], ['status', '데이터 상태'], ['descriptives', '기술통계'], ['comparison', '브랜드 비교'], ['evidence', '모델 프리 근거'], ['posting', '게시 및 참여'], ['sentiment', '감성 분석'], ['humor', '유머 분석'], ['topics', '토픽 분석'], ['posts', '게시물 탐색']
+        ['overview', '개요'], ['brand-visual', '브랜드 시각화'], ['advanced', '고급 분석'], ['status', '데이터 상태'], ['descriptives', '기술통계'], ['comparison', '브랜드 비교'], ['evidence', '모델 프리 근거'], ['posting', '게시 및 참여'], ['sentiment', '감성 분석'], ['humor', '유머 분석'], ['topics', '토픽 분석'], ['posts', '게시물 탐색']
       ].map(([id, label]) => e('a', { href: `#${id}`, key: id }, label))),
       e('main', { className: 'layout' },
         e(Filters, { filters, setFilters, topics, count: visible.length }),

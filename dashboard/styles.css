@@ -142,3 +142,198 @@ th { color: var(--secondary); background: var(--surface-2); font-size: 12px; fon
 .topic-review-item span { color: var(--ink); font-size: 13px; font-weight: 800; }
 .topic-review-item small { color: var(--muted); line-height: 1.45; }
 @media (max-width: 900px) { .review-filters, .review-inputs { grid-template-columns: 1fr; } .research-review-shell { padding: 0 15px 96px; } .action-row button { width: 100%; } }
+.review-link {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--blue);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 900;
+}
+.review-layout {
+  display: grid;
+  gap: 24px;
+  width: min(100%, 1520px);
+  margin: 0 auto;
+  padding: 22px clamp(16px, 3vw, 34px) 52px;
+}
+.review-top {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 18px clamp(16px, 3vw, 34px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
+}
+.review-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.review-tabs a,
+.review-section-nav a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 12px;
+  color: var(--secondary);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 900;
+}
+.review-tabs a:first-child {
+  color: var(--ink);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+.review-section-nav {
+  position: sticky;
+  top: 81px;
+  z-index: 25;
+  display: flex;
+  gap: 8px;
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 10px clamp(16px, 3vw, 34px);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line);
+  background: rgba(248, 250, 252, 0.94);
+  scrollbar-width: thin;
+}
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+.task-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.task-card b {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.task-card h3 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.25;
+}
+.task-card p {
+  color: var(--secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.inline-action {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0 13px;
+  color: var(--ink);
+  background: var(--surface-2);
+  font-weight: 900;
+}
+.stopword-box.compact {
+  min-height: 190px;
+}
+.topic-review-list.detailed {
+  max-height: 760px;
+}
+.topic-review-item.detailed {
+  gap: 12px;
+}
+.topic-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.8fr;
+  gap: 10px;
+}
+.topic-inputs label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+.topic-inputs input,
+.topic-inputs select,
+.topic-inputs textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 11px;
+  color: var(--ink);
+  background: var(--surface);
+}
+.apply-steps {
+  margin: 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  color: var(--ink);
+  background: var(--surface-2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+@media (max-width: 1180px) {
+  .review-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .task-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .topic-inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .review-top {
+    padding: 15px;
+  }
+  .review-layout {
+    padding: 16px 15px 96px;
+  }
+  .review-section-nav {
+    top: auto;
+    padding: 8px 15px;
+  }
+  .review-tabs,
+  .task-grid,
+  .topic-inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .review-tabs a,
+  .inline-action {
+    width: 100%;
+  }
+}

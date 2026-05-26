@@ -27,6 +27,7 @@ jobs:
       - name: Check required dashboard files
         run: |
           test -f dashboard/index.html
+          test -f dashboard/review.html
           test -f dashboard/app.js
           test -f dashboard/styles.css
           test -f dashboard/brand-visual.css
@@ -59,7 +60,6 @@ jobs:
           grep -q 'humor-sentiment-engagement.js' dashboard/index.html
           grep -q 'engagement-robustness.js' dashboard/index.html
           grep -q 'brand-interpretation.js' dashboard/index.html
-          grep -q 'research-review.js' dashboard/index.html
 
       - name: Check deprecated overlay scripts are not loaded
         run: |
@@ -90,13 +90,18 @@ jobs:
           grep -q 'brand-interpretation-root' dashboard/index.html
           grep -q 'engagement-robustness.js' dashboard/index.html
           grep -q 'brand-interpretation.js' dashboard/index.html
-          grep -q 'research-review.js' dashboard/index.html
           grep -q '유머 유형별 Engagement Robustness' dashboard/engagement-robustness.js
           grep -q '브랜드 커뮤니케이션 해석' dashboard/brand-interpretation.js
 
-      - name: Check research review component is loaded
+      - name: Check separated research review dashboard is loaded
         run: |
-          grep -q 'research-review-root' dashboard/index.html
-          grep -q 'Research Review Workspace' dashboard/research-review.js
+          grep -q 'research-review-root' dashboard/review.html
+          grep -q 'research-review.js' dashboard/review.html
+          grep -q '수동 검토 대시보드' dashboard/research-review.js
+          grep -q 'Sampling Audit Editor' dashboard/research-review.js
+          grep -q 'Zero-shot Label & Template Review' dashboard/research-review.js
+          grep -q 'LDA Stopword Review' dashboard/research-review.js
+          grep -q 'LDA Topic Review' dashboard/research-review.js
+          grep -q 'Export & Apply' dashboard/research-review.js
           grep -q 'sampling_audit_candidates.json' dashboard/research-review.js
           grep -q 'joined_posts.json' dashboard/research-review.js
