@@ -21,26 +21,85 @@ SENTIMENT_REPORT_FILE = Path(os.getenv('SENTIMENT_REPORT_FILE', BRAND_DIR / 'zer
 HUMOR_FILE = Path(os.getenv('HUMOR_FILE', BRAND_DIR / 'hsq_humor_classification.json'))
 HUMOR_REPORT_FILE = Path(os.getenv('HUMOR_REPORT_FILE', BRAND_DIR / 'hsq_humor_classification.md'))
 
+
+def load_json_config(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f'Invalid JSON config {path}: {exc}') from exc
+    if not isinstance(data, dict):
+        raise ValueError(f'Expected object in config {path}')
+    return data
+
+
+def configured_labels(env_value: str, default_labels: list[str], config_path: Path) -> list[str]:
+    config = load_json_config(config_path)
+    raw_labels = config.get('labels') or env_value or default_labels
+    if isinstance(raw_labels, str):
+        labels = [label.strip() for label in raw_labels.split(',') if label.strip()]
+    else:
+        labels = [str(label).strip() for label in raw_labels if str(label).strip()]
+    if not labels:
+        raise ValueError(f'No labels configured for {config_path}')
+    return labels
+
+
+def configured_template(env_value: str | None, default_template: str, config_path: Path) -> str:
+    config = load_json_config(config_path)
+    template = env_value or config.get('hypothesis_template') or default_template
+    return str(template)
+
+
+def load_extra_stopwords(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    words = set()
+    for line in path.read_text(encoding='utf-8').splitlines():
+        value = line.strip().lower()
+        if not value or value.startswith('#'):
+            continue
+        words.add(value)
+    return words
+
+
 LDA_MIN_TOPICS = int(os.getenv('LDA_MIN_TOPICS', '2'))
 LDA_MAX_TOPICS = int(os.getenv('LDA_MAX_TOPICS', '12'))
 LDA_WORDS_PER_TOPIC = int(os.getenv('LDA_WORDS_PER_TOPIC', '12'))
 LDA_MAX_FEATURES = int(os.getenv('LDA_MAX_FEATURES', '3000'))
 ANALYSIS_MAX_POSTS = int(os.getenv('ANALYSIS_MAX_POSTS', '0'))
 ZERO_SHOT_MODEL = os.getenv('ZERO_SHOT_MODEL', 'typeform/distilbert-base-uncased-mnli')
-SENTIMENT_LABELS = [
-    label.strip()
-    for label in os.getenv('SENTIMENT_LABELS', 'positive,neutral,negative').split(',')
-    if label.strip()
-]
-HYPOTHESIS_TEMPLATE = os.getenv('HYPOTHESIS_TEMPLATE', 'This post expresses a {} sentiment.')
+SENTIMENT_CONFIG_FILE = Path(os.getenv('SENTIMENT_CONFIG_FILE', 'config/sentiment_labels.json'))
+HUMOR_CONFIG_FILE = Path(os.getenv('HUMOR_CONFIG_FILE', 'config/humor_labels.json'))
+LDA_STOPWORDS_FILE = Path(os.getenv('LDA_STOPWORDS_FILE', 'config/lda_stopwords.txt'))
+SENTIMENT_LABELS = configured_labels(
+    os.getenv('SENTIMENT_LABELS', ''),
+    ['positive', 'neutral', 'negative'],
+    SENTIMENT_CONFIG_FILE,
+)
+HYPOTHESIS_TEMPLATE = configured_template(
+    os.getenv('HYPOTHESIS_TEMPLATE'),
+    'This brand post expresses a {} sentiment.',
+    SENTIMENT_CONFIG_FILE,
+)
 HUMOR_MODEL = os.getenv('HUMOR_MODEL', ZERO_SHOT_MODEL)
-HUMOR_LABELS = [
-    'Affiliative humor',
-    'Self-enhancing humor',
-    'Aggressive humor',
-    'Self-defeating humor',
-]
-HUMOR_HYPOTHESIS_TEMPLATE = os.getenv('HUMOR_HYPOTHESIS_TEMPLATE', 'This post uses {}.')
+HUMOR_LABELS = configured_labels(
+    os.getenv('HUMOR_LABELS', ''),
+    [
+        'Affiliative humor',
+        'Self-enhancing humor',
+        'Aggressive humor',
+        'Self-defeating humor',
+        'Non-humorous brand message',
+    ],
+    HUMOR_CONFIG_FILE,
+)
+HUMOR_HYPOTHESIS_TEMPLATE = configured_template(
+    os.getenv('HUMOR_HYPOTHESIS_TEMPLATE'),
+    'This brand post uses {}.',
+    HUMOR_CONFIG_FILE,
+)
 
 CUSTOM_STOP_WORDS = {
     PREFIX,
@@ -56,8 +115,7 @@ CUSTOM_STOP_WORDS = {
     't',
     'x',
     'com',
-}
-
+} | load_extra_stopwords(LDA_STOPWORDS_FILE)
 
 
 def load_posts() -> list[dict[str, Any]]:
@@ -313,7 +371,13 @@ def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
             continue
 
         cached_item = cached.get(post_id)
-        if cached_item and cached_item.get('text') == text and cached_item.get('model') == ZERO_SHOT_MODEL:
+        if (
+            cached_item
+            and cached_item.get('text') == text
+            and cached_item.get('model') == ZERO_SHOT_MODEL
+            and cached_item.get('labels') == SENTIMENT_LABELS
+            and cached_item.get('hypothesis_template') == HYPOTHESIS_TEMPLATE
+        ):
             item = cached_item
         else:
             output = classifier(
@@ -330,6 +394,8 @@ def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
                 'created_at': post.get('created_at'),
                 'text': text,
                 'model': ZERO_SHOT_MODEL,
+                'labels': SENTIMENT_LABELS,
+                'hypothesis_template': HYPOTHESIS_TEMPLATE,
                 'top_label': labels[0],
                 'top_score': float(scores[0]),
                 'scores': {label: float(score) for label, score in zip(labels, scores)},
@@ -413,6 +479,7 @@ def run_zero_shot_humor(posts: list[dict[str, Any]]) -> dict[str, Any]:
             and cached_item.get('text') == text
             and cached_item.get('model') == HUMOR_MODEL
             and cached_item.get('labels') == HUMOR_LABELS
+            and cached_item.get('hypothesis_template') == HUMOR_HYPOTHESIS_TEMPLATE
         ):
             item = cached_item
         else:

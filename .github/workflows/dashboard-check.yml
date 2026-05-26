@@ -22,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Check required dashboard files
         run: |
@@ -35,6 +35,9 @@ jobs:
           test -f dashboard/humor-sentiment-engagement.js
           test -f dashboard/engagement-robustness.js
           test -f dashboard/brand-interpretation.js
+          test -f dashboard/research-review.js
+          test -f dashboard/data/analysis/sampling_audit_candidates.json
+          test -f dashboard/data/analysis/joined_posts.json
 
       - name: Check dashboard JavaScript syntax
         run: |
@@ -44,6 +47,7 @@ jobs:
           node --check dashboard/humor-sentiment-engagement.js
           node --check dashboard/engagement-robustness.js
           node --check dashboard/brand-interpretation.js
+          node --check dashboard/research-review.js
 
       - name: Check index static references
         run: |
@@ -55,6 +59,7 @@ jobs:
           grep -q 'humor-sentiment-engagement.js' dashboard/index.html
           grep -q 'engagement-robustness.js' dashboard/index.html
           grep -q 'brand-interpretation.js' dashboard/index.html
+          grep -q 'research-review.js' dashboard/index.html
 
       - name: Check deprecated overlay scripts are not loaded
         run: |
@@ -85,5 +90,13 @@ jobs:
           grep -q 'brand-interpretation-root' dashboard/index.html
           grep -q 'engagement-robustness.js' dashboard/index.html
           grep -q 'brand-interpretation.js' dashboard/index.html
+          grep -q 'research-review.js' dashboard/index.html
           grep -q '유머 유형별 Engagement Robustness' dashboard/engagement-robustness.js
           grep -q '브랜드 커뮤니케이션 해석' dashboard/brand-interpretation.js
+
+      - name: Check research review component is loaded
+        run: |
+          grep -q 'research-review-root' dashboard/index.html
+          grep -q 'Research Review Workspace' dashboard/research-review.js
+          grep -q 'sampling_audit_candidates.json' dashboard/research-review.js
+          grep -q 'joined_posts.json' dashboard/research-review.js

@@ -23,13 +23,14 @@
     account.scrapeState = `${account.base}/scrape_state.json`;
   });
 
-  const HUMOR_LABELS = ['Affiliative humor', 'Self-enhancing humor', 'Aggressive humor', 'Self-defeating humor'];
+  const HUMOR_LABELS = ['Affiliative humor', 'Self-enhancing humor', 'Aggressive humor', 'Self-defeating humor', 'Non-humorous brand message'];
   const SENTIMENT_LABELS = ['positive', 'neutral', 'negative', 'unknown'];
   const HUMOR_KO = {
     'Affiliative humor': '친화적 유머',
     'Self-enhancing humor': '자기고양적 유머',
     'Aggressive humor': '공격적 유머',
     'Self-defeating humor': '자기패배적 유머',
+    'Non-humorous brand message': '비유머 브랜드 메시지',
     unknown: '미분류'
   };
   const SENTIMENT_KO = { positive: '긍정', neutral: '중립', negative: '부정', unknown: '미분류' };
@@ -559,7 +560,7 @@
     return e(React.Fragment, null,
       e(Header, { selected, setSelected, status: loading ? 'loading' : error ? 'error' : 'ready', lastUpdated }),
       e('nav', { className: 'section-nav' }, [
-        ['overview', '개요'], ['brand-visual', '브랜드 시각화'], ['advanced', '고급 분석'], ['status', '데이터 상태'], ['descriptives', '기술통계'], ['comparison', '브랜드 비교'], ['evidence', '모델 프리 근거'], ['posting', '게시 및 참여'], ['sentiment', '감성 분석'], ['humor', '유머 분석'], ['topics', '토픽 분석'], ['posts', '게시물 탐색']
+        ['overview', '개요'], ['research-review', '수동 검토'], ['brand-visual', '브랜드 시각화'], ['advanced', '고급 분석'], ['status', '데이터 상태'], ['descriptives', '기술통계'], ['comparison', '브랜드 비교'], ['evidence', '모델 프리 근거'], ['posting', '게시 및 참여'], ['sentiment', '감성 분석'], ['humor', '유머 분석'], ['topics', '토픽 분석'], ['posts', '게시물 탐색']
       ].map(([id, label]) => e('a', { href: `#${id}`, key: id }, label))),
       e('main', { className: 'layout' },
         e(Filters, { filters, setFilters, topics, count: visible.length }),

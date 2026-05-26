@@ -115,7 +115,6 @@ jobs:
           ANALYSIS_MAX_POSTS: '0'
           LDA_MIN_TOPICS: '2'
           LDA_MAX_TOPICS: '9'
-          SENTIMENT_LABELS: 'positive,neutral,negative'
         run: |
           set -o pipefail
           python analyze_posts.py --task all 2>&1 | tee analysis.log

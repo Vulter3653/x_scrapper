@@ -1,0 +1,28 @@
+# Additional LDA stopwords reviewed by human analysts.
+# One token per line. Lines beginning with # are ignored.
+# Start conservatively; add words only when they reduce topic interpretability.
+wendys
+cocacola
+moonpie
+coca
+cola
+https
+http
+amp
+rt
+com
+pic
+twitter
+x
+just
+like
+get
+got
+new
+one
+now
+today
+make
+know
+really
+us
