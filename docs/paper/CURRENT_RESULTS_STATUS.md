@@ -89,3 +89,20 @@ is_viral
 ```
 
 Once this table exists, Tables 4 and 5 can be produced directly and the Results section can move from template-based writing to data-backed writing.
+
+## 6. Generated Research Export Files
+
+The following paper-facing export files are now generated under `data/analysis/`:
+
+| File | Purpose |
+|---|---|
+| `joined_posts.csv` / `joined_posts.json` | Post-level joined dataset with brand, source account, engagement, sentiment, HSQ humor, topic proxy, and viral flag |
+| `table4_humor_sentiment_engagement.csv` / `.json` | Humor x Sentiment x Engagement Summary for Results Table 4 |
+| `table5_engagement_robustness_by_humor.csv` / `.json` | Engagement Robustness by Humor Type for Results Table 5 |
+| `correlation_coefficients.csv` / `.json` | Pearson and Spearman correlation coefficients for engagement, text, sentiment, humor, topic proxy, and viral indicators |
+| `sampling_audit_candidates.csv` / `.json` | Low-confidence, viral, and non-dominant humor cases for manual sampling audit |
+| `research_export_summary.md` | Human-readable summary of joined data, Table 4, Table 5, and strongest correlations |
+
+Each joined post row includes `brand`, `brand_slug`, and `source_account`, so the company associated with every collected tweet can be identified at the tweet level.
+
+Topic assignment note: the current joined table uses a descriptive topic proxy inferred from saved LDA top terms because the existing LDA output does not persist a full document-topic matrix for every post.

@@ -128,19 +128,25 @@ jobs:
           fi
           rm -f analysis.log
 
-      - name: 8. Sync dashboard data
+      - name: 8. Export paper-facing research tables
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python export_research_outputs.py
+
+      - name: 9. Sync dashboard data
         shell: bash
         run: |
           set -euxo pipefail
           python sync_dashboard_data.py
 
-      - name: 9. Inspect changed files
+      - name: 10. Inspect changed files
         shell: bash
         run: |
           set -euxo pipefail
           git status --short
 
-      - name: 10. Commit and push scrape and analysis results
+      - name: 11. Commit and push scrape and analysis results
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
