@@ -31,7 +31,7 @@ env:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 300
     strategy:
       fail-fast: false
       matrix:
@@ -41,7 +41,6 @@ jobs:
       - name: 1. Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           persist-credentials: false
 
       - name: 2. Set up Python
@@ -96,56 +95,142 @@ jobs:
           if [ "$status" -ne 0 ]; then
             tail -n 40 scraper.log
             last_error=$(tail -n 1 scraper.log | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
-            echo "::error title=Scraper failed::$last_error"
+            echo "::error title=Scraper failed for ${{ matrix.target_user }}::$last_error"
             exit "$status"
           fi
-          rm -f scraper.log scraper_failure.log
 
-      - name: 6. Install analysis dependencies
+      - name: 6. Prepare artifact
         shell: bash
         run: |
           set -euxo pipefail
+          # Wendys -> wendys, CocaCola -> cocacola, MoonPie -> moonpie
+          slug=$(echo "${{ matrix.target_user }}" | tr '[:upper:]' '[:lower:]' | sed 's/cocacola/cocacola/; s/wendys/wendys/; s/moonpie/moonpie/')
+          mkdir -p staging/data/"$slug"
+          if [ -f "data/$slug/posts.json" ]; then
+            cp "data/$slug/posts.json" staging/data/"$slug"/
+          fi
+          if [ -f "data/$slug/scrape_state.json" ]; then
+            cp "data/$slug/scrape_state.json" staging/data/"$slug"/
+          fi
+
+      - name: 7. Upload scraped data artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scraped-data-${{ matrix.target_user }}
+          path: staging/
+          retention-days: 1
+
+  aggregate-analysis:
+    needs: scrape
+    if: always() && !cancelled()
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: 1. Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: 2. Download all scraped data
+        uses: actions/download-artifact@v4
+        with:
+          pattern: scraped-data-*
+          path: .
+          merge-multiple: true
+
+      - name: 3. Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 4. Install analysis dependencies
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python -m pip install --upgrade pip
           pip install -r requirements-lda.txt
           pip install -r requirements-sentiment.txt
 
-      - name: 7. Run LDA, sentiment, and HSQ humor analysis
+      - name: 5. Run analysis for each brand
         shell: bash
         env:
-          TARGET_USER: ${{ matrix.target_user }}
           ANALYSIS_MAX_POSTS: '0'
           LDA_MIN_TOPICS: '2'
           LDA_MAX_TOPICS: '9'
         run: |
-          set -o pipefail
-          python analyze_posts.py --task all 2>&1 | tee analysis.log
-          status=${PIPESTATUS[0]}
-          if [ "$status" -ne 0 ]; then
-            tail -n 60 analysis.log
-            last_error=$(tail -n 1 analysis.log | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
-            echo "::error title=Analysis failed::$last_error"
-            exit "$status"
+          # Use all brands from schedule matrix
+          for brand in Wendys CocaCola MoonPie; do
+            slug=$(echo "$brand" | tr '[:upper:]' '[:lower:]' | sed 's/cocacola/cocacola/; s/wendys/wendys/; s/moonpie/moonpie/')
+            if [ -f "data/$slug/posts.json" ]; then
+              echo "::group::Analyzing $brand"
+              set -o pipefail
+              TARGET_USER=$brand python analyze_posts.py --task all 2>&1 | tee analysis.log
+              status=${PIPESTATUS[0]}
+              if [ "$status" -ne 0 ]; then
+                tail -n 60 analysis.log
+                last_error=$(tail -n 1 analysis.log | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+                echo "::error title=Analysis failed for $brand::$last_error"
+                # We continue to next brand but will fail the job later if needed
+                # Actually, if one fails, it might be better to stop or just mark as failed.
+                export JOB_FAILED=1
+              fi
+              echo "::endgroup::"
+            else
+              echo "Skipping $brand: data/$slug/posts.json not found."
+            fi
+          done
+          
+          if [ "${JOB_FAILED:-0}" -eq 1 ]; then
+            echo "One or more analysis tasks failed."
+            exit 1
           fi
-          rm -f analysis.log
 
-      - name: 8. Export paper-facing research tables
+      - name: 6. Export paper-facing research tables
         shell: bash
         run: |
           set -euxo pipefail
           python export_research_outputs.py
 
-      - name: 9. Sync dashboard data
+      - name: 7. Sync dashboard data
         shell: bash
         run: |
           set -euxo pipefail
           python sync_dashboard_data.py
 
-      - name: 10. Inspect changed files
+      - name: 8. Validate dashboard files
         shell: bash
         run: |
           set -euxo pipefail
-          git status --short
+          node --check dashboard/app.js
+          node --check dashboard/research-review.js
+          python -m py_compile scrape_x.py analyze_posts.py export_research_outputs.py sync_dashboard_data.py
 
-      - name: 11. Commit and push scrape and analysis results
+      - name: 9. Generate execution summary
+        shell: bash
+        run: |
+          echo "### X Data Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| Brand | Post Count | Last Updated |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|------------|--------------|" >> $GITHUB_STEP_SUMMARY
+          for brand in Wendys CocaCola MoonPie; do
+            slug=$(echo "$brand" | tr '[:upper:]' '[:lower:]' | sed 's/cocacola/cocacola/; s/wendys/wendys/; s/moonpie/moonpie/')
+            state_file="data/$slug/scrape_state.json"
+            if [ -f "$state_file" ]; then
+              count=$(jq -r '.total_unique_posts // 0' "$state_file")
+              updated=$(jq -r '.last_completed_at // 0' "$state_file")
+              if [ "$updated" -ne 0 ]; then
+                date_str=$(date -u -d "@$updated" "+%Y-%m-%d %H:%M:%S UTC")
+              else
+                date_str="Unknown"
+              fi
+              echo "| $brand | $count | $date_str |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $brand | N/A | Not found |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+      - name: 10. Commit and push changes
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -161,7 +246,7 @@ jobs:
           fi
 
           git add -A
-          git commit -m "Update scraped and analyzed X data for ${{ matrix.target_user }}"
+          git commit -m "Update scraped and analyzed X data for all brands"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
           for attempt in 1 2 3; do
