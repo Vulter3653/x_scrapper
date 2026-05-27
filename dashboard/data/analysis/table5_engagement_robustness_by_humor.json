@@ -1,57 +1,57 @@
 [
   {
     "humor_type": "Affiliative humor",
-    "post_count": 52,
-    "share": 0.01886108088501995,
-    "average_engagement": 3182.8846153846152,
-    "median_engagement": 633.0,
-    "p75_engagement": 3969.75,
-    "p90_engagement": 8088.799999999999,
-    "max_engagement": 27910.0,
-    "average_humor_score": 0.4030719519807742
+    "post_count": 17,
+    "share": 0.006159420289855073,
+    "average_engagement": 5553.176470588235,
+    "median_engagement": 492.0,
+    "p75_engagement": 873.0,
+    "p90_engagement": 16150.000000000007,
+    "max_engagement": 50315.0,
+    "average_humor_score": 0.34570393229232116
   },
   {
     "humor_type": "Aggressive humor",
-    "post_count": 35,
-    "share": 0.012694958287994197,
-    "average_engagement": 3465.457142857143,
-    "median_engagement": 1420.0,
-    "p75_engagement": 4443.0,
-    "p90_engagement": 10347.60000000001,
+    "post_count": 24,
+    "share": 0.008695652173913044,
+    "average_engagement": 3981.625,
+    "median_engagement": 1693.0,
+    "p75_engagement": 4407.75,
+    "p90_engagement": 13347.2,
     "max_engagement": 15820.0,
-    "average_humor_score": 0.47241155845778326
+    "average_humor_score": 0.37929671443998814
   },
   {
     "humor_type": "Non-humorous brand message",
-    "post_count": 600,
-    "share": 0.2176278563656148,
-    "average_engagement": 12050.243333333334,
-    "median_engagement": 1550.0,
-    "p75_engagement": 5646.5,
-    "p90_engagement": 17901.200000000004,
-    "max_engagement": 930463.0,
-    "average_humor_score": 0.44493430852890015
+    "post_count": 1721,
+    "share": 0.6235507246376811,
+    "average_engagement": 9320.510168506682,
+    "median_engagement": 967.0,
+    "p75_engagement": 4202.0,
+    "p90_engagement": 11720.0,
+    "max_engagement": 1002746.0,
+    "average_humor_score": 0.45011316485733294
   },
   {
     "humor_type": "Self-defeating humor",
-    "post_count": 25,
-    "share": 0.009067827348567283,
-    "average_engagement": 12408.24,
-    "median_engagement": 2812.0,
-    "p75_engagement": 9887.0,
-    "p90_engagement": 36314.40000000006,
+    "post_count": 14,
+    "share": 0.005072463768115942,
+    "average_engagement": 12391.5,
+    "median_engagement": 2274.0,
+    "p75_engagement": 5208.75,
+    "p90_engagement": 33262.600000000035,
     "max_engagement": 98909.0,
-    "average_humor_score": 0.407174254655838
+    "average_humor_score": 0.32279674283095766
   },
   {
     "humor_type": "Self-enhancing humor",
-    "post_count": 2045,
-    "share": 0.7417482771128038,
-    "average_engagement": 5773.80782396088,
-    "median_engagement": 668.0,
-    "p75_engagement": 2792.0,
-    "p90_engagement": 9224.80000000001,
-    "max_engagement": 1003033.0,
-    "average_humor_score": 0.5734419711936074
+    "post_count": 984,
+    "share": 0.3565217391304348,
+    "average_engagement": 3267.1493902439024,
+    "median_engagement": 673.0,
+    "p75_engagement": 2615.0,
+    "p90_engagement": 8177.200000000017,
+    "max_engagement": 102458.0,
+    "average_humor_score": 0.4815699354995315
   }
 ]

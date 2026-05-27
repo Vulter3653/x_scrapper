@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 959,
+  "post_count": 962,
   "label_counts": {
-    "Non-humorous brand message": 600,
+    "Non-humorous brand message": 602,
     "Self-enhancing humor": 341,
-    "Aggressive humor": 9,
+    "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13084616953989237,
-    "Self-enhancing humor": 0.29130025758001105,
-    "Aggressive humor": 0.11400297265466751,
-    "Self-defeating humor": 0.11494192563247894,
-    "Non-humorous brand message": 0.34890867611313214
+    "Affiliative humor": 0.13075197448727932,
+    "Self-enhancing humor": 0.29085729803198757,
+    "Aggressive humor": 0.11412512515382026,
+    "Self-defeating humor": 0.11486398134033995,
+    "Non-humorous brand message": 0.3494016225467893
   },
   "posts": [
+    {
+      "id": "2059459943040753916",
+      "tweet_url": "https://x.com/Wendys/status/2059459943040753916",
+      "created_at": "Wed May 27 02:21:27 +0000 2026",
+      "text": "It’s giving fan behavior but I’m a fan of me too, so I get it! https://t.co/ecpi4sU0kz",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.9158239960670471,
+      "scores": {
+        "Non-humorous brand message": 0.9158239960670471,
+        "Self-enhancing humor": 0.06285994499921799,
+        "Affiliative humor": 0.015223111025989056,
+        "Self-defeating humor": 0.004307491704821587,
+        "Aggressive humor": 0.001785454573109746
+      }
+    },
+    {
+      "id": "2059351523583311924",
+      "tweet_url": "https://x.com/Wendys/status/2059351523583311924",
+      "created_at": "Tue May 26 19:10:38 +0000 2026",
+      "text": "Be there. Seaport Square.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3972282111644745,
+      "scores": {
+        "Non-humorous brand message": 0.3972282111644745,
+        "Self-enhancing humor": 0.2175537794828415,
+        "Affiliative humor": 0.1607099175453186,
+        "Aggressive humor": 0.12562933564186096,
+        "Self-defeating humor": 0.09887881577014923
+      }
+    },
     {
       "id": "2057593602490970314",
       "tweet_url": "https://x.com/Wendys/status/2057593602490970314",
@@ -961,6 +1009,30 @@
         "Self-defeating humor": 0.17218495905399323,
         "Aggressive humor": 0.15748503804206848,
         "Affiliative humor": 0.15457001328468323
+      }
+    },
+    {
+      "id": "2040186889131479302",
+      "tweet_url": "https://x.com/Wendys/status/2040186889131479302",
+      "created_at": "Fri Apr 03 21:57:13 +0000 2026",
+      "text": "keep scrolling 👇👇👇 https://t.co/O8onjjhdsH",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Aggressive humor",
+      "top_score": 0.3321048319339752,
+      "scores": {
+        "Aggressive humor": 0.3321048319339752,
+        "Non-humorous brand message": 0.20788829028606415,
+        "Self-enhancing humor": 0.16735996305942535,
+        "Self-defeating humor": 0.16665706038475037,
+        "Affiliative humor": 0.12598983943462372
       }
     },
     {

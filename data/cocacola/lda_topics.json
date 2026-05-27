@@ -2,54 +2,54 @@
   "target_user": "CocaCola",
   "input_file": "data/cocacola/posts.json",
   "document_count": 832,
-  "num_topics": 4,
+  "num_topics": 8,
   "topic_selection": {
     "method": "NPMI coherence over candidate topic counts",
     "min_topics": 2,
     "max_topics": 9,
-    "selected_num_topics": 4,
-    "selected_coherence_npmi": 0.35350870132726375,
-    "selected_perplexity": 1217.2472081332699,
+    "selected_num_topics": 8,
+    "selected_coherence_npmi": 0.3664842513631882,
+    "selected_perplexity": 1219.6242148132014,
     "evaluations": [
       {
         "num_topics": 2,
-        "coherence_npmi": 0.1748522397340455,
-        "perplexity": 1177.4595689365804
+        "coherence_npmi": 0.19266672866800688,
+        "perplexity": 1181.007145806931
       },
       {
         "num_topics": 3,
-        "coherence_npmi": 0.26105398216400477,
-        "perplexity": 1201.5350944945972
+        "coherence_npmi": 0.13774884720089242,
+        "perplexity": 1214.1106943102056
       },
       {
         "num_topics": 4,
-        "coherence_npmi": 0.35350870132726375,
-        "perplexity": 1217.2472081332699
+        "coherence_npmi": 0.16502758484618338,
+        "perplexity": 1282.6262530549789
       },
       {
         "num_topics": 5,
-        "coherence_npmi": 0.2902623130833346,
-        "perplexity": 1256.3313351436361
+        "coherence_npmi": 0.21306625308164245,
+        "perplexity": 1268.8669857477264
       },
       {
         "num_topics": 6,
-        "coherence_npmi": 0.2463679012061094,
-        "perplexity": 1278.6131363063398
+        "coherence_npmi": 0.31608342554987384,
+        "perplexity": 1236.8801263541934
       },
       {
         "num_topics": 7,
-        "coherence_npmi": 0.3273476395558993,
-        "perplexity": 1291.359508554915
+        "coherence_npmi": 0.3025329613270835,
+        "perplexity": 1249.6017735471132
       },
       {
         "num_topics": 8,
-        "coherence_npmi": 0.30055216054111233,
-        "perplexity": 1289.1237924091943
+        "coherence_npmi": 0.3664842513631882,
+        "perplexity": 1219.6242148132014
       },
       {
         "num_topics": 9,
-        "coherence_npmi": 0.2711478620713522,
-        "perplexity": 1344.6406835690132
+        "coherence_npmi": 0.29053834182074917,
+        "perplexity": 1244.907350698288
       }
     ]
   },
@@ -57,196 +57,392 @@
     {
       "topic_id": 0,
       "top_terms": [
-        "coke",
-        "cold",
-        "ice",
-        "ice cold",
-        "cold coke",
         "shareacoke",
-        "like",
-        "fryku",
-        "nationalfrenchfryday",
-        "love",
-        "ll",
-        "nationalfrenchfryday shareacoke"
+        "cokezerosugar",
+        "day",
+        "want",
+        "open",
+        "fifa",
+        "thank",
+        "th",
+        "world",
+        "game",
+        "perfect",
+        "celebrating"
       ],
       "representative_posts": [
         {
-          "id": "1512109217737498630",
-          "tweet_url": "https://x.com/CocaCola/status/1512109217737498630",
-          "score": 0.9722395843170777,
-          "text": "Inspired by the infinite possibilities of space, @CocaCola Starlight evokes the feeling of a journey to space! 🪐🚀\n\nBe among the first to claim your piece of the #CocaColaStarlight universe when four digital collectibles drop this Sun, 10 April at 12 PM PT 💫 https://t.co/Y0h1YbNLHe"
+          "id": "1255216200176537601",
+          "tweet_url": "https://x.com/CocaCola/status/1255216200176537601",
+          "score": 0.9698134519228885,
+          "text": "It's #NationalSuperheroDay! Enter for a chance to win a $100 gift card to keep, plus a $500 catered meal for a local hero, thanks to @CocaColaCo &amp; @TysonFoods:\n\n🥡 Order takeout\n🥡 Post a pic, tagging a local hero + #TheGreatAmericanTakeout, #SuperheroSweepstakes &amp; \n@TheGATakeout https://t.co/0Ic6Mb5amz"
         },
         {
-          "id": "1146753275812810754",
-          "tweet_url": "https://x.com/CocaCola/status/1146753275812810754",
-          "score": 0.9673269617270692,
-          "text": "Ɛsƃuᴉɥ┴ɹǝƃuɐɹʇS# ǝʞoƆǝʌɐS# sƃɐʇɥsɐɥ ǝɥʇ ppɐ oʇ ʇǝƃɹoɟ ʇ’uop ˙sn ǝʌɐs oʇ ǝƃɐssǝɯ uǝppᴉɥ ǝɥʇ ʇǝǝʍ┴ ˙sǝnlɔ ǝɥʇ llɐ ʇɔǝlloɔ oʇ ɯooz puɐ ɥɔuᴉԀ ¡ʎlnſ ɟo ɥʇㄣ sᴉɥʇ dlǝɥ ɹnoʎ spǝǝu suᴉʞʍɐH https://t.co/DCFRrOjaIZ"
+          "id": "1006851862178467840",
+          "tweet_url": "https://x.com/CocaCola/status/1006851862178467840",
+          "score": 0.9675886374902033,
+          "text": "Live reaction from Coca-Cola Headquarters after Mexico, Canada and the United States were named hosts of the 2026 FIFA World Cup. We’re #ReadyFor the games to begin! https://t.co/Yn4TkE4sh3"
         },
         {
-          "id": "1114533466119581696",
-          "tweet_url": "https://x.com/CocaCola/status/1114533466119581696",
-          "score": 0.9670799006264208,
-          "text": "After traveling all over the place to cheer on Mississippi State, it's about time #SuperFan Laurie and her BFF received their own #MarchMadness star treatment. Cheers to your team spirit! Coca-Cola is the Official Fan Refreshment of the #FinalFour. https://t.co/sccigQFP52"
+          "id": "1255221518054961153",
+          "tweet_url": "https://x.com/CocaCola/status/1255221518054961153",
+          "score": 0.9602200144626242,
+          "text": "RT @TheGATakeout: It's #NationalSuperheroDay! Enter for a chance to win a $100 gift card to keep, plus a $500 catered meal for a local hero…"
         },
         {
-          "id": "1146798575315247104",
-          "tweet_url": "https://x.com/CocaCola/status/1146798575315247104",
-          "score": 0.9641692336906166,
-          "text": "Ɛsƃuᴉɥ┴ɹǝƃuɐɹʇS# ǝʞoƆǝʌɐS# sƃɐʇɥsɐɥ ǝɥʇ ppɐ oʇ ʇǝƃɹoɟ ʇ’uop ¡spᴉʞ suᴉʞʍɐH ǝɥʇ ǝʌɐs oʇ ǝƃɐssǝɯ uǝppᴉɥ ǝɥʇ ʇǝǝʍ┴ ˙sǝnlɔ ǝɥʇ llɐ ʇɔǝlloɔ oʇ ɯooz puɐ ɥɔuᴉԀ ¿ɹǝɥʇǝƃoʇ sǝɔǝᴉd ǝɥʇ ʇnd oʇ sǝʞɐʇ ʇᴉ ʇɐɥʍ ʇoƃ noʎ ʞuᴉɥ┴ https://t.co/iMEzTZG5oy"
+          "id": "1006903349218865152",
+          "tweet_url": "https://x.com/CocaCola/status/1006903349218865152",
+          "score": 0.9562485575069913,
+          "text": "RT @CocaColaCo: Live reaction from Coca-Cola Headquarters after Mexico, Canada and the United States were named hosts of the 2026 FIFA Worl…"
         },
         {
-          "id": "1674103652573642766",
-          "tweet_url": "https://x.com/CocaCola/status/1674103652573642766",
-          "score": 0.9637415835790158,
-          "text": "Our summer plans so far:\n11:00 am\n12:00 pm\n1:00 pm\n2:00 pm\n3:00 pm  -- time for Coke float 🥤🍦\n4:00 pm\n5:00 pm\n6:00 pm\n7:00 pm -- thinking about tomorrow's Coke float 🤗"
+          "id": "1081668976453726208",
+          "tweet_url": "https://x.com/CocaCola/status/1081668976453726208",
+          "score": 0.9513596329359423,
+          "text": "This was left on my car window... walking up I thought it was a note saying “sorry I hit your car, call this number...” but it was simply “Think positive” -Random act of Kindness \nThank you 🙏🏻 https://t.co/82rhL2GBau"
         }
       ]
     },
     {
       "topic_id": 1,
       "top_terms": [
+        "showup",
+        "cokeenergy",
+        "share",
         "year",
-        "bottle",
-        "real",
-        "coke",
-        "bottles",
-        "ad",
-        "love",
-        "ve",
-        "make",
+        "time",
         "good",
-        "sweepstakes",
-        "got"
+        "help",
+        "right",
+        "party",
+        "bring",
+        "love",
+        "coke"
       ],
       "representative_posts": [
         {
-          "id": "1457841275647008769",
-          "tweet_url": "https://x.com/CocaCola/status/1457841275647008769",
-          "score": 0.9784468892360388,
-          "text": "Thanks for joining my Coca-Cola Real Magic campaign stream! \n\nBe sure to redeem the following code - Z8Q0SH9U47 \n\non https://t.co/8eDOkmRtTi to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes"
-        },
-        {
-          "id": "1452885532376113157",
-          "tweet_url": "https://x.com/CocaCola/status/1452885532376113157",
-          "score": 0.9784468892360388,
-          "text": "Thanks for joining my Coca-Cola Real Magic campaign stream! \n\nBe sure to redeem the following code- S91SH181EP\n\non https://t.co/cpJeHN6N33 to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes"
-        },
-        {
           "id": "1255171435359809545",
           "tweet_url": "https://x.com/CocaCola/status/1255171435359809545",
-          "score": 0.971936620858689,
+          "score": 0.9675811848570207,
           "text": "Amanda is a Red Cross First Aid and CPR Instructor in Indiana who is continuing to provide lifesaving training, where permitted, during this critical time. Thank you, Amanda! #COVID19 #NationalSuperheroDay https://t.co/XIXROS553o"
         },
         {
-          "id": "1006851862178467840",
-          "tweet_url": "https://x.com/CocaCola/status/1006851862178467840",
-          "score": 0.9717425103404878,
-          "text": "Live reaction from Coca-Cola Headquarters after Mexico, Canada and the United States were named hosts of the 2026 FIFA World Cup. We’re #ReadyFor the games to begin! https://t.co/Yn4TkE4sh3"
+          "id": "1247512759929114624",
+          "tweet_url": "https://x.com/CocaCola/status/1247512759929114624",
+          "score": 0.9649722727334888,
+          "text": "We can do better than busy. Let’s make Greater Atlanta a place where in challenging times, no one gets left behind.\n\nDonate to make sure that #COVID19 recovery includes everyone: https://t.co/MzvjGymTSD https://t.co/Q6RzuP57FU"
         },
         {
-          "id": "1455521517878579204",
-          "tweet_url": "https://x.com/CocaCola/status/1455521517878579204",
-          "score": 0.9701793913767035,
-          "text": "Last week you guys crashed the @CocaCola website for 2 days during the #RealMagic campaign.  Its finally up and running make sure to use code: G49L261UAF for a chance at Fifa World Cup tickets or 25k bits. #ad #sweepstakes https://t.co/yrdptHHeJc"
+          "id": "1255222091764334592",
+          "tweet_url": "https://x.com/CocaCola/status/1255222091764334592",
+          "score": 0.9602265148561134,
+          "text": "RT @RedCross: Amanda is a Red Cross First Aid and CPR Instructor in Indiana who is continuing to provide lifesaving training, where permitt…"
+        },
+        {
+          "id": "1223699586885341185",
+          "tweet_url": "https://x.com/CocaCola/status/1223699586885341185",
+          "score": 0.9539450401495371,
+          "text": "Pick how you #ShowUp and tweet to see who matches your party vibe. Do you party like #JonahHill, #MartinScorsese or #YbnCordae? #CokeEnergy"
+        },
+        {
+          "id": "1224132908786601984",
+          "tweet_url": "https://x.com/CocaCola/status/1224132908786601984",
+          "score": 0.9513862831999959,
+          "text": "RT @CocaCola: Pick how you #ShowUp and tweet to see who matches your party vibe. Do you party like #JonahHill, #MartinScorsese or #YbnCorda…"
         }
       ]
     },
     {
       "topic_id": 2,
       "top_terms": [
-        "cocacolacreations",
+        "year",
+        "bottles",
+        "ll",
+        "olympics",
         "worldkindnessday",
-        "real",
+        "tokyo",
         "refreshthefeed",
-        "summer",
-        "kindness",
-        "cocacolastarlight",
-        "unlock",
-        "magic",
-        "realmagic",
-        "magic sweepstakes",
-        "showup"
+        "bottles year",
+        "little",
+        "refreshthefeed worldkindnessday",
+        "let",
+        "olympics tokyo"
       ],
       "representative_posts": [
         {
-          "id": "1255216200176537601",
-          "tweet_url": "https://x.com/CocaCola/status/1255216200176537601",
-          "score": 0.9746182529773822,
-          "text": "It's #NationalSuperheroDay! Enter for a chance to win a $100 gift card to keep, plus a $500 catered meal for a local hero, thanks to @CocaColaCo &amp; @TysonFoods:\n\n🥡 Order takeout\n🥡 Post a pic, tagging a local hero + #TheGreatAmericanTakeout, #SuperheroSweepstakes &amp; \n@TheGATakeout https://t.co/0Ic6Mb5amz"
+          "id": "1246792328922255360",
+          "tweet_url": "https://x.com/CocaCola/status/1246792328922255360",
+          "score": 0.9583279201801327,
+          "text": "Through practicing kindness, giving and understanding, we’ll not only beat #COVID19, but we’ll be a stronger society for it. \n\n@McIlreavyP explains why: https://t.co/lUvgevDKdy #CDP4Recovery"
         },
         {
-          "id": "1247977516972695552",
-          "tweet_url": "https://x.com/CocaCola/status/1247977516972695552",
-          "score": 0.9745757661783855,
-          "text": "Right now, so many health care workers and support staff are on the frontlines of this #COVID19 fight -- putting their lives on the line every day to protect ours.\n\nAdd your name to @HRC's thank you letter and let them know you have their backs! \n\nhttps://t.co/Nb889LhhJ5"
+          "id": "1247510167794704387",
+          "tweet_url": "https://x.com/CocaCola/status/1247510167794704387",
+          "score": 0.9562447555071343,
+          "text": "RT @funds4disaster: Through practicing kindness, giving and understanding, we’ll not only beat #COVID19, but we’ll be a stronger society fo…"
         },
         {
-          "id": "1247512759929114624",
-          "tweet_url": "https://x.com/CocaCola/status/1247512759929114624",
-          "score": 0.9735667918427049,
-          "text": "We can do better than busy. Let’s make Greater Atlanta a place where in challenging times, no one gets left behind.\n\nDonate to make sure that #COVID19 recovery includes everyone: https://t.co/MzvjGymTSD https://t.co/Q6RzuP57FU"
+          "id": "1246185680042102786",
+          "tweet_url": "https://x.com/CocaCola/status/1246185680042102786",
+          "score": 0.9562354268834471,
+          "text": "As the #COVID19 situation continues to evolve, it’s important to know how to protect yourself and others if you are sick or taking care of someone who is sick: https://t.co/j269SASh4b https://t.co/7XbKsjGemY"
         },
         {
-          "id": "1014255526291615744",
-          "tweet_url": "https://x.com/CocaCola/status/1014255526291615744",
-          "score": 0.9685687242285781,
-          "text": "As one group of friends make the most of their last summer together, Madison decides whether to stick with her high school sweetheart or leave her past behind. #ShareaCoke and tune in to One Last Summer every week to see how their story unfolds. https://t.co/pxw0lByhVL https://t.co/qjaaDg0jQt"
+          "id": "1252610573591773189",
+          "tweet_url": "https://x.com/CocaCola/status/1252610573591773189",
+          "score": 0.9452820652313836,
+          "text": "RT @RedCross: Our volunteers are our real heroes. Without them, our work wouldn’t be possible. Thank you! ❤️ #NationalVolunteerWeek https:/…"
         },
         {
-          "id": "1252245596657901569",
-          "tweet_url": "https://x.com/CocaCola/status/1252245596657901569",
-          "score": 0.9677478010820185,
-          "text": "37 million Americans were facing hunger every day before the outbreak of COVID-19. But as this pandemic continues to impact our neighbors, the need has become staggering.\n\nFood banks are here to help, but can't do it alone. You can help: https://t.co/FUjL92ixle https://t.co/4I0x8JJ4wz"
+          "id": "1251873188515962882",
+          "tweet_url": "https://x.com/CocaCola/status/1251873188515962882",
+          "score": 0.9452820652313836,
+          "text": "Our volunteers are our real heroes. Without them, our work wouldn’t be possible. Thank you! ❤️ #NationalVolunteerWeek https://t.co/I0I6QPM991"
         }
       ]
     },
     {
       "topic_id": 3,
       "top_terms": [
+        "best",
+        "kindnessstartswith",
+        "love",
+        "coke",
+        "friend",
+        "shareacoke",
+        "ve",
+        "kindness",
+        "kind",
+        "summer",
+        "world",
+        "day"
+      ],
+      "representative_posts": [
+        {
+          "id": "1195475187292147713",
+          "tweet_url": "https://x.com/CocaCola/status/1195475187292147713",
+          "score": 0.9635333379470075,
+          "text": "❤️ ✨\nLOVE is\nboundless\nageless\nbeautiful\ncreative\nlimitless\nreal✨\namazing\nreassuring❤️\ninviting\nembracing...\n❤️\nLOVE is \nAll That Is✨\n       ✨   ❤️    ✨\n❤️   ✨     ❤️\n✨     ❤️✨   ✨\n       ❤️     ✨❤️✨\n              ✨❤️\n                              ❤️\n\n#FridayFeeling"
+        },
+        {
+          "id": "1205510188482146304",
+          "tweet_url": "https://x.com/CocaCola/status/1205510188482146304",
+          "score": 0.9635333379470075,
+          "text": "RT @MyPowertalk: ❤️ ✨\nLOVE is\nboundless\nageless\nbeautiful\ncreative\nlimitless\nreal✨\namazing\nreassuring❤️\ninviting\nembracing...\n❤️\nLOVE is \nA…"
+        },
+        {
+          "id": "1252245596657901569",
+          "tweet_url": "https://x.com/CocaCola/status/1252245596657901569",
+          "score": 0.963522520534983,
+          "text": "37 million Americans were facing hunger every day before the outbreak of COVID-19. But as this pandemic continues to impact our neighbors, the need has become staggering.\n\nFood banks are here to help, but can't do it alone. You can help: https://t.co/FUjL92ixle https://t.co/4I0x8JJ4wz"
+        },
+        {
+          "id": "1194659978306605056",
+          "tweet_url": "https://x.com/CocaCola/status/1194659978306605056",
+          "score": 0.9619479775196583,
+          "text": "#KindnessStartsWith yourself 😁\n\n“Kindness in words creates confidence. \n\nKindness in thinking creates profoundness. \n\nKindness in giving creates LOVE”\n\n#SpreadLove &amp; #StaySafe"
+        },
+        {
+          "id": "1248022889200267264",
+          "tweet_url": "https://x.com/CocaCola/status/1248022889200267264",
+          "score": 0.9562383763758865,
+          "text": "As #COVID19 continues to evolve, follow these guidelines from @cdcgov to keep yourself and others safe if you are sick or taking care of someone who is sick: https://t.co/qfU5lyGUiF https://t.co/eGMUN7A6TS"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "top_terms": [
         "cocacolacreations",
         "realmagic",
         "cocacoladreamworld",
         "tastethewonder",
-        "olympics",
-        "shareacoke",
-        "tokyo",
         "realmagic tastethewonder",
         "tastethewonder cocacolacreations",
+        "cocacolastarlight",
+        "flavor",
+        "cocacolaxmarshmello",
         "cocacolabyte",
         "cocacolacreations cocacolabyte",
-        "dreams"
+        "ve"
       ],
       "representative_posts": [
         {
-          "id": "1247645518261559298",
-          "tweet_url": "https://x.com/CocaCola/status/1247645518261559298",
-          "score": 0.9736620365685043,
-          "text": "Whenever duty calls, members of the U.S. National Guard swap their civilian clothes for a uniform to prepare for the moments when their nation needs them most. The #COVID19 pandemic, is one of those moments: https://t.co/T5eMrfUanh\nPhoto Credit: DVIDS/Army Spc. Samuel D. Keenan https://t.co/a2532d7jpW"
+          "id": "1420353508365197316",
+          "tweet_url": "https://x.com/CocaCola/status/1420353508365197316",
+          "score": 0.9562341211908205,
+          "text": "Introducing the first-ever Coca-Cola NFTs! To celebrate International Friendship Day, we’ll be donating all proceeds to our longtime friend and partner @SpecialOlympics. Check them out on @opensea. #NFTCommunity #OpenSeaNFT\nhttps://t.co/SIJ0HnNfdu https://t.co/Rusj2UJuE6"
         },
         {
-          "id": "1201018708790890496",
-          "tweet_url": "https://x.com/CocaCola/status/1201018708790890496",
-          "score": 0.9731450569589886,
-          "text": "POSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER"
+          "id": "1570797155371163650",
+          "tweet_url": "https://x.com/CocaCola/status/1570797155371163650",
+          "score": 0.9416557534788735,
+          "text": "Do your dreams ever feel like a game? 👾 Imagine tasting that otherworldly dimension…now you can. 👅✨ #CocaColaDreamworld #RealMagic #TasteTheWonder #CocaColaCreations"
         },
         {
-          "id": "1246519040987848704",
-          "tweet_url": "https://x.com/CocaCola/status/1246519040987848704",
-          "score": 0.9725905475401974,
-          "text": "In challenging times, Atlantans rise up to take care of each other. Thank you, Greater Atlanta for coming together to support our neighbors during #COVID19. Let's keep doing what makes us great: stepping up for the good of our communities! 💪 #404Day https://t.co/y0IMFIbMEI"
+          "id": "1587134807208644609",
+          "tweet_url": "https://x.com/CocaCola/status/1587134807208644609",
+          "score": 0.9416370966784963,
+          "text": "#CocaColaDreamworld has some tricks you’ll definitely enjoy. 👻🍬☁️ Experience #RealMagic and #TasteTheWonder with every dreamy sip of a Coca Cola Dreamworld. Happy Halloween! 🎃 #CocaColaCreations"
         },
+        {
+          "id": "1549778709649002498",
+          "tweet_url": "https://x.com/CocaCola/status/1549778709649002498",
+          "score": 0.9374910970045022,
+          "text": "🚨New flavor🚨\n@Marshmello’s limited edition Coca-Cola mixes notes of strawberry and watermelon for a fresh take on the classic Coca-Cola® taste. Try it before it’s gone 🍉🍓⚡️ #CocaColaCreation #CocaColaxMarshmello\n\nSong credit: \n“Numb”\nPerformed by Marshmello x Khalid https://t.co/b2jiBboUo9"
+        },
+        {
+          "id": "1565036701843701764",
+          "tweet_url": "https://x.com/CocaCola/status/1565036701843701764",
+          "score": 0.9374846235741255,
+          "text": "Has a dream ever inspired you to wear something you’d never put together IRL? Respond with a pic of your OOTD (outfit of the dream) ☁️💫 #CocaColaDreamworld #RealMagic #TasteTheWonder #CocaColaCreations"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "top_terms": [
+        "enjoyyours",
+        "marchmadness",
+        "better",
+        "cheers",
+        "step",
+        "weekend",
+        "special",
+        "meet",
+        "bottle",
+        "customize",
+        "official",
+        "visit"
+      ],
+      "representative_posts": [
         {
           "id": "1254416717872345096",
           "tweet_url": "https://x.com/CocaCola/status/1254416717872345096",
-          "score": 0.9721307452485285,
+          "score": 0.9675909953397122,
           "text": "Meet Sam Dueck, an aid worker and technician who helped set up #RedCross field hospital equipment in Vancouver to augment the local healthcare infrastructure. https://t.co/XH9sEbEvGK"
         },
         {
           "id": "1256240226281967617",
           "tweet_url": "https://x.com/CocaCola/status/1256240226281967617",
-          "score": 0.9710777560488937,
+          "score": 0.9663453841241875,
           "text": "RT @redcrosscanada: Meet Sam Dueck, an aid worker and technician who helped set up #RedCross field hospital equipment in Vancouver to augme…"
+        },
+        {
+          "id": "1114533466119581696",
+          "tweet_url": "https://x.com/CocaCola/status/1114533466119581696",
+          "score": 0.9619479758017178,
+          "text": "After traveling all over the place to cheer on Mississippi State, it's about time #SuperFan Laurie and her BFF received their own #MarchMadness star treatment. Cheers to your team spirit! Coca-Cola is the Official Fan Refreshment of the #FinalFour. https://t.co/sccigQFP52"
+        },
+        {
+          "id": "1010568880094408705",
+          "tweet_url": "https://x.com/CocaCola/status/1010568880094408705",
+          "score": 0.9602216538327313,
+          "text": "RT @CokeSoccer: One step closer! Cheers to a #MEX win and qualifying for Round of 16! #WorldCup #NadaNosDetiene #VamosMexico #ElTri https:/…"
+        },
+        {
+          "id": "1010567344425488385",
+          "tweet_url": "https://x.com/CocaCola/status/1010567344425488385",
+          "score": 0.9602216538327313,
+          "text": "One step closer! Cheers to a #MEX win and qualifying for Round of 16! #WorldCup #NadaNosDetiene #VamosMexico #ElTri https://t.co/DUIEAsHgiD"
+        }
+      ]
+    },
+    {
+      "topic_id": 6,
+      "top_terms": [
+        "real",
+        "magic",
+        "sweepstakes",
+        "real magic",
+        "thanks",
+        "ad",
+        "code",
+        "magic sweepstakes",
+        "unlock",
+        "positive",
+        "unlock real",
+        "ad sweepstakes"
+      ],
+      "representative_posts": [
+        {
+          "id": "1452885532376113157",
+          "tweet_url": "https://x.com/CocaCola/status/1452885532376113157",
+          "score": 0.9749991209078565,
+          "text": "Thanks for joining my Coca-Cola Real Magic campaign stream! \n\nBe sure to redeem the following code- S91SH181EP\n\non https://t.co/cpJeHN6N33 to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes"
+        },
+        {
+          "id": "1457841275647008769",
+          "tweet_url": "https://x.com/CocaCola/status/1457841275647008769",
+          "score": 0.9749991209078565,
+          "text": "Thanks for joining my Coca-Cola Real Magic campaign stream! \n\nBe sure to redeem the following code - Z8Q0SH9U47 \n\non https://t.co/8eDOkmRtTi to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes"
+        },
+        {
+          "id": "1247645518261559298",
+          "tweet_url": "https://x.com/CocaCola/status/1247645518261559298",
+          "score": 0.969810091064449,
+          "text": "Whenever duty calls, members of the U.S. National Guard swap their civilian clothes for a uniform to prepare for the moments when their nation needs them most. The #COVID19 pandemic, is one of those moments: https://t.co/T5eMrfUanh\nPhoto Credit: DVIDS/Army Spc. Samuel D. Keenan https://t.co/a2532d7jpW"
+        },
+        {
+          "id": "1201018708790890496",
+          "tweet_url": "https://x.com/CocaCola/status/1201018708790890496",
+          "score": 0.9687483681334209,
+          "text": "POSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER"
+        },
+        {
+          "id": "1455521517878579204",
+          "tweet_url": "https://x.com/CocaCola/status/1455521517878579204",
+          "score": 0.9635131721698548,
+          "text": "Last week you guys crashed the @CocaCola website for 2 days during the #RealMagic campaign.  Its finally up and running make sure to use code: G49L261UAF for a chance at Fifa World Cup tickets or 25k bits. #ad #sweepstakes https://t.co/yrdptHHeJc"
+        }
+      ]
+    },
+    {
+      "topic_id": 7,
+      "top_terms": [
+        "coke",
+        "cold",
+        "ice",
+        "ice cold",
+        "cold coke",
+        "shareacoke",
+        "summer",
+        "fryku",
+        "nationalfrenchfryday",
+        "nationalfrenchfryday shareacoke",
+        "friends",
+        "fries"
+      ],
+      "representative_posts": [
+        {
+          "id": "1246519040987848704",
+          "tweet_url": "https://x.com/CocaCola/status/1246519040987848704",
+          "score": 0.9697941510071543,
+          "text": "In challenging times, Atlantans rise up to take care of each other. Thank you, Greater Atlanta for coming together to support our neighbors during #COVID19. Let's keep doing what makes us great: stepping up for the good of our communities! 💪 #404Day https://t.co/y0IMFIbMEI"
+        },
+        {
+          "id": "1247977516972695552",
+          "tweet_url": "https://x.com/CocaCola/status/1247977516972695552",
+          "score": 0.9687280198427743,
+          "text": "Right now, so many health care workers and support staff are on the frontlines of this #COVID19 fight -- putting their lives on the line every day to protect ours.\n\nAdd your name to @HRC's thank you letter and let them know you have their backs! \n\nhttps://t.co/Nb889LhhJ5"
+        },
+        {
+          "id": "1512109217737498630",
+          "tweet_url": "https://x.com/CocaCola/status/1512109217737498630",
+          "score": 0.9687228044198658,
+          "text": "Inspired by the infinite possibilities of space, @CocaCola Starlight evokes the feeling of a journey to space! 🪐🚀\n\nBe among the first to claim your piece of the #CocaColaStarlight universe when four digital collectibles drop this Sun, 10 April at 12 PM PT 💫 https://t.co/Y0h1YbNLHe"
+        },
+        {
+          "id": "1253370049127223307",
+          "tweet_url": "https://x.com/CocaCola/status/1253370049127223307",
+          "score": 0.9649873885131591,
+          "text": "\"I love to hold space for people and during a disaster, there's a lot of people who need that.\" - Kim Taylor, @redcrossny Disaster Mental Health Volunteer #NationalVolunteerWeek 📸 by Catalina Rodriguez. https://t.co/WhyQ6brgIj"
+        },
+        {
+          "id": "1146753275812810754",
+          "tweet_url": "https://x.com/CocaCola/status/1146753275812810754",
+          "score": 0.9619530735790401,
+          "text": "Ɛsƃuᴉɥ┴ɹǝƃuɐɹʇS# ǝʞoƆǝʌɐS# sƃɐʇɥsɐɥ ǝɥʇ ppɐ oʇ ʇǝƃɹoɟ ʇ’uop ˙sn ǝʌɐs oʇ ǝƃɐssǝɯ uǝppᴉɥ ǝɥʇ ʇǝǝʍ┴ ˙sǝnlɔ ǝɥʇ llɐ ʇɔǝlloɔ oʇ ɯooz puɐ ɥɔuᴉԀ ¡ʎlnſ ɟo ɥʇㄣ sᴉɥʇ dlǝɥ ɹnoʎ spǝǝu suᴉʞʍɐH https://t.co/DCFRrOjaIZ"
         }
       ]
     }

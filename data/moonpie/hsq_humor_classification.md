@@ -5,24 +5,31 @@
 - Codebook: HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook
 
 ## Label Counts
-- Self-enhancing humor: 868
-- Affiliative humor: 25
-- Aggressive humor: 20
-- Self-defeating humor: 19
+- Non-humorous brand message: 634
+- Self-enhancing humor: 268
+- Aggressive humor: 13
+- Self-defeating humor: 9
+- Affiliative humor: 8
 
 ## Average Scores
-- Self-enhancing humor: 0.5192
-- Affiliative humor: 0.1738
-- Aggressive humor: 0.1569
-- Self-defeating humor: 0.1501
+- Non-humorous brand message: 0.3602
+- Self-enhancing humor: 0.2557
+- Affiliative humor: 0.1397
+- Self-defeating humor: 0.1240
+- Aggressive humor: 0.1204
 
 ## Highest Confidence Examples
-- Self-enhancing humor (0.998) [972262184037175297](https://x.com/MoonPie/status/972262184037175297): Hi @moonpie I'd like to help make moonpies "sexy" again by putting one in a bikini and laying it along the front of a mustang.
-- Self-enhancing humor (0.995) [923627459886702597](https://x.com/MoonPie/status/923627459886702597): Cute couples costume idea https://t.co/b4iMlKbhzI
-- Self-enhancing humor (0.994) [1275871294886723586](https://x.com/MoonPie/status/1275871294886723586): This packaging tho. Finna make me act up. @MoonPie🌛💦
+- Non-humorous brand message (0.991) [2039482821392097425](https://x.com/MoonPie/status/2039482821392097425): Please tell the moon how much we love her
+- Self-enhancing humor (0.990) [972262184037175297](https://x.com/MoonPie/status/972262184037175297): Hi @moonpie I'd like to help make moonpies "sexy" again by putting one in a bikini and laying it along the front of a mustang.
+- Non-humorous brand message (0.989) [1037115400864063488](https://x.com/MoonPie/status/1037115400864063488): When I say this account is family friendly I mean I will be friends with your mom and dad
+- Non-humorous brand message (0.988) [1209532380333166592](https://x.com/MoonPie/status/1209532380333166592): Happy holidays !! Please don’t tweet at brands over the break it’s our vacation too
+- Non-humorous brand message (0.987) [900796253881212929](https://x.com/MoonPie/status/900796253881212929): Me: brand Twitter is dumb 
 
-👉 SHOP: https://t.co/Gu9mTf3Di9 https://t.co/y2FMOmCLNG
-- Self-enhancing humor (0.994) [1084567361737445386](https://x.com/MoonPie/status/1084567361737445386): The phases of the moon: 
+Also me: *is a brand*
+- Non-humorous brand message (0.984) [987450767970840576](https://x.com/MoonPie/status/987450767970840576): Haha nice
+- Non-humorous brand message (0.982) [1288959401328611330](https://x.com/MoonPie/status/1288959401328611330): I have been saying “stay away from me” for years and now it’s finally polite this rules
+- Self-enhancing humor (0.978) [943872614786846720](https://x.com/MoonPie/status/943872614786846720): Nothing quite like finding the great taste of MoonPie® in a place where you least expect it like under your pillow or in the back of a police car
+- Self-enhancing humor (0.977) [1084567361737445386](https://x.com/MoonPie/status/1084567361737445386): The phases of the moon: 
 
 🌕 full phase
 
@@ -39,9 +46,4 @@
 🌓 half phase for sure this time it’s gotta be 
 
 🌔 waxing gibbous
-- Self-enhancing humor (0.994) [1473446316697079810](https://x.com/MoonPie/status/1473446316697079810): UPDATE: we've decided it's ok to gift wrap some MoonPies and gently toss them at your loved ones from a distance
-- Self-enhancing humor (0.993) [968275381974388739](https://x.com/MoonPie/status/968275381974388739): I'm a big advocate of positive reinforcement which is why every time I eat a MoonPie I call my mom and ask her to say that she is proud of me
-- Self-enhancing humor (0.993) [1573440388064595970](https://x.com/MoonPie/status/1573440388064595970): Nothing like cozying up to fall with a tasty pumpkin spice MoonPie and the sobering seasonal reminder that everything will eventually come to an end :)
-- Self-enhancing humor (0.993) [1605680723309998080](https://x.com/MoonPie/status/1605680723309998080): Hey would you mind liking this tweet I really need my boss to think I did something good this year
-- Self-enhancing humor (0.992) [1005463070368501761](https://x.com/MoonPie/status/1005463070368501761): @MoonPie I want MoonPie-flavored smoothies to be a thing.
-- Self-enhancing humor (0.992) [1491559850991661059](https://x.com/MoonPie/status/1491559850991661059): In some cultures “mooning” means giving a MoonPie to a friend or loved one so go out there and moon everyone you freakin can alright
+- Self-enhancing humor (0.976) [923627459886702597](https://x.com/MoonPie/status/923627459886702597): Cute couples costume idea https://t.co/b4iMlKbhzI
