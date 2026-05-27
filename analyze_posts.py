@@ -1,3 +1,5 @@
+import datetime
+from datetime import timezone
 import argparse
 import json
 import os
@@ -310,7 +312,7 @@ def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
             'selected_perplexity': best_model['perplexity'],
             'evaluations': topic_evaluations,
         },
-        'topics': topics,
+        'topics': topics, 'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
     LDA_TOPICS_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
@@ -418,7 +420,7 @@ def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
         'post_count': len(results),
         'label_counts': dict(counts),
         'average_scores': averages,
-        'posts': results,
+        'posts': results, 'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
     SENTIMENT_FILE.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
@@ -523,7 +525,7 @@ def run_zero_shot_humor(posts: list[dict[str, Any]]) -> dict[str, Any]:
         'post_count': len(results),
         'label_counts': dict(counts),
         'average_scores': averages,
-        'posts': results,
+        'posts': results, 'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
     HUMOR_FILE.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 

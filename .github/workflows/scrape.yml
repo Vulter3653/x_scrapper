@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target_user: ${{ fromJson((github.event_name == 'schedule' || inputs.target_user == 'ALL') && '["Wendys","CocaCola","MoonPie"]' || format('["{0}"]', inputs.target_user)) }}
+        target_user: ["Wendys", "CocaCola", "MoonPie"]
 
     steps:
       - name: 1. Checkout repository
@@ -90,6 +90,12 @@ jobs:
           HEADLESS: 'true'
         run: |
           set -o pipefail
+          # Only run if matrix brand matches input or if ALL was selected
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.target_user }}" != "ALL" && "${{ inputs.target_user }}" != "${{ matrix.target_user }}" ]]; then
+            echo "Skipping ${{ matrix.target_user }} as requested by input."
+            exit 0
+          fi
+          
           python scrape_x.py 2>&1 | tee scraper.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
@@ -103,8 +109,13 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          # Wendys -> wendys, CocaCola -> cocacola, MoonPie -> moonpie
-          slug=$(echo "${{ matrix.target_user }}" | tr '[:upper:]' '[:lower:]' | sed 's/cocacola/cocacola/; s/wendys/wendys/; s/moonpie/moonpie/')
+          # Skip if scraper didn't run
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.target_user }}" != "ALL" && "${{ inputs.target_user }}" != "${{ matrix.target_user }}" ]]; then
+            exit 0
+          fi
+
+          # Convert brand name to lowercase slug
+          slug=$(echo "${{ matrix.target_user }}" | tr '[:upper:]' '[:lower:]')
           mkdir -p staging/data/"$slug"
           if [ -f "data/$slug/posts.json" ]; then
             cp "data/$slug/posts.json" staging/data/"$slug"/
@@ -114,6 +125,7 @@ jobs:
           fi
 
       - name: 7. Upload scraped data artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: scraped-data-${{ matrix.target_user }}
@@ -132,20 +144,31 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: 2. Download all scraped data
+      - name: 2. Clear old brand data
+        shell: bash
+        run: |
+          # Remove existing brand data to ensure we only analyze fresh artifacts
+          # This prevents using old data if a scraper job fails
+          for brand in Wendys CocaCola MoonPie; do
+            slug=$(echo "$brand" | tr '[:upper:]' '[:lower:]')
+            rm -rf "data/$slug"
+            mkdir -p "data/$slug"
+          done
+
+      - name: 3. Download all scraped data
         uses: actions/download-artifact@v4
         with:
           pattern: scraped-data-*
           path: .
           merge-multiple: true
 
-      - name: 3. Set up Python
+      - name: 4. Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: 4. Install analysis dependencies
+      - name: 5. Install analysis dependencies
         shell: bash
         run: |
           set -euxo pipefail
@@ -153,53 +176,60 @@ jobs:
           pip install -r requirements-lda.txt
           pip install -r requirements-sentiment.txt
 
-      - name: 5. Run analysis for each brand
+      - name: 6. Run analysis for each brand
         shell: bash
         env:
           ANALYSIS_MAX_POSTS: '0'
           LDA_MIN_TOPICS: '2'
           LDA_MAX_TOPICS: '9'
         run: |
-          # Use all brands from schedule matrix
-          for brand in Wendys CocaCola MoonPie; do
-            slug=$(echo "$brand" | tr '[:upper:]' '[:lower:]' | sed 's/cocacola/cocacola/; s/wendys/wendys/; s/moonpie/moonpie/')
+          set +e
+          JOB_FAILED=0
+          
+          # Determine which brands were supposed to be updated
+          if [[ "${{ github.event_name }}" == "schedule" || "${{ inputs.target_user }}" == "ALL" ]]; then
+            TARGET_BRANDS="Wendys CocaCola MoonPie"
+          else
+            TARGET_BRANDS="${{ inputs.target_user }}"
+          fi
+
+          for brand in $TARGET_BRANDS; do
+            slug=$(echo "$brand" | tr '[:upper:]' '[:lower:]')
             if [ -f "data/$slug/posts.json" ]; then
               echo "::group::Analyzing $brand"
-              set -o pipefail
               TARGET_USER=$brand python analyze_posts.py --task all 2>&1 | tee analysis.log
-              status=${PIPESTATUS[0]}
+              status=$?
               if [ "$status" -ne 0 ]; then
                 tail -n 60 analysis.log
                 last_error=$(tail -n 1 analysis.log | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
                 echo "::error title=Analysis failed for $brand::$last_error"
-                # We continue to next brand but will fail the job later if needed
-                # Actually, if one fails, it might be better to stop or just mark as failed.
-                export JOB_FAILED=1
+                JOB_FAILED=1
               fi
               echo "::endgroup::"
             else
-              echo "Skipping $brand: data/$slug/posts.json not found."
+              echo "::error title=Missing data for $brand::Fresh scraped data for $brand was not found. Scraper may have failed or was skipped."
+              JOB_FAILED=1
             fi
           done
           
-          if [ "${JOB_FAILED:-0}" -eq 1 ]; then
-            echo "One or more analysis tasks failed."
+          if [ "$JOB_FAILED" -ne 0 ]; then
+            echo "One or more analysis tasks failed or data was missing."
             exit 1
           fi
 
-      - name: 6. Export paper-facing research tables
+      - name: 7. Export paper-facing research tables
         shell: bash
         run: |
           set -euxo pipefail
           python export_research_outputs.py
 
-      - name: 7. Sync dashboard data
+      - name: 8. Sync dashboard data
         shell: bash
         run: |
           set -euxo pipefail
           python sync_dashboard_data.py
 
-      - name: 8. Validate dashboard files
+      - name: 9. Validate dashboard files
         shell: bash
         run: |
           set -euxo pipefail
@@ -207,14 +237,16 @@ jobs:
           node --check dashboard/research-review.js
           python -m py_compile scrape_x.py analyze_posts.py export_research_outputs.py sync_dashboard_data.py
 
-      - name: 9. Generate execution summary
+      - name: 10. Generate execution summary
         shell: bash
         run: |
           echo "### X Data Update Summary" >> $GITHUB_STEP_SUMMARY
-          echo "| Brand | Post Count | Last Updated |" >> $GITHUB_STEP_SUMMARY
-          echo "|-------|------------|--------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Brand | Status | Post Count | Last Updated |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|------------|--------------|" >> $GITHUB_STEP_SUMMARY
+          
+          # Use all possible brands for the summary
           for brand in Wendys CocaCola MoonPie; do
-            slug=$(echo "$brand" | tr '[:upper:]' '[:lower:]' | sed 's/cocacola/cocacola/; s/wendys/wendys/; s/moonpie/moonpie/')
+            slug=$(echo "$brand" | tr '[:upper:]' '[:lower:]')
             state_file="data/$slug/scrape_state.json"
             if [ -f "$state_file" ]; then
               count=$(jq -r '.total_unique_posts // 0' "$state_file")
@@ -222,15 +254,20 @@ jobs:
               if [ "$updated" -ne 0 ]; then
                 date_str=$(date -u -d "@$updated" "+%Y-%m-%d %H:%M:%S UTC")
               else
-                date_str="Unknown"
+                date_str="Just now"
               fi
-              echo "| $brand | $count | $date_str |" >> $GITHUB_STEP_SUMMARY
+              echo "| $brand | ✅ Success | $count | $date_str |" >> $GITHUB_STEP_SUMMARY
             else
-              echo "| $brand | N/A | Not found |" >> $GITHUB_STEP_SUMMARY
+              # Check if it was supposed to be updated
+              if [[ "${{ github.event_name }}" == "schedule" || "${{ inputs.target_user }}" == "ALL" || "${{ inputs.target_user }}" == "$brand" ]]; then
+                echo "| $brand | ❌ Failed | N/A | Missing fresh data |" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "| $brand | ⏭️ Skipped | N/A | Not targeted |" >> $GITHUB_STEP_SUMMARY
+              fi
             fi
           done
 
-      - name: 10. Commit and push changes
+      - name: 11. Commit and push changes
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

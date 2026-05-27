@@ -301,13 +301,13 @@
   }
 
   function Header({ selected, setSelected, status, lastUpdated }) {
-    const statusText = status === 'ready' ? '준비 완료' : status === 'loading' ? '로딩 중' : '오류';
+    const statusText = status === 'ready' ? '데이터 연결됨' : status === 'loading' ? '데이터 동기화 중...' : '연결 오류';
     return e('header', { className: 'top' },
       e('div', null,
-        e('div', { className: 'title' }, e('h1', null, 'X 브랜드 인텔리전스 대시보드'), e('em', { className: status }, statusText)),
-        e('p', null, '전체 브랜드 및 브랜드별 X 게시물, 감성, 토픽, HSQ 유머 분석을 제공합니다.'),
-        e('small', null, `최종 업데이트: ${lastUpdated}`),
-        e('a', { className: 'review-link', href: 'review.html', 'aria-label': '수동 검토 대시보드 열기' }, '수동 검토 대시보드')
+        e('div', { className: 'title' }, e('h1', null, 'X 브랜드 인텔리전스 모니터링 시스템'), e('em', { className: status }, statusText)),
+        e('p', null, "Wendy's, Coca-Cola, MoonPie 브랜드 게시물 및 AI 분석 실시간 통합 대시보드"),
+        e('small', null, `데이터 최신성: ${lastUpdated}`),
+        e('a', { className: 'review-link', href: 'review.html', 'aria-label': '분석 가이드라인 확인' }, '분석 가이드라인')
       ),
       e('nav', { className: 'tabs' },
         e('button', { className: selected === 'all' ? 'on' : '', onClick: () => setSelected('all') }, '전체 브랜드'),
@@ -555,8 +555,13 @@
     const effectiveFilters = selected === 'all' ? filters : Object.assign({}, filters, { brand: 'all' });
     const visible = useMemo(() => applyFilters(scoped, effectiveFilters), [scoped, effectiveFilters]);
     const summary = computeStats(visible);
-    const latestValues = Object.values(datasets).flatMap((dataset) => [dataset.scrapeState && dataset.scrapeState.updated_at, dataset.scrapeState && dataset.scrapeState.scraped_at, dataset.lda && dataset.lda.generated_at, dataset.sentiment && dataset.sentiment.generated_at, dataset.humor && dataset.humor.generated_at]).filter(Boolean).map((value) => new Date(value)).filter((date) => !Number.isNaN(date.getTime()));
-    const lastUpdated = latestValues.length ? latestValues.sort((a, b) => b - a)[0].toISOString().slice(0, 19).replace('T', ' ') : 'unknown';
+    const latestValues = Object.values(datasets).flatMap((dataset) => [
+      dataset.scrapeState && (dataset.scrapeState.last_completed_at * 1000 || dataset.scrapeState.last_saved_at * 1000),
+      dataset.lda && dataset.lda.generated_at,
+      dataset.sentiment && dataset.sentiment.generated_at,
+      dataset.humor && dataset.humor.generated_at
+    ]).filter(Boolean).map((value) => new Date(value)).filter((date) => !Number.isNaN(date.getTime()));
+    const lastUpdated = latestValues.length ? latestValues.sort((a, b) => b - a)[0].toLocaleString('ko-KR') : '확인 불가';
 
     return e(React.Fragment, null,
       e(Header, { selected, setSelected, status: loading ? 'loading' : error ? 'error' : 'ready', lastUpdated }),
