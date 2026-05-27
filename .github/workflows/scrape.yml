@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       target_user:
-        description: 'X screen name to scrape'
+        description: 'X screen name to scrape (Use "ALL" to update all brands)'
         required: true
-        default: 'Wendys'
+        default: 'ALL'
       max_scrolls:
         description: 'Maximum browser scroll attempts'
         required: true
@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target_user: ${{ fromJson(github.event_name == 'schedule' && '["Wendys","CocaCola","MoonPie"]' || format('["{0}"]', inputs.target_user)) }}
+        target_user: ${{ fromJson((github.event_name == 'schedule' || inputs.target_user == 'ALL') && '["Wendys","CocaCola","MoonPie"]' || format('["{0}"]', inputs.target_user)) }}
 
     steps:
       - name: 1. Checkout repository
