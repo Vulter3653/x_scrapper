@@ -8,7 +8,7 @@
 
 ## Topic Count Evaluation
 
-- 2 topics: coherence=0.1638, perplexity=1197.0609
+- 2 topics: coherence=0.1966, perplexity=1197.0609
 - 3 topics: coherence=0.1465, perplexity=1254.3056
 - 4 topics: coherence=0.1679, perplexity=1265.2980
 - 5 topics: coherence=0.2085, perplexity=1306.0455
@@ -27,7 +27,7 @@ Catch Notre Dame vs Wisconsin with @RJ_Young, @geoffschwartz and special guests 
 - [1263145989583536129](https://x.com/Wendys/status/1263145989583536129): Shoutout to @Wendys for winning the Ultimate Wendy’s Invitational yesterday. Is quality your recipe? It’s your turn to prove it. Download a Wendy Mii using these Smash Bros codes &amp; enter our Queen of the Hill Tournament tomorrow. Wendys only. https://t.co/h71vxeQ6RN
 
 ## Topic 1
-wendy, bacon, eats, pub, pretzel, delivery, spicy, frosty, verified, pretzel bacon, bacon pub, cheeseburger
+wendy, bacon, eats, pub, pretzel, delivery, spicy, frosty, verified, bacon pub, pretzel bacon, cheeseburger
 
 - [1306035620494671874](https://x.com/Wendys/status/1306035620494671874): Concert is live! Get your food on with Uber Eats, you can order the Pretzel Bacon Pub Cheeseburger, Spicy Nuggs, and whatever else you want with $0 Delivery Fee on Wendy's orders with $10 min. Terms and other fees apply. See Uber Eats for availability. https://t.co/IfR64uwusI
 - [2030021566528893409](https://x.com/Wendys/status/2030021566528893409): .@maurahiggins Since being a faithful fell through, here’s a job to get u more Birkins 
@@ -52,11 +52,11 @@ time, wendy, breakfast, nationalroastday, eat, pm, ll, et, pm et, tweet, don, th
 @WolfermanQuinn 🇺🇸 https://t.co/4B3BOz7J2H
 
 ## Topic 3
-free, biscuit, honey, chicken, honey butter, butter chicken, butter, chicken biscuit, wendy, single, dave, small
+free, biscuit, honey, chicken, honey butter, butter, butter chicken, chicken biscuit, wendy, single, dave, small
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
+- [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 - [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
-- [2041332734883201293](https://x.com/Wendys/status/2041332734883201293): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 
 ## Topic 4
 fries, free, pc, wendy, bag, hot, come, fry, nuggets, dip, biggie, order
@@ -107,7 +107,7 @@ Choose Wisely #ForTheWendys
 - [1904565120010723568](https://x.com/Wendys/status/1904565120010723568): For all of March Madness®, get a $1 JBC or Double Stack in the Wendy’s app. Don’t worry about forgetting, we have a simple hashtag to help you remember: #DollarJBCorDoubleStackinWendysAppWithOfferLegalSaidToIncludeWithAdditionalPurchase
 
 ## Topic 8
-breakfast, morty, stream, brand, best, watch, bogo, said, bracket, rick, bestoftweets brand, brand bracket
+breakfast, morty, stream, brand, best, watch, bogo, said, bracket, rick, bestoftweets brand, bestoftweets
 
 - [1509591862335655943](https://x.com/Wendys/status/1509591862335655943): The  #BestOfTweets Brand Bracket Semifinals are here.
 
