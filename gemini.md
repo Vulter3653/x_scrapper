@@ -263,7 +263,143 @@ git push origin main
 - schedule 시간은 UTC 기준이다. 한국시간 00:01은 UTC 15:01이다.
 - X 수집은 무료 방식의 브라우저/cookie 기반 scraping이다. 공식 유료 API 전제를 넣지 말 것.
 
-## 12. 다음 작업을 시작하기 전 체크리스트
+
+## 12. 현재 확인된 자동화 실패 이슈와 Gemini가 반드시 수정해야 할 방향
+
+현재 자동화에서 중요한 문제가 확인되었다. Wendy's는 업데이트되었지만, Coca-Cola와 MoonPie는 실패했거나 최신 데이터/분석 결과가 제대로 반영되지 않은 정황이 있다. Gemini는 이 문제를 단순 재실행으로 처리하지 말고 workflow 구조 문제로 보고 수정해야 한다.
+
+### 12.1 현재 문제 정황
+
+- 최근 원격에는 `Update scraped and analyzed X data for Wendys` 커밋만 확인되었다.
+- scheduled matrix 대상은 `Wendys`, `CocaCola`, `MoonPie`이지만 실제 반영은 Wendy's 중심으로만 이루어진 정황이 있다.
+- 로컬 기준 데이터 개수는 존재하지만 업데이트 시점이 브랜드별로 다르다.
+  - `data/wendys/posts.json`: 959 posts
+  - `data/cocacola/posts.json`: 866 posts
+  - `data/moonpie/posts.json`: 932 posts
+- Coca-Cola와 MoonPie는 최신 scheduled run에서 수집/분석/대시보드 동기화/commit이 끝까지 완료되었는지 반드시 GitHub Actions 로그로 확인해야 한다.
+
+### 12.2 근본 원인으로 의심되는 workflow 구조
+
+현재 `.github/workflows/scrape.yml`은 schedule 실행 시 matrix로 세 브랜드를 병렬 실행한다. 그런데 각 matrix job이 다음 작업을 모두 수행한다.
+
+1. 해당 브랜드 scrape
+2. 해당 브랜드 analysis
+3. 전체 `export_research_outputs.py`
+4. 전체 `sync_dashboard_data.py`
+5. commit/push
+
+이 구조는 위험하다.
+
+- 세 matrix job이 같은 `main` 브랜치에 동시에 push한다.
+- 각 job은 자기 workspace에서 시작하므로 다른 브랜드 job의 최신 결과를 모를 수 있다.
+- `data/analysis/*`와 `dashboard/data/analysis/*`는 전체 브랜드 통합 산출물이므로 병렬 job마다 서로 다른 상태로 재생성될 수 있다.
+- push/rebase retry가 있어도 통합 산출물 충돌 또는 overwrite 가능성이 남는다.
+- 결과적으로 Wendy's만 반영되고 Coca-Cola/MoonPie가 실패하거나 누락되는 상황이 발생할 수 있다.
+
+### 12.3 Gemini가 구현해야 할 권장 수정 구조
+
+Gemini는 schedule workflow를 다음 구조로 바꾸는 것을 우선 검토해야 한다.
+
+#### 권장 구조 A: matrix scrape + 단일 aggregate analysis/push
+
+1. `scrape` job
+   - matrix로 `Wendys`, `CocaCola`, `MoonPie`를 병렬 scrape한다.
+   - 각 job은 자기 브랜드의 `data/<brand>/posts.json`과 `scrape_state.json`만 만든다.
+   - matrix job에서는 전체 analysis/export/sync/commit/push를 하지 않는다.
+   - 각 브랜드 결과를 GitHub Actions artifact로 업로드한다.
+
+2. `aggregate-analysis` job
+   - `needs: scrape`
+   - 모든 브랜드 artifact를 다운로드한다.
+   - artifact를 `data/wendys/`, `data/cocacola/`, `data/moonpie/`에 배치한다.
+   - 세 브랜드에 대해 analysis를 순차적으로 실행한다.
+
+```bash
+TARGET_USER=Wendys python analyze_posts.py --task all
+TARGET_USER=CocaCola python analyze_posts.py --task all
+TARGET_USER=MoonPie python analyze_posts.py --task all
+python export_research_outputs.py
+python sync_dashboard_data.py
+```
+
+3. `aggregate-analysis` job에서만 commit/push한다.
+   - 이 job이 유일한 writer가 되어야 한다.
+   - commit message는 예: `Update scraped and analyzed X data for all brands`
+   - push 전 `git fetch origin main` 및 rebase/retry를 유지한다.
+
+이 구조의 장점:
+
+- scrape는 브랜드별 병렬 처리 가능하다.
+- analysis/export/sync/push는 단일 job에서 수행되어 통합 산출물 충돌을 막는다.
+- Coca-Cola/MoonPie 실패 여부를 artifact 단계에서 명확히 확인할 수 있다.
+- dashboard는 항상 세 브랜드가 같은 기준으로 동기화된다.
+
+#### 허용 가능한 대안 B: 브랜드별 scrape workflow와 별도 aggregate workflow
+
+만약 artifact 구조가 복잡하면 다음도 가능하다.
+
+- 브랜드별 scrape workflow는 `data/<brand>/`만 commit한다.
+- 별도 workflow가 모든 브랜드 scrape 완료 후 수동 또는 schedule로 실행되어 analysis/export/sync를 한 번만 수행한다.
+- 단, 이 경우에도 `data/analysis/*`와 `dashboard/data/analysis/*`는 단일 job에서만 생성/commit해야 한다.
+
+### 12.4 반드시 피해야 할 수정
+
+- matrix job 각각에서 `export_research_outputs.py`를 계속 실행하지 말 것.
+- matrix job 각각에서 `sync_dashboard_data.py`를 계속 실행하지 말 것.
+- matrix job 각각이 `data/analysis/*`를 commit하게 두지 말 것.
+- matrix job 각각이 같은 `dashboard/data/analysis/*`를 병렬로 commit하게 두지 말 것.
+- push retry 횟수만 늘리는 방식으로 해결하지 말 것. 구조를 바꿔야 한다.
+- Coca-Cola/MoonPie만 수동 재실행하고 문제 해결로 간주하지 말 것.
+
+### 12.5 Gemini가 확인해야 할 GitHub Actions 로그
+
+Gemini는 수정 전후 다음을 반드시 확인해야 한다.
+
+1. scheduled run에서 matrix 대상이 세 개인지 확인한다.
+2. `CocaCola` job의 실패 step을 확인한다.
+3. `MoonPie` job의 실패 step을 확인한다.
+4. 실패 원인이 scrape인지 analysis인지 push/rebase인지 구분한다.
+5. 각 브랜드 artifact 또는 output에 post count가 기록되는지 확인한다.
+6. 최종 aggregate job에서 세 브랜드 post count가 모두 표시되는지 확인한다.
+7. 최종 commit에 `data/wendys`, `data/cocacola`, `data/moonpie`, `data/analysis`, `dashboard/data` 변경이 함께 반영되는지 확인한다.
+
+### 12.6 자동화 수정 Acceptance Criteria
+
+Gemini가 workflow를 수정한 뒤 다음 기준을 만족해야 한다.
+
+- schedule 실행 시 세 브랜드가 모두 처리된다.
+- scrape 단계는 병렬로 실행되어도 된다.
+- analysis/export/sync/push는 단일 job에서 한 번만 실행된다.
+- 최종 commit은 세 브랜드 결과와 통합 분석 결과를 함께 포함한다.
+- `data/analysis/joined_posts.json`에 `wendys`, `cocacola`, `moonpie` 세 브랜드가 모두 포함된다.
+- `dashboard/data/wendys/posts.json`, `dashboard/data/cocacola/posts.json`, `dashboard/data/moonpie/posts.json`이 모두 최신 상태다.
+- `dashboard/data/analysis/*`가 최종 aggregate 결과 기준으로 갱신된다.
+- GitHub Actions summary 또는 log에 브랜드별 post count가 출력된다.
+- push 충돌로 실패하지 않는다.
+- 실패 시 어느 브랜드가 어느 step에서 실패했는지 error annotation으로 확인 가능하다.
+
+### 12.7 workflow 수정 후 권장 검증 명령
+
+로컬에서 가능한 검증:
+
+```bash
+python -m py_compile scrape_x.py analyze_posts.py export_research_outputs.py sync_dashboard_data.py
+TARGET_USER=Wendys python analyze_posts.py --task all
+TARGET_USER=CocaCola python analyze_posts.py --task all
+TARGET_USER=MoonPie python analyze_posts.py --task all
+python export_research_outputs.py
+python sync_dashboard_data.py
+node --check dashboard/app.js
+node --check dashboard/research-review.js
+```
+
+GitHub Actions에서 필요한 검증:
+
+- workflow_dispatch로 각 브랜드 scrape가 artifact를 생성하는지 확인한다.
+- schedule 또는 manual full run으로 aggregate job이 세 브랜드를 모두 분석하고 단일 commit을 push하는지 확인한다.
+- 실패한 경우 로그를 보고 `scrape`, `analysis`, `export`, `sync`, `push` 중 어느 단계인지 분리해서 수정한다.
+
+## 13. 다음 작업을 시작하기 전 체크리스트
 
 1. `git status --short`로 dirty 상태 확인.
 2. 사용자의 최신 요청이 “로컬만 수정”인지 “push까지”인지 확인.
