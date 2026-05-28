@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 962,
+  "post_count": 963,
   "label_counts": {
+    "negative": 485,
     "positive": 440,
-    "negative": 484,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45797894316028515,
-    "neutral": 0.1299814345713416,
-    "negative": 0.41203962344521783
+    "positive": 0.45790456555983094,
+    "neutral": 0.12999877523033548,
+    "negative": 0.412096660339035
   },
   "posts": [
+    {
+      "id": "2059700189909111001",
+      "tweet_url": "https://x.com/Wendys/status/2059700189909111001",
+      "created_at": "Wed May 27 18:16:07 +0000 2026",
+      "text": "Big star energy. Pocket-sized legends. https://t.co/oNQdB0s9Mn",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.4669661521911621,
+      "scores": {
+        "negative": 0.4669661521911621,
+        "positive": 0.3863533139228821,
+        "neutral": 0.14668048918247223
+      }
+    },
     {
       "id": "2059459943040753916",
       "tweet_url": "https://x.com/Wendys/status/2059459943040753916",
@@ -19260,5 +19280,5 @@
       }
     }
   ],
-  "generated_at": "2026-05-27T18:17:36.282434+00:00"
+  "generated_at": "2026-05-28T18:29:52.773282+00:00"
 }

@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 962,
+  "post_count": 963,
   "label_counts": {
-    "Non-humorous brand message": 602,
+    "Non-humorous brand message": 603,
     "Self-enhancing humor": 341,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.1307520546959839,
-    "Self-enhancing humor": 0.29085768767842624,
-    "Aggressive humor": 0.11412508597855178,
-    "Self-defeating humor": 0.11486403755532634,
-    "Non-humorous brand message": 0.34940113366548586
+    "Affiliative humor": 0.13075891324004152,
+    "Self-enhancing humor": 0.29079421657681087,
+    "Aggressive humor": 0.11414989717210111,
+    "Self-defeating humor": 0.11486559960746225,
+    "Non-humorous brand message": 0.34943137297780097
   },
   "posts": [
+    {
+      "id": "2059700189909111001",
+      "tweet_url": "https://x.com/Wendys/status/2059700189909111001",
+      "created_at": "Wed May 27 18:16:07 +0000 2026",
+      "text": "Big star energy. Pocket-sized legends. https://t.co/oNQdB0s9Mn",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.378521591424942,
+      "scores": {
+        "Non-humorous brand message": 0.378521591424942,
+        "Self-enhancing humor": 0.22973501682281494,
+        "Aggressive humor": 0.13801826536655426,
+        "Affiliative humor": 0.13735683262348175,
+        "Self-defeating humor": 0.11636829376220703
+      }
+    },
     {
       "id": "2059459943040753916",
       "tweet_url": "https://x.com/Wendys/status/2059459943040753916",
@@ -23116,5 +23140,5 @@
       }
     }
   ],
-  "generated_at": "2026-05-27T18:20:26.884367+00:00"
+  "generated_at": "2026-05-28T18:32:16.785441+00:00"
 }
