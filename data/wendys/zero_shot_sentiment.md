@@ -1,17 +1,17 @@
 # Zero-Shot Sentiment for @Wendys
 
-- Posts analyzed: 963
+- Posts analyzed: 966
 - Model: `typeform/distilbert-base-uncased-mnli`
 
 ## Label Counts
-- negative: 485
-- positive: 440
+- negative: 486
+- positive: 442
 - neutral: 38
 
 ## Average Scores
 - positive: 0.4579
-- negative: 0.4121
-- neutral: 0.1300
+- negative: 0.4119
+- neutral: 0.1302
 
 ## Highest Confidence Examples
 - positive (1.000) [1581683892016205825](https://x.com/Wendys/status/1581683892016205825): Bravoholics enjoying @Wendys French Toast Sticks for brunch at Bravopalooza? As Wendy's partner @LisaBarlow7 would say... we love that. #ad #BravoCon https://t.co/AjP2o8PAYT
