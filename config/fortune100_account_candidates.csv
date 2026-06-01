@@ -1,0 +1,11 @@
+firm_id,fortune_year,fortune_rank,firm_name,candidate_handle,candidate_profile_url,candidate_role,candidate_source_url,candidate_source_type,candidate_confidence,candidate_verified_status,review_status,review_note,collected_at
+f2025_001_walmart,2025,1,Walmart,,,corporate,,,not_found,unknown,needs_manual_review,"Do not infer @Walmart without confirming an official company website social link or verified X profile link.",2026-06-01T00:00:00Z
+f2025_002_amazon,2025,2,Amazon,,,corporate,,,not_found,unknown,needs_manual_review,"Distinguish the corporate account from shopping, product, and customer-support accounts.",2026-06-01T00:00:00Z
+f2025_003_unitedhealth_group,2025,3,UnitedHealth Group,,,corporate,,,not_found,unknown,needs_manual_review,"Confirm the parent-company account rather than a subsidiary or support account.",2026-06-01T00:00:00Z
+f2025_004_apple,2025,4,Apple,,,corporate,,,not_found,unknown,needs_manual_review,"Confirm whether a suitable corporate account exists; do not substitute a product account.",2026-06-01T00:00:00Z
+f2025_005_cvs_health,2025,5,CVS Health,,,corporate,,,not_found,unknown,needs_manual_review,"Distinguish corporate communications from retail support accounts.",2026-06-01T00:00:00Z
+f2025_006_berkshire_hathaway,2025,6,Berkshire Hathaway,,,corporate,,,not_found,unknown,needs_manual_review,"Record official account absence explicitly if no company-controlled account is found.",2026-06-01T00:00:00Z
+f2025_007_alphabet,2025,7,Alphabet,,,corporate,,,not_found,unknown,needs_manual_review,"Do not treat Google product or brand accounts as Alphabet corporate without an explicit source.",2026-06-01T00:00:00Z
+f2025_008_exxon_mobil,2025,8,Exxon Mobil,,,corporate,,,not_found,unknown,needs_manual_review,"Confirm the corporate account from an official website or verified profile.",2026-06-01T00:00:00Z
+f2025_009_mckesson,2025,9,McKesson,,,corporate,,,not_found,unknown,needs_manual_review,"Confirm the corporate account from an official website or verified profile.",2026-06-01T00:00:00Z
+f2025_010_cencora,2025,10,Cencora,,,corporate,,,not_found,unknown,needs_manual_review,"Confirm the corporate account from an official website or verified profile.",2026-06-01T00:00:00Z
