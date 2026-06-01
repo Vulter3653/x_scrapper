@@ -1,0 +1,11 @@
+firm_id,fortune_rank,firm_name,recommended_handle,recommended_profile_url,recommended_role,recommended_score,recommended_confidence,recommendation_status,reason,needs_manual_review
+f2025_001_walmart,1,Walmart,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_002_amazon,2,Amazon,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_003_unitedhealth_group,3,UnitedHealth Group,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_004_apple,4,Apple,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_005_cvs_health,5,CVS Health,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_006_berkshire_hathaway,6,Berkshire Hathaway,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_007_alphabet,7,Alphabet,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_008_exxon_mobil,8,Exxon Mobil,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_009_mckesson,9,McKesson,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
+f2025_010_cencora,10,Cencora,,,,,not_found,search_failed,X search did not complete successfully. Check audit rows.,1
