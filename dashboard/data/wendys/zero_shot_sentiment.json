@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 967,
+  "post_count": 968,
   "label_counts": {
-    "negative": 487,
+    "negative": 488,
     "positive": 442,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.4578926304082946,
-    "neutral": 0.13019150588899198,
-    "negative": 0.4119158616455361
+    "positive": 0.45742940451588565,
+    "neutral": 0.13013609515044003,
+    "negative": 0.41243449832287926
   },
   "posts": [
+    {
+      "id": "2061565494453555359",
+      "tweet_url": "https://x.com/Wendys/status/2061565494453555359",
+      "created_at": "Mon Jun 01 21:48:10 +0000 2026",
+      "text": "Came for a Frosty, stayed for the door to the backrooms https://t.co/0BMCyHc7XK",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.9139561653137207,
+      "scores": {
+        "negative": 0.9139561653137207,
+        "neutral": 0.07655391097068787,
+        "positive": 0.009489966556429863
+      }
+    },
     {
       "id": "2060433958609813857",
       "tweet_url": "https://x.com/Wendys/status/2060433958609813857",
@@ -19360,5 +19380,5 @@
       }
     }
   ],
-  "generated_at": "2026-06-01T20:09:22.306974+00:00"
+  "generated_at": "2026-06-02T19:07:37.581083+00:00"
 }

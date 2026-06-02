@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 967,
+  "post_count": 968,
   "label_counts": {
-    "Non-humorous brand message": 606,
+    "Non-humorous brand message": 607,
     "Self-enhancing humor": 342,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13068732935822094,
-    "Self-enhancing humor": 0.29126147339467223,
-    "Aggressive humor": 0.11413396375154537,
-    "Self-defeating humor": 0.11486572453428556,
-    "Non-humorous brand message": 0.3490515104286717
+    "Affiliative humor": 0.13062309890791624,
+    "Self-enhancing humor": 0.2911840531400651,
+    "Aggressive humor": 0.11419031553054053,
+    "Self-defeating humor": 0.11495502686564818,
+    "Non-humorous brand message": 0.3490475069678317
   },
   "posts": [
+    {
+      "id": "2061565494453555359",
+      "tweet_url": "https://x.com/Wendys/status/2061565494453555359",
+      "created_at": "Mon Jun 01 21:48:10 +0000 2026",
+      "text": "Came for a Frosty, stayed for the door to the backrooms https://t.co/0BMCyHc7XK",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.34517616033554077,
+      "scores": {
+        "Non-humorous brand message": 0.34517616033554077,
+        "Self-enhancing humor": 0.21631866693496704,
+        "Self-defeating humor": 0.20131038129329681,
+        "Aggressive humor": 0.16868248581886292,
+        "Affiliative humor": 0.06851225346326828
+      }
+    },
     {
       "id": "2060433958609813857",
       "tweet_url": "https://x.com/Wendys/status/2060433958609813857",
@@ -23236,5 +23260,5 @@
       }
     }
   ],
-  "generated_at": "2026-06-01T20:12:48.406896+00:00"
+  "generated_at": "2026-06-02T19:11:05.767702+00:00"
 }
