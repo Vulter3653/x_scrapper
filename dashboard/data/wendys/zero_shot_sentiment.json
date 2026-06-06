@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 968,
+  "post_count": 970,
   "label_counts": {
+    "positive": 444,
     "negative": 488,
-    "positive": 442,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45742940451588565,
-    "neutral": 0.13013609515044003,
-    "negative": 0.41243449832287926
+    "positive": 0.45799217972167544,
+    "neutral": 0.12996100585144998,
+    "negative": 0.41204681248107344
   },
   "posts": [
+    {
+      "id": "2063002561263640786",
+      "tweet_url": "https://x.com/Wendys/status/2063002561263640786",
+      "created_at": "Fri Jun 05 20:58:33 +0000 2026",
+      "text": "The KPIs, ROIs, and LOLs are about to go off the charts.\nCongratulations to our NEW Chief Tasting Officer Amber Luster 🎉🎉🎉 We can’t wait to see all the incredible things you do with your title. \n\nAnd thank you to all our fans who submitted an application❤️ https://t.co/WxU0LzL72Z",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.9990798830986023,
+      "scores": {
+        "positive": 0.9990798830986023,
+        "neutral": 0.00048598478315398097,
+        "negative": 0.00043412408558651805
+      }
+    },
     {
       "id": "2061565494453555359",
       "tweet_url": "https://x.com/Wendys/status/2061565494453555359",
@@ -7717,6 +7737,26 @@
         "negative": 0.3697797954082489,
         "neutral": 0.3199605941772461,
         "positive": 0.310259610414505
+      }
+    },
+    {
+      "id": "1555191966182301697",
+      "tweet_url": "https://x.com/Wendys/status/1555191966182301697",
+      "created_at": "Thu Aug 04 14:00:33 +0000 2022",
+      "text": "@Haley23096395 finally, someone without condiment issues #ChooseHotAndCrispy https://t.co/XBOBxYrPsn",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.4616708755493164,
+      "scores": {
+        "positive": 0.4616708755493164,
+        "negative": 0.44837960600852966,
+        "neutral": 0.0899495854973793
       }
     },
     {
@@ -19380,5 +19420,5 @@
       }
     }
   ],
-  "generated_at": "2026-06-04T18:05:32.990788+00:00"
+  "generated_at": "2026-06-06T16:49:38.922301+00:00"
 }
