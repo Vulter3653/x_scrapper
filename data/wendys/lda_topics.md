@@ -10,15 +10,15 @@
 
 - 2 topics: coherence=0.1270, perplexity=1199.2337
 - 3 topics: coherence=0.1934, perplexity=1245.7426
-- 4 topics: coherence=0.2238, perplexity=1280.0298
-- 5 topics: coherence=0.1948, perplexity=1341.6555
+- 4 topics: coherence=0.2102, perplexity=1280.0298
+- 5 topics: coherence=0.2057, perplexity=1341.6555
 - 6 topics: coherence=0.2503, perplexity=1362.8856
 - 7 topics: coherence=0.2282, perplexity=1409.3325
 - 8 topics: coherence=0.2302, perplexity=1417.8197
 - 9 topics: coherence=0.2308, perplexity=1484.1149
 
 ## Topic 0
-breakfast, wendy, free, chicken, biscuit, baconator, codes, honey, honey butter, butter, butter chicken, chicken biscuit
+breakfast, wendy, free, chicken, biscuit, baconator, codes, honey, butter, butter chicken, honey butter, chicken biscuit
 
 - [1257325300704215047](https://x.com/Wendys/status/1257325300704215047): Welcome to Wendy's Cyber Search. All week we'll be sharing hints to codes hidden across the internet to win Wendy’s gift cards. Each worth a little something, some worth a lot of something. DM us the code on Twitter for your chance to win. Happy hunting! https://t.co/H9bM7rWONS
 - [1385655564835901449](https://x.com/Wendys/status/1385655564835901449): Wendy, Honey, Butter and Chicken Biscuit are on the hunt again. Watch us stream Monster Hunter Rise on Twitch and grab a Honey Butter Chicken Biscuit for a $1.99 the next time you get breakfast. https://t.co/P0GZ7DIn5g
@@ -68,7 +68,7 @@ big, fries, come, breakfast, wendy, eat, app, right, dip, tomorrow, hang, true
 wendy, free, chicken, small, sandwich, chicken sandwich, fry, classic, purchase, offer, free small, good
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
-- [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041526924149690528](https://x.com/Wendys/status/2041526924149690528): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 - [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 
 ## Topic 5

@@ -58,7 +58,7 @@ day, eclipse, tweet, tell, come, gonna, think, buddy, don, boss, work, great
 - [984569155797028865](https://x.com/MoonPie/status/984569155797028865): One time I was blowing kisses to some birds outside my office window and my boss told me to stop but THEN one day I caught him blowing kisses to some birds outside HIS office window
 
 We still haven’t talked about it please don’t tell anyone https://t.co/8KNaZc6s9V
-- [898147816018763776](https://x.com/MoonPie/status/898147816018763776): RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…
+- [897992833726128128](https://x.com/MoonPie/status/897992833726128128): You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB
 
 ## Topic 3
 moon, pie, moon pie, super, moonpies, good, phase, blood, earth, mean, talk, light
