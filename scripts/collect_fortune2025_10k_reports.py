@@ -280,10 +280,63 @@ def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> 
         writer.writerows(rows)
 
 
+
+def build_source_failure_outputs(args: argparse.Namespace, error: Exception) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+    firms = read_fortune_firms(args.input, args.rank_limit)
+    collected_at = now_iso()
+    manifest: list[dict[str, str]] = []
+    audit: list[dict[str, str]] = []
+    message = f"SEC source fetch failed before CIK matching: {type(error).__name__}: {str(error)[:400]}"
+    for firm in firms:
+        for year in args.years:
+            row = {
+                "fortune_year": firm.fortune_year,
+                "fortune_rank": str(firm.fortune_rank),
+                "firm_name": firm.firm_name,
+                "fortune_company_url": firm.fortune_company_url,
+                "target_report_year": str(year),
+                "sec_cik": "",
+                "sec_company_name": "",
+                "sec_ticker": "",
+                "sec_match_score": "0.00",
+                "sec_match_status": "sec_source_fetch_failed",
+                "form": "",
+                "filing_date": "",
+                "report_date": "",
+                "accession_number": "",
+                "primary_document": "",
+                "sec_filing_url": "",
+                "local_report_path": "",
+                "download_status": "not_attempted",
+                "status": "sec_source_fetch_failed",
+                "notes": message,
+                "collected_at": collected_at,
+            }
+            manifest.append(row)
+            audit.append({
+                "fortune_rank": row["fortune_rank"],
+                "firm_name": row["firm_name"],
+                "target_report_year": row["target_report_year"],
+                "status": row["status"],
+                "error_type": type(error).__name__,
+                "error_message": message,
+                "sec_cik": "",
+                "sec_company_name": "",
+                "sec_match_score": "0.00",
+                "sec_filing_url": "",
+                "local_report_path": "",
+                "attempted_at": collected_at,
+            })
+    return manifest, audit
+
 def collect(args: argparse.Namespace) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
     user_agent = args.user_agent or "Vulter3653 x_scrapper research contact@example.com"
     firms = read_fortune_firms(args.input, args.rank_limit)
-    companies = load_sec_companies(args.cache_dir, user_agent, args.delay_seconds, args.refresh_cache)
+    try:
+        companies = load_sec_companies(args.cache_dir, user_agent, args.delay_seconds, args.refresh_cache)
+    except Exception as exc:
+        print(f"SEC source fetch failed: {type(exc).__name__}: {exc}", flush=True)
+        return build_source_failure_outputs(args, exc)
     manifest: list[dict[str, str]] = []
     audit: list[dict[str, str]] = []
     collected_at = now_iso()
