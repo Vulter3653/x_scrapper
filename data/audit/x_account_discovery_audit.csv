@@ -1,51 +1,147 @@
 firm_id,fortune_rank,firm_name,search_query,search_url,attempted_at,status,result_count,error_type,error_message,page_title,current_url,login_challenge_detected,rate_limited_detected,selector_version,notes
-f2025_001_walmart,1,Walmart,Walmart,https://x.com/search?q=Walmart&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_001_walmart,1,Walmart,Walmart company,https://x.com/search?q=Walmart%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_001_walmart,1,Walmart,Walmart corporation,https://x.com/search?q=Walmart%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_001_walmart,1,Walmart,Walmart news,https://x.com/search?q=Walmart%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_001_walmart,1,Walmart,Walmart official,https://x.com/search?q=Walmart%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_002_amazon,2,Amazon,Amazon,https://x.com/search?q=Amazon&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_002_amazon,2,Amazon,Amazon company,https://x.com/search?q=Amazon%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_002_amazon,2,Amazon,Amazon corporation,https://x.com/search?q=Amazon%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_002_amazon,2,Amazon,Amazon news,https://x.com/search?q=Amazon%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_002_amazon,2,Amazon,Amazon official,https://x.com/search?q=Amazon%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group,https://x.com/search?q=UnitedHealth%20Group&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group company,https://x.com/search?q=UnitedHealth%20Group%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group corporation,https://x.com/search?q=UnitedHealth%20Group%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group news,https://x.com/search?q=UnitedHealth%20Group%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group official,https://x.com/search?q=UnitedHealth%20Group%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_004_apple,4,Apple,Apple,https://x.com/search?q=Apple&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_004_apple,4,Apple,Apple company,https://x.com/search?q=Apple%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_004_apple,4,Apple,Apple corporation,https://x.com/search?q=Apple%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_004_apple,4,Apple,Apple news,https://x.com/search?q=Apple%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_004_apple,4,Apple,Apple official,https://x.com/search?q=Apple%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_005_cvs_health,5,CVS Health,CVS Health,https://x.com/search?q=CVS%20Health&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_005_cvs_health,5,CVS Health,CVS Health company,https://x.com/search?q=CVS%20Health%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_005_cvs_health,5,CVS Health,CVS Health corporation,https://x.com/search?q=CVS%20Health%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_005_cvs_health,5,CVS Health,CVS Health news,https://x.com/search?q=CVS%20Health%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_005_cvs_health,5,CVS Health,CVS Health official,https://x.com/search?q=CVS%20Health%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway,https://x.com/search?q=Berkshire%20Hathaway&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway company,https://x.com/search?q=Berkshire%20Hathaway%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway corporation,https://x.com/search?q=Berkshire%20Hathaway%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway news,https://x.com/search?q=Berkshire%20Hathaway%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway official,https://x.com/search?q=Berkshire%20Hathaway%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_007_alphabet,7,Alphabet,Alphabet,https://x.com/search?q=Alphabet&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_007_alphabet,7,Alphabet,Alphabet company,https://x.com/search?q=Alphabet%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_007_alphabet,7,Alphabet,Alphabet corporation,https://x.com/search?q=Alphabet%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_007_alphabet,7,Alphabet,Alphabet news,https://x.com/search?q=Alphabet%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_007_alphabet,7,Alphabet,Alphabet official,https://x.com/search?q=Alphabet%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil,https://x.com/search?q=Exxon%20Mobil&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil company,https://x.com/search?q=Exxon%20Mobil%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil corporation,https://x.com/search?q=Exxon%20Mobil%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil news,https://x.com/search?q=Exxon%20Mobil%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil official,https://x.com/search?q=Exxon%20Mobil%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_009_mckesson,9,McKesson,McKesson,https://x.com/search?q=McKesson&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_009_mckesson,9,McKesson,McKesson company,https://x.com/search?q=McKesson%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_009_mckesson,9,McKesson,McKesson corporation,https://x.com/search?q=McKesson%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_009_mckesson,9,McKesson,McKesson news,https://x.com/search?q=McKesson%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_009_mckesson,9,McKesson,McKesson official,https://x.com/search?q=McKesson%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_010_cencora,10,Cencora,Cencora,https://x.com/search?q=Cencora&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_010_cencora,10,Cencora,Cencora company,https://x.com/search?q=Cencora%20company&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_010_cencora,10,Cencora,Cencora corporation,https://x.com/search?q=Cencora%20corporation&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_010_cencora,10,Cencora,Cencora news,https://x.com/search?q=Cencora%20news&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
-f2025_010_cencora,10,Cencora,Cencora official,https://x.com/search?q=Cencora%20official&f=user,2026-06-01T18:50:16Z,error,0,missing_credentials,X_AUTH_TOKEN and X_CT0 are required.,,,0,0,,No network discovery attempted.
+f2025_001_walmart,1,Walmart,Walmart,https://x.com/search?q=Walmart&f=user,2026-06-01T19:06:12Z,success,10,,,Walmart - Search / X,https://x.com/search?q=Walmart&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_001_walmart,1,Walmart,Walmart company,https://x.com/search?q=Walmart%20company&f=user,2026-06-01T19:06:28Z,success,10,,,Walmart company - Search / X,https://x.com/search?q=Walmart%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_001_walmart,1,Walmart,Walmart corporation,https://x.com/search?q=Walmart%20corporation&f=user,2026-06-01T19:06:23Z,success,7,,,Walmart corporation - Search / X,https://x.com/search?q=Walmart%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_001_walmart,1,Walmart,Walmart news,https://x.com/search?q=Walmart%20news&f=user,2026-06-01T19:06:34Z,success,10,,,Walmart news - Search / X,https://x.com/search?q=Walmart%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_001_walmart,1,Walmart,Walmart official,https://x.com/search?q=Walmart%20official&f=user,2026-06-01T19:06:17Z,success,10,,,Walmart official - Search / X,https://x.com/search?q=Walmart%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_001_walmart,1,Walmart,profile:@PeopleofWalmart,https://x.com/PeopleofWalmart,2026-06-01T19:06:49Z,login_challenge,0,profile_access_failed,"To view keyboard shortcuts, press question mark
+View keyboard shortcuts
+Home
+Explore
+Notifications
+Follow
+Chat
+Grok
+Bookmarks
+Creator Studio
+Premium
+Profile
+More
+Post
+경영학과/최승현
+@GyeongC72774
+People of Walmart
+8,832 posts
+See new posts
+Follow
+People of Walmart
+@PeopleofWalmart
+The REAL People of Walmart Twitter
+U.S.peopleofwalmart.com
+Joined August 2009
+431 Following
+43.7K Followers
+Not followed by anyone you’re following
+Posts
+Replies
+Media
+People of Walmart’s posts
+People of Walmart
+@PeopleofWal",People of Walmart (@PeopleofWalmart) / X,https://x.com/PeopleofWalmart,1,0,profile-v1,Candidate retained without profile enrichment.
+f2025_002_amazon,2,Amazon,Amazon,https://x.com/search?q=Amazon&f=user,2026-06-01T19:06:56Z,success,10,,,Amazon - Search / X,https://x.com/search?q=Amazon&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_002_amazon,2,Amazon,Amazon company,https://x.com/search?q=Amazon%20company&f=user,2026-06-01T19:07:12Z,success,10,,,Amazon company - Search / X,https://x.com/search?q=Amazon%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_002_amazon,2,Amazon,Amazon corporation,https://x.com/search?q=Amazon%20corporation&f=user,2026-06-01T19:07:06Z,success,10,,,Amazon corporation - Search / X,https://x.com/search?q=Amazon%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_002_amazon,2,Amazon,Amazon news,https://x.com/search?q=Amazon%20news&f=user,2026-06-01T19:07:17Z,success,10,,,Amazon news - Search / X,https://x.com/search?q=Amazon%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_002_amazon,2,Amazon,Amazon official,https://x.com/search?q=Amazon%20official&f=user,2026-06-01T19:07:01Z,success,10,,,Amazon official - Search / X,https://x.com/search?q=Amazon%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group,https://x.com/search?q=UnitedHealth%20Group&f=user,2026-06-01T19:07:40Z,success,9,,,UnitedHealth Group - Search / X,https://x.com/search?q=UnitedHealth%20Group&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group company,https://x.com/search?q=UnitedHealth%20Group%20company&f=user,2026-06-01T19:07:56Z,success,3,,,UnitedHealth Group company - Search / X,https://x.com/search?q=UnitedHealth%20Group%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group corporation,https://x.com/search?q=UnitedHealth%20Group%20corporation&f=user,2026-06-01T19:07:51Z,success,3,,,UnitedHealth Group corporation - Search / X,https://x.com/search?q=UnitedHealth%20Group%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group news,https://x.com/search?q=UnitedHealth%20Group%20news&f=user,2026-06-01T19:08:01Z,success,3,,,UnitedHealth Group news - Search / X,https://x.com/search?q=UnitedHealth%20Group%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_003_unitedhealth_group,3,UnitedHealth Group,UnitedHealth Group official,https://x.com/search?q=UnitedHealth%20Group%20official&f=user,2026-06-01T19:07:46Z,success,3,,,UnitedHealth Group official - Search / X,https://x.com/search?q=UnitedHealth%20Group%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_003_unitedhealth_group,3,UnitedHealth Group,profile:@UnitedHealthGrp,https://x.com/UnitedHealthGrp,2026-06-01T19:08:06Z,login_challenge,0,profile_access_failed,"To view keyboard shortcuts, press question mark
+View keyboard shortcuts
+Home
+Explore
+Notifications
+Follow
+Chat
+Grok
+Bookmarks
+Creator Studio
+Premium
+Profile
+More
+Post
+경영학과/최승현
+@GyeongC72774
+UnitedHealth Group
+3,226 posts
+See new posts
+Follow
+UnitedHealth Group
+@UnitedHealthGrp
+Built for Better Health
+Media inquiries:
+http://
+uhg.co/MediaContacts
+unitedhealthgroup.com
+Joined October 2012
+603 Following
+40.5K Followers
+Not followed by anyone you’re following
+@GyeongC72774, you aren’t verified
+yet",UnitedHealth Group (@UnitedHealthGrp) / X,https://x.com/UnitedHealthGrp,1,0,profile-v1,Candidate retained without profile enrichment.
+f2025_004_apple,4,Apple,Apple,https://x.com/search?q=Apple&f=user,2026-06-01T19:08:21Z,success,10,,,Apple - Search / X,https://x.com/search?q=Apple&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_004_apple,4,Apple,Apple company,https://x.com/search?q=Apple%20company&f=user,2026-06-01T19:08:37Z,success,10,,,Apple company - Search / X,https://x.com/search?q=Apple%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_004_apple,4,Apple,Apple corporation,https://x.com/search?q=Apple%20corporation&f=user,2026-06-01T19:08:32Z,success,10,,,Apple corporation - Search / X,https://x.com/search?q=Apple%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_004_apple,4,Apple,Apple news,https://x.com/search?q=Apple%20news&f=user,2026-06-01T19:08:43Z,success,10,,,Apple news - Search / X,https://x.com/search?q=Apple%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_004_apple,4,Apple,Apple official,https://x.com/search?q=Apple%20official&f=user,2026-06-01T19:08:27Z,success,10,,,Apple official - Search / X,https://x.com/search?q=Apple%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_004_apple,4,Apple,profile:@AppleEDU,https://x.com/AppleEDU,2026-06-01T19:08:56Z,login_challenge,0,profile_access_failed,"To view keyboard shortcuts, press question mark
+View keyboard shortcuts
+Home
+Explore
+Notifications
+Follow
+Chat
+Grok
+Bookmarks
+Premium
+Profile
+More
+Post
+경영학과/최승현
+@GyeongC72774
+Apple Education
+4,292 posts
+See new posts
+Follow
+Apple Education
+@AppleEDU
+Spark new ideas, create more aha moments, and teach in ways you’ve always imagined. Follow
+@AppleEDU
+ for tips, updates, and inspiration.
+Cupertino, CAapple.com/education
+Joined January 2012
+730 Following
+930.2K Followers
+Not followed by anyone you’",Apple Education (@AppleEDU) / X,https://x.com/AppleEDU,1,0,profile-v1,Candidate retained without profile enrichment.
+f2025_005_cvs_health,5,CVS Health,CVS Health,https://x.com/search?q=CVS%20Health&f=user,2026-06-01T19:09:05Z,success,10,,,CVS Health - Search / X,https://x.com/search?q=CVS%20Health&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_005_cvs_health,5,CVS Health,CVS Health company,https://x.com/search?q=CVS%20Health%20company&f=user,2026-06-01T19:09:21Z,success,3,,,CVS Health company - Search / X,https://x.com/search?q=CVS%20Health%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_005_cvs_health,5,CVS Health,CVS Health corporation,https://x.com/search?q=CVS%20Health%20corporation&f=user,2026-06-01T19:09:16Z,success,3,,,CVS Health corporation - Search / X,https://x.com/search?q=CVS%20Health%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_005_cvs_health,5,CVS Health,CVS Health news,https://x.com/search?q=CVS%20Health%20news&f=user,2026-06-01T19:09:26Z,success,3,,,CVS Health news - Search / X,https://x.com/search?q=CVS%20Health%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_005_cvs_health,5,CVS Health,CVS Health official,https://x.com/search?q=CVS%20Health%20official&f=user,2026-06-01T19:09:10Z,success,3,,,CVS Health official - Search / X,https://x.com/search?q=CVS%20Health%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway,https://x.com/search?q=Berkshire%20Hathaway&f=user,2026-06-01T19:09:48Z,success,10,,,Berkshire Hathaway - Search / X,https://x.com/search?q=Berkshire%20Hathaway&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway company,https://x.com/search?q=Berkshire%20Hathaway%20company&f=user,2026-06-01T19:10:04Z,success,4,,,Berkshire Hathaway company - Search / X,https://x.com/search?q=Berkshire%20Hathaway%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway corporation,https://x.com/search?q=Berkshire%20Hathaway%20corporation&f=user,2026-06-01T19:09:59Z,success,3,,,Berkshire Hathaway corporation - Search / X,https://x.com/search?q=Berkshire%20Hathaway%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway news,https://x.com/search?q=Berkshire%20Hathaway%20news&f=user,2026-06-01T19:10:09Z,success,4,,,Berkshire Hathaway news - Search / X,https://x.com/search?q=Berkshire%20Hathaway%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_006_berkshire_hathaway,6,Berkshire Hathaway,Berkshire Hathaway official,https://x.com/search?q=Berkshire%20Hathaway%20official&f=user,2026-06-01T19:09:54Z,success,3,,,Berkshire Hathaway official - Search / X,https://x.com/search?q=Berkshire%20Hathaway%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_007_alphabet,7,Alphabet,Alphabet,https://x.com/search?q=Alphabet&f=user,2026-06-01T19:10:29Z,success,3,,,Alphabet - Search / X,https://x.com/search?q=Alphabet&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_007_alphabet,7,Alphabet,Alphabet company,https://x.com/search?q=Alphabet%20company&f=user,2026-06-01T19:10:44Z,success,3,,,Alphabet company - Search / X,https://x.com/search?q=Alphabet%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_007_alphabet,7,Alphabet,Alphabet corporation,https://x.com/search?q=Alphabet%20corporation&f=user,2026-06-01T19:10:39Z,success,3,,,Alphabet corporation - Search / X,https://x.com/search?q=Alphabet%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_007_alphabet,7,Alphabet,Alphabet news,https://x.com/search?q=Alphabet%20news&f=user,2026-06-01T19:10:49Z,success,3,,,Alphabet news - Search / X,https://x.com/search?q=Alphabet%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_007_alphabet,7,Alphabet,Alphabet official,https://x.com/search?q=Alphabet%20official&f=user,2026-06-01T19:10:34Z,success,3,,,Alphabet official - Search / X,https://x.com/search?q=Alphabet%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil,https://x.com/search?q=Exxon%20Mobil&f=user,2026-06-01T19:11:00Z,success,3,,,Exxon Mobil - Search / X,https://x.com/search?q=Exxon%20Mobil&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil company,https://x.com/search?q=Exxon%20Mobil%20company&f=user,2026-06-01T19:11:16Z,success,3,,,Exxon Mobil company - Search / X,https://x.com/search?q=Exxon%20Mobil%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil corporation,https://x.com/search?q=Exxon%20Mobil%20corporation&f=user,2026-06-01T19:11:11Z,success,3,,,Exxon Mobil corporation - Search / X,https://x.com/search?q=Exxon%20Mobil%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil news,https://x.com/search?q=Exxon%20Mobil%20news&f=user,2026-06-01T19:11:21Z,success,3,,,Exxon Mobil news - Search / X,https://x.com/search?q=Exxon%20Mobil%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_008_exxon_mobil,8,Exxon Mobil,Exxon Mobil official,https://x.com/search?q=Exxon%20Mobil%20official&f=user,2026-06-01T19:11:06Z,success,3,,,Exxon Mobil official - Search / X,https://x.com/search?q=Exxon%20Mobil%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_009_mckesson,9,McKesson,McKesson,https://x.com/search?q=McKesson&f=user,2026-06-01T19:11:31Z,success,3,,,McKesson - Search / X,https://x.com/search?q=McKesson&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_009_mckesson,9,McKesson,McKesson company,https://x.com/search?q=McKesson%20company&f=user,2026-06-01T19:11:46Z,success,3,,,McKesson company - Search / X,https://x.com/search?q=McKesson%20company&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_009_mckesson,9,McKesson,McKesson corporation,https://x.com/search?q=McKesson%20corporation&f=user,2026-06-01T19:11:41Z,success,3,,,McKesson corporation - Search / X,https://x.com/search?q=McKesson%20corporation&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_009_mckesson,9,McKesson,McKesson news,https://x.com/search?q=McKesson%20news&f=user,2026-06-01T19:11:52Z,success,3,,,McKesson news - Search / X,https://x.com/search?q=McKesson%20news&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_009_mckesson,9,McKesson,McKesson official,https://x.com/search?q=McKesson%20official&f=user,2026-06-01T19:11:36Z,success,3,,,McKesson official - Search / X,https://x.com/search?q=McKesson%20official&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_010_cencora,10,Cencora,Cencora,https://x.com/search?q=Cencora&f=user,2026-06-01T19:12:05Z,success,3,,,Cencora - Search / X,https://x.com/search?q=Cencora&f=user,0,0,"[data-testid=""UserCell""]",
+f2025_010_cencora,10,Cencora,Cencora company,https://x.com/search?q=Cencora%20company&f=user,2026-06-01T19:12:21Z,selector_not_found,0,selector_not_found,No configured X user-search result selector matched.,,https://x.com/search?q=Cencora%20company&f=user,0,0,user-search-v1,
+f2025_010_cencora,10,Cencora,Cencora corporation,https://x.com/search?q=Cencora%20corporation&f=user,2026-06-01T19:12:16Z,selector_not_found,0,selector_not_found,No configured X user-search result selector matched.,,https://x.com/search?q=Cencora%20corporation&f=user,0,0,user-search-v1,
+f2025_010_cencora,10,Cencora,Cencora news,https://x.com/search?q=Cencora%20news&f=user,2026-06-01T19:12:26Z,selector_not_found,0,selector_not_found,No configured X user-search result selector matched.,,https://x.com/search?q=Cencora%20news&f=user,0,0,user-search-v1,
+f2025_010_cencora,10,Cencora,Cencora official,https://x.com/search?q=Cencora%20official&f=user,2026-06-01T19:12:10Z,selector_not_found,0,selector_not_found,No configured X user-search result selector matched.,,https://x.com/search?q=Cencora%20official&f=user,0,0,user-search-v1,
