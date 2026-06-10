@@ -10,3 +10,5 @@ scraper_failure.log
 analysis.log
 lda_analysis.log
 sentiment_analysis.log
+data/sec_10k/cache/
+data/sec_10k/reports/

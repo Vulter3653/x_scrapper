@@ -264,6 +264,18 @@ This file consolidates troubleshooting and debugging history in one place. It is
 - Verification:
   - File generation, CSV row checks, and Git status checks completed successfully after rerun.
 
+### 15. Local SEC EDGAR HTTP 403
+
+- Period: `2026-06-10`
+- Symptom:
+  - Local requests to `https://www.sec.gov/files/company_tickers.json` and `https://data.sec.gov/submissions/CIK0000320193.json` returned HTTP 403 even with an explicit User-Agent.
+- Root cause:
+  - SEC rejected the current local execution environment/IP. This is an access-environment issue, not a CSV parsing issue.
+- Fix:
+  - Added `scripts/collect_fortune2025_10k_reports.py` and `.github/workflows/collect-fortune-10k.yml` so collection can run from GitHub Actions with SEC request headers.
+- Verification:
+  - Script compiles locally. Full SEC collection should be verified through GitHub Actions and its artifact/manifest outputs.
+
 ## Verification Commands Used Across Debugging
 
 Representative commands used during troubleshooting:

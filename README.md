@@ -35,6 +35,8 @@ Fortune 확장 작업은 현재 예측 기반 Fortune 100 discovery 파일을 �
 | `config/fortune2025_top100_x_account_index.csv` | Fortune 2025 rank 1-100 기준 X direct profile 확인 index. 공식 계정 확정값이 아니라 `unknown` baseline입니다. |
 | `config/fortune2025_top100_x_direct_check.csv` | `https://x.com/{normalized_firm_name}` 1차 direct profile 후보 및 확인 상태, top 100 기준. |
 | `data/audit/fortune2025_top100_x_direct_profile_audit.csv` | direct X profile 확인 audit 로그, top 100 기준. |
+| `config/fortune2025_top100_10k_report_index.csv` | Fortune 2025 top 100의 2025/2024/2023 SEC 10-K manifest. |
+| `data/audit/fortune2025_top100_10k_report_audit.csv` | 10-K CIK 매칭/filing 조회/download audit 로그. |
 
 ## Repository Map
 
@@ -92,6 +94,7 @@ dashboard/data/analysis/*.csv
 | Run HSQ Humor Classification | `.github/workflows/humor.yml` | manual | Re-run HSQ zero-shot humor classification only. |
 | Dashboard Check | `.github/workflows/dashboard-check.yml` | dashboard changes, manual | Validate static dashboard files and JavaScript syntax. |
 | Check Fortune 2025 Direct X Profiles | `.github/workflows/check-fortune-x-direct.yml` | manual | Check `https://x.com/{normalized company name}` candidates for Fortune 2025 rows using X cookies. |
+| Collect Fortune 2025 Top 100 10-K Reports | `.github/workflows/collect-fortune-10k.yml` | workflow file push, manual | Collect SEC EDGAR 10-K manifest/audit and upload report files as an artifact. |
 
 ### Scheduled Run
 
@@ -359,6 +362,54 @@ The active Fortune file flow is intentionally conservative.
 
 Do not treat `x_handle_candidate` as an official corporate account until manually checked against company website/social links and the X profile external URL.
 
+
+
+## Fortune 2025 Top 100 10-K Reports
+
+Official X account confirmation is currently paused. The active financial-document task is SEC 10-K collection for Fortune 2025 top 100 companies.
+
+Target years:
+
+```text
+2025, 2024, 2023
+```
+
+Collector script:
+
+```bash
+python scripts/collect_fortune2025_10k_reports.py --rank-limit 100 --years 2025,2024,2023
+```
+
+The script uses official SEC EDGAR data endpoints:
+
+```text
+https://www.sec.gov/files/company_tickers.json
+https://data.sec.gov/submissions/CIK##########.json
+https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/{primaryDocument}
+```
+
+Outputs tracked in git:
+
+```text
+config/fortune2025_top100_10k_report_index.csv
+data/audit/fortune2025_top100_10k_report_audit.csv
+```
+
+Report HTML files are not committed because they can be large. When the workflow runs with `download_reports=true`, report files are uploaded as the GitHub Actions artifact:
+
+```text
+fortune-2025-top100-10k-reports
+```
+
+Manual GitHub Actions run:
+
+1. Open `Collect Fortune 2025 Top 100 10-K Reports`.
+2. Use `rank_limit=100`.
+3. Use `years=2025,2024,2023`.
+4. Use `download_reports=true` to include primary 10-K documents in the artifact.
+5. Use `commit_manifest=true` to commit only the manifest/audit CSV files.
+
+Local note: the current local execution environment returned SEC HTTP 403 for `www.sec.gov` and `data.sec.gov`. The workflow is therefore the preferred execution path.
 
 ## Fortune 2025 Direct X Profile Check
 

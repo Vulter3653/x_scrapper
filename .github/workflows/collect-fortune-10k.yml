@@ -1,0 +1,172 @@
+name: Collect Fortune 2025 Top 100 10-K Reports
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/collect-fortune-10k.yml'
+      - 'scripts/collect_fortune2025_10k_reports.py'
+  workflow_dispatch:
+    inputs:
+      rank_limit:
+        description: 'Highest Fortune rank to process. Default top 100.'
+        required: true
+        default: '100'
+      years:
+        description: 'Comma-separated 10-K reportDate years.'
+        required: true
+        default: '2025,2024,2023'
+      download_reports:
+        description: 'Download primary 10-K documents into artifact.'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      commit_manifest:
+        description: 'Commit manifest and audit CSV back to main.'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  collect-10k:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+      SEC_USER_AGENT: 'Vulter3653 x_scrapper academic research 41898282+github-actions[bot]@users.noreply.github.com'
+      RANK_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '100' }}
+      REPORT_YEARS: ${{ github.event_name == 'workflow_dispatch' && inputs.years || '2025,2024,2023' }}
+      DOWNLOAD_REPORTS: ${{ github.event_name == 'workflow_dispatch' && inputs.download_reports || 'true' }}
+      COMMIT_MANIFEST: ${{ github.event_name == 'workflow_dispatch' && inputs.commit_manifest || 'true' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate collector script
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python -m py_compile scripts/collect_fortune2025_10k_reports.py
+          python scripts/collect_fortune2025_10k_reports.py --help
+
+      - name: Collect SEC 10-K manifest and reports
+        shell: bash
+        run: |
+          set -euxo pipefail
+          args=(
+            --rank-limit "$RANK_LIMIT"
+            --years "$REPORT_YEARS"
+            --refresh-cache
+            --delay-seconds 0.25
+            --user-agent "$SEC_USER_AGENT"
+          )
+          if [ "$DOWNLOAD_REPORTS" = 'true' ]; then
+            args+=(--download)
+          fi
+          python scripts/collect_fortune2025_10k_reports.py "${args[@]}"
+
+      - name: Validate generated CSV files
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python - <<'PY'
+          import csv
+          from collections import Counter
+          from pathlib import Path
+          rank_limit = int('${{ env.RANK_LIMIT }}')
+          years = [year.strip() for year in '${{ env.REPORT_YEARS }}'.split(',') if year.strip()]
+          expected = rank_limit * len(years)
+          for path in [
+              Path('config/fortune2025_top100_10k_report_index.csv'),
+              Path('data/audit/fortune2025_top100_10k_report_audit.csv'),
+          ]:
+              if not path.exists():
+                  raise SystemExit(f'Missing required output: {path}')
+              rows = list(csv.DictReader(path.open(encoding='utf-8', newline='')))
+              print(path, 'rows=', len(rows), 'expected=', expected)
+              if len(rows) != expected:
+                  raise SystemExit(f'Unexpected row count for {path}: {len(rows)} != {expected}')
+              print('status', dict(Counter(row.get('status', '') for row in rows)))
+              if rows and 'download_status' in rows[0]:
+                  print('download_status', dict(Counter(row.get('download_status', '') for row in rows)))
+          PY
+
+      - name: Upload 10-K artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fortune-2025-top100-10k-reports
+          path: |
+            config/fortune2025_top100_10k_report_index.csv
+            data/audit/fortune2025_top100_10k_report_audit.csv
+            data/sec_10k/reports/**
+          retention-days: 14
+
+      - name: Commit manifest and audit
+        if: ${{ env.COMMIT_MANIFEST == 'true' }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euxo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+          if [ -z "$(git status --porcelain config/fortune2025_top100_10k_report_index.csv data/audit/fortune2025_top100_10k_report_audit.csv)" ]; then
+            echo 'No manifest/audit changes to commit.'
+            exit 0
+          fi
+
+          git add config/fortune2025_top100_10k_report_index.csv data/audit/fortune2025_top100_10k_report_audit.csv
+          git commit -m 'Update Fortune 2025 top 100 10-K report index'
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push failed on attempt ${attempt}; rebasing onto origin/main and retrying."
+            git fetch origin main
+            git rebase origin/main
+          done
+
+          echo 'Failed to push after retries.'
+          exit 1
+
+      - name: Write summary
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import csv
+          from collections import Counter
+          from pathlib import Path
+          print('# Fortune 2025 Top 100 10-K Collection')
+          for path in [Path('config/fortune2025_top100_10k_report_index.csv'), Path('data/audit/fortune2025_top100_10k_report_audit.csv')]:
+              print(f'\n- {path}: exists={path.exists()}')
+              if path.exists():
+                  rows = list(csv.DictReader(path.open(encoding='utf-8', newline='')))
+                  print(f'  - rows: {len(rows)}')
+                  print(f'  - status: {dict(Counter(row.get("status", "") for row in rows))}')
+                  if rows and 'download_status' in rows[0]:
+                      print(f'  - download_status: {dict(Counter(row.get("download_status", "") for row in rows))}')
+          PY
