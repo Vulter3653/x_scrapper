@@ -130,6 +130,7 @@ These files were intentionally removed because they were generated from earlier 
 | `2026-06-10 09:02:54 +0000` | `d015544` | Added Fortune 2025 X account index. | Added `fortune2025_itemListElement_rows.csv` and `config/fortune2025_fortune500_x_account_index.csv`. Fortune 500 rows are based on the 2025 ranking CSV. X account fields remain candidate/unknown unless manually verified. |
 | `2026-06-10 09:07:18 +0000` | `b5fca98` | Removed predicted Fortune account discovery files. | Deleted prior Fortune 100 prediction/discovery artifacts, audit outputs, discovery script, and discovery workflow. Preserved Fortune 2025 source/index files. |
 | `2026-06-10` | `2db4688` | Expanded README usage documentation. | Added dashboard links, workflow usage, local commands, data layout, document index, and Fortune 2025 status. |
+| `2026-06-10` | `this commit` | Added Fortune 2025 direct X profile check. | Added script, manual GitHub Actions workflow, direct check CSV, audit CSV, and regenerated Fortune 500 account index around `https://x.com/{normalized_firm_name}` first-pass checks. |
 
 ## Operational Decisions
 

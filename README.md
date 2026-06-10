@@ -32,7 +32,9 @@ Fortune 확장 작업은 현재 예측 기반 Fortune 100 discovery 파일을 �
 | File | Meaning |
 | --- | --- |
 | `fortune2025_itemListElement_rows.csv` | Fortune 2025 ranking extraction 원본, 1000 data rows. |
-| `config/fortune2025_fortune500_x_account_index.csv` | Fortune 2025 rank 1-500 기준 X account candidate 정리 파일. 공식 계정 확정값이 아니라 `unknown` baseline입니다. |
+| `config/fortune2025_fortune500_x_account_index.csv` | Fortune 2025 rank 1-500 기준 X direct profile 확인 index. 공식 계정 확정값이 아니라 `unknown` baseline입니다. |
+| `config/fortune2025_fortune500_x_direct_check.csv` | `https://x.com/{normalized_firm_name}` 1차 direct profile 후보 및 확인 상태. |
+| `data/audit/fortune2025_x_direct_profile_audit.csv` | direct X profile 확인 audit 로그. |
 
 ## Repository Map
 
@@ -89,6 +91,7 @@ dashboard/data/analysis/*.csv
 | Run Zero-Shot Sentiment | `.github/workflows/sentiment.yml` | manual | Re-run sentiment only. |
 | Run HSQ Humor Classification | `.github/workflows/humor.yml` | manual | Re-run HSQ zero-shot humor classification only. |
 | Dashboard Check | `.github/workflows/dashboard-check.yml` | dashboard changes, manual | Validate static dashboard files and JavaScript syntax. |
+| Check Fortune 2025 Direct X Profiles | `.github/workflows/check-fortune-x-direct.yml` | manual | Check `https://x.com/{normalized company name}` candidates for Fortune 2025 rows using X cookies. |
 
 ### Scheduled Run
 
@@ -355,6 +358,48 @@ The active Fortune file flow is intentionally conservative.
 4. Previous prediction-based Fortune 100 discovery files and workflow were removed.
 
 Do not treat `x_handle_candidate` as an official corporate account until manually checked against company website/social links and the X profile external URL.
+
+
+## Fortune 2025 Direct X Profile Check
+
+The first-pass X account check follows this rule:
+
+```text
+Firm name -> normalized handle candidate -> https://x.com/{candidate}
+Example: Amazon -> @amazon -> https://x.com/amazon
+```
+
+Run locally:
+
+```bash
+export X_AUTH_TOKEN='browser auth_token cookie value'
+export X_CT0='browser ct0 cookie value'
+python scripts/check_fortune2025_x_direct_profiles.py --rank-limit 500
+```
+
+If `X_AUTH_TOKEN` or `X_CT0` is missing, the script still generates all direct URL candidates, but marks every row as:
+
+```text
+direct_profile_exists=unknown
+direct_check_status=not_checked_missing_credentials
+```
+
+Outputs:
+
+```text
+config/fortune2025_fortune500_x_direct_check.csv
+data/audit/fortune2025_x_direct_profile_audit.csv
+config/fortune2025_fortune500_x_account_index.csv
+```
+
+GitHub Actions:
+
+1. Open `Check Fortune 2025 Direct X Profiles`.
+2. Keep `rank_limit=500` for Fortune 500.
+3. Keep `commit_results=true` if the checked CSV outputs should be pushed to `main`.
+4. The workflow uses repository secrets `X_AUTH_TOKEN` and `X_CT0`.
+
+Important: this direct URL check confirms whether a profile URL appears accessible. It still does not prove the profile is the official corporate account.
 
 ## Documentation Index
 
