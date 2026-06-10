@@ -140,6 +140,7 @@ These files were intentionally removed because they were generated from earlier 
 
 ## Related Work Logs
 
+- `TROUBLESHOOTING_AND_DEBUGGING_LOG.md`
 - `WORK_LOG.md`
 - `WORK_LOG_REACT_DASHBOARD_2026-05-26.md`
 - `WORK_LOG_DASHBOARD_STABILIZATION_2026-05-26.md`
