@@ -409,7 +409,7 @@ Manual GitHub Actions run:
 4. Use `download_reports=true` to include primary 10-K documents in the artifact.
 5. Use `commit_manifest=true` to commit only the manifest/audit CSV files.
 
-Local note: the current local execution environment returned SEC HTTP 403 for `www.sec.gov` and `data.sec.gov`. The workflow is therefore the preferred execution path.
+Current status: both the local environment and the GitHub Actions runner returned SEC HTTP 403 for `www.sec.gov/files/company_tickers.json`. The workflow now records this as `sec_source_fetch_failed` in the 300-row top100 x 3-year manifest/audit instead of failing silently. Actual 10-K report files still require an SEC-accessible execution environment or a provided SEC source/cache.
 
 ## Fortune 2025 Direct X Profile Check
 

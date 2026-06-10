@@ -269,12 +269,16 @@ This file consolidates troubleshooting and debugging history in one place. It is
 - Period: `2026-06-10`
 - Symptom:
   - Local requests to `https://www.sec.gov/files/company_tickers.json` and `https://data.sec.gov/submissions/CIK0000320193.json` returned HTTP 403 even with an explicit User-Agent.
+  - GitHub Actions run `27269441863` also failed at `company_tickers.json` with HTTP 403.
+  - Follow-up run `27269654293` succeeded operationally after the script was changed to write `sec_source_fetch_failed` manifest/audit rows.
 - Root cause:
   - SEC rejected the current local execution environment/IP. This is an access-environment issue, not a CSV parsing issue.
 - Fix:
   - Added `scripts/collect_fortune2025_10k_reports.py` and `.github/workflows/collect-fortune-10k.yml` so collection can run from GitHub Actions with SEC request headers.
+  - Added failure-mode output so SEC source access failures produce 300 manifest/audit rows instead of terminating without files.
 - Verification:
-  - Script compiles locally. Full SEC collection should be verified through GitHub Actions and its artifact/manifest outputs.
+  - Script compiles locally.
+  - GitHub Actions run `27269654293` completed successfully and pushed `ad66490`, but all 300 target rows are currently `sec_source_fetch_failed`; no report HTML files were downloaded.
 
 ## Verification Commands Used Across Debugging
 

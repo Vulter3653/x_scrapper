@@ -132,7 +132,7 @@ These files were intentionally removed because they were generated from earlier 
 | `2026-06-10` | `2db4688` | Expanded README usage documentation. | Added dashboard links, workflow usage, local commands, data layout, document index, and Fortune 2025 status. |
 | `2026-06-10` | `this commit` | Added Fortune 2025 direct X profile check. | Added script, manual GitHub Actions workflow, direct check CSV, audit CSV, and regenerated account index around `https://x.com/{normalized_firm_name}` first-pass checks. Scope later narrowed to Fortune top 100 for stability. |
 | `2026-06-10` | `pending` | Narrowed Fortune direct X profile check to top 100. | Cancelled the 500-row run, changed workflow/script defaults to rank 100, and regenerated top 100 direct check/account index outputs. |
-| `2026-06-10` | `pending` | Added Fortune top 100 SEC 10-K collection workflow. | Added EDGAR 10-K collector script, GitHub Actions workflow, report artifact strategy, gitignore rules for raw SEC reports/cache, and README usage notes. Local SEC access returned HTTP 403, so workflow execution is preferred. |
+| `2026-06-10` | `33c899e`, `24351b1`, `ad66490` | Added Fortune top 100 SEC 10-K collection workflow and failure audit. | Added EDGAR 10-K collector script and GitHub Actions workflow. Local and GitHub SEC access both returned HTTP 403, so the workflow now commits 300-row manifest/audit files with `sec_source_fetch_failed` status for 100 firms x 2025/2024/2023. |
 
 ## Operational Decisions
 
