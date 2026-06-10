@@ -32,9 +32,9 @@ Fortune 확장 작업은 현재 예측 기반 Fortune 100 discovery 파일을 �
 | File | Meaning |
 | --- | --- |
 | `fortune2025_itemListElement_rows.csv` | Fortune 2025 ranking extraction 원본, 1000 data rows. |
-| `config/fortune2025_fortune500_x_account_index.csv` | Fortune 2025 rank 1-500 기준 X direct profile 확인 index. 공식 계정 확정값이 아니라 `unknown` baseline입니다. |
-| `config/fortune2025_fortune500_x_direct_check.csv` | `https://x.com/{normalized_firm_name}` 1차 direct profile 후보 및 확인 상태. |
-| `data/audit/fortune2025_x_direct_profile_audit.csv` | direct X profile 확인 audit 로그. |
+| `config/fortune2025_top100_x_account_index.csv` | Fortune 2025 rank 1-100 기준 X direct profile 확인 index. 공식 계정 확정값이 아니라 `unknown` baseline입니다. |
+| `config/fortune2025_top100_x_direct_check.csv` | `https://x.com/{normalized_firm_name}` 1차 direct profile 후보 및 확인 상태, top 100 기준. |
+| `data/audit/fortune2025_top100_x_direct_profile_audit.csv` | direct X profile 확인 audit 로그, top 100 기준. |
 
 ## Repository Map
 
@@ -353,7 +353,7 @@ dashboard/humor-matrix.js
 The active Fortune file flow is intentionally conservative.
 
 1. `fortune2025_itemListElement_rows.csv` provides the source ranking rows.
-2. `config/fortune2025_fortune500_x_account_index.csv` keeps rank 1-500 rows and X candidate columns.
+2. `config/fortune2025_top100_x_account_index.csv` keeps rank 1-100 rows and X direct profile candidate columns.
 3. `official_x_account_status` stays `unknown` until manual verification.
 4. Previous prediction-based Fortune 100 discovery files and workflow were removed.
 
@@ -374,7 +374,7 @@ Run locally:
 ```bash
 export X_AUTH_TOKEN='browser auth_token cookie value'
 export X_CT0='browser ct0 cookie value'
-python scripts/check_fortune2025_x_direct_profiles.py --rank-limit 500
+python scripts/check_fortune2025_x_direct_profiles.py --rank-limit 100
 ```
 
 If `X_AUTH_TOKEN` or `X_CT0` is missing, the script still generates all direct URL candidates, but marks every row as:
@@ -387,15 +387,15 @@ direct_check_status=not_checked_missing_credentials
 Outputs:
 
 ```text
-config/fortune2025_fortune500_x_direct_check.csv
-data/audit/fortune2025_x_direct_profile_audit.csv
-config/fortune2025_fortune500_x_account_index.csv
+config/fortune2025_top100_x_direct_check.csv
+data/audit/fortune2025_top100_x_direct_profile_audit.csv
+config/fortune2025_top100_x_account_index.csv
 ```
 
 GitHub Actions:
 
 1. Open `Check Fortune 2025 Direct X Profiles`.
-2. Keep `rank_limit=500` for Fortune 500.
+2. Keep `rank_limit=100` for the stable Fortune top 100 scope.
 3. Keep `commit_results=true` if the checked CSV outputs should be pushed to `main`.
 4. The workflow uses repository secrets `X_AUTH_TOKEN` and `X_CT0`.
 

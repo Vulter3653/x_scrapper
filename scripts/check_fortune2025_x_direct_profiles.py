@@ -28,9 +28,9 @@ except Exception:  # pragma: no cover - import error is reported in main.
     async_playwright = None
 
 DEFAULT_INPUT = Path("fortune2025_itemListElement_rows.csv")
-DEFAULT_OUTPUT = Path("config/fortune2025_fortune500_x_direct_check.csv")
-DEFAULT_AUDIT = Path("data/audit/fortune2025_x_direct_profile_audit.csv")
-DEFAULT_ACCOUNT_INDEX = Path("config/fortune2025_fortune500_x_account_index.csv")
+DEFAULT_OUTPUT = Path("config/fortune2025_top100_x_direct_check.csv")
+DEFAULT_AUDIT = Path("data/audit/fortune2025_top100_x_direct_profile_audit.csv")
+DEFAULT_ACCOUNT_INDEX = Path("config/fortune2025_top100_x_account_index.csv")
 
 RESULT_FIELDS = [
     "fortune_year",
@@ -210,7 +210,7 @@ def build_account_index_rows(results: list[dict[str, str]], generated_at: str) -
             "review_decision": "",
             "reviewed_x_handle": "",
             "reviewed_x_profile_url": "",
-            "source_file": "fortune2025_itemListElement_rows.csv; fortune2025_fortune500_x_direct_check.csv",
+            "source_file": "fortune2025_itemListElement_rows.csv; fortune2025_top100_x_direct_check.csv",
             "notes": result["notes"],
             "generated_at": generated_at,
         })
@@ -341,7 +341,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--audit", type=Path, default=DEFAULT_AUDIT)
     parser.add_argument("--account-index", type=Path, default=DEFAULT_ACCOUNT_INDEX)
-    parser.add_argument("--rank-limit", type=int, default=500, help="Highest Fortune rank to include. Use 500 for Fortune 500.")
+    parser.add_argument("--rank-limit", type=int, default=100, help="Highest Fortune rank to include. Default 100 for stable Fortune top 100 checks.")
     parser.add_argument("--timeout-ms", type=int, default=30000)
     parser.add_argument("--delay-ms", type=int, default=1500)
     parser.add_argument("--headless", default=os.getenv("HEADLESS", "true").lower() in {"1", "true", "yes"}, action=argparse.BooleanOptionalAction)

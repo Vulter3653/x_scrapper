@@ -12,7 +12,7 @@ This file is the central project history. It records what work was performed, wh
 - The project collects and analyzes X/Twitter posts for selected brand accounts.
 - Current brand data pipeline stores account-level files under `data/<account>/`.
 - The dashboard consumes synced files under `dashboard/data/`.
-- Fortune expansion work has been reset to the verified `fortune2025_itemListElement_rows.csv` source and the derived Fortune 500 index.
+- Fortune expansion work has been reset to the verified `fortune2025_itemListElement_rows.csv` source and the derived Fortune top 100 index.
 - Predicted Fortune 100 account discovery files were removed on `2026-06-10` to avoid mixing unverified predictions with Fortune 2025 ranking data.
 
 ## Active Fortune 2025 Files
@@ -20,7 +20,7 @@ This file is the central project history. It records what work was performed, wh
 | File | Status | Purpose |
 | --- | --- | --- |
 | `fortune2025_itemListElement_rows.csv` | active | Raw Fortune 2025 ranking extraction, 1000 data rows. |
-| `config/fortune2025_fortune500_x_account_index.csv` | active | Fortune 2025 rank 1-500 index with X account candidate fields. Official account status remains `unknown` until manually verified. |
+| `config/fortune2025_top100_x_account_index.csv` | active | Fortune 2025 rank 1-100 direct X profile index. Official account status remains `unknown` until manually verified. |
 
 ## Removed Fortune Prediction / Discovery Files
 
@@ -127,15 +127,16 @@ These files were intentionally removed because they were generated from earlier 
 
 | Time | Commit | Work performed | Notes |
 | --- | --- | --- | --- |
-| `2026-06-10 09:02:54 +0000` | `d015544` | Added Fortune 2025 X account index. | Added `fortune2025_itemListElement_rows.csv` and `config/fortune2025_fortune500_x_account_index.csv`. Fortune 500 rows are based on the 2025 ranking CSV. X account fields remain candidate/unknown unless manually verified. |
+| `2026-06-10 09:02:54 +0000` | `d015544` | Added Fortune 2025 X account index. | Added `fortune2025_itemListElement_rows.csv` and `config/fortune2025_top100_x_account_index.csv`. Initial Fortune 500 rows were based on the 2025 ranking CSV; active direct-check scope is now top 100. X account fields remain candidate/unknown unless manually verified. |
 | `2026-06-10 09:07:18 +0000` | `b5fca98` | Removed predicted Fortune account discovery files. | Deleted prior Fortune 100 prediction/discovery artifacts, audit outputs, discovery script, and discovery workflow. Preserved Fortune 2025 source/index files. |
 | `2026-06-10` | `2db4688` | Expanded README usage documentation. | Added dashboard links, workflow usage, local commands, data layout, document index, and Fortune 2025 status. |
-| `2026-06-10` | `this commit` | Added Fortune 2025 direct X profile check. | Added script, manual GitHub Actions workflow, direct check CSV, audit CSV, and regenerated Fortune 500 account index around `https://x.com/{normalized_firm_name}` first-pass checks. |
+| `2026-06-10` | `this commit` | Added Fortune 2025 direct X profile check. | Added script, manual GitHub Actions workflow, direct check CSV, audit CSV, and regenerated account index around `https://x.com/{normalized_firm_name}` first-pass checks. Scope later narrowed to Fortune top 100 for stability. |
+| `2026-06-10` | `pending` | Narrowed Fortune direct X profile check to top 100. | Cancelled the 500-row run, changed workflow/script defaults to rank 100, and regenerated top 100 direct check/account index outputs. |
 
 ## Operational Decisions
 
 1. Fortune work now uses `fortune2025_itemListElement_rows.csv` as the active ranking source.
-2. The current Fortune 500 index does not claim that a candidate handle is an official corporate X account.
+2. The current Fortune top 100 index does not claim that a candidate handle is an official corporate X account.
 3. `official_x_account_status` remains `unknown` until manual verification against official company sources.
 4. Prior X search candidate discovery outputs were removed to avoid mixing predicted/unverified results with the Fortune 2025 ranking baseline.
 5. Historical commits remain in Git history, but active files should be interpreted according to the current baseline above.

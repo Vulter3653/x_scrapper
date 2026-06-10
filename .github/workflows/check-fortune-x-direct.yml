@@ -9,9 +9,9 @@ on:
   workflow_dispatch:
     inputs:
       rank_limit:
-        description: 'Highest Fortune rank to check. Use 500 for Fortune 500.'
+        description: 'Highest Fortune rank to check. Default is 100 for stability.'
         required: true
-        default: '500'
+        default: '100'
       timeout_ms:
         description: 'Playwright page timeout per profile URL.'
         required: true
@@ -75,7 +75,7 @@ jobs:
         run: |
           set -euxo pipefail
           python scripts/check_fortune2025_x_direct_profiles.py \
-            --rank-limit '${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '500' }}' \
+            --rank-limit '${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '100' }}' \
             --timeout-ms '${{ github.event_name == 'workflow_dispatch' && inputs.timeout_ms || '30000' }}' \
             --delay-ms '${{ github.event_name == 'workflow_dispatch' && inputs.delay_ms || '1500' }}'
 
@@ -87,11 +87,11 @@ jobs:
           import csv
           from collections import Counter
           from pathlib import Path
-          expected = int('${{ inputs.rank_limit }}')
+          expected = int('${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '100' }}')
           paths = [
-              Path('config/fortune2025_fortune500_x_direct_check.csv'),
-              Path('config/fortune2025_fortune500_x_account_index.csv'),
-              Path('data/audit/fortune2025_x_direct_profile_audit.csv'),
+              Path('config/fortune2025_top100_x_direct_check.csv'),
+              Path('config/fortune2025_top100_x_account_index.csv'),
+              Path('data/audit/fortune2025_top100_x_direct_profile_audit.csv'),
           ]
           for path in paths:
               if not path.exists():
@@ -112,9 +112,9 @@ jobs:
         with:
           name: fortune-2025-direct-x-profile-check
           path: |
-            config/fortune2025_fortune500_x_direct_check.csv
-            config/fortune2025_fortune500_x_account_index.csv
-            data/audit/fortune2025_x_direct_profile_audit.csv
+            config/fortune2025_top100_x_direct_check.csv
+            config/fortune2025_top100_x_account_index.csv
+            data/audit/fortune2025_top100_x_direct_profile_audit.csv
           retention-days: 7
 
       - name: Commit and push results
@@ -133,9 +133,9 @@ jobs:
             exit 0
           fi
 
-          git add config/fortune2025_fortune500_x_direct_check.csv \
-                  config/fortune2025_fortune500_x_account_index.csv \
-                  data/audit/fortune2025_x_direct_profile_audit.csv
+          git add config/fortune2025_top100_x_direct_check.csv \
+                  config/fortune2025_top100_x_account_index.csv \
+                  data/audit/fortune2025_top100_x_direct_profile_audit.csv
           git commit -m 'Update Fortune 2025 direct X profile check'
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
@@ -155,14 +155,14 @@ jobs:
         if: always()
         shell: bash
         env:
-          RANK_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '500' }}
+          RANK_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '100' }}
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import csv
           from collections import Counter
           from pathlib import Path
-          result = Path('config/fortune2025_fortune500_x_direct_check.csv')
-          audit = Path('data/audit/fortune2025_x_direct_profile_audit.csv')
+          result = Path('config/fortune2025_top100_x_direct_check.csv')
+          audit = Path('data/audit/fortune2025_top100_x_direct_profile_audit.csv')
           print('# Fortune 2025 Direct X Profile Check')
           print('')
           print(f'- Rank limit: {__import__("os").getenv("RANK_LIMIT", "")}')
