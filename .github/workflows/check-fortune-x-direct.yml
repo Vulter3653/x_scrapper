@@ -1,6 +1,11 @@
 name: Check Fortune 2025 Direct X Profiles
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/check-fortune-x-direct.yml'
   workflow_dispatch:
     inputs:
       rank_limit:
@@ -70,9 +75,9 @@ jobs:
         run: |
           set -euxo pipefail
           python scripts/check_fortune2025_x_direct_profiles.py \
-            --rank-limit '${{ inputs.rank_limit }}' \
-            --timeout-ms '${{ inputs.timeout_ms }}' \
-            --delay-ms '${{ inputs.delay_ms }}'
+            --rank-limit '${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '500' }}' \
+            --timeout-ms '${{ github.event_name == 'workflow_dispatch' && inputs.timeout_ms || '30000' }}' \
+            --delay-ms '${{ github.event_name == 'workflow_dispatch' && inputs.delay_ms || '1500' }}'
 
       - name: Validate generated CSV files
         shell: bash
@@ -113,7 +118,7 @@ jobs:
           retention-days: 7
 
       - name: Commit and push results
-        if: ${{ inputs.commit_results == 'true' }}
+        if: ${{ github.event_name == 'push' || inputs.commit_results == 'true' }}
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -150,7 +155,7 @@ jobs:
         if: always()
         shell: bash
         env:
-          RANK_LIMIT: ${{ inputs.rank_limit }}
+          RANK_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.rank_limit || '500' }}
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import csv
