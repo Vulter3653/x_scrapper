@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 970,
+  "post_count": 975,
   "label_counts": {
-    "Self-enhancing humor": 343,
-    "Non-humorous brand message": 608,
+    "Non-humorous brand message": 611,
+    "Self-enhancing humor": 345,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13053883530605181,
-    "Self-enhancing humor": 0.2915260762969973,
-    "Aggressive humor": 0.1140700007098596,
-    "Self-defeating humor": 0.1148666043789846,
-    "Non-humorous brand message": 0.34899848467687183
+    "Affiliative humor": 0.13044478164520115,
+    "Self-enhancing humor": 0.29178736939596445,
+    "Aggressive humor": 0.11423046131079527,
+    "Self-defeating humor": 0.11482058183839305,
+    "Non-humorous brand message": 0.34871680719813763
   },
   "posts": [
+    {
+      "id": "2064726596179706275",
+      "tweet_url": "https://x.com/Wendys/status/2064726596179706275",
+      "created_at": "Wed Jun 10 15:09:15 +0000 2026",
+      "text": "Her: Gimme 10\nMe: minutes or nuggets?",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.4600815176963806,
+      "scores": {
+        "Non-humorous brand message": 0.4600815176963806,
+        "Self-enhancing humor": 0.15606620907783508,
+        "Self-defeating humor": 0.15235410630702972,
+        "Aggressive humor": 0.118168406188488,
+        "Affiliative humor": 0.11332979053258896
+      }
+    },
+    {
+      "id": "2064504139749417369",
+      "tweet_url": "https://x.com/Wendys/status/2064504139749417369",
+      "created_at": "Wed Jun 10 00:25:18 +0000 2026",
+      "text": "What does one wear to meet a minion",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.44573384523391724,
+      "scores": {
+        "Non-humorous brand message": 0.44573384523391724,
+        "Self-enhancing humor": 0.20563220977783203,
+        "Affiliative humor": 0.13349191844463348,
+        "Self-defeating humor": 0.1288812756538391,
+        "Aggressive humor": 0.08626077324151993
+      }
+    },
     {
       "id": "2063002561263640786",
       "tweet_url": "https://x.com/Wendys/status/2063002561263640786",
@@ -9289,6 +9337,54 @@
         "Self-defeating humor": 0.09719641506671906,
         "Affiliative humor": 0.06735740602016449,
         "Aggressive humor": 0.061062268912792206
+      }
+    },
+    {
+      "id": "1555191976110301185",
+      "tweet_url": "https://x.com/Wendys/status/1555191976110301185",
+      "created_at": "Thu Aug 04 14:00:35 +0000 2022",
+      "text": "@spdustin render us like one of your french fries #ChooseHotAndCrispy https://t.co/T2WC1EKnZD",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.7076754570007324,
+      "scores": {
+        "Self-enhancing humor": 0.7076754570007324,
+        "Non-humorous brand message": 0.1583254039287567,
+        "Affiliative humor": 0.05790531262755394,
+        "Aggressive humor": 0.038304898887872696,
+        "Self-defeating humor": 0.037788983434438705
+      }
+    },
+    {
+      "id": "1555191970682867712",
+      "tweet_url": "https://x.com/Wendys/status/1555191970682867712",
+      "created_at": "Thu Aug 04 14:00:34 +0000 2022",
+      "text": "@ChaosYT_ call us mrs. steal ur anime boi, @BurgerKing  #ChooseHotAndCrispy https://t.co/uEfjlwXbV2",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.4167290925979614,
+      "scores": {
+        "Self-enhancing humor": 0.4167290925979614,
+        "Aggressive humor": 0.3203599154949188,
+        "Non-humorous brand message": 0.1424313485622406,
+        "Affiliative humor": 0.0633695125579834,
+        "Self-defeating humor": 0.057110078632831573
       }
     },
     {
@@ -18868,6 +18964,30 @@
       }
     },
     {
+      "id": "1276283356473327618",
+      "tweet_url": "https://x.com/Wendys/status/1276283356473327618",
+      "created_at": "Thu Jun 25 22:37:19 +0000 2020",
+      "text": "We remain committed to investing back in the communities we serve by supporting organizations dedicated to social justice, youth, and education in the Black community.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.2637847661972046,
+      "scores": {
+        "Non-humorous brand message": 0.2637847661972046,
+        "Self-enhancing humor": 0.22628818452358246,
+        "Affiliative humor": 0.1928953230381012,
+        "Aggressive humor": 0.16370509564876556,
+        "Self-defeating humor": 0.1533266007900238
+      }
+    },
+    {
       "id": "1276283355768803330",
       "tweet_url": "https://x.com/Wendys/status/1276283355768803330",
       "created_at": "Thu Jun 25 22:37:18 +0000 2020",
@@ -23308,5 +23428,5 @@
       }
     }
   ],
-  "generated_at": "2026-06-09T17:44:18.903313+00:00"
+  "generated_at": "2026-06-11T18:47:11.688279+00:00"
 }

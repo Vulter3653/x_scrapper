@@ -7,18 +7,58 @@
     "neutral",
     "negative"
   ],
-  "post_count": 970,
+  "post_count": 975,
   "label_counts": {
-    "positive": 444,
-    "negative": 488,
+    "negative": 491,
+    "positive": 446,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45799217972167544,
-    "neutral": 0.12996100585144998,
-    "negative": 0.41204681248107344
+    "positive": 0.4581876697134561,
+    "neutral": 0.12973292596796407,
+    "negative": 0.4120794024897399
   },
   "posts": [
+    {
+      "id": "2064726596179706275",
+      "tweet_url": "https://x.com/Wendys/status/2064726596179706275",
+      "created_at": "Wed Jun 10 15:09:15 +0000 2026",
+      "text": "Her: Gimme 10\nMe: minutes or nuggets?",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.4696725904941559,
+      "scores": {
+        "negative": 0.4696725904941559,
+        "positive": 0.4528648555278778,
+        "neutral": 0.07746259868144989
+      }
+    },
+    {
+      "id": "2064504139749417369",
+      "tweet_url": "https://x.com/Wendys/status/2064504139749417369",
+      "created_at": "Wed Jun 10 00:25:18 +0000 2026",
+      "text": "What does one wear to meet a minion",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.47348955273628235,
+      "scores": {
+        "negative": 0.47348955273628235,
+        "positive": 0.4039081931114197,
+        "neutral": 0.12260229885578156
+      }
+    },
     {
       "id": "2063002561263640786",
       "tweet_url": "https://x.com/Wendys/status/2063002561263640786",
@@ -7737,6 +7777,46 @@
         "negative": 0.3697797954082489,
         "neutral": 0.3199605941772461,
         "positive": 0.310259610414505
+      }
+    },
+    {
+      "id": "1555191976110301185",
+      "tweet_url": "https://x.com/Wendys/status/1555191976110301185",
+      "created_at": "Thu Aug 04 14:00:35 +0000 2022",
+      "text": "@spdustin render us like one of your french fries #ChooseHotAndCrispy https://t.co/T2WC1EKnZD",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.6258062720298767,
+      "scores": {
+        "positive": 0.6258062720298767,
+        "negative": 0.34201550483703613,
+        "neutral": 0.032178252935409546
+      }
+    },
+    {
+      "id": "1555191970682867712",
+      "tweet_url": "https://x.com/Wendys/status/1555191970682867712",
+      "created_at": "Thu Aug 04 14:00:34 +0000 2022",
+      "text": "@ChaosYT_ call us mrs. steal ur anime boi, @BurgerKing  #ChooseHotAndCrispy https://t.co/uEfjlwXbV2",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.562310516834259,
+      "scores": {
+        "negative": 0.562310516834259,
+        "positive": 0.37434133887290955,
+        "neutral": 0.06334809958934784
       }
     },
     {
@@ -15720,6 +15800,26 @@
       }
     },
     {
+      "id": "1276283356473327618",
+      "tweet_url": "https://x.com/Wendys/status/1276283356473327618",
+      "created_at": "Thu Jun 25 22:37:19 +0000 2020",
+      "text": "We remain committed to investing back in the communities we serve by supporting organizations dedicated to social justice, youth, and education in the Black community.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.6236429810523987,
+      "scores": {
+        "positive": 0.6236429810523987,
+        "negative": 0.2445211559534073,
+        "neutral": 0.13183589279651642
+      }
+    },
+    {
       "id": "1276283355768803330",
       "tweet_url": "https://x.com/Wendys/status/1276283355768803330",
       "created_at": "Thu Jun 25 22:37:18 +0000 2020",
@@ -19420,5 +19520,5 @@
       }
     }
   ],
-  "generated_at": "2026-06-09T17:40:47.169049+00:00"
+  "generated_at": "2026-06-11T18:43:57.636376+00:00"
 }
