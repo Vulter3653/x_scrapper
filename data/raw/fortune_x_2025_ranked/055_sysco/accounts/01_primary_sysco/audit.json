@@ -1,0 +1,16 @@
+{
+  "fortune_rank": 55,
+  "company_name": "Sysco",
+  "source_x_handle": "@sysco",
+  "source_x_url": "https://x.com/sysco",
+  "account_role": "primary",
+  "account_index": 1,
+  "status": "failed",
+  "posts_captured": 0,
+  "started_at": "2026-06-12T14:33:31.171118+00:00",
+  "completed_at": "2026-06-12T14:36:03.554714+00:00",
+  "error_type": "collector_failed",
+  "error_message": "eption, another exception occurred:  Traceback (most recent call last):   File \"/home/runner/work/x_scrapper/x_scrapper/scrape_x.py\", line 20, in <module>     asyncio.run(scrape_profile())   File \"/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py\", line 190, in run     return runner.run(main)            ^^^^^^^^^^^^^^^^   File \"/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py\", line 118, in run     return self._loop.run_until_complete(task)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File \"/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete     return future.result()            ^^^^^^^^^^^^^^^   File \"/home/runner/work/x_scrapper/x_scrapper/src/x_scrapper/collection/x_scraper.py\", line 257, in scrape_profile     raise RuntimeError( RuntimeError: X profile did not render tweets. url=https://x.com/sysco, title=Sysco (@Sysco) / X. 쿠키가 만료됐거나 GitHub Actions 접속이 X에서 차단됐을 수 있습니다. ",
+  "browser_collection_used": true,
+  "x_api_used": false
+}
