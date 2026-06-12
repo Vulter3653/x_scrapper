@@ -118,6 +118,7 @@ python scripts/validate_data_claim_boundaries.py
 python scripts/validate_history_integrity.py
 python scripts/validate_fortune_expansion_readiness.py
 python scripts/validate_fortune_x_collection_queue.py
+python scripts/validate_fortune_x_collection_readiness.py
 ```
 
 These validators are local/static checks. They do not read secrets, scrape X, call external networks, run SEC downloads, or modify `data/` or `dashboard/data/`.
@@ -188,6 +189,26 @@ Validation:
 
 ```bash
 python scripts/validate_fortune_x_collection_queue.py
+```
+
+
+## Fortune Top 100 X Dry-Run Collection Readiness
+
+The dry-run readiness policy documents preconditions for a future collection decision. It does not authorize X scraping, X API use, MCP installation, browser automation, dashboard sync, SEC downloads, Fortune 500 expansion, or `data/` and `dashboard/data/` mutation.
+
+| File | Purpose |
+| --- | --- |
+| `config/fortune2025_top100_x_collection_readiness_policy.csv` | Single-row dry-run policy for the 43 verified queue accounts. |
+| `config/schemas/fortune2025_top100_x_collection_readiness_policy.schema.json` | Controlled schema for dry-run readiness policy values. |
+| `docs/operations/fortune_top100_x_dry_run_collection_readiness_protocol.md` | Boundary, authorization, future audit-field, and dry-run checklist documentation. |
+| `scripts/validate_fortune_x_collection_readiness.py` | Static validator that checks the policy and re-runs the queue validator. |
+
+The current policy keeps `collection_authorized=false`, `dry_run_only=true`, `data_mutation_allowed=false`, and `dashboard_sync_default=disabled`. Future collection, if ever authorized, remains limited to retrievable timeline posts and must have a separate explicit authorization commit before execution.
+
+Validation:
+
+```bash
+python scripts/validate_fortune_x_collection_readiness.py
 ```
 
 ## GitHub Actions Workflows
