@@ -120,6 +120,7 @@ python scripts/validate_fortune_expansion_readiness.py
 python scripts/validate_fortune_x_collection_queue.py
 python scripts/validate_fortune_x_collection_readiness.py
 python scripts/validate_fortune_x_collection_authorization_proposal.py
+python scripts/validate_fortune_x_collection_method_decision.py
 python scripts/validate_fortune_x_human_review.py
 ```
 
@@ -214,6 +215,26 @@ Validation:
 
 ```bash
 python scripts/validate_fortune_x_collection_queue.py
+```
+
+
+## Fortune Top 100 X Collection Method Decision
+
+The selected future method is `extend_existing_collection_workflow`. This decision extends the existing repo collection path (`scrape_x.py` and `src/x_scrapper/collection/x_scraper.py`) instead of introducing a new X API, MCP-assisted, or separate browser automation architecture.
+
+| File | Purpose |
+| --- | --- |
+| `config/fortune2025_top100_x_collection_method_decision.csv` | Single-row method decision for the 100-row human-final queue. |
+| `config/schemas/fortune2025_top100_x_collection_method_decision.schema.json` | Controlled schema for method decision boundaries. |
+| `docs/operations/fortune_top100_x_collection_method_decision.md` | Existing workflow inspection, method comparison, selected method, and execution boundaries. |
+| `scripts/validate_fortune_x_collection_method_decision.py` | Static validator for method decision boundaries. |
+
+The method decision keeps `collection_authorized=false`, `dry_run_only=true`, `x_api_required=false`, `mcp_required=false`, `browser_automation_required=false`, `data_mutation_allowed=false`, and `dashboard_sync_allowed=false`. It does not define raw or processed output paths.
+
+Validation:
+
+```bash
+python scripts/validate_fortune_x_collection_method_decision.py
 ```
 
 

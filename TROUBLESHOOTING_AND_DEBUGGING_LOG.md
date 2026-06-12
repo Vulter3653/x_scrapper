@@ -33,6 +33,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune Top 100 collection authorization proposal | Pre-execution proposal was drafted without scraping, MCP installation, X API calls, browser automation, or dashboard/data mutation. | The proposal keeps collection unauthorized, dry-run only, output paths undefined, and dashboard sync disabled until a separate authorization commit exists. |
 | Fortune Top 100 human review completion | Human review overlay was completed for ranks 41-100 without scraping or dashboard/data mutation. | All 100 rows are human reviewed; `final_manual_scrape_eligible` is the only future collection eligibility signal. |
 | Fortune Top 100 queue human-review source update | Queue/readiness/proposal files were updated from the completed human review overlay without collection. | Queue now has 100 rows from `final_manual_scrape_eligible=true`; collection remains unauthorized and dry-run only. |
+| Fortune Top 100 collection method decision | Method decision selected extension of the existing repo collection workflow without executing collection. | `extend_existing_collection_workflow` is selected; X API, MCP, and new browser automation are not required at this stage. |
 
 ## Detailed Incidents
 
@@ -419,4 +420,19 @@ When a future issue occurs, append a new section to this file with:
 - Boundary:
   - No X collection authorized.
   - No X API call, MCP installation, browser automation, or dashboard sync.
+  - `data/` and `dashboard/data/` remain untouched.
+
+### 22. Fortune Top 100 Collection Method Decision
+
+- Period: `2026-06-12`
+- Scope:
+  - Inspected existing scraper entrypoints, packaged collection implementation, GitHub Actions scrape workflow, queue validators, and dry-run/proposal files.
+  - Selected `extend_existing_collection_workflow` as the preferred future method.
+  - Recorded `existing_repo_collection_path` as the selected access method for later authorization planning.
+- Outcome:
+  - No new X API, MCP-assisted workflow, or separate browser automation architecture was selected.
+  - Future execution still requires a separate explicit authorization commit.
+- Boundary:
+  - No X collection authorized or executed.
+  - No X API call, MCP installation, browser automation, raw output, processed output, or dashboard sync.
   - `data/` and `dashboard/data/` remain untouched.

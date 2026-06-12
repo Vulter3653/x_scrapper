@@ -30,6 +30,13 @@ For a separate future authorization step, the recommended method is a limited br
 
 This recommendation is not execution approval. It is a proposal for the next design step because browser/manual-compatible access most closely matches the current scraper lineage while still requiring explicit authorization, audit controls, and secret-handling review before any run.
 
+
+## Method Decision Link
+
+The selected future method is `extend_existing_collection_workflow`, recorded in `config/fortune2025_top100_x_collection_method_decision.csv` and `docs/operations/fortune_top100_x_collection_method_decision.md`. The selected access method is `existing_repo_collection_path`, meaning a future authorization should extend the current `scrape_x.py` / `src/x_scrapper/collection/x_scraper.py` path rather than introducing X API, MCP-assisted workflow, or a separate browser automation architecture at this stage.
+
+This link does not authorize collection. It only narrows the preferred future implementation path for a later authorization commit.
+
 ## Required Execution Controls
 
 A future execution commit must define all of the following before any collection command exists or runs:
