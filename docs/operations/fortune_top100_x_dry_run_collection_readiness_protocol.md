@@ -6,12 +6,15 @@ This is a dry-run readiness protocol only. It documents the preconditions and au
 
 It does not authorize scraping. It does not authorize MCP installation. It does not authorize X API usage. It does not authorize browser automation. It does not authorize dashboard sync. It does not authorize `data/` or `dashboard/data/` mutation.
 
-The current verified queue contains 43 accounts in `config/fortune2025_top100_verified_x_collection_queue.csv`. All queue rows remain `collection_status=queued_not_collected`.
+The current human-reviewed queue contains 100 accounts in `config/fortune2025_top100_verified_x_collection_queue.csv`. All queue rows remain `collection_status=queued_not_collected` and derive from `final_manual_scrape_eligible=true` with `queue_source=human_final_manual_review`.
 
 ## Readiness Policy
 
 The active readiness policy is stored in `config/fortune2025_top100_x_collection_readiness_policy.csv` and defaults to:
 
+- `eligible_account_count=100`
+- `queue_source=human_final_manual_review`
+- `eligibility_source_field=final_manual_scrape_eligible`
 - `dry_run_only=true`
 - `collection_authorized=false`
 - `access_method=to_be_decided`
@@ -43,8 +46,8 @@ Any eventually authorized collection run must produce an audit log with at least
 | --- | --- |
 | `fortune_rank` | Fortune 2025 rank for the queued company. |
 | `company_name` | Company name from the verified queue. |
-| `official_x_handle` | Official or brand-official handle from the verified queue. |
-| `official_x_url` | Official X URL from the verified queue. |
+| `collection_x_handle` | Human-final X handle derived from `final_manual_x_url_primary`. |
+| `collection_x_url` | Human-final X URL from `final_manual_x_url_primary`. |
 | `collection_attempted_at` | Timestamp of the attempted collection. |
 | `collection_method` | Explicit method used, such as browser workflow or approved API path. |
 | `collection_status` | Controlled run result. |
@@ -66,7 +69,7 @@ Allowed future failure status values are defined in the readiness policy as `blo
 
 Before authorization, a dry-run review may inspect only local config and docs:
 
-1. Confirm the verified queue passes `python scripts/validate_fortune_x_collection_queue.py`.
+1. Confirm the human-final queue passes `python scripts/validate_fortune_x_collection_queue.py`.
 2. Confirm the readiness policy passes `python scripts/validate_fortune_x_collection_readiness.py`.
 3. Confirm no `data/` or `dashboard/data/` paths are modified.
 4. Draft, but do not execute, a future authorization commit with explicit collection settings.

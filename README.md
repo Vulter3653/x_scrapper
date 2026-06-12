@@ -184,7 +184,7 @@ Current review state:
 - Pending human review count is 0.
 - Human-review rows already have final manual primary/secondary URLs and final manual account status filled in.
 - final_manual_scrape_eligible is the only future collection eligibility signal.
-- No X collection is authorized and no collection queue regeneration occurred.
+- No X collection is authorized. The collection queue now derives from `final_manual_scrape_eligible`, not the old preliminary `scrape_eligible` field.
 
 | File | Purpose |
 | --- | --- |
@@ -203,12 +203,12 @@ The verified collection queue is a planning scaffold only. It does not scrape X,
 
 | File | Purpose |
 | --- | --- |
-| `config/fortune2025_top100_verified_x_collection_queue.csv` | Queue scaffold derived only from the 43 scrape-eligible Top 100 verification rows. |
+| `config/fortune2025_top100_verified_x_collection_queue.csv` | Queue scaffold derived from the 100 human-reviewed `final_manual_scrape_eligible=true` rows. |
 | `config/schemas/fortune2025_top100_verified_x_collection_queue.schema.json` | Controlled schema for queue rows and collection-status defaults. |
 | `docs/operations/fortune_top100_x_collection_queue_protocol.md` | Queue construction rule, default collection policies, and claim boundaries. |
 | `scripts/validate_fortune_x_collection_queue.py` | Static validator that cross-checks the queue against the verification master. |
 
-Rows with `no_account_found`, `inaccessible`, `ambiguous`, `unknown`, `subsidiary_only`, or `do_not_scrape` are excluded. The 12 inaccessible and 45 no-account-found rows remain blocked. Future X post coverage will be limited to retrievable timeline posts under the implemented access method and will not be a complete historical archive.
+The queue source is `human_final_manual_review` and the eligibility source field is `final_manual_scrape_eligible`. The old `scrape_eligible` field is preliminary/reference only. Future X post coverage will be limited to retrievable timeline posts under the implemented access method and will not be a complete historical archive.
 
 Validation:
 
@@ -223,7 +223,7 @@ The dry-run readiness policy documents preconditions for a future collection dec
 
 | File | Purpose |
 | --- | --- |
-| `config/fortune2025_top100_x_collection_readiness_policy.csv` | Single-row dry-run policy for the 43 verified queue accounts. |
+| `config/fortune2025_top100_x_collection_readiness_policy.csv` | Single-row dry-run policy for the 100 human-final queue accounts. |
 | `config/schemas/fortune2025_top100_x_collection_readiness_policy.schema.json` | Controlled schema for dry-run readiness policy values. |
 | `docs/operations/fortune_top100_x_dry_run_collection_readiness_protocol.md` | Boundary, authorization, future audit-field, and dry-run checklist documentation. |
 | `scripts/validate_fortune_x_collection_readiness.py` | Static validator that checks the policy and re-runs the queue validator. |
@@ -243,7 +243,7 @@ The authorization proposal is pre-execution design only. It compares future meth
 
 | File | Purpose |
 | --- | --- |
-| `config/fortune2025_top100_x_collection_authorization_proposal.csv` | Single-row proposal for the 43 verified queue accounts with authorization still disabled. |
+| `config/fortune2025_top100_x_collection_authorization_proposal.csv` | Single-row proposal for the 100 human-final queue accounts with authorization still disabled. |
 | `config/schemas/fortune2025_top100_x_collection_authorization_proposal.schema.json` | Controlled schema for proposal defaults and boundaries. |
 | `docs/operations/fortune_top100_x_collection_authorization_proposal.md` | Method comparison, recommended future method, execution controls, and audit fields. |
 | `scripts/validate_fortune_x_collection_authorization_proposal.py` | Static validator that checks proposal boundaries and re-runs queue/readiness validators. |

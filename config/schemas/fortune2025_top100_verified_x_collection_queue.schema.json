@@ -1,21 +1,24 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Fortune 2025 Top 100 Verified X Collection Queue Row",
-  "description": "Schema for the future collection queue scaffold. This queue is planning-only and does not authorize scraping.",
+  "title": "Fortune 2025 Top 100 Human-Reviewed X Collection Queue Row",
+  "description": "Schema for the future collection queue scaffold. The queue derives only from final_manual_scrape_eligible=true rows and does not authorize scraping.",
   "type": "object",
   "required": [
     "fortune_rank",
     "company_name",
     "normalized_company_name",
-    "official_x_account_status",
-    "official_x_handle",
-    "official_x_url",
-    "evidence_source_url",
-    "evidence_source_type",
-    "evidence_strength",
-    "confidence",
-    "scrape_eligible",
+    "collection_x_handle",
+    "collection_x_url",
+    "secondary_x_url",
+    "final_manual_account_status",
+    "human_review_batch",
     "collection_status",
+    "collection_authorized",
+    "dry_run_only",
+    "data_mutation_allowed",
+    "dashboard_sync_allowed",
+    "queue_source",
+    "eligibility_source_field",
     "collection_priority",
     "collection_scope",
     "collection_start_policy",
@@ -37,60 +40,27 @@
       "type": "string",
       "minLength": 1
     },
-    "official_x_account_status": {
-      "type": "string",
-      "enum": [
-        "official",
-        "brand_official"
-      ]
-    },
-    "official_x_handle": {
+    "collection_x_handle": {
       "type": "string",
       "minLength": 1
     },
-    "official_x_url": {
+    "collection_x_url": {
       "type": "string",
       "minLength": 1
     },
-    "evidence_source_url": {
+    "secondary_x_url": {
+      "type": "string"
+    },
+    "final_manual_account_status": {
+      "type": "string",
+      "enum": [
+        "confirmed_candidate_official",
+        "candidate_rejected_alternate_found"
+      ]
+    },
+    "human_review_batch": {
       "type": "string",
       "minLength": 1
-    },
-    "evidence_source_type": {
-      "type": "string",
-      "enum": [
-        "corporate_footer",
-        "newsroom",
-        "investor_relations",
-        "press_page",
-        "contact_page",
-        "social_directory",
-        "x_profile_backlink",
-        "cross_platform_official"
-      ]
-    },
-    "evidence_strength": {
-      "type": "string",
-      "enum": [
-        "level_1",
-        "level_2",
-        "level_3",
-        "level_4",
-        "level_5"
-      ]
-    },
-    "confidence": {
-      "type": "string",
-      "enum": [
-        "high",
-        "medium"
-      ]
-    },
-    "scrape_eligible": {
-      "type": "string",
-      "enum": [
-        "true"
-      ]
     },
     "collection_status": {
       "type": "string",
@@ -101,10 +71,46 @@
         "failed"
       ]
     },
+    "collection_authorized": {
+      "type": "string",
+      "enum": [
+        "false"
+      ]
+    },
+    "dry_run_only": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "data_mutation_allowed": {
+      "type": "string",
+      "enum": [
+        "false"
+      ]
+    },
+    "dashboard_sync_allowed": {
+      "type": "string",
+      "enum": [
+        "false"
+      ]
+    },
+    "queue_source": {
+      "type": "string",
+      "enum": [
+        "human_final_manual_review"
+      ]
+    },
+    "eligibility_source_field": {
+      "type": "string",
+      "enum": [
+        "final_manual_scrape_eligible"
+      ]
+    },
     "collection_priority": {
       "type": "string",
       "enum": [
-        "top100_verified"
+        "top100_human_final"
       ]
     },
     "collection_scope": {

@@ -4,16 +4,16 @@
 
 This document is an authorization proposal design only. It defines the conditions that must be satisfied before any future Fortune Top 100 X collection run can be authorized. This proposal does not authorize collection, does not scrape X posts, does not collect timelines, does not call X APIs, does not install MCP, does not execute browser automation, and does not create raw or processed outputs.
 
-## Current Verified Queue Summary
+## Current Human-Final Queue Summary
 
 | Metric | Count |
 | --- | ---: |
-| Verified queue accounts | 43 |
-| Excluded accounts | 57 |
-| `no_account_found` | 45 |
-| `inaccessible` | 12 |
+| Human-reviewed queue accounts | 100 |
+| `final_manual_scrape_eligible=true` | 100 |
+| `confirmed_candidate_official` | 57 |
+| `candidate_rejected_alternate_found` | 43 |
 
-All 43 queued accounts remain `collection_status=queued_not_collected`. The readiness policy remains `collection_authorized=false`, `dry_run_only=true`, `data_mutation_allowed=false`, and `dashboard_sync_default=disabled`.
+All 100 queued accounts remain `collection_status=queued_not_collected`. The queue derives from `final_manual_scrape_eligible` with `queue_source=human_final_manual_review`. The old `scrape_eligible` field is preliminary/reference only and is not the final eligibility source. The readiness policy remains `collection_authorized=false`, `dry_run_only=true`, `data_mutation_allowed=false`, and `dashboard_sync_default=disabled`.
 
 ## Method Options
 
@@ -26,7 +26,7 @@ All 43 queued accounts remain `collection_status=queued_not_collected`. The read
 
 ## Recommended Future Method
 
-For a separate future authorization step, the recommended method is a limited browser/manual-compatible collection workflow only if the owner approves it in a dedicated authorization commit. The method should use the existing 43-account queue, a fixed date window, a fixed maximum posts per account, and per-account audit logging. It should default to no dashboard sync and no mutation of current brand data.
+For a separate future authorization step, the recommended method is a limited browser/manual-compatible collection workflow only if the owner approves it in a dedicated authorization commit. The method should use the 100-account human-final queue, a fixed date window, a fixed maximum posts per account, and per-account audit logging. It should default to no dashboard sync and no mutation of current brand data.
 
 This recommendation is not execution approval. It is a proposal for the next design step because browser/manual-compatible access most closely matches the current scraper lineage while still requiring explicit authorization, audit controls, and secret-handling review before any run.
 
@@ -55,8 +55,8 @@ Any eventually authorized collection run must produce an audit log with at least
 | --- | --- |
 | `fortune_rank` | Fortune 2025 rank for the queued company. |
 | `company_name` | Company name from the verified queue. |
-| `official_x_handle` | Official or brand-official handle from the verified queue. |
-| `official_x_url` | Official X URL from the verified queue. |
+| `collection_x_handle` | Human-final X handle derived from `final_manual_x_url_primary`. |
+| `collection_x_url` | Human-final X URL from `final_manual_x_url_primary`. |
 | `collection_attempted_at` | Timestamp of the attempted collection. |
 | `collection_method` | Explicit method used. |
 | `collection_status` | Controlled run result. |
@@ -82,6 +82,9 @@ Future collection covers retrievable timeline posts only. No complete historical
 
 The machine-readable proposal is `config/fortune2025_top100_x_collection_authorization_proposal.csv`. It intentionally keeps:
 
+- `eligible_account_count=100`
+- `queue_source=human_final_manual_review`
+- `eligibility_source_field=final_manual_scrape_eligible`
 - `collection_authorized=false`
 - `dry_run_only=true`
 - `dashboard_sync_allowed=false`

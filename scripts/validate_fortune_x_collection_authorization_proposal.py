@@ -22,67 +22,30 @@ QUEUE_VALIDATOR = REPO_ROOT / "scripts" / "validate_fortune_x_collection_queue.p
 READINESS_VALIDATOR = REPO_ROOT / "scripts" / "validate_fortune_x_collection_readiness.py"
 
 REQUIRED_COLUMNS = [
-    "proposal_id",
-    "queue_file",
-    "eligible_account_count",
-    "proposed_collection_method",
-    "proposed_access_method",
-    "x_api_required",
-    "mcp_required",
-    "browser_automation_required",
-    "authentication_required",
-    "collection_authorized",
-    "dry_run_only",
-    "proposed_date_window",
-    "proposed_max_posts_per_account",
-    "proposed_rate_limit_policy",
-    "proposed_retry_policy",
-    "proposed_failure_status_values",
-    "proposed_raw_output_path",
-    "proposed_processed_output_path",
-    "proposed_audit_log_path",
-    "dashboard_sync_allowed",
-    "data_mutation_allowed",
-    "risk_level",
-    "approval_required_before_execution",
-    "notes",
+    "proposal_id", "queue_file", "eligible_account_count", "proposed_collection_method",
+    "proposed_access_method", "x_api_required", "mcp_required", "browser_automation_required",
+    "authentication_required", "collection_authorized", "dry_run_only", "proposed_date_window",
+    "proposed_max_posts_per_account", "proposed_rate_limit_policy", "proposed_retry_policy",
+    "proposed_failure_status_values", "proposed_raw_output_path", "proposed_processed_output_path",
+    "proposed_audit_log_path", "dashboard_sync_allowed", "data_mutation_allowed", "risk_level",
+    "approval_required_before_execution", "queue_source", "eligibility_source_field", "notes",
 ]
 
 REQUIRED_DOC_PHRASES = [
-    "This proposal does not authorize collection",
-    "does not install MCP",
-    "does not call X API",
-    "does not modify `data/`",
-    "does not modify `dashboard/data/`",
-    "does not authorize dashboard sync",
-    "retrievable timeline posts only",
-    "No complete historical X archive claim is allowed",
-    "Explicit collection authorization commit",
-    "fixed date window",
-    "Maximum posts per account",
-    "Rate-limit handling policy",
-    "Per-account audit log",
+    "This proposal does not authorize collection", "does not install MCP", "does not call X API",
+    "does not modify `data/`", "does not modify `dashboard/data/`", "does not authorize dashboard sync",
+    "retrievable timeline posts only", "No complete historical X archive claim is allowed",
+    "Explicit collection authorization commit", "fixed date window", "Maximum posts per account",
+    "Rate-limit handling policy", "Per-account audit log", "final_manual_scrape_eligible",
+    "human_final_manual_review", "100",
 ]
 
 REQUIRED_AUDIT_FIELDS = [
-    "fortune_rank",
-    "company_name",
-    "official_x_handle",
-    "official_x_url",
-    "collection_attempted_at",
-    "collection_method",
-    "collection_status",
-    "posts_requested",
-    "posts_collected",
-    "earliest_post_date",
-    "latest_post_date",
-    "failure_reason",
-    "rate_limit_observed",
-    "auth_required",
-    "raw_output_path",
-    "processed_output_path",
-    "dashboard_synced",
-    "notes",
+    "fortune_rank", "company_name", "collection_x_handle", "collection_x_url",
+    "collection_attempted_at", "collection_method", "collection_status", "posts_requested",
+    "posts_collected", "earliest_post_date", "latest_post_date", "failure_reason",
+    "rate_limit_observed", "auth_required", "raw_output_path", "processed_output_path",
+    "dashboard_synced", "notes",
 ]
 
 FAILURES = 0
@@ -123,13 +86,7 @@ def run_validator(path: Path, label: str) -> None:
     if not path.exists():
         report("FAIL", label, f"missing {rel(path)}")
         return
-    result = subprocess.run(
-        [sys.executable, str(path)],
-        cwd=REPO_ROOT,
-        text=True,
-        capture_output=True,
-        check=False,
-    )
+    result = subprocess.run([sys.executable, str(path)], cwd=REPO_ROOT, text=True, capture_output=True, check=False)
     if result.returncode != 0:
         detail = (result.stdout + result.stderr).strip().splitlines()[:10]
         report("FAIL", label, f"{label} failed: " + " | ".join(detail))
@@ -163,10 +120,10 @@ def validate_proposal() -> None:
     except ValueError:
         report("FAIL", "eligible account count", f"not an integer: {proposal['eligible_account_count']}")
         actual_count = -1
-    if actual_count != len(queue_rows):
-        report("FAIL", "eligible account count", f"proposal has {actual_count}, queue has {len(queue_rows)}")
+    if actual_count != 100 or actual_count != len(queue_rows):
+        report("FAIL", "eligible account count", f"proposal has {actual_count}, queue has {len(queue_rows)}, expected 100")
     else:
-        report("PASS", "eligible account count", f"proposal matches queue row count: {len(queue_rows)}")
+        report("PASS", "eligible account count", "proposal matches human-final queue row count: 100")
 
     expected_values = {
         "queue_file": "config/fortune2025_top100_verified_x_collection_queue.csv",
@@ -179,6 +136,8 @@ def validate_proposal() -> None:
         "proposed_processed_output_path": "not_defined_until_collection_authorized",
         "proposed_audit_log_path": "not_defined_until_collection_authorized",
         "risk_level": "pre_execution_design_only",
+        "queue_source": "human_final_manual_review",
+        "eligibility_source_field": "final_manual_scrape_eligible",
     }
     for column, expected in expected_values.items():
         if proposal[column] != expected:
@@ -211,23 +170,16 @@ def validate_proposal() -> None:
 
     combined_policy = " ".join(proposal.values()).lower()
     forbidden_policy_phrases = [
-        "collection_authorized=true",
-        "dry_run_only=false",
-        "data_mutation_allowed=true",
-        "dashboard_sync_allowed=true",
-        "scraping authorized",
-        "scrape authorized",
-        "mcp installed",
-        "x api called",
-        "api has been called",
-        "complete historical",
-        "all historical x posts",
+        "collection_authorized=true", "dry_run_only=false", "data_mutation_allowed=true",
+        "dashboard_sync_allowed=true", "scraping authorized", "scrape authorized",
+        "mcp installed", "x api called", "api has been called", "complete historical",
+        "all historical x posts", "scrape_eligible is the final", "old scrape_eligible as final",
     ]
     found_policy = [phrase for phrase in forbidden_policy_phrases if phrase in combined_policy]
     if found_policy:
         report("FAIL", "proposal policy boundary", "policy implies forbidden state: " + ", ".join(found_policy))
     else:
-        report("PASS", "proposal policy boundary", "policy does not imply collection, MCP, API use, mutation, or complete history")
+        report("PASS", "proposal policy boundary", "policy does not imply collection, MCP, API use, mutation, old eligibility, or complete history")
 
     output_values = [proposal["proposed_raw_output_path"], proposal["proposed_processed_output_path"], proposal["proposed_audit_log_path"]]
     if any(value.startswith(("data/", "dashboard/data/")) or value.endswith((".json", ".csv", ".jsonl")) for value in output_values):
@@ -249,12 +201,8 @@ def validate_proposal() -> None:
         report("PASS", "future audit fields", f"all {len(REQUIRED_AUDIT_FIELDS)} audit fields documented")
 
     forbidden_doc_phrases = [
-        "collection_authorized=true",
-        "dry_run_only=false",
-        "data_mutation_allowed=true",
-        "dashboard_sync_allowed=true",
-        "mcp_required=true",
-        "x_api_required=true",
+        "collection_authorized=true", "dry_run_only=false", "data_mutation_allowed=true",
+        "dashboard_sync_allowed=true", "mcp_required=true", "x_api_required=true",
         "complete historical x archive is available",
     ]
     doc_lower = doc_text.lower()

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Fortune Top 100 X Collection Authorization Proposal",
-  "description": "Pre-execution authorization proposal for the verified Fortune Top 100 X collection queue. This proposal does not authorize collection.",
+  "description": "Pre-execution authorization proposal for the human-reviewed Fortune Top 100 X collection queue. This proposal does not authorize collection.",
   "type": "object",
   "required": [
     "proposal_id",
@@ -27,6 +27,8 @@
     "data_mutation_allowed",
     "risk_level",
     "approval_required_before_execution",
+    "queue_source",
+    "eligibility_source_field",
     "notes"
   ],
   "properties": {
@@ -44,7 +46,8 @@
     },
     "eligible_account_count": {
       "type": "integer",
-      "minimum": 0
+      "minimum": 100,
+      "maximum": 100
     },
     "proposed_collection_method": {
       "type": "string",
@@ -166,6 +169,18 @@
     "notes": {
       "type": "string",
       "minLength": 1
+    },
+    "queue_source": {
+      "type": "string",
+      "enum": [
+        "human_final_manual_review"
+      ]
+    },
+    "eligibility_source_field": {
+      "type": "string",
+      "enum": [
+        "final_manual_scrape_eligible"
+      ]
     }
   },
   "additionalProperties": false

@@ -32,6 +32,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune Top 100 dry-run readiness protocol | Dry-run readiness policy was generated without scraping, MCP installation, X API calls, or dashboard/data mutation. | The policy keeps collection unauthorized, output creation blocked, and dashboard sync disabled until a separate authorization commit exists. |
 | Fortune Top 100 collection authorization proposal | Pre-execution proposal was drafted without scraping, MCP installation, X API calls, browser automation, or dashboard/data mutation. | The proposal keeps collection unauthorized, dry-run only, output paths undefined, and dashboard sync disabled until a separate authorization commit exists. |
 | Fortune Top 100 human review completion | Human review overlay was completed for ranks 41-100 without scraping or dashboard/data mutation. | All 100 rows are human reviewed; `final_manual_scrape_eligible` is the only future collection eligibility signal. |
+| Fortune Top 100 queue human-review source update | Queue/readiness/proposal files were updated from the completed human review overlay without collection. | Queue now has 100 rows from `final_manual_scrape_eligible=true`; collection remains unauthorized and dry-run only. |
 
 ## Detailed Incidents
 
@@ -402,4 +403,20 @@ When a future issue occurs, append a new section to this file with:
 - Boundary:
   - No X collection authorized.
   - No queue regeneration performed.
+  - `data/` and `dashboard/data/` remain untouched.
+
+### 21. Fortune Top 100 Queue Source Updated to Human Final Eligibility
+
+- Period: `2026-06-12`
+- Scope:
+  - Regenerated the planning-only queue from `final_manual_scrape_eligible=true` rows.
+  - Updated readiness and authorization proposal counts to 100.
+  - Strengthened validators so old `scrape_eligible` cannot be used as final queue eligibility.
+- Outcome:
+  - Queue row count: 100.
+  - Queue source: `human_final_manual_review`.
+  - Eligibility source field: `final_manual_scrape_eligible`.
+- Boundary:
+  - No X collection authorized.
+  - No X API call, MCP installation, browser automation, or dashboard sync.
   - `data/` and `dashboard/data/` remain untouched.
