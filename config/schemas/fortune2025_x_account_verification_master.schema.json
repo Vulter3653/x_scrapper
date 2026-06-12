@@ -67,6 +67,7 @@
     "evidence_source_type": {
       "type": "string",
       "enum": [
+        "not_reviewed",
         "corporate_footer",
         "newsroom",
         "investor_relations",

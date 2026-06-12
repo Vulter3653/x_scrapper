@@ -49,6 +49,7 @@ ALLOWED_STATUSES = {
 }
 UNCONTROLLED_STATUS_VALUES = {"verified", "valid", "confirmed", "approved"}
 EVIDENCE_SOURCE_TYPES = {
+    "not_reviewed",
     "corporate_footer",
     "newsroom",
     "investor_relations",
@@ -65,6 +66,8 @@ EVIDENCE_STRENGTHS = {"level_1", "level_2", "level_3", "level_4", "level_5", "le
 CONFIDENCE_VALUES = {"high", "medium", "low", "blocked"}
 SCRAPE_ELIGIBLE_STATUSES = {"official", "brand_official"}
 SCRAPE_ELIGIBLE_CONFIDENCE = {"high", "medium"}
+NON_SCRAPE_EVIDENCE_TYPES = {"not_reviewed", "manual_search_only"}
+NON_SCRAPE_EVIDENCE_STRENGTHS = {"none", "level_6", "level_7", "level_8"}
 MANUAL_REQUIRED_TRUE = {"official", "brand_official", "subsidiary_only", "ambiguous", "do_not_scrape"}
 MANUAL_REQUIRED_FALSE = {"unknown", "no_account_found", "inaccessible"}
 ACCOUNT_STATUS_COLUMNS = {
@@ -224,6 +227,12 @@ def validate_master_file() -> None:
             row("FAIL", "evidence_strength taxonomy", f"{prefix} unsupported value {evidence_strength}")
         if confidence not in CONFIDENCE_VALUES:
             row("FAIL", "confidence taxonomy", f"{prefix} unsupported value {confidence}")
+        if evidence_type == "not_reviewed" and status != "unknown":
+            row("FAIL", "not_reviewed status rule", f"{prefix} evidence_source_type=not_reviewed requires status=unknown")
+        if status in SCRAPE_ELIGIBLE_STATUSES and evidence_type == "manual_search_only":
+            row("FAIL", "manual search officiality gate", f"{prefix} {status} cannot use evidence_source_type=manual_search_only")
+        if status in SCRAPE_ELIGIBLE_STATUSES and evidence_strength == "level_8":
+            row("FAIL", "level 8 officiality gate", f"{prefix} {status} cannot use evidence_strength=level_8")
         if status in SCRAPE_ELIGIBLE_STATUSES and not evidence_url:
             row("FAIL", "official evidence URL", f"{prefix} {status} requires evidence_source_url")
         if status in SCRAPE_ELIGIBLE_STATUSES and not official_url:
@@ -236,6 +245,10 @@ def validate_master_file() -> None:
             row("FAIL", "scrape eligibility confidence", f"{prefix} scrape_eligible=true with confidence={confidence}")
         if scrape_eligible and (not evidence_url or not official_url):
             row("FAIL", "scrape eligibility evidence", f"{prefix} scrape_eligible=true without evidence_source_url and official_x_url")
+        if scrape_eligible and evidence_type in NON_SCRAPE_EVIDENCE_TYPES:
+            row("FAIL", "scrape eligibility evidence type", f"{prefix} scrape_eligible=true with evidence_source_type={evidence_type}")
+        if scrape_eligible and evidence_strength in NON_SCRAPE_EVIDENCE_STRENGTHS:
+            row("FAIL", "scrape eligibility evidence strength", f"{prefix} scrape_eligible=true with evidence_strength={evidence_strength}")
         if confidence == "low" and scrape_eligible:
             row("FAIL", "low confidence scrape gate", f"{prefix} confidence=low cannot be scrape_eligible")
         expected_manual = "true" if status in MANUAL_REQUIRED_TRUE else "false" if status in MANUAL_REQUIRED_FALSE else None

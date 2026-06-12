@@ -32,6 +32,7 @@ Do not use uncontrolled labels such as verified, valid, confirmed, or approved a
 Allowed `evidence_source_type` values:
 
 ```text
+not_reviewed
 corporate_footer
 newsroom
 investor_relations
@@ -45,7 +46,7 @@ not_found
 inaccessible
 ```
 
-Search-result-only evidence is insufficient for `official` or `brand_official` status. `manual_search_only` is a review clue, not proof of account officiality.
+`not_reviewed` is the default for initialized rows where no reviewer has assessed evidence yet. Search-result-only evidence is insufficient for `official` or `brand_official` status. `manual_search_only` is valid only after a reviewer has actually performed a search and found only search-result-level evidence; it is a review clue, not proof of account officiality.
 
 ## Evidence Strength Taxonomy
 
@@ -63,7 +64,7 @@ level_8
 none
 ```
 
-Level 1 should represent strongest direct corporate evidence, such as a corporate site footer or official social directory linking to the X account. Level 8 is weak/manual-search-only style evidence and is never scrape-eligible.
+Level 1 should represent strongest direct corporate evidence, such as a corporate site footer or official social directory linking to the X account. Level 8 is weak/manual-search-only style evidence and is never scrape-eligible. `not_reviewed` must use `evidence_strength=none` and `confidence=blocked`.
 
 ## Confidence Taxonomy
 
@@ -76,6 +77,21 @@ low
 blocked
 ```
 
+## Default Unreviewed State
+
+Initialized rows that have not been reviewed must use:
+
+```text
+official_x_account_status=unknown
+evidence_source_type=not_reviewed
+evidence_strength=none
+confidence=blocked
+scrape_eligible=false
+manual_verification_required=false
+```
+
+Do not use `manual_search_only` for default initialization. It means a reviewer actually searched and found only search-result-level evidence.
+
 ## Scrape Eligibility Gate
 
 `scrape_eligible=true` is allowed only when all conditions hold:
@@ -84,8 +100,10 @@ blocked
 - `confidence` is `high` or `medium`
 - `evidence_source_url` is not empty
 - `official_x_url` is not empty
+- `evidence_source_type` is neither `not_reviewed` nor `manual_search_only`
+- `evidence_strength` is not `none`, `level_6`, `level_7`, or `level_8`
 
-Rows with `unknown`, `ambiguous`, `subsidiary_only`, `no_account_found`, `inaccessible`, or `do_not_scrape` must not be scrape eligible. `confidence=low` and `confidence=blocked` must not be scrape eligible.
+Rows with `unknown`, `ambiguous`, `subsidiary_only`, `no_account_found`, `inaccessible`, or `do_not_scrape` must not be scrape eligible. `confidence=low` and `confidence=blocked` must not be scrape eligible. Level 8 evidence must never be scrape eligible. Manual-search-only evidence must never be scrape eligible.
 
 ## Manual Verification Rule
 

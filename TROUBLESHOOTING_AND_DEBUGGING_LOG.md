@@ -21,6 +21,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Repository refactor validation | Sandbox `bwrap` prevented normal apply_patch/shell execution; wrapper import paths needed static validation. | Used approved shell execution, py_compile, node syntax checks, help checks, and `scripts/validate_repository_state.py`. |
 | Governance validation | Governance validation was added without data mutation. | Static validators document agent rules, claim boundaries, history integrity, and Fortune expansion readiness. |
 | Fortune account verification gate | Verification infrastructure was added without scraping or data mutation. | Master CSV initializes all Top 100 rows as `unknown`, `blocked`, and not scrape eligible until manual evidence is recorded. |
+| Fortune evidence default state | `manual_search_only` was too strong for unreviewed initialized rows. | Added `not_reviewed` and changed default rows to avoid implying that manual search was performed. |
 
 ## Detailed Incidents
 
@@ -346,3 +347,15 @@ When a future issue occurs, append a new section to this file with:
 - Boundary:
   - Candidate X handles are not official-account claims.
   - SEC 10-K fetch failure does not block account verification, but financial linkage analysis remains unavailable where SEC fetch failed.
+
+### 18. Fortune Evidence Default State Correction
+
+- Period: `2026-06-12`
+- Symptom:
+  - Initialized, unreviewed Fortune Top 100 rows used `evidence_source_type=manual_search_only`, which could imply a reviewer had performed manual search.
+- Fix:
+  - Added `not_reviewed` to the controlled evidence source type taxonomy.
+  - Changed initialized unreviewed rows to `not_reviewed`, `none`, `blocked`, and `scrape_eligible=false`.
+  - Preserved `manual_search_only` only for rows where a reviewer actually searched and found only search-result-level evidence.
+- Boundary:
+  - No X scraping, Fortune 500 collection, SEC download, `data/`, or `dashboard/data/` mutation was performed.
