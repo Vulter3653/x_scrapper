@@ -2,8 +2,9 @@
 """Run ranked Fortune 2025 Top 100 X collection through the existing collector.
 
 This script keeps the repository's existing Playwright/browser collector path and
-runs accounts sequentially by Fortune rank. It does not use the official X API,
-MCP, dashboard sync, screenshots, traces, or browser session persistence.
+runs accounts sequentially by Fortune rank within each matrix shard. It does not
+use the official X API, MCP, dashboard sync, screenshots, traces, or browser
+session persistence.
 """
 
 from __future__ import annotations
@@ -27,7 +28,7 @@ SCRAPER_ENTRYPOINT = REPO_ROOT / "scrape_x.py"
 OUTPUT_ROOT = REPO_ROOT / "data" / "raw" / "fortune_x_2025_ranked"
 SUMMARY_FILE = REPO_ROOT / "data" / "audit" / "fortune_x_2025_ranked_collection_summary.csv"
 REQUIRED_SECRETS = ("X_AUTH_TOKEN", "X_CT0")
-COLLECTION_METHOD = "capped browser-based collection of observable public posts"
+COLLECTION_METHOD = "browser-based scroll-exhaustion collection of observable public posts"
 
 POST_COLUMNS = [
     "fortune_rank", "company_name", "official_x_handle", "tweet_id", "created_at", "text",
@@ -60,17 +61,22 @@ class QueueAccount:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Collect Fortune 2025 ranked X accounts sequentially.")
+    parser = argparse.ArgumentParser(description="Collect Fortune 2025 ranked X accounts by Fortune rank.")
     parser.add_argument("--queue-file", default=str(QUEUE_FILE))
     parser.add_argument("--start-rank", type=int, default=1)
     parser.add_argument("--end-rank", type=int, default=100)
-    parser.add_argument("--max-posts", type=int, default=50)
+    parser.add_argument(
+        "--max-posts",
+        type=int,
+        default=0,
+        help="Maximum posts per account. Use 0 for unbounded scroll-exhaustion collection.",
+    )
     parser.add_argument("--summary-file", default=str(SUMMARY_FILE))
     parser.add_argument("--retries", type=int, default=0)
     parser.add_argument("--retry-delay-seconds", type=float, default=30.0)
-    parser.add_argument("--max-scrolls", type=int, default=250)
+    parser.add_argument("--max-scrolls", type=int, default=2500)
     parser.add_argument("--scroll-delay-seconds", default="1.25")
-    parser.add_argument("--idle-scroll-limit", type=int, default=20)
+    parser.add_argument("--idle-scroll-limit", type=int, default=60)
     parser.add_argument("--page-timeout-ms", type=int, default=60000)
     parser.add_argument("--headless", default="true", choices=["true", "false"])
     return parser.parse_args()
@@ -119,13 +125,19 @@ def read_queue(path: Path, start_rank: int, end_rank: int) -> list[QueueAccount]
     return sorted(accounts, key=lambda account: account.fortune_rank)
 
 
+def limit_posts(posts: list[dict[str, Any]], max_posts: int) -> list[dict[str, Any]]:
+    if max_posts > 0:
+        return posts[:max_posts]
+    return posts
+
+
 def write_posts_csv(path: Path, account: QueueAccount, folder: str, posts: list[dict[str, Any]], max_posts: int) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     collected_at = utc_now()
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=POST_COLUMNS)
         writer.writeheader()
-        for post in posts[:max_posts]:
+        for post in limit_posts(posts, max_posts):
             media_type = ""
             media_present = "false"
             writer.writerow({
@@ -266,7 +278,7 @@ def collect_account(account: QueueAccount, folder: str, args: argparse.Namespace
             completed_at = utc_now()
             status = "success" if result.returncode == 0 else "failed"
             if status == "success":
-                posts = load_posts(tmp_posts_json)[: args.max_posts]
+                posts = limit_posts(load_posts(tmp_posts_json), args.max_posts)
                 write_posts_csv(posts_csv, account, folder, posts, args.max_posts)
             else:
                 posts = []
@@ -320,12 +332,18 @@ def main() -> int:
     args = parse_args()
     if args.start_rank < 1 or args.end_rank > 100 or args.start_rank > args.end_rank:
         raise SystemExit("rank range must be within 1-100 and start_rank <= end_rank")
-    if args.max_posts < 1:
-        raise SystemExit("max_posts must be >= 1")
+    if args.max_posts < 0:
+        raise SystemExit("max_posts must be >= 0; use 0 for unbounded scroll-exhaustion collection")
     if args.retries < 0:
         raise SystemExit("retries must be >= 0")
     if args.retry_delay_seconds < 0:
         raise SystemExit("retry_delay_seconds must be >= 0")
+    if args.max_scrolls < 1:
+        raise SystemExit("max_scrolls must be >= 1")
+    if args.idle_scroll_limit < 1:
+        raise SystemExit("idle_scroll_limit must be >= 1")
+    if args.page_timeout_ms < 1000:
+        raise SystemExit("page_timeout_ms must be >= 1000")
 
     accounts = read_queue(Path(args.queue_file), args.start_rank, args.end_rank)
     seen_folders: set[str] = set()
