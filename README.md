@@ -84,6 +84,43 @@ New structural documentation and validation live at:
 
 Compatibility note: `data/wendys/`, `data/cocacola/`, `data/moonpie/`, and `dashboard/data/` were not moved. Dashboard fetch paths remain relative to `dashboard/` as `data/...`.
 
+
+## Governance and Validation
+
+Governance documents define agent roles, change control, claim boundaries, and Fortune expansion gates:
+
+| File | Purpose |
+| --- | --- |
+| `AGENT_RULES.md` | Codex/Gemini roles, one-writer rule, forbidden commands, secret handling, final report format, Fortune no-scrape gate. |
+| `DATA_CLAIM_BOUNDARIES.md` | Limits on what current data, model outputs, Fortune account files, NAICS/SIC fields, dashboard views, and SEC files can claim. |
+| `CHANGE_CONTROL.md` | Change classes, pre-change checklist, commit rules, review rules, and rollback rules. |
+| `docs/operations/agent_concurrency_protocol.md` | Multi-agent handoff and branch protocol. |
+| `docs/operations/validation_protocol.md` | Required static validation commands and validator contract. |
+| `docs/operations/fortune_expansion_gatekeeping.md` | Top 100 verification and Fortune 500 expansion gatekeeping. |
+
+
+### File Lock Table
+
+Only one non-human writer may modify files at a time.
+
+| Agent | Mode | Allowed Files | Forbidden Files | Current Task | Status |
+| --- | --- | --- | --- | --- | --- |
+| Codex | Writer | task-scoped files | `data/`, `dashboard/data/`, secrets, destructive git operations | active implementation | active or standby |
+| Gemini | Auditor | read-only review outputs | all repository files unless explicitly authorized | governance audit / gap review | auditor |
+| Human | Owner | all files | secrets must not be exposed | approval and final decision | owner |
+
+Governance validation commands:
+
+```bash
+python scripts/validate_repository_state.py
+python scripts/validate_agent_rules.py
+python scripts/validate_data_claim_boundaries.py
+python scripts/validate_history_integrity.py
+python scripts/validate_fortune_expansion_readiness.py
+```
+
+These validators are local/static checks. They do not read secrets, scrape X, call external networks, run SEC downloads, or modify `data/` or `dashboard/data/`.
+
 ## Data Layout
 
 브랜드별 표준 결과 구조는 다음과 같습니다.

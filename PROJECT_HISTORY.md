@@ -139,6 +139,7 @@ These files were intentionally removed because they were generated from earlier 
 | Time | Commit | Work performed | Notes |
 | --- | --- | --- | --- |
 | `2026-06-12` | `pending` | Conservatively reorganized repository before Fortune expansion. | Added `src/x_scrapper/` package, path constants, wrapper entrypoints, namespaced config copies, schemas, architecture/methodology docs, and static repository validator. No Fortune 500 collection, new X scraping, or SEC download was run. |
+| `2026-06-12` | `pending` | Added governance layer and claim-boundary validators. | Added `AGENT_RULES.md`, `DATA_CLAIM_BOUNDARIES.md`, `CHANGE_CONTROL.md`, operations protocols, File Lock Table, controlled account-status taxonomy checks, SEC 10-K failure boundary, and static validators. No scraping, SEC download, data mutation, or dashboard data mutation was performed. |
 
 ## Operational Decisions
 
@@ -148,9 +149,16 @@ These files were intentionally removed because they were generated from earlier 
 4. Prior X search candidate discovery outputs were removed to avoid mixing predicted/unverified results with the Fortune 2025 ranking baseline.
 5. Historical commits remain in Git history, but active files should be interpreted according to the current baseline above.
 6. Root entrypoints are retained as compatibility wrappers; active implementation now lives under `src/x_scrapper/` for future refactoring.
+8. Current data and dashboard outputs are descriptive artifacts with explicit claim boundaries; they do not imply complete X history, official Fortune accounts, human-validated humor, causal effects, complete NAICS/SIC coverage, or successful SEC body downloads.
+7. Governance files now define Codex as Writer and Gemini as Auditor, enforce one-writer change control, and gate Fortune scraping behind Top 100 official-account verification.
 
 ## Related Work Logs
 
+- `docs/operations/fortune_expansion_gatekeeping.md`
+- `docs/operations/validation_protocol.md`
+- `CHANGE_CONTROL.md`
+- `DATA_CLAIM_BOUNDARIES.md`
+- `AGENT_RULES.md`
 - `docs/architecture/repository_structure.md`
 - `docs/methodology/fortune500_humor_text_analysis_design.md`
 - `TROUBLESHOOTING_AND_DEBUGGING_LOG.md`

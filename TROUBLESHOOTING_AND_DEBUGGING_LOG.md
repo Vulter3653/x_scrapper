@@ -19,6 +19,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Local visual verification | Chromium screenshot validation failed in local environment due to runtime/font/DBus errors. | Static and syntax validation were used where screenshot verification was blocked. |
 | Fortune account discovery | X search produced login challenges, selector failures, and unrelated repeated handles. | Prediction/discovery artifacts were removed; Fortune work reset to 2025 ranking source. |
 | Repository refactor validation | Sandbox `bwrap` prevented normal apply_patch/shell execution; wrapper import paths needed static validation. | Used approved shell execution, py_compile, node syntax checks, help checks, and `scripts/validate_repository_state.py`. |
+| Governance validation | Governance validation was added without data mutation. | Static validators document agent rules, claim boundaries, history integrity, and Fortune expansion readiness. |
 
 ## Detailed Incidents
 
@@ -325,3 +326,12 @@ When a future issue occurs, append a new section to this file with:
 - Verification:
   - Ran `git diff --check`, Python compile checks, Node syntax checks, help commands, and repository validator.
   - No X scraping, SEC download, or Fortune expansion collection was run.
+
+### 16. Governance Validation Added Without Data Mutation
+
+- Period: `2026-06-12`
+- Scope:
+  - Added governance documents and local/static validators.
+  - No scraping, SEC download, `data/` mutation, or `dashboard/data/` mutation was performed.
+- Verification:
+  - Governance validators were added to check agent rules, claim boundaries, history integrity, and Fortune expansion readiness without reading secrets or calling external services.
