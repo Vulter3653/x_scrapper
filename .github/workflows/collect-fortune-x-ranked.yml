@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       max_posts:
-        description: 'Maximum observable public posts per account'
+        description: 'Maximum observable public posts per account; use 0 for unbounded scroll-exhaustion collection'
         required: true
-        default: '50'
+        default: '0'
       start_rank:
         description: 'Starting Fortune rank'
         required: true
@@ -18,11 +18,27 @@ on:
       max_parallel:
         description: 'Maximum shard jobs to run in parallel'
         required: true
-        default: '3'
+        default: '4'
       retry_attempts:
         description: 'Retry attempts per account after an initial failed browser collection'
         required: true
-        default: '2'
+        default: '1'
+      max_scrolls:
+        description: 'Maximum browser scroll attempts per account'
+        required: true
+        default: '2500'
+      scroll_delay_seconds:
+        description: 'Delay after each scroll'
+        required: true
+        default: '1.25'
+      idle_scroll_limit:
+        description: 'Stop after this many scrolls without new posts'
+        required: true
+        default: '60'
+      page_timeout_ms:
+        description: 'Profile page and tweet-render timeout in milliseconds'
+        required: true
+        default: '60000'
       commit_results:
         description: 'Commit and push collection outputs'
         required: true
@@ -38,7 +54,7 @@ concurrency:
 jobs:
   collect-ranked-shards:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 300
     strategy:
       fail-fast: false
       max-parallel: ${{ fromJSON(inputs.max_parallel) }}
@@ -46,33 +62,78 @@ jobs:
         shard:
           - id: '01'
             start: 1
-            end: 10
+            end: 4
           - id: '02'
-            start: 11
-            end: 20
+            start: 5
+            end: 8
           - id: '03'
-            start: 21
-            end: 30
+            start: 9
+            end: 12
           - id: '04'
-            start: 31
-            end: 40
+            start: 13
+            end: 16
           - id: '05'
-            start: 41
-            end: 50
+            start: 17
+            end: 20
           - id: '06'
-            start: 51
-            end: 60
+            start: 21
+            end: 24
           - id: '07'
-            start: 61
-            end: 70
+            start: 25
+            end: 28
           - id: '08'
-            start: 71
-            end: 80
+            start: 29
+            end: 32
           - id: '09'
-            start: 81
-            end: 90
+            start: 33
+            end: 36
           - id: '10'
-            start: 91
+            start: 37
+            end: 40
+          - id: '11'
+            start: 41
+            end: 44
+          - id: '12'
+            start: 45
+            end: 48
+          - id: '13'
+            start: 49
+            end: 52
+          - id: '14'
+            start: 53
+            end: 56
+          - id: '15'
+            start: 57
+            end: 60
+          - id: '16'
+            start: 61
+            end: 64
+          - id: '17'
+            start: 65
+            end: 68
+          - id: '18'
+            start: 69
+            end: 72
+          - id: '19'
+            start: 73
+            end: 76
+          - id: '20'
+            start: 77
+            end: 80
+          - id: '21'
+            start: 81
+            end: 84
+          - id: '22'
+            start: 85
+            end: 88
+          - id: '23'
+            start: 89
+            end: 92
+          - id: '24'
+            start: 93
+            end: 96
+          - id: '25'
+            start: 97
             end: 100
 
     steps:
@@ -147,6 +208,10 @@ jobs:
             --end-rank "${{ steps.bounds.outputs.end_rank }}" \
             --max-posts "${{ inputs.max_posts }}" \
             --retries "${{ inputs.retry_attempts }}" \
+            --max-scrolls "${{ inputs.max_scrolls }}" \
+            --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
+            --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
+            --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
             --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv"
 
       - name: Stage shard artifact
@@ -171,7 +236,7 @@ jobs:
 
   aggregate-ranked-shards:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     needs: collect-ranked-shards
 
     steps:
@@ -240,5 +305,5 @@ jobs:
             echo "No ranked Fortune X collection output changes to commit."
             exit 0
           fi
-          git commit -m "data: collect ranked fortune x posts" -m "Collected capped browser-based collection of observable public posts for the Fortune 2025 ranked queue using matrix shards. Dashboard data was not synced. Official X API was not used."
+          git commit -m "data: collect ranked fortune x posts" -m "Collected browser-based observable public posts for the Fortune 2025 ranked queue using 25 matrix shards. Dashboard data was not synced. Official X API was not used."
           git push origin HEAD:main
