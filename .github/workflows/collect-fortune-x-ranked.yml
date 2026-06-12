@@ -87,6 +87,18 @@ jobs:
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
+      - name: Preserve previous ranked output snapshot
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf .previous_fortune_x_ranked
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked .previous_fortune_x_ranked
+          else
+            mkdir -p .previous_fortune_x_ranked
+          fi
+
       - name: Prepare isolated shard workspace
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
@@ -190,6 +202,18 @@ jobs:
             exit 0
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
+
+      - name: Preserve previous ranked output snapshot
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf .previous_fortune_x_ranked
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked .previous_fortune_x_ranked
+          else
+            mkdir -p .previous_fortune_x_ranked
+          fi
 
       - name: Prepare isolated shard workspace
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
@@ -295,6 +319,18 @@ jobs:
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
+      - name: Preserve previous ranked output snapshot
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf .previous_fortune_x_ranked
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked .previous_fortune_x_ranked
+          else
+            mkdir -p .previous_fortune_x_ranked
+          fi
+
       - name: Prepare isolated shard workspace
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
@@ -398,6 +434,18 @@ jobs:
             exit 0
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
+
+      - name: Preserve previous ranked output snapshot
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf .previous_fortune_x_ranked
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked .previous_fortune_x_ranked
+          else
+            mkdir -p .previous_fortune_x_ranked
+          fi
 
       - name: Prepare isolated shard workspace
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
