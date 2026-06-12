@@ -102,6 +102,15 @@ jobs:
           echo "start_rank=$actual_start" >> "$GITHUB_OUTPUT"
           echo "end_rank=$actual_end" >> "$GITHUB_OUTPUT"
 
+      - name: Prepare isolated shard workspace
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf data/raw/fortune_x_2025_ranked
+          rm -f data/audit/fortune_x_2025_ranked_collection_summary_shard_*.csv
+          mkdir -p data/raw/fortune_x_2025_ranked data/audit staging
+
       - name: Set up Python
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         uses: actions/setup-python@v5
@@ -145,6 +154,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p staging/data/raw staging/data/audit
+          # Only copy if directory exists (might be empty if all skipped)
           if [ -d data/raw/fortune_x_2025_ranked ]; then
             cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
           fi
@@ -179,8 +189,23 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           pattern: fortune-x-ranked-shard-*
-          path: .
+          path: artifact_downloads
           merge-multiple: true
+
+      - name: Materialize downloaded shard artifacts
+        shell: bash
+        run: |
+          set -euxo pipefail
+          # Clear existing raw output to avoid stale results or collisions
+          rm -rf data/raw/fortune_x_2025_ranked
+          mkdir -p data/raw data/audit
+          if [ -d artifact_downloads/data/raw/fortune_x_2025_ranked ]; then
+            cp -R artifact_downloads/data/raw/fortune_x_2025_ranked data/raw/
+          fi
+          # Summary shards are individual files, copy them all
+          if [ -d artifact_downloads/data/audit ]; then
+            cp artifact_downloads/data/audit/fortune_x_2025_ranked_collection_summary_shard_*.csv data/audit/ || true
+          fi
 
       - name: Merge shard summaries
         shell: bash

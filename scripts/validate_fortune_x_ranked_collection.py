@@ -154,6 +154,7 @@ def check_outputs(allow_empty_before_run: bool) -> None:
     missing_text = 0
     missing_created_at = 0
     post_file_count = 0
+    malformed_rows = 0
     for folder in folders:
         posts_path = folder / "posts.csv"
         audit_path = folder / "audit.json"
@@ -175,18 +176,26 @@ def check_outputs(allow_empty_before_run: bool) -> None:
             report("FAIL", "posts.csv columns", f"{rel(posts_path)} missing: " + ", ".join(missing_cols))
         post_file_count += 1
         for row in rows:
-            tweet_id = row.get("tweet_id", "").strip()
+            if None in row or any(v is None for v in row.values()):
+                malformed_rows += 1
+            tweet_id = (row.get("tweet_id") or "").strip()
+            text = (row.get("text") or "").strip()
+            created_at = (row.get("created_at") or "").strip()
             if tweet_id:
                 all_tweet_ids.append(tweet_id)
-            if not row.get("text", "").strip():
+            if not text:
                 missing_text += 1
-            if not row.get("created_at", "").strip():
+            if not created_at:
                 missing_created_at += 1
     duplicates = sum(count - 1 for count in Counter(all_tweet_ids).values() if count > 1)
     report("PASS", "posts.csv files", f"checked {post_file_count} posts.csv files")
     report("PASS", "duplicate tweet_id count", str(duplicates))
     report("PASS", "missing text count", str(missing_text))
     report("PASS", "missing created_at count", str(missing_created_at))
+    if malformed_rows:
+        report("FAIL", "malformed posts.csv rows", str(malformed_rows))
+    else:
+        report("PASS", "malformed posts.csv rows", "0")
 
 
 def check_summary(allow_empty_before_run: bool, summary_file: Path, expected_start_rank: int | None, expected_end_rank: int | None) -> None:
