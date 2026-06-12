@@ -370,3 +370,19 @@ When a future issue occurs, append a new section to this file with:
   - Preserved `manual_search_only` only for rows where a reviewer actually searched and found only search-result-level evidence.
 - Boundary:
   - No X scraping, Fortune 500 collection, SEC download, `data/`, or `dashboard/data/` mutation was performed.
+
+### 19. Fortune Top 100 Human Review Batch (Ranks 21-40)
+
+- Period: `2026-06-12`
+- Scope:
+  - Applied the second batch of human manual reviews for ranks 21-40.
+  - Updated the human-review overlay columns while preserving Codex preliminary evidence.
+  - Finalized `final_manual_scrape_eligible` as the authoritative collection signal for these rows.
+- Outcome:
+  - 10 candidates confirmed as official.
+  - 10 candidates rejected with alternate URLs found.
+  - 2 confirmed candidates (Home Depot, Phillips 66) received additional secondary reference URLs.
+- Boundary:
+  - No collection authorized.
+  - No queue regeneration performed.
+  - `data/` and `dashboard/data/` remain untouched.

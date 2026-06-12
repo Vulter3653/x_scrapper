@@ -180,8 +180,8 @@ The human manual review layer is the final source of official X account eligibil
 
 Current review state:
 
-- Ranks 1-20 are `human_reviewed`.
-- Ranks 21-100 remain `pending_human_review`.
+- Ranks 1-40 are `human_reviewed`.
+- Ranks 41-100 remain `pending_human_review`.
 - Human-review rows already have final manual primary/secondary URLs and final manual account status filled in.
 - Pending rows remain blank in the human-review overlay and have `final_manual_scrape_eligible=false`.
 

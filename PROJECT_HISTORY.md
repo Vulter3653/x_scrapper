@@ -153,6 +153,7 @@ These files were intentionally removed because they were generated from earlier 
 | `2026-06-12` | `pending` | Drafted Fortune Top 100 X collection authorization proposal. | Created a pre-execution proposal, schema, method comparison document, and validator for the 43 verified queue accounts. Collection remains unauthorized and dry-run only; no X scraping, timeline collection, X API call, MCP installation, browser automation, dashboard sync, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 
 | `2026-06-12` | `pending` | Added human manual review layer for Fortune Top 100 X account verification. | Updated only `config/fortune2025_x_account_verification_master.csv` with human-review overlay columns for ranks 1-20; ranks 21-100 remain pending human review. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
+| `2026-06-12` | `pending` | Applied human review batch for Fortune X ranks 21-40. | Updated only `config/fortune2025_x_account_verification_master.csv` with human-review overlay columns for ranks 21-40; ranks 41-100 remain pending human review. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 
 ## Operational Decisions
 
