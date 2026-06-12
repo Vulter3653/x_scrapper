@@ -75,8 +75,15 @@ def is_true(value: str) -> bool:
     return value.strip().lower() == "true"
 
 
+def canonical_x_url(url: str) -> str:
+    value = url.strip()
+    if value.endswith("?lang=ko"):
+        return value[: -len("?lang=ko")]
+    return value
+
+
 def handle_from_url(url: str) -> str:
-    parsed = urlparse(url.strip())
+    parsed = urlparse(canonical_x_url(url))
     parts = [part for part in parsed.path.split("/") if part]
     if not parts:
         return ""
@@ -160,8 +167,8 @@ def validate_queue() -> None:
         collection_url = row["collection_x_url"].strip()
         collection_handle = row["collection_x_handle"].strip()
         secondary_url = row["secondary_x_url"].strip()
-        final_primary = master.get("final_manual_x_url_primary", "").strip()
-        final_secondary = master.get("final_manual_x_url_secondary", "").strip()
+        final_primary = canonical_x_url(master.get("final_manual_x_url_primary", ""))
+        final_secondary = canonical_x_url(master.get("final_manual_x_url_secondary", ""))
         handles[collection_handle.lower()].append(index)
 
         if not is_true(master.get("final_manual_scrape_eligible", "")):
