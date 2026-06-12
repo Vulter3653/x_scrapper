@@ -15,6 +15,14 @@ on:
         description: 'Ending Fortune rank'
         required: true
         default: '100'
+      max_parallel:
+        description: 'Maximum shard jobs to run in parallel'
+        required: true
+        default: '3'
+      retry_attempts:
+        description: 'Retry attempts per account after an initial failed browser collection'
+        required: true
+        default: '2'
       commit_results:
         description: 'Commit and push collection outputs'
         required: true
@@ -28,9 +36,133 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  collect-ranked:
+  collect-ranked-shards:
     runs-on: ubuntu-latest
-    timeout-minutes: 720
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(inputs.max_parallel) }}
+      matrix:
+        shard:
+          - id: '01'
+            start: 1
+            end: 10
+          - id: '02'
+            start: 11
+            end: 20
+          - id: '03'
+            start: 21
+            end: 30
+          - id: '04'
+            start: 31
+            end: 40
+          - id: '05'
+            start: 41
+            end: 50
+          - id: '06'
+            start: 51
+            end: 60
+          - id: '07'
+            start: 61
+            end: 70
+          - id: '08'
+            start: 71
+            end: 80
+          - id: '09'
+            start: 81
+            end: 90
+          - id: '10'
+            start: 91
+            end: 100
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve shard rank range
+        id: bounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          requested_start=${{ inputs.start_rank }}
+          requested_end=${{ inputs.end_rank }}
+          shard_start=${{ matrix.shard.start }}
+          shard_end=${{ matrix.shard.end }}
+          actual_start=$(( requested_start > shard_start ? requested_start : shard_start ))
+          actual_end=$(( requested_end < shard_end ? requested_end : shard_end ))
+          mkdir -p staging
+          if [ "$actual_start" -gt "$actual_end" ]; then
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "shard_${{ matrix.shard.id }}_outside_requested_range" > "staging/shard_${{ matrix.shard.id }}_skipped.txt"
+            exit 0
+          fi
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+          echo "start_rank=$actual_start" >> "$GITHUB_OUTPUT"
+          echo "end_rank=$actual_end" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install existing browser collector dependencies
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements-scrape.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Validate ranked collection scaffold before shard run
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python scripts/validate_fortune_x_ranked_collection.py --allow-empty-before-run
+
+      - name: Run ranked Fortune X shard collection
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        env:
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+        run: |
+          set -euo pipefail
+          python scripts/run_fortune_x_ranked_collection.py \
+            --start-rank "${{ steps.bounds.outputs.start_rank }}" \
+            --end-rank "${{ steps.bounds.outputs.end_rank }}" \
+            --max-posts "${{ inputs.max_posts }}" \
+            --retries "${{ inputs.retry_attempts }}" \
+            --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv"
+
+      - name: Stage shard artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p staging/data/raw staging/data/audit
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
+          fi
+          if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv" ]; then
+            cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv" staging/data/audit/
+          fi
+
+      - name: Upload shard artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fortune-x-ranked-shard-${{ matrix.shard.id }}
+          path: staging/
+          retention-days: 1
+
+  aggregate-ranked-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: collect-ranked-shards
 
     steps:
       - name: Checkout repository
@@ -42,39 +174,29 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
-      - name: Install existing browser collector dependencies
+      - name: Download shard artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: fortune-x-ranked-shard-*
+          path: .
+          merge-multiple: true
+
+      - name: Merge shard summaries
         shell: bash
         run: |
           set -euxo pipefail
-          python -m pip install --upgrade pip
-          pip install -r requirements-scrape.txt
-          python -m playwright install --with-deps chromium
-
-      - name: Validate ranked collection scaffold before run
-        shell: bash
-        run: |
-          set -euxo pipefail
-          python scripts/validate_fortune_x_ranked_collection.py --allow-empty-before-run
-
-      - name: Run ranked Fortune X collection
-        shell: bash
-        env:
-          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
-          X_CT0: ${{ secrets.X_CT0 }}
-        run: |
-          set -euo pipefail
-          python scripts/run_fortune_x_ranked_collection.py \
-            --start-rank "${{ inputs.start_rank }}" \
-            --end-rank "${{ inputs.end_rank }}" \
-            --max-posts "${{ inputs.max_posts }}"
+          python scripts/merge_fortune_x_ranked_collection_shards.py \
+            --output data/audit/fortune_x_2025_ranked_collection_summary.csv
 
       - name: Validate ranked collection outputs
         shell: bash
         run: |
           set -euxo pipefail
-          python scripts/validate_fortune_x_ranked_collection.py
+          python scripts/validate_fortune_x_ranked_collection.py \
+            --summary-file data/audit/fortune_x_2025_ranked_collection_summary.csv \
+            --expected-start-rank "${{ inputs.start_rank }}" \
+            --expected-end-rank "${{ inputs.end_rank }}"
           if [ -n "$(git status --short dashboard/data)" ]; then
             echo "::error title=dashboard/data changed::dashboard/data must not be modified by ranked collection."
             git status --short dashboard/data
@@ -93,5 +215,5 @@ jobs:
             echo "No ranked Fortune X collection output changes to commit."
             exit 0
           fi
-          git commit -m "data: collect ranked fortune x posts" -m "Collected capped browser-based collection of observable public posts for the Fortune 2025 ranked queue. Dashboard data was not synced. Official X API was not used."
+          git commit -m "data: collect ranked fortune x posts" -m "Collected capped browser-based collection of observable public posts for the Fortune 2025 ranked queue using matrix shards. Dashboard data was not synced. Official X API was not used."
           git push origin HEAD:main

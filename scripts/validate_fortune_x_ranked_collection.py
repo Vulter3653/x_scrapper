@@ -17,6 +17,7 @@ OUTPUT_ROOT = REPO_ROOT / "data" / "raw" / "fortune_x_2025_ranked"
 SUMMARY_FILE = REPO_ROOT / "data" / "audit" / "fortune_x_2025_ranked_collection_summary.csv"
 WORKFLOW_FILE = REPO_ROOT / ".github" / "workflows" / "collect-fortune-x-ranked.yml"
 RUNNER_FILE = REPO_ROOT / "scripts" / "run_fortune_x_ranked_collection.py"
+MERGE_FILE = REPO_ROOT / "scripts" / "merge_fortune_x_ranked_collection_shards.py"
 
 REQUIRED_POST_COLUMNS = {
     "fortune_rank", "company_name", "official_x_handle", "tweet_id", "created_at", "text",
@@ -71,25 +72,36 @@ def check_dashboard_clean() -> None:
 
 
 def check_scaffold() -> None:
-    for path in [WORKFLOW_FILE, RUNNER_FILE]:
+    for path in [WORKFLOW_FILE, RUNNER_FILE, MERGE_FILE]:
         if path.exists():
             report("PASS", "required scaffold", f"found {rel(path)}")
         else:
             report("FAIL", "required scaffold", f"missing {rel(path)}")
     if WORKFLOW_FILE.exists():
         text = WORKFLOW_FILE.read_text(encoding="utf-8")
-        required = ["workflow_dispatch:", "contents: write", "fortune-x-ranked-collection", "python scripts/run_fortune_x_ranked_collection.py", "git push"]
+        required = [
+            "workflow_dispatch:",
+            "contents: write",
+            "fortune-x-ranked-collection",
+            "strategy:",
+            "matrix:",
+            "actions/upload-artifact",
+            "actions/download-artifact",
+            "python scripts/run_fortune_x_ranked_collection.py",
+            "python scripts/merge_fortune_x_ranked_collection_shards.py",
+            "git push",
+        ]
         missing = [item for item in required if item not in text]
         if missing:
             report("FAIL", "workflow controls", "missing: " + ", ".join(missing))
         else:
-            report("PASS", "workflow controls", "manual ranked collection workflow controls present")
-        forbidden = ["matrix:", "schedule:", "sync_dashboard_data.py"]
+            report("PASS", "workflow controls", "matrix ranked collection workflow controls present")
+        forbidden = ["schedule:", "sync_dashboard_data.py", *FORBIDDEN_API_MARKERS]
         found = [item for item in forbidden if item in text]
         if found:
             report("FAIL", "workflow forbidden behavior", "found: " + ", ".join(found))
         else:
-            report("PASS", "workflow forbidden behavior", "no matrix, schedule, or dashboard sync")
+            report("PASS", "workflow forbidden behavior", "no schedule, dashboard sync, or X API markers")
 
 
 def check_x_api_absent() -> None:
@@ -177,14 +189,14 @@ def check_outputs(allow_empty_before_run: bool) -> None:
     report("PASS", "missing created_at count", str(missing_created_at))
 
 
-def check_summary(allow_empty_before_run: bool) -> None:
-    if not SUMMARY_FILE.exists():
+def check_summary(allow_empty_before_run: bool, summary_file: Path, expected_start_rank: int | None, expected_end_rank: int | None) -> None:
+    if not summary_file.exists():
         if allow_empty_before_run:
-            report("PASS", "summary csv", f"{rel(SUMMARY_FILE)} absent before first run is allowed")
+            report("PASS", "summary csv", f"{rel(summary_file)} absent before first run is allowed")
         else:
-            report("FAIL", "summary csv", f"missing {rel(SUMMARY_FILE)}")
+            report("FAIL", "summary csv", f"missing {rel(summary_file)}")
         return
-    fields, rows = read_csv(SUMMARY_FILE)
+    fields, rows = read_csv(summary_file)
     missing = [column for column in REQUIRED_SUMMARY_COLUMNS if column not in fields]
     if missing:
         report("FAIL", "summary columns", "missing: " + ", ".join(missing))
@@ -195,17 +207,31 @@ def check_summary(allow_empty_before_run: bool) -> None:
         report("PASS", "summary rank ordering", "ranks are ascending")
     else:
         report("FAIL", "summary rank ordering", "summary ranks are not ascending")
+    if expected_start_rank is not None or expected_end_rank is not None:
+        if expected_start_rank is None or expected_end_rank is None:
+            report("FAIL", "summary rank coverage", "both expected start and end ranks are required")
+        else:
+            expected = set(range(expected_start_rank, expected_end_rank + 1))
+            present = {int(row["fortune_rank"]) for row in rows if row.get("fortune_rank", "").isdigit()}
+            missing_ranks = sorted(expected - present)
+            if missing_ranks:
+                report("FAIL", "summary rank coverage", "missing ranks: " + ", ".join(str(rank) for rank in missing_ranks))
+            else:
+                report("PASS", "summary rank coverage", f"rows cover ranks {expected_start_rank}-{expected_end_rank}")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--allow-empty-before-run", action="store_true")
+    parser.add_argument("--summary-file", default=str(SUMMARY_FILE))
+    parser.add_argument("--expected-start-rank", type=int)
+    parser.add_argument("--expected-end-rank", type=int)
     args = parser.parse_args()
     check_scaffold()
     check_dashboard_clean()
     check_x_api_absent()
     check_tracked_sensitive_files()
-    check_summary(args.allow_empty_before_run)
+    check_summary(args.allow_empty_before_run, Path(args.summary_file), args.expected_start_rank, args.expected_end_rank)
     check_outputs(args.allow_empty_before_run)
     return 1 if FAILURES else 0
 

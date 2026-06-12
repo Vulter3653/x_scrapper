@@ -65,6 +65,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--start-rank", type=int, default=1)
     parser.add_argument("--end-rank", type=int, default=100)
     parser.add_argument("--max-posts", type=int, default=50)
+    parser.add_argument("--summary-file", default=str(SUMMARY_FILE))
+    parser.add_argument("--retries", type=int, default=0)
+    parser.add_argument("--retry-delay-seconds", type=float, default=30.0)
     parser.add_argument("--max-scrolls", type=int, default=250)
     parser.add_argument("--scroll-delay-seconds", default="1.25")
     parser.add_argument("--idle-scroll-limit", type=int, default=20)
@@ -152,9 +155,9 @@ def write_audit_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def write_summary(rows: list[dict[str, Any]]) -> None:
-    SUMMARY_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with SUMMARY_FILE.open("w", encoding="utf-8", newline="") as handle:
+def write_summary(rows: list[dict[str, Any]], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=SUMMARY_COLUMNS)
         writer.writeheader()
         for row in rows:
@@ -243,50 +246,71 @@ def collect_account(account: QueueAccount, folder: str, args: argparse.Namespace
         "HEADLESS": args.headless,
     })
 
-    completed_at = ""
-    try:
-        result = subprocess.run(
-            [sys.executable, str(SCRAPER_ENTRYPOINT)],
-            cwd=REPO_ROOT,
-            env=env,
-            text=True,
-            capture_output=True,
-            check=False,
-        )
-        completed_at = utc_now()
-        posts = load_posts(tmp_posts_json)[: args.max_posts]
-        write_posts_csv(posts_csv, account, folder, posts, args.max_posts)
-        status = "success" if result.returncode == 0 else "failed"
-        error_type = "" if result.returncode == 0 else "collector_failed"
-        error_message = "" if result.returncode == 0 else sanitize_error((result.stdout or "") + " " + (result.stderr or ""))
-        audit = {
-            **base_audit,
-            "attempted": True,
-            "status": status,
-            "posts_collected": len(posts),
-            "completed_at": completed_at,
-            "error_type": error_type,
-            "error_message": error_message,
-            "browser_collection_used": True,
-        }
-    except Exception as exc:
-        completed_at = utc_now()
-        empty_posts(posts_csv, account, folder, args.max_posts)
-        audit = {
-            **base_audit,
-            "attempted": True,
-            "status": "failed",
-            "completed_at": completed_at,
-            "error_type": type(exc).__name__,
-            "error_message": sanitize_error(str(exc)),
-            "browser_collection_used": True,
-        }
-    finally:
+    attempts = args.retries + 1
+    audit = base_audit
+    for attempt in range(1, attempts + 1):
         for path in (tmp_posts_json, tmp_state_json):
             try:
                 path.unlink()
             except FileNotFoundError:
                 pass
+        try:
+            result = subprocess.run(
+                [sys.executable, str(SCRAPER_ENTRYPOINT)],
+                cwd=REPO_ROOT,
+                env=env,
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            completed_at = utc_now()
+            status = "success" if result.returncode == 0 else "failed"
+            if status == "success":
+                posts = load_posts(tmp_posts_json)[: args.max_posts]
+                write_posts_csv(posts_csv, account, folder, posts, args.max_posts)
+            else:
+                posts = []
+                empty_posts(posts_csv, account, folder, args.max_posts)
+            error_type = "" if result.returncode == 0 else "collector_failed"
+            error_message = "" if result.returncode == 0 else sanitize_error((result.stdout or "") + " " + (result.stderr or ""))
+            audit = {
+                **base_audit,
+                "attempted": True,
+                "status": status,
+                "posts_collected": len(posts),
+                "completed_at": completed_at,
+                "error_type": error_type,
+                "error_message": error_message,
+                "browser_collection_used": True,
+            }
+        except Exception as exc:
+            completed_at = utc_now()
+            empty_posts(posts_csv, account, folder, args.max_posts)
+            audit = {
+                **base_audit,
+                "attempted": True,
+                "status": "failed",
+                "completed_at": completed_at,
+                "error_type": type(exc).__name__,
+                "error_message": sanitize_error(str(exc)),
+                "browser_collection_used": True,
+            }
+
+        if audit["status"] == "success":
+            break
+        if attempt < attempts:
+            print(
+                f"retry_rank={account.fortune_rank:03d} attempt={attempt + 1}/{attempts} "
+                f"delay_seconds={args.retry_delay_seconds}",
+                flush=True,
+            )
+            time.sleep(args.retry_delay_seconds)
+
+    for path in (tmp_posts_json, tmp_state_json):
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            pass
 
     write_audit_json(audit_json, audit)
     return audit
@@ -298,6 +322,10 @@ def main() -> int:
         raise SystemExit("rank range must be within 1-100 and start_rank <= end_rank")
     if args.max_posts < 1:
         raise SystemExit("max_posts must be >= 1")
+    if args.retries < 0:
+        raise SystemExit("retries must be >= 0")
+    if args.retry_delay_seconds < 0:
+        raise SystemExit("retry_delay_seconds must be >= 0")
 
     accounts = read_queue(Path(args.queue_file), args.start_rank, args.end_rank)
     seen_folders: set[str] = set()
@@ -322,7 +350,7 @@ def main() -> int:
         })
         time.sleep(1)
 
-    write_summary(summary_rows)
+    write_summary(summary_rows, Path(args.summary_file))
     failed = sum(1 for row in summary_rows if row["status"] == "failed")
     skipped = sum(1 for row in summary_rows if row["status"] == "skipped")
     print(f"ranked_collection_complete attempted={len(summary_rows) - skipped} failed={failed} skipped={skipped}", flush=True)
