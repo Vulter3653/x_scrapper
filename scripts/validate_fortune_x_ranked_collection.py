@@ -37,6 +37,7 @@ REQUIRED_SUMMARY_COLUMNS = [
 ]
 FORBIDDEN_TRACKED_PATTERNS = ("session", "cache", "screenshot", "trace", "auth_token", "ct0")
 FORBIDDEN_API_MARKERS = ("api.x.com", "api.twitter.com", "bearer_token", "Authorization: Bearer")
+QUICK_SMOKE_RANKS = {1, 5, 14, 25, 29, 43, 67, 78, 80, 100}
 
 FAILURES = 0
 WARNINGS = 0
@@ -269,7 +270,13 @@ def check_outputs(allow_empty_before_run: bool) -> None:
         report("PASS", "malformed posts.csv rows", "0")
 
 
-def check_summary(allow_empty_before_run: bool, summary_file: Path, expected_start_rank: int | None, expected_end_rank: int | None) -> None:
+def expected_ranks_for_mode(collection_mode: str, start_rank: int, end_rank: int) -> set[int]:
+    if collection_mode == "quick_smoke":
+        return {rank for rank in QUICK_SMOKE_RANKS if start_rank <= rank <= end_rank}
+    return set(range(start_rank, end_rank + 1))
+
+
+def check_summary(allow_empty_before_run: bool, summary_file: Path, expected_start_rank: int | None, expected_end_rank: int | None, collection_mode: str) -> None:
     if not summary_file.exists():
         if allow_empty_before_run:
             report("PASS", "summary csv", f"{rel(summary_file)} absent before first run is allowed")
@@ -291,13 +298,17 @@ def check_summary(allow_empty_before_run: bool, summary_file: Path, expected_sta
         if expected_start_rank is None or expected_end_rank is None:
             report("FAIL", "summary rank coverage", "both expected start and end ranks are required")
         else:
-            expected = set(range(expected_start_rank, expected_end_rank + 1))
+            expected = expected_ranks_for_mode(collection_mode, expected_start_rank, expected_end_rank)
             present = {int(row["fortune_rank"]) for row in rows if row.get("fortune_rank", "").isdigit()}
             missing_ranks = sorted(expected - present)
+            unexpected_ranks = sorted(present - expected)
             if missing_ranks:
                 report("FAIL", "summary rank coverage", "missing ranks: " + ", ".join(str(rank) for rank in missing_ranks))
+            elif unexpected_ranks and collection_mode == "quick_smoke":
+                report("FAIL", "summary rank coverage", "unexpected quick_smoke ranks: " + ", ".join(str(rank) for rank in unexpected_ranks))
             else:
-                report("PASS", "summary rank coverage", f"rows cover ranks {expected_start_rank}-{expected_end_rank}")
+                expected_detail = ",".join(str(rank) for rank in sorted(expected)) if collection_mode == "quick_smoke" else f"{expected_start_rank}-{expected_end_rank}"
+                report("PASS", "summary rank coverage", f"rows cover expected {collection_mode} ranks {expected_detail}")
 
 
 def main() -> int:
@@ -306,12 +317,13 @@ def main() -> int:
     parser.add_argument("--summary-file", default=str(SUMMARY_FILE))
     parser.add_argument("--expected-start-rank", type=int)
     parser.add_argument("--expected-end-rank", type=int)
+    parser.add_argument("--collection-mode", default="custom", choices=["quick_smoke", "coverage_smoke", "full_collection", "custom", "smoke_test"])
     args = parser.parse_args()
     check_scaffold()
     check_dashboard_clean()
     check_x_api_absent()
     check_tracked_sensitive_files()
-    check_summary(args.allow_empty_before_run, Path(args.summary_file), args.expected_start_rank, args.expected_end_rank)
+    check_summary(args.allow_empty_before_run, Path(args.summary_file), args.expected_start_rank, args.expected_end_rank, args.collection_mode)
     check_outputs(args.allow_empty_before_run)
     return 1 if FAILURES else 0
 
