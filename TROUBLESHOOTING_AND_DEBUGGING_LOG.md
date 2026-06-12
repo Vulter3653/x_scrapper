@@ -25,6 +25,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune Top 10 verification pilot | Manual account verification was performed without scraping or dashboard/data mutation. | Ranks 1-10 were updated in the verification master only; validator warnings, if any, are expected for blocked/no-account-found rows. |
 | Fortune ranks 11-30 verification batch | Manual account verification continued without scraping or dashboard/data mutation. | Ranks 11-30 were updated in the verification master only; inaccessible and no-account-found rows remain blocked and not scrape eligible. |
 | Fortune ranks 31-50 verification batch | Manual account verification continued without scraping or dashboard/data mutation. | Ranks 31-50 were updated in the verification master only; no-account-found rows remain blocked and not scrape eligible. |
+| Fortune ranks 51-75 verification batch | Manual account verification continued without scraping or dashboard/data mutation. | Ranks 51-75 were updated in the verification master only; inaccessible and no-account-found rows remain blocked and not scrape eligible. |
 
 ## Detailed Incidents
 
