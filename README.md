@@ -146,6 +146,28 @@ Validation:
 python scripts/validate_fortune_x_batch_action.py
 ```
 
+
+## Fortune 2025 Ranked X GitHub Action Collection
+
+A manual GitHub Actions workflow can collect the Fortune 2025 Top 100 human-final X queue in rank order using the existing Playwright/browser collector. The workflow processes ranks sequentially, stores each company under `data/raw/fortune_x_2025_ranked/<rank>_<company_slug>/`, writes `posts.csv` and `audit.json`, and writes `data/audit/fortune_x_2025_ranked_collection_summary.csv`.
+
+| File | Purpose |
+| --- | --- |
+| `.github/workflows/collect-fortune-x-ranked.yml` | `workflow_dispatch` ranked collection workflow. |
+| `scripts/run_fortune_x_ranked_collection.py` | Sequential rank-ordered runner. |
+| `scripts/validate_fortune_x_ranked_collection.py` | Ranked collection scaffold/output validator. |
+| `docs/operations/fortune_x_ranked_github_action_collection.md` | Operating protocol. |
+
+Collection method: capped browser-based collection of observable public posts. Official X API is not used. Dashboard sync is disabled and `dashboard/data/` must not be modified.
+
+Required GitHub secrets: `X_AUTH_TOKEN`, `X_CT0`.
+
+Validation:
+
+```bash
+python scripts/validate_fortune_x_ranked_collection.py --allow-empty-before-run
+```
+
 ## Data Layout
 
 브랜드별 표준 결과 구조는 다음과 같습니다.

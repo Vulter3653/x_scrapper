@@ -1,0 +1,97 @@
+name: Collect Fortune 2025 Ranked X Accounts
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_posts:
+        description: 'Maximum observable public posts per account'
+        required: true
+        default: '50'
+      start_rank:
+        description: 'Starting Fortune rank'
+        required: true
+        default: '1'
+      end_rank:
+        description: 'Ending Fortune rank'
+        required: true
+        default: '100'
+      commit_results:
+        description: 'Commit and push collection outputs'
+        required: true
+        default: 'true'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fortune-x-ranked-collection
+  cancel-in-progress: false
+
+jobs:
+  collect-ranked:
+    runs-on: ubuntu-latest
+    timeout-minutes: 720
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install existing browser collector dependencies
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements-scrape.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Validate ranked collection scaffold before run
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python scripts/validate_fortune_x_ranked_collection.py --allow-empty-before-run
+
+      - name: Run ranked Fortune X collection
+        shell: bash
+        env:
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+        run: |
+          set -euo pipefail
+          python scripts/run_fortune_x_ranked_collection.py \
+            --start-rank "${{ inputs.start_rank }}" \
+            --end-rank "${{ inputs.end_rank }}" \
+            --max-posts "${{ inputs.max_posts }}"
+
+      - name: Validate ranked collection outputs
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python scripts/validate_fortune_x_ranked_collection.py
+          if [ -n "$(git status --short dashboard/data)" ]; then
+            echo "::error title=dashboard/data changed::dashboard/data must not be modified by ranked collection."
+            git status --short dashboard/data
+            exit 1
+          fi
+
+      - name: Commit and push collection outputs
+        if: ${{ inputs.commit_results == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw/fortune_x_2025_ranked data/audit/fortune_x_2025_ranked_collection_summary.csv
+          if git diff --cached --quiet; then
+            echo "No ranked Fortune X collection output changes to commit."
+            exit 0
+          fi
+          git commit -m "data: collect ranked fortune x posts" -m "Collected capped browser-based collection of observable public posts for the Fortune 2025 ranked queue. Dashboard data was not synced. Official X API was not used."
+          git push origin HEAD:main
