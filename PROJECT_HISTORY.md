@@ -152,6 +152,8 @@ These files were intentionally removed because they were generated from earlier 
 | `2026-06-12` | `pending` | Added Fortune Top 100 X dry-run collection readiness protocol. | Created a dry-run-only readiness policy, schema, protocol, and validator for the 43 verified queue accounts. No X post scraping, timeline collection, X API call, MCP installation, dashboard sync, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 | `2026-06-12` | `pending` | Drafted Fortune Top 100 X collection authorization proposal. | Created a pre-execution proposal, schema, method comparison document, and validator for the 43 verified queue accounts. Collection remains unauthorized and dry-run only; no X scraping, timeline collection, X API call, MCP installation, browser automation, dashboard sync, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 
+| `2026-06-12` | `pending` | Added human manual review layer for Fortune Top 100 X account verification. | Updated only `config/fortune2025_x_account_verification_master.csv` with human-review overlay columns for ranks 1-20; ranks 21-100 remain pending human review. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
+
 ## Operational Decisions
 
 1. Fortune work now uses `fortune2025_itemListElement_rows.csv` as the active ranking source.

@@ -34,6 +34,8 @@ This file consolidates troubleshooting and debugging history in one place. It is
 
 ## Detailed Incidents
 
+| Human manual review layer for Fortune Top 100 X account verification | Human review overlay was added without scraping or dashboard/data mutation. | Ranks 1-20 now have final manual eligibility fields; ranks 21-100 remain pending human review. |
+
 ### 1. GitHub Actions Scraper Failure: Missing Secrets
 
 - Period: `2026-05-22`

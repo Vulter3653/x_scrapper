@@ -92,6 +92,24 @@ manual_verification_required=false
 
 Do not use `manual_search_only` for default initialization. It means a reviewer actually searched and found only search-result-level evidence.
 
+## Human Manual Review Layer
+
+Original Codex-reviewed fields are preserved as preliminary/reference evidence only. They remain useful for audit history, but they are no longer the final source of account eligibility.
+
+The human-review overlay added to the master CSV is the final authority for future collection eligibility:
+
+- `human_candidate_is_actual_official`
+- `human_actual_x_url_1`
+- `human_actual_x_url_2`
+- `human_review_status`
+- `human_review_batch`
+- `final_manual_x_url_primary`
+- `final_manual_x_url_secondary`
+- `final_manual_account_status`
+- `final_manual_scrape_eligible`
+
+For the current batch, ranks 1-20 are `human_reviewed` and ranks 21-100 remain `pending_human_review`. `final_manual_scrape_eligible` is the only field that should be used for any future collection eligibility decision. Existing `scrape_eligible` must not be treated as final after this human-review policy change.
+
 ## Scrape Eligibility Gate
 
 `scrape_eligible=true` is allowed only when all conditions hold:
@@ -129,7 +147,7 @@ This field indicates whether a human decision has been made and must be preserve
 
 ## Required Review Evidence
 
-For `official` and `brand_official`, reviewers must record:
+Original Codex-reviewed fields remain preliminary/reference evidence; the human-review overlay determines the final account result and future eligibility. For `official` and `brand_official`, reviewers must record:
 
 - `official_x_handle`
 - `official_x_url`

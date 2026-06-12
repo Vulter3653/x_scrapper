@@ -120,6 +120,7 @@ python scripts/validate_fortune_expansion_readiness.py
 python scripts/validate_fortune_x_collection_queue.py
 python scripts/validate_fortune_x_collection_readiness.py
 python scripts/validate_fortune_x_collection_authorization_proposal.py
+python scripts/validate_fortune_x_human_review.py
 ```
 
 These validators are local/static checks. They do not read secrets, scrape X, call external networks, run SEC downloads, or modify `data/` or `dashboard/data/`.
@@ -172,6 +173,28 @@ Validation:
 python scripts/validate_fortune_expansion_readiness.py
 ```
 
+
+## Fortune Top 100 Human Manual Review Layer
+
+The human manual review layer is the final source of official X account eligibility. The Codex-reviewed fields in the master CSV are preliminary/reference evidence only. The existing `scrape_eligible` field is no longer the final eligibility signal after the human-review policy change. Future collection eligibility must use `final_manual_scrape_eligible`.
+
+Current review state:
+
+- Ranks 1-20 are `human_reviewed`.
+- Ranks 21-100 remain `pending_human_review`.
+- Human-review rows already have final manual primary/secondary URLs and final manual account status filled in.
+- Pending rows remain blank in the human-review overlay and have `final_manual_scrape_eligible=false`.
+
+| File | Purpose |
+| --- | --- |
+| `config/fortune2025_x_account_verification_master.csv` | Single master source with Codex preliminary evidence and human final fields. |
+| `scripts/validate_fortune_x_human_review.py` | Validator for the human-review overlay and final eligibility gate. |
+
+Validation:
+
+```bash
+python scripts/validate_fortune_x_human_review.py
+```
 
 ## Fortune Top 100 Verified X Collection Queue Scaffold
 
