@@ -27,6 +27,10 @@ on:
         description: 'Delay between account retry attempts in seconds'
         required: true
         default: '90'
+      collector_timeout_seconds:
+        description: 'Hard timeout for one account browser collector subprocess in seconds'
+        required: true
+        default: '1200'
       max_scrolls:
         description: 'Maximum scroll attempts per account'
         required: true
@@ -145,6 +149,7 @@ jobs:
             --max-posts "${{ inputs.max_posts }}" \
             --retries "${{ inputs.retry_attempts }}" \
             --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
             --max-scrolls "${{ inputs.max_scrolls }}" \
             --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
             --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
@@ -261,6 +266,7 @@ jobs:
             --max-posts "${{ inputs.max_posts }}" \
             --retries "${{ inputs.retry_attempts }}" \
             --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
             --max-scrolls "${{ inputs.max_scrolls }}" \
             --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
             --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
@@ -377,6 +383,7 @@ jobs:
             --max-posts "${{ inputs.max_posts }}" \
             --retries "${{ inputs.retry_attempts }}" \
             --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
             --max-scrolls "${{ inputs.max_scrolls }}" \
             --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
             --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
@@ -493,6 +500,7 @@ jobs:
             --max-posts "${{ inputs.max_posts }}" \
             --retries "${{ inputs.retry_attempts }}" \
             --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
             --max-scrolls "${{ inputs.max_scrolls }}" \
             --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
             --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \

@@ -108,6 +108,8 @@ def check_scaffold() -> None:
             "fortune-x-ranked-phase-*-rank-*",
             "retry_delay_seconds",
             "--retry-delay-seconds",
+            "collector_timeout_seconds",
+            "--collector-timeout-seconds",
             "--previous-output-root",
             "python scripts/run_fortune_x_ranked_collection.py",
             "python scripts/merge_fortune_x_ranked_collection_shards.py",

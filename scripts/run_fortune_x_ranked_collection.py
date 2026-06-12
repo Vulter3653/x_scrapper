@@ -86,6 +86,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--summary-file", default=str(SUMMARY_FILE))
     parser.add_argument("--retries", type=int, default=2)
     parser.add_argument("--retry-delay-seconds", type=float, default=90.0)
+    parser.add_argument("--collector-timeout-seconds", type=float, default=1200.0)
     parser.add_argument("--max-scrolls", type=int, default=2500)
     parser.add_argument("--scroll-delay-seconds", default="1.5")
     parser.add_argument("--idle-scroll-limit", type=int, default=80)
@@ -220,7 +221,7 @@ def write_posts_csv(
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     collected_at = utc_now()
-    capped_posts = posts[:max_posts] if max_posts else []
+    capped_posts = posts[:max_posts] if max_posts else posts
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=POST_COLUMNS)
         writer.writeheader()
@@ -364,20 +365,46 @@ def collect_trusted_account(
                 text=True,
                 capture_output=True,
                 check=False,
+                timeout=args.collector_timeout_seconds,
             )
             completed_at = utc_now()
-            status = "success" if result.returncode == 0 else "failed"
-            posts = load_posts(tmp_posts_json) if status == "success" else []
+            if result.returncode == 0:
+                posts = load_posts(tmp_posts_json)
+                if posts:
+                    status = "success"
+                    error_type = ""
+                    error_message = ""
+                else:
+                    status = "failed"
+                    error_type = "zero_posts_collected"
+                    error_message = "collector returned success but produced zero posts"
+            else:
+                posts = []
+                status = "failed"
+                error_type = "collector_failed"
+                error_message = sanitize_error((result.stdout or "") + " " + (result.stderr or ""))
             write_posts_csv(posts_csv, company, trusted_account, source_folder, posts, args.max_posts)
-            capped_count = len(posts[:args.max_posts]) if args.max_posts else 0
+            capped_posts = posts[:args.max_posts] if args.max_posts else posts
             audit = {
                 **base_audit,
                 "attempted": True,
                 "status": status,
-                "posts_collected": capped_count,
+                "posts_collected": len(capped_posts),
                 "completed_at": completed_at,
-                "error_type": "" if result.returncode == 0 else "collector_failed",
-                "error_message": "" if result.returncode == 0 else sanitize_error((result.stdout or "") + " " + (result.stderr or "")),
+                "error_type": error_type,
+                "error_message": error_message,
+                "browser_collection_used": True,
+            }
+        except subprocess.TimeoutExpired as exc:
+            write_posts_csv(posts_csv, company, trusted_account, source_folder, [], args.max_posts)
+            audit = {
+                **base_audit,
+                "attempted": True,
+                "status": "failed",
+                "posts_collected": 0,
+                "completed_at": utc_now(),
+                "error_type": "collector_timeout",
+                "error_message": sanitize_error(str(exc)),
                 "browser_collection_used": True,
             }
         except Exception as exc:
@@ -386,6 +413,7 @@ def collect_trusted_account(
                 **base_audit,
                 "attempted": True,
                 "status": "failed",
+                "posts_collected": 0,
                 "completed_at": utc_now(),
                 "error_type": type(exc).__name__,
                 "error_message": sanitize_error(str(exc)),
@@ -542,6 +570,8 @@ def main() -> int:
         raise SystemExit("retries must be >= 0")
     if args.retry_delay_seconds < 0:
         raise SystemExit("retry_delay_seconds must be >= 0")
+    if args.collector_timeout_seconds < 0:
+        raise SystemExit("collector_timeout_seconds must be >= 0")
 
     companies = read_queue(Path(args.queue_file), args.start_rank, args.end_rank)
     seen_folders: set[str] = set()
