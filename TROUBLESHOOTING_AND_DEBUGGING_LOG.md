@@ -27,6 +27,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune ranks 31-50 verification batch | Manual account verification continued without scraping or dashboard/data mutation. | Ranks 31-50 were updated in the verification master only; no-account-found rows remain blocked and not scrape eligible. |
 | Fortune ranks 51-75 verification batch | Manual account verification continued without scraping or dashboard/data mutation. | Ranks 51-75 were updated in the verification master only; inaccessible and no-account-found rows remain blocked and not scrape eligible. |
 | Fortune ranks 76-100 verification batch | Manual account verification completed without scraping or dashboard/data mutation. | Ranks 76-100 were updated in the verification master only; inaccessible and no-account-found rows remain blocked and not scrape eligible. |
+| Fortune inaccessible-row reviewer pass | Rechecked the 14 Fortune Top 100 rows marked inaccessible without scraping or dashboard/data mutation. | Energy Transfer and Allstate changed to `no_account_found`; the remaining inaccessible rows now include clearer access-block, JavaScript, empty-content, or limited-availability notes. |
 
 ## Detailed Incidents
 
