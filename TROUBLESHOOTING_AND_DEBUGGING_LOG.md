@@ -20,6 +20,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune account discovery | X search produced login challenges, selector failures, and unrelated repeated handles. | Prediction/discovery artifacts were removed; Fortune work reset to 2025 ranking source. |
 | Repository refactor validation | Sandbox `bwrap` prevented normal apply_patch/shell execution; wrapper import paths needed static validation. | Used approved shell execution, py_compile, node syntax checks, help checks, and `scripts/validate_repository_state.py`. |
 | Governance validation | Governance validation was added without data mutation. | Static validators document agent rules, claim boundaries, history integrity, and Fortune expansion readiness. |
+| Fortune account verification gate | Verification infrastructure was added without scraping or data mutation. | Master CSV initializes all Top 100 rows as `unknown`, `blocked`, and not scrape eligible until manual evidence is recorded. |
 
 ## Detailed Incidents
 
@@ -335,3 +336,13 @@ When a future issue occurs, append a new section to this file with:
   - No scraping, SEC download, `data/` mutation, or `dashboard/data/` mutation was performed.
 - Verification:
   - Governance validators were added to check agent rules, claim boundaries, history integrity, and Fortune expansion readiness without reading secrets or calling external services.
+
+### 17. Fortune Top 100 Verification Gate Added Without Collection
+
+- Period: `2026-06-12`
+- Scope:
+  - Added account verification master CSV, schema alignment, protocol documentation, and validator rules.
+  - No X scraping, Fortune 500 collection, SEC download, `data/` mutation, or `dashboard/data/` mutation was performed.
+- Boundary:
+  - Candidate X handles are not official-account claims.
+  - SEC 10-K fetch failure does not block account verification, but financial linkage analysis remains unavailable where SEC fetch failed.

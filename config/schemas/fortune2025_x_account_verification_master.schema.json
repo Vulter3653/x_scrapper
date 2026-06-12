@@ -1,24 +1,171 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Fortune 2025 X Account Verification Master",
+  "title": "Fortune 2025 X Account Verification Master Row",
+  "description": "Schema for one row of config/fortune2025_x_account_verification_master.csv. This is an account verification gate, not a scraping queue.",
   "type": "object",
-  "required": ["fortune_year", "fortune_rank", "firm_name", "official_x_account_status", "needs_manual_review"],
+  "required": [
+    "fortune_rank",
+    "company_name",
+    "normalized_company_name",
+    "candidate_x_handle",
+    "candidate_x_url",
+    "official_x_handle",
+    "official_x_url",
+    "official_x_account_status",
+    "evidence_source_url",
+    "evidence_source_type",
+    "evidence_strength",
+    "confidence",
+    "reviewer",
+    "review_date",
+    "scrape_eligible",
+    "manual_verification_required",
+    "notes"
+  ],
   "properties": {
-    "fortune_year": {"type": "string"},
-    "fortune_rank": {"type": "integer", "minimum": 1},
-    "firm_name": {"type": "string", "minLength": 1},
-    "entity_type": {"type": "string"},
-    "fortune_company_url": {"type": "string"},
-    "official_x_account_status": {"type": "string", "enum": ["unknown", "official", "not_found", "no_corporate_account", "ambiguous", "deprecated"]},
-    "reviewed_x_handle": {"type": "string"},
-    "reviewed_x_profile_url": {"type": "string"},
-    "direct_x_handle_candidate": {"type": "string"},
-    "direct_x_profile_url": {"type": "string"},
-    "verification_sources": {"type": "array", "items": {"type": "string"}},
-    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-    "needs_manual_review": {"type": "boolean"},
-    "review_notes": {"type": "string"},
-    "updated_at": {"type": "string"}
+    "fortune_rank": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "normalized_company_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidate_x_handle": {
+      "type": "string"
+    },
+    "candidate_x_url": {
+      "type": "string"
+    },
+    "official_x_handle": {
+      "type": "string"
+    },
+    "official_x_url": {
+      "type": "string"
+    },
+    "official_x_account_status": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "official",
+        "brand_official",
+        "subsidiary_only",
+        "ambiguous",
+        "no_account_found",
+        "inaccessible",
+        "do_not_scrape"
+      ]
+    },
+    "evidence_source_url": {
+      "type": "string"
+    },
+    "evidence_source_type": {
+      "type": "string",
+      "enum": [
+        "corporate_footer",
+        "newsroom",
+        "investor_relations",
+        "press_page",
+        "contact_page",
+        "social_directory",
+        "x_profile_backlink",
+        "cross_platform_official",
+        "manual_search_only",
+        "not_found",
+        "inaccessible"
+      ]
+    },
+    "evidence_strength": {
+      "type": "string",
+      "enum": [
+        "level_1",
+        "level_2",
+        "level_3",
+        "level_4",
+        "level_5",
+        "level_6",
+        "level_7",
+        "level_8",
+        "none"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "blocked"
+      ]
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "review_date": {
+      "type": "string"
+    },
+    "scrape_eligible": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
+    "manual_verification_required": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
   },
-  "additionalProperties": true
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "official_x_account_status": {
+            "enum": [
+              "official",
+              "brand_official"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence_source_url": {
+            "minLength": 1
+          },
+          "official_x_url": {
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "official_x_account_status": {
+            "const": "brand_official"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "notes": {
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
 }

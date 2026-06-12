@@ -140,6 +140,7 @@ These files were intentionally removed because they were generated from earlier 
 | --- | --- | --- | --- |
 | `2026-06-12` | `pending` | Conservatively reorganized repository before Fortune expansion. | Added `src/x_scrapper/` package, path constants, wrapper entrypoints, namespaced config copies, schemas, architecture/methodology docs, and static repository validator. No Fortune 500 collection, new X scraping, or SEC download was run. |
 | `2026-06-12` | `pending` | Added governance layer and claim-boundary validators. | Added `AGENT_RULES.md`, `DATA_CLAIM_BOUNDARIES.md`, `CHANGE_CONTROL.md`, operations protocols, File Lock Table, controlled account-status taxonomy checks, SEC 10-K failure boundary, and static validators. No scraping, SEC download, data mutation, or dashboard data mutation was performed. |
+| `2026-06-12` | `pending` | Added Fortune Top 100 X account verification gate. | Added `config/fortune2025_x_account_verification_master.csv`, aligned the verification schema enum with governance taxonomy, documented the Top 100 account verification protocol, and strengthened `scripts/validate_fortune_expansion_readiness.py`. No X scraping, Fortune 500 collection, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 
 ## Operational Decisions
 
@@ -150,10 +151,13 @@ These files were intentionally removed because they were generated from earlier 
 5. Historical commits remain in Git history, but active files should be interpreted according to the current baseline above.
 6. Root entrypoints are retained as compatibility wrappers; active implementation now lives under `src/x_scrapper/` for future refactoring.
 8. Current data and dashboard outputs are descriptive artifacts with explicit claim boundaries; they do not imply complete X history, official Fortune accounts, human-validated humor, causal effects, complete NAICS/SIC coverage, or successful SEC body downloads.
+10. Scrape eligibility requires `official` or `brand_official`, high or medium confidence, evidence source URL, and official X URL; Fortune 500 expansion remains blocked until Top 100 verification is complete and validated.
+9. Fortune Top 100 X account verification now uses `config/fortune2025_x_account_verification_master.csv` as the manual review gate; all initialized rows remain `unknown`, `blocked`, and not scrape eligible until evidence is recorded.
 7. Governance files now define Codex as Writer and Gemini as Auditor, enforce one-writer change control, and gate Fortune scraping behind Top 100 official-account verification.
 
 ## Related Work Logs
 
+- `docs/operations/fortune_top100_x_account_verification_protocol.md`
 - `docs/operations/fortune_expansion_gatekeeping.md`
 - `docs/operations/validation_protocol.md`
 - `CHANGE_CONTROL.md`

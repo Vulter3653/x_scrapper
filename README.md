@@ -148,6 +148,27 @@ dashboard/data/analysis/*.json
 dashboard/data/analysis/*.csv
 ```
 
+
+## Fortune Top 100 X Account Verification Gate
+
+The Fortune Top 100 verification gate is account verification only. It does not scrape X, expand to Fortune 500, download SEC filings, or create dashboard claims.
+
+| File | Purpose |
+| --- | --- |
+| `config/fortune2025_x_account_verification_master.csv` | Top 100 review master initialized with candidate X handles, no official-account claims, and `scrape_eligible=false`. |
+| `config/schemas/fortune2025_x_account_verification_master.schema.json` | Controlled schema for status, evidence source type, evidence strength, confidence, and scrape eligibility. |
+| `docs/operations/fortune_top100_x_account_verification_protocol.md` | Manual verification protocol and scrape eligibility gate. |
+
+Scrape eligibility requires all of the following: `official_x_account_status` is `official` or `brand_official`, `confidence` is `high` or `medium`, `evidence_source_url` is present, and `official_x_url` is present. Search-result-only evidence is insufficient for official status, and Level 8 evidence is never scrape-eligible.
+
+Fortune 500 expansion remains blocked until Top 100 verification is complete and validated. X post coverage is not a complete historical archive; humor and sentiment labels are model-generated unless manually audited; dashboard analytics are descriptive only and authorize no causal claims. SEC 10-K fetch failure does not block account verification, but financial linkage analysis remains unavailable where SEC fetch failed.
+
+Validation:
+
+```bash
+python scripts/validate_fortune_expansion_readiness.py
+```
+
 ## GitHub Actions Workflows
 
 | Workflow | File | Trigger | Purpose |
