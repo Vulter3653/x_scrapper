@@ -245,11 +245,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p staging/data/raw staging/data/audit
-          if [ -d data/raw/fortune_x_2025_ranked ]; then
-            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
-          fi
-          if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_1_rank_${{ matrix.rank }}.csv" ]; then
-            cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_1_rank_${{ matrix.rank }}.csv" staging/data/audit/
+          if [ "${{ steps.bounds.outputs.should_run }}" = "true" ]; then
+            if [ -d data/raw/fortune_x_2025_ranked ]; then
+              cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
+            fi
+            if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_1_rank_${{ matrix.rank }}.csv" ]; then
+              cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_1_rank_${{ matrix.rank }}.csv" staging/data/audit/
+            fi
           fi
 
       - name: Upload shard artifact
@@ -435,11 +437,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p staging/data/raw staging/data/audit
-          if [ -d data/raw/fortune_x_2025_ranked ]; then
-            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
-          fi
-          if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_2_rank_${{ matrix.rank }}.csv" ]; then
-            cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_2_rank_${{ matrix.rank }}.csv" staging/data/audit/
+          if [ "${{ steps.bounds.outputs.should_run }}" = "true" ]; then
+            if [ -d data/raw/fortune_x_2025_ranked ]; then
+              cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
+            fi
+            if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_2_rank_${{ matrix.rank }}.csv" ]; then
+              cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_2_rank_${{ matrix.rank }}.csv" staging/data/audit/
+            fi
           fi
 
       - name: Upload shard artifact
@@ -625,11 +629,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p staging/data/raw staging/data/audit
-          if [ -d data/raw/fortune_x_2025_ranked ]; then
-            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
-          fi
-          if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_3_rank_${{ matrix.rank }}.csv" ]; then
-            cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_3_rank_${{ matrix.rank }}.csv" staging/data/audit/
+          if [ "${{ steps.bounds.outputs.should_run }}" = "true" ]; then
+            if [ -d data/raw/fortune_x_2025_ranked ]; then
+              cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
+            fi
+            if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_3_rank_${{ matrix.rank }}.csv" ]; then
+              cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_3_rank_${{ matrix.rank }}.csv" staging/data/audit/
+            fi
           fi
 
       - name: Upload shard artifact
@@ -815,11 +821,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p staging/data/raw staging/data/audit
-          if [ -d data/raw/fortune_x_2025_ranked ]; then
-            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
-          fi
-          if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_4_rank_${{ matrix.rank }}.csv" ]; then
-            cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_4_rank_${{ matrix.rank }}.csv" staging/data/audit/
+          if [ "${{ steps.bounds.outputs.should_run }}" = "true" ]; then
+            if [ -d data/raw/fortune_x_2025_ranked ]; then
+              cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
+            fi
+            if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_4_rank_${{ matrix.rank }}.csv" ]; then
+              cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_4_rank_${{ matrix.rank }}.csv" staging/data/audit/
+            fi
           fi
 
       - name: Upload shard artifact
@@ -873,13 +881,18 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          python scripts/merge_fortune_x_ranked_collection_shards.py             --output data/audit/fortune_x_2025_ranked_collection_summary.csv
+          python scripts/merge_fortune_x_ranked_collection_shards.py \
+            --output data/audit/fortune_x_2025_ranked_collection_summary.csv
 
       - name: Validate ranked collection outputs
         shell: bash
         run: |
           set -euxo pipefail
-          python scripts/validate_fortune_x_ranked_collection.py             --summary-file data/audit/fortune_x_2025_ranked_collection_summary.csv             --expected-start-rank "${{ inputs.start_rank }}"             --expected-end-rank "${{ inputs.end_rank }}"
+          python scripts/validate_fortune_x_ranked_collection.py \
+            --summary-file data/audit/fortune_x_2025_ranked_collection_summary.csv \
+            --expected-start-rank "${{ inputs.start_rank }}" \
+            --expected-end-rank "${{ inputs.end_rank }}" \
+            --collection-mode "${{ inputs.collection_mode }}"
           if [ -n "$(git status --short dashboard/data)" ]; then
             echo "::error title=dashboard/data changed::dashboard/data must not be modified by ranked collection."
             git status --short dashboard/data
