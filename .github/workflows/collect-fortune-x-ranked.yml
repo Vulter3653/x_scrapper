@@ -18,11 +18,11 @@ on:
       max_parallel:
         description: 'Maximum shard jobs to run in parallel'
         required: true
-        default: '4'
+        default: '1'
       retry_attempts:
         description: 'Retry attempts per account after an initial failed browser collection'
         required: true
-        default: '1'
+        default: '2'
       max_scrolls:
         description: 'Maximum browser scroll attempts per account'
         required: true
@@ -30,15 +30,15 @@ on:
       scroll_delay_seconds:
         description: 'Delay after each scroll'
         required: true
-        default: '1.25'
+        default: '1.5'
       idle_scroll_limit:
         description: 'Stop after this many scrolls without new posts'
         required: true
-        default: '60'
+        default: '80'
       page_timeout_ms:
         description: 'Profile page and tweet-render timeout in milliseconds'
         required: true
-        default: '60000'
+        default: '120000'
       commit_results:
         description: 'Commit and push collection outputs'
         required: true
