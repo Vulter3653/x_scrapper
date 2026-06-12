@@ -40,8 +40,8 @@ POST_COLUMNS = [
 
 ACCOUNT_AUDIT_COLUMNS = [
     "fortune_rank", "company_name", "account_index", "account_role", "source_x_handle",
-    "source_x_url", "folder", "attempted", "status", "posts_collected", "error_type",
-    "error_message", "started_at", "completed_at",
+    "source_x_url", "folder", "attempted", "status", "posts_collected", "retryable",
+    "error_type", "error_message", "started_at", "completed_at",
 ]
 
 SUMMARY_COLUMNS = [
@@ -86,6 +86,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--summary-file", default=str(SUMMARY_FILE))
     parser.add_argument("--retries", type=int, default=2)
     parser.add_argument("--retry-delay-seconds", type=float, default=90.0)
+    parser.add_argument("--collector-timeout-seconds", type=float, default=1200.0)
     parser.add_argument("--max-scrolls", type=int, default=2500)
     parser.add_argument("--scroll-delay-seconds", default="1.5")
     parser.add_argument("--idle-scroll-limit", type=int, default=80)
@@ -220,7 +221,7 @@ def write_posts_csv(
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     collected_at = utc_now()
-    capped_posts = posts[:max_posts] if max_posts else []
+    capped_posts = posts[:max_posts] if max_posts else posts
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=POST_COLUMNS)
         writer.writeheader()
@@ -288,6 +289,38 @@ def load_posts(path: Path) -> list[dict[str, Any]]:
     if isinstance(payload, list):
         return [item for item in payload if isinstance(item, dict)]
     return []
+
+
+def load_state(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def is_true(value: Any) -> bool:
+    return value is True or (isinstance(value, str) and value.strip().lower() == "true")
+
+
+def is_false(value: Any) -> bool:
+    return value is False or (isinstance(value, str) and value.strip().lower() == "false")
+
+
+def zero_posts_terminal_state(state: dict[str, Any], posts_count: int) -> bool:
+    return (
+        is_true(state.get("profile_loaded"))
+        and is_true(state.get("account_exists"))
+        and is_false(state.get("login_wall"))
+        and is_false(state.get("error_page"))
+        and posts_count == 0
+    )
+
+
+def retryable_status(status: str) -> bool:
+    return status not in {"success", "no_observable_posts"}
 
 
 def collect_trusted_account(
@@ -364,21 +397,54 @@ def collect_trusted_account(
                 text=True,
                 capture_output=True,
                 check=False,
+                timeout=args.collector_timeout_seconds,
             )
             completed_at = utc_now()
-            status = "success" if result.returncode == 0 else "failed"
-            posts = load_posts(tmp_posts_json) if status == "success" else []
+            if result.returncode == 0:
+                posts = load_posts(tmp_posts_json)
+                state = load_state(tmp_state_json)
+                if posts:
+                    status = "success"
+                    error_type = ""
+                    error_message = ""
+                elif zero_posts_terminal_state(state, len(posts)):
+                    status = "no_observable_posts"
+                    error_type = "no_observable_posts"
+                    error_message = "profile loaded but no observable posts were collected"
+                else:
+                    status = "failed"
+                    error_type = "zero_posts_uncertain"
+                    error_message = "collector returned success but produced zero posts and profile validity was uncertain"
+            else:
+                posts = []
+                status = "failed"
+                error_type = "collector_failed"
+                error_message = sanitize_error((result.stdout or "") + " " + (result.stderr or ""))
             write_posts_csv(posts_csv, company, trusted_account, source_folder, posts, args.max_posts)
-            capped_count = len(posts[:args.max_posts]) if args.max_posts else 0
+            capped_posts = posts[:args.max_posts] if args.max_posts else posts
             audit = {
                 **base_audit,
                 "attempted": True,
                 "status": status,
-                "posts_collected": capped_count,
+                "posts_collected": len(capped_posts),
                 "completed_at": completed_at,
-                "error_type": "" if result.returncode == 0 else "collector_failed",
-                "error_message": "" if result.returncode == 0 else sanitize_error((result.stdout or "") + " " + (result.stderr or "")),
+                "error_type": error_type,
+                "error_message": error_message,
                 "browser_collection_used": True,
+                "retryable": retryable_status(status),
+            }
+        except subprocess.TimeoutExpired as exc:
+            write_posts_csv(posts_csv, company, trusted_account, source_folder, [], args.max_posts)
+            audit = {
+                **base_audit,
+                "attempted": True,
+                "status": "failed",
+                "posts_collected": 0,
+                "completed_at": utc_now(),
+                "error_type": "collector_timeout",
+                "error_message": sanitize_error(str(exc)),
+                "browser_collection_used": True,
+                "retryable": True,
             }
         except Exception as exc:
             write_posts_csv(posts_csv, company, trusted_account, source_folder, [], args.max_posts)
@@ -386,13 +452,15 @@ def collect_trusted_account(
                 **base_audit,
                 "attempted": True,
                 "status": "failed",
+                "posts_collected": 0,
                 "completed_at": utc_now(),
                 "error_type": type(exc).__name__,
                 "error_message": sanitize_error(str(exc)),
                 "browser_collection_used": True,
+                "retryable": True,
             }
 
-        if audit["status"] == "success":
+        if not audit.get("retryable", retryable_status(str(audit.get("status", "")))):
             break
         if attempt < attempts:
             print(
@@ -442,8 +510,14 @@ def company_status(account_audits: list[dict[str, Any]]) -> str:
     statuses = {audit.get("status") for audit in account_audits}
     if statuses == {"success"}:
         return "success"
+    if statuses == {"no_observable_posts"}:
+        return "no_observable_posts"
+    if "success" in statuses and statuses <= {"success", "no_observable_posts"}:
+        return "success"
     if "success" in statuses:
         return "partial_success"
+    if "no_observable_posts" in statuses and statuses <= {"no_observable_posts", "skipped"}:
+        return "no_observable_posts"
     if statuses == {"skipped"}:
         return "skipped"
     return "failed"
@@ -471,6 +545,7 @@ def write_company_outputs(company: QueueCompany, company_folder: str, account_au
             "attempted": str(audit.get("attempted", False)).lower(),
             "status": audit.get("status", ""),
             "posts_collected": audit.get("posts_collected", ""),
+            "retryable": str(audit.get("retryable", retryable_status(str(audit.get("status", ""))))).lower(),
             "error_type": audit.get("error_type", ""),
             "error_message": audit.get("error_message", ""),
             "started_at": audit.get("started_at", ""),
@@ -542,6 +617,8 @@ def main() -> int:
         raise SystemExit("retries must be >= 0")
     if args.retry_delay_seconds < 0:
         raise SystemExit("retry_delay_seconds must be >= 0")
+    if args.collector_timeout_seconds < 0:
+        raise SystemExit("collector_timeout_seconds must be >= 0")
 
     companies = read_queue(Path(args.queue_file), args.start_rank, args.end_rank)
     seen_folders: set[str] = set()

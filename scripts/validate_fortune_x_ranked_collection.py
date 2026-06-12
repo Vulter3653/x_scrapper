@@ -28,8 +28,8 @@ REQUIRED_POST_COLUMNS = {
 }
 REQUIRED_ACCOUNT_AUDIT_COLUMNS = {
     "fortune_rank", "company_name", "account_index", "account_role", "source_x_handle",
-    "source_x_url", "folder", "attempted", "status", "posts_collected", "error_type",
-    "error_message", "started_at", "completed_at",
+    "source_x_url", "folder", "attempted", "status", "posts_collected", "retryable",
+    "error_type", "error_message", "started_at", "completed_at",
 }
 REQUIRED_SUMMARY_COLUMNS = [
     "fortune_rank", "company_name", "official_x_handle", "folder", "attempted", "status",
@@ -89,6 +89,12 @@ def check_scaffold() -> None:
             "workflow_dispatch:",
             "contents: write",
             "fortune-x-ranked-collection",
+            "collection_mode",
+            "smoke_test",
+            "full_collection",
+            "custom",
+            "Resolve collection mode settings",
+            "steps.mode.outputs.max_posts",
             "collect-phase-1:",
             "collect-phase-2:",
             "collect-phase-3:",
@@ -108,6 +114,8 @@ def check_scaffold() -> None:
             "fortune-x-ranked-phase-*-rank-*",
             "retry_delay_seconds",
             "--retry-delay-seconds",
+            "collector_timeout_seconds",
+            "--collector-timeout-seconds",
             "--previous-output-root",
             "python scripts/run_fortune_x_ranked_collection.py",
             "python scripts/merge_fortune_x_ranked_collection_shards.py",
