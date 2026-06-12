@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 69,
+  "company_name": "Nationwide",
+  "official_x_handle": "@nationwide",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@nationwide",
+  "source_x_url": "https://x.com/nationwide",
+  "folder": "data/raw/fortune_x_2025_ranked/069_nationwide/accounts/01_primary_nationwide",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:23:09.849283+00:00",
+  "completed_at": "2026-06-12T18:23:14.739025+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

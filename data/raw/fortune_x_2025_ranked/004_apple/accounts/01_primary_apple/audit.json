@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 4,
+  "company_name": "Apple",
+  "official_x_handle": "@apple",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@apple",
+  "source_x_url": "https://x.com/apple",
+  "folder": "data/raw/fortune_x_2025_ranked/004_apple/accounts/01_primary_apple",
+  "attempted": true,
+  "status": "no_observable_posts",
+  "posts_collected": 0,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:11:39.911628+00:00",
+  "completed_at": "2026-06-12T18:12:11.725337+00:00",
+  "error_type": "no_observable_posts",
+  "error_message": "profile loaded but no observable posts were collected",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

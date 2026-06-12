@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+7,Berkshire Hathaway,1,primary,@berkshire,https://x.com/berkshire,data/raw/fortune_x_2025_ranked/007_berkshire_hathaway/accounts/01_primary_berkshire,true,no_observable_posts,0,false,no_observable_posts,profile loaded but no observable posts were collected,2026-06-12T18:12:22.067392+00:00,2026-06-12T18:12:53.443976+00:00

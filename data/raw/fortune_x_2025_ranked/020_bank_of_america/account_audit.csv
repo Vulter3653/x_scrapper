@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+20,Bank of America,1,primary,@bankofamerica,https://x.com/bankofamerica,data/raw/fortune_x_2025_ranked/020_bank_of_america/accounts/01_primary_bankofamerica,true,success,5,false,,,2026-06-12T18:14:40.608299+00:00,2026-06-12T18:14:44.871324+00:00

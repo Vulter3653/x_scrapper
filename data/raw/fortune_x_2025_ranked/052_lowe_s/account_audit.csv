@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+52,Lowe's,1,primary,@lowes,https://x.com/lowes,data/raw/fortune_x_2025_ranked/052_lowe_s/accounts/01_primary_lowes,true,success,5,false,,,2026-06-12T18:20:57.832015+00:00,2026-06-12T18:21:02.497649+00:00

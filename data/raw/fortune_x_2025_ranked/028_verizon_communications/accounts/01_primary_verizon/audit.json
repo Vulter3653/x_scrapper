@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 28,
+  "company_name": "Verizon Communications",
+  "official_x_handle": "@Verizon",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@Verizon",
+  "source_x_url": "https://x.com/Verizon",
+  "folder": "data/raw/fortune_x_2025_ranked/028_verizon_communications/accounts/01_primary_verizon",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:16:18.003613+00:00",
+  "completed_at": "2026-06-12T18:16:23.454054+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+36,Goldman Sachs Group,1,primary,@GoldmanSachs,https://x.com/GoldmanSachs,data/raw/fortune_x_2025_ranked/036_goldman_sachs_group/accounts/01_primary_goldmansachs,true,success,5,false,,,2026-06-12T18:17:45.729325+00:00,2026-06-12T18:17:50.942687+00:00

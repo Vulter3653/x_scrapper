@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+48,UPS,1,primary,@ups,https://x.com/ups,data/raw/fortune_x_2025_ranked/048_ups/accounts/01_primary_ups,true,success,5,false,,,2026-06-12T18:19:26.032629+00:00,2026-06-12T18:19:32.074682+00:00

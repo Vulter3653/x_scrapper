@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 40,
+  "company_name": "Valero Energy",
+  "official_x_handle": "@valeroenergy",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@valeroenergy",
+  "source_x_url": "https://x.com/valeroenergy",
+  "folder": "data/raw/fortune_x_2025_ranked/040_valero_energy/accounts/01_primary_valeroenergy",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:18:30.724823+00:00",
+  "completed_at": "2026-06-12T18:18:36.265296+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

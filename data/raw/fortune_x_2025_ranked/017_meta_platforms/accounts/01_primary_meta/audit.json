@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 17,
+  "company_name": "Meta Platforms",
+  "official_x_handle": "@Meta",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@Meta",
+  "source_x_url": "https://x.com/Meta",
+  "folder": "data/raw/fortune_x_2025_ranked/017_meta_platforms/accounts/01_primary_meta",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:14:01.512957+00:00",
+  "completed_at": "2026-06-12T18:14:07.566480+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

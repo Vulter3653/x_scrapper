@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 13,
+  "company_name": "Costco Wholesale",
+  "official_x_handle": "@Costco",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@Costco",
+  "source_x_url": "https://x.com/Costco",
+  "folder": "data/raw/fortune_x_2025_ranked/013_costco_wholesale/accounts/01_primary_costco",
+  "attempted": true,
+  "status": "no_observable_posts",
+  "posts_collected": 0,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:13:34.119328+00:00",
+  "completed_at": "2026-06-12T18:14:05.560570+00:00",
+  "error_type": "no_observable_posts",
+  "error_message": "profile loaded but no observable posts were collected",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 30,
+  "company_name": "Marathon Petroleum",
+  "official_x_handle": "@MarathonPetroCo",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@MarathonPetroCo",
+  "source_x_url": "https://x.com/MarathonPetroCo",
+  "folder": "data/raw/fortune_x_2025_ranked/030_marathon_petroleum/accounts/01_primary_marathonpetroco",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:16:14.898219+00:00",
+  "completed_at": "2026-06-12T18:16:19.654785+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

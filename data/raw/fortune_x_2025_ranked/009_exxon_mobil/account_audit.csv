@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+9,Exxon Mobil,1,primary,@exxonmobil,https://x.com/exxonmobil,data/raw/fortune_x_2025_ranked/009_exxon_mobil/accounts/01_primary_exxonmobil,true,success,5,false,,,2026-06-12T18:12:46.338671+00:00,2026-06-12T18:12:52.697799+00:00

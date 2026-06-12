@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 63,
+  "company_name": "Capital One Financial",
+  "official_x_handle": "@CapitalOne",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@CapitalOne",
+  "source_x_url": "https://x.com/CapitalOne",
+  "folder": "data/raw/fortune_x_2025_ranked/063_capital_one_financial/accounts/01_primary_capitalone",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:22:13.894255+00:00",
+  "completed_at": "2026-06-12T18:22:18.780349+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

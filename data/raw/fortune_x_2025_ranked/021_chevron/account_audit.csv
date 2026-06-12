@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+21,Chevron,1,primary,@chevron,https://x.com/chevron,data/raw/fortune_x_2025_ranked/021_chevron/accounts/01_primary_chevron,true,success,5,false,,,2026-06-12T18:14:42.310498+00:00,2026-06-12T18:14:47.635153+00:00

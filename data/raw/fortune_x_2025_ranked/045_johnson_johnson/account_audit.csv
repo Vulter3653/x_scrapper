@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+45,Johnson & Johnson,1,primary,@JNJNews,https://x.com/JNJNews,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews,true,success,5,false,,,2026-06-12T18:19:22.873124+00:00,2026-06-12T18:19:29.543312+00:00

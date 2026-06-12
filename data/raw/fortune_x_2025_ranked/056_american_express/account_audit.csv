@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+56,American Express,1,primary,@americanexpress,https://x.com/americanexpress,data/raw/fortune_x_2025_ranked/056_american_express/accounts/01_primary_americanexpress,true,success,5,false,,,2026-06-12T18:21:26.988511+00:00,2026-06-12T18:21:31.549749+00:00

@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+33,Freddie Mac,1,primary,@FreddieMac,https://x.com/FreddieMac,data/raw/fortune_x_2025_ranked/033_freddie_mac/accounts/01_primary_freddiemac,true,success,5,false,,,2026-06-12T18:17:00.952077+00:00,2026-06-12T18:17:06.906273+00:00

@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 16,
+  "company_name": "Nvidia",
+  "official_x_handle": "@nvidia",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@nvidia",
+  "source_x_url": "https://x.com/nvidia",
+  "folder": "data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:13:56.555900+00:00",
+  "completed_at": "2026-06-12T18:14:01.653613+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 35,
+  "company_name": "AT&T",
+  "official_x_handle": "@ATT",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@ATT",
+  "source_x_url": "https://x.com/ATT",
+  "folder": "data/raw/fortune_x_2025_ranked/035_at_t/accounts/01_primary_att",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:17:40.704747+00:00",
+  "completed_at": "2026-06-12T18:17:47.980650+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

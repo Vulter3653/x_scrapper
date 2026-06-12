@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 96,
+  "company_name": "Travelers",
+  "official_x_handle": "@travelers",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@travelers",
+  "source_x_url": "https://x.com/travelers",
+  "folder": "data/raw/fortune_x_2025_ranked/096_travelers/accounts/01_primary_travelers",
+  "attempted": true,
+  "status": "failed",
+  "posts_collected": 0,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:27:52.492603+00:00",
+  "completed_at": "2026-06-12T18:28:23.887896+00:00",
+  "error_type": "collector_failed",
+  "error_message": "her exception occurred:  Traceback (most recent call last):   File \"/home/runner/work/x_scrapper/x_scrapper/scrape_x.py\", line 20, in <module>     asyncio.run(scrape_profile())   File \"/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py\", line 190, in run     return runner.run(main)            ^^^^^^^^^^^^^^^^   File \"/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py\", line 118, in run     return self._loop.run_until_complete(task)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File \"/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete     return future.result()            ^^^^^^^^^^^^^^^   File \"/home/runner/work/x_scrapper/x_scrapper/src/x_scrapper/collection/x_scraper.py\", line 314, in scrape_profile     raise RuntimeError( RuntimeError: X profile did not render tweets. url=https://x.com/travelers, title=Travelers (@Travelers) / X. 쿠키가 만료됐거나 GitHub Actions 접속이 X에서 차단됐을 수 있습니다. ",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": true
+}

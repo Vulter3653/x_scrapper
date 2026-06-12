@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 37,
+  "company_name": "Comcast",
+  "official_x_handle": "@comcast",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@comcast",
+  "source_x_url": "https://x.com/comcast",
+  "folder": "data/raw/fortune_x_2025_ranked/037_comcast/accounts/01_primary_comcast",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:17:45.242909+00:00",
+  "completed_at": "2026-06-12T18:17:50.345384+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

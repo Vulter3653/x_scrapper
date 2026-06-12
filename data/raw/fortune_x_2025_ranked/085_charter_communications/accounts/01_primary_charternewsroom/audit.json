@@ -1,0 +1,22 @@
+{
+  "fortune_rank": 85,
+  "company_name": "Charter Communications",
+  "official_x_handle": "@CharterNewsroom",
+  "account_index": 1,
+  "account_role": "primary",
+  "source_x_handle": "@CharterNewsroom",
+  "source_x_url": "https://x.com/CharterNewsroom",
+  "folder": "data/raw/fortune_x_2025_ranked/085_charter_communications/accounts/01_primary_charternewsroom",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 5,
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:25:35.374435+00:00",
+  "completed_at": "2026-06-12T18:25:40.729943+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false,
+  "retryable": false
+}

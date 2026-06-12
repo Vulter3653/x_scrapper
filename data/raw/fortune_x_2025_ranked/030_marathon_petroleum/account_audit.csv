@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+30,Marathon Petroleum,1,primary,@MarathonPetroCo,https://x.com/MarathonPetroCo,data/raw/fortune_x_2025_ranked/030_marathon_petroleum/accounts/01_primary_marathonpetroco,true,success,5,false,,,2026-06-12T18:16:14.898219+00:00,2026-06-12T18:16:19.654785+00:00

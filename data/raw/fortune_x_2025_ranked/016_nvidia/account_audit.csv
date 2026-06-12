@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+16,Nvidia,1,primary,@nvidia,https://x.com/nvidia,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia,true,success,5,false,,,2026-06-12T18:13:56.555900+00:00,2026-06-12T18:14:01.653613+00:00

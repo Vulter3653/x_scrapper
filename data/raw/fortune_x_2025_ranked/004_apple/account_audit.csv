@@ -1,0 +1,2 @@
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+4,Apple,1,primary,@apple,https://x.com/apple,data/raw/fortune_x_2025_ranked/004_apple/accounts/01_primary_apple,true,no_observable_posts,0,false,no_observable_posts,profile loaded but no observable posts were collected,2026-06-12T18:11:39.911628+00:00,2026-06-12T18:12:11.725337+00:00

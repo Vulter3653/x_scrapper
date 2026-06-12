@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/043_tesla",
   "attempted": true,
   "status": "success",
-  "posts_collected": 3,
+  "posts_collected": 5,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/043_tesla/accounts/01_primary_tesla",
       "attempted": true,
       "status": "success",
-      "posts_collected": 3,
-      "max_posts_cap": 3,
-      "started_at": "2026-06-12T18:04:54.215828+00:00",
-      "completed_at": "2026-06-12T18:04:59.701059+00:00",
+      "posts_collected": 5,
+      "max_posts_cap": 5,
+      "started_at": "2026-06-12T18:18:33.837173+00:00",
+      "completed_at": "2026-06-12T18:18:39.735402+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 3,
-  "started_at": "2026-06-12T18:04:54.215828+00:00",
-  "completed_at": "2026-06-12T18:04:59.701059+00:00",
+  "max_posts_cap": 5,
+  "started_at": "2026-06-12T18:18:33.837173+00:00",
+  "completed_at": "2026-06-12T18:18:39.735402+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",
