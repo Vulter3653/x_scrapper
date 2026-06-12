@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       collection_mode:
-        description: 'Collection preset: smoke_test, full_collection, or custom input values'
+        description: 'Collection preset mode. Recommended: quick_smoke max_parallel=5, coverage_smoke max_parallel=6, full_collection max_parallel=2'
         required: true
-        default: 'full_collection'
+        default: 'quick_smoke'
         type: choice
         options:
-          - smoke_test
+          - quick_smoke
+          - coverage_smoke
           - full_collection
           - custom
       max_posts:
@@ -25,9 +26,9 @@ on:
         required: true
         default: '100'
       max_parallel:
-        description: 'Maximum rank jobs to run in parallel inside each phase'
+        description: 'Maximum rank jobs to run in parallel inside each phase; recommended quick_smoke=5, coverage_smoke=6, full_collection=2'
         required: true
-        default: '2'
+        default: '5'
       retry_attempts:
         description: 'Retry attempts per account after an initial failed browser collection'
         required: true
@@ -98,6 +99,17 @@ jobs:
             echo "phase_1_rank_${rank}_outside_requested_range" > "staging/phase_1_rank_${rank}_skipped.txt"
             exit 0
           fi
+          if [ "${{ inputs.collection_mode }}" = "quick_smoke" ]; then
+            case "$rank" in
+              1|5|14|25|29|43|67|78|80|100)
+                ;;
+              *)
+                echo "should_run=false" >> "$GITHUB_OUTPUT"
+                echo "quick_smoke_rank_${rank}_skipped" > "staging/quick_smoke_rank_${rank}_skipped.txt"
+                exit 0
+                ;;
+            esac
+          fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
       - name: Resolve collection mode settings
@@ -108,15 +120,25 @@ jobs:
           set -euo pipefail
           mode="${{ inputs.collection_mode }}"
           case "$mode" in
-            smoke_test)
-              max_posts=10
-              retry_attempts=1
-              retry_delay_seconds=30
-              collector_timeout_seconds=300
-              max_scrolls=250
-              scroll_delay_seconds=1.0
-              idle_scroll_limit=20
-              page_timeout_ms=60000
+            quick_smoke)
+              max_posts=3
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=50
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=5
+              page_timeout_ms=30000
+              ;;
+            coverage_smoke)
+              max_posts=5
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=80
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=8
+              page_timeout_ms=30000
               ;;
             full_collection)
               max_posts=0
@@ -267,6 +289,17 @@ jobs:
             echo "phase_2_rank_${rank}_outside_requested_range" > "staging/phase_2_rank_${rank}_skipped.txt"
             exit 0
           fi
+          if [ "${{ inputs.collection_mode }}" = "quick_smoke" ]; then
+            case "$rank" in
+              1|5|14|25|29|43|67|78|80|100)
+                ;;
+              *)
+                echo "should_run=false" >> "$GITHUB_OUTPUT"
+                echo "quick_smoke_rank_${rank}_skipped" > "staging/quick_smoke_rank_${rank}_skipped.txt"
+                exit 0
+                ;;
+            esac
+          fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
       - name: Resolve collection mode settings
@@ -277,15 +310,25 @@ jobs:
           set -euo pipefail
           mode="${{ inputs.collection_mode }}"
           case "$mode" in
-            smoke_test)
-              max_posts=10
-              retry_attempts=1
-              retry_delay_seconds=30
-              collector_timeout_seconds=300
-              max_scrolls=250
-              scroll_delay_seconds=1.0
-              idle_scroll_limit=20
-              page_timeout_ms=60000
+            quick_smoke)
+              max_posts=3
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=50
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=5
+              page_timeout_ms=30000
+              ;;
+            coverage_smoke)
+              max_posts=5
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=80
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=8
+              page_timeout_ms=30000
               ;;
             full_collection)
               max_posts=0
@@ -436,6 +479,17 @@ jobs:
             echo "phase_3_rank_${rank}_outside_requested_range" > "staging/phase_3_rank_${rank}_skipped.txt"
             exit 0
           fi
+          if [ "${{ inputs.collection_mode }}" = "quick_smoke" ]; then
+            case "$rank" in
+              1|5|14|25|29|43|67|78|80|100)
+                ;;
+              *)
+                echo "should_run=false" >> "$GITHUB_OUTPUT"
+                echo "quick_smoke_rank_${rank}_skipped" > "staging/quick_smoke_rank_${rank}_skipped.txt"
+                exit 0
+                ;;
+            esac
+          fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
       - name: Resolve collection mode settings
@@ -446,15 +500,25 @@ jobs:
           set -euo pipefail
           mode="${{ inputs.collection_mode }}"
           case "$mode" in
-            smoke_test)
-              max_posts=10
-              retry_attempts=1
-              retry_delay_seconds=30
-              collector_timeout_seconds=300
-              max_scrolls=250
-              scroll_delay_seconds=1.0
-              idle_scroll_limit=20
-              page_timeout_ms=60000
+            quick_smoke)
+              max_posts=3
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=50
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=5
+              page_timeout_ms=30000
+              ;;
+            coverage_smoke)
+              max_posts=5
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=80
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=8
+              page_timeout_ms=30000
               ;;
             full_collection)
               max_posts=0
@@ -605,6 +669,17 @@ jobs:
             echo "phase_4_rank_${rank}_outside_requested_range" > "staging/phase_4_rank_${rank}_skipped.txt"
             exit 0
           fi
+          if [ "${{ inputs.collection_mode }}" = "quick_smoke" ]; then
+            case "$rank" in
+              1|5|14|25|29|43|67|78|80|100)
+                ;;
+              *)
+                echo "should_run=false" >> "$GITHUB_OUTPUT"
+                echo "quick_smoke_rank_${rank}_skipped" > "staging/quick_smoke_rank_${rank}_skipped.txt"
+                exit 0
+                ;;
+            esac
+          fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
       - name: Resolve collection mode settings
@@ -615,15 +690,25 @@ jobs:
           set -euo pipefail
           mode="${{ inputs.collection_mode }}"
           case "$mode" in
-            smoke_test)
-              max_posts=10
-              retry_attempts=1
-              retry_delay_seconds=30
-              collector_timeout_seconds=300
-              max_scrolls=250
-              scroll_delay_seconds=1.0
-              idle_scroll_limit=20
-              page_timeout_ms=60000
+            quick_smoke)
+              max_posts=3
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=50
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=5
+              page_timeout_ms=30000
+              ;;
+            coverage_smoke)
+              max_posts=5
+              retry_attempts=0
+              retry_delay_seconds=0
+              collector_timeout_seconds=120
+              max_scrolls=80
+              scroll_delay_seconds=0.5
+              idle_scroll_limit=8
+              page_timeout_ms=30000
               ;;
             full_collection)
               max_posts=0
