@@ -1,0 +1,581 @@
+import datetime
+from datetime import timezone
+import argparse
+import json
+import os
+import re
+import sys
+from collections import Counter, defaultdict
+from itertools import combinations
+from math import log
+from pathlib import Path
+
+from x_scrapper.paths import CONFIG_ROOT, DATA_ROOT
+from typing import Any
+
+
+TARGET_USER = os.getenv('TARGET_USER', 'Wendys').lstrip('@')
+PREFIX = re.sub(r'[^a-z0-9]+', '', TARGET_USER.lower()) or 'brand'
+BRAND_DIR = Path(os.getenv('BRAND_DIR', DATA_ROOT / PREFIX))
+INPUT_FILE = Path(os.getenv('INPUT_FILE', BRAND_DIR / 'posts.json'))
+LDA_TOPICS_FILE = Path(os.getenv('LDA_TOPICS_FILE', BRAND_DIR / 'lda_topics.json'))
+LDA_REPORT_FILE = Path(os.getenv('LDA_REPORT_FILE', BRAND_DIR / 'lda_topics.md'))
+SENTIMENT_FILE = Path(os.getenv('SENTIMENT_FILE', BRAND_DIR / 'zero_shot_sentiment.json'))
+SENTIMENT_REPORT_FILE = Path(os.getenv('SENTIMENT_REPORT_FILE', BRAND_DIR / 'zero_shot_sentiment.md'))
+HUMOR_FILE = Path(os.getenv('HUMOR_FILE', BRAND_DIR / 'hsq_humor_classification.json'))
+HUMOR_REPORT_FILE = Path(os.getenv('HUMOR_REPORT_FILE', BRAND_DIR / 'hsq_humor_classification.md'))
+
+
+def load_json_config(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f'Invalid JSON config {path}: {exc}') from exc
+    if not isinstance(data, dict):
+        raise ValueError(f'Expected object in config {path}')
+    return data
+
+
+def configured_labels(env_value: str, default_labels: list[str], config_path: Path) -> list[str]:
+    config = load_json_config(config_path)
+    raw_labels = config.get('labels') or env_value or default_labels
+    if isinstance(raw_labels, str):
+        labels = [label.strip() for label in raw_labels.split(',') if label.strip()]
+    else:
+        labels = [str(label).strip() for label in raw_labels if str(label).strip()]
+    if not labels:
+        raise ValueError(f'No labels configured for {config_path}')
+    return labels
+
+
+def configured_template(env_value: str | None, default_template: str, config_path: Path) -> str:
+    config = load_json_config(config_path)
+    template = env_value or config.get('hypothesis_template') or default_template
+    return str(template)
+
+
+def load_extra_stopwords(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    words = set()
+    for line in path.read_text(encoding='utf-8').splitlines():
+        value = line.strip().lower()
+        if not value or value.startswith('#'):
+            continue
+        words.add(value)
+    return words
+
+
+LDA_MIN_TOPICS = int(os.getenv('LDA_MIN_TOPICS', '2'))
+LDA_MAX_TOPICS = int(os.getenv('LDA_MAX_TOPICS', '12'))
+LDA_WORDS_PER_TOPIC = int(os.getenv('LDA_WORDS_PER_TOPIC', '12'))
+LDA_MAX_FEATURES = int(os.getenv('LDA_MAX_FEATURES', '3000'))
+ANALYSIS_MAX_POSTS = int(os.getenv('ANALYSIS_MAX_POSTS', '0'))
+ZERO_SHOT_MODEL = os.getenv('ZERO_SHOT_MODEL', 'typeform/distilbert-base-uncased-mnli')
+SENTIMENT_CONFIG_FILE = Path(os.getenv('SENTIMENT_CONFIG_FILE', CONFIG_ROOT / 'taxonomies' / 'sentiment_labels.json'))
+HUMOR_CONFIG_FILE = Path(os.getenv('HUMOR_CONFIG_FILE', CONFIG_ROOT / 'taxonomies' / 'humor_types.json'))
+LDA_STOPWORDS_FILE = Path(os.getenv('LDA_STOPWORDS_FILE', CONFIG_ROOT / 'taxonomies' / 'lda_stopwords.txt'))
+SENTIMENT_LABELS = configured_labels(
+    os.getenv('SENTIMENT_LABELS', ''),
+    ['positive', 'neutral', 'negative'],
+    SENTIMENT_CONFIG_FILE,
+)
+HYPOTHESIS_TEMPLATE = configured_template(
+    os.getenv('HYPOTHESIS_TEMPLATE'),
+    'This brand post expresses a {} sentiment.',
+    SENTIMENT_CONFIG_FILE,
+)
+HUMOR_MODEL = os.getenv('HUMOR_MODEL', ZERO_SHOT_MODEL)
+HUMOR_LABELS = configured_labels(
+    os.getenv('HUMOR_LABELS', ''),
+    [
+        'Affiliative humor',
+        'Self-enhancing humor',
+        'Aggressive humor',
+        'Self-defeating humor',
+        'Non-humorous brand message',
+    ],
+    HUMOR_CONFIG_FILE,
+)
+HUMOR_HYPOTHESIS_TEMPLATE = configured_template(
+    os.getenv('HUMOR_HYPOTHESIS_TEMPLATE'),
+    'This brand post uses {}.',
+    HUMOR_CONFIG_FILE,
+)
+
+CUSTOM_STOP_WORDS = {
+    PREFIX,
+    'wendys',
+    'cocacola',
+    'coca',
+    'cola',
+    'https',
+    'http',
+    'amp',
+    'rt',
+    'co',
+    't',
+    'x',
+    'com',
+} | load_extra_stopwords(LDA_STOPWORDS_FILE)
+
+
+def load_posts() -> list[dict[str, Any]]:
+    input_file = INPUT_FILE
+    legacy_file = Path(f'{PREFIX}_posts.json')
+    if not input_file.exists() and legacy_file.exists():
+        input_file = legacy_file
+    if not input_file.exists():
+        raise FileNotFoundError(f'Input file not found: {INPUT_FILE}')
+    posts = json.loads(input_file.read_text(encoding='utf-8'))
+    if not isinstance(posts, list):
+        raise ValueError(f'Expected list in {input_file}')
+    if ANALYSIS_MAX_POSTS > 0:
+        return posts[:ANALYSIS_MAX_POSTS]
+    return posts
+
+
+def clean_text(text: str) -> str:
+    text = re.sub(r'https?://\S+', ' ', text)
+    text = re.sub(r'@\w+', ' ', text)
+    text = re.sub(r'#', ' ', text)
+    text = re.sub(r'[^A-Za-z\s]', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip().lower()
+    return text
+
+
+def text_for_analysis(post: dict[str, Any]) -> str:
+    return clean_text(str(post.get('text') or ''))
+
+
+def topic_npmi_score(topic_words: list[str], document_tokens: list[set[str]]) -> float:
+    pairs = list(combinations(topic_words, 2))
+    if not pairs or not document_tokens:
+        return 0.0
+
+    document_count = len(document_tokens)
+    token_document_counts = Counter()
+    pair_document_counts = Counter()
+
+    for tokens in document_tokens:
+        topic_tokens = [word for word in topic_words if word in tokens]
+        for token in topic_tokens:
+            token_document_counts[token] += 1
+        for pair in combinations(sorted(set(topic_tokens)), 2):
+            pair_document_counts[pair] += 1
+
+    scores = []
+    smoothing = 1e-12
+    for word_a, word_b in pairs:
+        pair_key = tuple(sorted((word_a, word_b)))
+        p_a = token_document_counts[word_a] / document_count
+        p_b = token_document_counts[word_b] / document_count
+        p_ab = pair_document_counts[pair_key] / document_count
+        if p_a <= 0 or p_b <= 0 or p_ab <= 0:
+            continue
+        pmi = log((p_ab + smoothing) / (p_a * p_b + smoothing))
+        npmi = pmi / (-log(p_ab + smoothing))
+        scores.append(npmi)
+
+    if not scores:
+        return 0.0
+    return sum(scores) / len(scores)
+
+
+def model_coherence_score(components, feature_names, document_tokens: list[set[str]]) -> float:
+    topic_scores = []
+    words_per_topic = min(10, len(feature_names))
+    for topic in components:
+        top_indices = topic.argsort()[-words_per_topic:][::-1]
+        topic_words = [feature_names[i] for i in top_indices]
+        topic_scores.append(topic_npmi_score(topic_words, document_tokens))
+    return sum(topic_scores) / len(topic_scores) if topic_scores else 0.0
+
+
+def choose_topic_count(source_documents: list[str], matrix, feature_names):
+    from sklearn.decomposition import LatentDirichletAllocation
+
+    max_feasible_topics = max(1, min(LDA_MAX_TOPICS, len(source_documents) // 2, matrix.shape[1]))
+    min_feasible_topics = max(1, min(LDA_MIN_TOPICS, max_feasible_topics))
+    candidate_counts = list(range(min_feasible_topics, max_feasible_topics + 1))
+    document_tokens = [set(doc.split()) for doc in source_documents]
+
+    evaluations = []
+    best = None
+    for topic_count in candidate_counts:
+        lda = LatentDirichletAllocation(
+            n_components=topic_count,
+            random_state=42,
+            learning_method='batch',
+            max_iter=25,
+        )
+        topic_matrix = lda.fit_transform(matrix)
+        coherence = model_coherence_score(lda.components_, feature_names, document_tokens)
+        perplexity = float(lda.perplexity(matrix))
+        evaluation = {
+            'num_topics': topic_count,
+            'coherence_npmi': float(coherence),
+            'perplexity': perplexity,
+        }
+        evaluations.append(evaluation)
+        if best is None or coherence > best['coherence_npmi']:
+            best = {
+                **evaluation,
+                'model': lda,
+                'topic_matrix': topic_matrix,
+            }
+
+    return best, evaluations
+
+
+def run_lda(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    LDA_TOPICS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    LDA_REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
+
+    stop_words = sorted(set(ENGLISH_STOP_WORDS) | CUSTOM_STOP_WORDS)
+    documents = [text_for_analysis(post) for post in posts]
+    indexed_documents = [(idx, doc) for idx, doc in enumerate(documents) if len(doc.split()) >= 3]
+    if len(indexed_documents) < 2:
+        result = {
+            'target_user': TARGET_USER,
+            'input_file': str(INPUT_FILE),
+            'document_count': len(indexed_documents),
+            'topics': [],
+            'message': 'Not enough text for LDA.',
+        }
+        LDA_TOPICS_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        LDA_REPORT_FILE.write_text('# LDA Topics\n\nNot enough text for LDA.\n', encoding='utf-8')
+        return result
+
+    source_indices = [idx for idx, _ in indexed_documents]
+    source_documents = [doc for _, doc in indexed_documents]
+
+    vectorizer = CountVectorizer(
+        stop_words=stop_words,
+        max_features=LDA_MAX_FEATURES,
+        min_df=2,
+        max_df=0.85,
+        ngram_range=(1, 2),
+    )
+    matrix = vectorizer.fit_transform(source_documents)
+    feature_names = vectorizer.get_feature_names_out()
+
+    if matrix.shape[1] < 2:
+        result = {
+            'target_user': TARGET_USER,
+            'input_file': str(INPUT_FILE),
+            'document_count': len(source_documents),
+            'topics': [],
+            'message': 'Not enough vocabulary for LDA.',
+        }
+        LDA_TOPICS_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        LDA_REPORT_FILE.write_text('# LDA Topics\n\nNot enough vocabulary for LDA.\n', encoding='utf-8')
+        return result
+
+    best_model, topic_evaluations = choose_topic_count(source_documents, matrix, feature_names)
+    lda = best_model['model']
+    topic_matrix = best_model['topic_matrix']
+    topic_count = best_model['num_topics']
+
+    topics = []
+    for topic_index, topic in enumerate(lda.components_):
+        top_indices = topic.argsort()[-LDA_WORDS_PER_TOPIC:][::-1]
+        words = [feature_names[i] for i in top_indices]
+        representative_rows = topic_matrix[:, topic_index].argsort()[-5:][::-1]
+        representatives = []
+        for row in representative_rows:
+            post = posts[source_indices[row]]
+            representatives.append({
+                'id': post.get('id'),
+                'tweet_url': post.get('tweet_url'),
+                'score': float(topic_matrix[row, topic_index]),
+                'text': post.get('text'),
+            })
+        topics.append({
+            'topic_id': topic_index,
+            'top_terms': words,
+            'representative_posts': representatives,
+        })
+
+    result = {
+        'target_user': TARGET_USER,
+        'input_file': str(INPUT_FILE),
+        'document_count': len(source_documents),
+        'num_topics': topic_count,
+        'topic_selection': {
+            'method': 'NPMI coherence over candidate topic counts',
+            'min_topics': LDA_MIN_TOPICS,
+            'max_topics': LDA_MAX_TOPICS,
+            'selected_num_topics': topic_count,
+            'selected_coherence_npmi': best_model['coherence_npmi'],
+            'selected_perplexity': best_model['perplexity'],
+            'evaluations': topic_evaluations,
+        },
+        'topics': topics, 'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
+    LDA_TOPICS_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+    lines = [
+        f'# LDA Topics for @{TARGET_USER}',
+        '',
+        f'- Documents analyzed: {len(source_documents)}',
+        f'- Selected topics: {topic_count}',
+        f"- Selection method: NPMI coherence, candidates {LDA_MIN_TOPICS}-{LDA_MAX_TOPICS}",
+        f"- Selected coherence: {best_model['coherence_npmi']:.4f}",
+        f"- Selected perplexity: {best_model['perplexity']:.4f}",
+        '',
+        '## Topic Count Evaluation',
+        '',
+    ]
+    for evaluation in topic_evaluations:
+        lines.append(
+            f"- {evaluation['num_topics']} topics: "
+            f"coherence={evaluation['coherence_npmi']:.4f}, "
+            f"perplexity={evaluation['perplexity']:.4f}"
+        )
+    lines.append('')
+    for topic in topics:
+        lines.append(f"## Topic {topic['topic_id']}")
+        lines.append(', '.join(topic['top_terms']))
+        lines.append('')
+        for post in topic['representative_posts'][:3]:
+            lines.append(f"- [{post['id']}]({post['tweet_url']}): {post['text']}")
+        lines.append('')
+    LDA_REPORT_FILE.write_text('\n'.join(lines), encoding='utf-8')
+    return result
+
+
+def run_zero_shot_sentiment(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    SENTIMENT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    SENTIMENT_REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    from transformers import pipeline
+
+    cached: dict[str, Any] = {}
+    if SENTIMENT_FILE.exists():
+        try:
+            previous = json.loads(SENTIMENT_FILE.read_text(encoding='utf-8'))
+            for item in previous.get('posts', []):
+                if item.get('id') and item.get('text'):
+                    cached[str(item['id'])] = item
+        except Exception:
+            cached = {}
+
+    classifier = pipeline('zero-shot-classification', model=ZERO_SHOT_MODEL)
+    results = []
+    counts: Counter[str] = Counter()
+    score_sums: defaultdict[str, float] = defaultdict(float)
+
+    for index, post in enumerate(posts, start=1):
+        post_id = str(post.get('id') or '')
+        text = str(post.get('text') or '').strip()
+        if not post_id or not text:
+            continue
+
+        cached_item = cached.get(post_id)
+        if (
+            cached_item
+            and cached_item.get('text') == text
+            and cached_item.get('model') == ZERO_SHOT_MODEL
+            and cached_item.get('labels') == SENTIMENT_LABELS
+            and cached_item.get('hypothesis_template') == HYPOTHESIS_TEMPLATE
+        ):
+            item = cached_item
+        else:
+            output = classifier(
+                text[:1000],
+                candidate_labels=SENTIMENT_LABELS,
+                hypothesis_template=HYPOTHESIS_TEMPLATE,
+                multi_label=False,
+            )
+            labels = output['labels']
+            scores = output['scores']
+            item = {
+                'id': post_id,
+                'tweet_url': post.get('tweet_url'),
+                'created_at': post.get('created_at'),
+                'text': text,
+                'model': ZERO_SHOT_MODEL,
+                'labels': SENTIMENT_LABELS,
+                'hypothesis_template': HYPOTHESIS_TEMPLATE,
+                'top_label': labels[0],
+                'top_score': float(scores[0]),
+                'scores': {label: float(score) for label, score in zip(labels, scores)},
+            }
+
+        results.append(item)
+        counts[item['top_label']] += 1
+        for label, score in item.get('scores', {}).items():
+            score_sums[label] += float(score)
+
+        if index % 50 == 0:
+            print(f'zero-shot analyzed {index}/{len(posts)} posts', flush=True)
+
+    averages = {label: score_sums[label] / max(1, len(results)) for label in SENTIMENT_LABELS}
+    summary = {
+        'target_user': TARGET_USER,
+        'input_file': str(INPUT_FILE),
+        'model': ZERO_SHOT_MODEL,
+        'labels': SENTIMENT_LABELS,
+        'post_count': len(results),
+        'label_counts': dict(counts),
+        'average_scores': averages,
+        'posts': results, 'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
+    SENTIMENT_FILE.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+    lines = [f'# Zero-Shot Sentiment for @{TARGET_USER}', '', f'- Posts analyzed: {len(results)}', f'- Model: `{ZERO_SHOT_MODEL}`', '']
+    lines.append('## Label Counts')
+    for label, count in counts.most_common():
+        lines.append(f'- {label}: {count}')
+    lines.append('')
+    lines.append('## Average Scores')
+    for label, score in sorted(averages.items(), key=lambda item: item[1], reverse=True):
+        lines.append(f'- {label}: {score:.4f}')
+    lines.append('')
+    lines.append('## Highest Confidence Examples')
+    for item in sorted(results, key=lambda row: row.get('top_score', 0), reverse=True)[:10]:
+        lines.append(f"- {item['top_label']} ({item['top_score']:.3f}) [{item['id']}]({item['tweet_url']}): {item['text']}")
+    SENTIMENT_REPORT_FILE.write_text('\n'.join(lines), encoding='utf-8')
+    return summary
+
+
+def run_zero_shot_humor(posts: list[dict[str, Any]]) -> dict[str, Any]:
+    """Classify posts into HSQ humor styles from the local codebook."""
+    HUMOR_FILE.parent.mkdir(parents=True, exist_ok=True)
+    HUMOR_REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    from transformers import pipeline
+
+    codebook_path = CONFIG_ROOT.parent / 'HSQ_zero_shot_humor_classification_codebook.md'
+    codebook_title = 'HSQ zero-shot humor classification codebook'
+    if codebook_path.exists():
+        for line in codebook_path.read_text(encoding='utf-8').splitlines():
+            if line.startswith('# '):
+                codebook_title = line[2:].strip()
+                break
+
+    cached: dict[str, Any] = {}
+    if HUMOR_FILE.exists():
+        try:
+            previous = json.loads(HUMOR_FILE.read_text(encoding='utf-8'))
+            for item in previous.get('posts', []):
+                if item.get('id') and item.get('text'):
+                    cached[str(item['id'])] = item
+        except Exception:
+            cached = {}
+
+    classifier = pipeline('zero-shot-classification', model=HUMOR_MODEL)
+    results = []
+    counts: Counter[str] = Counter()
+    score_sums: defaultdict[str, float] = defaultdict(float)
+
+    for index, post in enumerate(posts, start=1):
+        post_id = str(post.get('id') or '')
+        text = str(post.get('text') or '').strip()
+        if not post_id or not text:
+            continue
+
+        cached_item = cached.get(post_id)
+        if (
+            cached_item
+            and cached_item.get('text') == text
+            and cached_item.get('model') == HUMOR_MODEL
+            and cached_item.get('labels') == HUMOR_LABELS
+            and cached_item.get('hypothesis_template') == HUMOR_HYPOTHESIS_TEMPLATE
+        ):
+            item = cached_item
+        else:
+            output = classifier(
+                text[:1000],
+                candidate_labels=HUMOR_LABELS,
+                hypothesis_template=HUMOR_HYPOTHESIS_TEMPLATE,
+                multi_label=False,
+            )
+            labels = output['labels']
+            scores = output['scores']
+            item = {
+                'id': post_id,
+                'tweet_url': post.get('tweet_url'),
+                'created_at': post.get('created_at'),
+                'text': text,
+                'model': HUMOR_MODEL,
+                'codebook': codebook_title,
+                'labels': HUMOR_LABELS,
+                'top_label': labels[0],
+                'top_score': float(scores[0]),
+                'scores': {label: float(score) for label, score in zip(labels, scores)},
+            }
+
+        results.append(item)
+        counts[item['top_label']] += 1
+        for label, score in item.get('scores', {}).items():
+            score_sums[label] += float(score)
+
+        if index % 50 == 0:
+            print(f'HSQ humor analyzed {index}/{len(posts)} posts', flush=True)
+
+    averages = {label: score_sums[label] / max(1, len(results)) for label in HUMOR_LABELS}
+    summary = {
+        'target_user': TARGET_USER,
+        'input_file': str(INPUT_FILE),
+        'model': HUMOR_MODEL,
+        'codebook': codebook_title,
+        'labels': HUMOR_LABELS,
+        'hypothesis_template': HUMOR_HYPOTHESIS_TEMPLATE,
+        'post_count': len(results),
+        'label_counts': dict(counts),
+        'average_scores': averages,
+        'posts': results, 'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
+    HUMOR_FILE.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+    lines = [f'# HSQ Zero-Shot Humor Classification for @{TARGET_USER}', '', f'- Posts analyzed: {len(results)}', f'- Model: `{HUMOR_MODEL}`', f'- Codebook: {codebook_title}', '']
+    lines.append('## Label Counts')
+    for label, count in counts.most_common():
+        lines.append(f'- {label}: {count}')
+    lines.append('')
+    lines.append('## Average Scores')
+    for label, score in sorted(averages.items(), key=lambda item: item[1], reverse=True):
+        lines.append(f'- {label}: {score:.4f}')
+    lines.append('')
+    lines.append('## Highest Confidence Examples')
+    for item in sorted(results, key=lambda row: row.get('top_score', 0), reverse=True)[:10]:
+        lines.append(f"- {item['top_label']} ({item['top_score']:.3f}) [{item['id']}]({item['tweet_url']}): {item['text']}")
+    HUMOR_REPORT_FILE.write_text('\n'.join(lines), encoding='utf-8')
+    return summary
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description='Analyze scraped X posts.')
+    parser.add_argument(
+        '--task',
+        choices=('all', 'lda', 'sentiment', 'humor'),
+        default=os.getenv('ANALYSIS_TASK', 'all'),
+        help='Analysis task to run.',
+    )
+    args = parser.parse_args()
+
+    posts = load_posts()
+    print(f'Analyzing {len(posts)} posts from {INPUT_FILE} with task={args.task}', flush=True)
+
+    if args.task in ('all', 'lda'):
+        lda_result = run_lda(posts)
+        print(f"LDA complete: {len(lda_result.get('topics', []))} topics", flush=True)
+
+    if args.task in ('all', 'sentiment'):
+        sentiment_result = run_zero_shot_sentiment(posts)
+        print(f"Zero-shot sentiment complete: {sentiment_result['post_count']} posts", flush=True)
+
+    if args.task in ('all', 'humor'):
+        humor_result = run_zero_shot_humor(posts)
+        print(f"HSQ humor classification complete: {humor_result['post_count']} posts", flush=True)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as exc:
+        print(f'Fatal analysis error: {type(exc).__name__}: {exc}', flush=True)
+        raise

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fortune 2025 Humor Firm Panel",
+  "type": "object",
+  "required": ["fortune_year", "fortune_rank", "firm_name", "panel_period", "post_count", "aggregation_status"],
+  "properties": {
+    "fortune_year": {"type": "string"},
+    "fortune_rank": {"type": "integer", "minimum": 1},
+    "firm_name": {"type": "string", "minLength": 1},
+    "industry_naics": {"type": "string"},
+    "industry_sic": {"type": "string"},
+    "panel_period": {"type": "string"},
+    "post_count": {"type": "integer", "minimum": 0},
+    "humor_post_share": {"type": "number", "minimum": 0, "maximum": 1},
+    "dominant_humor_label": {"type": "string"},
+    "humor_confidence_mean": {"type": "number", "minimum": 0, "maximum": 1},
+    "uncertain_post_share": {"type": "number", "minimum": 0, "maximum": 1},
+    "engagement_mean": {"type": "number"},
+    "aggregation_status": {"type": "string", "enum": ["not_started", "ready", "partial", "insufficient_posts", "blocked_no_verified_account", "not_implemented"]},
+    "audit_notes": {"type": "string"},
+    "generated_at": {"type": "string"}
+  },
+  "additionalProperties": true
+}

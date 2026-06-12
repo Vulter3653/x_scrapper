@@ -1,7 +1,7 @@
 # Troubleshooting and Debugging Log
 
 Repository: `Vulter3653/x_scrapper`
-Last updated: `2026-06-10`
+Last updated: `2026-06-12`
 
 This file consolidates troubleshooting and debugging history in one place. It is separate from `PROJECT_HISTORY.md`: that file records the project timeline, while this file records failures, symptoms, root causes, fixes, and verification.
 
@@ -18,6 +18,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Mobile charts | Y-axis and labels were too long/small on mobile; some charts failed to load. | Chart dimensions, axis density, font sizing, and responsive handling were adjusted. |
 | Local visual verification | Chromium screenshot validation failed in local environment due to runtime/font/DBus errors. | Static and syntax validation were used where screenshot verification was blocked. |
 | Fortune account discovery | X search produced login challenges, selector failures, and unrelated repeated handles. | Prediction/discovery artifacts were removed; Fortune work reset to 2025 ranking source. |
+| Repository refactor validation | Sandbox `bwrap` prevented normal apply_patch/shell execution; wrapper import paths needed static validation. | Used approved shell execution, py_compile, node syntax checks, help checks, and `scripts/validate_repository_state.py`. |
 
 ## Detailed Incidents
 
@@ -309,3 +310,18 @@ When a future issue occurs, append a new section to this file with:
 6. fix applied,
 7. verification result,
 8. commit hash.
+
+### 15. Repository Refactor Validation and Sandbox Workaround
+
+- Period: `2026-06-12`
+- Symptom:
+  - Normal sandboxed shell commands and `apply_patch` failed with:
+    - `bwrap: Unexpected capabilities but not setuid, old file caps config?`
+- Root cause:
+  - Local execution sandbox failed before command/file operations could start. This was an environment issue, not a repository syntax or pipeline issue.
+- Fix:
+  - Used approved escalated shell commands to inspect files and apply the conservative refactor.
+  - Kept root entrypoints as wrappers and added `scripts/validate_repository_state.py` for static compatibility checks.
+- Verification:
+  - Ran `git diff --check`, Python compile checks, Node syntax checks, help commands, and repository validator.
+  - No X scraping, SEC download, or Fortune expansion collection was run.

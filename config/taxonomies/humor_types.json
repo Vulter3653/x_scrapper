@@ -1,0 +1,17 @@
+{
+  "labels": [
+    "Affiliative humor",
+    "Self-enhancing humor",
+    "Aggressive humor",
+    "Self-defeating humor",
+    "Non-humorous brand message"
+  ],
+  "hypothesis_template": "This brand post uses {}.",
+  "label_notes": {
+    "Affiliative humor": "Relationship-building humor, shared amusement, warmth, or bonding with audiences.",
+    "Self-enhancing humor": "Positive self-presentation, optimistic framing, or playful brand confidence.",
+    "Aggressive humor": "Teasing, ridicule, sarcasm targeted at others, competitive attacks, or superiority claims.",
+    "Self-defeating humor": "Self-deprecation, self-mockery, or intentionally lowering the brand's own status for comic effect.",
+    "Non-humorous brand message": "Plain promotional, informational, support, announcement, or conversational content without a clear humor strategy."
+  }
+}

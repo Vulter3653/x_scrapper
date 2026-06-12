@@ -57,6 +57,33 @@ Fortune 확장 작업은 현재 예측 기반 Fortune 100 discovery 파일을 �
 | `TROUBLESHOOTING_AND_DEBUGGING_LOG.md` | 트러블슈팅/디버깅 중앙 기록. |
 | `WORK_LOG*.md` | 세부 작업별 legacy work log. |
 
+
+## Repository Organization Update (2026-06-12)
+
+A conservative `src/x_scrapper/` package layout has been added before Fortune expansion work. Existing root commands remain compatible and now delegate to the package implementation:
+
+```bash
+python scrape_x.py
+python analyze_posts.py --task all
+python export_research_outputs.py
+python sync_dashboard_data.py
+python scripts/collect_fortune2025_10k_reports.py --help
+```
+
+New structural documentation and validation live at:
+
+| Path | Purpose |
+| --- | --- |
+| `src/x_scrapper/paths.py` | Central repository/data/dashboard/config/audit path constants. |
+| `docs/architecture/repository_structure.md` | Current file classification, compatibility rules, and namespace plan. |
+| `docs/methodology/fortune500_humor_text_analysis_design.md` | Fortune 500 humor text-analysis design, without starting collection. |
+| `scripts/validate_repository_state.py` | Static repository structure validator. |
+| `config/taxonomies/` | Namespaced copies of humor, sentiment, and LDA taxonomy config. |
+| `config/fortune2025/` | Namespaced copies of active Fortune 2025 support CSVs. |
+| `config/schemas/` | Future Fortune account verification and humor panel JSON schemas. |
+
+Compatibility note: `data/wendys/`, `data/cocacola/`, `data/moonpie/`, and `dashboard/data/` were not moved. Dashboard fetch paths remain relative to `dashboard/` as `data/...`.
+
 ## Data Layout
 
 브랜드별 표준 결과 구조는 다음과 같습니다.

@@ -1,0 +1,4 @@
+{
+  "labels": ["positive", "neutral", "negative"],
+  "hypothesis_template": "This brand post expresses a {} sentiment."
+}

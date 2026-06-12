@@ -2,7 +2,7 @@
 
 Repository: `Vulter3653/x_scrapper`
 Workspace: `/home/user/marketingstrategy`
-Last updated: `2026-06-10`
+Last updated: `2026-06-12`
 Timezone note: Git commit timestamps are recorded as shown by Git. Some early commits use `+0900`; most automated commits use `+0000`.
 
 This file is the central project history. It records what work was performed, when it was performed, which files were affected, and what operational decision was made. Detailed legacy notes remain in the `WORK_LOG*.md` files.
@@ -134,6 +134,12 @@ These files were intentionally removed because they were generated from earlier 
 | `2026-06-10` | `pending` | Narrowed Fortune direct X profile check to top 100. | Cancelled the 500-row run, changed workflow/script defaults to rank 100, and regenerated top 100 direct check/account index outputs. |
 | `2026-06-10` | `33c899e`, `24351b1`, `ad66490` | Added Fortune top 100 SEC 10-K collection workflow and failure audit. | Added EDGAR 10-K collector script and GitHub Actions workflow. Local and GitHub SEC access both returned HTTP 403, so the workflow now commits 300-row manifest/audit files with `sec_source_fetch_failed` status for 100 firms x 2025/2024/2023. |
 
+### 2026-06-12
+
+| Time | Commit | Work performed | Notes |
+| --- | --- | --- | --- |
+| `2026-06-12` | `pending` | Conservatively reorganized repository before Fortune expansion. | Added `src/x_scrapper/` package, path constants, wrapper entrypoints, namespaced config copies, schemas, architecture/methodology docs, and static repository validator. No Fortune 500 collection, new X scraping, or SEC download was run. |
+
 ## Operational Decisions
 
 1. Fortune work now uses `fortune2025_itemListElement_rows.csv` as the active ranking source.
@@ -141,9 +147,12 @@ These files were intentionally removed because they were generated from earlier 
 3. `official_x_account_status` remains `unknown` until manual verification against official company sources.
 4. Prior X search candidate discovery outputs were removed to avoid mixing predicted/unverified results with the Fortune 2025 ranking baseline.
 5. Historical commits remain in Git history, but active files should be interpreted according to the current baseline above.
+6. Root entrypoints are retained as compatibility wrappers; active implementation now lives under `src/x_scrapper/` for future refactoring.
 
 ## Related Work Logs
 
+- `docs/architecture/repository_structure.md`
+- `docs/methodology/fortune500_humor_text_analysis_design.md`
 - `TROUBLESHOOTING_AND_DEBUGGING_LOG.md`
 - `WORK_LOG.md`
 - `WORK_LOG_REACT_DASHBOARD_2026-05-26.md`

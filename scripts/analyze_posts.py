@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""Backward-compatible root entrypoint for research exports."""
+"""Compatibility entrypoint for the analysis pipeline in src/."""
 
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
-SRC_DIR = Path(__file__).resolve().parent / "src"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SRC_DIR = REPO_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from x_scrapper.exports.research_outputs import main
+from x_scrapper.analysis.pipeline import main
 
 
 if __name__ == "__main__":
