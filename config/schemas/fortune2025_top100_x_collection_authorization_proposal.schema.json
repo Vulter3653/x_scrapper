@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fortune Top 100 X Collection Authorization Proposal",
+  "description": "Pre-execution authorization proposal for the verified Fortune Top 100 X collection queue. This proposal does not authorize collection.",
+  "type": "object",
+  "required": [
+    "proposal_id",
+    "queue_file",
+    "eligible_account_count",
+    "proposed_collection_method",
+    "proposed_access_method",
+    "x_api_required",
+    "mcp_required",
+    "browser_automation_required",
+    "authentication_required",
+    "collection_authorized",
+    "dry_run_only",
+    "proposed_date_window",
+    "proposed_max_posts_per_account",
+    "proposed_rate_limit_policy",
+    "proposed_retry_policy",
+    "proposed_failure_status_values",
+    "proposed_raw_output_path",
+    "proposed_processed_output_path",
+    "proposed_audit_log_path",
+    "dashboard_sync_allowed",
+    "data_mutation_allowed",
+    "risk_level",
+    "approval_required_before_execution",
+    "notes"
+  ],
+  "properties": {
+    "proposal_id": {
+      "type": "string",
+      "enum": [
+        "fortune_top100_verified_x_collection_authorization_proposal_v1"
+      ]
+    },
+    "queue_file": {
+      "type": "string",
+      "enum": [
+        "config/fortune2025_top100_verified_x_collection_queue.csv"
+      ]
+    },
+    "eligible_account_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "proposed_collection_method": {
+      "type": "string",
+      "enum": [
+        "to_be_selected"
+      ]
+    },
+    "proposed_access_method": {
+      "type": "string",
+      "enum": [
+        "to_be_selected"
+      ]
+    },
+    "x_api_required": {
+      "type": "string",
+      "enum": [
+        "to_be_decided"
+      ]
+    },
+    "mcp_required": {
+      "type": "string",
+      "enum": [
+        "to_be_decided"
+      ]
+    },
+    "browser_automation_required": {
+      "type": "string",
+      "enum": [
+        "to_be_decided"
+      ]
+    },
+    "authentication_required": {
+      "type": "string",
+      "enum": [
+        "to_be_decided"
+      ]
+    },
+    "collection_authorized": {
+      "type": "string",
+      "enum": [
+        "false"
+      ]
+    },
+    "dry_run_only": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "proposed_date_window": {
+      "type": "string",
+      "enum": [
+        "to_be_defined_before_execution"
+      ]
+    },
+    "proposed_max_posts_per_account": {
+      "type": "string",
+      "enum": [
+        "to_be_defined_before_execution"
+      ]
+    },
+    "proposed_rate_limit_policy": {
+      "type": "string",
+      "enum": [
+        "to_be_defined_before_execution"
+      ]
+    },
+    "proposed_retry_policy": {
+      "type": "string",
+      "enum": [
+        "to_be_defined_before_execution"
+      ]
+    },
+    "proposed_failure_status_values": {
+      "type": "string"
+    },
+    "proposed_raw_output_path": {
+      "type": "string",
+      "enum": [
+        "not_defined_until_collection_authorized"
+      ]
+    },
+    "proposed_processed_output_path": {
+      "type": "string",
+      "enum": [
+        "not_defined_until_collection_authorized"
+      ]
+    },
+    "proposed_audit_log_path": {
+      "type": "string",
+      "enum": [
+        "not_defined_until_collection_authorized"
+      ]
+    },
+    "dashboard_sync_allowed": {
+      "type": "string",
+      "enum": [
+        "false"
+      ]
+    },
+    "data_mutation_allowed": {
+      "type": "string",
+      "enum": [
+        "false"
+      ]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "pre_execution_design_only"
+      ]
+    },
+    "approval_required_before_execution": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

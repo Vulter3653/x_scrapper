@@ -30,6 +30,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune inaccessible-row reviewer pass | Rechecked the 14 Fortune Top 100 rows marked inaccessible without scraping or dashboard/data mutation. | Energy Transfer and Allstate changed to `no_account_found`; the remaining inaccessible rows now include clearer access-block, JavaScript, empty-content, or limited-availability notes. |
 | Fortune Top 100 collection queue scaffold | Queue scaffold was generated without scraping or dashboard/data mutation. | The queue includes only the 43 rows already marked scrape eligible; 12 inaccessible and 45 no-account-found rows remain excluded and blocked. |
 | Fortune Top 100 dry-run readiness protocol | Dry-run readiness policy was generated without scraping, MCP installation, X API calls, or dashboard/data mutation. | The policy keeps collection unauthorized, output creation blocked, and dashboard sync disabled until a separate authorization commit exists. |
+| Fortune Top 100 collection authorization proposal | Pre-execution proposal was drafted without scraping, MCP installation, X API calls, browser automation, or dashboard/data mutation. | The proposal keeps collection unauthorized, dry-run only, output paths undefined, and dashboard sync disabled until a separate authorization commit exists. |
 
 ## Detailed Incidents
 

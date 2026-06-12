@@ -119,6 +119,7 @@ python scripts/validate_history_integrity.py
 python scripts/validate_fortune_expansion_readiness.py
 python scripts/validate_fortune_x_collection_queue.py
 python scripts/validate_fortune_x_collection_readiness.py
+python scripts/validate_fortune_x_collection_authorization_proposal.py
 ```
 
 These validators are local/static checks. They do not read secrets, scrape X, call external networks, run SEC downloads, or modify `data/` or `dashboard/data/`.
@@ -209,6 +210,26 @@ Validation:
 
 ```bash
 python scripts/validate_fortune_x_collection_readiness.py
+```
+
+
+## Fortune Top 100 X Collection Authorization Proposal
+
+The authorization proposal is pre-execution design only. It compares future method options and documents the controls required before any separate collection authorization commit. It does not authorize X scraping, X API calls, MCP installation, browser automation, dashboard sync, SEC downloads, Fortune 500 expansion, or `data/` and `dashboard/data/` mutation.
+
+| File | Purpose |
+| --- | --- |
+| `config/fortune2025_top100_x_collection_authorization_proposal.csv` | Single-row proposal for the 43 verified queue accounts with authorization still disabled. |
+| `config/schemas/fortune2025_top100_x_collection_authorization_proposal.schema.json` | Controlled schema for proposal defaults and boundaries. |
+| `docs/operations/fortune_top100_x_collection_authorization_proposal.md` | Method comparison, recommended future method, execution controls, and audit fields. |
+| `scripts/validate_fortune_x_collection_authorization_proposal.py` | Static validator that checks proposal boundaries and re-runs queue/readiness validators. |
+
+The proposal keeps `collection_authorized=false`, `dry_run_only=true`, `dashboard_sync_allowed=false`, and `data_mutation_allowed=false`. Future collection, if separately authorized, remains limited to retrievable timeline posts and cannot claim complete historical X coverage.
+
+Validation:
+
+```bash
+python scripts/validate_fortune_x_collection_authorization_proposal.py
 ```
 
 ## GitHub Actions Workflows
