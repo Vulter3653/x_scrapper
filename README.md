@@ -117,6 +117,7 @@ python scripts/validate_agent_rules.py
 python scripts/validate_data_claim_boundaries.py
 python scripts/validate_history_integrity.py
 python scripts/validate_fortune_expansion_readiness.py
+python scripts/validate_fortune_x_collection_queue.py
 ```
 
 These validators are local/static checks. They do not read secrets, scrape X, call external networks, run SEC downloads, or modify `data/` or `dashboard/data/`.
@@ -167,6 +168,26 @@ Validation:
 
 ```bash
 python scripts/validate_fortune_expansion_readiness.py
+```
+
+
+## Fortune Top 100 Verified X Collection Queue Scaffold
+
+The verified collection queue is a planning scaffold only. It does not scrape X, call X APIs, collect timelines, expand to Fortune 500, download SEC filings, or update dashboard outputs.
+
+| File | Purpose |
+| --- | --- |
+| `config/fortune2025_top100_verified_x_collection_queue.csv` | Queue scaffold derived only from the 43 scrape-eligible Top 100 verification rows. |
+| `config/schemas/fortune2025_top100_verified_x_collection_queue.schema.json` | Controlled schema for queue rows and collection-status defaults. |
+| `docs/operations/fortune_top100_x_collection_queue_protocol.md` | Queue construction rule, default collection policies, and claim boundaries. |
+| `scripts/validate_fortune_x_collection_queue.py` | Static validator that cross-checks the queue against the verification master. |
+
+Rows with `no_account_found`, `inaccessible`, `ambiguous`, `unknown`, `subsidiary_only`, or `do_not_scrape` are excluded. The 12 inaccessible and 45 no-account-found rows remain blocked. Future X post coverage will be limited to retrievable timeline posts under the implemented access method and will not be a complete historical archive.
+
+Validation:
+
+```bash
+python scripts/validate_fortune_x_collection_queue.py
 ```
 
 ## GitHub Actions Workflows

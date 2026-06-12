@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fortune 2025 Top 100 Verified X Collection Queue Row",
+  "description": "Schema for the future collection queue scaffold. This queue is planning-only and does not authorize scraping.",
+  "type": "object",
+  "required": [
+    "fortune_rank",
+    "company_name",
+    "normalized_company_name",
+    "official_x_account_status",
+    "official_x_handle",
+    "official_x_url",
+    "evidence_source_url",
+    "evidence_source_type",
+    "evidence_strength",
+    "confidence",
+    "scrape_eligible",
+    "collection_status",
+    "collection_priority",
+    "collection_scope",
+    "collection_start_policy",
+    "collection_end_policy",
+    "max_posts_policy",
+    "notes"
+  ],
+  "properties": {
+    "fortune_rank": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "normalized_company_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "official_x_account_status": {
+      "type": "string",
+      "enum": [
+        "official",
+        "brand_official"
+      ]
+    },
+    "official_x_handle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "official_x_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_source_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_source_type": {
+      "type": "string",
+      "enum": [
+        "corporate_footer",
+        "newsroom",
+        "investor_relations",
+        "press_page",
+        "contact_page",
+        "social_directory",
+        "x_profile_backlink",
+        "cross_platform_official"
+      ]
+    },
+    "evidence_strength": {
+      "type": "string",
+      "enum": [
+        "level_1",
+        "level_2",
+        "level_3",
+        "level_4",
+        "level_5"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium"
+      ]
+    },
+    "scrape_eligible": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "collection_status": {
+      "type": "string",
+      "enum": [
+        "queued_not_collected",
+        "blocked",
+        "collected",
+        "failed"
+      ]
+    },
+    "collection_priority": {
+      "type": "string",
+      "enum": [
+        "top100_verified"
+      ]
+    },
+    "collection_scope": {
+      "type": "string",
+      "enum": [
+        "timeline_posts_if_accessible"
+      ]
+    },
+    "collection_start_policy": {
+      "type": "string",
+      "enum": [
+        "to_be_defined_before_collection"
+      ]
+    },
+    "collection_end_policy": {
+      "type": "string",
+      "enum": [
+        "to_be_defined_before_collection"
+      ]
+    },
+    "max_posts_policy": {
+      "type": "string",
+      "enum": [
+        "to_be_defined_before_collection"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
