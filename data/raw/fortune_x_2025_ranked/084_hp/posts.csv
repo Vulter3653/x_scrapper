@@ -1,13 +1,13 @@
-fortune_rank,company_name,official_x_handle,source_x_handle,source_x_url,account_role,account_index,tweet_id,created_at,text,tweet_url,reply_count,repost_count,like_count,quote_count,view_count_available,media_present,media_type,collected_at,collection_method,max_posts_cap,source_folder
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2065438423079412046,Fri Jun 12 14:17:48 +0000 2026,"The Circuit de Barcelona-Catalunya demands precision at every corner.  
+fortune_rank,company_name,official_x_handle,tweet_id,created_at,text,tweet_url,reply_count,repost_count,like_count,quote_count,view_count_available,media_present,media_type,collected_at,collection_method,max_posts_cap,source_folder,source_x_handle,source_x_url,account_role,account_index
+84,HP,@hp,2065438423079412046,Fri Jun 12 14:17:48 +0000 2026,"The Circuit de Barcelona-Catalunya demands precision at every corner.  
 
-@HP  delivers the cutting-edge technology and innovative workflows that assist @ScuderiaFerrari in staying sharp, connected and ready to compete. https://t.co/GhGD8Dj0gX",https://x.com/hp/status/2065438423079412046,1,1,4,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2065085369284976839,Thu Jun 11 14:54:54 +0000 2026,"Air is unpredictable. Precision isn’t.
+@HP  delivers the cutting-edge technology and innovative workflows that assist @ScuderiaFerrari in staying sharp, connected and ready to compete. https://t.co/GhGD8Dj0gX",https://x.com/hp/status/2065438423079412046,1,1,9,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2065085369284976839,Thu Jun 11 14:54:54 +0000 2026,"Air is unpredictable. Precision isn’t.
 
 Turning local AI-driven insights into performance, lap after lap.
 
-https://t.co/HtOhfmBC15 https://t.co/eGIzR1mfZc",https://x.com/hp/status/2065085369284976839,7,4,16,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2064762600848605450,Wed Jun 10 17:32:20 +0000 2026,"HP was recognized as a Leader in the Gartner® Magic Quadrant™ for Digital Employee Experience Management Tools.
+https://t.co/HtOhfmBC15 https://t.co/eGIzR1mfZc",https://x.com/hp/status/2065085369284976839,7,4,16,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2064762600848605450,Wed Jun 10 17:32:20 +0000 2026,"HP was recognized as a Leader in the Gartner® Magic Quadrant™ for Digital Employee Experience Management Tools.
 We believe this recognition of the HP Workforce Experience Platform (WXP) reinforces our strategy to lead in the Future of Work--by unifying devices, applications, collaboration, virtualization, print, and every endpoint into a single, actionable view of the employee experience.
 
 The Gartner evaluation underscores what matters most to enterprise IT leaders today: consistent execution, proven scalability, and sustained investment in innovation.
@@ -17,8 +17,8 @@ In just a few years, HP has built a robust SaaS product and progressed from a Vi
 Learn more: https://t.co/yc5AR0ZBxc 
 Get the report: https://t.co/iS2M2X0dO9 
 
-#HPWorkforceExperiencePlatform",https://x.com/hp/status/2064762600848605450,9,6,20,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2064377346946134522,Tue Jun 09 16:01:28 +0000 2026,"Technology must be designed for environments where performance can’t be compromised.
+#HPWorkforceExperiencePlatform",https://x.com/hp/status/2064762600848605450,9,6,20,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2064377346946134522,Tue Jun 09 16:01:28 +0000 2026,"Technology must be designed for environments where performance can’t be compromised.
 
 Working alongside NASA highlights what it takes to operate at absolute precision, where systems must support seamless workflows, enable real-time decision-making and perform without interruption.
 
@@ -27,119 +27,52 @@ The same principles apply on Earth, shaping how we build for a more connected, d
 Watch the full video: https://t.co/UbCulAA2gc
 Learn more: https://t.co/3hAeAe4sP4
 
-#FutureOfWork",https://x.com/hp/status/2064377346946134522,10,3,15,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2062901287205691867,Fri Jun 05 14:16:08 +0000 2026,"Pursuit of perfection isn’t optional in Monaco. 
+#FutureOfWork",https://x.com/hp/status/2064377346946134522,10,3,15,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2062901287205691867,Fri Jun 05 14:16:08 +0000 2026,"Pursuit of perfection isn’t optional in Monaco. 
 Neither is the tech behind it.
  
 All the way to the starting grid, HP powers Scuderia Ferrari HP with the technology that drives design, simulation, and split‑second decisions.
  
 At this level, every millisecond matters.
-So does every system behind it.",https://x.com/hp/status/2062901287205691867,64,22,54,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2062553412093329881,Thu Jun 04 15:13:48 +0000 2026,"HP and @Ferrari are bringing performance, precision and design heritage together in a new way.
+So does every system behind it.",https://x.com/hp/status/2062901287205691867,64,22,54,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2062553412093329881,Thu Jun 04 15:13:48 +0000 2026,"HP and @Ferrari are bringing performance, precision and design heritage together in a new way.
 
 Introduced ahead of the Monaco Grand Prix, the HP Limited Edition Scuderia Ferrari AI PC reflects nearly two years of collaboration between Ferrari’s Design Studio and HP’s industrial designers and engineers. The result is a device shaped by craftsmanship, technical precision and the shared pursuit of excellence.
 
 Only 4,999 units will be available, a nod to Ferrari’s philosophy of selling one less than the market demands. More than a PC, this is a true collector’s item built for those who value power, exclusivity and design without compromise.
 
-https://t.co/6ASCEPs38A",https://x.com/hp/status/2062553412093329881,50,95,717,52,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2061486485551878329,Mon Jun 01 16:34:13 +0000 2026,"A new beginning for PCs starts now with HP OmniBook Ultra 16 and HP OmniBook X 14 laptops, powered by @NVIDIARTXSpark.",https://x.com/hp/status/2061486485551878329,12,35,77,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2061329272363466793,Mon Jun 01 06:09:30 +0000 2026,"NVIDIA RTX Spark reinvents @Windows PCs for the era of personal AI agents, offering a new class of computer that moves from tool to teammate. https://t.co/I1mOknCU9K",https://x.com/hp/status/2061329272363466793,64,231,1792,68,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2057871653246246923,Fri May 22 17:10:10 +0000 2026,"At the Canadian Grand Prix, instinct and technology race as one.
+https://t.co/6ASCEPs38A",https://x.com/hp/status/2062553412093329881,50,96,717,52,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2061486485551878329,Mon Jun 01 16:34:13 +0000 2026,"A new beginning for PCs starts now with HP OmniBook Ultra 16 and HP OmniBook X 14 laptops, powered by @NVIDIARTXSpark.",https://x.com/hp/status/2061486485551878329,12,35,77,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2061329272363466793,Mon Jun 01 06:09:30 +0000 2026,"NVIDIA RTX Spark reinvents @Windows PCs for the era of personal AI agents, offering a new class of computer that moves from tool to teammate. https://t.co/I1mOknCU9K",https://x.com/hp/status/2061329272363466793,64,231,1792,68,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2057871653246246923,Fri May 22 17:10:10 +0000 2026,"At the Canadian Grand Prix, instinct and technology race as one.
 
-HP is proud to help keep @ScuderiaFerrari track‑ready — from simulation and design to real‑time decisions at the pitwall. When the lights go out, every system, every insight and every team member is in sync. https://t.co/BW6WEV69HS",https://x.com/hp/status/2057871653246246923,18,14,32,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2050273817914667516,Fri May 01 17:59:05 +0000 2026,"Now at the Miami Grand Prix—where precision, technology and human instinct align to shape every lap, every decision and every outcome.
+HP is proud to help keep @ScuderiaFerrari track‑ready — from simulation and design to real‑time decisions at the pitwall. When the lights go out, every system, every insight and every team member is in sync. https://t.co/BW6WEV69HS",https://x.com/hp/status/2057871653246246923,18,14,32,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2050273817914667516,Fri May 01 17:59:05 +0000 2026,"Now at the Miami Grand Prix—where precision, technology and human instinct align to shape every lap, every decision and every outcome.
 
-HP is proud to support this delicate balance. From simulation and design, to streamlining workflows at the factory and trackside, Scuderia Ferrari HP operates with the drive for excellence this sport demands.",https://x.com/hp/status/2050273817914667516,89,14,38,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2040067838669410640,Fri Apr 03 14:04:10 +0000 2026,"From match day operations to fan experiences, @realmadrid   behind-the-scenes teams rely on secure, seamless, data-driven solutions to perform globally at the highest level. They need technology that performs when it matters most.
+HP is proud to support this delicate balance. From simulation and design, to streamlining workflows at the factory and trackside, Scuderia Ferrari HP operates with the drive for excellence this sport demands.",https://x.com/hp/status/2050273817914667516,89,14,38,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2040067838669410640,Fri Apr 03 14:04:10 +0000 2026,"From match day operations to fan experiences, @realmadrid   behind-the-scenes teams rely on secure, seamless, data-driven solutions to perform globally at the highest level. They need technology that performs when it matters most.
 
 From WXP to collaboration tools, HP powers how the Club works by helping people do their best work on the pitch and beyond. 
 
  Learn more: 
-https://t.co/uKfL31V89r",https://x.com/hp/status/2040067838669410640,64,24,65,2,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2039030660673728639,Tue Mar 31 17:22:47 +0000 2026,"Introducing HP IQ—HP's new workplace intelligence layer designed to help work flow seamlessly across devices and spaces.  
+https://t.co/uKfL31V89r",https://x.com/hp/status/2040067838669410640,64,24,65,2,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2039030660673728639,Tue Mar 31 17:22:47 +0000 2026,"Introducing HP IQ—HP's new workplace intelligence layer designed to help work flow seamlessly across devices and spaces.  
 
 At HP Imagine, President of HP's Technology & Innovation Organization, Tuan Tran, shared how HP IQ's local AI experiences reduce digital friction and boost employee productivity, while its integration with WXP enables CIOs to deploy AI across the workplace without compromising performance or trust. 
 
-#HPImagine",https://x.com/hp/status/2039030660673728639,39,16,51,1,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2038748773824782508,Mon Mar 30 22:42:40 +0000 2026,"Work happens everywhere—and the Future of Work demands AI that does too. 
+#HPImagine",https://x.com/hp/status/2039030660673728639,39,16,51,1,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2038748773824782508,Mon Mar 30 22:42:40 +0000 2026,"Work happens everywhere—and the Future of Work demands AI that does too. 
   
 At HP Imagine, HP’s Chief Strategy & Transformation Officer Prakash Arunkundrum shared why, as inferencing becomes the real value driver, organizations must balance cloud and local AI to deliver performance, trust, and smarter work experiences. 
   
-#HPImagine",https://x.com/hp/status/2038748773824782508,22,15,38,1,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2038664326484033688,Mon Mar 30 17:07:06 +0000 2026,"Employees on average are facing over 20 tech issues every month. It’s a reminder of the broader challenge CIOs and CTOs are working to solve—reducing digital friction while enabling better collaboration across hybrid teams. 
+#HPImagine",https://x.com/hp/status/2038748773824782508,22,15,38,1,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2038664326484033688,Mon Mar 30 17:07:06 +0000 2026,"Employees on average are facing over 20 tech issues every month. It’s a reminder of the broader challenge CIOs and CTOs are working to solve—reducing digital friction while enabling better collaboration across hybrid teams. 
 
 At HP Imagine, President of Personal Systems, Ketan Patel, shared how HP is addressing both—bringing AI to the edge with new EliteBook AI PCs and HP IQ. With local AI, workflows happen in real time, data stays on device, and experiences adapt to how people actually work—so they can do their best work. 
 
-#HPImagine",https://x.com/hp/status/2038664326484033688,16,8,29,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2037873077996929079,Sat Mar 28 12:42:58 +0000 2026,"On the Suzuka track, momentum is everything - a constant rhythm of inputs, adjustments, and execution. Performance comes down to clarity in every moment.
+#HPImagine",https://x.com/hp/status/2038664326484033688,16,8,29,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1
+84,HP,@hp,2037873077996929079,Sat Mar 28 12:42:58 +0000 2026,"On the Suzuka track, momentum is everything - a constant rhythm of inputs, adjustments, and execution. Performance comes down to clarity in every moment.
  
 HP technology helps @ScuderiaFerrari  to navigate complexity with seamless, friction-free solutions—supporting the team every step of the way.
  
-HP, for your best work.",https://x.com/hp/status/2037873077996929079,14,13,40,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2037679565632319964,Fri Mar 27 23:54:01 +0000 2026,"The Future of Work is about reducing friction, not adding complexity. 
-At HP Imagine, President of Imaging, Printing &amp; Solutions, Anneliese Olson, shared how new AI-enabled LaserJet Printers are making everyday work faster, smarter, and more connected. 
-
-#HPImagine https://t.co/2Xjoji8Rnf",https://x.com/hp/status/2037679565632319964,15,13,23,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2037664143533076906,Fri Mar 27 22:52:44 +0000 2026,"At HP Imagine, innovation is about empowering people to do their best work.
- 
-HP’s Chief Marketing &amp; Corporate Affairs Officer, Antonio Lucio, shares his perspective on the breakthroughs across the product portfolio that are transforming the Future of Work.
-
-#HPImagine https://t.co/FztUmPexc5",https://x.com/hp/status/2037664143533076906,7,6,22,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2037322603468042320,Fri Mar 27 00:15:34 +0000 2026,"At HP Imagine, we showed how the Future of Work comes to life through AI-powered experiences that connect devices, workflows, and spaces.
- 
-From the introduction of HP IQ - our new intelligence layer orchestrating work across PCs, devices, and meeting spaces - to advances in AI at the edge, security, and workflow automation, the focus was clear: making work simpler in an increasingly complex world.
- 
-Because the future of work isn’t just about new technology, it’s about helping organizations move faster and enabling people to do their best work.
- 
-#HPImagine",https://x.com/hp/status/2037322603468042320,13,10,24,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2036936918252847109,Wed Mar 25 22:43:00 +0000 2026,"At #HPImagine, we shared a vision of work where technology does the heavy lifting in the background—connecting people, spaces, and ideas so teams can focus on what matters
- 
-We introduced HP IQ as the intelligence built for that new reality: a workplace AI layer that brings together HP AI PCs, meeting spaces, and edge devices into one coordinated experience.
- 
-By running AI closer to where work actually happens, on devices, in rooms, at the edge, HP IQ helps teams move from juggling tools to simply working. It’s part of how HP is rethinking the future of work: not just faster or smarter, but more meaningful for the people behind every screen. 
-🔗 https://t.co/AeshF6ieLU",https://x.com/hp/status/2036936918252847109,13,18,32,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2033132157359509931,Sun Mar 15 10:44:14 +0000 2026,"Congratulations to @LewisHamilton  and @ScuderiaFerrari HP on a strong P3 finish in Shanghai — his first Grand Prix podium with the team, and a result that reflects growth, trust, and execution at the highest level. https://t.co/JXw4Cmy3sh",https://x.com/hp/status/2033132157359509931,44,381,4550,6,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2032503429507981480,Fri Mar 13 17:05:54 +0000 2026,"From Melbourne to Shanghai in just a few days, the @ScuderiaFerrari HP team is now ready to hit the track again.
-
-It’s a reflection of how today’s most dynamic teams collaborate, showing that teamwork is at the heart of the future of work. https://t.co/D9rTP7s09k",https://x.com/hp/status/2032503429507981480,14,14,30,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2030633083863535792,Sun Mar 08 13:13:49 +0000 2026,Congrats to @Charles_Leclerc on P3 and to the entire @ScuderiaFerrari HP team on a strong start to the season. https://t.co/OKbdNA5nOi,https://x.com/hp/status/2030633083863535792,12,18,39,1,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2030394728093532579,Sat Mar 07 21:26:40 +0000 2026,"A new season starts with strong foundations.
- 
-This season, HP and Ferrari continue a partnership built on collaboration, innovation, and a shared belief in what’s possible when teams are empowered to work at their best — on and off the track.
- 
-Shaping the Future of Work. https://t.co/3W2T6r3OhE",https://x.com/hp/status/2030394728093532579,8,13,36,1,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2024144073515274367,Wed Feb 18 15:28:48 +0000 2026,"How do you make work feel like play? By having the right tools for the job—even when the job is a game. Every moment on the pitch begins with hours of unseen effort. 
-
-HP enables @realmadrid with technology designed for the Future of Work—driving business growth, enabling professional fulfillment, and proving that with the right tools, work doesn’t have to feel like work. Learn more here: https://t.co/lgU65FckkM",https://x.com/hp/status/2024144073515274367,24,33,38,0,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2016968764554657976,Thu Jan 29 20:16:41 +0000 2026,"The future of work is lighter, smarter, and faster—HP EliteBoard G1a, the world’s first full AI PC built into a keyboard, turns any USB‑C display into your streamlined workspace with one cable. 
-
-Maximized minimalism starts here. https://t.co/9qIxzU4pgt https://t.co/O3mhRjwMwO",https://x.com/hp/status/2016968764554657976,58,56,72,2,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2014754419208814622,Fri Jan 23 17:37:40 +0000 2026,"Before every new season are thousands of moments—planning, testing, refining.
-HP is proud to partner with Scuderia Ferrari HP, bringing the technology that makes those moments count and support the team at every stage.
-Ready to go further. https://t.co/tmuYqatYJC",https://x.com/hp/status/2014754419208814622,39,24,58,1,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2011502319045583326,Wed Jan 14 18:14:59 +0000 2026,"The new HP EliteBook X G2 is built for the future of work. Ultra-light design meets future-ready performance for tomorrow’s AI apps, all-day battery with intelligent power, and security that’s resilient against quantum threats. 
-
-A smarter way to work starts here. https://t.co/eyghFmgPqJ",https://x.com/hp/status/2011502319045583326,44,34,57,2,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2011139094798028939,Tue Jan 13 18:11:40 +0000 2026,"According to HP’s latest Work Relationship Index, only 20% of knowledge workers have a healthy relationship with work. That must change - and it can. At CES this year, HP unveiled a bold vision for the future of work: where technology fuels not just productivity, but purpose and well-being.
- 
-From AI-powered devices to secure hybrid solutions, our leadership team shared how HP is shaping a healthier relationship with work:
- 
-✅ Technology as a platform for growth and fulfillment
-✅ Innovation that empowers global workforces
-✅ Responsible design for people and the planet
- 
-When companies invest in the right tools and experiences, the likelihood of a healthy work relationship more than doubles.
- 
-Let’s build a future where work works for everyone.",https://x.com/hp/status/2011139094798028939,19,16,35,1,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2009726018831933622,Fri Jan 09 20:36:36 +0000 2026,"Ready to redefine your workspace? ✨
-
-The future of work isn’t just coming—it’s here. Meet HP EliteBoard G1a, the world’s first full AI PC built right into a keyboard. With one USB‑C cable, transform any display into a powerful, streamlined hub for productivity. No clutter. No compromise. Just maximized minimalism for the modern enterprise.
-
-Work smarter. Move faster. Lead the future. https://t.co/dTnh3Jglwy",https://x.com/hp/status/2009726018831933622,19,37,254,11,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
-84,HP,@hp,@hp,https://x.com/hp,primary,1,2009385564466753634,Thu Jan 08 22:03:45 +0000 2026,"✨ Meet the HP OmniBook Ultra.
-
-Just 10.7 mm thin and under 1.3 kg, it redefines productivity and creativity in an ultra-sleek, anodized aluminum chassis built for strength.
-
-At its core: an Ultra-efficient Neural Engine that powers immersive AI performance. Paired with a vivid OLED touchscreen, a compact vapor chamber, and all-day battery life, it delivers cool, smart, and unstoppable energy—helping you go further in the AI era.
-
-Performance never looked so good. https://t.co/e8Io6aTt7R",https://x.com/hp/status/2009385564466753634,22,24,80,2,true,false,,2026-06-12T14:36:01.274915+00:00,browser-based scroll-exhaustion collection of observable public posts,30,084_hp
+HP, for your best work.",https://x.com/hp/status/2037873077996929079,14,13,40,0,true,false,,2026-06-12T17:11:59.302652+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/084_hp/accounts/01_primary_hp,@hp,https://x.com/hp,primary,1

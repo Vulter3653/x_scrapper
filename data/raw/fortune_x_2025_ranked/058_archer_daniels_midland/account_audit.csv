@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-58,Archer Daniels Midland,@ADMupdates,https://x.com/ADMupdates,primary,1,success,30,,,2026-06-12T14:31:38.324123+00:00,2026-06-12T14:31:48.581817+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+58,Archer Daniels Midland,1,primary,@ADMupdates,https://x.com/ADMupdates,data/raw/fortune_x_2025_ranked/058_archer_daniels_midland/accounts/01_primary_admupdates,true,success,15,,,2026-06-12T16:56:55.321992+00:00,2026-06-12T16:57:02.201761+00:00

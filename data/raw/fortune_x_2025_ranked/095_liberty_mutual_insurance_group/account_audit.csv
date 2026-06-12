@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-95,Liberty Mutual Insurance Group,@LibertyMutual,https://x.com/LibertyMutual,primary,1,success,30,,,2026-06-12T14:39:43.832316+00:00,2026-06-12T14:39:52.439325+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+95,Liberty Mutual Insurance Group,1,primary,@LibertyMutual,https://x.com/LibertyMutual,data/raw/fortune_x_2025_ranked/095_liberty_mutual_insurance_group/accounts/01_primary_libertymutual,true,success,15,,,2026-06-12T17:15:41.947921+00:00,2026-06-12T17:15:47.939619+00:00

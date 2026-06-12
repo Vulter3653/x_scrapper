@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-26,Fannie Mae,@fanniemae,https://x.com/fanniemae,primary,1,success,30,,,2026-06-12T14:23:27.949152+00:00,2026-06-12T14:23:38.510170+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+26,Fannie Mae,1,primary,@fanniemae,https://x.com/fanniemae,data/raw/fortune_x_2025_ranked/026_fannie_mae/accounts/01_primary_fanniemae,true,success,15,,,2026-06-12T16:39:27.873029+00:00,2026-06-12T16:39:35.292722+00:00

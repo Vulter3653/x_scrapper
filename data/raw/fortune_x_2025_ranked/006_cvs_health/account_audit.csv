@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-6,CVS Health,@cvshealth,https://x.com/cvshealth,primary,1,success,30,,,2026-06-12T14:21:06.172633+00:00,2026-06-12T14:21:14.415955+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+6,CVS Health,1,primary,@cvshealth,https://x.com/cvshealth,data/raw/fortune_x_2025_ranked/006_cvs_health/accounts/01_primary_cvshealth,true,success,15,,,2026-06-12T16:19:28.265576+00:00,2026-06-12T16:19:34.908898+00:00

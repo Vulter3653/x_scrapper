@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-24,Citigroup,@Citi,https://x.com/Citi,primary,1,success,30,,,2026-06-12T14:22:54.409646+00:00,2026-06-12T14:23:01.851836+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+24,Citigroup,1,primary,@Citi,https://x.com/Citi,data/raw/fortune_x_2025_ranked/024_citigroup/accounts/01_primary_citi,true,success,15,,,2026-06-12T16:37:54.349955+00:00,2026-06-12T16:38:01.543095+00:00

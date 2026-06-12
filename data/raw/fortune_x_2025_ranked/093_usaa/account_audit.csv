@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-93,USAA,@usaa,https://x.com/usaa,primary,1,success,30,,,2026-06-12T14:39:20.186588+00:00,2026-06-12T14:39:30.595674+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+93,USAA,1,primary,@usaa,https://x.com/usaa,data/raw/fortune_x_2025_ranked/093_usaa/accounts/01_primary_usaa,true,success,15,,,2026-06-12T17:14:57.831634+00:00,2026-06-12T17:15:03.710054+00:00

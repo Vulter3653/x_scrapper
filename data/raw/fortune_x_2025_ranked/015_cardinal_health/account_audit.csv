@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-15,Cardinal Health,@cardinalhealth,https://x.com/cardinalhealth,primary,1,success,30,,,2026-06-12T14:22:35.825291+00:00,2026-06-12T14:22:46.476872+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+15,Cardinal Health,1,primary,@cardinalhealth,https://x.com/cardinalhealth,data/raw/fortune_x_2025_ranked/015_cardinal_health/accounts/01_primary_cardinalhealth,true,success,15,,,2026-06-12T16:30:52.181460+00:00,2026-06-12T16:30:58.499608+00:00

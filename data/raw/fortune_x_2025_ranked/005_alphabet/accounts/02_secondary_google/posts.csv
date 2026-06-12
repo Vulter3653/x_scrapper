@@ -1,46 +1,46 @@
-fortune_rank,company_name,official_x_handle,source_x_handle,source_x_url,account_role,account_index,tweet_id,created_at,text,tweet_url,reply_count,repost_count,like_count,quote_count,view_count_available,media_present,media_type,collected_at,collection_method,max_posts_cap,source_folder
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2065118611040079946,Thu Jun 11 17:06:59 +0000 2026,"Ninety minutes on the pitch can connect billions across the globe. That’s why the beautiful game is the most searched sport in the world ⚽ @Ibra_official
+fortune_rank,company_name,official_x_handle,tweet_id,created_at,text,tweet_url,reply_count,repost_count,like_count,quote_count,view_count_available,media_present,media_type,collected_at,collection_method,max_posts_cap,source_folder,source_x_handle,source_x_url,account_role,account_index
+5,Alphabet,@Alphabetlnc,2065118611040079946,Thu Jun 11 17:06:59 +0000 2026,"Ninety minutes on the pitch can connect billions across the globe. That’s why the beautiful game is the most searched sport in the world ⚽ @Ibra_official
 
-#GooglePartner https://t.co/qJ2YybKf9X",https://x.com/google/status/2065118611040079946,42,47,320,4,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2065073211428012422,Thu Jun 11 14:06:35 +0000 2026,Learn more about Gemini in Chrome ↓ https://t.co/ZU6sJXNSV5,https://x.com/google/status/2065073211428012422,2,7,42,1,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2065073209171480599,Thu Jun 11 14:06:34 +0000 2026,"Gemini in @GoogleChrome is now rolling out to more desktop and iOS users in Latin America, Africa, the Middle East and more. Here’s what you can do:
+#GooglePartner https://t.co/qJ2YybKf9X",https://x.com/google/status/2065118611040079946,45,53,332,4,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2065073211428012422,Thu Jun 11 14:06:35 +0000 2026,Learn more about Gemini in Chrome ↓ https://t.co/ZU6sJXNSV5,https://x.com/google/status/2065073211428012422,2,7,43,1,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2065073209171480599,Thu Jun 11 14:06:34 +0000 2026,"Gemini in @GoogleChrome is now rolling out to more desktop and iOS users in Latin America, Africa, the Middle East and more. Here’s what you can do:
 
 📑 Summarize content and compare info across multiple tabs.
 🤝 Use deep integrations with Google apps like @GoogleCalendar, @GoogleMaps, and @Gmail without leaving your page.
 🍌 Transform online images with a text prompt using new Nano Banana 2 capabilities.
-🧠 Use Personal Intelligence and connect Gmail, @GooglePhotos, @YouTube and Search to get tailored answers to your questions.",https://x.com/google/status/2065073209171480599,85,78,863,12,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064819182701838561,Wed Jun 10 21:17:10 +0000 2026,See more from @GoogleTrends 🔽 https://t.co/Nly8mp02xm,https://x.com/google/status/2064819182701838561,11,7,50,1,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064819017207218682,Wed Jun 10 21:16:30 +0000 2026,"Ahead of Game 4 tonight, searches for the @nyknicks, @spurs, and the @NBA Finals are at an all-time high worldwide 🏀",https://x.com/google/status/2064819017207218682,59,89,619,10,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064746655388209297,Wed Jun 10 16:28:58 +0000 2026,"RT @sundarpichai: DiffusionGemma is an open, experimental model that brings our text diffusion research to Gemma 4. It’s a racehorse 🏇achie…",https://x.com/google/status/2064746655388209297,0,388,0,0,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064744343743922189,Wed Jun 10 16:19:47 +0000 2026,"DiffusionGemma is an open, experimental model that brings our text diffusion research to Gemma 4. It’s a racehorse 🏇achieving up to 4x faster inference by generating entire blocks of text simultaneously vs predicting token-by-token (word-by-word) output! https://t.co/FEM0XVFLBN",https://x.com/google/status/2064744343743922189,170,388,3208,65,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064741300658696590,Wed Jun 10 16:07:41 +0000 2026,"We're releasing DiffusionGemma as an open model under an Apache 2.0 license for anyone to experiment with.
+🧠 Use Personal Intelligence and connect Gmail, @GooglePhotos, @YouTube and Search to get tailored answers to your questions.",https://x.com/google/status/2065073209171480599,85,80,876,12,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064819182701838561,Wed Jun 10 21:17:10 +0000 2026,See more from @GoogleTrends 🔽 https://t.co/Nly8mp02xm,https://x.com/google/status/2064819182701838561,11,7,50,1,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064819017207218682,Wed Jun 10 21:16:30 +0000 2026,"Ahead of Game 4 tonight, searches for the @nyknicks, @spurs, and the @NBA Finals are at an all-time high worldwide 🏀",https://x.com/google/status/2064819017207218682,59,89,621,10,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064746655388209297,Wed Jun 10 16:28:58 +0000 2026,"RT @sundarpichai: DiffusionGemma is an open, experimental model that brings our text diffusion research to Gemma 4. It’s a racehorse 🏇achie…",https://x.com/google/status/2064746655388209297,0,390,0,0,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064744343743922189,Wed Jun 10 16:19:47 +0000 2026,"DiffusionGemma is an open, experimental model that brings our text diffusion research to Gemma 4. It’s a racehorse 🏇achieving up to 4x faster inference by generating entire blocks of text simultaneously vs predicting token-by-token (word-by-word) output! https://t.co/FEM0XVFLBN",https://x.com/google/status/2064744343743922189,170,390,3217,65,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064741300658696590,Wed Jun 10 16:07:41 +0000 2026,"We're releasing DiffusionGemma as an open model under an Apache 2.0 license for anyone to experiment with.
 
-Download the model weights on @huggingface, and learn more about DiffusionGemma → https://t.co/nPFBhQQqqj https://t.co/ZcRbe3LsT6",https://x.com/google/status/2064741300658696590,12,36,464,7,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064741298079219994,Wed Jun 10 16:07:41 +0000 2026,"Because it generates everything at once, DiffusionGemma unlocks new patterns of model behavior.
+Download the model weights on @huggingface, and learn more about DiffusionGemma → https://t.co/nPFBhQQqqj https://t.co/ZcRbe3LsT6",https://x.com/google/status/2064741300658696590,12,36,464,7,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064741298079219994,Wed Jun 10 16:07:41 +0000 2026,"Because it generates everything at once, DiffusionGemma unlocks new patterns of model behavior.
 
 ⚡ Fast: Generates up to 1,000+ tokens a second for up to 4x faster text generation.
 
 💻 Lightweight: Runs smoothly right on 18GB consumer graphics cards.
 
-🧠 Smart editing: Since it processes larger amounts of information at once, it can easily fill in blanks, format code, and fix its own errors in real time.",https://x.com/google/status/2064741298079219994,10,29,328,5,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064741293163418032,Wed Jun 10 16:07:39 +0000 2026,"Meet DiffusionGemma ⚡ Our latest experimental open model (Apache 2.0) that generates text up to 4x faster.
+🧠 Smart editing: Since it processes larger amounts of information at once, it can easily fill in blanks, format code, and fix its own errors in real time.",https://x.com/google/status/2064741298079219994,10,29,328,5,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064741293163418032,Wed Jun 10 16:07:39 +0000 2026,"Meet DiffusionGemma ⚡ Our latest experimental open model (Apache 2.0) that generates text up to 4x faster.
 
 Instead of predicting and typing just one word at a time like most language models, it drafts and refines entire blocks of text simultaneously.
 
-Here’s how it works 🧵 ↓",https://x.com/google/status/2064741293163418032,118,381,3185,86,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064724772861235339,Wed Jun 10 15:02:01 +0000 2026,"Search will be able to build you custom experiences with Antigravity, like mini apps, in the coming months, starting first for Google AI Pro and Ultra subscribers in the U.S.",https://x.com/google/status/2064724772861235339,12,5,47,0,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064724770877210945,Wed Jun 10 15:02:00 +0000 2026,"For ongoing tasks, like planning a wedding or managing a move, Search will soon be able to build custom experiences with Google @Antigravity that you can continue to come back to and make progress on. Think of them like building your own mini apps right in Search.
+Here’s how it works 🧵 ↓",https://x.com/google/status/2064741293163418032,118,382,3185,86,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064724772861235339,Wed Jun 10 15:02:01 +0000 2026,"Search will be able to build you custom experiences with Antigravity, like mini apps, in the coming months, starting first for Google AI Pro and Ultra subscribers in the U.S.",https://x.com/google/status/2064724772861235339,12,5,47,0,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064724770877210945,Wed Jun 10 15:02:00 +0000 2026,"For ongoing tasks, like planning a wedding or managing a move, Search will soon be able to build custom experiences with Google @Antigravity that you can continue to come back to and make progress on. Think of them like building your own mini apps right in Search.
 
-Here’s @rmstein, VP of Product, Search demoing the new tool on the #GoogleIO stage.",https://x.com/google/status/2064724770877210945,33,65,449,6,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064485947316523140,Tue Jun 09 23:13:00 +0000 2026,"How do you set up a passkey?
+Here’s @rmstein, VP of Product, Search demoing the new tool on the #GoogleIO stage.",https://x.com/google/status/2064724770877210945,33,65,451,6,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064485947316523140,Tue Jun 09 23:13:00 +0000 2026,"How do you set up a passkey?
 
 ➡️ Head to https://t.co/skMY3mWOLH → security &amp; sign-in → passkeys &amp; security keys → create a passkey. 
 
-And learn more about other key Google tools you can take advantage of to keep your sign-in secure and accessible. https://t.co/ssEaMn9ByW",https://x.com/google/status/2064485947316523140,7,7,51,0,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064485944057532832,Tue Jun 09 23:13:00 +0000 2026,"Does using a passkey mean Google has access to my personal information?
+And learn more about other key Google tools you can take advantage of to keep your sign-in secure and accessible. https://t.co/ssEaMn9ByW",https://x.com/google/status/2064485947316523140,7,7,51,0,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064485944057532832,Tue Jun 09 23:13:00 +0000 2026,"Does using a passkey mean Google has access to my personal information?
 
-❌ No. Your biometric data, such as a fingerprint or face scan, is stored on your personal device and never shared with Google.",https://x.com/google/status/2064485944057532832,7,7,84,0,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064485936411394396,Tue Jun 09 23:12:58 +0000 2026,"🧵Fact: Passkeys are the simplest and most secure way to sign in to your Google accounts. 
+❌ No. Your biometric data, such as a fingerprint or face scan, is stored on your personal device and never shared with Google.",https://x.com/google/status/2064485944057532832,7,7,84,0,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2
+5,Alphabet,@Alphabetlnc,2064485936411394396,Tue Jun 09 23:12:58 +0000 2026,"🧵Fact: Passkeys are the simplest and most secure way to sign in to your Google accounts. 
 
 For National Fishing Week 🎣, we’re sharing some pro tips about passkeys to help keep your sign-ins secure so you can avoid phishing scams that try to hook you into sharing your data 👇
 
@@ -48,72 +48,4 @@ First: What are passkeys?
 
 🔑 Passkeys are an easy and more secure alternative to traditional passwords. 
 
-They let you sign in to your Google accounts with just a fingerprint, face scan or screen lock.",https://x.com/google/status/2064485936411394396,47,73,776,9,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064422528995467652,Tue Jun 09 19:01:00 +0000 2026,"We’re continually delighted to discover that the most commonly translated phrases on Google Translate are often about gratitude, connection and love.
-
-Some of the top Translate queries include:
-🫂 “How are you?”
-❤️ “I love you”
-👋 “Hello”
-🙏 “Please”
-
-Often, the most commonly translated phrase isn’t a business term or a technical query — it’s simply: “Thank you.”",https://x.com/google/status/2064422528995467652,52,70,784,12,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064394556292964422,Tue Jun 09 17:09:51 +0000 2026,Learn more about the new updates to Google Fi Wireless ↓ https://t.co/3fCLa3H0OK,https://x.com/google/status/2064394556292964422,7,10,52,3,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064394554288271534,Tue Jun 09 17:09:50 +0000 2026,"We’re expanding international coverage, speed, security and connectivity for Google Fi Wireless with new updates, all included in our Unlimited Premium plan at no extra cost:
-
-🛜 Our most seamless connectivity yet
-🏃 5G speed in 22 new locations
-🔒 VPN availability in more top travel destinations
-🤝 Wi-Fi Auto-Connect+ in even more places
-✅ Easy setup and proactive support
-💰Limited-time savings for new subscribers",https://x.com/google/status/2064394554288271534,57,82,977,7,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064366601026105481,Tue Jun 09 15:18:46 +0000 2026,"Gemini 3.5 Live Translate brings live, natural speech translation to:
-
-🌎 Everyone in Google Translate on @Android and iOS
-
-🧑‍💻 Developers in public preview via the Gemini Live API and @GoogleAIStudio 
-
-🏢 Enterprises in private preview starting this month in Google Meet
-
-Learn more ↓ https://t.co/HNvIX9N5fG",https://x.com/google/status/2064366601026105481,9,20,204,3,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064366598295572820,Tue Jun 09 15:18:45 +0000 2026,"Gemini 3.5 Live Translate has rolled out in the Google Translate app globally on @Android and iOS.
-
-To try it, just tap “Live translate” in the Google Translate app and connect any pair of headphones to experience a more seamless translation across 70+ languages.
-
-@Android users, we're also rolling out a new “listening mode” that lets you hear translations directly through your phone’s earpiece – without headphones. Just hold your phone to your ear like a regular phone call, and the translated audio streams straight to you. 📲 💬",https://x.com/google/status/2064366598295572820,16,56,419,18,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064366595963527562,Tue Jun 09 15:18:45 +0000 2026,"By translating continuously as you speak, Gemini 3.5 Live Translate generates smooth, natural-sounding speech without pauses.
-
-Soon, Google Meet will use Gemini 3.5 Live Translate for Speech Translation.
-
-This update is launching in private preview for select business Google Workspace customers starting this month, followed by a broader rollout later this year.",https://x.com/google/status/2064366595963527562,9,88,849,32,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064366586849304596,Tue Jun 09 15:18:43 +0000 2026,"For over 20 years, we've dedicated ourselves to removing language barriers so people can learn, speak and connect more deeply than ever before.
-
-Today, we’re taking our next step with the release of Gemini 3.5 Live Translate — our latest audio model for live, speech-to-speech translation across 70+ languages. 🧵",https://x.com/google/status/2064366586849304596,279,921,7244,167,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064348681294242038,Tue Jun 09 14:07:34 +0000 2026,"Google Translate has come a long way since 2006.
-
-Now, each month our translation tools support:
-🗣️ Nearly 250 languages
-🌍 1 billion+ users asking Google for translation help
-💬 1 trillion+ words translated across our ecosystem https://t.co/G1nYjmWdKF",https://x.com/google/status/2064348681294242038,25,51,681,6,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064104231473127445,Mon Jun 08 21:56:12 +0000 2026,Learn more about how we used AI at this year’s #GoogleIO ↓ https://t.co/Vo7DZGYw3v,https://x.com/google/status/2064104231473127445,10,6,53,2,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064104229715734629,Mon Jun 08 21:56:12 +0000 2026,"Yes, jellyfish DJ’d the “opening set” at #GoogleIO this year. 🪼Let’s dive in 🌊
-
-We partnered with Monterey Bay Aquarium to build a generative music experiment where moon jellies, live-streamed from their home at the aquarium, controlled music made by Lyria 3.
-
-The jellies were tracked by a lightweight object detection model running on a tiny Coral NPU housed on a Synaptics Coralboard — the same type of object detection model used to power conservation efforts in the Great Barrier Reef.
-
-The Coralboard sent the jellies’ coordinates to our music generation engine. Each quadrant of the screen represented an instrument — drums, bass, chords or melody. The number of jellies in each quadrant determined the weighting of those sounds, translating their movements into music.",https://x.com/google/status/2064104229715734629,37,44,221,4,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064076495836926227,Mon Jun 08 20:05:59 +0000 2026,"RT @NotebookLM: Introducing a more powerful NotebookLM 🚀
-
-Massive upgrades deliver agentic capabilities in chat, more advanced reasoning, a…",https://x.com/google/status/2064076495836926227,0,536,0,0,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064047249768743218,Mon Jun 08 18:09:47 +0000 2026,Learn all the ways we're helping you follow the tournament ↓ https://t.co/FeXC3hgT4P,https://x.com/google/status/2064047249768743218,5,7,55,1,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064047248569163859,Mon Jun 08 18:09:46 +0000 2026,"As the @FIFAWorldCup kicks off, see how our tools and products can bring you closer to the action:
-
-⚽ Get real-time scores, standings, and deep-dive details with new features in Search and AI Mode
-⚽ Navigate to matches with the latest traffic info on @GoogleMaps and @Waze, or find the perfect viewing party nearby
-⚽ Take your fandom further with the @GeminiApp, from following live match data in a visual hub to creating custom fan images",https://x.com/google/status/2064047248569163859,25,28,427,3,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064034766484025381,Mon Jun 08 17:20:10 +0000 2026,"@antigravity 6️⃣ Plus, we’re expanding Personal Intelligence in AI Mode in Search to nearly 200 countries across 98 languages free of charge — no subscription required.
-
-Learn more: 
-https://t.co/FIlqmbiDeN",https://x.com/google/status/2064034766484025381,9,8,75,2,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
-5,Alphabet,@Alphabetlnc,@google,https://x.com/google,secondary,2,2064034762080104781,Mon Jun 08 17:20:09 +0000 2026,@antigravity 5️⃣ Gemini 3.5 Flash — our newest Flash model delivering sustained frontier performance for agents and coding — is the new default model in AI Mode for everyone globally. https://t.co/QmbidsSTe7,https://x.com/google/status/2064034762080104781,12,11,86,1,true,false,,2026-06-12T14:21:04.169514+00:00,browser-based scroll-exhaustion collection of observable public posts,30,005_alphabet
+They let you sign in to your Google accounts with just a fingerprint, face scan or screen lock.",https://x.com/google/status/2064485936411394396,47,74,777,9,true,false,,2026-06-12T16:18:45.029603+00:00,capped browser-based collection of observable public posts,15,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google,@google,https://x.com/google,secondary,2

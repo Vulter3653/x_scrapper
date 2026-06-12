@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-27,Kroger,@kroger,https://x.com/kroger,primary,1,success,30,,,2026-06-12T14:23:40.513518+00:00,2026-06-12T14:23:45.629901+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+27,Kroger,1,primary,@kroger,https://x.com/kroger,data/raw/fortune_x_2025_ranked/027_kroger/accounts/01_primary_kroger,true,success,15,,,2026-06-12T16:39:30.364345+00:00,2026-06-12T16:39:36.861736+00:00

@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-44,Walt Disney,@Disney,https://x.com/Disney,primary,1,success,30,,,2026-06-12T14:29:54.689477+00:00,2026-06-12T14:30:00.561221+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+44,Walt Disney,1,primary,@Disney,https://x.com/Disney,data/raw/fortune_x_2025_ranked/044_walt_disney/accounts/01_primary_disney,true,success,15,,,2026-06-12T16:50:52.346083+00:00,2026-06-12T16:50:59.666971+00:00

@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-54,Procter & Gamble,@ProcterGamble,https://x.com/ProcterGamble,primary,1,success,26,,,2026-06-12T14:31:08.105906+00:00,2026-06-12T14:33:29.167890+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+54,Procter & Gamble,1,primary,@ProcterGamble,https://x.com/ProcterGamble,data/raw/fortune_x_2025_ranked/054_procter_gamble/accounts/01_primary_proctergamble,true,success,15,,,2026-06-12T16:54:42.022368+00:00,2026-06-12T16:55:44.078837+00:00

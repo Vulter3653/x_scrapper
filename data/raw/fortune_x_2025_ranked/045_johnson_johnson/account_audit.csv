@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-45,Johnson & Johnson,@JNJNews,https://x.com/JNJNews,primary,1,success,30,,,2026-06-12T14:30:37.760727+00:00,2026-06-12T14:30:48.130711+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+45,Johnson & Johnson,1,primary,@JNJNews,https://x.com/JNJNews,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews,true,success,15,,,2026-06-12T16:50:45.044410+00:00,2026-06-12T16:50:50.748681+00:00

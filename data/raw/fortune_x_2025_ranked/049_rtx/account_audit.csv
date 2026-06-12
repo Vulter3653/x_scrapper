@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-49,RTX,@RTX_News,https://x.com/RTX_News,primary,1,success,30,,,2026-06-12T14:30:37.732332+00:00,2026-06-12T14:30:45.779343+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+49,RTX,1,primary,@RTX_News,https://x.com/RTX_News,data/raw/fortune_x_2025_ranked/049_rtx/accounts/01_primary_rtx_news,true,success,15,,,2026-06-12T16:52:24.732643+00:00,2026-06-12T16:52:30.568098+00:00

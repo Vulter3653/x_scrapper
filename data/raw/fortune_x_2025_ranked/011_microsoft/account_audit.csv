@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-11,Microsoft,@microsoft,https://x.com/microsoft,primary,1,success,30,,,2026-06-12T14:19:57.948088+00:00,2026-06-12T14:20:07.060155+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+11,Microsoft,1,primary,@microsoft,https://x.com/microsoft,data/raw/fortune_x_2025_ranked/011_microsoft/accounts/01_primary_microsoft,true,success,15,,,2026-06-12T16:27:42.246332+00:00,2026-06-12T16:27:48.424821+00:00

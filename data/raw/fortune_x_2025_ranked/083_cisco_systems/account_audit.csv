@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-83,Cisco Systems,@Cisco,https://x.com/Cisco,primary,1,success,30,,,2026-06-12T14:35:39.685405+00:00,2026-06-12T14:35:50.084590+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+83,Cisco Systems,1,primary,@Cisco,https://x.com/Cisco,data/raw/fortune_x_2025_ranked/083_cisco_systems/accounts/01_primary_cisco,true,success,15,,,2026-06-12T17:11:12.660008+00:00,2026-06-12T17:11:17.842566+00:00

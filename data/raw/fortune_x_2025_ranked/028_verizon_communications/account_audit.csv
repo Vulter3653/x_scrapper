@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-28,Verizon Communications,@Verizon,https://x.com/Verizon,primary,1,success,30,,,2026-06-12T14:23:47.633289+00:00,2026-06-12T14:23:53.469343+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+28,Verizon Communications,1,primary,@Verizon,https://x.com/Verizon,data/raw/fortune_x_2025_ranked/028_verizon_communications/accounts/01_primary_verizon,true,success,15,,,2026-06-12T16:40:12.494642+00:00,2026-06-12T16:40:20.031866+00:00

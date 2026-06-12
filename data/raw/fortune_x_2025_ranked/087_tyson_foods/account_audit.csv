@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-87,Tyson Foods,@tysonfoods,https://x.com/tysonfoods,primary,1,success,30,,,2026-06-12T14:37:05.996936+00:00,2026-06-12T14:37:11.710263+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+87,Tyson Foods,1,primary,@tysonfoods,https://x.com/tysonfoods,data/raw/fortune_x_2025_ranked/087_tyson_foods/accounts/01_primary_tysonfoods,true,success,15,,,2026-06-12T17:12:41.134352+00:00,2026-06-12T17:12:49.121050+00:00

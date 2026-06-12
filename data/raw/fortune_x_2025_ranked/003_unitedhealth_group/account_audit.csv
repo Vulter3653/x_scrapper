@@ -1,2 +1,2 @@
-fortune_rank,company_name,source_x_handle,source_x_url,account_role,account_index,status,posts_captured,error_type,error_message,started_at,completed_at
-3,UnitedHealth Group,@UnitedHealthGrp,https://x.com/UnitedHealthGrp,primary,1,success,30,,,2026-06-12T14:19:54.355642+00:00,2026-06-12T14:20:00.408899+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
+3,UnitedHealth Group,1,primary,@UnitedHealthGrp,https://x.com/UnitedHealthGrp,data/raw/fortune_x_2025_ranked/003_unitedhealth_group/accounts/01_primary_unitedhealthgrp,true,success,15,,,2026-06-12T16:15:36.838712+00:00,2026-06-12T16:15:42.738953+00:00
