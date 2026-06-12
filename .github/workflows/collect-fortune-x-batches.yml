@@ -1,0 +1,123 @@
+name: Collect Fortune Top 100 X Batches
+
+on:
+  workflow_dispatch:
+    inputs:
+      execute_collection:
+        description: 'Set to true to run collection; false performs dry-run planning only.'
+        required: true
+        default: 'false'
+      confirmation_phrase:
+        description: 'Required for execution: AUTHORIZE_FORTUNE_X_COLLECTION'
+        required: false
+        default: ''
+      run_id:
+        description: 'Optional run id. Defaults to GitHub run id and attempt.'
+        required: false
+        default: ''
+      max_posts_per_account:
+        description: 'Bounded post cap per account.'
+        required: true
+        default: '50'
+      max_scrolls:
+        description: 'Maximum scroll attempts per account.'
+        required: true
+        default: '250'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fortune-top100-x-collection-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  collect-batch:
+    name: Fortune X batch ${{ matrix.batch_index }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        batch_index: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install existing scraper dependencies
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements-scrape.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Validate queue and collection controls
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python scripts/validate_fortune_x_collection_queue.py
+          python scripts/validate_fortune_x_batch_action.py
+
+      - name: Validate execution confirmation
+        if: ${{ inputs.execute_collection == 'true' }}
+        shell: bash
+        env:
+          CONFIRMATION_PHRASE: ${{ inputs.confirmation_phrase }}
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+        run: |
+          set -euo pipefail
+          if [ "$CONFIRMATION_PHRASE" != "AUTHORIZE_FORTUNE_X_COLLECTION" ]; then
+            echo "::error title=Collection not confirmed::confirmation_phrase must equal AUTHORIZE_FORTUNE_X_COLLECTION."
+            exit 1
+          fi
+          if [ -z "${X_AUTH_TOKEN:-}" ] || [ -z "${X_CT0:-}" ]; then
+            echo "::error title=Missing X auth::Required X cookie secrets are not configured."
+            exit 1
+          fi
+          echo "Collection confirmation and required X cookie secret presence passed."
+
+      - name: Plan or run Fortune X batch
+        shell: bash
+        env:
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+        run: |
+          set -euo pipefail
+          RUN_ID="${{ inputs.run_id }}"
+          if [ -z "$RUN_ID" ]; then
+            RUN_ID="${{ github.run_id }}_${{ github.run_attempt }}"
+          fi
+          ARGS=(
+            --batch-index "${{ matrix.batch_index }}"
+            --batch-size 10
+            --concurrency-per-batch 10
+            --run-id "$RUN_ID"
+            --max-posts-per-account "${{ inputs.max_posts_per_account }}"
+            --max-scrolls "${{ inputs.max_scrolls }}"
+          )
+          if [ "${{ inputs.execute_collection }}" = "true" ]; then
+            ARGS+=(--execute)
+          fi
+          python scripts/run_fortune_x_collection_batch.py "${ARGS[@]}"
+
+      - name: Upload Fortune X batch artifacts
+        if: ${{ inputs.execute_collection == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fortune-x-batch-${{ matrix.batch_index }}
+          path: |
+            data/raw/fortune_x_collection/
+            data/audit/fortune_x_collection/
+          retention-days: 7

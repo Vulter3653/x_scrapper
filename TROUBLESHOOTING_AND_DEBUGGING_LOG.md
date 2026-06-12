@@ -452,3 +452,7 @@ When a future issue occurs, append a new section to this file with:
   - No X collection authorized or executed.
   - No X API call, MCP installation, browser automation, GitHub Actions trigger, raw output, processed output, or dashboard sync.
   - `data/` and `dashboard/data/` remain untouched.
+
+## 2026-06-12 - Fortune Batch Action Scaffold
+
+Added a manual Fortune Top 100 batch collection action scaffold and validator. The scaffold was not triggered during this change. No X collection, X API call, MCP installation, dashboard sync, `data/` mutation, or `dashboard/data/` mutation was performed.

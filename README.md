@@ -126,6 +126,26 @@ python scripts/validate_fortune_x_human_review.py
 
 These validators are local/static checks. They do not read secrets, scrape X, call external networks, run SEC downloads, or modify `data/` or `dashboard/data/`.
 
+
+## Fortune Top 100 Batch Collection Action Scaffold
+
+The Fortune Top 100 human-final queue can now be planned or executed through a manual batch workflow scaffold. The configured upper bound is 20 concurrent account collections: 2 batches run in parallel and each batch contains 10 account subprocesses.
+
+| File | Purpose |
+| --- | --- |
+| `.github/workflows/collect-fortune-x-batches.yml` | Manual workflow_dispatch scaffold with `strategy.max-parallel: 2`. |
+| `scripts/run_fortune_x_collection_batch.py` | Reads the 100-row human-final queue and runs one 10-account batch through `python scrape_x.py`. |
+| `scripts/validate_fortune_x_batch_action.py` | Static validator for the batch action and runner controls. |
+| `docs/operations/fortune_top100_x_batch_collection_action_design.md` | Batch concurrency design and execution boundary. |
+
+Execution still requires explicit manual workflow inputs and X cookie secret presence. No X API is introduced, no MCP is installed, no dashboard sync is performed, and no complete historical X coverage claim is allowed.
+
+Validation:
+
+```bash
+python scripts/validate_fortune_x_batch_action.py
+```
+
 ## Data Layout
 
 브랜드별 표준 결과 구조는 다음과 같습니다.

@@ -20,6 +20,7 @@ OUTPUT_FILE = Path(os.getenv('OUTPUT_FILE', BRAND_DIR / 'posts.json'))
 STATE_FILE = Path(os.getenv('STATE_FILE', BRAND_DIR / 'scrape_state.json'))
 HEADLESS = os.getenv('HEADLESS', 'true').lower() in {'1', 'true', 'yes'}
 MAX_SCROLLS = int(os.getenv('MAX_SCROLLS', '2500'))
+MAX_POSTS = int(os.getenv('MAX_POSTS', '0'))
 SCROLL_DELAY_SECONDS = float(os.getenv('SCROLL_DELAY_SECONDS', '1.25'))
 IDLE_SCROLL_LIMIT = int(os.getenv('IDLE_SCROLL_LIMIT', '60'))
 PAGE_TIMEOUT_MS = int(os.getenv('PAGE_TIMEOUT_MS', '60000'))
@@ -57,6 +58,13 @@ def records_from_map(records_by_id: dict[str, dict[str, Any]]) -> list[dict[str,
             return 0
 
     return sorted(records_by_id.values(), key=sort_key, reverse=True)
+
+
+def capped_records(records_by_id: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    records = records_from_map(records_by_id)
+    if MAX_POSTS > 0:
+        return records[:MAX_POSTS]
+    return records
 
 
 def merge_record(records_by_id: dict[str, dict[str, Any]], record: dict[str, Any]) -> bool:
@@ -186,10 +194,10 @@ async def install_response_collector(page, records_by_id: dict[str, dict[str, An
 
         state['target_user'] = TARGET_USER
         state['profile_url'] = PROFILE_URL
-        state['total_unique_posts'] = len(records_by_id)
+        state['total_unique_posts'] = len(capped_records(records_by_id))
         state['last_response_url'] = url.split('?')[0]
         state['last_saved_at'] = int(time.time())
-        save_json(OUTPUT_FILE, records_from_map(records_by_id))
+        save_json(OUTPUT_FILE, capped_records(records_by_id))
         save_json(STATE_FILE, state)
         print(
             f'captured={len(records)}, new={new_count}, total_unique={len(records_by_id)}',
@@ -213,7 +221,8 @@ async def scrape_profile() -> None:
 
     print(
         f'@{TARGET_USER} browser scrape start: existing={len(records_by_id)}, '
-        f'max_scrolls={MAX_SCROLLS}, idle_limit={IDLE_SCROLL_LIMIT}',
+        f'max_scrolls={MAX_SCROLLS}, max_posts={MAX_POSTS or "unbounded"}, '
+        f'idle_limit={IDLE_SCROLL_LIMIT}',
         flush=True,
     )
 
@@ -272,17 +281,21 @@ async def scrape_profile() -> None:
             if idle_scrolls >= IDLE_SCROLL_LIMIT:
                 print(f'No new posts after {idle_scrolls} scrolls. Stopping.', flush=True)
                 break
+            if MAX_POSTS > 0 and len(records_by_id) >= MAX_POSTS:
+                print(f'MAX_POSTS reached ({MAX_POSTS}). Stopping.', flush=True)
+                break
 
         await context.close()
         await browser.close()
 
-    save_json(OUTPUT_FILE, records_from_map(records_by_id))
+    output_records = capped_records(records_by_id)
+    save_json(OUTPUT_FILE, output_records)
     state['target_user'] = TARGET_USER
     state['profile_url'] = PROFILE_URL
-    state['total_unique_posts'] = len(records_by_id)
+    state['total_unique_posts'] = len(output_records)
     state['last_completed_at'] = int(time.time())
     save_json(STATE_FILE, state)
-    print(f'완료: 누적 고유 포스트 {len(records_by_id)}개 저장 -> {OUTPUT_FILE}', flush=True)
+    print(f'완료: 누적 고유 포스트 {len(output_records)}개 저장 -> {OUTPUT_FILE}', flush=True)
 
 
 if __name__ == '__main__':
