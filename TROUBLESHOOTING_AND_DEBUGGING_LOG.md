@@ -34,6 +34,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune Top 100 human review completion | Human review overlay was completed for ranks 41-100 without scraping or dashboard/data mutation. | All 100 rows are human reviewed; `final_manual_scrape_eligible` is the only future collection eligibility signal. |
 | Fortune Top 100 queue human-review source update | Queue/readiness/proposal files were updated from the completed human review overlay without collection. | Queue now has 100 rows from `final_manual_scrape_eligible=true`; collection remains unauthorized and dry-run only. |
 | Fortune Top 100 collection method decision | Method decision selected extension of the existing repo collection workflow without executing collection. | `extend_existing_collection_workflow` is selected; X API, MCP, and new browser automation are not required at this stage. |
+| Fortune Top 100 existing workflow structure analysis | Static workflow structure analysis was added without scraper execution or source refactor. | Existing Playwright/cookie-based collection path can be extended later, but execution remains unauthorized and dry-run only. |
 
 ## Detailed Incidents
 
@@ -435,4 +436,19 @@ When a future issue occurs, append a new section to this file with:
 - Boundary:
   - No X collection authorized or executed.
   - No X API call, MCP installation, browser automation, raw output, processed output, or dashboard sync.
+  - `data/` and `dashboard/data/` remain untouched.
+
+### 23. Fortune Top 100 Existing Collection Workflow Structure Analysis
+
+- Period: `2026-06-12`
+- Scope:
+  - Inspected `scrape_x.py`, `scripts/scrape_x.py`, `src/x_scrapper/collection/x_scraper.py`, and `.github/workflows/scrape.yml`.
+  - Documented entrypoints, inputs, auth/cookie handling, runtime behavior, output structure, dashboard sync, dry-run gates, risk points, and required future controls.
+  - Recorded Alphabet as a human recheck candidate without changing it.
+- Outcome:
+  - Added static analysis documentation only.
+  - Did not modify scraper source code or workflow execution logic.
+- Boundary:
+  - No X collection authorized or executed.
+  - No X API call, MCP installation, browser automation, GitHub Actions trigger, raw output, processed output, or dashboard sync.
   - `data/` and `dashboard/data/` remain untouched.

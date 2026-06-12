@@ -227,6 +227,7 @@ The selected future method is `extend_existing_collection_workflow`. This decisi
 | `config/fortune2025_top100_x_collection_method_decision.csv` | Single-row method decision for the 100-row human-final queue. |
 | `config/schemas/fortune2025_top100_x_collection_method_decision.schema.json` | Controlled schema for method decision boundaries. |
 | `docs/operations/fortune_top100_x_collection_method_decision.md` | Existing workflow inspection, method comparison, selected method, and execution boundaries. |
+| `docs/operations/fortune_top100_x_existing_collection_workflow_structure_analysis.md` | Static analysis of existing scraper entrypoints, inputs, auth/cookie handling, runtime behavior, outputs, dashboard sync, dry-run gates, risks, and required controls. |
 | `scripts/validate_fortune_x_collection_method_decision.py` | Static validator for method decision boundaries. |
 
 The method decision keeps `collection_authorized=false`, `dry_run_only=true`, `x_api_required=false`, `mcp_required=false`, `browser_automation_required=false`, `data_mutation_allowed=false`, and `dashboard_sync_allowed=false`. It does not define raw or processed output paths.
