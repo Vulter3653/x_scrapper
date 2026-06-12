@@ -163,6 +163,18 @@ jobs:
           echo "start_rank=$actual_start" >> "$GITHUB_OUTPUT"
           echo "end_rank=$actual_end" >> "$GITHUB_OUTPUT"
 
+      - name: Preserve previous ranked output snapshot
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf .previous_fortune_x_ranked
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked .previous_fortune_x_ranked
+          else
+            mkdir -p .previous_fortune_x_ranked
+          fi
+
       - name: Prepare isolated shard workspace
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
@@ -212,6 +224,7 @@ jobs:
             --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
             --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
             --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
+            --previous-output-root ".previous_fortune_x_ranked" \
             --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv"
 
       - name: Stage shard artifact
