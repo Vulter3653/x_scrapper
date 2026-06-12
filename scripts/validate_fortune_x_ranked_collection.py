@@ -23,7 +23,13 @@ REQUIRED_POST_COLUMNS = {
     "fortune_rank", "company_name", "official_x_handle", "tweet_id", "created_at", "text",
     "tweet_url", "reply_count", "repost_count", "like_count", "quote_count",
     "view_count_available", "media_present", "media_type", "collected_at", "collection_method",
-    "max_posts_cap", "source_folder",
+    "max_posts_cap", "source_folder", "source_x_handle", "source_x_url", "account_role",
+    "account_index",
+}
+REQUIRED_ACCOUNT_AUDIT_COLUMNS = {
+    "fortune_rank", "company_name", "account_index", "account_role", "source_x_handle",
+    "source_x_url", "folder", "attempted", "status", "posts_collected", "error_type",
+    "error_message", "started_at", "completed_at",
 }
 REQUIRED_SUMMARY_COLUMNS = [
     "fortune_rank", "company_name", "official_x_handle", "folder", "attempted", "status",
@@ -83,10 +89,26 @@ def check_scaffold() -> None:
             "workflow_dispatch:",
             "contents: write",
             "fortune-x-ranked-collection",
+            "collect-phase-1:",
+            "collect-phase-2:",
+            "collect-phase-3:",
+            "collect-phase-4:",
+            "aggregate-ranked-shards:",
+            "needs: collect-phase-1",
+            "needs: collect-phase-2",
+            "needs: collect-phase-3",
             "strategy:",
             "matrix:",
+            "rank: [1, 2, 3",
+            "rank: [26, 27, 28",
+            "rank: [51, 52, 53",
+            "rank: [76, 77, 78",
             "actions/upload-artifact",
             "actions/download-artifact",
+            "fortune-x-ranked-phase-*-rank-*",
+            "retry_delay_seconds",
+            "--retry-delay-seconds",
+            "--previous-output-root",
             "python scripts/run_fortune_x_ranked_collection.py",
             "python scripts/merge_fortune_x_ranked_collection_shards.py",
             "git push",
@@ -95,7 +117,19 @@ def check_scaffold() -> None:
         if missing:
             report("FAIL", "workflow controls", "missing: " + ", ".join(missing))
         else:
-            report("PASS", "workflow controls", "matrix ranked collection workflow controls present")
+            report("PASS", "workflow controls", "phased rank-matrix collection workflow controls present")
+        phase_needs = [
+            ("collect-phase-2:", "needs: collect-phase-1"),
+            ("collect-phase-3:", "needs: collect-phase-2"),
+            ("collect-phase-4:", "needs: collect-phase-3"),
+        ]
+        missing_needs = [need for _, need in phase_needs if need not in text]
+        aggregate_needs = ["- collect-phase-1", "- collect-phase-2", "- collect-phase-3", "- collect-phase-4"]
+        missing_needs.extend(need for need in aggregate_needs if need not in text)
+        if missing_needs:
+            report("FAIL", "workflow phase ordering", "missing: " + ", ".join(missing_needs))
+        else:
+            report("PASS", "workflow phase ordering", "collect phases are sequential and aggregate needs all phases")
         forbidden = ["schedule:", "sync_dashboard_data.py", *FORBIDDEN_API_MARKERS]
         found = [item for item in forbidden if item in text]
         if found:
@@ -135,11 +169,11 @@ def check_tracked_sensitive_files() -> None:
 
 
 def check_outputs(allow_empty_before_run: bool) -> None:
+    if allow_empty_before_run:
+        report("PASS", "output validation", "skipped detailed raw output checks before collection run")
+        return
     if not OUTPUT_ROOT.exists():
-        if allow_empty_before_run:
-            report("PASS", "output root", f"{rel(OUTPUT_ROOT)} absent before first run is allowed")
-        else:
-            report("FAIL", "output root", f"missing {rel(OUTPUT_ROOT)}")
+        report("FAIL", "output root", f"missing {rel(OUTPUT_ROOT)}")
         return
     report("PASS", "output root", f"found {rel(OUTPUT_ROOT)}")
 
@@ -158,11 +192,13 @@ def check_outputs(allow_empty_before_run: bool) -> None:
     for folder in folders:
         posts_path = folder / "posts.csv"
         audit_path = folder / "audit.json"
+        account_audit_path = folder / "account_audit.csv"
+        accounts_path = folder / "accounts"
         if not posts_path.exists():
-            report("FAIL", "posts.csv", f"missing {rel(posts_path)}")
+            report("FAIL", "company posts.csv", f"missing {rel(posts_path)}")
             continue
         if not audit_path.exists():
-            report("FAIL", "audit.json", f"missing {rel(audit_path)}")
+            report("FAIL", "company audit.json", f"missing {rel(audit_path)}")
         else:
             try:
                 audit = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -170,10 +206,35 @@ def check_outputs(allow_empty_before_run: bool) -> None:
                     report("FAIL", "audit x_api_used", f"{rel(audit_path)} x_api_used is not false")
             except Exception as exc:
                 report("FAIL", "audit.json parse", f"{rel(audit_path)}: {exc}")
+        if not account_audit_path.exists():
+            report("FAIL", "account_audit.csv", f"missing {rel(account_audit_path)}")
+        else:
+            account_fields, _ = read_csv(account_audit_path)
+            missing_account_cols = sorted(REQUIRED_ACCOUNT_AUDIT_COLUMNS - set(account_fields))
+            if missing_account_cols:
+                report("FAIL", "account_audit.csv columns", f"{rel(account_audit_path)} missing: " + ", ".join(missing_account_cols))
+        if not accounts_path.exists():
+            report("FAIL", "account raw folder", f"missing {rel(accounts_path)}")
+        else:
+            account_dirs = sorted(path for path in accounts_path.iterdir() if path.is_dir())
+            if not account_dirs:
+                report("FAIL", "account raw folder", f"no account folders under {rel(accounts_path)}")
+            for account_dir in account_dirs:
+                account_posts = account_dir / "posts.csv"
+                account_audit = account_dir / "audit.json"
+                if not account_posts.exists():
+                    report("FAIL", "account posts.csv", f"missing {rel(account_posts)}")
+                else:
+                    account_post_fields, _ = read_csv(account_posts)
+                    account_missing_cols = sorted(REQUIRED_POST_COLUMNS - set(account_post_fields))
+                    if account_missing_cols:
+                        report("FAIL", "account posts.csv columns", f"{rel(account_posts)} missing: " + ", ".join(account_missing_cols))
+                if not account_audit.exists():
+                    report("FAIL", "account audit.json", f"missing {rel(account_audit)}")
         fields, rows = read_csv(posts_path)
         missing_cols = sorted(REQUIRED_POST_COLUMNS - set(fields))
         if missing_cols:
-            report("FAIL", "posts.csv columns", f"{rel(posts_path)} missing: " + ", ".join(missing_cols))
+            report("FAIL", "company posts.csv columns", f"{rel(posts_path)} missing: " + ", ".join(missing_cols))
         post_file_count += 1
         for row in rows:
             if None in row or any(v is None for v in row.values()):

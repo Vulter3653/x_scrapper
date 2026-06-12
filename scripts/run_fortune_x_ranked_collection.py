@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 """Run ranked Fortune 2025 Top 100 X collection through the existing collector.
 
-The source of truth for collection is the manually reviewed X URL list in the
-Fortune queue. Each trusted URL is collected as an account-level source, then
-all trusted accounts for the same Fortune company are merged into a single
-company-level posts.csv. The script keeps the existing Playwright/browser
-collector path and does not use the official X API, MCP, dashboard sync,
-screenshots, traces, or browser session persistence.
+This script keeps the repository's existing Playwright/browser collector path and
+runs accounts sequentially by Fortune rank. It does not use the official X API,
+MCP, dashboard sync, screenshots, traces, or browser session persistence.
 """
 
 from __future__ import annotations
@@ -31,25 +28,25 @@ SCRAPER_ENTRYPOINT = REPO_ROOT / "scrape_x.py"
 OUTPUT_ROOT = REPO_ROOT / "data" / "raw" / "fortune_x_2025_ranked"
 SUMMARY_FILE = REPO_ROOT / "data" / "audit" / "fortune_x_2025_ranked_collection_summary.csv"
 REQUIRED_SECRETS = ("X_AUTH_TOKEN", "X_CT0")
-COLLECTION_METHOD = "browser-based scroll-exhaustion collection of observable public posts"
+COLLECTION_METHOD = "capped browser-based collection of observable public posts"
 
 POST_COLUMNS = [
-    "fortune_rank", "company_name", "official_x_handle", "source_x_handle", "source_x_url",
-    "account_role", "account_index", "tweet_id", "created_at", "text", "tweet_url",
-    "reply_count", "repost_count", "like_count", "quote_count", "view_count_available",
-    "media_present", "media_type", "collected_at", "collection_method", "max_posts_cap",
-    "source_folder",
+    "fortune_rank", "company_name", "official_x_handle", "tweet_id", "created_at", "text",
+    "tweet_url", "reply_count", "repost_count", "like_count", "quote_count",
+    "view_count_available", "media_present", "media_type", "collected_at", "collection_method",
+    "max_posts_cap", "source_folder", "source_x_handle", "source_x_url", "account_role",
+    "account_index",
+]
+
+ACCOUNT_AUDIT_COLUMNS = [
+    "fortune_rank", "company_name", "account_index", "account_role", "source_x_handle",
+    "source_x_url", "folder", "attempted", "status", "posts_collected", "error_type",
+    "error_message", "started_at", "completed_at",
 ]
 
 SUMMARY_COLUMNS = [
     "fortune_rank", "company_name", "official_x_handle", "folder", "attempted", "status",
     "posts_collected", "error_type", "error_message", "started_at", "completed_at",
-]
-
-ACCOUNT_AUDIT_COLUMNS = [
-    "fortune_rank", "company_name", "source_x_handle", "source_x_url", "account_role",
-    "account_index", "status", "posts_captured", "error_type", "error_message", "started_at",
-    "completed_at",
 ]
 
 
@@ -59,10 +56,14 @@ def utc_now() -> str:
 
 @dataclass(frozen=True)
 class TrustedXAccount:
+    account_index: int
+    account_role: str
     source_x_url: str
     source_x_handle: str
-    account_role: str
-    account_index: int
+
+    @property
+    def target_user(self) -> str:
+        return self.source_x_handle.strip().lstrip("@")
 
 
 @dataclass(frozen=True)
@@ -70,139 +71,111 @@ class QueueCompany:
     fortune_rank: int
     company_name: str
     normalized_company_name: str
-    accounts: tuple[TrustedXAccount, ...]
-
-    @property
-    def primary_handle(self) -> str:
-        return self.accounts[0].source_x_handle if self.accounts else ""
-
-    @property
-    def official_x_handle(self) -> str:
-        return f"@{self.primary_handle}" if self.primary_handle else ""
-
-    @property
-    def all_handles(self) -> str:
-        return ";".join(f"@{account.source_x_handle}" for account in self.accounts if account.source_x_handle)
+    official_x_handle: str
+    collection_x_url: str
+    secondary_x_url: str
+    trusted_accounts: tuple[TrustedXAccount, ...]
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Collect Fortune 2025 ranked X accounts by manually reviewed X URLs.")
+    parser = argparse.ArgumentParser(description="Collect Fortune 2025 ranked X accounts sequentially.")
     parser.add_argument("--queue-file", default=str(QUEUE_FILE))
     parser.add_argument("--start-rank", type=int, default=1)
     parser.add_argument("--end-rank", type=int, default=100)
-    parser.add_argument(
-        "--max-posts",
-        type=int,
-        default=0,
-        help="Maximum posts per company after merging trusted accounts. Use 0 for unbounded scroll-exhaustion collection.",
-    )
-    parser.add_argument("--previous-output-root", default="", help="Previous data/raw/fortune_x_2025_ranked snapshot for incremental merge.")
+    parser.add_argument("--max-posts", type=int, default=0)
     parser.add_argument("--summary-file", default=str(SUMMARY_FILE))
     parser.add_argument("--retries", type=int, default=0)
-    parser.add_argument("--retry-delay-seconds", type=float, default=30.0)
-    parser.add_argument("--max-scrolls", type=int, default=2500)
+    parser.add_argument("--retry-delay-seconds", type=float, default=90.0)
+    parser.add_argument("--max-scrolls", type=int, default=250)
     parser.add_argument("--scroll-delay-seconds", default="1.25")
-    parser.add_argument("--idle-scroll-limit", type=int, default=60)
+    parser.add_argument("--idle-scroll-limit", type=int, default=20)
     parser.add_argument("--page-timeout-ms", type=int, default=60000)
+    parser.add_argument("--previous-output-root", default="")
     parser.add_argument("--headless", default="true", choices=["true", "false"])
     return parser.parse_args()
 
 
 def slugify(value: str) -> str:
     slug = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
-    return slug or "company"
+    return slug or "value"
+
+
+def split_url_cell(value: str) -> list[str]:
+    parts = re.split(r"[\s,;|]+", value.strip()) if value.strip() else []
+    return [part.strip() for part in parts if part.strip()]
+
+
+def normalize_x_url(value: str) -> str:
+    raw = value.strip()
+    if not raw:
+        return ""
+    if raw.startswith("@"):
+        raw = f"https://x.com/{raw.lstrip('@')}"
+    if not re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", raw):
+        raw = f"https://{raw}"
+    parsed = urlparse(raw)
+    host = parsed.netloc.lower().removeprefix("www.")
+    if host not in {"x.com", "twitter.com"}:
+        return ""
+    segments = [segment for segment in parsed.path.split("/") if segment]
+    if not segments:
+        return ""
+    handle = segments[0].strip().lstrip("@")
+    if not re.match(r"^[A-Za-z0-9_]{1,15}$", handle):
+        return ""
+    return f"https://x.com/{handle}"
+
+
+def extract_handle_from_x_url(value: str) -> str:
+    normalized = normalize_x_url(value)
+    if not normalized:
+        return ""
+    return urlparse(normalized).path.strip("/").split("/", 1)[0]
+
+
+def trusted_accounts_from_row(row: dict[str, str]) -> tuple[TrustedXAccount, ...]:
+    candidates: list[tuple[str, str]] = []
+    primary = normalize_x_url(row.get("collection_x_url", ""))
+    if primary:
+        candidates.append(("primary", primary))
+    for secondary in split_url_cell(row.get("secondary_x_url", "")):
+        normalized = normalize_x_url(secondary)
+        if normalized:
+            candidates.append(("secondary", normalized))
+
+    accounts: list[TrustedXAccount] = []
+    seen_urls: set[str] = set()
+    for role, url in candidates:
+        key = url.lower()
+        if key in seen_urls:
+            continue
+        seen_urls.add(key)
+        handle = extract_handle_from_x_url(url)
+        if not handle:
+            continue
+        accounts.append(
+            TrustedXAccount(
+                account_index=len(accounts) + 1,
+                account_role=role,
+                source_x_url=url,
+                source_x_handle=f"@{handle}",
+            )
+        )
+    return tuple(accounts)
 
 
 def company_folder_name(company: QueueCompany, seen: set[str]) -> str:
     base = f"{company.fortune_rank:03d}_{slugify(company.company_name)}"
     folder = base
     if folder in seen:
-        folder = f"{base}_{slugify(company.primary_handle or 'x')}"
+        folder = f"{base}_{slugify(company.normalized_company_name)}"
     seen.add(folder)
     return folder
 
 
 def account_folder_name(account: TrustedXAccount) -> str:
-    return f"{account.account_index:02d}_{account.account_role}_{slugify(account.source_x_handle)}"
-
-
-def normalize_x_url(value: str) -> str:
-    url = value.strip().strip('"').strip("'")
-    if not url:
-        return ""
-    if url.startswith("@"):
-        return f"https://x.com/{url.lstrip('@')}"
-    if not re.match(r"^https?://", url, flags=re.IGNORECASE):
-        if re.match(r"^[A-Za-z0-9_]{1,30}$", url):
-            return f"https://x.com/{url}"
-        return ""
-    return url
-
-
-def extract_handle_from_x_url(url: str) -> str:
-    normalized = normalize_x_url(url)
-    if not normalized:
-        return ""
-    parsed = urlparse(normalized)
-    host = parsed.netloc.lower().removeprefix("www.")
-    if host not in {"x.com", "twitter.com"}:
-        return ""
-    parts = [part for part in parsed.path.split("/") if part]
-    if not parts:
-        return ""
-    handle = parts[0].strip().lstrip("@")
-    if not re.match(r"^[A-Za-z0-9_]{1,30}$", handle):
-        return ""
-    if handle.lower() in {"home", "i", "intent", "share", "search", "explore", "settings", "messages"}:
-        return ""
-    return handle
-
-
-def split_url_cell(value: str) -> list[str]:
-    if not value:
-        return []
-    candidates = re.split(r"[\s;,|]+", value.strip())
-    urls: list[str] = []
-    for candidate in candidates:
-        normalized = normalize_x_url(candidate)
-        if normalized and extract_handle_from_x_url(normalized):
-            urls.append(normalized)
-    return urls
-
-
-def trusted_accounts_from_row(row: dict[str, str]) -> tuple[TrustedXAccount, ...]:
-    raw_primary_urls = split_url_cell(row.get("collection_x_url", ""))
-    handle = row.get("collection_x_handle", "").strip()
-    if not raw_primary_urls and handle:
-        raw_primary_urls = [normalize_x_url(handle)]
-
-    raw_secondary_urls = split_url_cell(row.get("secondary_x_url", ""))
-
-    accounts: list[TrustedXAccount] = []
-    seen_handles: set[str] = set()
-
-    def add_urls(urls: list[str], role: str) -> None:
-        for url in urls:
-            normalized = normalize_x_url(url)
-            handle_value = extract_handle_from_x_url(normalized)
-            if not handle_value:
-                continue
-            key = handle_value.lower()
-            if key in seen_handles:
-                continue
-            seen_handles.add(key)
-            accounts.append(
-                TrustedXAccount(
-                    source_x_url=normalized,
-                    source_x_handle=handle_value,
-                    account_role=role,
-                    account_index=len(accounts) + 1,
-                )
-            )
-
-    add_urls(raw_primary_urls, "primary")
-    add_urls(raw_secondary_urls, "secondary")
-    return tuple(accounts)
+    handle = account.source_x_handle.lstrip("@")
+    return f"{account.account_index:02d}_{account.account_role}_{slugify(handle)}"
 
 
 def read_queue(path: Path, start_rank: int, end_rank: int) -> list[QueueCompany]:
@@ -217,171 +190,65 @@ def read_queue(path: Path, start_rank: int, end_rank: int) -> list[QueueCompany]
             continue
         if row.get("eligibility_source_field") != "final_manual_scrape_eligible":
             continue
+        accounts = trusted_accounts_from_row(row)
         companies.append(
             QueueCompany(
                 fortune_rank=rank,
                 company_name=row["company_name"],
                 normalized_company_name=row["normalized_company_name"],
-                accounts=trusted_accounts_from_row(row),
+                official_x_handle=row.get("collection_x_handle", "").strip(),
+                collection_x_url=row.get("collection_x_url", "").strip(),
+                secondary_x_url=row.get("secondary_x_url", "").strip(),
+                trusted_accounts=accounts,
             )
         )
     return sorted(companies, key=lambda company: company.fortune_rank)
 
 
-def limit_posts(posts: list[dict[str, Any]], max_posts: int) -> list[dict[str, Any]]:
-    if max_posts > 0:
-        return posts[:max_posts]
-    return posts
+def post_value(post: dict[str, Any], key: str) -> Any:
+    value = post.get(key)
+    return value if value is not None else ""
 
 
-def normalize_post_id(post: dict[str, Any]) -> str:
-    return str(post.get("id") or post.get("tweet_id") or "").strip()
-
-
-def post_sort_value(post: dict[str, Any]) -> int:
-    try:
-        return int(normalize_post_id(post))
-    except ValueError:
-        return 0
-
-
-def merge_posts(existing_posts: list[dict[str, Any]], new_posts: list[dict[str, Any]], max_posts: int) -> tuple[list[dict[str, Any]], dict[str, int]]:
-    by_id: dict[str, dict[str, Any]] = {}
-    for post in existing_posts:
-        post_id = normalize_post_id(post)
-        if post_id:
-            by_id[post_id] = {**post, "id": post_id}
-
-    existing_ids = set(by_id)
-    captured_valid = 0
-    duplicate_seen = 0
-    new_unique = 0
-    for post in new_posts:
-        post_id = normalize_post_id(post)
-        if not post_id:
-            continue
-        captured_valid += 1
-        normalized = {**post, "id": post_id}
-        if post_id in by_id:
-            duplicate_seen += 1
-            by_id[post_id] = {**by_id[post_id], **normalized}
-        else:
-            new_unique += 1
-            by_id[post_id] = normalized
-
-    merged = sorted(by_id.values(), key=post_sort_value, reverse=True)
-    limited = limit_posts(merged, max_posts)
-    return limited, {
-        "previous_posts_count": len(existing_ids),
-        "captured_posts_count": captured_valid,
-        "new_unique_posts_count": new_unique,
-        "duplicate_posts_seen_count": duplicate_seen,
-        "merged_posts_count_before_cap": len(merged),
-        "posts_collected_after_cap": len(limited),
-    }
-
-
-def post_boundaries(posts: list[dict[str, Any]]) -> dict[str, str]:
-    valid = [post for post in posts if normalize_post_id(post)]
-    if not valid:
-        return {
-            "newest_tweet_id": "",
-            "newest_created_at": "",
-            "oldest_tweet_id": "",
-            "oldest_created_at": "",
-        }
-    ordered = sorted(valid, key=post_sort_value, reverse=True)
-    newest = ordered[0]
-    oldest = ordered[-1]
-    return {
-        "newest_tweet_id": normalize_post_id(newest),
-        "newest_created_at": str(newest.get("created_at") or ""),
-        "oldest_tweet_id": normalize_post_id(oldest),
-        "oldest_created_at": str(oldest.get("created_at") or ""),
-    }
-
-
-def with_source_fields(post: dict[str, Any], company: QueueCompany, folder: str, account: TrustedXAccount | None) -> dict[str, Any]:
-    if account is None:
-        return {**post, "source_folder": post.get("source_folder") or folder}
-    return {
-        **post,
-        "source_x_handle": f"@{account.source_x_handle}",
-        "source_x_url": account.source_x_url,
-        "account_role": account.account_role,
-        "account_index": account.account_index,
-        "official_x_handle": company.official_x_handle,
-        "source_folder": folder,
-    }
-
-
-def write_posts_csv(path: Path, company: QueueCompany, folder: str, posts: list[dict[str, Any]], max_posts: int) -> None:
+def write_posts_csv(
+    path: Path,
+    company: QueueCompany,
+    trusted_account: TrustedXAccount,
+    source_folder: str,
+    posts: list[dict[str, Any]],
+    max_posts: int,
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     collected_at = utc_now()
+    capped_posts = posts[:max_posts] if max_posts else []
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=POST_COLUMNS)
         writer.writeheader()
-        for post in limit_posts(posts, max_posts):
-            media_type = ""
-            media_present = "false"
+        for post in capped_posts:
             writer.writerow({
                 "fortune_rank": company.fortune_rank,
                 "company_name": company.company_name,
-                "official_x_handle": post.get("official_x_handle") or company.official_x_handle,
-                "source_x_handle": post.get("source_x_handle") or post.get("official_x_handle") or company.official_x_handle,
-                "source_x_url": post.get("source_x_url") or "",
-                "account_role": post.get("account_role") or "primary",
-                "account_index": post.get("account_index") or 1,
-                "tweet_id": normalize_post_id(post),
-                "created_at": post.get("created_at") or "",
-                "text": post.get("text") or "",
-                "tweet_url": post.get("tweet_url") or "",
-                "reply_count": post.get("reply_count") if post.get("reply_count") is not None else "",
-                "repost_count": post.get("retweet_count") if post.get("retweet_count") is not None else post.get("repost_count", ""),
-                "like_count": post.get("favorite_count") if post.get("favorite_count") is not None else post.get("like_count", ""),
-                "quote_count": post.get("quote_count") if post.get("quote_count") is not None else "",
-                "view_count_available": "true" if post.get("view_count") not in (None, "") else str(post.get("view_count_available") or "false").lower(),
-                "media_present": media_present,
-                "media_type": media_type,
+                "official_x_handle": company.official_x_handle,
+                "tweet_id": str(post_value(post, "id")),
+                "created_at": post_value(post, "created_at"),
+                "text": post_value(post, "text"),
+                "tweet_url": post_value(post, "tweet_url"),
+                "reply_count": post_value(post, "reply_count"),
+                "repost_count": post_value(post, "retweet_count"),
+                "like_count": post_value(post, "favorite_count"),
+                "quote_count": post_value(post, "quote_count"),
+                "view_count_available": "true" if post.get("view_count") not in (None, "") else "false",
+                "media_present": "false",
+                "media_type": "",
                 "collected_at": collected_at,
                 "collection_method": COLLECTION_METHOD,
                 "max_posts_cap": max_posts,
-                "source_folder": post.get("source_folder") or folder,
+                "source_folder": source_folder,
+                "source_x_handle": trusted_account.source_x_handle,
+                "source_x_url": trusted_account.source_x_url,
+                "account_role": trusted_account.account_role,
+                "account_index": trusted_account.account_index,
             })
-
-
-def load_previous_posts_csv(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        return []
-    try:
-        with path.open(encoding="utf-8-sig", newline="") as handle:
-            rows = list(csv.DictReader(handle))
-    except Exception:
-        return []
-    posts: list[dict[str, Any]] = []
-    for row in rows:
-        tweet_id = (row.get("tweet_id") or "").strip()
-        if not tweet_id:
-            continue
-        posts.append({
-            "id": tweet_id,
-            "tweet_id": tweet_id,
-            "created_at": row.get("created_at") or "",
-            "text": row.get("text") or "",
-            "tweet_url": row.get("tweet_url") or "",
-            "reply_count": row.get("reply_count") or "",
-            "retweet_count": row.get("repost_count") or "",
-            "favorite_count": row.get("like_count") or "",
-            "quote_count": row.get("quote_count") or "",
-            "view_count_available": row.get("view_count_available") or "",
-            "official_x_handle": row.get("official_x_handle") or "",
-            "source_x_handle": row.get("source_x_handle") or row.get("official_x_handle") or "",
-            "source_x_url": row.get("source_x_url") or "",
-            "account_role": row.get("account_role") or "primary",
-            "account_index": row.get("account_index") or 1,
-            "source_folder": row.get("source_folder") or "",
-        })
-    return posts
 
 
 def write_audit_json(path: Path, payload: dict[str, Any]) -> None:
@@ -389,22 +256,13 @@ def write_audit_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def write_summary(rows: list[dict[str, Any]], path: Path) -> None:
+def write_csv_rows(path: Path, columns: list[str], rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=SUMMARY_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=columns)
         writer.writeheader()
         for row in rows:
-            writer.writerow({column: row.get(column, "") for column in SUMMARY_COLUMNS})
-
-
-def write_account_audit(path: Path, rows: list[dict[str, Any]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=ACCOUNT_AUDIT_COLUMNS)
-        writer.writeheader()
-        for row in rows:
-            writer.writerow({column: row.get(column, "") for column in ACCOUNT_AUDIT_COLUMNS})
+            writer.writerow({column: row.get(column, "") for column in columns})
 
 
 def sanitize_error(value: str) -> str:
@@ -434,46 +292,52 @@ def load_posts(path: Path) -> list[dict[str, Any]]:
 
 def collect_trusted_account(
     company: QueueCompany,
-    account: TrustedXAccount,
+    trusted_account: TrustedXAccount,
     company_folder: str,
-    company_folder_path: Path,
+    account_folder: str,
     args: argparse.Namespace,
-) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+) -> dict[str, Any]:
     started_at = utc_now()
-    account_folder = company_folder_path / "accounts" / account_folder_name(account)
-    account_posts_csv = account_folder / "posts.csv"
-    account_audit_json = account_folder / "audit.json"
-    tmp_posts_json = account_folder / "_collector_posts.json"
-    tmp_state_json = account_folder / "_collector_state.json"
+    account_path = OUTPUT_ROOT / company_folder / "accounts" / account_folder
+    posts_csv = account_path / "posts.csv"
+    audit_json = account_path / "audit.json"
+    tmp_posts_json = account_path / "_collector_posts.json"
+    tmp_state_json = account_path / "_collector_state.json"
+    source_folder = str(account_path.relative_to(REPO_ROOT))
 
     base_audit = {
         "fortune_rank": company.fortune_rank,
         "company_name": company.company_name,
-        "source_x_handle": f"@{account.source_x_handle}",
-        "source_x_url": account.source_x_url,
-        "account_role": account.account_role,
-        "account_index": account.account_index,
+        "official_x_handle": company.official_x_handle,
+        "account_index": trusted_account.account_index,
+        "account_role": trusted_account.account_role,
+        "source_x_handle": trusted_account.source_x_handle,
+        "source_x_url": trusted_account.source_x_url,
+        "folder": source_folder,
+        "attempted": False,
         "status": "skipped",
-        "posts_captured": 0,
+        "posts_collected": 0,
+        "max_posts_cap": args.max_posts,
         "started_at": started_at,
         "completed_at": "",
         "error_type": "",
         "error_message": "",
+        "collection_method": COLLECTION_METHOD,
         "browser_collection_used": False,
         "x_api_used": False,
     }
 
     if credential_missing():
-        write_posts_csv(account_posts_csv, company, company_folder, [], args.max_posts)
+        write_posts_csv(posts_csv, company, trusted_account, source_folder, [], args.max_posts)
         audit = {**base_audit, "completed_at": utc_now(), "error_type": "credential_missing", "error_message": "required X cookie secrets are missing"}
-        write_audit_json(account_audit_json, audit)
-        return [], audit
+        write_audit_json(audit_json, audit)
+        return audit
 
-    account_folder.mkdir(parents=True, exist_ok=True)
+    account_path.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
     env.update({
-        "TARGET_USER": account.source_x_handle,
-        "BRAND_DIR": str(account_folder),
+        "TARGET_USER": trusted_account.target_user,
+        "BRAND_DIR": str(account_path),
         "OUTPUT_FILE": str(tmp_posts_json),
         "STATE_FILE": str(tmp_state_json),
         "MAX_POSTS": str(args.max_posts),
@@ -486,7 +350,6 @@ def collect_trusted_account(
 
     attempts = args.retries + 1
     audit = base_audit
-    captured_posts: list[dict[str, Any]] = []
     for attempt in range(1, attempts + 1):
         for path in (tmp_posts_json, tmp_state_json):
             try:
@@ -504,33 +367,26 @@ def collect_trusted_account(
             )
             completed_at = utc_now()
             status = "success" if result.returncode == 0 else "failed"
-            if status == "success":
-                captured_posts = [with_source_fields(post, company, company_folder, account) for post in load_posts(tmp_posts_json)]
-                captured_posts = limit_posts(captured_posts, args.max_posts)
-                write_posts_csv(account_posts_csv, company, company_folder, captured_posts, args.max_posts)
-            else:
-                captured_posts = []
-                write_posts_csv(account_posts_csv, company, company_folder, [], args.max_posts)
-            error_type = "" if result.returncode == 0 else "collector_failed"
-            error_message = "" if result.returncode == 0 else sanitize_error((result.stdout or "") + " " + (result.stderr or ""))
+            posts = load_posts(tmp_posts_json) if status == "success" else []
+            write_posts_csv(posts_csv, company, trusted_account, source_folder, posts, args.max_posts)
+            capped_count = len(posts[:args.max_posts]) if args.max_posts else 0
             audit = {
                 **base_audit,
+                "attempted": True,
                 "status": status,
-                "posts_captured": len(captured_posts),
+                "posts_collected": capped_count,
                 "completed_at": completed_at,
-                "error_type": error_type,
-                "error_message": error_message,
+                "error_type": "" if result.returncode == 0 else "collector_failed",
+                "error_message": "" if result.returncode == 0 else sanitize_error((result.stdout or "") + " " + (result.stderr or "")),
                 "browser_collection_used": True,
             }
         except Exception as exc:
-            completed_at = utc_now()
-            captured_posts = []
-            write_posts_csv(account_posts_csv, company, company_folder, [], args.max_posts)
+            write_posts_csv(posts_csv, company, trusted_account, source_folder, [], args.max_posts)
             audit = {
                 **base_audit,
+                "attempted": True,
                 "status": "failed",
-                "posts_captured": 0,
-                "completed_at": completed_at,
+                "completed_at": utc_now(),
                 "error_type": type(exc).__name__,
                 "error_message": sanitize_error(str(exc)),
                 "browser_collection_used": True,
@@ -540,7 +396,7 @@ def collect_trusted_account(
             break
         if attempt < attempts:
             print(
-                f"retry_rank={company.fortune_rank:03d} account=@{account.source_x_handle} "
+                f"retry_rank={company.fortune_rank:03d} account={trusted_account.source_x_handle} "
                 f"attempt={attempt + 1}/{attempts} delay_seconds={args.retry_delay_seconds}",
                 flush=True,
             )
@@ -552,122 +408,127 @@ def collect_trusted_account(
         except FileNotFoundError:
             pass
 
-    write_audit_json(account_audit_json, audit)
-    return captured_posts, audit
+    write_audit_json(audit_json, audit)
+    return audit
 
 
-def collect_company(company: QueueCompany, folder: str, args: argparse.Namespace) -> dict[str, Any]:
-    started_at = utc_now()
-    folder_path = OUTPUT_ROOT / folder
-    posts_csv = folder_path / "posts.csv"
-    audit_json = folder_path / "audit.json"
-    account_audit_csv = folder_path / "account_audit.csv"
-    previous_root = Path(args.previous_output_root) if args.previous_output_root else Path()
-    previous_posts_csv = previous_root / folder / "posts.csv" if args.previous_output_root else Path()
-    previous_posts = load_previous_posts_csv(previous_posts_csv)
-    before_bounds = post_boundaries(previous_posts)
+def read_account_posts(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        return list(reader)
 
-    base_audit = {
+
+def merge_company_posts(company_path: Path, account_folders: list[str]) -> int:
+    merged: list[dict[str, str]] = []
+    seen_tweet_ids: set[str] = set()
+    for folder in account_folders:
+        posts_path = company_path / "accounts" / folder / "posts.csv"
+        for row in read_account_posts(posts_path):
+            tweet_id = (row.get("tweet_id") or "").strip()
+            if tweet_id:
+                if tweet_id in seen_tweet_ids:
+                    continue
+                seen_tweet_ids.add(tweet_id)
+            merged.append(row)
+    write_csv_rows(company_path / "posts.csv", POST_COLUMNS, merged)
+    return len(merged)
+
+
+def company_status(account_audits: list[dict[str, Any]]) -> str:
+    if not account_audits:
+        return "skipped"
+    statuses = {audit.get("status") for audit in account_audits}
+    if statuses == {"success"}:
+        return "success"
+    if "success" in statuses:
+        return "partial_success"
+    if statuses == {"skipped"}:
+        return "skipped"
+    return "failed"
+
+
+def write_company_outputs(company: QueueCompany, company_folder: str, account_audits: list[dict[str, Any]], account_folders: list[str], args: argparse.Namespace) -> dict[str, Any]:
+    company_path = OUTPUT_ROOT / company_folder
+    posts_collected = merge_company_posts(company_path, account_folders)
+    status = company_status(account_audits)
+    attempted = any(bool(audit.get("attempted")) for audit in account_audits)
+    error_rows = [audit for audit in account_audits if audit.get("error_type")]
+    started_values = [str(audit.get("started_at") or "") for audit in account_audits if audit.get("started_at")]
+    completed_values = [str(audit.get("completed_at") or "") for audit in account_audits if audit.get("completed_at")]
+
+    account_audit_rows = []
+    for audit in account_audits:
+        account_audit_rows.append({
+            "fortune_rank": audit.get("fortune_rank", ""),
+            "company_name": audit.get("company_name", ""),
+            "account_index": audit.get("account_index", ""),
+            "account_role": audit.get("account_role", ""),
+            "source_x_handle": audit.get("source_x_handle", ""),
+            "source_x_url": audit.get("source_x_url", ""),
+            "folder": audit.get("folder", ""),
+            "attempted": str(audit.get("attempted", False)).lower(),
+            "status": audit.get("status", ""),
+            "posts_collected": audit.get("posts_collected", ""),
+            "error_type": audit.get("error_type", ""),
+            "error_message": audit.get("error_message", ""),
+            "started_at": audit.get("started_at", ""),
+            "completed_at": audit.get("completed_at", ""),
+        })
+    write_csv_rows(company_path / "account_audit.csv", ACCOUNT_AUDIT_COLUMNS, account_audit_rows)
+
+    company_audit = {
         "fortune_rank": company.fortune_rank,
         "company_name": company.company_name,
         "official_x_handle": company.official_x_handle,
-        "all_source_x_handles": company.all_handles,
-        "source_x_urls": [account.source_x_url for account in company.accounts],
-        "folder": str(folder_path.relative_to(REPO_ROOT)),
+        "collection_x_url": company.collection_x_url,
+        "secondary_x_url": company.secondary_x_url,
+        "folder": str(company_path.relative_to(REPO_ROOT)),
+        "attempted": attempted,
+        "status": status,
+        "posts_collected": posts_collected,
+        "account_count": len(account_audits),
+        "accounts": account_audits,
+        "max_posts_cap": args.max_posts,
+        "started_at": min(started_values) if started_values else "",
+        "completed_at": max(completed_values) if completed_values else "",
+        "error_type": ";".join(sorted({str(row.get("error_type")) for row in error_rows if row.get("error_type")})),
+        "error_message": " | ".join(str(row.get("error_message", "")) for row in error_rows if row.get("error_message"))[:1000],
+        "collection_method": COLLECTION_METHOD,
+        "browser_collection_used": any(bool(audit.get("browser_collection_used")) for audit in account_audits),
+        "x_api_used": False,
+    }
+    write_audit_json(company_path / "audit.json", company_audit)
+    return company_audit
+
+
+def skipped_company(company: QueueCompany, company_folder: str, args: argparse.Namespace, error_type: str, error_message: str) -> dict[str, Any]:
+    company_path = OUTPUT_ROOT / company_folder
+    write_csv_rows(company_path / "posts.csv", POST_COLUMNS, [])
+    write_csv_rows(company_path / "account_audit.csv", ACCOUNT_AUDIT_COLUMNS, [])
+    audit = {
+        "fortune_rank": company.fortune_rank,
+        "company_name": company.company_name,
+        "official_x_handle": company.official_x_handle,
+        "collection_x_url": company.collection_x_url,
+        "secondary_x_url": company.secondary_x_url,
+        "folder": str(company_path.relative_to(REPO_ROOT)),
         "attempted": False,
         "status": "skipped",
         "posts_collected": 0,
+        "account_count": 0,
+        "accounts": [],
         "max_posts_cap": args.max_posts,
-        "started_at": started_at,
-        "completed_at": "",
-        "error_type": "",
-        "error_message": "",
+        "started_at": utc_now(),
+        "completed_at": utc_now(),
+        "error_type": error_type,
+        "error_message": error_message,
         "collection_method": COLLECTION_METHOD,
         "browser_collection_used": False,
         "x_api_used": False,
-        "account_attempted_count": 0,
-        "account_success_count": 0,
-        "account_failed_count": 0,
-        "previous_posts_count": len(previous_posts),
-        "previous_newest_tweet_id": before_bounds["newest_tweet_id"],
-        "previous_newest_created_at": before_bounds["newest_created_at"],
-        "previous_oldest_tweet_id": before_bounds["oldest_tweet_id"],
-        "previous_oldest_created_at": before_bounds["oldest_created_at"],
-        "new_unique_posts_count": 0,
-        "duplicate_posts_seen_count": 0,
-        "merged_posts_count_before_cap": len(previous_posts),
-        "final_newest_tweet_id": before_bounds["newest_tweet_id"],
-        "final_newest_created_at": before_bounds["newest_created_at"],
-        "final_oldest_tweet_id": before_bounds["oldest_tweet_id"],
-        "final_oldest_created_at": before_bounds["oldest_created_at"],
     }
-
-    folder_path.mkdir(parents=True, exist_ok=True)
-
-    if not company.accounts:
-        retained = limit_posts(previous_posts, args.max_posts)
-        write_posts_csv(posts_csv, company, folder, retained, args.max_posts)
-        after_bounds = post_boundaries(retained)
-        audit = {
-            **base_audit,
-            "completed_at": utc_now(),
-            "error_type": "missing_trusted_url",
-            "error_message": "no trusted X URL was available in the manually reviewed queue",
-            "posts_collected": len(retained),
-            "final_newest_tweet_id": after_bounds["newest_tweet_id"],
-            "final_newest_created_at": after_bounds["newest_created_at"],
-            "final_oldest_tweet_id": after_bounds["oldest_tweet_id"],
-            "final_oldest_created_at": after_bounds["oldest_created_at"],
-        }
-        write_account_audit(account_audit_csv, [])
-        write_audit_json(audit_json, audit)
-        return audit
-
-    captured_posts_all: list[dict[str, Any]] = []
-    account_audits: list[dict[str, Any]] = []
-    for account in company.accounts:
-        print(
-            f"collect_rank={company.fortune_rank:03d} company={company.company_name} "
-            f"url={account.source_x_url} role={account.account_role}",
-            flush=True,
-        )
-        captured_posts, account_audit = collect_trusted_account(company, account, folder, folder_path, args)
-        captured_posts_all.extend(captured_posts)
-        account_audits.append(account_audit)
-        time.sleep(1)
-
-    merged_posts, merge_stats = merge_posts(previous_posts, captured_posts_all, args.max_posts)
-    write_posts_csv(posts_csv, company, folder, merged_posts, args.max_posts)
-    write_account_audit(account_audit_csv, account_audits)
-    after_bounds = post_boundaries(merged_posts)
-
-    account_success_count = sum(1 for row in account_audits if row.get("status") == "success")
-    account_failed_count = sum(1 for row in account_audits if row.get("status") == "failed")
-    status = "success" if account_success_count > 0 else "failed"
-    error_type = "" if account_failed_count == 0 else "partial_account_failure" if account_success_count > 0 else "collector_failed"
-    error_message = "" if account_failed_count == 0 else "; ".join(
-        f"@{row.get('source_x_handle', '').lstrip('@')}:{row.get('error_type')}" for row in account_audits if row.get("status") == "failed"
-    )
-
-    audit = {
-        **base_audit,
-        **merge_stats,
-        "attempted": True,
-        "status": status,
-        "posts_collected": len(merged_posts),
-        "completed_at": utc_now(),
-        "error_type": error_type,
-        "error_message": sanitize_error(error_message),
-        "browser_collection_used": True,
-        "account_attempted_count": len(account_audits),
-        "account_success_count": account_success_count,
-        "account_failed_count": account_failed_count,
-        "final_newest_tweet_id": after_bounds["newest_tweet_id"],
-        "final_newest_created_at": after_bounds["newest_created_at"],
-        "final_oldest_tweet_id": after_bounds["oldest_tweet_id"],
-        "final_oldest_created_at": after_bounds["oldest_created_at"],
-    }
-    write_audit_json(audit_json, audit)
+    write_audit_json(company_path / "audit.json", audit)
     return audit
 
 
@@ -676,29 +537,45 @@ def main() -> int:
     if args.start_rank < 1 or args.end_rank > 100 or args.start_rank > args.end_rank:
         raise SystemExit("rank range must be within 1-100 and start_rank <= end_rank")
     if args.max_posts < 0:
-        raise SystemExit("max_posts must be >= 0; use 0 for unbounded scroll-exhaustion collection")
+        raise SystemExit("max_posts must be >= 0")
     if args.retries < 0:
         raise SystemExit("retries must be >= 0")
     if args.retry_delay_seconds < 0:
         raise SystemExit("retry_delay_seconds must be >= 0")
-    if args.max_scrolls < 1:
-        raise SystemExit("max_scrolls must be >= 1")
-    if args.idle_scroll_limit < 1:
-        raise SystemExit("idle_scroll_limit must be >= 1")
-    if args.page_timeout_ms < 1000:
-        raise SystemExit("page_timeout_ms must be >= 1000")
 
     companies = read_queue(Path(args.queue_file), args.start_rank, args.end_rank)
     seen_folders: set[str] = set()
     summary_rows: list[dict[str, Any]] = []
 
     for company in companies:
-        folder = company_folder_name(company, seen_folders)
-        audit = collect_company(company, folder, args)
+        company_folder = company_folder_name(company, seen_folders)
+        if not company.trusted_accounts:
+            print(f"collect_rank={company.fortune_rank:03d} company={company.company_name} trusted_accounts=0", flush=True)
+            audit = skipped_company(company, company_folder, args, "missing_trusted_url", "missing trusted X URL")
+        else:
+            print(
+                f"collect_rank={company.fortune_rank:03d} company={company.company_name} "
+                f"trusted_accounts={len(company.trusted_accounts)}",
+                flush=True,
+            )
+            account_audits: list[dict[str, Any]] = []
+            account_folders: list[str] = []
+            for trusted_account in company.trusted_accounts:
+                folder = account_folder_name(trusted_account)
+                account_folders.append(folder)
+                print(
+                    f"collect_rank={company.fortune_rank:03d} account={trusted_account.source_x_handle} "
+                    f"role={trusted_account.account_role} index={trusted_account.account_index}",
+                    flush=True,
+                )
+                account_audits.append(collect_trusted_account(company, trusted_account, company_folder, folder, args))
+                time.sleep(1)
+            audit = write_company_outputs(company, company_folder, account_audits, account_folders, args)
+
         summary_rows.append({
             "fortune_rank": audit["fortune_rank"],
             "company_name": audit["company_name"],
-            "official_x_handle": audit.get("all_source_x_handles") or audit["official_x_handle"],
+            "official_x_handle": audit["official_x_handle"],
             "folder": audit["folder"],
             "attempted": str(audit["attempted"]).lower(),
             "status": audit["status"],
@@ -708,9 +585,8 @@ def main() -> int:
             "started_at": audit["started_at"],
             "completed_at": audit["completed_at"],
         })
-        time.sleep(1)
 
-    write_summary(summary_rows, Path(args.summary_file))
+    write_csv_rows(Path(args.summary_file), SUMMARY_COLUMNS, summary_rows)
     failed = sum(1 for row in summary_rows if row["status"] == "failed")
     skipped = sum(1 for row in summary_rows if row["status"] == "skipped")
     print(f"ranked_collection_complete attempted={len(summary_rows) - skipped} failed={failed} skipped={skipped}", flush=True)
