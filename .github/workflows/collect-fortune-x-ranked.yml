@@ -16,7 +16,7 @@ on:
         required: true
         default: '100'
       max_parallel:
-        description: 'Maximum shard jobs to run in parallel'
+        description: 'Compatibility input retained; stable phased collection runs sequentially'
         required: true
         default: '1'
       retry_attempts:
@@ -52,89 +52,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  collect-ranked-shards:
+  collect-ranked-phases:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
-    strategy:
-      fail-fast: false
-      max-parallel: ${{ fromJSON(inputs.max_parallel) }}
-      matrix:
-        shard:
-          - id: '01'
-            start: 1
-            end: 4
-          - id: '02'
-            start: 5
-            end: 8
-          - id: '03'
-            start: 9
-            end: 12
-          - id: '04'
-            start: 13
-            end: 16
-          - id: '05'
-            start: 17
-            end: 20
-          - id: '06'
-            start: 21
-            end: 24
-          - id: '07'
-            start: 25
-            end: 28
-          - id: '08'
-            start: 29
-            end: 32
-          - id: '09'
-            start: 33
-            end: 36
-          - id: '10'
-            start: 37
-            end: 40
-          - id: '11'
-            start: 41
-            end: 44
-          - id: '12'
-            start: 45
-            end: 48
-          - id: '13'
-            start: 49
-            end: 52
-          - id: '14'
-            start: 53
-            end: 56
-          - id: '15'
-            start: 57
-            end: 60
-          - id: '16'
-            start: 61
-            end: 64
-          - id: '17'
-            start: 65
-            end: 68
-          - id: '18'
-            start: 69
-            end: 72
-          - id: '19'
-            start: 73
-            end: 76
-          - id: '20'
-            start: 77
-            end: 80
-          - id: '21'
-            start: 81
-            end: 84
-          - id: '22'
-            start: 85
-            end: 88
-          - id: '23'
-            start: 89
-            end: 92
-          - id: '24'
-            start: 93
-            end: 96
-          - id: '25'
-            start: 97
-            end: 100
+    timeout-minutes: 720
 
     steps:
       - name: Checkout repository
@@ -142,29 +62,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Resolve shard rank range
-        id: bounds
-        shell: bash
-        run: |
-          set -euo pipefail
-          requested_start=${{ inputs.start_rank }}
-          requested_end=${{ inputs.end_rank }}
-          shard_start=${{ matrix.shard.start }}
-          shard_end=${{ matrix.shard.end }}
-          actual_start=$(( requested_start > shard_start ? requested_start : shard_start ))
-          actual_end=$(( requested_end < shard_end ? requested_end : shard_end ))
-          mkdir -p staging
-          if [ "$actual_start" -gt "$actual_end" ]; then
-            echo "should_run=false" >> "$GITHUB_OUTPUT"
-            echo "shard_${{ matrix.shard.id }}_outside_requested_range" > "staging/shard_${{ matrix.shard.id }}_skipped.txt"
-            exit 0
-          fi
-          echo "should_run=true" >> "$GITHUB_OUTPUT"
-          echo "start_rank=$actual_start" >> "$GITHUB_OUTPUT"
-          echo "end_rank=$actual_end" >> "$GITHUB_OUTPUT"
-
       - name: Preserve previous ranked output snapshot
-        if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
         run: |
           set -euxo pipefail
@@ -175,8 +73,7 @@ jobs:
             mkdir -p .previous_fortune_x_ranked
           fi
 
-      - name: Prepare isolated shard workspace
-        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+      - name: Prepare stable phased workspace
         shell: bash
         run: |
           set -euxo pipefail
@@ -185,14 +82,12 @@ jobs:
           mkdir -p data/raw/fortune_x_2025_ranked data/audit staging
 
       - name: Set up Python
-        if: ${{ steps.bounds.outputs.should_run == 'true' }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
       - name: Install existing browser collector dependencies
-        if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
         run: |
           set -euxo pipefail
@@ -200,92 +95,55 @@ jobs:
           pip install -r requirements-scrape.txt
           python -m playwright install --with-deps chromium
 
-      - name: Validate ranked collection scaffold before shard run
-        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+      - name: Validate ranked collection scaffold before phased run
         shell: bash
         run: |
           set -euxo pipefail
           python scripts/validate_fortune_x_ranked_collection.py --allow-empty-before-run
 
-      - name: Run ranked Fortune X shard collection
-        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+      - name: Run stable phased ranked Fortune X collection
         shell: bash
         env:
           X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           X_CT0: ${{ secrets.X_CT0 }}
         run: |
           set -euo pipefail
-          python scripts/run_fortune_x_ranked_collection.py \
-            --start-rank "${{ steps.bounds.outputs.start_rank }}" \
-            --end-rank "${{ steps.bounds.outputs.end_rank }}" \
-            --max-posts "${{ inputs.max_posts }}" \
-            --retries "${{ inputs.retry_attempts }}" \
-            --max-scrolls "${{ inputs.max_scrolls }}" \
-            --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
-            --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
-            --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
-            --previous-output-root ".previous_fortune_x_ranked" \
-            --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv"
 
-      - name: Stage shard artifact
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p staging/data/raw staging/data/audit
-          # Only copy if directory exists (might be empty if all skipped)
-          if [ -d data/raw/fortune_x_2025_ranked ]; then
-            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
-          fi
-          if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv" ]; then
-            cp "data/audit/fortune_x_2025_ranked_collection_summary_shard_${{ matrix.shard.id }}.csv" staging/data/audit/
-          fi
+          run_phase() {
+            phase_id="$1"
+            phase_start="$2"
+            phase_end="$3"
+            requested_start=${{ inputs.start_rank }}
+            requested_end=${{ inputs.end_rank }}
+            actual_start=$(( requested_start > phase_start ? requested_start : phase_start ))
+            actual_end=$(( requested_end < phase_end ? requested_end : phase_end ))
 
-      - name: Upload shard artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: fortune-x-ranked-shard-${{ matrix.shard.id }}
-          path: staging/
-          retention-days: 1
+            if [ "$actual_start" -gt "$actual_end" ]; then
+              echo "phase_${phase_id}_outside_requested_range start=${phase_start} end=${phase_end}"
+              return 0
+            fi
 
-  aggregate-ranked-shards:
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
-    needs: collect-ranked-shards
+            echo "phase_${phase_id}_start actual_start=${actual_start} actual_end=${actual_end}"
+            python scripts/run_fortune_x_ranked_collection.py \
+              --start-rank "$actual_start" \
+              --end-rank "$actual_end" \
+              --max-posts "${{ inputs.max_posts }}" \
+              --retries "${{ inputs.retry_attempts }}" \
+              --max-scrolls "${{ inputs.max_scrolls }}" \
+              --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
+              --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
+              --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
+              --previous-output-root ".previous_fortune_x_ranked" \
+              --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_${phase_id}.csv"
+            echo "phase_${phase_id}_complete actual_start=${actual_start} actual_end=${actual_end}"
+          }
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+          run_phase 1 1 25
+          run_phase 2 26 50
+          run_phase 3 51 75
+          run_phase 4 76 100
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Download shard artifacts
-        uses: actions/download-artifact@v4
-        with:
-          pattern: fortune-x-ranked-shard-*
-          path: artifact_downloads
-          merge-multiple: true
-
-      - name: Materialize downloaded shard artifacts
-        shell: bash
-        run: |
-          set -euxo pipefail
-          # Clear existing raw output to avoid stale results or collisions
-          rm -rf data/raw/fortune_x_2025_ranked
-          mkdir -p data/raw data/audit
-          if [ -d artifact_downloads/data/raw/fortune_x_2025_ranked ]; then
-            cp -R artifact_downloads/data/raw/fortune_x_2025_ranked data/raw/
-          fi
-          # Summary shards are individual files, copy them all
-          if [ -d artifact_downloads/data/audit ]; then
-            cp artifact_downloads/data/audit/fortune_x_2025_ranked_collection_summary_shard_*.csv data/audit/ || true
-          fi
-
-      - name: Merge shard summaries
+      - name: Merge phase summaries
         shell: bash
         run: |
           set -euxo pipefail
@@ -306,6 +164,23 @@ jobs:
             exit 1
           fi
 
+      - name: Stage collection artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p staging/data/raw staging/data/audit
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
+          fi
+          cp data/audit/fortune_x_2025_ranked_collection_summary*.csv staging/data/audit/ || true
+
+      - name: Upload collection artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fortune-x-ranked-phased-collection
+          path: staging/
+          retention-days: 1
+
       - name: Commit and push collection outputs
         if: ${{ inputs.commit_results == 'true' }}
         shell: bash
@@ -318,5 +193,5 @@ jobs:
             echo "No ranked Fortune X collection output changes to commit."
             exit 0
           fi
-          git commit -m "data: collect ranked fortune x posts" -m "Collected browser-based observable public posts for the Fortune 2025 ranked queue using 25 matrix shards. Dashboard data was not synced. Official X API was not used."
+          git commit -m "data: collect ranked fortune x posts" -m "Collected browser-based observable public posts for the Fortune 2025 ranked queue using four stable sequential phases. Dashboard data was not synced. Official X API was not used."
           git push origin HEAD:main
