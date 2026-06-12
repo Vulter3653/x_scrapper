@@ -28,8 +28,8 @@ REQUIRED_POST_COLUMNS = {
 }
 REQUIRED_ACCOUNT_AUDIT_COLUMNS = {
     "fortune_rank", "company_name", "account_index", "account_role", "source_x_handle",
-    "source_x_url", "folder", "attempted", "status", "posts_collected", "error_type",
-    "error_message", "started_at", "completed_at",
+    "source_x_url", "folder", "attempted", "status", "posts_collected", "retryable",
+    "error_type", "error_message", "started_at", "completed_at",
 }
 REQUIRED_SUMMARY_COLUMNS = [
     "fortune_rank", "company_name", "official_x_handle", "folder", "attempted", "status",

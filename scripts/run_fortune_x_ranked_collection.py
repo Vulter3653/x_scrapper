@@ -40,8 +40,8 @@ POST_COLUMNS = [
 
 ACCOUNT_AUDIT_COLUMNS = [
     "fortune_rank", "company_name", "account_index", "account_role", "source_x_handle",
-    "source_x_url", "folder", "attempted", "status", "posts_collected", "error_type",
-    "error_message", "started_at", "completed_at",
+    "source_x_url", "folder", "attempted", "status", "posts_collected", "retryable",
+    "error_type", "error_message", "started_at", "completed_at",
 ]
 
 SUMMARY_COLUMNS = [
@@ -291,6 +291,38 @@ def load_posts(path: Path) -> list[dict[str, Any]]:
     return []
 
 
+def load_state(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def is_true(value: Any) -> bool:
+    return value is True or (isinstance(value, str) and value.strip().lower() == "true")
+
+
+def is_false(value: Any) -> bool:
+    return value is False or (isinstance(value, str) and value.strip().lower() == "false")
+
+
+def zero_posts_terminal_state(state: dict[str, Any], posts_count: int) -> bool:
+    return (
+        is_true(state.get("profile_loaded"))
+        and is_true(state.get("account_exists"))
+        and is_false(state.get("login_wall"))
+        and is_false(state.get("error_page"))
+        and posts_count == 0
+    )
+
+
+def retryable_status(status: str) -> bool:
+    return status not in {"success", "no_observable_posts"}
+
+
 def collect_trusted_account(
     company: QueueCompany,
     trusted_account: TrustedXAccount,
@@ -370,14 +402,19 @@ def collect_trusted_account(
             completed_at = utc_now()
             if result.returncode == 0:
                 posts = load_posts(tmp_posts_json)
+                state = load_state(tmp_state_json)
                 if posts:
                     status = "success"
                     error_type = ""
                     error_message = ""
+                elif zero_posts_terminal_state(state, len(posts)):
+                    status = "no_observable_posts"
+                    error_type = "no_observable_posts"
+                    error_message = "profile loaded but no observable posts were collected"
                 else:
                     status = "failed"
-                    error_type = "zero_posts_collected"
-                    error_message = "collector returned success but produced zero posts"
+                    error_type = "zero_posts_uncertain"
+                    error_message = "collector returned success but produced zero posts and profile validity was uncertain"
             else:
                 posts = []
                 status = "failed"
@@ -394,6 +431,7 @@ def collect_trusted_account(
                 "error_type": error_type,
                 "error_message": error_message,
                 "browser_collection_used": True,
+                "retryable": retryable_status(status),
             }
         except subprocess.TimeoutExpired as exc:
             write_posts_csv(posts_csv, company, trusted_account, source_folder, [], args.max_posts)
@@ -406,6 +444,7 @@ def collect_trusted_account(
                 "error_type": "collector_timeout",
                 "error_message": sanitize_error(str(exc)),
                 "browser_collection_used": True,
+                "retryable": True,
             }
         except Exception as exc:
             write_posts_csv(posts_csv, company, trusted_account, source_folder, [], args.max_posts)
@@ -418,9 +457,10 @@ def collect_trusted_account(
                 "error_type": type(exc).__name__,
                 "error_message": sanitize_error(str(exc)),
                 "browser_collection_used": True,
+                "retryable": True,
             }
 
-        if audit["status"] == "success":
+        if not audit.get("retryable", retryable_status(str(audit.get("status", "")))):
             break
         if attempt < attempts:
             print(
@@ -470,8 +510,14 @@ def company_status(account_audits: list[dict[str, Any]]) -> str:
     statuses = {audit.get("status") for audit in account_audits}
     if statuses == {"success"}:
         return "success"
+    if statuses == {"no_observable_posts"}:
+        return "no_observable_posts"
+    if "success" in statuses and statuses <= {"success", "no_observable_posts"}:
+        return "success"
     if "success" in statuses:
         return "partial_success"
+    if "no_observable_posts" in statuses and statuses <= {"no_observable_posts", "skipped"}:
+        return "no_observable_posts"
     if statuses == {"skipped"}:
         return "skipped"
     return "failed"
@@ -499,6 +545,7 @@ def write_company_outputs(company: QueueCompany, company_folder: str, account_au
             "attempted": str(audit.get("attempted", False)).lower(),
             "status": audit.get("status", ""),
             "posts_collected": audit.get("posts_collected", ""),
+            "retryable": str(audit.get("retryable", retryable_status(str(audit.get("status", ""))))).lower(),
             "error_type": audit.get("error_type", ""),
             "error_message": audit.get("error_message", ""),
             "started_at": audit.get("started_at", ""),

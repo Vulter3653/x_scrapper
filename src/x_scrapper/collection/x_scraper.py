@@ -170,6 +170,40 @@ def extract_records_from_payload(payload: Any) -> list[dict[str, Any]]:
     return records
 
 
+async def assess_profile_state(page) -> dict[str, Any]:
+    current_url = page.url
+    title = await page.title()
+    body_text = ""
+    try:
+        body_text = await page.locator("body").inner_text(timeout=3000)
+    except Exception:
+        body_text = ""
+    lower_text = body_text.lower()
+    lower_url = current_url.lower()
+
+    login_wall = (
+        "/i/flow/login" in lower_url
+        or "sign in to x" in lower_text
+        or "log in to x" in lower_text
+        or "login to x" in lower_text
+    )
+    account_missing = (
+        "this account doesn" in lower_text
+        or "account doesn" in lower_text
+        or "profile not found" in lower_text
+    )
+    error_page = account_missing or "something went wrong" in lower_text or "try again" in lower_text
+    profile_loaded = bool(body_text.strip()) and not login_wall and not error_page
+    return {
+        "profile_loaded": profile_loaded,
+        "account_exists": not account_missing,
+        "login_wall": login_wall,
+        "error_page": error_page,
+        "profile_url_current": current_url,
+        "profile_title": title,
+    }
+
+
 async def install_response_collector(page, records_by_id: dict[str, dict[str, Any]], state: dict[str, Any]):
     async def handle_response(response):
         url = response.url
@@ -249,9 +283,32 @@ async def scrape_profile() -> None:
         await install_response_collector(page, records_by_id, state)
 
         await page.goto(PROFILE_URL, wait_until='domcontentloaded', timeout=PAGE_TIMEOUT_MS)
+        state.update(await assess_profile_state(page))
+        state['target_user'] = TARGET_USER
+        state['profile_url'] = PROFILE_URL
+        state['posts_count'] = len(capped_records(records_by_id))
+        save_json(STATE_FILE, state)
         try:
             await page.wait_for_selector('[data-testid="tweet"]', timeout=PAGE_TIMEOUT_MS)
         except PlaywrightTimeoutError:
+            state.update(await assess_profile_state(page))
+            output_records = capped_records(records_by_id)
+            state['total_unique_posts'] = len(output_records)
+            state['posts_count'] = len(output_records)
+            state['last_completed_at'] = int(time.time())
+            save_json(OUTPUT_FILE, output_records)
+            save_json(STATE_FILE, state)
+            if (
+                state.get('profile_loaded') is True
+                and state.get('account_exists') is True
+                and state.get('login_wall') is False
+                and state.get('error_page') is False
+                and len(output_records) == 0
+            ):
+                await context.close()
+                await browser.close()
+                print(f'완료: 프로필은 로드됐지만 관측 가능한 포스트가 없습니다 -> {OUTPUT_FILE}', flush=True)
+                return
             current_url = page.url
             title = await page.title()
             raise RuntimeError(
@@ -293,6 +350,7 @@ async def scrape_profile() -> None:
     state['target_user'] = TARGET_USER
     state['profile_url'] = PROFILE_URL
     state['total_unique_posts'] = len(output_records)
+    state['posts_count'] = len(output_records)
     state['last_completed_at'] = int(time.time())
     save_json(STATE_FILE, state)
     print(f'완료: 누적 고유 포스트 {len(output_records)}개 저장 -> {OUTPUT_FILE}', flush=True)
