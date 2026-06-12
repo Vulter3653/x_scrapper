@@ -3,6 +3,15 @@ name: Collect Fortune 2025 Ranked X Accounts
 on:
   workflow_dispatch:
     inputs:
+      collection_mode:
+        description: 'Collection preset: smoke_test, full_collection, or custom input values'
+        required: true
+        default: 'full_collection'
+        type: choice
+        options:
+          - smoke_test
+          - full_collection
+          - custom
       max_posts:
         description: 'Maximum observable public posts per account'
         required: true
@@ -91,6 +100,58 @@ jobs:
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
+      - name: Resolve collection mode settings
+        id: mode
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${{ inputs.collection_mode }}"
+          case "$mode" in
+            smoke_test)
+              max_posts=10
+              retry_attempts=1
+              retry_delay_seconds=30
+              collector_timeout_seconds=300
+              max_scrolls=250
+              scroll_delay_seconds=1.0
+              idle_scroll_limit=20
+              page_timeout_ms=60000
+              ;;
+            full_collection)
+              max_posts=0
+              retry_attempts=2
+              retry_delay_seconds=90
+              collector_timeout_seconds=1200
+              max_scrolls=2500
+              scroll_delay_seconds=1.5
+              idle_scroll_limit=80
+              page_timeout_ms=120000
+              ;;
+            custom)
+              max_posts="${{ inputs.max_posts }}"
+              retry_attempts="${{ inputs.retry_attempts }}"
+              retry_delay_seconds="${{ inputs.retry_delay_seconds }}"
+              collector_timeout_seconds="${{ inputs.collector_timeout_seconds }}"
+              max_scrolls="${{ inputs.max_scrolls }}"
+              scroll_delay_seconds="${{ inputs.scroll_delay_seconds }}"
+              idle_scroll_limit="${{ inputs.idle_scroll_limit }}"
+              page_timeout_ms="${{ inputs.page_timeout_ms }}"
+              ;;
+            *)
+              echo "unsupported collection_mode=$mode" >&2
+              exit 1
+              ;;
+          esac
+          echo "max_posts=$max_posts" >> "$GITHUB_OUTPUT"
+          echo "retry_attempts=$retry_attempts" >> "$GITHUB_OUTPUT"
+          echo "retry_delay_seconds=$retry_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "collector_timeout_seconds=$collector_timeout_seconds" >> "$GITHUB_OUTPUT"
+          echo "max_scrolls=$max_scrolls" >> "$GITHUB_OUTPUT"
+          echo "scroll_delay_seconds=$scroll_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "idle_scroll_limit=$idle_scroll_limit" >> "$GITHUB_OUTPUT"
+          echo "page_timeout_ms=$page_timeout_ms" >> "$GITHUB_OUTPUT"
+
       - name: Preserve previous ranked output snapshot
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
@@ -146,14 +207,14 @@ jobs:
           python scripts/run_fortune_x_ranked_collection.py \
             --start-rank "${{ matrix.rank }}" \
             --end-rank "${{ matrix.rank }}" \
-            --max-posts "${{ inputs.max_posts }}" \
-            --retries "${{ inputs.retry_attempts }}" \
-            --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
-            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
-            --max-scrolls "${{ inputs.max_scrolls }}" \
-            --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
-            --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
-            --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
+            --max-posts "${{ steps.mode.outputs.max_posts }}" \
+            --retries "${{ steps.mode.outputs.retry_attempts }}" \
+            --retry-delay-seconds "${{ steps.mode.outputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ steps.mode.outputs.collector_timeout_seconds }}" \
+            --max-scrolls "${{ steps.mode.outputs.max_scrolls }}" \
+            --scroll-delay-seconds "${{ steps.mode.outputs.scroll_delay_seconds }}" \
+            --idle-scroll-limit "${{ steps.mode.outputs.idle_scroll_limit }}" \
+            --page-timeout-ms "${{ steps.mode.outputs.page_timeout_ms }}" \
             --previous-output-root ".previous_fortune_x_ranked" \
             --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_1_rank_${{ matrix.rank }}.csv"
 
@@ -208,6 +269,58 @@ jobs:
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
+      - name: Resolve collection mode settings
+        id: mode
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${{ inputs.collection_mode }}"
+          case "$mode" in
+            smoke_test)
+              max_posts=10
+              retry_attempts=1
+              retry_delay_seconds=30
+              collector_timeout_seconds=300
+              max_scrolls=250
+              scroll_delay_seconds=1.0
+              idle_scroll_limit=20
+              page_timeout_ms=60000
+              ;;
+            full_collection)
+              max_posts=0
+              retry_attempts=2
+              retry_delay_seconds=90
+              collector_timeout_seconds=1200
+              max_scrolls=2500
+              scroll_delay_seconds=1.5
+              idle_scroll_limit=80
+              page_timeout_ms=120000
+              ;;
+            custom)
+              max_posts="${{ inputs.max_posts }}"
+              retry_attempts="${{ inputs.retry_attempts }}"
+              retry_delay_seconds="${{ inputs.retry_delay_seconds }}"
+              collector_timeout_seconds="${{ inputs.collector_timeout_seconds }}"
+              max_scrolls="${{ inputs.max_scrolls }}"
+              scroll_delay_seconds="${{ inputs.scroll_delay_seconds }}"
+              idle_scroll_limit="${{ inputs.idle_scroll_limit }}"
+              page_timeout_ms="${{ inputs.page_timeout_ms }}"
+              ;;
+            *)
+              echo "unsupported collection_mode=$mode" >&2
+              exit 1
+              ;;
+          esac
+          echo "max_posts=$max_posts" >> "$GITHUB_OUTPUT"
+          echo "retry_attempts=$retry_attempts" >> "$GITHUB_OUTPUT"
+          echo "retry_delay_seconds=$retry_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "collector_timeout_seconds=$collector_timeout_seconds" >> "$GITHUB_OUTPUT"
+          echo "max_scrolls=$max_scrolls" >> "$GITHUB_OUTPUT"
+          echo "scroll_delay_seconds=$scroll_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "idle_scroll_limit=$idle_scroll_limit" >> "$GITHUB_OUTPUT"
+          echo "page_timeout_ms=$page_timeout_ms" >> "$GITHUB_OUTPUT"
+
       - name: Preserve previous ranked output snapshot
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
@@ -263,14 +376,14 @@ jobs:
           python scripts/run_fortune_x_ranked_collection.py \
             --start-rank "${{ matrix.rank }}" \
             --end-rank "${{ matrix.rank }}" \
-            --max-posts "${{ inputs.max_posts }}" \
-            --retries "${{ inputs.retry_attempts }}" \
-            --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
-            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
-            --max-scrolls "${{ inputs.max_scrolls }}" \
-            --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
-            --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
-            --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
+            --max-posts "${{ steps.mode.outputs.max_posts }}" \
+            --retries "${{ steps.mode.outputs.retry_attempts }}" \
+            --retry-delay-seconds "${{ steps.mode.outputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ steps.mode.outputs.collector_timeout_seconds }}" \
+            --max-scrolls "${{ steps.mode.outputs.max_scrolls }}" \
+            --scroll-delay-seconds "${{ steps.mode.outputs.scroll_delay_seconds }}" \
+            --idle-scroll-limit "${{ steps.mode.outputs.idle_scroll_limit }}" \
+            --page-timeout-ms "${{ steps.mode.outputs.page_timeout_ms }}" \
             --previous-output-root ".previous_fortune_x_ranked" \
             --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_2_rank_${{ matrix.rank }}.csv"
 
@@ -325,6 +438,58 @@ jobs:
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
+      - name: Resolve collection mode settings
+        id: mode
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${{ inputs.collection_mode }}"
+          case "$mode" in
+            smoke_test)
+              max_posts=10
+              retry_attempts=1
+              retry_delay_seconds=30
+              collector_timeout_seconds=300
+              max_scrolls=250
+              scroll_delay_seconds=1.0
+              idle_scroll_limit=20
+              page_timeout_ms=60000
+              ;;
+            full_collection)
+              max_posts=0
+              retry_attempts=2
+              retry_delay_seconds=90
+              collector_timeout_seconds=1200
+              max_scrolls=2500
+              scroll_delay_seconds=1.5
+              idle_scroll_limit=80
+              page_timeout_ms=120000
+              ;;
+            custom)
+              max_posts="${{ inputs.max_posts }}"
+              retry_attempts="${{ inputs.retry_attempts }}"
+              retry_delay_seconds="${{ inputs.retry_delay_seconds }}"
+              collector_timeout_seconds="${{ inputs.collector_timeout_seconds }}"
+              max_scrolls="${{ inputs.max_scrolls }}"
+              scroll_delay_seconds="${{ inputs.scroll_delay_seconds }}"
+              idle_scroll_limit="${{ inputs.idle_scroll_limit }}"
+              page_timeout_ms="${{ inputs.page_timeout_ms }}"
+              ;;
+            *)
+              echo "unsupported collection_mode=$mode" >&2
+              exit 1
+              ;;
+          esac
+          echo "max_posts=$max_posts" >> "$GITHUB_OUTPUT"
+          echo "retry_attempts=$retry_attempts" >> "$GITHUB_OUTPUT"
+          echo "retry_delay_seconds=$retry_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "collector_timeout_seconds=$collector_timeout_seconds" >> "$GITHUB_OUTPUT"
+          echo "max_scrolls=$max_scrolls" >> "$GITHUB_OUTPUT"
+          echo "scroll_delay_seconds=$scroll_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "idle_scroll_limit=$idle_scroll_limit" >> "$GITHUB_OUTPUT"
+          echo "page_timeout_ms=$page_timeout_ms" >> "$GITHUB_OUTPUT"
+
       - name: Preserve previous ranked output snapshot
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
@@ -380,14 +545,14 @@ jobs:
           python scripts/run_fortune_x_ranked_collection.py \
             --start-rank "${{ matrix.rank }}" \
             --end-rank "${{ matrix.rank }}" \
-            --max-posts "${{ inputs.max_posts }}" \
-            --retries "${{ inputs.retry_attempts }}" \
-            --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
-            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
-            --max-scrolls "${{ inputs.max_scrolls }}" \
-            --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
-            --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
-            --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
+            --max-posts "${{ steps.mode.outputs.max_posts }}" \
+            --retries "${{ steps.mode.outputs.retry_attempts }}" \
+            --retry-delay-seconds "${{ steps.mode.outputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ steps.mode.outputs.collector_timeout_seconds }}" \
+            --max-scrolls "${{ steps.mode.outputs.max_scrolls }}" \
+            --scroll-delay-seconds "${{ steps.mode.outputs.scroll_delay_seconds }}" \
+            --idle-scroll-limit "${{ steps.mode.outputs.idle_scroll_limit }}" \
+            --page-timeout-ms "${{ steps.mode.outputs.page_timeout_ms }}" \
             --previous-output-root ".previous_fortune_x_ranked" \
             --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_3_rank_${{ matrix.rank }}.csv"
 
@@ -442,6 +607,58 @@ jobs:
           fi
           echo "should_run=true" >> "$GITHUB_OUTPUT"
 
+      - name: Resolve collection mode settings
+        id: mode
+        if: ${{ steps.bounds.outputs.should_run == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${{ inputs.collection_mode }}"
+          case "$mode" in
+            smoke_test)
+              max_posts=10
+              retry_attempts=1
+              retry_delay_seconds=30
+              collector_timeout_seconds=300
+              max_scrolls=250
+              scroll_delay_seconds=1.0
+              idle_scroll_limit=20
+              page_timeout_ms=60000
+              ;;
+            full_collection)
+              max_posts=0
+              retry_attempts=2
+              retry_delay_seconds=90
+              collector_timeout_seconds=1200
+              max_scrolls=2500
+              scroll_delay_seconds=1.5
+              idle_scroll_limit=80
+              page_timeout_ms=120000
+              ;;
+            custom)
+              max_posts="${{ inputs.max_posts }}"
+              retry_attempts="${{ inputs.retry_attempts }}"
+              retry_delay_seconds="${{ inputs.retry_delay_seconds }}"
+              collector_timeout_seconds="${{ inputs.collector_timeout_seconds }}"
+              max_scrolls="${{ inputs.max_scrolls }}"
+              scroll_delay_seconds="${{ inputs.scroll_delay_seconds }}"
+              idle_scroll_limit="${{ inputs.idle_scroll_limit }}"
+              page_timeout_ms="${{ inputs.page_timeout_ms }}"
+              ;;
+            *)
+              echo "unsupported collection_mode=$mode" >&2
+              exit 1
+              ;;
+          esac
+          echo "max_posts=$max_posts" >> "$GITHUB_OUTPUT"
+          echo "retry_attempts=$retry_attempts" >> "$GITHUB_OUTPUT"
+          echo "retry_delay_seconds=$retry_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "collector_timeout_seconds=$collector_timeout_seconds" >> "$GITHUB_OUTPUT"
+          echo "max_scrolls=$max_scrolls" >> "$GITHUB_OUTPUT"
+          echo "scroll_delay_seconds=$scroll_delay_seconds" >> "$GITHUB_OUTPUT"
+          echo "idle_scroll_limit=$idle_scroll_limit" >> "$GITHUB_OUTPUT"
+          echo "page_timeout_ms=$page_timeout_ms" >> "$GITHUB_OUTPUT"
+
       - name: Preserve previous ranked output snapshot
         if: ${{ steps.bounds.outputs.should_run == 'true' }}
         shell: bash
@@ -497,14 +714,14 @@ jobs:
           python scripts/run_fortune_x_ranked_collection.py \
             --start-rank "${{ matrix.rank }}" \
             --end-rank "${{ matrix.rank }}" \
-            --max-posts "${{ inputs.max_posts }}" \
-            --retries "${{ inputs.retry_attempts }}" \
-            --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
-            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
-            --max-scrolls "${{ inputs.max_scrolls }}" \
-            --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
-            --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
-            --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
+            --max-posts "${{ steps.mode.outputs.max_posts }}" \
+            --retries "${{ steps.mode.outputs.retry_attempts }}" \
+            --retry-delay-seconds "${{ steps.mode.outputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ steps.mode.outputs.collector_timeout_seconds }}" \
+            --max-scrolls "${{ steps.mode.outputs.max_scrolls }}" \
+            --scroll-delay-seconds "${{ steps.mode.outputs.scroll_delay_seconds }}" \
+            --idle-scroll-limit "${{ steps.mode.outputs.idle_scroll_limit }}" \
+            --page-timeout-ms "${{ steps.mode.outputs.page_timeout_ms }}" \
             --previous-output-root ".previous_fortune_x_ranked" \
             --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_shard_phase_4_rank_${{ matrix.rank }}.csv"
 
