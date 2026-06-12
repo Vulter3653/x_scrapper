@@ -146,6 +146,7 @@ These files were intentionally removed because they were generated from earlier 
 | `2026-06-12` | `pending` | Continued Fortune Top 100 ranks 11-30 X account verification. | Updated only `config/fortune2025_x_account_verification_master.csv` for ranks 11-30 using official company-source evidence. Ranks 31-100 remain unreviewed. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 | `2026-06-12` | `pending` | Continued Fortune Top 100 ranks 31-50 X account verification. | Updated only `config/fortune2025_x_account_verification_master.csv` for ranks 31-50 using official company-source evidence. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 | `2026-06-12` | `pending` | Continued Fortune Top 100 ranks 51-75 X account verification. | Updated only `config/fortune2025_x_account_verification_master.csv` for ranks 51-75 using official company-source evidence. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
+| `2026-06-12` | `pending` | Completed Fortune Top 100 ranks 76-100 X account verification. | Updated only `config/fortune2025_x_account_verification_master.csv` for ranks 76-100 using official company-source evidence. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 
 ## Operational Decisions
 
