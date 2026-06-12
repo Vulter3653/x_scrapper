@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 72,
+  "company_name": "Publix Super Markets",
+  "official_x_handle": "@Publix",
+  "folder": "data/raw/fortune_x_2025_ranked/072_publix_super_markets",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:28:24.111616+00:00",
+  "completed_at": "2026-06-12T11:28:39.724547+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

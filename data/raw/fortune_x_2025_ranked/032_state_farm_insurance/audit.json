@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 32,
+  "company_name": "State Farm Insurance",
+  "official_x_handle": "@StateFarm",
+  "folder": "data/raw/fortune_x_2025_ranked/032_state_farm_insurance",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:11:01.888258+00:00",
+  "completed_at": "2026-06-12T11:11:18.087937+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

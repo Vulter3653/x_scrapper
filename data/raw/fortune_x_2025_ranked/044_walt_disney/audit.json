@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 44,
+  "company_name": "Walt Disney",
+  "official_x_handle": "@Disney",
+  "folder": "data/raw/fortune_x_2025_ranked/044_walt_disney",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:13:54.904476+00:00",
+  "completed_at": "2026-06-12T11:14:05.177925+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

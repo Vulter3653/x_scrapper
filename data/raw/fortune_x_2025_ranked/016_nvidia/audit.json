@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 16,
+  "company_name": "Nvidia",
+  "official_x_handle": "@nvidia",
+  "folder": "data/raw/fortune_x_2025_ranked/016_nvidia",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:00:37.625956+00:00",
+  "completed_at": "2026-06-12T11:00:47.427130+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

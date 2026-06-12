@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 31,
+  "company_name": "StoneX Group",
+  "official_x_handle": "@StoneX_Official",
+  "folder": "data/raw/fortune_x_2025_ranked/031_stonex_group",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:10:44.132437+00:00",
+  "completed_at": "2026-06-12T11:11:00.886498+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

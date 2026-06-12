@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 47,
+  "company_name": "Boeing",
+  "official_x_handle": "@boeing",
+  "folder": "data/raw/fortune_x_2025_ranked/047_boeing",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 32,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:14:43.794278+00:00",
+  "completed_at": "2026-06-12T11:15:13.691063+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

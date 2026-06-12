@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 20,
+  "company_name": "Bank of America",
+  "official_x_handle": "@bankofamerica",
+  "folder": "data/raw/fortune_x_2025_ranked/020_bank_of_america",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:01:30.772233+00:00",
+  "completed_at": "2026-06-12T11:01:41.567013+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

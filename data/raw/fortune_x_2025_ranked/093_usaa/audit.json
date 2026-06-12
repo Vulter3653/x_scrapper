@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 93,
+  "company_name": "USAA",
+  "official_x_handle": "@usaa",
+  "folder": "data/raw/fortune_x_2025_ranked/093_usaa",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:42:00.382670+00:00",
+  "completed_at": "2026-06-12T11:42:17.561854+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 21,
+  "company_name": "Chevron",
+  "official_x_handle": "@chevron",
+  "folder": "data/raw/fortune_x_2025_ranked/021_chevron",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 20,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:01:42.568973+00:00",
+  "completed_at": "2026-06-12T11:02:12.205901+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}

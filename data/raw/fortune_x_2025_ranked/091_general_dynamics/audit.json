@@ -1,0 +1,17 @@
+{
+  "fortune_rank": 91,
+  "company_name": "General Dynamics",
+  "official_x_handle": "@generaldynamics",
+  "folder": "data/raw/fortune_x_2025_ranked/091_general_dynamics",
+  "attempted": true,
+  "status": "success",
+  "posts_collected": 50,
+  "max_posts_cap": 50,
+  "started_at": "2026-06-12T11:41:35.817089+00:00",
+  "completed_at": "2026-06-12T11:41:43.930902+00:00",
+  "error_type": "",
+  "error_message": "",
+  "collection_method": "capped browser-based collection of observable public posts",
+  "browser_collection_used": true,
+  "x_api_used": false
+}
