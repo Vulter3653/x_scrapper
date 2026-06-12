@@ -24,6 +24,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune evidence default state | `manual_search_only` was too strong for unreviewed initialized rows. | Added `not_reviewed` and changed default rows to avoid implying that manual search was performed. |
 | Fortune Top 10 verification pilot | Manual account verification was performed without scraping or dashboard/data mutation. | Ranks 1-10 were updated in the verification master only; validator warnings, if any, are expected for blocked/no-account-found rows. |
 | Fortune ranks 11-30 verification batch | Manual account verification continued without scraping or dashboard/data mutation. | Ranks 11-30 were updated in the verification master only; inaccessible and no-account-found rows remain blocked and not scrape eligible. |
+| Fortune ranks 31-50 verification batch | Manual account verification continued without scraping or dashboard/data mutation. | Ranks 31-50 were updated in the verification master only; no-account-found rows remain blocked and not scrape eligible. |
 
 ## Detailed Incidents
 
