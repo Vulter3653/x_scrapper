@@ -9,13 +9,14 @@
   "folder": "data/raw/fortune_x_2025_ranked/025_home_depot/accounts/01_primary_homedepot",
   "attempted": true,
   "status": "success",
-  "posts_collected": 15,
-  "max_posts_cap": 15,
-  "started_at": "2026-06-12T16:38:37.776002+00:00",
-  "completed_at": "2026-06-12T16:38:44.491100+00:00",
+  "posts_collected": 3,
+  "max_posts_cap": 3,
+  "started_at": "2026-06-12T18:03:14.791849+00:00",
+  "completed_at": "2026-06-12T18:03:19.709844+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",
   "browser_collection_used": true,
-  "x_api_used": false
+  "x_api_used": false,
+  "retryable": false
 }

@@ -1,2 +1,2 @@
-fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
-67,Eli Lilly,1,primary,@EliLillyandCo,https://x.com/EliLillyandCo,data/raw/fortune_x_2025_ranked/067_eli_lilly/accounts/01_primary_elilillyandco,true,success,15,,,2026-06-12T17:00:15.266428+00:00,2026-06-12T17:03:52.830285+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+67,Eli Lilly,1,primary,@EliLillyandCo,https://x.com/EliLillyandCo,data/raw/fortune_x_2025_ranked/067_eli_lilly/accounts/01_primary_elilillyandco,true,success,3,false,,,2026-06-12T18:06:03.112908+00:00,2026-06-12T18:06:08.900805+00:00

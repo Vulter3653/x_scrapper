@@ -9,13 +9,14 @@
   "folder": "data/raw/fortune_x_2025_ranked/014_cigna_group/accounts/02_secondary_cigna",
   "attempted": true,
   "status": "success",
-  "posts_collected": 15,
-  "max_posts_cap": 15,
-  "started_at": "2026-06-12T16:30:00.439024+00:00",
-  "completed_at": "2026-06-12T16:30:06.003324+00:00",
+  "posts_collected": 3,
+  "max_posts_cap": 3,
+  "started_at": "2026-06-12T18:02:33.254906+00:00",
+  "completed_at": "2026-06-12T18:02:37.516263+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",
   "browser_collection_used": true,
-  "x_api_used": false
+  "x_api_used": false,
+  "retryable": false
 }

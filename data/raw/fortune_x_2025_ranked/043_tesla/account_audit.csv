@@ -1,2 +1,2 @@
-fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
-43,Tesla,1,primary,@tesla,https://x.com/tesla,data/raw/fortune_x_2025_ranked/043_tesla/accounts/01_primary_tesla,true,success,15,,,2026-06-12T16:50:04.742924+00:00,2026-06-12T16:50:11.563598+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+43,Tesla,1,primary,@tesla,https://x.com/tesla,data/raw/fortune_x_2025_ranked/043_tesla/accounts/01_primary_tesla,true,success,3,false,,,2026-06-12T18:04:54.215828+00:00,2026-06-12T18:04:59.701059+00:00

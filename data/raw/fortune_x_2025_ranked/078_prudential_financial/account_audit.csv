@@ -1,2 +1,2 @@
-fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,error_type,error_message,started_at,completed_at
-78,Prudential Financial,1,primary,@Prudential,https://x.com/Prudential,data/raw/fortune_x_2025_ranked/078_prudential_financial/accounts/01_primary_prudential,true,success,15,,,2026-06-12T17:06:53.762573+00:00,2026-06-12T17:10:31.206857+00:00
+fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
+78,Prudential Financial,1,primary,@Prudential,https://x.com/Prudential,data/raw/fortune_x_2025_ranked/078_prudential_financial/accounts/01_primary_prudential,true,success,3,false,,,2026-06-12T18:06:49.467284+00:00,2026-06-12T18:06:56.380855+00:00

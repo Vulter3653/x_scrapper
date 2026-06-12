@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/078_prudential_financial",
   "attempted": true,
   "status": "success",
-  "posts_collected": 15,
+  "posts_collected": 3,
   "account_count": 1,
   "accounts": [
     {
@@ -21,20 +21,21 @@
       "folder": "data/raw/fortune_x_2025_ranked/078_prudential_financial/accounts/01_primary_prudential",
       "attempted": true,
       "status": "success",
-      "posts_collected": 15,
-      "max_posts_cap": 15,
-      "started_at": "2026-06-12T17:06:53.762573+00:00",
-      "completed_at": "2026-06-12T17:10:31.206857+00:00",
+      "posts_collected": 3,
+      "max_posts_cap": 3,
+      "started_at": "2026-06-12T18:06:49.467284+00:00",
+      "completed_at": "2026-06-12T18:06:56.380855+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
       "browser_collection_used": true,
-      "x_api_used": false
+      "x_api_used": false,
+      "retryable": false
     }
   ],
-  "max_posts_cap": 15,
-  "started_at": "2026-06-12T17:06:53.762573+00:00",
-  "completed_at": "2026-06-12T17:10:31.206857+00:00",
+  "max_posts_cap": 3,
+  "started_at": "2026-06-12T18:06:49.467284+00:00",
+  "completed_at": "2026-06-12T18:06:56.380855+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",
