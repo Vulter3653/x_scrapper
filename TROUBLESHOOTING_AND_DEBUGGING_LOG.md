@@ -31,6 +31,7 @@ This file consolidates troubleshooting and debugging history in one place. It is
 | Fortune Top 100 collection queue scaffold | Queue scaffold was generated without scraping or dashboard/data mutation. | The queue includes only the 43 rows already marked scrape eligible; 12 inaccessible and 45 no-account-found rows remain excluded and blocked. |
 | Fortune Top 100 dry-run readiness protocol | Dry-run readiness policy was generated without scraping, MCP installation, X API calls, or dashboard/data mutation. | The policy keeps collection unauthorized, output creation blocked, and dashboard sync disabled until a separate authorization commit exists. |
 | Fortune Top 100 collection authorization proposal | Pre-execution proposal was drafted without scraping, MCP installation, X API calls, browser automation, or dashboard/data mutation. | The proposal keeps collection unauthorized, dry-run only, output paths undefined, and dashboard sync disabled until a separate authorization commit exists. |
+| Fortune Top 100 human review completion | Human review overlay was completed for ranks 41-100 without scraping or dashboard/data mutation. | All 100 rows are human reviewed; `final_manual_scrape_eligible` is the only future collection eligibility signal. |
 
 ## Detailed Incidents
 
@@ -384,5 +385,21 @@ When a future issue occurs, append a new section to this file with:
   - 2 confirmed candidates (Home Depot, Phillips 66) received additional secondary reference URLs.
 - Boundary:
   - No collection authorized.
+  - No queue regeneration performed.
+  - `data/` and `dashboard/data/` remain untouched.
+
+### 20. Fortune Top 100 Human Review Completion (Ranks 41-100)
+
+- Period: `2026-06-12`
+- Scope:
+  - Completed the human manual review overlay for ranks 41-100.
+  - Preserved Codex preliminary/reference evidence and used human fields for final eligibility.
+  - Kept `final_manual_scrape_eligible` as the authoritative future collection signal.
+- Outcome:
+  - Total human reviewed rows: 100.
+  - Pending human review rows: 0.
+  - Final manual scrape-eligible rows: 100.
+- Boundary:
+  - No X collection authorized.
   - No queue regeneration performed.
   - `data/` and `dashboard/data/` remain untouched.

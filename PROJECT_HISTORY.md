@@ -154,6 +154,7 @@ These files were intentionally removed because they were generated from earlier 
 
 | `2026-06-12` | `pending` | Added human manual review layer for Fortune Top 100 X account verification. | Updated only `config/fortune2025_x_account_verification_master.csv` with human-review overlay columns for ranks 1-20; ranks 21-100 remain pending human review. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 | `2026-06-12` | `pending` | Applied human review batch for Fortune X ranks 21-40. | Updated only `config/fortune2025_x_account_verification_master.csv` with human-review overlay columns for ranks 21-40; ranks 41-100 remain pending human review. No X post scraping, timeline collection, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
+| `2026-06-12` | `pending` | Completed human review for Fortune X ranks 41-100. | Updated only `config/fortune2025_x_account_verification_master.csv` to mark all 100 rows human reviewed; `final_manual_scrape_eligible` is now the only future collection eligibility signal. No X collection, queue regeneration, Fortune 500 expansion, SEC download, `data/`, or `dashboard/data/` mutation was performed. |
 
 ## Operational Decisions
 

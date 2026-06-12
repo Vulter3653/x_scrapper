@@ -176,14 +176,15 @@ python scripts/validate_fortune_expansion_readiness.py
 
 ## Fortune Top 100 Human Manual Review Layer
 
-The human manual review layer is the final source of official X account eligibility. The Codex-reviewed fields in the master CSV are preliminary/reference evidence only. The existing `scrape_eligible` field is no longer the final eligibility signal after the human-review policy change. Future collection eligibility must use `final_manual_scrape_eligible`.
+The human manual review layer is the final source of official X account eligibility. The Codex-reviewed fields in the master CSV are preliminary/reference evidence only. existing `scrape_eligible` is no longer the final eligibility signal. Future collection eligibility must use `final_manual_scrape_eligible`.
 
 Current review state:
 
-- Ranks 1-40 are `human_reviewed`.
-- Ranks 41-100 remain `pending_human_review`.
+- Ranks 1-100 are `human_reviewed`.
+- Pending human review count is 0.
 - Human-review rows already have final manual primary/secondary URLs and final manual account status filled in.
-- Pending rows remain blank in the human-review overlay and have `final_manual_scrape_eligible=false`.
+- final_manual_scrape_eligible is the only future collection eligibility signal.
+- No X collection is authorized and no collection queue regeneration occurred.
 
 | File | Purpose |
 | --- | --- |

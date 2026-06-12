@@ -53,15 +53,19 @@ HUMAN_COLUMNS = [
     "final_manual_account_status",
     "final_manual_scrape_eligible",
 ]
-# Updated to support multiple batches and current review progress
-REVIEW_BATCHES = ["manual_top20_batch_2026_06_12", "manual_rank21_40_batch_2026_06_12"]
+# Updated to support all batches up to 100
+REVIEW_BATCHES = [
+    "manual_top20_batch_2026_06_12",
+    "manual_rank21_40_batch_2026_06_12",
+    "manual_rank41_100_batch_2026_06_12"
+]
 ALLOWED_HUMAN_VALUES = {"", "0", "1"}
 REQUIRED_HUMAN_DOC_PHRASES = [
     "human manual review layer",
     "final_manual_scrape_eligible",
     "preliminary/reference evidence",
-    "Ranks 1-40 are `human_reviewed`",
-    "Ranks 41-100 remain `pending_human_review`",
+    "Ranks 1-100 are `human_reviewed`",
+    "Pending human review count is 0",
     "existing `scrape_eligible` must not be treated as final",
 ]
 FORBIDDEN_DOC_PHRASES = [
@@ -185,6 +189,7 @@ def main() -> int:
         return 1
     check_git_status()
     check_boundary_files()
+    check_docs()
 
     fieldnames, rows = read_csv(MASTER_FILE)
     if len(rows) != 100:
@@ -235,12 +240,14 @@ def main() -> int:
 
         if human_candidate not in ALLOWED_HUMAN_VALUES:
             report("FAIL", "human candidate taxonomy", f"{prefix} invalid human_candidate_is_actual_official={human_candidate}")
+
         if human_status == "human_reviewed":
             reviewed_rows += 1
             if human_candidate == "":
                 report("FAIL", "human review coverage", f"{prefix} reviewed row has blank human_candidate_is_actual_official")
             if human_batch not in REVIEW_BATCHES:
                 report("FAIL", "human review batch", f"{prefix} reviewed row has unknown batch {human_batch}")
+
             if human_candidate == "1":
                 confirmed_candidate_official += 1
                 if final_primary != candidate_url:
@@ -249,6 +256,7 @@ def main() -> int:
                     report("FAIL", "human alternate URLs", f"{prefix} candidate=1 should not have human_actual_x_url_1")
                 if final_status != "confirmed_candidate_official":
                     report("FAIL", "final account status", f"{prefix} expected confirmed_candidate_official, found {final_status}")
+                # Secondary URL is allowed for confirmed candidates (Rule 7)
                 if actual_2 and final_secondary != actual_2:
                     report("FAIL", "final secondary mapping", f"{prefix} candidate=1 but final_manual_x_url_secondary does not match human_actual_x_url_2")
             elif human_candidate == "0":
@@ -267,23 +275,17 @@ def main() -> int:
                         report("FAIL", "final secondary mapping", f"{prefix} final_manual_x_url_secondary must be blank when no second alternate is provided")
             else:
                 report("FAIL", "human review candidate flag", f"{prefix} reviewed row must have human_candidate_is_actual_official=0 or 1")
+
             if final_eligible != "true":
                 report("FAIL", "final eligibility", f"{prefix} reviewed row must have final_manual_scrape_eligible=true")
             if not final_primary:
                 report("FAIL", "final eligibility url", f"{prefix} reviewed row must have nonblank final_manual_x_url_primary")
             final_eligible_rows += 1
+
         elif human_status == "pending_human_review":
             pending_rows += 1
-            if rank <= 40:
-                report("FAIL", "rank review coverage", f"{prefix} must be human_reviewed")
-            if rank >= 41 and human_candidate:
-                report("FAIL", "pending human review blanks", f"{prefix} pending row must keep human fields blank")
-            if any([actual_1, actual_2, final_primary, final_secondary, human_batch]):
-                report("FAIL", "pending human review blanks", f"{prefix} pending row must keep human overlay blank")
-            if final_status != "pending_human_review":
-                report("FAIL", "pending final status", f"{prefix} pending row must have final_manual_account_status=pending_human_review")
-            if final_eligible != "false":
-                report("FAIL", "pending final eligibility", f"{prefix} pending row must have final_manual_scrape_eligible=false")
+            # Final state check: no pending rows allowed
+            report("FAIL", "final pending check", f"{prefix} remains pending_human_review")
         else:
             report("FAIL", "human review status", f"{prefix} invalid human_review_status={human_status}")
 
@@ -294,23 +296,26 @@ def main() -> int:
     else:
         report("PASS", "fortune_rank completeness", "fortune_rank is unique and complete from 1 to 100")
 
-    if reviewed_rows != 40:
-        report("FAIL", "human reviewed count", f"expected 40 reviewed rows, found {reviewed_rows}")
+    if reviewed_rows != 100:
+        report("FAIL", "human reviewed count", f"expected 100 reviewed rows, found {reviewed_rows}")
     else:
-        report("PASS", "human reviewed count", "40 rows are human reviewed")
-    if pending_rows != 60:
-        report("FAIL", "pending human review count", f"expected 60 pending rows, found {pending_rows}")
+        report("PASS", "human reviewed count", "100 rows are human reviewed")
+
+    if pending_rows != 0:
+        report("FAIL", "pending human review count", f"expected 0 pending rows, found {pending_rows}")
     else:
-        report("PASS", "pending human review count", "60 rows remain pending human review")
+        report("PASS", "pending human review count", "0 rows remain pending human review")
+
     report("PASS", "confirmed official count", f"{confirmed_candidate_official} candidate rows are confirmed official")
     report("PASS", "alternate found count", f"{rejected_with_alternate} candidate rows were rejected with alternates found")
-    if final_eligible_rows != 40:
-        report("FAIL", "final eligibility count", f"expected 40, found {final_eligible_rows}")
+
+    if final_eligible_rows != 100:
+        report("FAIL", "final eligibility count", f"expected 100, found {final_eligible_rows}")
     else:
-        report("PASS", "final eligibility count", "40 rows are final manual scrape eligible")
+        report("PASS", "final eligibility count", "100 rows are final manual scrape eligible")
 
     if FAILURES == 0:
-        report("PASS", "master human review overlay", "validated all 100 rows")
+        report("PASS", "master human review overlay", "validated all 100 rows as complete")
     return 1 if FAILURES else 0
 
 
