@@ -12,6 +12,11 @@ Decision rule:
   humor-candidate review signal.
 - If HSQ says non_humor and TF-IDF probability is high, keep non_humor but mark a
   possible false-negative review signal.
+
+Important threshold logic:
+Lowering --threshold makes the veto more conservative because fewer HSQ humor rows
+fall below the threshold. Raising --threshold makes the veto stricter and demotes
+more HSQ humor rows to review.
 """
 
 import argparse
@@ -142,7 +147,7 @@ def final_decision(row, prob, threshold, candidate_threshold):
             "final_humor_type": "ambiguous_or_review",
             "final_humor_presence_source": "hsq_tfidf_review_veto",
             "final_humor_review_flag": "true",
-            "final_humor_review_reason": "HSQ labeled humor, but TF-IDF hard-negative model assigned humor probability below the calibrated operating threshold.",
+            "final_humor_review_reason": "HSQ labeled humor, but TF-IDF hard-negative model assigned humor probability below the conservative review/veto threshold.",
         }
 
     if hsq_presence == "ambiguous" and prob >= candidate_threshold:
@@ -201,7 +206,7 @@ def main():
     parser.add_argument("--humor-seed", type=Path, required=True)
     parser.add_argument("--hard-negative-seed", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--threshold", type=float, default=0.51455)
+    parser.add_argument("--threshold", type=float, default=0.40)
     parser.add_argument("--candidate-threshold", type=float, default=0.70)
     parser.add_argument("--max-negative-ratio", type=float, default=4.0)
     parser.add_argument("--max-features", type=int, default=20000)
@@ -268,8 +273,9 @@ def main():
     write_csv(signal_csv, signal_rows, ["tfidf_review_signal", "count", "rate"])
 
     summary = {
-        "task": "HSQ primary classifier plus TF-IDF review/veto layer",
+        "task": "HSQ primary classifier plus conservative TF-IDF review/veto layer",
         "important_note": "TF-IDF is used only as a review/veto signal. It does not replace the HSQ codebook classifier.",
+        "threshold_note": "Lower threshold values make the veto more conservative; higher values demote more HSQ humor rows to review.",
         "master_rows": len(master_rows),
         "humor_seed_rows": len(humor_seed_rows),
         "hard_negative_seed_rows": len(hard_negative_rows),
