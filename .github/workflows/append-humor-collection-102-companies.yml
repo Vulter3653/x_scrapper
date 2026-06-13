@@ -217,6 +217,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Sync latest main before aggregation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -370,7 +376,6 @@ jobs:
             echo 'No append collection output changes to commit.'
             exit 0
           fi
-          git pull --rebase origin main
           git commit -m 'data: append collected humor posts for 102 targets' \
             -m 'Merged shard artifacts from append-only browser collection. Official X API was not used. Dashboard data was not synced.'
           git push origin HEAD:main
