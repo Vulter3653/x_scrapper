@@ -310,6 +310,35 @@ def check_summary(allow_empty_before_run: bool, summary_file: Path, expected_sta
                 expected_detail = ",".join(str(rank) for rank in sorted(expected)) if collection_mode == "quick_smoke" else f"{expected_start_rank}-{expected_end_rank}"
                 report("PASS", "summary rank coverage", f"rows cover expected {collection_mode} ranks {expected_detail}")
 
+    # A. summary posts_collected vs raw posts.csv row count
+    mismatches = 0
+    for row in rows:
+        rank = row.get("fortune_rank")
+        company = row.get("company_name")
+        summary_count = int(row.get("posts_collected") or 0)
+        folder_str = row.get("folder")
+        if not folder_str:
+            continue
+        folder = REPO_ROOT / folder_str
+        posts_path = folder / "posts.csv"
+
+        actual_count = 0
+        if posts_path.exists():
+            try:
+                with posts_path.open(encoding="utf-8-sig", newline="") as f:
+                    actual_count = sum(1 for _ in csv.DictReader(f))
+            except Exception:
+                actual_count = -1
+
+        if summary_count != actual_count:
+            report("FAIL", "summary/raw posts count mismatch", f"rank {rank} {company} summary={summary_count} raw={actual_count}")
+            mismatches += 1
+
+    if mismatches == 0:
+        report("PASS", "summary/raw posts count mismatch", "0")
+    else:
+        report("FAIL", "summary/raw posts count mismatch", str(mismatches))
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
