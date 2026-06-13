@@ -1,0 +1,117 @@
+name: Build HSQ Transformer Lite Presence Baseline
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Workflow run ID containing hsq-validation-pseudo-labels artifact"
+        required: true
+      artifact_name:
+        description: "HSQ validation/pseudo-label artifact name"
+        required: true
+        default: "hsq-validation-pseudo-labels"
+      model_name:
+        description: "Transformer model name"
+        required: true
+        default: "distilroberta-base"
+      max_total_rows:
+        description: "Maximum total seed rows for the lite experiment"
+        required: true
+        default: "600"
+      max_negative_ratio:
+        description: "Maximum hard-negative rows per high-intensity humor seed"
+        required: true
+        default: "4.0"
+      test_size:
+        description: "Stratified test split size"
+        required: true
+        default: "0.25"
+      epochs:
+        description: "Training epochs"
+        required: true
+        default: "1"
+      batch_size:
+        description: "Batch size"
+        required: true
+        default: "8"
+      max_length:
+        description: "Maximum token length"
+        required: true
+        default: "128"
+      learning_rate:
+        description: "Learning rate"
+        required: true
+        default: "0.00002"
+      freeze_base:
+        description: "Freeze base transformer and train classification head only"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  build-transformer-lite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install scikit-learn torch transformers
+
+      - name: Download HSQ validation and pseudo-label artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p source_artifact
+          gh run download "${{ github.event.inputs.source_run_id }}" --repo "${{ github.repository }}" --name "${{ github.event.inputs.artifact_name }}" --dir source_artifact
+          find source_artifact -maxdepth 3 -type f -print
+
+      - name: Locate seed CSV files
+        id: locate
+        run: |
+          HUMOR_SEED=$(find source_artifact -name 'hsq_high_intensity_humor_seed.csv' -print -quit)
+          HARD_NEGATIVE=$(find source_artifact -name 'hsq_hard_negative_non_humor_seed.csv' -print -quit)
+          if [ -z "$HUMOR_SEED" ]; then echo "hsq_high_intensity_humor_seed.csv not found" >&2; exit 1; fi
+          if [ -z "$HARD_NEGATIVE" ]; then echo "hsq_hard_negative_non_humor_seed.csv not found" >&2; exit 1; fi
+          echo "humor_seed=$HUMOR_SEED" >> "$GITHUB_OUTPUT"
+          echo "hard_negative=$HARD_NEGATIVE" >> "$GITHUB_OUTPUT"
+
+      - name: Run transformer-lite presence baseline
+        run: |
+          mkdir -p data/derived/humor/hsq_transformer_lite_presence
+          FREEZE_FLAG=""
+          if [ "${{ github.event.inputs.freeze_base }}" = "true" ]; then FREEZE_FLAG="--freeze-base"; fi
+          python scripts/build_hsq_transformer_lite_presence_baseline.py \
+            --humor-seed "${{ steps.locate.outputs.humor_seed }}" \
+            --hard-negative-seed "${{ steps.locate.outputs.hard_negative }}" \
+            --output-dir data/derived/humor/hsq_transformer_lite_presence \
+            --model-name "${{ github.event.inputs.model_name }}" \
+            --max-total-rows "${{ github.event.inputs.max_total_rows }}" \
+            --max-negative-ratio "${{ github.event.inputs.max_negative_ratio }}" \
+            --test-size "${{ github.event.inputs.test_size }}" \
+            --epochs "${{ github.event.inputs.epochs }}" \
+            --batch-size "${{ github.event.inputs.batch_size }}" \
+            --max-length "${{ github.event.inputs.max_length }}" \
+            --learning-rate "${{ github.event.inputs.learning_rate }}" \
+            $FREEZE_FLAG
+
+      - name: Upload transformer-lite artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hsq-transformer-lite-presence
+          path: data/derived/humor/hsq_transformer_lite_presence/
