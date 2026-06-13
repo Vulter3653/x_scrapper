@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/033_freddie_mac",
   "attempted": true,
   "status": "success",
-  "posts_collected": 5,
+  "posts_collected": 216,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/033_freddie_mac/accounts/01_primary_freddiemac",
       "attempted": true,
       "status": "success",
-      "posts_collected": 5,
-      "max_posts_cap": 5,
-      "started_at": "2026-06-12T18:17:00.952077+00:00",
-      "completed_at": "2026-06-12T18:17:06.906273+00:00",
+      "posts_collected": 216,
+      "max_posts_cap": 0,
+      "started_at": "2026-06-12T20:45:51.420899+00:00",
+      "completed_at": "2026-06-12T20:52:28.482039+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 5,
-  "started_at": "2026-06-12T18:17:00.952077+00:00",
-  "completed_at": "2026-06-12T18:17:06.906273+00:00",
+  "max_posts_cap": 0,
+  "started_at": "2026-06-12T20:45:51.420899+00:00",
+  "completed_at": "2026-06-12T20:52:28.482039+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",

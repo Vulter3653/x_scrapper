@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/072_publix_super_markets",
   "attempted": true,
   "status": "success",
-  "posts_collected": 5,
+  "posts_collected": 851,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/072_publix_super_markets/accounts/01_primary_publix",
       "attempted": true,
       "status": "success",
-      "posts_collected": 5,
-      "max_posts_cap": 5,
-      "started_at": "2026-06-12T18:23:46.771400+00:00",
-      "completed_at": "2026-06-12T18:23:52.377245+00:00",
+      "posts_collected": 851,
+      "max_posts_cap": 0,
+      "started_at": "2026-06-12T23:14:42.817007+00:00",
+      "completed_at": "2026-06-12T23:20:44.788424+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 5,
-  "started_at": "2026-06-12T18:23:46.771400+00:00",
-  "completed_at": "2026-06-12T18:23:52.377245+00:00",
+  "max_posts_cap": 0,
+  "started_at": "2026-06-12T23:14:42.817007+00:00",
+  "completed_at": "2026-06-12T23:20:44.788424+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",

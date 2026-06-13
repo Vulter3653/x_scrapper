@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/003_unitedhealth_group",
   "attempted": true,
   "status": "success",
-  "posts_collected": 5,
+  "posts_collected": 155,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/003_unitedhealth_group/accounts/01_primary_unitedhealthgrp",
       "attempted": true,
       "status": "success",
-      "posts_collected": 5,
-      "max_posts_cap": 5,
-      "started_at": "2026-06-12T18:11:40.206123+00:00",
-      "completed_at": "2026-06-12T18:11:46.876274+00:00",
+      "posts_collected": 155,
+      "max_posts_cap": 0,
+      "started_at": "2026-06-12T18:40:10.256813+00:00",
+      "completed_at": "2026-06-12T18:42:59.597953+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 5,
-  "started_at": "2026-06-12T18:11:40.206123+00:00",
-  "completed_at": "2026-06-12T18:11:46.876274+00:00",
+  "max_posts_cap": 0,
+  "started_at": "2026-06-12T18:40:10.256813+00:00",
+  "completed_at": "2026-06-12T18:42:59.597953+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",

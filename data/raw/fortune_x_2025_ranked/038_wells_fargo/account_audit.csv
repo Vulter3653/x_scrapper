@@ -1,2 +1,2 @@
 fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
-38,Wells Fargo,1,primary,@wellsfargo,https://x.com/wellsfargo,data/raw/fortune_x_2025_ranked/038_wells_fargo/accounts/01_primary_wellsfargo,true,success,5,false,,,2026-06-12T18:17:46.028323+00:00,2026-06-12T18:17:50.891240+00:00
+38,Wells Fargo,1,primary,@wellsfargo,https://x.com/wellsfargo,data/raw/fortune_x_2025_ranked/038_wells_fargo/accounts/01_primary_wellsfargo,true,success,256,false,,,2026-06-12T21:02:58.479191+00:00,2026-06-12T21:06:36.161971+00:00

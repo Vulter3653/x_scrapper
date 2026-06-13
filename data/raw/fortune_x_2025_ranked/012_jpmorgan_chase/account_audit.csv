@@ -1,2 +1,2 @@
 fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
-12,JPMorgan Chase,1,primary,@jpmorgan,https://x.com/jpmorgan,data/raw/fortune_x_2025_ranked/012_jpmorgan_chase/accounts/01_primary_jpmorgan,true,success,5,false,,,2026-06-12T18:13:17.358893+00:00,2026-06-12T18:13:23.530746+00:00
+12,JPMorgan Chase,1,primary,@jpmorgan,https://x.com/jpmorgan,data/raw/fortune_x_2025_ranked/012_jpmorgan_chase/accounts/01_primary_jpmorgan,true,success,498,false,,,2026-06-12T19:13:27.588775+00:00,2026-06-12T19:17:57.747042+00:00

@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/023_general_motors",
   "attempted": true,
   "status": "success",
-  "posts_collected": 5,
+  "posts_collected": 694,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/023_general_motors/accounts/01_primary_gm",
       "attempted": true,
       "status": "success",
-      "posts_collected": 5,
-      "max_posts_cap": 5,
-      "started_at": "2026-06-12T18:15:24.482539+00:00",
-      "completed_at": "2026-06-12T18:15:30.289000+00:00",
+      "posts_collected": 694,
+      "max_posts_cap": 0,
+      "started_at": "2026-06-12T19:58:01.212792+00:00",
+      "completed_at": "2026-06-12T20:03:00.010710+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 5,
-  "started_at": "2026-06-12T18:15:24.482539+00:00",
-  "completed_at": "2026-06-12T18:15:30.289000+00:00",
+  "max_posts_cap": 0,
+  "started_at": "2026-06-12T19:58:01.212792+00:00",
+  "completed_at": "2026-06-12T20:03:00.010710+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",

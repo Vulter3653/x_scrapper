@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/031_stonex_group",
   "attempted": true,
   "status": "success",
-  "posts_collected": 5,
+  "posts_collected": 848,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/031_stonex_group/accounts/01_primary_stonex_official",
       "attempted": true,
       "status": "success",
-      "posts_collected": 5,
-      "max_posts_cap": 5,
-      "started_at": "2026-06-12T18:16:57.269494+00:00",
-      "completed_at": "2026-06-12T18:17:01.894562+00:00",
+      "posts_collected": 848,
+      "max_posts_cap": 0,
+      "started_at": "2026-06-12T20:38:05.371286+00:00",
+      "completed_at": "2026-06-12T20:45:14.375400+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 5,
-  "started_at": "2026-06-12T18:16:57.269494+00:00",
-  "completed_at": "2026-06-12T18:17:01.894562+00:00",
+  "max_posts_cap": 0,
+  "started_at": "2026-06-12T20:38:05.371286+00:00",
+  "completed_at": "2026-06-12T20:45:14.375400+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",

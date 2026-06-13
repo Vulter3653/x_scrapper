@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/058_archer_daniels_midland",
   "attempted": true,
   "status": "success",
-  "posts_collected": 5,
+  "posts_collected": 226,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/058_archer_daniels_midland/accounts/01_primary_admupdates",
       "attempted": true,
       "status": "success",
-      "posts_collected": 5,
-      "max_posts_cap": 5,
-      "started_at": "2026-06-12T18:21:32.217953+00:00",
-      "completed_at": "2026-06-12T18:21:38.296990+00:00",
+      "posts_collected": 226,
+      "max_posts_cap": 0,
+      "started_at": "2026-06-12T22:25:14.430730+00:00",
+      "completed_at": "2026-06-12T22:28:27.812968+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 5,
-  "started_at": "2026-06-12T18:21:32.217953+00:00",
-  "completed_at": "2026-06-12T18:21:38.296990+00:00",
+  "max_posts_cap": 0,
+  "started_at": "2026-06-12T22:25:14.430730+00:00",
+  "completed_at": "2026-06-12T22:28:27.812968+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",

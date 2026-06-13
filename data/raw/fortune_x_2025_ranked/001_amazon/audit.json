@@ -7,7 +7,7 @@
   "folder": "data/raw/fortune_x_2025_ranked/001_amazon",
   "attempted": true,
   "status": "success",
-  "posts_collected": 5,
+  "posts_collected": 1086,
   "account_count": 1,
   "accounts": [
     {
@@ -21,10 +21,10 @@
       "folder": "data/raw/fortune_x_2025_ranked/001_amazon/accounts/01_primary_amazon",
       "attempted": true,
       "status": "success",
-      "posts_collected": 5,
-      "max_posts_cap": 5,
-      "started_at": "2026-06-12T18:11:48.533746+00:00",
-      "completed_at": "2026-06-12T18:11:55.460168+00:00",
+      "posts_collected": 1086,
+      "max_posts_cap": 0,
+      "started_at": "2026-06-12T18:34:05.512252+00:00",
+      "completed_at": "2026-06-12T18:41:05.773301+00:00",
       "error_type": "",
       "error_message": "",
       "collection_method": "capped browser-based collection of observable public posts",
@@ -33,9 +33,9 @@
       "retryable": false
     }
   ],
-  "max_posts_cap": 5,
-  "started_at": "2026-06-12T18:11:48.533746+00:00",
-  "completed_at": "2026-06-12T18:11:55.460168+00:00",
+  "max_posts_cap": 0,
+  "started_at": "2026-06-12T18:34:05.512252+00:00",
+  "completed_at": "2026-06-12T18:41:05.773301+00:00",
   "error_type": "",
   "error_message": "",
   "collection_method": "capped browser-based collection of observable public posts",

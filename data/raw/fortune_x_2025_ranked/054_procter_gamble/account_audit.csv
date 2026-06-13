@@ -1,2 +1,2 @@
 fortune_rank,company_name,account_index,account_role,source_x_handle,source_x_url,folder,attempted,status,posts_collected,retryable,error_type,error_message,started_at,completed_at
-54,Procter & Gamble,1,primary,@ProcterGamble,https://x.com/ProcterGamble,data/raw/fortune_x_2025_ranked/054_procter_gamble/accounts/01_primary_proctergamble,true,failed,0,true,zero_posts_uncertain,collector returned success but produced zero posts and profile validity was uncertain,2026-06-12T18:20:39.546854+00:00,2026-06-12T18:20:51.122080+00:00
+54,Procter & Gamble,1,primary,@ProcterGamble,https://x.com/ProcterGamble,data/raw/fortune_x_2025_ranked/054_procter_gamble/accounts/01_primary_proctergamble,true,success,268,false,,,2026-06-12T22:09:08.404536+00:00,2026-06-12T22:14:41.314154+00:00
