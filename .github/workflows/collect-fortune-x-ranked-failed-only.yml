@@ -1,0 +1,277 @@
+name: Collect Fortune 2025 Failed X Accounts Only
+
+on:
+  workflow_dispatch:
+    inputs:
+      status_filter:
+        description: 'Comma-separated statuses to rerun from summary. Recommended: failed'
+        required: true
+        default: 'failed'
+      summary_file:
+        description: 'Summary CSV used to select ranks for failed-only rerun'
+        required: true
+        default: 'data/audit/fortune_x_2025_ranked_collection_summary.csv'
+      max_posts:
+        description: 'Maximum observable public posts per account; use 0 for unbounded scroll-exhaustion collection'
+        required: true
+        default: '0'
+      max_parallel:
+        description: 'Maximum failed-rank jobs to run in parallel; recommended failed-only=1 or 2'
+        required: true
+        default: '1'
+      retry_attempts:
+        description: 'Retry attempts per account after an initial failed browser collection'
+        required: true
+        default: '2'
+      retry_delay_seconds:
+        description: 'Delay between account retry attempts in seconds'
+        required: true
+        default: '120'
+      collector_timeout_seconds:
+        description: 'Hard timeout for one account browser collector subprocess in seconds'
+        required: true
+        default: '1200'
+      max_scrolls:
+        description: 'Maximum scroll attempts per account'
+        required: true
+        default: '2500'
+      scroll_delay_seconds:
+        description: 'Delay between scroll attempts in seconds'
+        required: true
+        default: '2.0'
+      idle_scroll_limit:
+        description: 'Stop after this many idle scrolls'
+        required: true
+        default: '80'
+      page_timeout_ms:
+        description: 'Browser page timeout in milliseconds'
+        required: true
+        default: '120000'
+      commit_results:
+        description: 'Commit and push failed-only rerun outputs'
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: fortune-x-ranked-failed-only
+  cancel-in-progress: false
+
+jobs:
+  plan-failed-ranks:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix_json: ${{ steps.plan.outputs.matrix_json }}
+      has_failed_ranks: ${{ steps.plan.outputs.has_failed_ranks }}
+      failed_count: ${{ steps.plan.outputs.failed_count }}
+      failed_ranks_csv: ${{ steps.plan.outputs.failed_ranks_csv }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build failed-rank matrix
+        id: plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/build_fortune_x_failed_rank_matrix.py \
+            --summary-file "${{ inputs.summary_file }}" \
+            --status-filter "${{ inputs.status_filter }}" \
+            --matrix-output "$GITHUB_OUTPUT"
+
+  collect-failed-ranks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    needs: plan-failed-ranks
+    if: ${{ needs.plan-failed-ranks.outputs.has_failed_ranks == 'true' }}
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(inputs.max_parallel) }}
+      matrix: ${{ fromJSON(needs.plan-failed-ranks.outputs.matrix_json) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Preserve previous ranked output snapshot
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf .previous_fortune_x_ranked
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked .previous_fortune_x_ranked
+          else
+            mkdir -p .previous_fortune_x_ranked
+          fi
+
+      - name: Prepare isolated shard workspace
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf data/raw/fortune_x_2025_ranked
+          rm -f data/audit/fortune_x_2025_ranked_collection_summary_failed_rank_*.csv
+          mkdir -p data/raw/fortune_x_2025_ranked data/audit staging
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install existing browser collector dependencies
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements-scrape.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Validate ranked collection scaffold before failed-rank run
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python scripts/validate_fortune_x_ranked_collection.py --allow-empty-before-run
+
+      - name: Run failed Fortune X rank collection
+        shell: bash
+        env:
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+        run: |
+          set -euo pipefail
+          python scripts/run_fortune_x_ranked_collection.py \
+            --start-rank "${{ matrix.rank }}" \
+            --end-rank "${{ matrix.rank }}" \
+            --max-posts "${{ inputs.max_posts }}" \
+            --retries "${{ inputs.retry_attempts }}" \
+            --retry-delay-seconds "${{ inputs.retry_delay_seconds }}" \
+            --collector-timeout-seconds "${{ inputs.collector_timeout_seconds }}" \
+            --max-scrolls "${{ inputs.max_scrolls }}" \
+            --scroll-delay-seconds "${{ inputs.scroll_delay_seconds }}" \
+            --idle-scroll-limit "${{ inputs.idle_scroll_limit }}" \
+            --page-timeout-ms "${{ inputs.page_timeout_ms }}" \
+            --previous-output-root ".previous_fortune_x_ranked" \
+            --summary-file "data/audit/fortune_x_2025_ranked_collection_summary_failed_rank_${{ matrix.rank }}.csv"
+
+      - name: Stage failed-rank shard artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p staging/data/raw staging/data/audit
+          if [ -d data/raw/fortune_x_2025_ranked ]; then
+            cp -R data/raw/fortune_x_2025_ranked staging/data/raw/
+          fi
+          if [ -f "data/audit/fortune_x_2025_ranked_collection_summary_failed_rank_${{ matrix.rank }}.csv" ]; then
+            cp "data/audit/fortune_x_2025_ranked_collection_summary_failed_rank_${{ matrix.rank }}.csv" staging/data/audit/
+          fi
+
+      - name: Upload failed-rank shard artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fortune-x-ranked-failed-rank-${{ matrix.rank }}
+          path: staging/
+          retention-days: 1
+
+  aggregate-failed-rerun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs:
+      - plan-failed-ranks
+      - collect-failed-ranks
+    if: ${{ needs.plan-failed-ranks.outputs.has_failed_ranks == 'true' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download failed-rank artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: fortune-x-ranked-failed-rank-*
+          path: artifact_downloads
+          merge-multiple: true
+
+      - name: Preserve existing full summary as merge shard
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p data/audit
+          cp "${{ inputs.summary_file }}" data/audit/fortune_x_2025_ranked_collection_summary_shard_existing.csv
+
+      - name: Overlay failed-rank raw outputs
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p data/raw/fortune_x_2025_ranked data/audit
+          IFS=',' read -ra ranks <<< "${{ needs.plan-failed-ranks.outputs.failed_ranks_csv }}"
+          for rank in "${ranks[@]}"; do
+            if [ -z "$rank" ]; then
+              continue
+            fi
+            prefix="$(printf '%03d' "$rank")"
+            find data/raw/fortune_x_2025_ranked -maxdepth 1 -type d -name "${prefix}_*" -exec rm -rf {} +
+          done
+          if [ -d artifact_downloads/data/raw/fortune_x_2025_ranked ]; then
+            cp -R artifact_downloads/data/raw/fortune_x_2025_ranked/. data/raw/fortune_x_2025_ranked/
+          fi
+          if [ -d artifact_downloads/data/audit ]; then
+            cp artifact_downloads/data/audit/fortune_x_2025_ranked_collection_summary_failed_rank_*.csv data/audit/
+          fi
+
+      - name: Merge failed-rerun summaries
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python scripts/merge_fortune_x_ranked_collection_shards.py \
+            --output data/audit/fortune_x_2025_ranked_collection_summary.csv
+
+      - name: Validate failed-rerun ranked collection outputs
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python scripts/validate_fortune_x_ranked_collection.py \
+            --summary-file data/audit/fortune_x_2025_ranked_collection_summary.csv \
+            --expected-start-rank 1 \
+            --expected-end-rank 100 \
+            --collection-mode full_collection
+          if [ -n "$(git status --short dashboard/data)" ]; then
+            echo "::error title=dashboard/data changed::dashboard/data must not be modified by failed-only ranked collection."
+            git status --short dashboard/data
+            exit 1
+          fi
+
+      - name: Commit and push failed-only rerun outputs
+        if: ${{ inputs.commit_results }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw/fortune_x_2025_ranked data/audit/fortune_x_2025_ranked_collection_summary.csv
+          if git diff --cached --quiet; then
+            echo "No failed-only Fortune X collection output changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update failed-only fortune x collection outputs"
+          git push origin HEAD:main
