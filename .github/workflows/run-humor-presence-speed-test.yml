@@ -1,0 +1,241 @@
+name: Run Humor Presence Speed Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Gemini model for humor presence speed test'
+        required: true
+        default: 'gemini-3.5-flash'
+      batch_size:
+        description: 'Batch size for classifier script'
+        required: true
+        default: '10'
+      pilot_rows:
+        description: 'Number of pilot rows to classify for speed test'
+        required: true
+        default: '100'
+      shard_size:
+        description: 'Rows per shard'
+        required: true
+        default: '50'
+      max_parallel:
+        description: 'Maximum shard jobs to run in parallel'
+        required: true
+        default: '2'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  plan-speed-test-shards:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix_json: ${{ steps.plan.outputs.matrix_json }}
+      active_input_rows: ${{ steps.plan.outputs.active_input_rows }}
+      output_suffix: ${{ steps.plan.outputs.output_suffix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build speed-test shard matrix
+        id: plan
+        shell: bash
+        env:
+          PILOT_ROWS: ${{ inputs.pilot_rows }}
+          SHARD_SIZE: ${{ inputs.shard_size }}
+          PILOT_INPUT: data/derived/humor/humor_presence_pilot_sample.csv
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          import json
+          import math
+          import os
+          from pathlib import Path
+          input_path = Path(os.environ['PILOT_INPUT'])
+          pilot_rows = int(os.environ['PILOT_ROWS'])
+          shard_size = int(os.environ['SHARD_SIZE'])
+          if pilot_rows <= 0 or shard_size <= 0:
+              raise SystemExit('pilot_rows and shard_size must be positive')
+          with input_path.open(encoding='utf-8-sig', newline='') as handle:
+              input_rows = sum(1 for _ in csv.DictReader(handle))
+          active_rows = min(pilot_rows, input_rows)
+          shard_count = math.ceil(active_rows / shard_size)
+          include = []
+          for shard_index in range(shard_count):
+              start_row = shard_index * shard_size
+              end_row = min(start_row + shard_size, active_rows)
+              include.append({'shard_index': shard_index, 'start_row': start_row, 'end_row': end_row})
+          output_suffix = f'_rows_{active_rows}'
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write('matrix_json=' + json.dumps({'include': include}, separators=(',', ':')) + '\n')
+              output.write(f'active_input_rows={active_rows}\n')
+              output.write(f'output_suffix={output_suffix}\n')
+          print(f'full_pilot_rows={input_rows}')
+          print(f'active_input_rows={active_rows}')
+          print(f'shard_count={shard_count}')
+          print(f'shard_size={shard_size}')
+          PY
+
+  classify-speed-test-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: plan-speed-test-shards
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(inputs.max_parallel) }}
+      matrix: ${{ fromJSON(needs.plan-speed-test-shards.outputs.matrix_json) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify GEMINI_API_KEY presence
+        shell: bash
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          present = bool(os.environ.get('GEMINI_API_KEY'))
+          print('GEMINI_API_KEY_present', present)
+          if not present:
+              raise SystemExit('GEMINI_API_KEY secret is missing')
+          PY
+      - name: py_compile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            scripts/classify_humor_presence_zero_shot.py \
+            scripts/validate_humor_presence_outputs.py \
+            scripts/build_humor_presence_pilot_shard.py \
+            scripts/process_pilot_outputs.py
+      - name: Build shard input
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/build_humor_presence_pilot_shard.py \
+            --input data/derived/humor/humor_presence_pilot_sample.csv \
+            --output "data/derived/humor/shards/humor_presence_speed_test_sample_shard_${{ matrix.shard_index }}.csv" \
+            --start-row "${{ matrix.start_row }}" \
+            --end-row "${{ matrix.end_row }}"
+      - name: Run shard speed test classification
+        shell: bash
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          python scripts/classify_humor_presence_zero_shot.py \
+            --input "data/derived/humor/shards/humor_presence_speed_test_sample_shard_${{ matrix.shard_index }}.csv" \
+            --output "data/derived/humor/shards/humor_presence_speed_test_results_shard_${{ matrix.shard_index }}.csv" \
+            --prompt config/prompts/humor_presence_zero_shot_prompt.md \
+            --schema config/schemas/humor_presence_classification_output.schema.json \
+            --provider gemini \
+            --model "${{ inputs.model }}" \
+            --api-key-env GEMINI_API_KEY \
+            --batch-size "${{ inputs.batch_size }}" \
+            --sleep-seconds 0.2 \
+            --resume
+      - name: Validate shard output
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/validate_humor_presence_outputs.py \
+            --input "data/derived/humor/shards/humor_presence_speed_test_sample_shard_${{ matrix.shard_index }}.csv" \
+            --output "data/derived/humor/shards/humor_presence_speed_test_results_shard_${{ matrix.shard_index }}.csv"
+      - name: Upload shard artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-speed-test-shard-${{ matrix.shard_index }}
+          path: |
+            data/derived/humor/shards/humor_presence_speed_test_sample_shard_${{ matrix.shard_index }}.csv
+            data/derived/humor/shards/humor_presence_speed_test_results_shard_${{ matrix.shard_index }}.csv
+          if-no-files-found: ignore
+          retention-days: 2
+
+  aggregate-speed-test-results:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - plan-speed-test-shards
+      - classify-speed-test-shards
+    if: ${{ always() && needs.plan-speed-test-shards.result == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download shard artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: humor-presence-speed-test-shard-*
+          path: artifact_downloads
+          merge-multiple: true
+      - name: Build active speed-test input
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/build_humor_presence_pilot_shard.py \
+            --input data/derived/humor/humor_presence_pilot_sample.csv \
+            --output "data/derived/humor/humor_presence_pilot_sample${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv" \
+            --start-row 0 \
+            --end-row "${{ needs.plan-speed-test-shards.outputs.active_input_rows }}"
+      - name: Merge speed-test outputs and generate audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/process_pilot_outputs.py \
+            --input "data/derived/humor/humor_presence_pilot_sample${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv" \
+            --shard-results-root artifact_downloads \
+            --output "data/derived/humor/humor_presence_pilot_results${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv" \
+            --audit "data/derived/humor/humor_presence_pilot_audit${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv" \
+            --review "data/derived/humor/humor_presence_low_confidence_review_sample${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv" \
+            --model "${{ inputs.model }}" \
+            --prompt config/prompts/humor_presence_zero_shot_prompt.md \
+            --schema config/schemas/humor_presence_classification_output.schema.json
+      - name: Validate merged speed-test output
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/validate_humor_presence_outputs.py \
+            --input "data/derived/humor/humor_presence_pilot_sample${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv" \
+            --output "data/derived/humor/humor_presence_pilot_results${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv"
+      - name: Print speed-test summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          suffix = '${{ needs.plan-speed-test-shards.outputs.output_suffix }}'
+          audit_path = Path(f'data/derived/humor/humor_presence_pilot_audit{suffix}.csv')
+          with audit_path.open(encoding='utf-8-sig', newline='') as handle:
+              stats = {row['audit_key']: row['audit_value'] for row in csv.DictReader(handle)}
+          print('--- HUMOR PRESENCE SPEED TEST SUMMARY ---')
+          for key in [
+              'pilot_input_rows', 'pilot_output_rows', 'shard_result_files',
+              'classification_status_classified', 'classification_status_failed',
+              'humor_presence_humor', 'humor_presence_non_humor', 'humor_presence_ambiguous',
+              'needs_manual_review_true', 'needs_manual_review_false',
+              'fortune_top100_humor_rate', 'wendys_humor_rate', 'moonpie_humor_rate'
+          ]:
+              print(f'{key}: {stats.get(key)}')
+          PY
+      - name: Upload speed-test result files as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-speed-test-results${{ needs.plan-speed-test-shards.outputs.output_suffix }}
+          path: |
+            data/derived/humor/humor_presence_pilot_sample${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv
+            data/derived/humor/humor_presence_pilot_results${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv
+            data/derived/humor/humor_presence_pilot_audit${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv
+            data/derived/humor/humor_presence_low_confidence_review_sample${{ needs.plan-speed-test-shards.outputs.output_suffix }}.csv
+          retention-days: 7
