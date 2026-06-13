@@ -34,6 +34,18 @@ on:
         description: "Minimum hard-negative non-humor seed rows"
         required: true
         default: "50"
+      precision_floor:
+        description: "Preferred minimum humor precision for threshold selection"
+        required: true
+        default: "0.80"
+      recall_floor:
+        description: "Preferred minimum humor recall for strict threshold selection"
+        required: true
+        default: "0.90"
+      relaxed_recall_floor:
+        description: "Fallback minimum humor recall when strict balance is infeasible"
+        required: true
+        default: "0.85"
 
 permissions:
   contents: read
@@ -85,7 +97,7 @@ jobs:
           echo "HUMOR_SEED=$HUMOR_SEED"
           echo "HARD_NEGATIVE=$HARD_NEGATIVE"
 
-      - name: Train TF-IDF Logistic Regression baseline
+      - name: Train TF-IDF Logistic Regression baseline and calibrate threshold
         run: |
           mkdir -p data/derived/humor/hsq_presence_tfidf_baseline
           python scripts/build_hsq_presence_tfidf_baseline.py \
@@ -97,7 +109,10 @@ jobs:
             --max-features "${{ github.event.inputs.max_features }}" \
             --ngram-max "${{ github.event.inputs.ngram_max }}" \
             --min-positive "${{ github.event.inputs.min_positive }}" \
-            --min-negative "${{ github.event.inputs.min_negative }}"
+            --min-negative "${{ github.event.inputs.min_negative }}" \
+            --precision-floor "${{ github.event.inputs.precision_floor }}" \
+            --recall-floor "${{ github.event.inputs.recall_floor }}" \
+            --relaxed-recall-floor "${{ github.event.inputs.relaxed_recall_floor }}"
 
       - name: Upload TF-IDF baseline artifacts
         uses: actions/upload-artifact@v4
