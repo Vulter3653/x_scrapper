@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Runtime patch for append collection.
 
-This avoids YAML multiline string problems while keeping repository data untouched.
+Applied inside GitHub Actions before collection starts. It keeps the repository data untouched
+while making the scraper safer for incremental/backfill runs.
 """
 from pathlib import Path
 
@@ -69,12 +70,38 @@ def patch_runner() -> None:
         "            \"SCRAPE_METRICS_FILE\": str(metrics_path),",
         "            \"SCRAPE_METRICS_FILE\": str(metrics_path),\n            \"SKIP_EXISTING_RECORDS\": \"1\",",
     )
+
+    old = "\n".join([
+        "        except Exception as exc:",
+        "            last_error = str(exc)",
+        "            print(f\"Failed attempt {attempt}/{attempts} for {target_name}: {exc}\", flush=True)",
+        "            if attempt < attempts and retry_delay_seconds > 0:",
+        "                time.sleep(retry_delay_seconds)",
+    ])
+    new = "\n".join([
+        "        except Exception as exc:",
+        "            last_error = str(exc)",
+        "            print(f\"Failed attempt {attempt}/{attempts} for {target_name}: {exc}\", flush=True)",
+        "            failure_metrics = read_metrics(metrics_path)",
+        "            if failure_metrics.get(\"stop_reason\") == \"render_failure\":",
+        "                print(\"Render failure detected; skipping target without additional retry.\", flush=True)",
+        "                return \"failed_skipped\", attempt, last_error",
+        "            if attempt < attempts and retry_delay_seconds > 0:",
+        "                time.sleep(retry_delay_seconds)",
+    ])
+    if old in text:
+        text = text.replace(old, new)
+
     path.write_text(text, encoding="utf-8")
 
 
 def patch_scraper() -> None:
     path = Path("src/x_scrapper/collection/x_scraper.py")
     text = path.read_text(encoding="utf-8")
+    text = text.replace(
+        "PAGE_TIMEOUT_MS = int(os.getenv('PAGE_TIMEOUT_MS', '60000'))",
+        "PAGE_TIMEOUT_MS = int(os.getenv('PAGE_TIMEOUT_MS', '25000'))",
+    )
     text = text.replace(
         "STOP_ON_EXISTING = os.getenv('STOP_ON_EXISTING', '0').lower() in {'1', 'true', 'yes'}",
         "STOP_ON_EXISTING = os.getenv('STOP_ON_EXISTING', '0').lower() in {'1', 'true', 'yes'}\nSKIP_EXISTING_RECORDS = os.getenv('SKIP_EXISTING_RECORDS', '0').lower() in {'1', 'true', 'yes'}",
@@ -89,4 +116,4 @@ def patch_scraper() -> None:
 if __name__ == "__main__":
     patch_runner()
     patch_scraper()
-    print("runtime patch applied")
+    print("runtime patch applied: broad id lookup, skip existing, render-failure fast skip, 25s timeout")
