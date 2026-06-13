@@ -1,0 +1,64 @@
+name: Run Humor Company Sample Chain
+
+on:
+  workflow_dispatch:
+    inputs:
+      input_path:
+        description: "Full post input CSV path"
+        required: true
+        default: "data/derived/humor/humor_classification_input.csv"
+      per_company_limit:
+        description: "Rows to sample per company"
+        required: true
+        default: "100"
+      expected_companies:
+        description: "Expected number of companies; 0 disables check"
+        required: true
+        default: "102"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  run-company-sample-chain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install scikit-learn pandas
+
+      - name: Run 102-company x 100-post full chain
+        run: |
+          python scripts/run_humor_company_sample_chain.py \
+            --input "${{ github.event.inputs.input_path }}" \
+            --per-company-limit "${{ github.event.inputs.per_company_limit }}" \
+            --expected-companies "${{ github.event.inputs.expected_companies }}"
+
+      - name: Upload company-sample final artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-company-sample-chain-final
+          path: |
+            data/derived/humor/company_sample_chain/inputs/humor_company_sample_input_manifest.json
+            data/derived/humor/company_sample_chain/inputs/humor_company_sample_input.csv
+            data/derived/humor/company_sample_chain/presence/humor_presence_company_sample_results.csv
+            data/derived/humor/company_sample_chain/sentiment/sentiment_company_sample_results.csv
+            data/derived/humor/company_sample_chain/type_inputs/humor_type_company_sample_input_manifest.json
+            data/derived/humor/company_sample_chain/humor_type/humor_type_company_sample_results.csv
+            data/derived/humor/company_sample_chain/final/humor_company_sample_master.csv
+            data/audit/company_sample_chain/humor_company_sample_summary.json
+            data/audit/company_sample_chain/humor_company_sample_summary.csv
+            data/audit/company_sample_chain/humor_company_sample_company_summary.csv
+            data/audit/company_sample_chain/humor_company_sample_cross_tab.csv
