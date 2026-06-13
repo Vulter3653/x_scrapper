@@ -1,0 +1,467 @@
+name: Run Humor Full Chain Classification
+
+on:
+  workflow_dispatch:
+    inputs:
+      input_path:
+        description: "Full post input CSV path"
+        required: true
+        default: "data/derived/humor/humor_classification_input.csv"
+      row_limit:
+        description: "0 means all rows; use a positive value only for diagnostics"
+        required: true
+        default: "0"
+      presence_shard_size:
+        description: "Rows per humor-presence shard"
+        required: true
+        default: "2000"
+      sentiment_shard_size:
+        description: "Rows per sentiment shard"
+        required: true
+        default: "2000"
+      type_shard_size:
+        description: "Rows per humor-type shard"
+        required: true
+        default: "200"
+      presence_max_parallel:
+        description: "Maximum parallel humor-presence shards"
+        required: true
+        default: "12"
+      sentiment_max_parallel:
+        description: "Maximum parallel sentiment shards"
+        required: true
+        default: "12"
+      type_max_parallel:
+        description: "Maximum parallel humor-type shards"
+        required: true
+        default: "6"
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  INPUT_PATH: ${{ github.event.inputs.input_path || 'data/derived/humor/humor_classification_input.csv' }}
+  ROW_LIMIT: ${{ github.event.inputs.row_limit || '0' }}
+  PRESENCE_SHARD_SIZE: ${{ github.event.inputs.presence_shard_size || '2000' }}
+  SENTIMENT_SHARD_SIZE: ${{ github.event.inputs.sentiment_shard_size || '2000' }}
+  TYPE_SHARD_SIZE: ${{ github.event.inputs.type_shard_size || '200' }}
+
+jobs:
+  build-full-chain-inputs:
+    runs-on: ubuntu-latest
+    outputs:
+      actual_rows: ${{ steps.plan.outputs.actual_rows }}
+      presence_shards: ${{ steps.plan.outputs.presence_shards }}
+      sentiment_shards: ${{ steps.plan.outputs.sentiment_shards }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build full-chain input and training seed
+        run: |
+          mkdir -p data/derived/humor/full_chain/inputs
+          python scripts/build_humor_presence_training_seed.py \
+            --output data/derived/humor/full_chain/inputs/humor_presence_training_seed.csv
+          python scripts/build_humor_full_chain_input.py \
+            --input "${INPUT_PATH}" \
+            --output data/derived/humor/full_chain/inputs/humor_full_chain_input.csv \
+            --manifest data/derived/humor/full_chain/inputs/humor_full_chain_input_manifest.json \
+            --limit "${ROW_LIMIT}"
+
+      - name: Plan full-chain shards
+        id: plan
+        run: |
+          ACTUAL_ROWS=$(python - <<'PY'
+          import csv
+          from pathlib import Path
+          path = Path("data/derived/humor/full_chain/inputs/humor_full_chain_input.csv")
+          with path.open(encoding="utf-8-sig", newline="") as f:
+              print(sum(1 for _ in csv.DictReader(f)))
+          PY
+          )
+          if [ "$ACTUAL_ROWS" -le 0 ]; then
+            echo "Full-chain input is empty" >&2
+            exit 1
+          fi
+          PRESENCE_SHARDS=$(python - <<PY
+          import json, math
+          total = int("$ACTUAL_ROWS")
+          size = int("${PRESENCE_SHARD_SIZE}")
+          print(json.dumps([str(i) for i in range(1, math.ceil(total / size) + 1)]))
+          PY
+          )
+          SENTIMENT_SHARDS=$(python - <<PY
+          import json, math
+          total = int("$ACTUAL_ROWS")
+          size = int("${SENTIMENT_SHARD_SIZE}")
+          print(json.dumps([str(i) for i in range(1, math.ceil(total / size) + 1)]))
+          PY
+          )
+          echo "actual_rows=$ACTUAL_ROWS" >> "$GITHUB_OUTPUT"
+          echo "presence_shards=$PRESENCE_SHARDS" >> "$GITHUB_OUTPUT"
+          echo "sentiment_shards=$SENTIMENT_SHARDS" >> "$GITHUB_OUTPUT"
+          echo "actual_rows=$ACTUAL_ROWS"
+          echo "presence_shards=$PRESENCE_SHARDS"
+          echo "sentiment_shards=$SENTIMENT_SHARDS"
+
+      - name: Upload full-chain inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-inputs
+          path: data/derived/humor/full_chain/inputs/
+
+  classify-presence-shards:
+    needs: build-full-chain-inputs
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJson(needs.build-full-chain-inputs.outputs.presence_shards) }}
+      max-parallel: ${{ fromJson(github.event.inputs.presence_max_parallel || '12') }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install scikit-learn pandas
+
+      - name: Download full-chain inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-inputs
+          path: full_chain_inputs
+
+      - name: Build CSV-aware presence shard
+        run: |
+          python scripts/shard_csv_records.py \
+            --input full_chain_inputs/humor_full_chain_input.csv \
+            --output presence_shard_${{ matrix.shard }}.csv \
+            --shard-index ${{ matrix.shard }} \
+            --shard-size "${PRESENCE_SHARD_SIZE}" \
+            --expected-total ${{ needs.build-full-chain-inputs.outputs.actual_rows }} \
+            --fail-empty
+
+      - name: Classify humor presence shard
+        run: |
+          mkdir -p data/derived/humor/full_chain/presence
+          python scripts/classify_humor_presence_local.py \
+            --input presence_shard_${{ matrix.shard }}.csv \
+            --output data/derived/humor/full_chain/presence/humor_presence_full_chain_shard_${{ matrix.shard }}.csv \
+            --training-seed full_chain_inputs/humor_presence_training_seed.csv \
+            --cues config/humor_presence_rule_cues.json
+
+      - name: Upload presence shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-presence-shard-${{ matrix.shard }}
+          path: data/derived/humor/full_chain/presence/humor_presence_full_chain_shard_${{ matrix.shard }}.csv
+
+  classify-sentiment-shards:
+    needs: build-full-chain-inputs
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJson(needs.build-full-chain-inputs.outputs.sentiment_shards) }}
+      max-parallel: ${{ fromJson(github.event.inputs.sentiment_max_parallel || '12') }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download full-chain inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-inputs
+          path: full_chain_inputs
+
+      - name: Build CSV-aware sentiment shard
+        run: |
+          python scripts/shard_csv_records.py \
+            --input full_chain_inputs/humor_full_chain_input.csv \
+            --output sentiment_shard_${{ matrix.shard }}.csv \
+            --shard-index ${{ matrix.shard }} \
+            --shard-size "${SENTIMENT_SHARD_SIZE}" \
+            --expected-total ${{ needs.build-full-chain-inputs.outputs.actual_rows }} \
+            --fail-empty
+
+      - name: Classify sentiment shard
+        run: |
+          mkdir -p data/derived/humor/full_chain/sentiment
+          python scripts/classify_sentiment_local.py \
+            --input sentiment_shard_${{ matrix.shard }}.csv \
+            --output data/derived/humor/full_chain/sentiment/sentiment_full_chain_shard_${{ matrix.shard }}.csv
+
+      - name: Upload sentiment shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-sentiment-shard-${{ matrix.shard }}
+          path: data/derived/humor/full_chain/sentiment/sentiment_full_chain_shard_${{ matrix.shard }}.csv
+
+  aggregate-presence-results:
+    needs:
+      - build-full-chain-inputs
+      - classify-presence-shards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download presence shards
+        uses: actions/download-artifact@v4
+        with:
+          path: presence_shards
+          pattern: humor-full-chain-presence-shard-*
+          merge-multiple: true
+
+      - name: Aggregate presence outputs
+        run: |
+          mkdir -p data/derived/humor/full_chain/presence
+          python scripts/aggregate_csv_records.py \
+            --input-glob "presence_shards/*.csv" \
+            --output data/derived/humor/full_chain/presence/humor_presence_full_chain_results.csv \
+            --expected-rows ${{ needs.build-full-chain-inputs.outputs.actual_rows }}
+
+      - name: Upload aggregated presence
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-presence
+          path: data/derived/humor/full_chain/presence/humor_presence_full_chain_results.csv
+
+  aggregate-sentiment-results:
+    needs:
+      - build-full-chain-inputs
+      - classify-sentiment-shards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download sentiment shards
+        uses: actions/download-artifact@v4
+        with:
+          path: sentiment_shards
+          pattern: humor-full-chain-sentiment-shard-*
+          merge-multiple: true
+
+      - name: Aggregate sentiment outputs
+        run: |
+          mkdir -p data/derived/humor/full_chain/sentiment
+          python scripts/aggregate_csv_records.py \
+            --input-glob "sentiment_shards/*.csv" \
+            --output data/derived/humor/full_chain/sentiment/sentiment_full_chain_results.csv \
+            --expected-rows ${{ needs.build-full-chain-inputs.outputs.actual_rows }}
+
+      - name: Upload aggregated sentiment
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-sentiment
+          path: data/derived/humor/full_chain/sentiment/sentiment_full_chain_results.csv
+
+  build-humor-type-inputs:
+    needs:
+      - build-full-chain-inputs
+      - aggregate-presence-results
+    runs-on: ubuntu-latest
+    outputs:
+      type_rows: ${{ steps.plan.outputs.type_rows }}
+      type_shards: ${{ steps.plan.outputs.type_shards }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download aggregated presence
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-presence
+          path: presence_results
+
+      - name: Build humor-type input from humor-present rows
+        run: |
+          mkdir -p data/derived/humor/full_chain/type_inputs
+          python scripts/build_humor_type_input_from_presence.py \
+            --presence-results presence_results/humor_presence_full_chain_results.csv \
+            --output data/derived/humor/full_chain/type_inputs/humor_type_full_chain_input.csv \
+            --manifest data/derived/humor/full_chain/type_inputs/humor_type_full_chain_input_manifest.json
+
+      - name: Plan humor-type shards
+        id: plan
+        run: |
+          TYPE_ROWS=$(python - <<'PY'
+          import csv
+          from pathlib import Path
+          path = Path("data/derived/humor/full_chain/type_inputs/humor_type_full_chain_input.csv")
+          with path.open(encoding="utf-8-sig", newline="") as f:
+              print(sum(1 for _ in csv.DictReader(f)))
+          PY
+          )
+          TYPE_SHARDS=$(python - <<PY
+          import json, math
+          total = int("$TYPE_ROWS")
+          size = int("${TYPE_SHARD_SIZE}")
+          if total == 0:
+              print(json.dumps(["1"]))
+          else:
+              print(json.dumps([str(i) for i in range(1, math.ceil(total / size) + 1)]))
+          PY
+          )
+          echo "type_rows=$TYPE_ROWS" >> "$GITHUB_OUTPUT"
+          echo "type_shards=$TYPE_SHARDS" >> "$GITHUB_OUTPUT"
+          echo "type_rows=$TYPE_ROWS"
+          echo "type_shards=$TYPE_SHARDS"
+
+      - name: Upload humor-type inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-type-inputs
+          path: data/derived/humor/full_chain/type_inputs/
+
+  classify-humor-type-shards:
+    needs: build-humor-type-inputs
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJson(needs.build-humor-type-inputs.outputs.type_shards) }}
+      max-parallel: ${{ fromJson(github.event.inputs.type_max_parallel || '6') }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download humor-type inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-type-inputs
+          path: type_inputs
+
+      - name: Build CSV-aware humor-type shard
+        run: |
+          python scripts/shard_csv_records.py \
+            --input type_inputs/humor_type_full_chain_input.csv \
+            --output humor_type_shard_${{ matrix.shard }}.csv \
+            --shard-index ${{ matrix.shard }} \
+            --shard-size "${TYPE_SHARD_SIZE}" \
+            --expected-total ${{ needs.build-humor-type-inputs.outputs.type_rows }}
+
+      - name: Classify humor type shard
+        run: |
+          mkdir -p data/derived/humor/full_chain/humor_type
+          python scripts/classify_humor_type_zero_shot.py \
+            --input humor_type_shard_${{ matrix.shard }}.csv \
+            --output data/derived/humor/full_chain/humor_type/humor_type_full_chain_shard_${{ matrix.shard }}.csv
+
+      - name: Upload humor-type shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-type-shard-${{ matrix.shard }}
+          path: data/derived/humor/full_chain/humor_type/humor_type_full_chain_shard_${{ matrix.shard }}.csv
+
+  aggregate-humor-type-results:
+    needs:
+      - build-humor-type-inputs
+      - classify-humor-type-shards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download humor-type shards
+        uses: actions/download-artifact@v4
+        with:
+          path: humor_type_shards
+          pattern: humor-full-chain-type-shard-*
+          merge-multiple: true
+
+      - name: Aggregate humor-type outputs
+        run: |
+          mkdir -p data/derived/humor/full_chain/humor_type
+          python scripts/aggregate_csv_records.py \
+            --input-glob "humor_type_shards/*.csv" \
+            --output data/derived/humor/full_chain/humor_type/humor_type_full_chain_results.csv \
+            --expected-rows ${{ needs.build-humor-type-inputs.outputs.type_rows }}
+
+      - name: Upload aggregated humor type
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-humor-type
+          path: data/derived/humor/full_chain/humor_type/humor_type_full_chain_results.csv
+
+  merge-full-chain-results:
+    needs:
+      - build-full-chain-inputs
+      - aggregate-presence-results
+      - aggregate-sentiment-results
+      - aggregate-humor-type-results
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download full-chain inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-inputs
+          path: full_chain_inputs
+
+      - name: Download aggregated presence
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-presence
+          path: presence_results
+
+      - name: Download aggregated sentiment
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-sentiment
+          path: sentiment_results
+
+      - name: Download aggregated humor type
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-full-chain-humor-type
+          path: humor_type_results
+
+      - name: Merge full chain outputs and build summaries
+        run: |
+          mkdir -p data/derived/humor/full_chain data/audit/full_chain
+          python scripts/merge_humor_full_chain_outputs.py \
+            --full-input full_chain_inputs/humor_full_chain_input.csv \
+            --presence presence_results/humor_presence_full_chain_results.csv \
+            --sentiment sentiment_results/sentiment_full_chain_results.csv \
+            --humor-type humor_type_results/humor_type_full_chain_results.csv \
+            --master-output data/derived/humor/full_chain/humor_full_chain_master.csv \
+            --summary-json data/audit/full_chain/humor_full_chain_summary.json \
+            --summary-csv data/audit/full_chain/humor_full_chain_summary.csv \
+            --company-summary data/audit/full_chain/humor_full_chain_company_summary.csv \
+            --cross-tab data/audit/full_chain/humor_full_chain_cross_tab.csv \
+            --expected-rows ${{ needs.build-full-chain-inputs.outputs.actual_rows }} \
+            --strict
+
+      - name: Upload full-chain final artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-full-chain-final
+          path: |
+            data/derived/humor/full_chain/humor_full_chain_master.csv
+            data/audit/full_chain/humor_full_chain_summary.json
+            data/audit/full_chain/humor_full_chain_summary.csv
+            data/audit/full_chain/humor_full_chain_company_summary.csv
+            data/audit/full_chain/humor_full_chain_cross_tab.csv
