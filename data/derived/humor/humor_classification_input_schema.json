@@ -1,0 +1,49 @@
+{
+  "dataset": "humor_classification_input",
+  "purpose": "Input dataset for zero-shot humor presence and humor type classification",
+  "classification_not_run": true,
+  "sample_groups": [
+    "fortune_top100_ranked",
+    "benchmark_aggressive_wendys",
+    "benchmark_self_defeating_moonpie"
+  ],
+  "humor_types_future_target": [
+    "affiliative_humor",
+    "self_enhancing_humor",
+    "aggressive_humor",
+    "self_defeating_humor"
+  ],
+  "columns": {
+    "global_post_id": "Standardized column",
+    "sample_group": "Standardized column",
+    "source_dataset": "Standardized column",
+    "fortune_rank": "Standardized column",
+    "company_name": "Standardized column",
+    "official_x_handle": "Standardized column",
+    "source_x_handle": "Standardized column",
+    "source_x_url": "Standardized column",
+    "tweet_id": "Standardized column",
+    "tweet_url": "Standardized column",
+    "created_at": "Standardized column",
+    "text": "Standardized column",
+    "reply_count": "Standardized column",
+    "repost_count": "Standardized column",
+    "like_count": "Standardized column",
+    "quote_count": "Standardized column",
+    "view_count_available": "Standardized column",
+    "media_present": "Standardized column",
+    "media_type": "Standardized column",
+    "account_role": "Standardized column",
+    "account_index": "Standardized column",
+    "collection_method": "Standardized column",
+    "max_posts_cap": "Standardized column",
+    "source_folder": "Standardized column",
+    "is_duplicate_removed": "Standardized column",
+    "is_empty_text": "Standardized column",
+    "is_retweet": "Standardized column",
+    "is_reply": "Standardized column",
+    "is_quote": "Standardized column",
+    "language_hint": "Standardized column",
+    "classification_status": "Standardized column"
+  }
+}
