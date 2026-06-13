@@ -54,7 +54,6 @@ jobs:
       - name: Plan Shards
         id: plan
         run: |
-          # Simple sharding logic for 100 rows
           TOTAL=${{ env.PILOT_ROWS }}
           SIZE=${{ env.SHARD_SIZE }}
           NUM_SHARDS=$(( (TOTAL + SIZE - 1) / SIZE ))
@@ -67,7 +66,7 @@ jobs:
     strategy:
       matrix:
         shard: ${{ fromJson(needs.plan-local-smoke-shards.outputs.shards) }}
-      max-parallel: ${{ env.MAX_PARALLEL }}
+      max-parallel: 2
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -80,24 +79,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install scikit-learn pandas # Ensure these are present
+          pip install scikit-learn pandas
 
       - name: Build HSQ-derived training seed
-      ...
         run: |
           python scripts/build_humor_presence_training_seed.py \
             --output data/derived/humor/humor_presence_training_seed.csv
 
-      - name: Build Samples and Shard (Partial implementation for smoke)
+      - name: Build Samples and Shard
         run: |
-          # In a real full run, we would shard the input file.
-          # For 100-row smoke, we just run the classifier with limit and offset if supported, 
-          # but here we will just simulate sharding by taking a subset of the 100-row sample.
           python scripts/build_humor_presence_pilot_sample.py \
             --output data/derived/humor/humor_presence_local_smoke_sample.csv \
             --fortune-n 60 --wendys-n 20 --moonpie-n 20
           
-          # Crude sharding:
           START=$(( (${{ matrix.shard }} - 1) * ${{ env.SHARD_SIZE }} ))
           END=$(( ${{ matrix.shard }} * ${{ env.SHARD_SIZE }} ))
           
