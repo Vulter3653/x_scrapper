@@ -12,3 +12,12 @@ lda_analysis.log
 sentiment_analysis.log
 data/sec_10k/cache/
 data/sec_10k/reports/
+
+# Humor Presence Local Results
+data/derived/humor/*shard*.csv
+data/derived/humor/*results*.csv
+data/derived/humor/*sample*.csv
+data/derived/humor/*tmp*.csv
+data/derived/humor/*.json
+data/derived/humor/*.md
+!data/derived/humor/README.md

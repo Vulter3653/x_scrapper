@@ -1,0 +1,161 @@
+name: Run Local Humor Presence Pilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      pilot_rows:
+        description: "Rows to classify for local pilot"
+        required: true
+        default: "800"
+      shard_size:
+        description: "Size of each shard"
+        required: true
+        default: "200"
+      max_parallel:
+        description: "Maximum parallel shards"
+        required: true
+        default: "4"
+      humor_threshold:
+        description: "ML Humor Threshold"
+        required: true
+        default: "0.70"
+      non_humor_threshold:
+        description: "ML Non-Humor Threshold"
+        required: true
+        default: "0.30"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  plan-local-pilot-shards:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.plan.outputs.shards }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Plan Shards
+        id: plan
+        run: |
+          TOTAL=${{ github.event.inputs.pilot_rows }}
+          SIZE=${{ github.event.inputs.shard_size }}
+          NUM_SHARDS=$(( (TOTAL + SIZE - 1) / SIZE ))
+          SHARDS=$(seq 1 $NUM_SHARDS | jq -R -s -c 'split("\n")[:-1]')
+          echo "shards=$SHARDS" >> $GITHUB_OUTPUT
+
+  classify-local-pilot-shards:
+    needs: plan-local-pilot-shards
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: ${{ fromJson(needs.plan-local-pilot-shards.outputs.shards) }}
+      max-parallel: ${{ fromJson(github.event.inputs.max_parallel) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Build Samples and Shard
+        run: |
+          # Use build_humor_presence_pilot_sample.py to create the full pilot set
+          # then shard it.
+          python scripts/build_humor_presence_pilot_sample.py \
+            --output data/derived/humor/humor_presence_local_pilot_sample.csv \
+            --fortune-n 480 --wendys-n 160 --moonpie-n 160
+          
+          START=$(( (${{ matrix.shard }} - 1) * ${{ github.event.inputs.shard_size }} ))
+          END=$(( ${{ matrix.shard }} * ${{ github.event.inputs.shard_size }} ))
+          
+          head -n 1 data/derived/humor/humor_presence_local_pilot_sample.csv > shard_${{ matrix.shard }}.csv
+          tail -n +2 data/derived/humor/humor_presence_local_pilot_sample.csv | sed -n "$((START+1)),${END}p" >> shard_${{ matrix.shard }}.csv
+
+      - name: Classify Shard
+        run: |
+          python scripts/classify_humor_presence_local.py \
+            --input shard_${{ matrix.shard }}.csv \
+            --output data/derived/humor/humor_presence_local_pilot_results_shard_${{ matrix.shard }}.csv \
+            --training-seed data/derived/humor/humor_presence_training_seed.csv \
+            --cues config/humor_presence_rule_cues.json
+
+      - name: Upload Shard Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot-shard-${{ matrix.shard }}
+          path: data/derived/humor/humor_presence_local_pilot_results_shard_${{ matrix.shard }}.csv
+
+  aggregate-local-pilot-results:
+    needs: classify-local-pilot-shards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Download all shards
+        uses: actions/download-artifact@v4
+        with:
+          path: shards
+          pattern: pilot-shard-*
+          merge-multiple: true
+
+      - name: Aggregate
+        run: |
+          OUT="data/derived/humor/humor_presence_local_pilot_results.csv"
+          first=true
+          for f in shards/*.csv; do
+            if [ "$first" = true ]; then
+              cat "$f" > "$OUT"
+              first=false
+            else
+              tail -n +2 "$f" >> "$OUT"
+            fi
+          done
+
+      - name: Upload Aggregated Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-local-pilot-aggregated
+          path: data/derived/humor/humor_presence_local_pilot_results.csv
+
+  evaluate-local-pilot-results:
+    needs: aggregate-local-pilot-results
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Download Aggregated Results
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-presence-local-pilot-aggregated
+          path: data/derived/humor/
+
+      - name: Evaluate
+        run: |
+          python scripts/evaluate_humor_presence_local_pilot.py \
+            --input data/derived/humor/humor_presence_local_pilot_results.csv \
+            --output-audit data/audit/humor_presence_local_pilot_audit_summary.csv \
+            --output-review-sample data/audit/humor_presence_local_pilot_review_sample.csv \
+            --mode pilot \
+            --sample-size ${{ github.event.inputs.pilot_rows }} \
+            --humor-threshold ${{ github.event.inputs.humor_threshold }} \
+            --non-humor-threshold ${{ github.event.inputs.non_humor_threshold }}
+
+      - name: Upload Evaluation Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-local-pilot-evaluation
+          path: |
+            data/audit/humor_presence_local_pilot_audit_summary.csv
+            data/audit/humor_presence_local_pilot_review_sample.csv

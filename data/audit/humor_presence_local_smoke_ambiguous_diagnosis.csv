@@ -1,0 +1,8 @@
+Diagnosis Point,Value,Observation
+ML probability 0.30-0.70,80/100,Main cause of ambiguity. ML is uncertain for 80% of smoke sample.
+Rule/ML conflict,0/100,No conflicts detected in this smoke run.
+Short text ambiguous,Unknown,Evaluation script does not distinguish rule_ambiguous (short text) from ml_ambiguous yet.
+Cue dictionary coverage,20/100,20% of rows caught by strong humor/non-humor cues.
+Classifier used,scikit-learn,scikit-learn is installed and was used.
+Training seed balance,304 humor / 326 non_humor,Seed is well-balanced.
+URL/Notice rule,In non_humor,"18 rows classified as non_humor, likely many by URL/Notice rules."

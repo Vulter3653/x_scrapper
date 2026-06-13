@@ -1,0 +1,164 @@
+name: Run Local Humor Presence Smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      pilot_rows:
+        description: "Rows to classify for local smoke test"
+        required: true
+        default: "100"
+      shard_size:
+        description: "Size of each shard"
+        required: true
+        default: "50"
+      max_parallel:
+        description: "Maximum parallel shards"
+        required: true
+        default: "2"
+      humor_threshold:
+        description: "ML Humor Threshold"
+        required: true
+        default: "0.70"
+      non_humor_threshold:
+        description: "ML Non-Humor Threshold"
+        required: true
+        default: "0.30"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  plan-local-smoke-shards:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.plan.outputs.shards }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Plan Shards
+        id: plan
+        run: |
+          # Simple sharding logic for 100 rows
+          TOTAL=${{ github.event.inputs.pilot_rows }}
+          SIZE=${{ github.event.inputs.shard_size }}
+          NUM_SHARDS=$(( (TOTAL + SIZE - 1) / SIZE ))
+          SHARDS=$(seq 1 $NUM_SHARDS | jq -R -s -c 'split("\n")[:-1]')
+          echo "shards=$SHARDS" >> $GITHUB_OUTPUT
+
+  classify-local-smoke-shards:
+    needs: plan-local-smoke-shards
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: ${{ fromJson(needs.plan-local-smoke-shards.outputs.shards) }}
+      max-parallel: ${{ fromJson(github.event.inputs.max_parallel) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Build Samples and Shard (Partial implementation for smoke)
+        run: |
+          # In a real full run, we would shard the input file.
+          # For 100-row smoke, we just run the classifier with limit and offset if supported, 
+          # but here we will just simulate sharding by taking a subset of the 100-row sample.
+          python scripts/build_humor_presence_pilot_sample.py \
+            --output data/derived/humor/humor_presence_local_smoke_sample.csv \
+            --fortune-n 60 --wendys-n 20 --moonpie-n 20
+          
+          # Crude sharding:
+          START=$(( (${{ matrix.shard }} - 1) * ${{ github.event.inputs.shard_size }} ))
+          END=$(( ${{ matrix.shard }} * ${{ github.event.inputs.shard_size }} ))
+          
+          head -n 1 data/derived/humor/humor_presence_local_smoke_sample.csv > shard_${{ matrix.shard }}.csv
+          tail -n +2 data/derived/humor/humor_presence_local_smoke_sample.csv | sed -n "$((START+1)),${END}p" >> shard_${{ matrix.shard }}.csv
+
+      - name: Classify Shard
+        run: |
+          python scripts/classify_humor_presence_local.py \
+            --input shard_${{ matrix.shard }}.csv \
+            --output data/derived/humor/humor_presence_local_smoke_results_shard_${{ matrix.shard }}.csv \
+            --training-seed data/derived/humor/humor_presence_training_seed.csv \
+            --cues config/humor_presence_rule_cues.json
+
+      - name: Upload Shard Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-shard-${{ matrix.shard }}
+          path: data/derived/humor/humor_presence_local_smoke_results_shard_${{ matrix.shard }}.csv
+
+  aggregate-local-smoke-results:
+    needs: classify-local-smoke-shards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Download all shards
+        uses: actions/download-artifact@v4
+        with:
+          path: shards
+          pattern: smoke-shard-*
+          merge-multiple: true
+
+      - name: Aggregate
+        run: |
+          OUT="data/derived/humor/humor_presence_local_smoke_results.csv"
+          first=true
+          for f in shards/*.csv; do
+            if [ "$first" = true ]; then
+              cat "$f" > "$OUT"
+              first=false
+            else
+              tail -n +2 "$f" >> "$OUT"
+            fi
+          done
+
+      - name: Upload Aggregated Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-local-smoke-aggregated
+          path: data/derived/humor/humor_presence_local_smoke_results.csv
+
+  evaluate-local-smoke-results:
+    needs: aggregate-local-smoke-results
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Download Aggregated Results
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-presence-local-smoke-aggregated
+          path: data/derived/humor/
+
+      - name: Evaluate
+        run: |
+          python scripts/evaluate_humor_presence_local_pilot.py \
+            --input data/derived/humor/humor_presence_local_smoke_results.csv \
+            --output-audit data/audit/humor_presence_local_smoke_audit_summary.csv \
+            --output-review-sample data/audit/humor_presence_local_smoke_review_sample.csv \
+            --mode smoke \
+            --sample-size ${{ github.event.inputs.pilot_rows }} \
+            --humor-threshold ${{ github.event.inputs.humor_threshold }} \
+            --non-humor-threshold ${{ github.event.inputs.non_humor_threshold }}
+
+      - name: Upload Evaluation Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-local-smoke-evaluation
+          path: |
+            data/audit/humor_presence_local_smoke_audit_summary.csv
+            data/audit/humor_presence_local_smoke_review_sample.csv

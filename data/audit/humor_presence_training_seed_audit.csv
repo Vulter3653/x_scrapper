@@ -1,0 +1,9 @@
+total seed rows,630
+humor seed rows,304
+non_humor seed rows,326
+humor/non_humor ratio,0.9325153374233128
+sample_group distribution,"{""benchmark_aggressive_wendys"": 347, ""benchmark_self_defeating_moonpie"": 283}"
+source_hsq_label distribution,"{""null"": 630}"
+empty text rows,0
+duplicate global_post_id rows,0
+duplicate tweet_id rows,0

@@ -1,0 +1,25 @@
+input_rows,100
+output_rows,100
+classified_rows,100
+failed_rows,0
+humor_count,2
+non_humor_count,18
+ambiguous_count,80
+humor_rate,0.02
+non_humor_rate,0.18
+ambiguous_rate,0.8
+manual_review_count,80
+manual_review_rate,0.8
+mean_confidence,0.529883
+median_confidence,0.526341
+min_confidence,0.500459
+max_confidence,0.595345
+decision_source_distribution,"{""missing_column"": 100}"
+rule_label_distribution,"{"""": 80, ""non_humor"": 18, ""humor"": 2}"
+ml_label_distribution,"{""ambiguous"": 100}"
+manual_review_reason_distribution,"{""ml_probability_between_thresholds"": 80, """": 20}"
+classifier_name_distribution,"{""local_tfidf_logreg_humor_presence_v1"": 100}"
+classifier_version_distribution,"{""local-rules-v1.0.0"": 100}"
+sample_group_distribution,"{""benchmark_self_defeating_moonpie"": {""ambiguous"": 18, ""non_humor"": 2}, ""fortune_top100_ranked"": {""ambiguous"": 45, ""non_humor"": 14, ""humor"": 1}, ""benchmark_aggressive_wendys"": {""ambiguous"": 17, ""humor"": 1, ""non_humor"": 2}}"
+company_distribution,"{""Phillips 66"": {""ambiguous"": 1}, ""Pfizer"": {""non_humor"": 1}, ""Uber Technologies"": {""ambiguous"": 1}, ""Cisco Systems"": {""ambiguous"": 1}, ""Nike"": {""ambiguous"": 1}, ""Sysco"": {""ambiguous"": 1}, ""JPMorgan Chase"": {""ambiguous"": 1}, ""Capital One Financial"": {""ambiguous"": 1}, ""Marathon Petroleum"": {""non_humor"": 1}, ""Charter Communications"": {""non_humor"": 1}, ""Albertsons"": {""non_humor"": 1}, ""Home Depot"": {""ambiguous"": 1}, ""Eli Lilly"": {""ambiguous"": 1}, ""Procter & Gamble"": {""ambiguous"": 1}, ""Intel"": {""ambiguous"": 1}, ""American Express"": {""non_humor"": 1}, ""Prudential Financial"": {""ambiguous"": 1}, ""Tesla"": {""humor"": 1}, ""Goldman Sachs Group"": {""ambiguous"": 1}, ""Fannie Mae"": {""ambiguous"": 1}, ""Liberty Mutual Insurance Group"": {""ambiguous"": 1}, ""Bank of America"": {""non_humor"": 1}, ""Allstate"": {""ambiguous"": 1}, ""MoonPie"": {""ambiguous"": 18, ""non_humor"": 2}, ""Caterpillar"": {""ambiguous"": 1}, ""UnitedHealth Group"": {""ambiguous"": 1}, ""Progressive"": {""ambiguous"": 1}, ""Ford Motor"": {""ambiguous"": 1}, ""American Airlines Group"": {""ambiguous"": 1}, ""Merck"": {""non_humor"": 1}, ""Delta Air Lines"": {""ambiguous"": 1}, ""AT&T"": {""ambiguous"": 1}, ""Kroger"": {""ambiguous"": 1}, ""Johnson & Johnson"": {""non_humor"": 1}, ""Amazon"": {""ambiguous"": 1}, ""PepsiCo"": {""non_humor"": 1}, ""TIAA"": {""ambiguous"": 1}, ""HCA Healthcare"": {""ambiguous"": 1}, ""Energy Transfer"": {""ambiguous"": 1}, ""Tyson Foods"": {""ambiguous"": 1}, ""MetLife"": {""non_humor"": 1}, ""Alphabet"": {""ambiguous"": 1}, ""State Farm Insurance"": {""ambiguous"": 1}, ""Target"": {""ambiguous"": 1}, ""IBM"": {""ambiguous"": 1}, ""ConocoPhillips"": {""non_humor"": 1}, ""Valero Energy"": {""ambiguous"": 1}, ""Humana"": {""non_humor"": 1}, ""Massachusetts Mutual Life"": {""ambiguous"": 1}, ""Travelers"": {""non_humor"": 1}, ""Walmart"": {""ambiguous"": 1}, ""Coca-Cola"": {""ambiguous"": 1}, ""Galaxy Digital"": {""ambiguous"": 1}, ""Cencora"": {""ambiguous"": 1}, ""General Dynamics"": {""ambiguous"": 1}, ""Wells Fargo"": {""ambiguous"": 1}, ""Exxon Mobil"": {""ambiguous"": 1}, ""CVS Health"": {""ambiguous"": 1}, ""Elevance Health"": {""ambiguous"": 1}, ""Broadcom"": {""non_humor"": 1}, ""Lockheed Martin"": {""ambiguous"": 1}, ""Wendy's"": {""ambiguous"": 17, ""humor"": 1, ""non_humor"": 2}}"
+ambiguous_diagnosis,"{""ml_probability_between_thresholds"": 80}"
