@@ -1,0 +1,115 @@
+name: Apply HSQ TFIDF Review Veto
+
+on:
+  workflow_dispatch:
+    inputs:
+      full_chain_run_id:
+        description: "Workflow run ID containing humor-full-chain-final artifact"
+        required: true
+      full_chain_artifact_name:
+        description: "Full-chain final artifact name"
+        required: true
+        default: "humor-full-chain-final"
+      seed_run_id:
+        description: "Workflow run ID containing hsq-validation-pseudo-labels artifact"
+        required: true
+      seed_artifact_name:
+        description: "HSQ validation/pseudo-label artifact name"
+        required: true
+        default: "hsq-validation-pseudo-labels"
+      tfidf_threshold:
+        description: "Calibrated TF-IDF humor probability threshold for review/veto"
+        required: true
+        default: "0.514550"
+      candidate_threshold:
+        description: "High TF-IDF humor probability threshold for candidate review signals"
+        required: true
+        default: "0.700000"
+      max_negative_ratio:
+        description: "Maximum hard-negative rows per high-intensity humor seed"
+        required: true
+        default: "4.0"
+      max_features:
+        description: "TF-IDF max features"
+        required: true
+        default: "20000"
+      ngram_max:
+        description: "Maximum n-gram length"
+        required: true
+        default: "2"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  apply-review-veto:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install scikit-learn
+
+      - name: Download full-chain artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p full_chain_artifact
+          gh run download "${{ github.event.inputs.full_chain_run_id }}" \
+            --repo "${{ github.repository }}" \
+            --name "${{ github.event.inputs.full_chain_artifact_name }}" \
+            --dir full_chain_artifact
+          find full_chain_artifact -maxdepth 3 -type f -print
+
+      - name: Download HSQ seed artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p seed_artifact
+          gh run download "${{ github.event.inputs.seed_run_id }}" \
+            --repo "${{ github.repository }}" \
+            --name "${{ github.event.inputs.seed_artifact_name }}" \
+            --dir seed_artifact
+          find seed_artifact -maxdepth 3 -type f -print
+
+      - name: Locate required CSV files
+        id: locate
+        run: |
+          MASTER=$(find full_chain_artifact -name 'humor_full_chain_master.csv' -print -quit)
+          HUMOR_SEED=$(find seed_artifact -name 'hsq_high_intensity_humor_seed.csv' -print -quit)
+          HARD_NEGATIVE=$(find seed_artifact -name 'hsq_hard_negative_non_humor_seed.csv' -print -quit)
+          if [ -z "$MASTER" ]; then echo "humor_full_chain_master.csv not found" >&2; exit 1; fi
+          if [ -z "$HUMOR_SEED" ]; then echo "hsq_high_intensity_humor_seed.csv not found" >&2; exit 1; fi
+          if [ -z "$HARD_NEGATIVE" ]; then echo "hsq_hard_negative_non_humor_seed.csv not found" >&2; exit 1; fi
+          echo "master=$MASTER" >> "$GITHUB_OUTPUT"
+          echo "humor_seed=$HUMOR_SEED" >> "$GITHUB_OUTPUT"
+          echo "hard_negative=$HARD_NEGATIVE" >> "$GITHUB_OUTPUT"
+
+      - name: Apply HSQ TF-IDF review/veto layer
+        run: |
+          mkdir -p data/derived/humor/hsq_tfidf_review_veto
+          python scripts/apply_hsq_tfidf_review_veto.py \
+            --master "${{ steps.locate.outputs.master }}" \
+            --humor-seed "${{ steps.locate.outputs.humor_seed }}" \
+            --hard-negative-seed "${{ steps.locate.outputs.hard_negative }}" \
+            --output-dir data/derived/humor/hsq_tfidf_review_veto \
+            --threshold "${{ github.event.inputs.tfidf_threshold }}" \
+            --candidate-threshold "${{ github.event.inputs.candidate_threshold }}" \
+            --max-negative-ratio "${{ github.event.inputs.max_negative_ratio }}" \
+            --max-features "${{ github.event.inputs.max_features }}" \
+            --ngram-max "${{ github.event.inputs.ngram_max }}"
+
+      - name: Upload HSQ TF-IDF review/veto artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hsq-tfidf-review-veto-final
+          path: data/derived/humor/hsq_tfidf_review_veto/
