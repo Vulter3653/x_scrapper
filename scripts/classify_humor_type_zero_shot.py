@@ -3,7 +3,11 @@
 
 The classifier applies the four Humor Styles Questionnaire categories as fixed
 concept definitions, then assigns the closest type using transparent cue scores.
-It is intended for a first full-chain diagnostic pass before later tuning.
+The v2 tuning is intentionally conservative:
+- it no longer defaults uncued humor to affiliative;
+- generic brand/community words are not enough for affiliative classification;
+- formal corporate/news/support language is deferred to review unless a specific
+  humor-type cue is present.
 """
 
 import argparse
@@ -34,21 +38,156 @@ OUTPUT_FIELDS = [
 
 TYPE_CUES = {
     "affiliative": {
-        "we", "us", "our", "team", "together", "friend", "friends", "family", "community",
-        "everyone", "yall", "folks", "party", "celebrate", "join", "welcome", "fans",
+        "phrases": {
+            "tag a friend": 3,
+            "tag your friend": 3,
+            "you and your bestie": 3,
+            "you and your friends": 3,
+            "the group chat": 3,
+            "send this to": 3,
+            "tell your friends": 3,
+            "friends don't let friends": 3,
+            "friends don’t let friends": 3,
+            "everyone say": 2,
+            "everyone knows": 2,
+            "y'all know": 2,
+            "yall know": 2,
+            "us when": 2,
+            "we love you": 2,
+            "we said what we said": 2,
+            "we're all": 2,
+            "we are all": 2,
+        },
+        "tokens": {
+            "bestie": 2,
+            "besties": 2,
+            "friends": 1,
+            "yall": 1,
+            "folks": 1,
+            "fans": 1,
+        },
     },
     "self_enhancing": {
-        "monday", "tuesday", "survive", "surviving", "still", "again", "coffee", "cope",
-        "coping", "mood", "me", "my", "myself", "today", "week", "deadline", "tired",
+        "phrases": {
+            "me when": 3,
+            "pov:": 3,
+            "point of view": 2,
+            "that feeling when": 3,
+            "when you realize": 3,
+            "when you": 2,
+            "not me": 3,
+            "i can't": 3,
+            "i cant": 3,
+            "my toxic trait": 3,
+            "main character energy": 3,
+            "same energy": 2,
+            "me trying": 2,
+            "me after": 2,
+            "mentally i'm": 2,
+            "mentally i’m": 2,
+            "surviving on": 2,
+            "running on": 2,
+        },
+        "tokens": {
+            "mood": 2,
+            "relatable": 2,
+            "same": 1,
+            "vibes": 1,
+            "vibe": 1,
+            "chaotic": 1,
+            "tired": 1,
+            "surviving": 1,
+            "coffee": 1,
+        },
     },
     "aggressive": {
-        "roast", "burn", "savage", "ratio", "wrong", "nope", "nah", "trash", "clown",
-        "ridiculous", "competitor", "hate", "worst", "bad", "sorry not sorry", "delete",
+        "phrases": {
+            "sorry not sorry": 3,
+            "try again": 3,
+            "delete this": 3,
+            "sir this is": 3,
+            "ma'am this is": 3,
+            "ma’am this is": 3,
+            "we said what we said": 3,
+            "you wish": 2,
+            "didn't ask": 2,
+            "didn’t ask": 2,
+            "not today": 2,
+            "nice try": 2,
+            "say less": 2,
+        },
+        "tokens": {
+            "roast": 3,
+            "roasted": 3,
+            "burn": 3,
+            "savage": 3,
+            "ratio": 2,
+            "wrong": 2,
+            "nope": 2,
+            "nah": 2,
+            "trash": 2,
+            "clown": 2,
+            "ridiculous": 1,
+            "worst": 1,
+        },
     },
     "self_defeating": {
-        "oops", "awkward", "sorry", "our bad", "my bad", "we messed", "we tried", "help us",
-        "send help", "embarrassing", "mistake", "failed", "fail", "crying", "why are we like this",
+        "phrases": {
+            "our bad": 3,
+            "my bad": 3,
+            "we messed": 3,
+            "we tried": 3,
+            "we failed": 3,
+            "we're not okay": 3,
+            "we are not okay": 3,
+            "why are we like this": 3,
+            "send help": 3,
+            "not us": 3,
+            "help us": 2,
+            "we forgot": 2,
+            "we can't": 2,
+            "we cant": 2,
+            "this is awkward": 2,
+        },
+        "tokens": {
+            "oops": 3,
+            "awkward": 2,
+            "embarrassing": 2,
+            "crying": 2,
+            "mistake": 1,
+            "failed": 1,
+            "fail": 1,
+        },
     },
+}
+
+CORPORATE_OR_SUPPORT_CUES = {
+    "press release",
+    "news release",
+    "earnings",
+    "quarterly results",
+    "investor relations",
+    "conference call",
+    "annual report",
+    "sustainability report",
+    "customer support",
+    "support team",
+    "please contact",
+    "learn more",
+    "read more",
+    "apply now",
+    "we're hiring",
+    "we are hiring",
+    "join our team",
+    "webinar",
+    "conference",
+    "report",
+    "filing",
+    "shareholders",
+    "dividend",
+    "clinical",
+    "patients",
+    "research",
 }
 
 TOKEN_RE = re.compile(r"[A-Za-z']+")
@@ -58,19 +197,26 @@ def normalize_text(text):
     return re.sub(r"\s+", " ", (text or "").strip())
 
 
-def score_type(text_lower, tokens, cues):
+def score_type(text_lower, tokens, cue_config):
     score = 0
     matches = []
     token_set = set(tokens)
-    for cue in cues:
-        if " " in cue:
-            if cue in text_lower:
-                score += 2
-                matches.append(cue)
-        elif cue in token_set:
-            score += 1
+
+    for cue, weight in cue_config["phrases"].items():
+        if cue in text_lower:
+            score += weight
             matches.append(cue)
-    return score, sorted(matches)
+
+    for cue, weight in cue_config["tokens"].items():
+        if cue in token_set:
+            score += weight
+            matches.append(cue)
+
+    return score, sorted(set(matches))
+
+
+def has_corporate_or_support_context(text_lower):
+    return any(cue in text_lower for cue in CORPORATE_OR_SUPPORT_CUES)
 
 
 def classify(text):
@@ -82,23 +228,66 @@ def classify(text):
     tokens = [t.lower().strip("'") for t in TOKEN_RE.findall(clean)]
     scores = {}
     matches = {}
-    for label, cues in TYPE_CUES.items():
-        scores[label], matches[label] = score_type(lower, tokens, cues)
+    for label, cue_config in TYPE_CUES.items():
+        scores[label], matches[label] = score_type(lower, tokens, cue_config)
 
     ranked = sorted(scores.items(), key=lambda x: (-x[1], x[0]))
     best_label, best_score = ranked[0]
-    second_score = ranked[1][1] if len(ranked) > 1 else 0
+    second_label, second_score = ranked[1] if len(ranked) > 1 else ("", 0)
+    corporate_context = has_corporate_or_support_context(lower)
 
     if best_score == 0:
-        return "affiliative", 0.40, "No type-specific cues matched; defaulting to broad social/affiliative humor for first-pass diagnostics.", [], True
+        return (
+            "ambiguous_or_review",
+            0.35,
+            f"No type-specific HSQ cue matched; scores={scores}.",
+            [],
+            True,
+        )
 
     if best_score == second_score:
-        return "ambiguous_or_review", 0.50, f"Top humor type scores are tied: {scores}.", matches[best_label], True
+        return (
+            "ambiguous_or_review",
+            0.50,
+            f"Top humor type scores are tied between {best_label} and {second_label}: scores={scores}.",
+            matches[best_label],
+            True,
+        )
 
     margin = best_score - second_score
-    confidence = min(0.92, 0.55 + 0.12 * margin + 0.04 * min(best_score, 5))
-    rationale = f"Assigned {best_label} from fixed HSQ-style type definitions; scores={scores}."
-    return best_label, confidence, rationale, matches[best_label], confidence < 0.65
+
+    # Affiliative was over-assigned in the baseline. Require stronger evidence.
+    if best_label == "affiliative" and best_score < 3:
+        return (
+            "ambiguous_or_review",
+            0.48,
+            f"Affiliative evidence is too weak after v2 tuning; scores={scores}.",
+            matches[best_label],
+            True,
+        )
+
+    # Formal corporate/support context should not be typed unless cue evidence is strong.
+    if corporate_context and best_score < 3:
+        return (
+            "ambiguous_or_review",
+            0.47,
+            f"Corporate/support context with weak humor-type evidence; scores={scores}.",
+            matches[best_label],
+            True,
+        )
+
+    if margin < 2 and best_score < 4:
+        return (
+            "ambiguous_or_review",
+            0.52,
+            f"Humor type margin is too small for a confident assignment; scores={scores}.",
+            matches[best_label],
+            True,
+        )
+
+    confidence = min(0.94, 0.52 + 0.10 * margin + 0.05 * min(best_score, 6))
+    rationale = f"Assigned {best_label} from tuned HSQ-style cue definitions; scores={scores}."
+    return best_label, confidence, rationale, matches[best_label], confidence < 0.67
 
 
 def main():
@@ -149,7 +338,7 @@ def main():
                 "humor_type_status": status,
                 "humor_type_error_type": error_type,
                 "humor_type_error_message": error_message,
-                "model_name": "local_zero_shot_hsq_humor_type_v1",
+                "model_name": "local_zero_shot_hsq_humor_type_v2",
                 "classified_at": datetime.now(timezone.utc).isoformat(),
             })
             written += 1
