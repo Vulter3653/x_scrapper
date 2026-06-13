@@ -1,0 +1,103 @@
+fortune_rank,company_name,handle,sample_group
+1,Amazon,@amazon,fortune_top100_ranked
+2,Walmart,@walmart,fortune_top100_ranked
+3,UnitedHealth Group,@UnitedHealthGrp,fortune_top100_ranked
+4,Apple,@apple,fortune_top100_ranked
+5,Alphabet,@Alphabetlnc,fortune_top100_ranked
+6,CVS Health,@cvshealth,fortune_top100_ranked
+7,Berkshire Hathaway,@berkshire,fortune_top100_ranked
+8,McKesson,@mckesson,fortune_top100_ranked
+9,Exxon Mobil,@exxonmobil,fortune_top100_ranked
+10,Cencora,@CencoraGlobal,fortune_top100_ranked
+11,Microsoft,@microsoft,fortune_top100_ranked
+12,JPMorgan Chase,@jpmorgan,fortune_top100_ranked
+13,Costco Wholesale,@Costco,fortune_top100_ranked
+14,Cigna Group,@TheCignaGroup,fortune_top100_ranked
+15,Cardinal Health,@cardinalhealth,fortune_top100_ranked
+16,Nvidia,@nvidia,fortune_top100_ranked
+17,Meta Platforms,@Meta,fortune_top100_ranked
+18,Elevance Health,@elevancehealth,fortune_top100_ranked
+19,Centene,@centene,fortune_top100_ranked
+20,Bank of America,@bankofamerica,fortune_top100_ranked
+21,Chevron,@chevron,fortune_top100_ranked
+22,Ford Motor,@Ford,fortune_top100_ranked
+23,General Motors,@GM,fortune_top100_ranked
+24,Citigroup,@Citi,fortune_top100_ranked
+25,Home Depot,@homedepot,fortune_top100_ranked
+26,Fannie Mae,@fanniemae,fortune_top100_ranked
+27,Kroger,@kroger,fortune_top100_ranked
+28,Verizon Communications,@Verizon,fortune_top100_ranked
+29,Phillips 66,@phillips66,fortune_top100_ranked
+30,Marathon Petroleum,@MarathonPetroCo,fortune_top100_ranked
+31,StoneX Group,@StoneX_Official,fortune_top100_ranked
+32,State Farm Insurance,@StateFarm,fortune_top100_ranked
+33,Freddie Mac,@FreddieMac,fortune_top100_ranked
+34,Humana,@humana,fortune_top100_ranked
+35,AT&T,@ATT,fortune_top100_ranked
+36,Goldman Sachs Group,@GoldmanSachs,fortune_top100_ranked
+37,Comcast,@comcast,fortune_top100_ranked
+38,Wells Fargo,@wellsfargo,fortune_top100_ranked
+39,Morgan Stanley,@morganstanley,fortune_top100_ranked
+40,Valero Energy,@valeroenergy,fortune_top100_ranked
+41,Dell Technologies,@Dell,fortune_top100_ranked
+42,Target,@target,fortune_top100_ranked
+43,Tesla,@tesla,fortune_top100_ranked
+44,Walt Disney,@Disney,fortune_top100_ranked
+45,Johnson & Johnson,@JNJNews,fortune_top100_ranked
+46,PepsiCo,@pepsico,fortune_top100_ranked
+47,Boeing,@boeing,fortune_top100_ranked
+48,UPS,@ups,fortune_top100_ranked
+49,RTX,@RTX_News,fortune_top100_ranked
+50,FedEx,@fedex,fortune_top100_ranked
+51,Progressive,@progressive,fortune_top100_ranked
+52,Lowe's,@lowes,fortune_top100_ranked
+53,Energy Transfer,@energytransfer,fortune_top100_ranked
+54,Procter & Gamble,@ProcterGamble,fortune_top100_ranked
+55,Sysco,@sysco,fortune_top100_ranked
+56,American Express,@americanexpress,fortune_top100_ranked
+57,Albertsons,@albertsons,fortune_top100_ranked
+58,Archer Daniels Midland,@ADMupdates,fortune_top100_ranked
+59,MetLife,@metlife,fortune_top100_ranked
+60,HCA Healthcare,@hcahealthcare,fortune_top100_ranked
+61,Lockheed Martin,@lockheedmartin,fortune_top100_ranked
+62,New York Life Insurance,@NewYorkLife,fortune_top100_ranked
+63,Capital One Financial,@CapitalOne,fortune_top100_ranked
+64,Allstate,@allstate,fortune_top100_ranked
+65,Caterpillar,@CaterpillarInc,fortune_top100_ranked
+66,IBM,@ibm,fortune_top100_ranked
+67,Eli Lilly,@EliLillyandCo,fortune_top100_ranked
+68,Merck,@merck,fortune_top100_ranked
+69,Nationwide,@nationwide,fortune_top100_ranked
+70,Broadcom,@broadcom,fortune_top100_ranked
+71,Delta Air Lines,@Delta,fortune_top100_ranked
+72,Publix Super Markets,@Publix,fortune_top100_ranked
+73,Pfizer,@pfizer,fortune_top100_ranked
+74,TD Synnex,@tdsynnex,fortune_top100_ranked
+75,ConocoPhillips,@conocophillips,fortune_top100_ranked
+76,Galaxy Digital,@galaxydigital,fortune_top100_ranked
+77,AbbVie,@abbvie,fortune_top100_ranked
+78,Prudential Financial,@Prudential,fortune_top100_ranked
+79,TJX,@tjmaxx,fortune_top100_ranked
+80,Performance Food Group,@PFGCareers,fortune_top100_ranked
+81,United Airlines Holdings,@united,fortune_top100_ranked
+82,Oracle,@oracle,fortune_top100_ranked
+83,Cisco Systems,@Cisco,fortune_top100_ranked
+84,HP,@hp,fortune_top100_ranked
+85,Charter Communications,@CharterNewsroom,fortune_top100_ranked
+86,American Airlines Group,@AmericanAir,fortune_top100_ranked
+87,Tyson Foods,@tysonfoods,fortune_top100_ranked
+88,Intel,@intel,fortune_top100_ranked
+89,Enterprise Products Partners,@EProd_Careers,fortune_top100_ranked
+90,Ingram Micro Holding,@IngramMicroInc,fortune_top100_ranked
+91,General Dynamics,@generaldynamics,fortune_top100_ranked
+92,Uber Technologies,@Uber,fortune_top100_ranked
+93,USAA,@usaa,fortune_top100_ranked
+94,TIAA,@tiaa,fortune_top100_ranked
+95,Liberty Mutual Insurance Group,@LibertyMutual,fortune_top100_ranked
+96,Travelers,@travelers,fortune_top100_ranked
+97,Bristol-Myers Squibb,@bmsnews,fortune_top100_ranked
+98,Coca-Cola,@cocacola,fortune_top100_ranked
+99,Nike,@nike,fortune_top100_ranked
+100,Massachusetts Mutual Life,@massmutual,fortune_top100_ranked
+benchmark,Wendy's,@Wendys,benchmark_aggressive_wendys
+benchmark,MoonPie,@MoonPie,benchmark_self_defeating_moonpie

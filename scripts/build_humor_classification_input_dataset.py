@@ -88,6 +88,7 @@ def main():
     parser.add_argument("--fortune-summary", type=Path, default=Path("data/audit/fortune_x_2025_ranked_collection_summary.csv"))
     parser.add_argument("--wendys-source", type=Path, default=Path("data/wendys/posts.json"))
     parser.add_argument("--moonpie-source", type=Path, default=Path("data/moonpie/posts.json"))
+    parser.add_argument("--cocacola-source", type=Path, default=Path("data/cocacola/posts.json"))
     parser.add_argument("--output", type=Path, default=Path("data/derived/humor/humor_classification_input.csv"))
     parser.add_argument("--audit-output", type=Path, default=Path("data/derived/humor/humor_classification_input_audit.csv"))
     args = parser.parse_args()
@@ -125,6 +126,18 @@ def main():
     audit["moonpie_source_found"] = str(args.moonpie_source.exists()).lower()
     audit["moonpie_posts_loaded_before_dedup"] = len(moonpie_posts)
     all_posts.extend(moonpie_posts)
+
+    # 4. Load Coca-Cola (Benchmark)
+    cocacola_posts = load_json_posts(
+        args.cocacola_source,
+        "benchmark_cocacola",
+        "cocacola_existing_collection",
+        "Coca-Cola",
+        "@cocacola"
+    )
+    audit["cocacola_source_found"] = str(args.cocacola_source.exists()).lower()
+    audit["cocacola_posts_loaded_before_dedup"] = len(cocacola_posts)
+    all_posts.extend(cocacola_posts)
 
     audit["total_rows_before_dedup"] = len(all_posts)
 
@@ -164,7 +177,12 @@ def main():
     # 5. Final processing & Global ID generation
     final_rows = []
     empty_text_count = 0
-    sample_group_counts = {"fortune_top100_ranked": 0, "benchmark_aggressive_wendys": 0, "benchmark_self_defeating_moonpie": 0}
+    sample_group_counts = {
+        "fortune_top100_ranked": 0,
+        "benchmark_aggressive_wendys": 0,
+        "benchmark_self_defeating_moonpie": 0,
+        "benchmark_cocacola": 0
+    }
     
     for i, ((group, tid), p) in enumerate(deduped.items()):
         text = p.get("text", "")
@@ -264,7 +282,8 @@ def main():
         "sample_groups": [
             "fortune_top100_ranked",
             "benchmark_aggressive_wendys",
-            "benchmark_self_defeating_moonpie"
+            "benchmark_self_defeating_moonpie",
+            "benchmark_cocacola"
         ],
         "humor_types_future_target": [
             "affiliative_humor",
@@ -289,11 +308,13 @@ This dataset is a consolidated input for zero-shot humor classification. It comb
 - **Fortune 2025 Top 100 Ranked**: Corporate posts collected via browser-based scraping.
 - **Wendy's**: Benchmark for aggressive humor (source: data/wendys/posts.json).
 - **MoonPie**: Benchmark for self-defeating/affiliative humor (source: data/moonpie/posts.json).
+- **Coca-Cola**: Benchmark for standard corporate/neutral humor (source: data/cocacola/posts.json).
 
 ## Sample Groups
 - `fortune_top100_ranked`: Main target group for analysis.
 - `benchmark_aggressive_wendys`: Reference for aggressive humor style.
 - `benchmark_self_defeating_moonpie`: Reference for self-defeating/niche humor style.
+- `benchmark_cocacola`: Reference for standard/neutral brand messaging.
 
 ## Metadata
 - `classification_status`: All entries are currently marked as `pending`.
