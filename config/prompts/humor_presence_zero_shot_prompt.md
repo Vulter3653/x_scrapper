@@ -75,8 +75,3 @@ Set `needs_manual_review` to `true` if:
 - `humor_presence` is `ambiguous`.
 - The text contains heavy slang, emojis, or cultural references that you are not 100% sure about.
 - The post is from a benchmark brand but contains no clear humor.
-
-## Input Post
-Company: {company_name}
-Sample Group: {sample_group}
-Text: {text}

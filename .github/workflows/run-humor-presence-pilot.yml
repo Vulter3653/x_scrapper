@@ -1,0 +1,155 @@
+name: Run Humor Presence Pilot Classification
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Gemini model for humor presence pilot classification'
+        required: true
+        default: 'gemini-3.5-flash'
+      batch_size:
+        description: 'Batch size for classifier script'
+        required: true
+        default: '10'
+      commit_results:
+        description: 'Commit and push pilot classification outputs'
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  run-humor-presence-pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify GEMINI_API_KEY presence
+        run: |
+          python - <<'PY'
+          import os
+          print("GEMINI_API_KEY_present", bool(os.environ.get("GEMINI_API_KEY")))
+          PY
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: py_compile
+        run: |
+          python -m py_compile \
+            scripts/classify_humor_presence_zero_shot.py \
+            scripts/validate_humor_presence_outputs.py \
+            scripts/build_humor_presence_pilot_sample.py \
+            scripts/process_pilot_outputs.py
+
+      - name: Run 800-row humor presence pilot classification
+        run: |
+          python scripts/classify_humor_presence_zero_shot.py \
+            --input data/derived/humor/humor_presence_pilot_sample.csv \
+            --output data/derived/humor/humor_presence_pilot_results.csv \
+            --prompt config/prompts/humor_presence_zero_shot_prompt.md \
+            --schema config/schemas/humor_presence_classification_output.schema.json \
+            --provider gemini \
+            --model "${{ github.event.inputs.model }}" \
+            --api-key-env GEMINI_API_KEY \
+            --batch-size "${{ github.event.inputs.batch_size }}" \
+            --resume
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Validate pilot output
+        run: |
+          python scripts/validate_humor_presence_outputs.py \
+            --input data/derived/humor/humor_presence_pilot_sample.csv \
+            --output data/derived/humor/humor_presence_pilot_results.csv
+
+      - name: Generate pilot audit and review sample
+        run: |
+          python scripts/process_pilot_outputs.py \
+            --input data/derived/humor/humor_presence_pilot_sample.csv \
+            --results data/derived/humor/humor_presence_pilot_results.csv \
+            --audit data/derived/humor/humor_presence_pilot_audit.csv \
+            --review data/derived/humor/humor_presence_low_confidence_review_sample.csv \
+            --model "${{ github.event.inputs.model }}"
+
+      - name: Print summary statistics
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          audit_path = Path("data/derived/humor/humor_presence_pilot_audit.csv")
+          if audit_path.exists():
+              with audit_path.open() as f:
+                  reader = csv.DictReader(f)
+                  stats = {row["audit_key"]: row["audit_value"] for row in reader}
+              
+              print("--- PILOT SUMMARY STATISTICS ---")
+              print(f"Total input rows: {stats.get('pilot_input_rows')}")
+              print(f"Total output rows: {stats.get('pilot_output_rows')}")
+              print(f"Classified status: {stats.get('classification_status_classified')}")
+              print(f"Failed status: {stats.get('classification_status_failed')}")
+              print(f"Humor: {stats.get('humor_presence_humor')}")
+              print(f"Non-humor: {stats.get('humor_presence_non_humor')}")
+              print(f"Ambiguous: {stats.get('humor_presence_ambiguous')}")
+              print(f"Needs Manual Review (True): {stats.get('needs_manual_review_true')}")
+              print(f"Needs Manual Review (False): {stats.get('needs_manual_review_false')}")
+              print(f"Wendy's humor rate: {float(stats.get('wendys_humor_rate', 0))*100:.2f}%")
+              print(f"MoonPie humor rate: {float(stats.get('moonpie_humor_rate', 0))*100:.2f}%")
+              print(f"Fortune Top 100 humor rate: {float(stats.get('fortune_top100_humor_rate', 0))*100:.2f}%")
+              print(f"Wendy's ambiguous rate: {float(stats.get('wendys_ambiguous_rate', 0))*100:.2f}%")
+              print(f"MoonPie ambiguous rate: {float(stats.get('moonpie_ambiguous_rate', 0))*100:.2f}%")
+              print(f"Fortune Top 100 ambiguous rate: {float(stats.get('fortune_top100_ambiguous_rate', 0))*100:.2f}%")
+          PY
+
+      - name: Check forbidden mutations
+        run: |
+          git diff --check
+          
+          # Check for forbidden mutations
+          FORBIDDEN_PATHS=("dashboard/data" "data/raw" "data/audit")
+          for path in "${FORBIDDEN_PATHS[@]}"; do
+            if [ -d "$path" ]; then
+              if [ -n "$(git status --short "$path")" ]; then
+                echo "FAIL: Forbidden mutation detected in $path"
+                git status --short "$path"
+                exit 1
+              fi
+            fi
+          done
+          
+          # Check for forbidden strings in scripts, config, data/derived/humor, and the workflow itself
+          grep -R "api.x.com\|api.twitter.com\|Authorization: Bearer" scripts config data/derived/humor .github/workflows/run-humor-presence-pilot.yml || true
+
+      - name: Upload result files as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-pilot-results
+          path: |
+            data/derived/humor/humor_presence_pilot_results.csv
+            data/derived/humor/humor_presence_pilot_audit.csv
+            data/derived/humor/humor_presence_low_confidence_review_sample.csv
+
+      - name: Commit and push outputs
+        if: github.event.inputs.commit_results == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/derived/humor/humor_presence_pilot_results.csv \
+            data/derived/humor/humor_presence_pilot_audit.csv \
+            data/derived/humor/humor_presence_low_confidence_review_sample.csv \
+            scripts/classify_humor_presence_zero_shot.py \
+            config/prompts/humor_presence_zero_shot_prompt.md \
+            scripts/process_pilot_outputs.py
+          git commit -m "feat: run humor presence pilot classification" || echo "No changes to commit"
+          git push origin main

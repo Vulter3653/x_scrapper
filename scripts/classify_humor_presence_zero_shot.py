@@ -12,7 +12,7 @@ import urllib.error
 from pathlib import Path
 from datetime import datetime
 
-def call_gemini(prompt: str, api_key: str, model: str = "gemini-1.5-flash") -> dict:
+def call_gemini(prompt: str, api_key: str, model: str = "gemini-3.5-flash") -> dict:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
     
     payload = {
@@ -54,6 +54,25 @@ def call_gemini(prompt: str, api_key: str, model: str = "gemini-1.5-flash") -> d
             
     return {"error": "Max retries exceeded"}
 
+def build_prompt(prompt_template: str, row: dict) -> str:
+    post_payload = {
+        "global_post_id": row.get("global_post_id", ""),
+        "tweet_id": row.get("tweet_id", ""),
+        "sample_group": row.get("sample_group", ""),
+        "company_name": row.get("company_name", ""),
+        "source_x_handle": row.get("source_x_handle", ""),
+        "created_at": row.get("created_at", ""),
+        "text": row.get("text", ""),
+    }
+
+    return (
+        prompt_template.rstrip()
+        + "\n\n"
+        + "Classify the following post. Return only one valid JSON object that conforms to the required output schema.\n"
+        + "\nINPUT_POST_JSON:\n"
+        + json.dumps(post_payload, ensure_ascii=False, indent=2)
+    )
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, required=True)
@@ -61,7 +80,7 @@ def main():
     parser.add_argument("--prompt", type=Path, required=True)
     parser.add_argument("--schema", type=Path, required=True)
     parser.add_argument("--provider", default="gemini")
-    parser.add_argument("--model", default="gemini-1.5-flash")
+    parser.add_argument("--model", default="gemini-3.5-flash")
     parser.add_argument("--api-key-env", default="GEMINI_API_KEY")
     parser.add_argument("--batch-size", type=int, default=1) # urillb based is simple, 1 by 1 for safety
     parser.add_argument("--resume", action="store_true")
@@ -141,11 +160,7 @@ def main():
                     "error_message": ""
                 }
             else:
-                prompt = prompt_template.format(
-                    company_name=row.get("company_name", "Unknown"),
-                    sample_group=row.get("sample_group", "Unknown"),
-                    text=text
-                )
+                prompt = build_prompt(prompt_template, row)
                 
                 print(f"Classifying {global_id}...")
                 model_res = call_gemini(prompt, api_key, args.model)
