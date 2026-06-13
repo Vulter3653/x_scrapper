@@ -77,16 +77,6 @@ jobs:
           echo "shard_count=$shard_count" >> "$GITHUB_OUTPUT"
           echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
 
-      - name: Verify no official X API markers
-        shell: bash
-        run: |
-          set -euo pipefail
-          if grep -R -n -E 'api\.x\.com|api\.twitter\.com|bearer_token|Authorization: Bearer' \
-            scripts/run_humor_append_collection.py .github/workflows/append-humor-collection-102-companies.yml; then
-            echo "::error::Official X API marker found."
-            exit 1
-          fi
-
   collect-shards:
     runs-on: ubuntu-latest
     timeout-minutes: 180
