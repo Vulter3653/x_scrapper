@@ -1,10 +1,255 @@
-name: Disabled Append Humor Collection
+name: Append Humor Collection (102 Companies)
 
 on:
   workflow_dispatch:
+    inputs:
+      max_posts:
+        description: 'Maximum new posts to collect per account (0 for all)'
+        required: true
+        default: '0'
+      max_scrolls:
+        description: 'Maximum scrolls per account'
+        required: true
+        default: '2500'
+      shard_count:
+        description: 'Number of shards to split 102 targets into. Supported: 1-12'
+        required: true
+        default: '12'
+      max_parallel:
+        description: 'Maximum shard jobs to run in parallel. Recommended: 2-3'
+        required: true
+        default: '3'
+      start_offset:
+        description: 'Rotate target order before sharding. Use 0, 10, 20, ..., 90 across repeated runs.'
+        required: true
+        default: '0'
+      collection_mode:
+        description: 'incremental stops on known IDs; backfill keeps scrolling to find older missing posts'
+        required: true
+        default: 'incremental'
+        type: choice
+        options:
+          - 'incremental'
+          - 'backfill'
+      existing_stop_threshold:
+        description: 'Known tweet IDs observed before early stop in incremental mode'
+        required: true
+        default: '30'
+      min_scrolls_before_stop:
+        description: 'Minimum scrolls before known-ID early stop can trigger'
+        required: true
+        default: '3'
+      retry_attempts:
+        description: 'Attempts per target before skipping and recording failure'
+        required: true
+        default: '2'
+      commit_results:
+        description: 'Commit and push merged append outputs'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: append-humor-collection-102-companies
+  cancel-in-progress: false
 
 jobs:
-  disabled:
+  validate-targets:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      shard_count: ${{ steps.bounds.outputs.shard_count }}
+      max_parallel: ${{ steps.bounds.outputs.max_parallel }}
+      start_offset: ${{ steps.bounds.outputs.start_offset }}
     steps:
-      - run: echo 'Temporarily disabled invalid workflow. Restore valid workflow before collection.'
+      - uses: actions/checkout@v4
+      - id: bounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          shard_count='${{ inputs.shard_count }}'
+          max_parallel='${{ inputs.max_parallel }}'
+          start_offset='${{ inputs.start_offset }}'
+          test "$shard_count" -ge 1 && test "$shard_count" -le 12
+          test "$max_parallel" -ge 1 && test "$max_parallel" -le 12
+          test "$start_offset" -ge 0 && test "$start_offset" -le 101
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          rows = list(csv.DictReader(Path('config/humor_collection_append_targets.csv').open(encoding='utf-8-sig')))
+          assert len(rows) == 102, len(rows)
+          assert sum(r['fortune_rank'] != 'benchmark' for r in rows) == 100
+          assert sum(r['fortune_rank'] == 'benchmark' for r in rows) == 2
+          print(f'target_count={len(rows)}')
+          PY
+          echo "shard_count=$shard_count" >> "$GITHUB_OUTPUT"
+          echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
+          echo "start_offset=$start_offset" >> "$GITHUB_OUTPUT"
+
+  collect-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    needs: validate-targets
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.validate-targets.outputs.max_parallel) }}
+      matrix:
+        shard_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    steps:
+      - uses: actions/checkout@v4
+      - id: shard
+        shell: bash
+        env:
+          SHARD_INDEX: ${{ matrix.shard_index }}
+          SHARD_COUNT: ${{ needs.validate-targets.outputs.shard_count }}
+          START_OFFSET: ${{ needs.validate-targets.outputs.start_offset }}
+        run: |
+          set -euo pipefail
+          mkdir -p shard_work shard_output/data/audit
+          python - <<'PY'
+          import csv, os
+          from pathlib import Path
+          shard_index = int(os.environ['SHARD_INDEX'])
+          shard_count = int(os.environ['SHARD_COUNT'])
+          start_offset = int(os.environ['START_OFFSET'])
+          rows = list(csv.DictReader(Path('config/humor_collection_append_targets.csv').open(encoding='utf-8-sig')))
+          if rows:
+              start_offset %= len(rows)
+              rows = rows[start_offset:] + rows[:start_offset]
+          selected = [row for i, row in enumerate(rows) if i % shard_count == shard_index]
+          with Path('shard_work/targets.csv').open('w', encoding='utf-8', newline='') as f:
+              w = csv.DictWriter(f, fieldnames=['fortune_rank', 'company_name', 'handle', 'sample_group'])
+              w.writeheader(); w.writerows(selected)
+          print(f'shard_index={shard_index}')
+          print(f'shard_target_count={len(selected)}')
+          Path('shard_work/count.txt').write_text(str(len(selected)), encoding='utf-8')
+          PY
+          echo "target_count=$(cat shard_work/count.txt)" >> "$GITHUB_OUTPUT"
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements-scrape.txt
+          python -m playwright install --with-deps chromium
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        shell: bash
+        run: python scripts/patch_humor_append_runtime.py
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        env:
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+        run: |
+          python scripts/run_humor_append_collection.py \
+            --targets shard_work/targets.csv \
+            --max-posts '${{ inputs.max_posts }}' \
+            --max-scrolls '${{ inputs.max_scrolls }}' \
+            ${{ inputs.collection_mode == 'incremental' && '--incremental-only' || '--no-incremental-only' }} \
+            --existing-stop-threshold '${{ inputs.existing_stop_threshold }}' \
+            --min-scrolls-before-stop '${{ inputs.min_scrolls_before_stop }}' \
+            --retry-attempts '${{ inputs.retry_attempts }}'
+      - shell: bash
+        env:
+          SHARD_INDEX: ${{ matrix.shard_index }}
+        run: |
+          set -euo pipefail
+          mkdir -p shard_output/data/audit
+          if [ -f data/audit/humor_collection_append_summary.csv ]; then
+            cp data/audit/humor_collection_append_summary.csv "shard_output/data/audit/humor_collection_append_summary_shard_${SHARD_INDEX}.csv"
+          fi
+          git status --porcelain -- data/raw/fortune_x_2025_ranked data/wendys/posts.json data/cocacola/posts.json data/moonpie/posts.json | while read -r status path; do
+            if [ -f "$path" ]; then
+              mkdir -p "shard_output/$(dirname "$path")"
+              cp "$path" "shard_output/$path"
+            fi
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: humor-append-shard-${{ matrix.shard_index }}
+          path: shard_output/
+          retention-days: 2
+
+  aggregate-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: [validate-targets, collect-shards]
+    if: ${{ always() && needs.validate-targets.result == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git pull --rebase origin main
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: humor-append-shard-*
+          path: artifact_downloads
+          merge-multiple: false
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv, shutil
+          from pathlib import Path
+          root = Path('artifact_downloads')
+          rows, fields = [], None
+          for src in sorted(root.glob('**/*')):
+              if not src.is_file() or 'data' not in src.parts:
+                  continue
+              rel = Path(*src.parts[src.parts.index('data'):])
+              if src.name.startswith('humor_collection_append_summary_shard_'):
+                  with src.open(encoding='utf-8-sig', newline='') as f:
+                      r = csv.DictReader(f)
+                      fields = r.fieldnames or fields
+                      rows.extend(list(r))
+                  continue
+              dst = Path(rel); dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(src, dst)
+          if fields is None:
+              fields = ['fortune_rank','company_name','handle','sample_group','status','attempts','previous_posts','final_posts','new_unique_posts','merge_added_posts','existing_id_count','new_posts_collected','known_posts_seen','stopped_on_existing','stop_reason','scrolls_completed','last_error']
+          out = Path('data/audit/humor_collection_append_summary.csv')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          with out.open('w', encoding='utf-8', newline='') as f:
+              w = csv.DictWriter(f, fieldnames=fields); w.writeheader(); w.writerows(rows)
+          failed = [r for r in rows if str(r.get('status', '')).startswith('failed')]
+          if failed:
+              fail = Path('data/audit/humor_collection_append_failed_targets.csv')
+              with fail.open('w', encoding='utf-8', newline='') as f:
+                  w = csv.DictWriter(f, fieldnames=fields); w.writeheader(); w.writerows(failed)
+          print(f'Total target rows in summaries: {len(rows)}')
+          print(f'Failed/skipped rows: {len(failed)}')
+          print(f'New unique posts: {sum(int(r.get("new_unique_posts") or 0) for r in rows)}')
+          PY
+      - shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "$(git status --short dashboard/data)" ]; then
+            echo "::error title=dashboard/data changed::dashboard/data must not be modified."
+            git status --short dashboard/data
+            exit 1
+          fi
+      - if: ${{ inputs.commit_results == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/raw/fortune_x_2025_ranked data/wendys/posts.json data/cocacola/posts.json data/moonpie/posts.json data/audit/humor_collection_append_summary.csv
+          if [ -f data/audit/humor_collection_append_failed_targets.csv ]; then
+            git add data/audit/humor_collection_append_failed_targets.csv
+          fi
+          if git diff --cached --quiet; then
+            echo 'No append collection output changes to commit.'
+            exit 0
+          fi
+          git commit -m 'data: append collected humor posts for 102 targets'
+          git push origin HEAD:main
