@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evaluate local humor-presence results and diagnose classifications for 800-row pilot."""
+"""Evaluate local humor-presence results and diagnose classifications for pilot runs."""
 
 import argparse
 import csv
@@ -8,6 +8,12 @@ import statistics
 import sys
 from collections import Counter
 from pathlib import Path
+
+ALLOWED_SAMPLE_GROUPS = {
+    "benchmark_aggressive_wendys",
+    "benchmark_self_defeating_moonpie",
+    "fortune_top100_ranked",
+}
 
 
 def read_csv(path):
@@ -31,6 +37,13 @@ def get_ml_label(prob_str, humor_threshold=0.70, non_humor_threshold=0.30):
         return "null"
 
 
+def safe_float(value, default=0.0):
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return default
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, required=True, help="Aggregated classification results CSV")
@@ -41,6 +54,7 @@ def main():
     parser.add_argument("--sample-size", type=int, default=800)
     parser.add_argument("--humor-threshold", type=float, default=0.70)
     parser.add_argument("--non-humor-threshold", type=float, default=0.30)
+    parser.add_argument("--strict-integrity", action="store_true")
     args = parser.parse_args()
 
     rows = read_csv(args.input)
@@ -49,6 +63,18 @@ def main():
         sys.exit(1)
 
     total_rows = len(rows)
+    integrity_errors = []
+
+    if total_rows != args.sample_size:
+        integrity_errors.append(f"output_rows != sample_size ({total_rows} != {args.sample_size})")
+
+    invalid_sample_groups = Counter(
+        (r.get("sample_group") or "missing_sample_group").strip()
+        for r in rows
+        if (r.get("sample_group") or "missing_sample_group").strip() not in ALLOWED_SAMPLE_GROUPS
+    )
+    if invalid_sample_groups:
+        integrity_errors.append(f"invalid sample_group values: {dict(invalid_sample_groups)}")
 
     stats = {
         "input_rows": args.sample_size,
@@ -56,6 +82,9 @@ def main():
         "classified_rows": sum(1 for r in rows if r.get("classification_status") == "classified"),
         "failed_rows": sum(1 for r in rows if r.get("classification_status") == "failed"),
     }
+
+    if stats["failed_rows"]:
+        integrity_errors.append(f"failed_rows > 0 ({stats['failed_rows']})")
 
     labels = Counter(r.get("humor_presence", "missing_column") for r in rows)
     stats.update({
@@ -77,15 +106,7 @@ def main():
         "manual_review_rate": round(reviews / total_rows, 4) if total_rows > 0 else 0,
     })
 
-    confidences = []
-    for r in rows:
-        val = r.get("confidence_score")
-        if val:
-            try:
-                confidences.append(float(val))
-            except (ValueError, TypeError):
-                pass
-
+    confidences = [safe_float(r.get("confidence_score")) for r in rows if r.get("confidence_score")]
     if confidences:
         stats.update({
             "mean_confidence": round(statistics.mean(confidences), 6),
@@ -94,42 +115,36 @@ def main():
     else:
         stats.update({"mean_confidence": 0.0, "median_confidence": 0.0})
 
-    # Rule Coverage
     rule_decisions = sum(1 for r in rows if r.get("decision_source") == "rule")
     stats["rule_coverage_rate"] = round(rule_decisions / total_rows, 4) if total_rows > 0 else 0.0
-    
-    # ML Decisive Rate
+
     ml_decisive = sum(1 for r in rows if r.get("decision_source") == "ml" and r.get("humor_presence") != "ambiguous")
     stats["ml_decisive_rate"] = round(ml_decisive / total_rows, 4) if total_rows > 0 else 0.0
 
-    # Distributions
     stats["decision_source_distribution"] = dict(Counter(r.get("decision_source", "missing_column") for r in rows))
     stats["rule_label_distribution"] = dict(Counter(r.get("rule_label", "missing_column") for r in rows))
-    
+
     ml_labels = [get_ml_label(r.get("ml_humor_probability"), args.humor_threshold, args.non_humor_threshold) for r in rows]
     stats["ml_label_distribution"] = dict(Counter(ml_labels))
-    
     stats["manual_review_reason_distribution"] = dict(Counter(r.get("manual_review_reason", "missing_column") for r in rows))
-    
-    # Sample group distribution
-    groups = set(r.get("sample_group", "unknown") for r in rows)
+
     group_stats = {}
-    for g in groups:
+    for g in sorted(set(r.get("sample_group", "unknown") for r in rows)):
         g_rows = [r for r in rows if r.get("sample_group") == g]
-        g_labels = Counter(r.get("humor_presence") for r in g_rows)
-        group_stats[g] = dict(g_labels)
+        group_stats[g] = dict(Counter(r.get("humor_presence") for r in g_rows))
     stats["sample_group_distribution"] = group_stats
 
-    # Company distribution (Top 20)
     companies = Counter(r.get("company_name", "unknown") for r in rows).most_common(20)
     comp_stats = {}
     for c, _ in companies:
         c_rows = [r for r in rows if r.get("company_name") == c]
-        c_labels = Counter(r.get("humor_presence") for r in c_rows)
-        comp_stats[c] = dict(c_labels)
+        comp_stats[c] = dict(Counter(r.get("humor_presence") for r in c_rows))
     stats["company_distribution_top20"] = comp_stats
 
-    # Diagnosis output
+    stats["invalid_sample_group_distribution"] = dict(invalid_sample_groups)
+    stats["integrity_errors"] = integrity_errors
+    stats["integrity_pass"] = not integrity_errors
+
     if args.output_diagnosis:
         args.output_diagnosis.parent.mkdir(parents=True, exist_ok=True)
         diagnosis_rows = [
@@ -145,8 +160,7 @@ def main():
             writer = csv.writer(f)
             writer.writerows(diagnosis_rows)
 
-    # Print summary JSON
-    print(json.dumps(stats, indent=2))
+    print(json.dumps(stats, indent=2, ensure_ascii=False))
 
     if args.output_audit:
         args.output_audit.parent.mkdir(parents=True, exist_ok=True)
@@ -155,25 +169,24 @@ def main():
             writer.writerow(["metric", "value"])
             for k, v in stats.items():
                 if isinstance(v, (dict, list)):
-                    writer.writerow([k, json.dumps(v)])
+                    writer.writerow([k, json.dumps(v, ensure_ascii=False)])
                 else:
                     writer.writerow([k, v])
 
     if args.output_review_sample:
-        # Define buckets
-        # high_confidence_humor, high_confidence_non_humor, ambiguous, low_confidence, rule_ml_conflict, short_or_empty_text
-        # sample_group_wendys, sample_group_moonpie, sample_group_fortune
         sample = []
         sampled_ids = set()
 
         def add_to_sample(rows_subset, bucket_name, limit):
             count = 0
             for r in rows_subset:
-                if count >= limit: break
-                if r.get("global_post_id") in sampled_ids: continue
+                if count >= limit:
+                    break
+                row_key = r.get("global_post_id") or f"{bucket_name}:{len(sample)}"
+                if row_key in sampled_ids:
+                    continue
                 r_copy = dict(r)
                 r_copy["sample_bucket"] = bucket_name
-                # Add extra fields
                 prob = r.get("ml_humor_probability")
                 r_copy["ml_label"] = get_ml_label(prob, args.humor_threshold, args.non_humor_threshold)
                 r_copy["ml_probability_humor"] = prob
@@ -183,50 +196,42 @@ def main():
                     r_copy["ml_probability_non_humor"] = ""
                 r_copy["matched_humor_cues"] = r.get("rule_evidence") if r.get("rule_label") == "humor" else ""
                 r_copy["matched_non_humor_cues"] = r.get("rule_evidence") if r.get("rule_label") == "non_humor" else ""
-                
                 sample.append(r_copy)
-                sampled_ids.add(r.get("global_post_id"))
+                sampled_ids.add(row_key)
                 count += 1
 
-        # 1. High confidence humor (Top 15)
-        h_rows = sorted([r for r in rows if r.get("humor_presence") == "humor"], key=lambda x: float(x.get("confidence_score", 0)), reverse=True)
+        h_rows = sorted([r for r in rows if r.get("humor_presence") == "humor"], key=lambda x: safe_float(x.get("confidence_score")), reverse=True)
         add_to_sample(h_rows, "high_confidence_humor", 15)
 
-        # 2. High confidence non_humor (Top 15)
-        nh_rows = sorted([r for r in rows if r.get("humor_presence") == "non_humor"], key=lambda x: float(x.get("confidence_score", 0)), reverse=True)
+        nh_rows = sorted([r for r in rows if r.get("humor_presence") == "non_humor"], key=lambda x: safe_float(x.get("confidence_score")), reverse=True)
         add_to_sample(nh_rows, "high_confidence_non_humor", 15)
 
-        # 3. Rule/ML conflict (All up to 20)
         conflict_rows = [r for r in rows if r.get("manual_review_reason") == "rule_ml_conflict"]
         add_to_sample(conflict_rows, "rule_ml_conflict", 20)
 
-        # 4. Short text ambiguous (Top 15)
         short_rows = [r for r in rows if r.get("manual_review_reason") == "rule_ambiguous"]
         add_to_sample(short_rows, "short_or_empty_text", 15)
 
-        # 5. Low confidence (Lowest scores, up to 20)
-        low_conf_rows = sorted(rows, key=lambda x: float(x.get("confidence_score", 0)))
+        low_conf_rows = sorted(rows, key=lambda x: safe_float(x.get("confidence_score")))
         add_to_sample(low_conf_rows, "low_confidence", 20)
 
-        # 6. Benchmark groups
         wendys_rows = [r for r in rows if r.get("sample_group") == "benchmark_aggressive_wendys"]
         add_to_sample(wendys_rows, "sample_group_wendys", 15)
-        
+
         moonpie_rows = [r for r in rows if r.get("sample_group") == "benchmark_self_defeating_moonpie"]
         add_to_sample(moonpie_rows, "sample_group_moonpie", 15)
 
         fortune_rows = [r for r in rows if r.get("sample_group") == "fortune_top100_ranked"]
         add_to_sample(fortune_rows, "sample_group_fortune", 15)
 
-        # 7. Remaining ambiguous
         amb_rows = [r for r in rows if r.get("humor_presence") == "ambiguous"]
         add_to_sample(amb_rows, "ambiguous", 30)
 
         if sample:
             args.output_review_sample.parent.mkdir(parents=True, exist_ok=True)
             fields = [
-                "sample_bucket", "global_post_id", "tweet_id", "sample_group", "company_name", 
-                "source_x_handle", "created_at", "text", "humor_presence", "confidence_score", "rule_label", 
+                "sample_bucket", "global_post_id", "tweet_id", "sample_group", "company_name",
+                "source_x_handle", "created_at", "text", "humor_presence", "confidence_score", "rule_label",
                 "ml_label", "ml_probability_humor", "ml_probability_non_humor", "decision_source",
                 "needs_manual_review", "manual_review_reason", "matched_humor_cues", "matched_non_humor_cues",
                 "model_name", "prompt_version"
@@ -235,6 +240,11 @@ def main():
                 writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
                 writer.writeheader()
                 writer.writerows(sample)
+
+    if args.strict_integrity and integrity_errors:
+        for error in integrity_errors:
+            print(f"INTEGRITY ERROR: {error}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
