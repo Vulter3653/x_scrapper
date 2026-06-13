@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Build a stable per-company sample input for the humor full-chain workflow."""
+"""Build a stable per-company sample input for the humor full-chain workflow.
+
+Company-count mismatches are recorded as warnings instead of failing by default,
+so diagnostic runs can continue and produce manifest artifacts.
+"""
 
 import argparse
 import csv
 import json
 import re
-from collections import Counter, defaultdict
+import sys
+from collections import Counter
 from pathlib import Path
 
 STANDARD_FIELDS = [
@@ -40,6 +45,7 @@ def main():
     parser.add_argument("--per-company-limit", type=int, required=True)
     parser.add_argument("--company-field", default="company_name")
     parser.add_argument("--expected-companies", type=int, default=0, help="0 disables the check")
+    parser.add_argument("--expected-companies-mode", choices=["warn", "strict", "off"], default="warn")
     args = parser.parse_args()
 
     if args.per_company_limit < 1:
@@ -54,7 +60,7 @@ def main():
     seen_ids = Counter()
     selected_by_company = Counter()
     available_by_company = Counter()
-    source_fields = []
+    warnings = []
 
     with args.input.open(encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
@@ -92,11 +98,12 @@ def main():
             selected_by_company[company] += 1
 
     company_count = len(available_by_company)
-    if args.expected_companies and company_count != args.expected_companies:
-        raise SystemExit(
-            f"Expected {args.expected_companies} companies, found {company_count}. "
-            "Check company_name normalization or input file coverage."
-        )
+    if args.expected_companies and args.expected_companies_mode != "off" and company_count != args.expected_companies:
+        msg = f"Expected {args.expected_companies} companies, found {company_count}. Continuing because mode={args.expected_companies_mode}."
+        if args.expected_companies_mode == "strict":
+            raise SystemExit(msg)
+        warnings.append(msg)
+        print(f"WARNING: {msg}", file=sys.stderr)
 
     output_fields = []
     for field in STANDARD_FIELDS + source_fields + ["source_row_index"]:
@@ -120,6 +127,7 @@ def main():
         "output": str(args.output),
         "per_company_limit": args.per_company_limit,
         "expected_companies": args.expected_companies,
+        "expected_companies_mode": args.expected_companies_mode,
         "actual_companies": company_count,
         "target_rows_if_full": company_count * args.per_company_limit,
         "output_rows": len(rows),
@@ -131,6 +139,7 @@ def main():
         "selected_company_distribution": dict(selected_by_company),
         "available_company_distribution_top20": dict(available_by_company.most_common(20)),
         "sample_group_distribution": dict(Counter(r.get("sample_group", "") for r in rows)),
+        "warnings": warnings,
     }
 
     args.manifest.parent.mkdir(parents=True, exist_ok=True)
