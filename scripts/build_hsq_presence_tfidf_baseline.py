@@ -6,7 +6,7 @@ This script implements option 2 in the humor classification pipeline:
 2. create stratified train/test splits;
 3. train a lightweight TF-IDF Logistic Regression classifier;
 4. evaluate against teacher pseudo-labels and export diagnostics;
-5. search for an operating threshold using coarse-to-fine and exact sweeps.
+5. search for an operating threshold using a nested coarse-to-fine procedure.
 
 Important: the evaluation target is the HSQ teacher pseudo-label, not a human-gold
 label. Human validation must be used before claiming final classification accuracy.
@@ -205,6 +205,7 @@ def label_from_threshold(probability, threshold):
 
 
 def evaluate_threshold(y_true, humor_probabilities, threshold, stage):
+    threshold = min(max(float(threshold), 0.0), 1.0)
     y_pred = [label_from_threshold(prob, threshold) for prob in humor_probabilities]
     labels_order = ["humor", "non_humor"]
     cm = confusion_matrix(y_true, y_pred, labels=labels_order)
@@ -242,7 +243,14 @@ def evaluate_threshold(y_true, humor_probabilities, threshold, stage):
     }
 
 
-def float_threshold(row):
+def threshold_range(start, stop, step):
+    scale = int(round(1 / step))
+    start_i = int(round(start * scale))
+    stop_i = int(round(stop * scale))
+    return [round(i / scale, 6) for i in range(start_i, stop_i + 1)]
+
+
+def as_threshold(row):
     return as_float(row.get("threshold"))
 
 
@@ -254,16 +262,17 @@ def metric_change_score(left, right):
     )
 
 
-def threshold_range(start, stop, step):
-    values = []
-    cur = start
-    # integer counter avoids accumulated floating point drift
-    n = 0
-    while cur <= stop + 1e-12:
-        values.append(round(cur, 6))
-        n += 1
-        cur = start + n * step
-    return values
+def largest_change_interval(rows):
+    if len(rows) < 2:
+        return {"left": 0.0, "right": 1.0, "change_score": 0.0}
+    best_left = rows[0]
+    best_right = rows[1]
+    best_score = -1.0
+    for left, right in zip(rows[:-1], rows[1:]):
+        score = metric_change_score(left, right)
+        if score > best_score:
+            best_left, best_right, best_score = left, right, score
+    return {"left": as_threshold(best_left), "right": as_threshold(best_right), "change_score": best_score}
 
 
 def dedupe_threshold_rows(rows):
@@ -274,39 +283,29 @@ def dedupe_threshold_rows(rows):
     return list(out.values())
 
 
-def build_adaptive_threshold_sweep(y_true, humor_probabilities, precision_floor, recall_floor, relaxed_recall_floor):
-    coarse_thresholds = threshold_range(0.10, 0.90, 0.10)
-    coarse_rows = [evaluate_threshold(y_true, humor_probabilities, t, "coarse_0.10") for t in coarse_thresholds]
+def build_nested_threshold_sweep(y_true, humor_probabilities, precision_floor, recall_floor, relaxed_recall_floor):
+    # 1) Full coarse check from 0.10 through 1.00. This is a diagnostic grid,
+    # not an assumption that 0.50 is the balanced point.
+    coarse_thresholds = threshold_range(0.10, 1.00, 0.10)
+    coarse_rows = [evaluate_threshold(y_true, humor_probabilities, t, "coarse_0.10_full_0.10_to_1.00") for t in coarse_thresholds]
+    coarse_interval = largest_change_interval(coarse_rows)
 
-    largest_change_interval = {"left": 0.40, "right": 0.60, "change_score": 0.0}
-    if len(coarse_rows) >= 2:
-        best_pair = None
-        best_score = -1.0
-        for left, right in zip(coarse_rows[:-1], coarse_rows[1:]):
-            score = metric_change_score(left, right)
-            if score > best_score:
-                best_pair = (left, right)
-                best_score = score
-        if best_pair:
-            largest_change_interval = {
-                "left": float_threshold(best_pair[0]),
-                "right": float_threshold(best_pair[1]),
-                "change_score": best_score,
-            }
+    # 2) Refine the largest-change 0.10 interval at 0.01 resolution.
+    fine01_thresholds = threshold_range(coarse_interval["left"], coarse_interval["right"], 0.01)
+    fine01_rows = [evaluate_threshold(y_true, humor_probabilities, t, "fine_0.01_largest_0.10_interval") for t in fine01_thresholds]
+    fine01_interval = largest_change_interval(fine01_rows)
 
-    fine_start = max(0.0, largest_change_interval["left"])
-    fine_stop = min(1.0, largest_change_interval["right"])
-    fine01_thresholds = threshold_range(fine_start, fine_stop, 0.01)
-    fine01_rows = [evaluate_threshold(y_true, humor_probabilities, t, "fine_0.01_largest_change") for t in fine01_thresholds]
+    # 3) Refine the largest-change 0.01 interval at 0.001 resolution.
+    fine001_thresholds = threshold_range(fine01_interval["left"], fine01_interval["right"], 0.001)
+    fine001_rows = [evaluate_threshold(y_true, humor_probabilities, t, "fine_0.001_largest_0.01_interval") for t in fine001_thresholds]
+    fine001_interval = largest_change_interval(fine001_rows)
 
-    # Use the best constrained candidate in the 0.01 window when possible; otherwise use macro-F1.
-    fine_candidates = choose_recommendations(fine01_rows, precision_floor, recall_floor, relaxed_recall_floor, include_fallback_only=True)
-    fine_best_threshold = as_float(fine_candidates[0]["threshold"]) if fine_candidates else 0.50
-    fine001_start = max(0.0, fine_best_threshold - 0.02)
-    fine001_stop = min(1.0, fine_best_threshold + 0.02)
-    fine001_thresholds = threshold_range(fine001_start, fine001_stop, 0.001)
-    fine001_rows = [evaluate_threshold(y_true, humor_probabilities, t, "fine_0.001_best_window") for t in fine001_thresholds]
+    # 4) Refine the largest-change 0.001 interval at 0.0001 resolution.
+    fine0001_thresholds = threshold_range(fine001_interval["left"], fine001_interval["right"], 0.0001)
+    fine0001_rows = [evaluate_threshold(y_true, humor_probabilities, t, "fine_0.0001_largest_0.001_interval") for t in fine0001_thresholds]
+    fine0001_interval = largest_change_interval(fine0001_rows)
 
+    # 5) Exact diagnostic: evaluate every threshold where predictions can actually change.
     unique_probs = sorted(set(round(p, 12) for p in humor_probabilities))
     exact_thresholds = {0.0, 1.0}
     exact_thresholds.update(unique_probs)
@@ -314,17 +313,32 @@ def build_adaptive_threshold_sweep(y_true, humor_probabilities, precision_floor,
         exact_thresholds.add(round((left + right) / 2.0, 12))
     exact_rows = [evaluate_threshold(y_true, humor_probabilities, t, "exact_unique_probability") for t in sorted(exact_thresholds)]
 
-    all_rows = dedupe_threshold_rows(coarse_rows + fine01_rows + fine001_rows + exact_rows)
+    all_rows = dedupe_threshold_rows(coarse_rows + fine01_rows + fine001_rows + fine0001_rows + exact_rows)
+    recommendations = choose_recommendations(all_rows, precision_floor, recall_floor, relaxed_recall_floor)
+    selected = choose_operating_recommendation(recommendations)
+
     metadata = {
-        "largest_change_interval": largest_change_interval,
-        "fine001_center_threshold": fine_best_threshold,
+        "default_threshold_note": "0.50 is only the default probability cutoff for binary classification; it is not assumed to be the balanced operating point.",
+        "nested_search_design": [
+            "coarse 0.10 grid over 0.10-1.00",
+            "0.01 grid inside the largest-change 0.10 interval",
+            "0.001 grid inside the largest-change 0.01 interval",
+            "0.0001 grid inside the largest-change 0.001 interval",
+            "exact sweep over unique predicted probabilities and midpoints",
+        ],
+        "coarse_largest_change_interval": coarse_interval,
+        "fine01_largest_change_interval": fine01_interval,
+        "fine001_largest_change_interval": fine001_interval,
+        "fine0001_largest_change_interval": fine0001_interval,
         "coarse_threshold_count": len(coarse_rows),
         "fine01_threshold_count": len(fine01_rows),
         "fine001_threshold_count": len(fine001_rows),
+        "fine0001_threshold_count": len(fine0001_rows),
         "exact_threshold_count": len(exact_rows),
         "all_threshold_count": len(all_rows),
+        "selected_threshold_source": selected.get("stage", "") if selected else "",
     }
-    return all_rows, metadata
+    return all_rows, recommendations, selected, metadata
 
 
 def row_sort_tuple(row):
@@ -344,9 +358,7 @@ def best_row(rows, predicate=None, key_func=None):
     return max(candidates, key=key_func or row_sort_tuple)
 
 
-def choose_recommendations(rows, precision_floor, recall_floor, relaxed_recall_floor, include_fallback_only=False):
-    recommendations = []
-
+def choose_recommendations(rows, precision_floor, recall_floor, relaxed_recall_floor):
     strict = best_row(
         rows,
         predicate=lambda r: as_float(r["humor_precision"]) >= precision_floor and as_float(r["humor_recall"]) >= recall_floor,
@@ -392,9 +404,6 @@ def choose_recommendations(rows, precision_floor, recall_floor, relaxed_recall_f
         -abs(as_float(r["threshold"]) - 0.50),
     ))
 
-    if include_fallback_only:
-        return [strict or relaxed or macro_best] if (strict or relaxed or macro_best) else []
-
     specs = [
         ("best_strict_balance", f"humor_precision>={precision_floor} and humor_recall>={recall_floor}; maximize macro_f1", strict),
         ("best_relaxed_balance", f"humor_precision>={precision_floor} and humor_recall>={relaxed_recall_floor}; maximize macro_f1", relaxed),
@@ -403,21 +412,17 @@ def choose_recommendations(rows, precision_floor, recall_floor, relaxed_recall_f
         ("best_macro_f1", "maximize macro_f1", macro_best),
         ("best_humor_f1", "maximize humor_f1", humor_f1_best),
     ]
-    seen = set()
+    out = []
     for name, rule, row in specs:
         if not row:
             continue
-        key = (name, row["threshold"])
-        if key in seen:
-            continue
-        seen.add(key)
         rec = dict(row)
         rec["recommendation_name"] = name
         rec["selection_rule"] = rule
         rec["false_positive_count"] = row["true_non_humor_pred_humor"]
         rec["false_negative_count"] = row["true_humor_pred_non_humor"]
-        recommendations.append(rec)
-    return recommendations
+        out.append(rec)
+    return out
 
 
 def choose_operating_recommendation(recommendations):
@@ -489,7 +494,6 @@ def main():
     rng.shuffle(combined_rows)
 
     labels = [r["presence_label"] for r in combined_rows]
-
     train_rows, test_rows = train_test_split(
         combined_rows,
         test_size=args.test_size,
@@ -531,23 +535,16 @@ def main():
     default_eval = evaluate_threshold(y_test, humor_probabilities, default_threshold, "default_0.50")
     default_predictions = make_prediction_rows(test_rows, probabilities, humor_idx, default_threshold)
 
-    threshold_rows, threshold_metadata = build_adaptive_threshold_sweep(
+    threshold_rows, recommendations, selected_rec, threshold_metadata = build_nested_threshold_sweep(
         y_test,
         humor_probabilities,
         args.precision_floor,
         args.recall_floor,
         args.relaxed_recall_floor,
     )
-    # Always include explicit default threshold for easy comparison.
     threshold_rows.append(default_eval)
     threshold_rows = dedupe_threshold_rows(threshold_rows)
-
-    recommendations = choose_recommendations(
-        threshold_rows,
-        args.precision_floor,
-        args.recall_floor,
-        args.relaxed_recall_floor,
-    )
+    recommendations = choose_recommendations(threshold_rows, args.precision_floor, args.recall_floor, args.relaxed_recall_floor)
     selected_rec = choose_operating_recommendation(recommendations)
     selected_threshold = as_float(selected_rec["threshold"]) if selected_rec else default_threshold
     calibrated_predictions = make_prediction_rows(test_rows, probabilities, humor_idx, selected_threshold)
@@ -624,7 +621,7 @@ def main():
     write_csv(threshold_recommendations_path, recommendation_rows, RECOMMENDATION_FIELDS)
 
     summary = {
-        "task": "HSQ presence TF-IDF Logistic Regression baseline with adaptive threshold sweep",
+        "task": "HSQ presence TF-IDF Logistic Regression baseline with nested threshold sweep",
         "important_note": "Metrics are evaluated against HSQ teacher pseudo-labels, not human-gold labels.",
         "input_humor_seed": str(args.humor_seed),
         "input_hard_negative_seed": str(args.hard_negative_seed),
