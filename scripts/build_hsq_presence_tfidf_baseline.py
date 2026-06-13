@@ -5,7 +5,8 @@ This script implements option 2 in the humor classification pipeline:
 1. combine high-intensity humor seeds and hard-negative non-humor seeds;
 2. create stratified train/test splits;
 3. train a lightweight TF-IDF Logistic Regression classifier;
-4. evaluate against teacher pseudo-labels and export diagnostics.
+4. evaluate against teacher pseudo-labels and export diagnostics;
+5. search for an operating threshold using coarse-to-fine and exact sweeps.
 
 Important: the evaluation target is the HSQ teacher pseudo-label, not a human-gold
 label. Human validation must be used before claiming final classification accuracy.
@@ -53,6 +54,46 @@ PREDICTION_FIELDS = COMBINED_FIELDS + [
     "predicted_presence_label",
     "predicted_humor_probability",
     "prediction_correct",
+]
+
+THRESHOLD_SWEEP_FIELDS = [
+    "stage",
+    "threshold",
+    "accuracy",
+    "macro_precision",
+    "macro_recall",
+    "macro_f1",
+    "weighted_precision",
+    "weighted_recall",
+    "weighted_f1",
+    "humor_precision",
+    "humor_recall",
+    "humor_f1",
+    "humor_support",
+    "non_humor_precision",
+    "non_humor_recall",
+    "non_humor_f1",
+    "non_humor_support",
+    "true_humor_pred_humor",
+    "true_humor_pred_non_humor",
+    "true_non_humor_pred_humor",
+    "true_non_humor_pred_non_humor",
+]
+
+RECOMMENDATION_FIELDS = [
+    "recommendation_name",
+    "selection_rule",
+    "threshold",
+    "accuracy",
+    "macro_f1",
+    "humor_precision",
+    "humor_recall",
+    "humor_f1",
+    "non_humor_precision",
+    "non_humor_recall",
+    "non_humor_f1",
+    "false_positive_count",
+    "false_negative_count",
 ]
 
 
@@ -138,7 +179,6 @@ def top_features_from_model(model, topn):
     classes = list(classifier.classes_)
     coefs = classifier.coef_[0]
 
-    # In binary LogisticRegression, coef_ corresponds to classifier.classes_[1].
     positive_label = classes[1]
     negative_label = classes[0]
     top_positive_idx = coefs.argsort()[::-1][:topn]
@@ -160,6 +200,248 @@ def top_features_from_model(model, topn):
     return rows
 
 
+def label_from_threshold(probability, threshold):
+    return "humor" if probability >= threshold else "non_humor"
+
+
+def evaluate_threshold(y_true, humor_probabilities, threshold, stage):
+    y_pred = [label_from_threshold(prob, threshold) for prob in humor_probabilities]
+    labels_order = ["humor", "non_humor"]
+    cm = confusion_matrix(y_true, y_pred, labels=labels_order)
+    report = classification_report(y_true, y_pred, labels=labels_order, output_dict=True, zero_division=0)
+    precision_macro, recall_macro, f1_macro, _ = precision_recall_fscore_support(
+        y_true, y_pred, average="macro", zero_division=0
+    )
+    precision_weighted, recall_weighted, f1_weighted, _ = precision_recall_fscore_support(
+        y_true, y_pred, average="weighted", zero_division=0
+    )
+    h = report.get("humor", {})
+    nh = report.get("non_humor", {})
+    return {
+        "stage": stage,
+        "threshold": f"{threshold:.6f}",
+        "accuracy": accuracy_score(y_true, y_pred),
+        "macro_precision": precision_macro,
+        "macro_recall": recall_macro,
+        "macro_f1": f1_macro,
+        "weighted_precision": precision_weighted,
+        "weighted_recall": recall_weighted,
+        "weighted_f1": f1_weighted,
+        "humor_precision": h.get("precision", 0.0),
+        "humor_recall": h.get("recall", 0.0),
+        "humor_f1": h.get("f1-score", 0.0),
+        "humor_support": h.get("support", 0.0),
+        "non_humor_precision": nh.get("precision", 0.0),
+        "non_humor_recall": nh.get("recall", 0.0),
+        "non_humor_f1": nh.get("f1-score", 0.0),
+        "non_humor_support": nh.get("support", 0.0),
+        "true_humor_pred_humor": int(cm[0][0]),
+        "true_humor_pred_non_humor": int(cm[0][1]),
+        "true_non_humor_pred_humor": int(cm[1][0]),
+        "true_non_humor_pred_non_humor": int(cm[1][1]),
+    }
+
+
+def float_threshold(row):
+    return as_float(row.get("threshold"))
+
+
+def metric_change_score(left, right):
+    return (
+        abs(as_float(left["humor_precision"]) - as_float(right["humor_precision"]))
+        + abs(as_float(left["humor_recall"]) - as_float(right["humor_recall"]))
+        + abs(as_float(left["macro_f1"]) - as_float(right["macro_f1"]))
+    )
+
+
+def threshold_range(start, stop, step):
+    values = []
+    cur = start
+    # integer counter avoids accumulated floating point drift
+    n = 0
+    while cur <= stop + 1e-12:
+        values.append(round(cur, 6))
+        n += 1
+        cur = start + n * step
+    return values
+
+
+def dedupe_threshold_rows(rows):
+    out = {}
+    for row in rows:
+        key = (row["stage"], row["threshold"])
+        out[key] = row
+    return list(out.values())
+
+
+def build_adaptive_threshold_sweep(y_true, humor_probabilities, precision_floor, recall_floor, relaxed_recall_floor):
+    coarse_thresholds = threshold_range(0.10, 0.90, 0.10)
+    coarse_rows = [evaluate_threshold(y_true, humor_probabilities, t, "coarse_0.10") for t in coarse_thresholds]
+
+    largest_change_interval = {"left": 0.40, "right": 0.60, "change_score": 0.0}
+    if len(coarse_rows) >= 2:
+        best_pair = None
+        best_score = -1.0
+        for left, right in zip(coarse_rows[:-1], coarse_rows[1:]):
+            score = metric_change_score(left, right)
+            if score > best_score:
+                best_pair = (left, right)
+                best_score = score
+        if best_pair:
+            largest_change_interval = {
+                "left": float_threshold(best_pair[0]),
+                "right": float_threshold(best_pair[1]),
+                "change_score": best_score,
+            }
+
+    fine_start = max(0.0, largest_change_interval["left"])
+    fine_stop = min(1.0, largest_change_interval["right"])
+    fine01_thresholds = threshold_range(fine_start, fine_stop, 0.01)
+    fine01_rows = [evaluate_threshold(y_true, humor_probabilities, t, "fine_0.01_largest_change") for t in fine01_thresholds]
+
+    # Use the best constrained candidate in the 0.01 window when possible; otherwise use macro-F1.
+    fine_candidates = choose_recommendations(fine01_rows, precision_floor, recall_floor, relaxed_recall_floor, include_fallback_only=True)
+    fine_best_threshold = as_float(fine_candidates[0]["threshold"]) if fine_candidates else 0.50
+    fine001_start = max(0.0, fine_best_threshold - 0.02)
+    fine001_stop = min(1.0, fine_best_threshold + 0.02)
+    fine001_thresholds = threshold_range(fine001_start, fine001_stop, 0.001)
+    fine001_rows = [evaluate_threshold(y_true, humor_probabilities, t, "fine_0.001_best_window") for t in fine001_thresholds]
+
+    unique_probs = sorted(set(round(p, 12) for p in humor_probabilities))
+    exact_thresholds = {0.0, 1.0}
+    exact_thresholds.update(unique_probs)
+    for left, right in zip(unique_probs[:-1], unique_probs[1:]):
+        exact_thresholds.add(round((left + right) / 2.0, 12))
+    exact_rows = [evaluate_threshold(y_true, humor_probabilities, t, "exact_unique_probability") for t in sorted(exact_thresholds)]
+
+    all_rows = dedupe_threshold_rows(coarse_rows + fine01_rows + fine001_rows + exact_rows)
+    metadata = {
+        "largest_change_interval": largest_change_interval,
+        "fine001_center_threshold": fine_best_threshold,
+        "coarse_threshold_count": len(coarse_rows),
+        "fine01_threshold_count": len(fine01_rows),
+        "fine001_threshold_count": len(fine001_rows),
+        "exact_threshold_count": len(exact_rows),
+        "all_threshold_count": len(all_rows),
+    }
+    return all_rows, metadata
+
+
+def row_sort_tuple(row):
+    return (
+        as_float(row.get("macro_f1")),
+        as_float(row.get("humor_f1")),
+        as_float(row.get("humor_precision")),
+        as_float(row.get("humor_recall")),
+        -abs(as_float(row.get("threshold")) - 0.50),
+    )
+
+
+def best_row(rows, predicate=None, key_func=None):
+    candidates = [r for r in rows if predicate(r)] if predicate else list(rows)
+    if not candidates:
+        return None
+    return max(candidates, key=key_func or row_sort_tuple)
+
+
+def choose_recommendations(rows, precision_floor, recall_floor, relaxed_recall_floor, include_fallback_only=False):
+    recommendations = []
+
+    strict = best_row(
+        rows,
+        predicate=lambda r: as_float(r["humor_precision"]) >= precision_floor and as_float(r["humor_recall"]) >= recall_floor,
+        key_func=row_sort_tuple,
+    )
+    relaxed = best_row(
+        rows,
+        predicate=lambda r: as_float(r["humor_precision"]) >= precision_floor and as_float(r["humor_recall"]) >= relaxed_recall_floor,
+        key_func=row_sort_tuple,
+    )
+    recall_constrained = best_row(
+        rows,
+        predicate=lambda r: as_float(r["humor_recall"]) >= recall_floor,
+        key_func=lambda r: (
+            as_float(r["humor_precision"]),
+            as_float(r["macro_f1"]),
+            as_float(r["humor_f1"]),
+            -abs(as_float(r["threshold"]) - 0.50),
+        ),
+    )
+    precision_constrained = best_row(
+        rows,
+        predicate=lambda r: as_float(r["humor_precision"]) >= precision_floor,
+        key_func=lambda r: (
+            as_float(r["humor_recall"]),
+            as_float(r["macro_f1"]),
+            as_float(r["humor_f1"]),
+            -abs(as_float(r["threshold"]) - 0.50),
+        ),
+    )
+    macro_best = best_row(rows, key_func=lambda r: (
+        as_float(r["macro_f1"]),
+        as_float(r["humor_f1"]),
+        as_float(r["humor_precision"]),
+        as_float(r["humor_recall"]),
+        -abs(as_float(r["threshold"]) - 0.50),
+    ))
+    humor_f1_best = best_row(rows, key_func=lambda r: (
+        as_float(r["humor_f1"]),
+        as_float(r["macro_f1"]),
+        as_float(r["humor_precision"]),
+        as_float(r["humor_recall"]),
+        -abs(as_float(r["threshold"]) - 0.50),
+    ))
+
+    if include_fallback_only:
+        return [strict or relaxed or macro_best] if (strict or relaxed or macro_best) else []
+
+    specs = [
+        ("best_strict_balance", f"humor_precision>={precision_floor} and humor_recall>={recall_floor}; maximize macro_f1", strict),
+        ("best_relaxed_balance", f"humor_precision>={precision_floor} and humor_recall>={relaxed_recall_floor}; maximize macro_f1", relaxed),
+        ("best_precision_given_recall_floor", f"humor_recall>={recall_floor}; maximize humor_precision", recall_constrained),
+        ("best_recall_given_precision_floor", f"humor_precision>={precision_floor}; maximize humor_recall", precision_constrained),
+        ("best_macro_f1", "maximize macro_f1", macro_best),
+        ("best_humor_f1", "maximize humor_f1", humor_f1_best),
+    ]
+    seen = set()
+    for name, rule, row in specs:
+        if not row:
+            continue
+        key = (name, row["threshold"])
+        if key in seen:
+            continue
+        seen.add(key)
+        rec = dict(row)
+        rec["recommendation_name"] = name
+        rec["selection_rule"] = rule
+        rec["false_positive_count"] = row["true_non_humor_pred_humor"]
+        rec["false_negative_count"] = row["true_humor_pred_non_humor"]
+        recommendations.append(rec)
+    return recommendations
+
+
+def choose_operating_recommendation(recommendations):
+    priority = ["best_strict_balance", "best_relaxed_balance", "best_macro_f1", "best_humor_f1"]
+    by_name = {r["recommendation_name"]: r for r in recommendations}
+    for name in priority:
+        if name in by_name:
+            return by_name[name]
+    return recommendations[0] if recommendations else None
+
+
+def make_prediction_rows(test_rows, probabilities, humor_idx, threshold):
+    prediction_rows = []
+    for row, prob in zip(test_rows, probabilities):
+        humor_probability = float(prob[humor_idx]) if humor_idx is not None else 0.0
+        pred = label_from_threshold(humor_probability, threshold)
+        out = dict(row)
+        out["predicted_presence_label"] = pred
+        out["predicted_humor_probability"] = f"{humor_probability:.8f}"
+        out["prediction_correct"] = str(pred == row["presence_label"]).lower()
+        prediction_rows.append(out)
+    return prediction_rows
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--humor-seed", type=Path, required=True)
@@ -173,12 +455,17 @@ def main():
     parser.add_argument("--max-features", type=int, default=20000)
     parser.add_argument("--ngram-max", type=int, default=2)
     parser.add_argument("--top-features", type=int, default=40)
+    parser.add_argument("--precision-floor", type=float, default=0.80)
+    parser.add_argument("--recall-floor", type=float, default=0.90)
+    parser.add_argument("--relaxed-recall-floor", type=float, default=0.85)
     args = parser.parse_args()
 
     if not (0.05 <= args.test_size <= 0.50):
         raise ValueError("--test-size must be between 0.05 and 0.50")
     if args.max_negative_ratio < 1.0:
         raise ValueError("--max-negative-ratio must be at least 1.0")
+    if not (0.0 <= args.precision_floor <= 1.0 and 0.0 <= args.recall_floor <= 1.0 and 0.0 <= args.relaxed_recall_floor <= 1.0):
+        raise ValueError("precision/recall floors must be between 0 and 1")
 
     rng = random.Random(args.random_state)
     humor_raw = read_csv(args.humor_seed)
@@ -202,7 +489,6 @@ def main():
     rng.shuffle(combined_rows)
 
     labels = [r["presence_label"] for r in combined_rows]
-    texts = [r["text"] for r in combined_rows]
 
     train_rows, test_rows = train_test_split(
         combined_rows,
@@ -234,31 +520,50 @@ def main():
     ])
     model.fit(x_train, y_train)
 
-    predictions = model.predict(x_test)
     probabilities = model.predict_proba(x_test)
     class_index = {label: idx for idx, label in enumerate(model.classes_)}
     humor_idx = class_index.get("humor")
+    if humor_idx is None:
+        raise SystemExit("Trained classifier does not expose a humor class probability.")
+    humor_probabilities = [float(prob[humor_idx]) for prob in probabilities]
 
-    precision_macro, recall_macro, f1_macro, _ = precision_recall_fscore_support(
-        y_test, predictions, average="macro", zero_division=0
+    default_threshold = 0.50
+    default_eval = evaluate_threshold(y_test, humor_probabilities, default_threshold, "default_0.50")
+    default_predictions = make_prediction_rows(test_rows, probabilities, humor_idx, default_threshold)
+
+    threshold_rows, threshold_metadata = build_adaptive_threshold_sweep(
+        y_test,
+        humor_probabilities,
+        args.precision_floor,
+        args.recall_floor,
+        args.relaxed_recall_floor,
     )
-    precision_weighted, recall_weighted, f1_weighted, _ = precision_recall_fscore_support(
-        y_test, predictions, average="weighted", zero_division=0
+    # Always include explicit default threshold for easy comparison.
+    threshold_rows.append(default_eval)
+    threshold_rows = dedupe_threshold_rows(threshold_rows)
+
+    recommendations = choose_recommendations(
+        threshold_rows,
+        args.precision_floor,
+        args.recall_floor,
+        args.relaxed_recall_floor,
     )
+    selected_rec = choose_operating_recommendation(recommendations)
+    selected_threshold = as_float(selected_rec["threshold"]) if selected_rec else default_threshold
+    calibrated_predictions = make_prediction_rows(test_rows, probabilities, humor_idx, selected_threshold)
+
     labels_order = ["humor", "non_humor"]
-    cm = confusion_matrix(y_test, predictions, labels=labels_order)
-    report = classification_report(y_test, predictions, labels=labels_order, output_dict=True, zero_division=0)
-
-    prediction_rows = []
-    for row, pred, prob in zip(test_rows, predictions, probabilities):
-        out = dict(row)
-        out["predicted_presence_label"] = pred
-        out["predicted_humor_probability"] = f"{prob[humor_idx]:.8f}" if humor_idx is not None else ""
-        out["prediction_correct"] = str(pred == row["presence_label"]).lower()
-        prediction_rows.append(out)
+    default_cm = confusion_matrix(y_test, [r["predicted_presence_label"] for r in default_predictions], labels=labels_order)
+    default_report = classification_report(
+        y_test,
+        [r["predicted_presence_label"] for r in default_predictions],
+        labels=labels_order,
+        output_dict=True,
+        zero_division=0,
+    )
 
     report_rows = []
-    for label, metrics in report.items():
+    for label, metrics in default_report.items():
         if isinstance(metrics, dict):
             report_rows.append({
                 "label": label,
@@ -271,7 +576,25 @@ def main():
     cm_rows = []
     for i, actual in enumerate(labels_order):
         for j, predicted in enumerate(labels_order):
-            cm_rows.append({"actual_label": actual, "predicted_label": predicted, "count": int(cm[i][j])})
+            cm_rows.append({"actual_label": actual, "predicted_label": predicted, "count": int(default_cm[i][j])})
+
+    recommendation_rows = []
+    for rec in recommendations:
+        recommendation_rows.append({
+            "recommendation_name": rec.get("recommendation_name", ""),
+            "selection_rule": rec.get("selection_rule", ""),
+            "threshold": rec.get("threshold", ""),
+            "accuracy": rec.get("accuracy", ""),
+            "macro_f1": rec.get("macro_f1", ""),
+            "humor_precision": rec.get("humor_precision", ""),
+            "humor_recall": rec.get("humor_recall", ""),
+            "humor_f1": rec.get("humor_f1", ""),
+            "non_humor_precision": rec.get("non_humor_precision", ""),
+            "non_humor_recall": rec.get("non_humor_recall", ""),
+            "non_humor_f1": rec.get("non_humor_f1", ""),
+            "false_positive_count": rec.get("false_positive_count", ""),
+            "false_negative_count": rec.get("false_negative_count", ""),
+        })
 
     top_feature_rows = top_features_from_model(model, args.top_features)
 
@@ -281,21 +604,27 @@ def main():
     train_path = output_dir / "hsq_train_presence_tfidf_train.csv"
     test_path = output_dir / "hsq_train_presence_tfidf_test.csv"
     predictions_path = output_dir / "hsq_presence_tfidf_predictions.csv"
+    calibrated_predictions_path = output_dir / "hsq_presence_tfidf_calibrated_predictions.csv"
     report_path = output_dir / "hsq_presence_tfidf_classification_report.csv"
     cm_path = output_dir / "hsq_presence_tfidf_confusion_matrix.csv"
     top_features_path = output_dir / "hsq_presence_tfidf_top_features.csv"
+    threshold_sweep_path = output_dir / "hsq_presence_tfidf_threshold_sweep.csv"
+    threshold_recommendations_path = output_dir / "hsq_presence_tfidf_threshold_recommendations.csv"
     summary_path = output_dir / "hsq_presence_tfidf_summary.json"
 
     write_csv(combined_path, combined_rows, COMBINED_FIELDS)
     write_csv(train_path, train_rows, COMBINED_FIELDS)
     write_csv(test_path, test_rows, COMBINED_FIELDS)
-    write_csv(predictions_path, prediction_rows, PREDICTION_FIELDS)
+    write_csv(predictions_path, default_predictions, PREDICTION_FIELDS)
+    write_csv(calibrated_predictions_path, calibrated_predictions, PREDICTION_FIELDS)
     write_csv(report_path, report_rows, ["label", "precision", "recall", "f1_score", "support"])
     write_csv(cm_path, cm_rows, ["actual_label", "predicted_label", "count"])
     write_csv(top_features_path, top_feature_rows, ["direction", "feature", "coefficient"])
+    write_csv(threshold_sweep_path, threshold_rows, THRESHOLD_SWEEP_FIELDS)
+    write_csv(threshold_recommendations_path, recommendation_rows, RECOMMENDATION_FIELDS)
 
     summary = {
-        "task": "HSQ presence TF-IDF Logistic Regression baseline",
+        "task": "HSQ presence TF-IDF Logistic Regression baseline with adaptive threshold sweep",
         "important_note": "Metrics are evaluated against HSQ teacher pseudo-labels, not human-gold labels.",
         "input_humor_seed": str(args.humor_seed),
         "input_hard_negative_seed": str(args.hard_negative_seed),
@@ -317,26 +646,29 @@ def main():
         "max_negative_ratio": args.max_negative_ratio,
         "max_features": args.max_features,
         "ngram_range": [1, args.ngram_max],
-        "accuracy": accuracy_score(y_test, predictions),
-        "macro_precision": precision_macro,
-        "macro_recall": recall_macro,
-        "macro_f1": f1_macro,
-        "weighted_precision": precision_weighted,
-        "weighted_recall": recall_weighted,
-        "weighted_f1": f1_weighted,
-        "confusion_matrix_labels": labels_order,
-        "confusion_matrix": cm.tolist(),
+        "default_threshold": default_threshold,
+        "default_threshold_metrics": default_eval,
+        "precision_floor": args.precision_floor,
+        "recall_floor": args.recall_floor,
+        "relaxed_recall_floor": args.relaxed_recall_floor,
+        "threshold_search_metadata": threshold_metadata,
+        "selected_operating_threshold": selected_threshold,
+        "selected_operating_recommendation": selected_rec,
+        "threshold_recommendations": recommendations,
         "output_files": {
             "combined": str(combined_path),
             "train": str(train_path),
             "test": str(test_path),
-            "predictions": str(predictions_path),
-            "classification_report": str(report_path),
-            "confusion_matrix": str(cm_path),
+            "default_predictions": str(predictions_path),
+            "calibrated_predictions": str(calibrated_predictions_path),
+            "classification_report_default_0_50": str(report_path),
+            "confusion_matrix_default_0_50": str(cm_path),
             "top_features": str(top_features_path),
+            "threshold_sweep": str(threshold_sweep_path),
+            "threshold_recommendations": str(threshold_recommendations_path),
             "summary": str(summary_path),
         },
-        "recommended_next_step": "Inspect false positives/false negatives and top features. Then compare with human-coded validation sample before trying RoBERTa/BERTweet.",
+        "recommended_next_step": "Use selected_operating_threshold as a TF-IDF review/veto calibration candidate, then inspect calibrated false positives/false negatives against the human validation sample before trying RoBERTa/BERTweet.",
     }
     summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2, ensure_ascii=False))
