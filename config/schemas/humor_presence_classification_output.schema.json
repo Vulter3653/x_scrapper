@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Humor Presence Classification Output",
+  "type": "object",
+  "properties": {
+    "global_post_id": { "type": "string" },
+    "tweet_id": { "type": "string" },
+    "sample_group": { "type": "string" },
+    "company_name": { "type": "string" },
+    "text": { "type": "string" },
+    "humor_presence": {
+      "type": "string",
+      "enum": ["humor", "non_humor", "ambiguous"]
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "evidence_phrase": { "type": "string" },
+    "classification_rationale": { "type": "string" },
+    "needs_manual_review": { "type": "boolean" },
+    "manual_review_reason": { "type": "string" },
+    "model_name": { "type": "string" },
+    "prompt_version": { "type": "string" },
+    "classification_status": {
+      "type": "string",
+      "enum": ["classified", "failed"]
+    },
+    "classified_at": { "type": "string", "format": "date-time" },
+    "error_type": { "type": "string" },
+    "error_message": { "type": "string" }
+  },
+  "required": [
+    "global_post_id",
+    "humor_presence",
+    "confidence_score",
+    "classification_status"
+  ]
+}
