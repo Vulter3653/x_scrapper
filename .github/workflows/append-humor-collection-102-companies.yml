@@ -11,55 +11,366 @@ on:
         description: 'Maximum scrolls per account'
         required: true
         default: '2500'
+      shard_count:
+        description: 'Number of shards to split 102 targets into. Supported: 1-12'
+        required: true
+        default: '12'
+      max_parallel:
+        description: 'Maximum shard jobs to run in parallel. Recommended: 3'
+        required: true
+        default: '3'
+      commit_results:
+        description: 'Commit and push merged append outputs'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
 
 permissions:
   contents: write
 
+concurrency:
+  group: append-humor-collection-102-companies
+  cancel-in-progress: false
+
 jobs:
-  append-collection:
+  validate-targets:
     runs-on: ubuntu-latest
-    timeout-minutes: 600
+    timeout-minutes: 10
+    outputs:
+      shard_count: ${{ steps.bounds.outputs.shard_count }}
+      max_parallel: ${{ steps.bounds.outputs.max_parallel }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
+
+      - name: Validate shard controls
+        id: bounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          shard_count='${{ inputs.shard_count }}'
+          max_parallel='${{ inputs.max_parallel }}'
+          if [ "$shard_count" -lt 1 ] || [ "$shard_count" -gt 12 ]; then
+            echo "::error::shard_count must be between 1 and 12"
+            exit 1
+          fi
+          if [ "$max_parallel" -lt 1 ] || [ "$max_parallel" -gt 12 ]; then
+            echo "::error::max_parallel must be between 1 and 12"
+            exit 1
+          fi
+          echo "shard_count=$shard_count" >> "$GITHUB_OUTPUT"
+          echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
+
+      - name: Validate 102 target universe
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          from collections import Counter
+          from pathlib import Path
+          path = Path('config/humor_collection_append_targets.csv')
+          rows = list(csv.DictReader(path.open(encoding='utf-8-sig')))
+          total = len(rows)
+          fortune = [r for r in rows if r['fortune_rank'] != 'benchmark']
+          benchmark = [r for r in rows if r['fortune_rank'] == 'benchmark']
+          groups = Counter(r['sample_group'] for r in rows)
+          print(f'target_count={total}')
+          print(f'fortune_targets={len(fortune)}')
+          print(f'benchmark_targets={len(benchmark)}')
+          print('sample_groups=' + ','.join(f'{k}:{v}' for k, v in sorted(groups.items())))
+          assert total == 102, total
+          assert len(fortune) == 100, len(fortune)
+          assert len(benchmark) == 2, len(benchmark)
+          PY
+
+      - name: Verify no official X API markers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R -n -E 'api\.x\.com|api\.twitter\.com|bearer_token|Authorization: Bearer' \
+            scripts/run_humor_append_collection.py .github/workflows/append-humor-collection-102-companies.yml; then
+            echo "::error::Official X API marker found."
+            exit 1
+          fi
+
+  collect-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    needs: validate-targets
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.validate-targets.outputs.max_parallel) }}
+      matrix:
+        shard_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build shard target file
+        id: shard
+        shell: bash
+        env:
+          SHARD_INDEX: ${{ matrix.shard_index }}
+          SHARD_COUNT: ${{ needs.validate-targets.outputs.shard_count }}
+        run: |
+          set -euo pipefail
+          mkdir -p shard_work shard_output/data/audit
+          python - <<'PY'
+          import csv
+          import os
+          from pathlib import Path
+          shard_index = int(os.environ['SHARD_INDEX'])
+          shard_count = int(os.environ['SHARD_COUNT'])
+          source = Path('config/humor_collection_append_targets.csv')
+          target = Path('shard_work/targets.csv')
+          rows = list(csv.DictReader(source.open(encoding='utf-8-sig')))
+          selected = [row for i, row in enumerate(rows) if i % shard_count == shard_index]
+          with target.open('w', encoding='utf-8', newline='') as handle:
+              writer = csv.DictWriter(handle, fieldnames=['fortune_rank', 'company_name', 'handle', 'sample_group'])
+              writer.writeheader()
+              writer.writerows(selected)
+          print(f'shard_index={shard_index}')
+          print(f'shard_count={shard_count}')
+          print(f'shard_target_count={len(selected)}')
+          Path('shard_work/count.txt').write_text(str(len(selected)), encoding='utf-8')
+          PY
+          count=$(cat shard_work/count.txt)
+          echo "target_count=$count" >> "$GITHUB_OUTPUT"
 
       - name: Set up Python
+        if: ${{ steps.shard.outputs.target_count != '0' }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
       - name: Install dependencies
+        if: ${{ steps.shard.outputs.target_count != '0' }}
+        shell: bash
         run: |
+          set -euo pipefail
           python -m pip install --upgrade pip
           pip install -r requirements-scrape.txt
           python -m playwright install --with-deps chromium
 
-      - name: Run Append Collection
+      - name: Run shard append collection
+        if: ${{ steps.shard.outputs.target_count != '0' }}
         env:
           X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           X_CT0: ${{ secrets.X_CT0 }}
         run: |
           python scripts/run_humor_append_collection.py \
-            --max-posts ${{ github.event.inputs.max_posts }} \
-            --max-scrolls ${{ github.event.inputs.max_scrolls }}
+            --targets shard_work/targets.csv \
+            --max-posts '${{ inputs.max_posts }}' \
+            --max-scrolls '${{ inputs.max_scrolls }}'
 
-      - name: Commit and Push Results
+      - name: Stage changed shard outputs
+        shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SHARD_INDEX: ${{ matrix.shard_index }}
         run: |
+          set -euo pipefail
+          mkdir -p shard_output/data/audit
+          if [ -f data/audit/humor_collection_append_summary.csv ]; then
+            cp data/audit/humor_collection_append_summary.csv \
+              "shard_output/data/audit/humor_collection_append_summary_shard_${SHARD_INDEX}.csv"
+          else
+            python - <<'PY'
+            import csv
+            from pathlib import Path
+            columns = ['fortune_rank','company_name','handle','sample_group','status','previous_posts','final_posts','new_unique_posts']
+            path = Path('shard_output/data/audit/humor_collection_append_summary_shard_${{ matrix.shard_index }}.csv')
+            with path.open('w', encoding='utf-8', newline='') as handle:
+                writer = csv.DictWriter(handle, fieldnames=columns)
+                writer.writeheader()
+            PY
+          fi
+          git status --porcelain -- data/raw/fortune_x_2025_ranked data/wendys/posts.json data/cocacola/posts.json data/moonpie/posts.json \
+            | while read -r status path; do
+                if [ -f "$path" ]; then
+                  mkdir -p "shard_output/$(dirname "$path")"
+                  cp "$path" "shard_output/$path"
+                fi
+              done
+
+      - name: Upload shard artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-append-shard-${{ matrix.shard_index }}
+          path: shard_output/
+          retention-days: 2
+
+  aggregate-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs:
+      - validate-targets
+      - collect-shards
+    if: ${{ always() && needs.validate-targets.result == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download shard artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: humor-append-shard-*
+          path: artifact_downloads
+          merge-multiple: false
+
+      - name: Aggregate shard artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+          repo = Path('.')
+          root = Path('artifact_downloads')
+          post_columns = [
+              'fortune_rank','company_name','official_x_handle','tweet_id','created_at','text','tweet_url',
+              'reply_count','repost_count','like_count','quote_count','view_count_available','media_present',
+              'media_type','collected_at','collection_method','max_posts_cap','source_folder','source_x_handle',
+              'source_x_url','account_role','account_index'
+          ]
+          def rel_from_data(path):
+              parts = path.parts
+              if 'data' not in parts:
+                  return None
+              return Path(*parts[parts.index('data'):])
+          def read_csv_rows(path):
+              if not path.exists():
+                  return []
+              with path.open(encoding='utf-8-sig', newline='') as handle:
+                  return list(csv.DictReader(handle))
+          def write_csv_rows(path, fieldnames, rows):
+              path.parent.mkdir(parents=True, exist_ok=True)
+              with path.open('w', encoding='utf-8', newline='') as handle:
+                  writer = csv.DictWriter(handle, fieldnames=fieldnames)
+                  writer.writeheader()
+                  for row in rows:
+                      writer.writerow({k: row.get(k, '') for k in fieldnames})
+          def merge_csv(existing, incoming):
+              by_id = {}
+              no_id = []
+              for row in list(incoming) + list(existing):
+                  tid = (row.get('tweet_id') or '').strip()
+                  if not tid:
+                      no_id.append(row)
+                  elif tid not in by_id:
+                      by_id[tid] = row
+                  else:
+                      by_id[tid] = {**by_id[tid], **row}
+              def key(row):
+                  tid = row.get('tweet_id', '')
+                  return int(tid) if tid.isdigit() else 0
+              return sorted(by_id.values(), key=key, reverse=True) + no_id
+          def read_json_list(path):
+              if not path.exists():
+                  return []
+              try:
+                  data = json.loads(path.read_text(encoding='utf-8'))
+              except Exception:
+                  return []
+              return data if isinstance(data, list) else []
+          def write_json_list(path, rows):
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          def merge_json(existing, incoming):
+              by_id = {}
+              for row in list(incoming) + list(existing):
+                  tid = str(row.get('id') or '').strip()
+                  if tid and tid not in by_id:
+                      by_id[tid] = row
+                  elif tid:
+                      by_id[tid] = {**by_id[tid], **row}
+              def key(row):
+                  tid = str(row.get('id') or '')
+                  return int(tid) if tid.isdigit() else 0
+              return sorted(by_id.values(), key=key, reverse=True)
+          summary_rows = []
+          summary_fieldnames = None
+          for summary in sorted(root.glob('**/humor_collection_append_summary_shard_*.csv')):
+              with summary.open(encoding='utf-8-sig', newline='') as handle:
+                  reader = csv.DictReader(handle)
+                  if reader.fieldnames:
+                      summary_fieldnames = reader.fieldnames
+                  summary_rows.extend(list(reader))
+          for csv_path in sorted(root.glob('**/*.csv')):
+              if csv_path.name.startswith('humor_collection_append_summary_shard_'):
+                  continue
+              rel = rel_from_data(csv_path)
+              if rel is None or not str(rel).endswith('posts.csv'):
+                  continue
+              target = repo / rel
+              merged = merge_csv(read_csv_rows(target), read_csv_rows(csv_path))
+              write_csv_rows(target, post_columns, merged)
+          for json_path in sorted(root.glob('**/posts.json')):
+              rel = rel_from_data(json_path)
+              if rel is None:
+                  continue
+              target = repo / rel
+              merged = merge_json(read_json_list(target), read_json_list(json_path))
+              write_json_list(target, merged)
+          out = Path('data/audit/humor_collection_append_summary.csv')
+          if summary_fieldnames is None:
+              summary_fieldnames = ['fortune_rank','company_name','handle','sample_group','status','previous_posts','final_posts','new_unique_posts']
+          write_csv_rows(out, summary_fieldnames, summary_rows)
+          failed = [row for row in summary_rows if str(row.get('status', '')).startswith('failed')]
+          if failed:
+              write_csv_rows(Path('data/audit/humor_collection_append_failed_targets.csv'), summary_fieldnames, failed)
+          print('-' * 60)
+          print(f'Total target rows in summaries: {len(summary_rows)}')
+          print(f'Success rows: {sum(1 for r in summary_rows if str(r.get("status", "")).startswith("success"))}')
+          print(f'Failed rows: {len(failed)}')
+          print(f'Previous total posts: {sum(int(r.get("previous_posts") or 0) for r in summary_rows)}')
+          print(f'Final total posts: {sum(int(r.get("final_posts") or 0) for r in summary_rows)}')
+          print(f'New unique posts: {sum(int(r.get("new_unique_posts") or 0) for r in summary_rows)}')
+          for name in ['Coca-Cola', "Wendy's", 'MoonPie']:
+              row = next((r for r in summary_rows if r.get('company_name') == name), None)
+              if row:
+                  print(f'{name}: prev={row.get("previous_posts")}, final={row.get("final_posts")}, new={row.get("new_unique_posts")}, status={row.get("status")}')
+          print('-' * 60)
+          PY
+
+      - name: Ensure dashboard data was not modified
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "$(git status --short dashboard/data)" ]; then
+            echo "::error title=dashboard/data changed::dashboard/data must not be modified by append collection."
+            git status --short dashboard/data
+            exit 1
+          fi
+
+      - name: Commit and push merged append outputs
+        if: ${{ inputs.commit_results == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/raw/fortune_x_2025_ranked/
-          git add data/wendys/posts.json
-          git add data/cocacola/posts.json
-          git add data/moonpie/posts.json
-          git add data/audit/humor_collection_append_summary.csv
-          if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "Append collected humor posts for 102 targets"
-            git push origin HEAD:main
-          else
-            echo "No new posts collected."
+          git add data/raw/fortune_x_2025_ranked data/wendys/posts.json data/cocacola/posts.json data/moonpie/posts.json data/audit/humor_collection_append_summary.csv
+          if [ -f data/audit/humor_collection_append_failed_targets.csv ]; then
+            git add data/audit/humor_collection_append_failed_targets.csv
           fi
+          if git diff --cached --quiet; then
+            echo 'No append collection output changes to commit.'
+            exit 0
+          fi
+          git pull --rebase origin main
+          git commit -m 'data: append collected humor posts for 102 targets' \
+            -m 'Merged shard artifacts from append-only browser collection. Official X API was not used. Dashboard data was not synced.'
+          git push origin HEAD:main
