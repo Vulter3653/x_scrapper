@@ -1,0 +1,106 @@
+name: Build HSQ Presence TFIDF Baseline
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Workflow run ID containing the hsq-validation-pseudo-labels artifact"
+        required: true
+      artifact_name:
+        description: "HSQ validation/pseudo-label artifact name"
+        required: true
+        default: "hsq-validation-pseudo-labels"
+      test_size:
+        description: "Stratified test split size"
+        required: true
+        default: "0.25"
+      max_negative_ratio:
+        description: "Maximum hard-negative rows per humor seed row"
+        required: true
+        default: "4.0"
+      max_features:
+        description: "TF-IDF max features"
+        required: true
+        default: "20000"
+      ngram_max:
+        description: "Maximum n-gram length"
+        required: true
+        default: "2"
+      min_positive:
+        description: "Minimum high-intensity humor seed rows"
+        required: true
+        default: "50"
+      min_negative:
+        description: "Minimum hard-negative non-humor seed rows"
+        required: true
+        default: "50"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  build-presence-tfidf-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install scikit-learn
+
+      - name: Download HSQ validation and pseudo-label artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p source_artifact
+          gh run download "${{ github.event.inputs.source_run_id }}" \
+            --repo "${{ github.repository }}" \
+            --name "${{ github.event.inputs.artifact_name }}" \
+            --dir source_artifact
+          find source_artifact -maxdepth 3 -type f -print
+
+      - name: Locate seed CSV files
+        id: locate
+        run: |
+          HUMOR_SEED=$(find source_artifact -name 'hsq_high_intensity_humor_seed.csv' -print -quit)
+          HARD_NEGATIVE=$(find source_artifact -name 'hsq_hard_negative_non_humor_seed.csv' -print -quit)
+          if [ -z "$HUMOR_SEED" ]; then
+            echo "hsq_high_intensity_humor_seed.csv not found" >&2
+            exit 1
+          fi
+          if [ -z "$HARD_NEGATIVE" ]; then
+            echo "hsq_hard_negative_non_humor_seed.csv not found" >&2
+            exit 1
+          fi
+          echo "humor_seed=$HUMOR_SEED" >> "$GITHUB_OUTPUT"
+          echo "hard_negative=$HARD_NEGATIVE" >> "$GITHUB_OUTPUT"
+          echo "HUMOR_SEED=$HUMOR_SEED"
+          echo "HARD_NEGATIVE=$HARD_NEGATIVE"
+
+      - name: Train TF-IDF Logistic Regression baseline
+        run: |
+          mkdir -p data/derived/humor/hsq_presence_tfidf_baseline
+          python scripts/build_hsq_presence_tfidf_baseline.py \
+            --humor-seed "${{ steps.locate.outputs.humor_seed }}" \
+            --hard-negative-seed "${{ steps.locate.outputs.hard_negative }}" \
+            --output-dir data/derived/humor/hsq_presence_tfidf_baseline \
+            --test-size "${{ github.event.inputs.test_size }}" \
+            --max-negative-ratio "${{ github.event.inputs.max_negative_ratio }}" \
+            --max-features "${{ github.event.inputs.max_features }}" \
+            --ngram-max "${{ github.event.inputs.ngram_max }}" \
+            --min-positive "${{ github.event.inputs.min_positive }}" \
+            --min-negative "${{ github.event.inputs.min_negative }}"
+
+      - name: Upload TF-IDF baseline artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hsq-presence-tfidf-baseline
+          path: data/derived/humor/hsq_presence_tfidf_baseline/
