@@ -1,0 +1,79 @@
+name: Build HSQ Validation and Pseudo Labels
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Workflow run ID containing the humor-full-chain-final artifact"
+        required: true
+      artifact_name:
+        description: "Full-chain final artifact name"
+        required: true
+        default: "humor-full-chain-final"
+      sample_per_bucket:
+        description: "Validation rows per common bucket"
+        required: true
+        default: "50"
+      rare_sample_per_bucket:
+        description: "Validation rows per rare bucket"
+        required: true
+        default: "30"
+      presence_confidence:
+        description: "Minimum confidence for presence pseudo-labels"
+        required: true
+        default: "0.75"
+      type_confidence:
+        description: "Minimum confidence for humor-type pseudo-labels"
+        required: true
+        default: "0.67"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  build-validation-and-pseudo-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download full-chain artifact from source run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p source_artifact
+          gh run download "${{ github.event.inputs.source_run_id }}" \
+            --repo "${{ github.repository }}" \
+            --name "${{ github.event.inputs.artifact_name }}" \
+            --dir source_artifact
+          ls -lah source_artifact
+
+      - name: Locate master CSV
+        id: locate
+        run: |
+          MASTER_PATH=$(find source_artifact -name 'humor_full_chain_master.csv' -print -quit)
+          if [ -z "$MASTER_PATH" ]; then
+            echo "humor_full_chain_master.csv not found in downloaded artifact" >&2
+            find source_artifact -maxdepth 3 -type f -print >&2
+            exit 1
+          fi
+          echo "master_path=$MASTER_PATH" >> "$GITHUB_OUTPUT"
+          echo "MASTER_PATH=$MASTER_PATH"
+
+      - name: Build validation and pseudo-label datasets
+        run: |
+          mkdir -p data/derived/humor/hsq_validation_pseudo
+          python scripts/build_hsq_validation_and_pseudo_labels.py \
+            --master "${{ steps.locate.outputs.master_path }}" \
+            --output-dir data/derived/humor/hsq_validation_pseudo \
+            --sample-per-bucket "${{ github.event.inputs.sample_per_bucket }}" \
+            --rare-sample-per-bucket "${{ github.event.inputs.rare_sample_per_bucket }}" \
+            --presence-confidence "${{ github.event.inputs.presence_confidence }}" \
+            --type-confidence "${{ github.event.inputs.type_confidence }}"
+
+      - name: Upload HSQ validation and pseudo-label artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hsq-validation-pseudo-labels
+          path: data/derived/humor/hsq_validation_pseudo/
