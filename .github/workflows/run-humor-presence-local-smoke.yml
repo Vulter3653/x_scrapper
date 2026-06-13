@@ -77,6 +77,11 @@ jobs:
         with:
           python-version: "3.11"
       
+      - name: Build HSQ-derived training seed
+        run: |
+          python scripts/build_humor_presence_training_seed.py \
+            --output data/derived/humor/humor_presence_training_seed.csv
+
       - name: Build Samples and Shard (Partial implementation for smoke)
         run: |
           # In a real full run, we would shard the input file.
