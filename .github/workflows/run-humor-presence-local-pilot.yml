@@ -26,10 +26,10 @@ on:
       classifier_version:
         description: "Classifier Version Tag"
         required: true
-        default: "local-pilot-v1-github-actions"
+        default: "local-pilot-v2-integrity"
 
 permissions:
-  contents: write
+  contents: read
   actions: read
 
 env:
@@ -40,34 +40,70 @@ env:
   NON_HUMOR_THRESHOLD: ${{ github.event.inputs.non_humor_threshold || '0.30' }}
 
 jobs:
-  plan-local-pilot-shards:
+  build-local-pilot-inputs:
     runs-on: ubuntu-latest
     outputs:
+      actual_rows: ${{ steps.plan.outputs.actual_rows }}
       shards: ${{ steps.plan.outputs.shards }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Plan Shards
+
+      - name: Build training seed and pilot sample
+        run: |
+          mkdir -p data/derived/humor/pilot_inputs
+          python scripts/build_humor_presence_training_seed.py \
+            --output data/derived/humor/pilot_inputs/humor_presence_training_seed.csv
+
+          # Requested composition is 60/20/20 for an 800-row pilot.
+          # If benchmark rows are insufficient, the builder fills the shortfall from Fortune rows.
+          python scripts/build_humor_presence_pilot_sample.py \
+            --output data/derived/humor/pilot_inputs/humor_presence_local_pilot_sample.csv \
+            --manifest data/derived/humor/pilot_inputs/humor_presence_local_pilot_manifest.json \
+            --target-total "${PILOT_ROWS}" \
+            --fortune-n 480 \
+            --wendys-n 160 \
+            --moonpie-n 160
+
+      - name: Plan CSV-aware shards
         id: plan
         run: |
-          TOTAL=${{ env.PILOT_ROWS }}
-          SIZE=${{ env.SHARD_SIZE }}
-          NUM_SHARDS=$(( (TOTAL + SIZE - 1) / SIZE ))
-          SHARDS=$(seq 1 $NUM_SHARDS | jq -R -s -c 'split("\n")[:-1]')
-          echo "shards=$SHARDS" >> $GITHUB_OUTPUT
+          ACTUAL_ROWS=$(python - <<'PY'
+          import csv
+          from pathlib import Path
+          path = Path("data/derived/humor/pilot_inputs/humor_presence_local_pilot_sample.csv")
+          with path.open(encoding="utf-8-sig", newline="") as f:
+              print(sum(1 for _ in csv.DictReader(f)))
+          PY
+          )
+          if [ "$ACTUAL_ROWS" -ne "$PILOT_ROWS" ]; then
+            echo "Pilot sample row-count mismatch: expected $PILOT_ROWS got $ACTUAL_ROWS" >&2
+            exit 1
+          fi
+          NUM_SHARDS=$(( (ACTUAL_ROWS + SHARD_SIZE - 1) / SHARD_SIZE ))
+          SHARDS=$(seq 1 "$NUM_SHARDS" | jq -R -s -c 'split("\n")[:-1]')
+          echo "actual_rows=$ACTUAL_ROWS" >> "$GITHUB_OUTPUT"
+          echo "shards=$SHARDS" >> "$GITHUB_OUTPUT"
+          echo "actual_rows=$ACTUAL_ROWS"
+          echo "shards=$SHARDS"
+
+      - name: Upload Pilot Inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-local-pilot-inputs
+          path: data/derived/humor/pilot_inputs/
 
   classify-local-pilot-shards:
-    needs: plan-local-pilot-shards
+    needs: build-local-pilot-inputs
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        shard: ${{ fromJson(needs.plan-local-pilot-shards.outputs.shards) }}
-      max-parallel: 4
+        shard: ${{ fromJson(needs.build-local-pilot-inputs.outputs.shards) }}
+      max-parallel: ${{ fromJson(github.event.inputs.max_parallel || '4') }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -78,32 +114,30 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install scikit-learn pandas
-      
-      - name: Build Samples and Shard
-        run: |
-          # 1. Build training seed
-          python scripts/build_humor_presence_training_seed.py \
-            --output data/derived/humor/humor_presence_training_seed.csv
 
-          # 2. Build pilot sample (Total 800)
-          # Scaling 60/20/20 to 800 -> 480/160/160
-          python scripts/build_humor_presence_pilot_sample.py \
-            --output data/derived/humor/humor_presence_local_pilot_sample.csv \
-            --fortune-n 480 --wendys-n 160 --moonpie-n 160
-          
-          # 3. Shard locally for this runner
-          START=$(( (${{ matrix.shard }} - 1) * ${{ env.SHARD_SIZE }} ))
-          END=$(( ${{ matrix.shard }} * ${{ env.SHARD_SIZE }} ))
-          
-          head -n 1 data/derived/humor/humor_presence_local_pilot_sample.csv > shard_${{ matrix.shard }}.csv
-          tail -n +2 data/derived/humor/humor_presence_local_pilot_sample.csv | sed -n "$((START+1)),${END}p" >> shard_${{ matrix.shard }}.csv
+      - name: Download Pilot Inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-presence-local-pilot-inputs
+          path: pilot_inputs
+
+      - name: Build CSV-aware shard
+        run: |
+          python scripts/shard_csv_records.py \
+            --input pilot_inputs/humor_presence_local_pilot_sample.csv \
+            --output shard_${{ matrix.shard }}.csv \
+            --shard-index ${{ matrix.shard }} \
+            --shard-size "${SHARD_SIZE}" \
+            --expected-total ${{ needs.build-local-pilot-inputs.outputs.actual_rows }} \
+            --fail-empty
 
       - name: Classify Shard
         run: |
+          mkdir -p data/derived/humor
           python scripts/classify_humor_presence_local.py \
             --input shard_${{ matrix.shard }}.csv \
             --output data/derived/humor/humor_presence_local_pilot_results_shard_${{ matrix.shard }}.csv \
-            --training-seed data/derived/humor/humor_presence_training_seed.csv \
+            --training-seed pilot_inputs/humor_presence_training_seed.csv \
             --cues config/humor_presence_rule_cues.json
 
       - name: Upload Shard Artifact
@@ -113,12 +147,20 @@ jobs:
           path: data/derived/humor/humor_presence_local_pilot_results_shard_${{ matrix.shard }}.csv
 
   aggregate-local-pilot-results:
-    needs: classify-local-pilot-shards
+    needs:
+      - build-local-pilot-inputs
+      - classify-local-pilot-shards
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
+      - name: Download Pilot Inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-presence-local-pilot-inputs
+          path: pilot_inputs
+
       - name: Download all shards
         uses: actions/download-artifact@v4
         with:
@@ -128,9 +170,10 @@ jobs:
 
       - name: Aggregate
         run: |
+          mkdir -p data/derived/humor
           OUT="data/derived/humor/humor_presence_local_pilot_results.csv"
           first=true
-          for f in shards/*.csv; do
+          for f in $(find shards -name '*.csv' | sort); do
             if [ "$first" = true ]; then
               cat "$f" > "$OUT"
               first=false
@@ -139,24 +182,42 @@ jobs:
             fi
           done
 
+      - name: Validate aggregate integrity
+        run: |
+          python scripts/validate_humor_presence_pilot_integrity.py \
+            --sample pilot_inputs/humor_presence_local_pilot_sample.csv \
+            --results data/derived/humor/humor_presence_local_pilot_results.csv \
+            --expected-rows ${{ needs.build-local-pilot-inputs.outputs.actual_rows }} \
+            --output-audit data/audit/humor_presence_local_pilot_integrity_audit.csv
+
       - name: Upload Aggregated Results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: humor-presence-local-pilot-aggregated
           path: data/derived/humor/humor_presence_local_pilot_results.csv
 
+      - name: Upload Integrity Audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-presence-local-pilot-integrity
+          path: data/audit/humor_presence_local_pilot_integrity_audit.csv
+
   evaluate-local-pilot-results:
-    needs: aggregate-local-pilot-results
+    needs:
+      - build-local-pilot-inputs
+      - aggregate-local-pilot-results
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      
+
       - name: Download Aggregated Results
         uses: actions/download-artifact@v4
         with:
@@ -171,11 +232,13 @@ jobs:
             --output-review-sample data/audit/humor_presence_local_pilot_review_sample.csv \
             --output-diagnosis data/audit/humor_presence_local_pilot_ambiguous_diagnosis.csv \
             --mode pilot \
-            --sample-size ${{ env.PILOT_ROWS }} \
-            --humor-threshold ${{ env.HUMOR_THRESHOLD }} \
-            --non-humor-threshold ${{ env.NON_HUMOR_THRESHOLD }}
+            --sample-size ${{ needs.build-local-pilot-inputs.outputs.actual_rows }} \
+            --humor-threshold "${HUMOR_THRESHOLD}" \
+            --non-humor-threshold "${NON_HUMOR_THRESHOLD}" \
+            --strict-integrity
 
       - name: Upload Evaluation Artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: humor-presence-local-pilot-evaluation
