@@ -30,23 +30,59 @@ HARD_NEGATIVE_PATTERNS = {
         "vote", "votes", "bracket", "championship", "final four", "giveaway", "sweepstakes",
         "use code", "promo code", "limited time", "with purchase", "available now", "back on the menu",
         "shop now", "order now", "download now", "register now", "available all day", "while supplies last",
+        "challenge", "contest", "enter to win", "winner", "nominate", "round of", "semifinal",
     ],
     "support_reply": [
         "please contact", "dm us", "send us a dm", "customer support", "support team", "sorry for",
         "sorry about", "help you", "assist you", "assistance", "reach out", "teamcare", "call us",
+        "support center", "customer care", "send us your", "we can help", "we apologize", "service issue",
     ],
     "corporate_announcement": [
         "announces", "announced", "released", "general availability", "customers are using",
-        "price-performance", "infrastructure", "deployment", "earnings", "quarterly", "investor",
-        "financial results", "webcast", "conference call", "annual report", "filing", "dividend",
+        "price-performance", "infrastructure", "deployment", "webcast", "conference call", "annual report",
+        "filing", "dividend", "company update", "strategic partnership", "expands", "expansion",
+        "acquisition", "acquires", "appointment", "appointed", "board of directors", "leadership team",
+    ],
+    "tech_announcement": [
+        "gemini api", "api", "ai model", "foundation model", "large language model", "llm",
+        "agentic ai", "generative ai", "developer tools", "developer tool", "infrastructure",
+        "deployment", "cloud", "platform", "data center", "gpu", "accelerated computing",
+        "compute", "supercomputer", "semiconductor", "chip", "nvidia", "gemini", "model release",
+        "technical preview", "enterprise ai", "automation", "machine learning", "ml", "algorithm",
+    ],
+    "research_announcement": [
+        "nvidia research", "research paper", "research papers", "technical report", "white paper",
+        "cvpr", "neurips", "icml", "iclr", "siggraph", "benchmark", "benchmarks", "lab", "labs",
+        "researchers", "scientists", "science team", "ai research", "published research", "study finds",
+        "new study", "peer-reviewed", "conference paper", "poster session", "workshop",
+    ],
+    "earnings_or_investor": [
+        "earnings", "earnings call", "quarterly", "quarterly results", "financial results", "fiscal",
+        "investor", "investors", "investor day", "shareholders", "stockholders", "revenue", "guidance",
+        "net income", "operating income", "cash flow", "adjusted ebitda", "eps", "dividend",
+        "share repurchase", "sec filing", "form 10-k", "form 10-q", "proxy statement",
+    ],
+    "product_release": [
+        "product launch", "launched", "launches", "now available", "available now", "introducing",
+        "rollout", "rolled out", "release notes", "new feature", "new features", "product update",
+        "upgrade", "upgraded", "available in stores", "preorder", "pre-order", "coming soon",
+        "general availability", "beta", "preview", "limited release", "new version", "version",
+    ],
+    "developer_ecosystem": [
+        "developer", "developers", "sdk", "api", "github", "open source", "code sample", "code samples",
+        "documentation", "docs", "developer conference", "hackathon", "build with", "integrate",
+        "integration", "plug-in", "plugin", "toolkit", "framework", "repository", "package",
+        "command line", "cli", "release candidate", "runtime",
     ],
     "csr_news": [
         "donate", "donation", "community", "proud to", "honored to", "congratulations", "award",
-        "sustainability", "volunteer", "relief", "patients", "clinical", "research", "partnership",
+        "sustainability", "volunteer", "relief", "patients", "clinical", "partnership", "foundation",
+        "grant", "scholarship", "nonprofit", "charity", "disaster relief", "food bank", "education program",
     ],
     "brand_engagement_nonhumor": [
         "thanks for", "thank you", "join us", "meet us", "learn more", "read more", "find out more",
         "watch live", "listen now", "apply today", "we're hiring", "we are hiring", "join our team",
+        "follow us", "subscribe", "sign up", "save the date", "tune in", "visit us", "see you at",
     ],
 }
 
@@ -346,7 +382,6 @@ def main():
             "Use a full_all_posts full-chain artifact for full-data pseudo-label construction."
         )
 
-    # High-intensity positive humor seeds: obvious humor only.
     high_intensity_humor = []
     for row in rows:
         if row.get("humor_presence") != "humor":
@@ -363,8 +398,6 @@ def main():
         high_intensity_humor.append(enriched)
     high_intensity_humor = sort_by_strength(high_intensity_humor)
 
-    # Hard-negative seeds: non-humor that can be mistaken for humor because it is social,
-    # promotional, event-like, supportive, or brand-engagement language.
     hard_negative_non_humor = []
     for row in rows:
         if row.get("humor_presence") != "non_humor":
@@ -517,7 +550,7 @@ def main():
             "high_intensity_humor_seed": str(high_intensity_path),
             "hard_negative_non_humor_seed": str(hard_negative_path),
         },
-        "recommended_next_step": "Use full-data high-intensity humor seeds plus hard-negative non-humor seeds for TF-IDF baseline and later RoBERTa/BERTweet comparison. Do not treat pseudo-labels as gold labels.",
+        "recommended_next_step": "Rebuild full-data seeds, rerun the TF-IDF baseline, and inspect whether tech/research hard negatives reduce humor false positives before trying RoBERTa/BERTweet.",
     }
     summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2, ensure_ascii=False))
