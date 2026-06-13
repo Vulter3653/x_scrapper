@@ -1,6 +1,9 @@
 name: Run Local Humor Presence Smoke
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       pilot_rows:
