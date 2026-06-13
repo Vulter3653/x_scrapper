@@ -23,10 +23,21 @@ on:
         description: "ML Non-Humor Threshold"
         required: true
         default: "0.30"
+      classifier_version:
+        description: "Classifier Version Tag"
+        required: true
+        default: "local-pilot-v1-github-actions"
 
 permissions:
   contents: write
   actions: read
+
+env:
+  PILOT_ROWS: ${{ github.event.inputs.pilot_rows || '800' }}
+  SHARD_SIZE: ${{ github.event.inputs.shard_size || '200' }}
+  MAX_PARALLEL: ${{ github.event.inputs.max_parallel || '4' }}
+  HUMOR_THRESHOLD: ${{ github.event.inputs.humor_threshold || '0.70' }}
+  NON_HUMOR_THRESHOLD: ${{ github.event.inputs.non_humor_threshold || '0.30' }}
 
 jobs:
   plan-local-pilot-shards:
@@ -40,8 +51,8 @@ jobs:
       - name: Plan Shards
         id: plan
         run: |
-          TOTAL=${{ github.event.inputs.pilot_rows }}
-          SIZE=${{ github.event.inputs.shard_size }}
+          TOTAL=${{ env.PILOT_ROWS }}
+          SIZE=${{ env.SHARD_SIZE }}
           NUM_SHARDS=$(( (TOTAL + SIZE - 1) / SIZE ))
           SHARDS=$(seq 1 $NUM_SHARDS | jq -R -s -c 'split("\n")[:-1]')
           echo "shards=$SHARDS" >> $GITHUB_OUTPUT
@@ -52,7 +63,7 @@ jobs:
     strategy:
       matrix:
         shard: ${{ fromJson(needs.plan-local-pilot-shards.outputs.shards) }}
-      max-parallel: ${{ fromJson(github.event.inputs.max_parallel) }}
+      max-parallel: 4
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -61,17 +72,28 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install scikit-learn pandas
       
       - name: Build Samples and Shard
         run: |
-          # Use build_humor_presence_pilot_sample.py to create the full pilot set
-          # then shard it.
+          # 1. Build training seed
+          python scripts/build_humor_presence_training_seed.py \
+            --output data/derived/humor/humor_presence_training_seed.csv
+
+          # 2. Build pilot sample (Total 800)
+          # Scaling 60/20/20 to 800 -> 480/160/160
           python scripts/build_humor_presence_pilot_sample.py \
             --output data/derived/humor/humor_presence_local_pilot_sample.csv \
             --fortune-n 480 --wendys-n 160 --moonpie-n 160
           
-          START=$(( (${{ matrix.shard }} - 1) * ${{ github.event.inputs.shard_size }} ))
-          END=$(( ${{ matrix.shard }} * ${{ github.event.inputs.shard_size }} ))
+          # 3. Shard locally for this runner
+          START=$(( (${{ matrix.shard }} - 1) * ${{ env.SHARD_SIZE }} ))
+          END=$(( ${{ matrix.shard }} * ${{ env.SHARD_SIZE }} ))
           
           head -n 1 data/derived/humor/humor_presence_local_pilot_sample.csv > shard_${{ matrix.shard }}.csv
           tail -n +2 data/derived/humor/humor_presence_local_pilot_sample.csv | sed -n "$((START+1)),${END}p" >> shard_${{ matrix.shard }}.csv
@@ -147,10 +169,11 @@ jobs:
             --input data/derived/humor/humor_presence_local_pilot_results.csv \
             --output-audit data/audit/humor_presence_local_pilot_audit_summary.csv \
             --output-review-sample data/audit/humor_presence_local_pilot_review_sample.csv \
+            --output-diagnosis data/audit/humor_presence_local_pilot_ambiguous_diagnosis.csv \
             --mode pilot \
-            --sample-size ${{ github.event.inputs.pilot_rows }} \
-            --humor-threshold ${{ github.event.inputs.humor_threshold }} \
-            --non-humor-threshold ${{ github.event.inputs.non_humor_threshold }}
+            --sample-size ${{ env.PILOT_ROWS }} \
+            --humor-threshold ${{ env.HUMOR_THRESHOLD }} \
+            --non-humor-threshold ${{ env.NON_HUMOR_THRESHOLD }}
 
       - name: Upload Evaluation Artifacts
         uses: actions/upload-artifact@v4
@@ -159,3 +182,4 @@ jobs:
           path: |
             data/audit/humor_presence_local_pilot_audit_summary.csv
             data/audit/humor_presence_local_pilot_review_sample.csv
+            data/audit/humor_presence_local_pilot_ambiguous_diagnosis.csv

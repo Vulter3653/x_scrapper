@@ -21,3 +21,5 @@ data/derived/humor/*tmp*.csv
 data/derived/humor/*.json
 data/derived/humor/*.md
 !data/derived/humor/README.md
+data/audit/*pilot*.csv
+data/audit/*pilot*.json

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evaluate local humor-presence results and diagnose ambiguous classifications."""
+"""Evaluate local humor-presence results and diagnose classifications for 800-row pilot."""
 
 import argparse
 import csv
@@ -27,17 +27,18 @@ def get_ml_label(prob_str, humor_threshold=0.70, non_humor_threshold=0.30):
         if prob <= non_humor_threshold:
             return "non_humor"
         return "ambiguous"
-    except ValueError:
+    except (ValueError, TypeError):
         return "null"
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=Path, required=True, help="Classification results CSV")
+    parser.add_argument("--input", type=Path, required=True, help="Aggregated classification results CSV")
     parser.add_argument("--output-audit", type=Path, help="Audit summary CSV")
     parser.add_argument("--output-review-sample", type=Path, help="Review sample CSV")
-    parser.add_argument("--mode", choices=["smoke", "pilot"], default="smoke")
-    parser.add_argument("--sample-size", type=int, default=100)
+    parser.add_argument("--output-diagnosis", type=Path, help="Ambiguous diagnosis CSV")
+    parser.add_argument("--mode", choices=["smoke", "pilot"], default="pilot")
+    parser.add_argument("--sample-size", type=int, default=800)
     parser.add_argument("--humor-threshold", type=float, default=0.70)
     parser.add_argument("--non-humor-threshold", type=float, default=0.30)
     args = parser.parse_args()
@@ -48,9 +49,7 @@ def main():
         sys.exit(1)
 
     total_rows = len(rows)
-    # Filter by sample_size if needed, but usually we evaluate the whole input file
-    # for smoke/pilot which are already limited.
-    
+
     stats = {
         "input_rows": args.sample_size,
         "output_rows": total_rows,
@@ -72,7 +71,7 @@ def main():
             "ambiguous_rate": round(stats["ambiguous_count"] / total_rows, 4),
         })
 
-    reviews = sum(1 for r in rows if r.get("needs_manual_review") == "true")
+    reviews = sum(1 for r in rows if r.get("needs_manual_review", "").lower() == "true")
     stats.update({
         "manual_review_count": reviews,
         "manual_review_rate": round(reviews / total_rows, 4) if total_rows > 0 else 0,
@@ -84,34 +83,35 @@ def main():
         if val:
             try:
                 confidences.append(float(val))
-            except ValueError:
+            except (ValueError, TypeError):
                 pass
 
     if confidences:
         stats.update({
             "mean_confidence": round(statistics.mean(confidences), 6),
             "median_confidence": round(statistics.median(confidences), 6),
-            "min_confidence": round(min(confidences), 6),
-            "max_confidence": round(max(confidences), 6),
         })
     else:
-        stats.update({
-            "mean_confidence": 0, "median_confidence": 0, "min_confidence": 0, "max_confidence": 0
-        })
+        stats.update({"mean_confidence": 0.0, "median_confidence": 0.0})
+
+    # Rule Coverage
+    rule_decisions = sum(1 for r in rows if r.get("decision_source") == "rule")
+    stats["rule_coverage_rate"] = round(rule_decisions / total_rows, 4) if total_rows > 0 else 0.0
+    
+    # ML Decisive Rate
+    ml_decisive = sum(1 for r in rows if r.get("decision_source") == "ml" and r.get("humor_presence") != "ambiguous")
+    stats["ml_decisive_rate"] = round(ml_decisive / total_rows, 4) if total_rows > 0 else 0.0
 
     # Distributions
     stats["decision_source_distribution"] = dict(Counter(r.get("decision_source", "missing_column") for r in rows))
     stats["rule_label_distribution"] = dict(Counter(r.get("rule_label", "missing_column") for r in rows))
     
-    # ML label is often internal or missing from CSV, infer it from probability
     ml_labels = [get_ml_label(r.get("ml_humor_probability"), args.humor_threshold, args.non_humor_threshold) for r in rows]
     stats["ml_label_distribution"] = dict(Counter(ml_labels))
     
     stats["manual_review_reason_distribution"] = dict(Counter(r.get("manual_review_reason", "missing_column") for r in rows))
-    stats["classifier_name_distribution"] = dict(Counter(r.get("model_name", "missing_column") for r in rows))
-    stats["classifier_version_distribution"] = dict(Counter(r.get("prompt_version", "missing_column") for r in rows))
-
-    # Optional group stats
+    
+    # Sample group distribution
     groups = set(r.get("sample_group", "unknown") for r in rows)
     group_stats = {}
     for g in groups:
@@ -120,95 +120,118 @@ def main():
         group_stats[g] = dict(g_labels)
     stats["sample_group_distribution"] = group_stats
 
-    companies = set(r.get("company_name", "unknown") for r in rows)
-    company_stats = {}
-    for c in companies:
+    # Company distribution (Top 20)
+    companies = Counter(r.get("company_name", "unknown") for r in rows).most_common(20)
+    comp_stats = {}
+    for c, _ in companies:
         c_rows = [r for r in rows if r.get("company_name") == c]
         c_labels = Counter(r.get("humor_presence") for r in c_rows)
-        company_stats[c] = dict(c_labels)
-    stats["company_distribution"] = company_stats
+        comp_stats[c] = dict(c_labels)
+    stats["company_distribution_top20"] = comp_stats
 
-    # Diagnosis of ambiguous 80%
-    ambiguous_rows = [r for r in rows if r.get("humor_presence") == "ambiguous"]
-    diagnosis = Counter()
-    for r in ambiguous_rows:
-        reason = r.get("manual_review_reason", "")
-        if reason:
-            diagnosis[reason] += 1
-        else:
-            diagnosis["unknown_ambiguous"] += 1
-    stats["ambiguous_diagnosis"] = dict(diagnosis)
+    # Diagnosis output
+    if args.output_diagnosis:
+        args.output_diagnosis.parent.mkdir(parents=True, exist_ok=True)
+        diagnosis_rows = [
+            ["category", "count", "percentage"],
+            ["ML ambiguous (between thresholds)", stats["manual_review_reason_distribution"].get("ml_probability_between_thresholds", 0), 0],
+            ["Rule ML conflict", stats["manual_review_reason_distribution"].get("rule_ml_conflict", 0), 0],
+            ["Rule ambiguous (short text)", stats["manual_review_reason_distribution"].get("rule_ambiguous", 0), 0],
+            ["Local classifier error", stats["manual_review_reason_distribution"].get("local_classifier_error", 0), 0],
+        ]
+        for row in diagnosis_rows[1:]:
+            row[2] = round(row[1] / total_rows, 4) if total_rows > 0 else 0.0
+        with args.output_diagnosis.open("w", encoding="utf-8", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerows(diagnosis_rows)
 
-    # Print results
+    # Print summary JSON
     print(json.dumps(stats, indent=2))
 
     if args.output_audit:
         args.output_audit.parent.mkdir(parents=True, exist_ok=True)
-        # Flatten for CSV audit if needed, but dict to CSV is easier as key-value pairs
-        with args.output_audit.open("w", encoding="utf-8") as f:
+        with args.output_audit.open("w", encoding="utf-8", newline="") as f:
             writer = csv.writer(f)
+            writer.writerow(["metric", "value"])
             for k, v in stats.items():
-                writer.writerow([k, json.dumps(v) if isinstance(v, dict) else v])
+                if isinstance(v, (dict, list)):
+                    writer.writerow([k, json.dumps(v)])
+                else:
+                    writer.writerow([k, v])
 
     if args.output_review_sample:
-        # Generate review sample
-        # high-confidence humor 10, non_humor 10, ambiguous 30, rule/ML conflict 20, short-text ambiguous 10, low-confidence 20
-        # Total up to 100
+        # Define buckets
+        # high_confidence_humor, high_confidence_non_humor, ambiguous, low_confidence, rule_ml_conflict, short_or_empty_text
+        # sample_group_wendys, sample_group_moonpie, sample_group_fortune
         sample = []
-        
-        def get_bucket(r, bucket_name, limit):
+        sampled_ids = set()
+
+        def add_to_sample(rows_subset, bucket_name, limit):
             count = 0
-            for row in r:
+            for r in rows_subset:
                 if count >= limit: break
-                row["sample_bucket"] = bucket_name
-                sample.append(row)
+                if r.get("global_post_id") in sampled_ids: continue
+                r_copy = dict(r)
+                r_copy["sample_bucket"] = bucket_name
+                # Add extra fields
+                prob = r.get("ml_humor_probability")
+                r_copy["ml_label"] = get_ml_label(prob, args.humor_threshold, args.non_humor_threshold)
+                r_copy["ml_probability_humor"] = prob
+                try:
+                    r_copy["ml_probability_non_humor"] = f"{1.0 - float(prob):.6f}" if prob else ""
+                except (ValueError, TypeError):
+                    r_copy["ml_probability_non_humor"] = ""
+                r_copy["matched_humor_cues"] = r.get("rule_evidence") if r.get("rule_label") == "humor" else ""
+                r_copy["matched_non_humor_cues"] = r.get("rule_evidence") if r.get("rule_label") == "non_humor" else ""
+                
+                sample.append(r_copy)
+                sampled_ids.add(r.get("global_post_id"))
                 count += 1
-            return r[count:]
 
-        # High confidence humor
-        humor_rows = sorted([r for r in rows if r.get("humor_presence") == "humor"], key=lambda x: float(x.get("confidence_score", 0)), reverse=True)
-        humor_rows = get_bucket(humor_rows, "high_confidence_humor", 10)
+        # 1. High confidence humor (Top 15)
+        h_rows = sorted([r for r in rows if r.get("humor_presence") == "humor"], key=lambda x: float(x.get("confidence_score", 0)), reverse=True)
+        add_to_sample(h_rows, "high_confidence_humor", 15)
 
-        # High confidence non_humor
-        non_humor_rows = sorted([r for r in rows if r.get("humor_presence") == "non_humor"], key=lambda x: float(x.get("confidence_score", 0)), reverse=True)
-        non_humor_rows = get_bucket(non_humor_rows, "high_confidence_non_humor", 10)
+        # 2. High confidence non_humor (Top 15)
+        nh_rows = sorted([r for r in rows if r.get("humor_presence") == "non_humor"], key=lambda x: float(x.get("confidence_score", 0)), reverse=True)
+        add_to_sample(nh_rows, "high_confidence_non_humor", 15)
 
-        # Ambiguous
-        amb_rows = [r for r in rows if r.get("humor_presence") == "ambiguous"]
-        # Rule/ML conflict
-        conflict_rows = [r for r in amb_rows if r.get("manual_review_reason") == "rule_ml_conflict"]
-        conflict_rows = get_bucket(conflict_rows, "rule_ml_conflict", 20)
+        # 3. Rule/ML conflict (All up to 20)
+        conflict_rows = [r for r in rows if r.get("manual_review_reason") == "rule_ml_conflict"]
+        add_to_sample(conflict_rows, "rule_ml_conflict", 20)
+
+        # 4. Short text ambiguous (Top 15)
+        short_rows = [r for r in rows if r.get("manual_review_reason") == "rule_ambiguous"]
+        add_to_sample(short_rows, "short_or_empty_text", 15)
+
+        # 5. Low confidence (Lowest scores, up to 20)
+        low_conf_rows = sorted(rows, key=lambda x: float(x.get("confidence_score", 0)))
+        add_to_sample(low_conf_rows, "low_confidence", 20)
+
+        # 6. Benchmark groups
+        wendys_rows = [r for r in rows if r.get("sample_group") == "benchmark_aggressive_wendys"]
+        add_to_sample(wendys_rows, "sample_group_wendys", 15)
         
-        # Short text ambiguous
-        short_rows = [r for r in amb_rows if r.get("manual_review_reason") == "rule_ambiguous"] # Assuming rule_ambiguous for short text
-        short_rows = get_bucket(short_rows, "short_text_ambiguous", 10)
+        moonpie_rows = [r for r in rows if r.get("sample_group") == "benchmark_self_defeating_moonpie"]
+        add_to_sample(moonpie_rows, "sample_group_moonpie", 15)
 
-        # Other ambiguous
-        other_amb = [r for r in amb_rows if r.get("manual_review_reason") == "ml_probability_between_thresholds"]
-        other_amb = get_bucket(other_amb, "ml_ambiguous", 30)
+        fortune_rows = [r for r in rows if r.get("sample_group") == "fortune_top100_ranked"]
+        add_to_sample(fortune_rows, "sample_group_fortune", 15)
 
-        # Low confidence (rest of ambiguous or low score)
-        low_conf = sorted([r for r in rows if r not in sample], key=lambda x: float(x.get("confidence_score", 0)))
-        get_bucket(low_conf, "low_confidence", 20)
+        # 7. Remaining ambiguous
+        amb_rows = [r for r in rows if r.get("humor_presence") == "ambiguous"]
+        add_to_sample(amb_rows, "ambiguous", 30)
 
         if sample:
             args.output_review_sample.parent.mkdir(parents=True, exist_ok=True)
+            fields = [
+                "sample_bucket", "global_post_id", "tweet_id", "sample_group", "company_name", 
+                "source_x_handle", "created_at", "text", "humor_presence", "confidence_score", "rule_label", 
+                "ml_label", "ml_probability_humor", "ml_probability_non_humor", "decision_source",
+                "needs_manual_review", "manual_review_reason", "matched_humor_cues", "matched_non_humor_cues",
+                "model_name", "prompt_version"
+            ]
             with args.output_review_sample.open("w", encoding="utf-8-sig", newline="") as f:
-                # Add inferred ml_label to sample output
-                for r in sample:
-                    r["ml_label"] = get_ml_label(r.get("ml_humor_probability"), args.humor_threshold, args.non_humor_threshold)
-                    r["ml_probability_humor"] = r.get("ml_humor_probability", "")
-                    r["ml_probability_non_humor"] = str(1.0 - float(r.get("ml_humor_probability"))) if r.get("ml_humor_probability") else ""
-                    r["matched_humor_cues"] = r.get("rule_evidence") if r.get("rule_label") == "humor" else ""
-                    r["matched_non_humor_cues"] = r.get("rule_evidence") if r.get("rule_label") == "non_humor" else ""
-                
-                # Filter fields for review sample
-                fields = [
-                    "sample_bucket", "global_post_id", "tweet_id", "sample_group", "company_name", 
-                    "created_at", "text", "humor_presence", "confidence_score", "rule_label", 
-                    "ml_label", "ml_probability_humor", "ml_probability_non_humor", "decision_source",
-                    "needs_manual_review", "manual_review_reason", "matched_humor_cues", "matched_non_humor_cues"
-                ]
                 writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
                 writer.writeheader()
                 writer.writerows(sample)
