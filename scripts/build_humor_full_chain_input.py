@@ -5,8 +5,10 @@ Supports two sampling modes:
 1. full/global mode: row_limit controls the first N valid rows, 0 means all rows;
 2. per-company mode: per_company_limit controls the first N valid rows per company.
 
-Expected company-count mismatches are recorded as warnings by default rather than
-failing the workflow, so diagnostic runs can still produce artifacts.
+For the existing GitHub Actions UI, per-company mode can also be requested through
+--limit with this syntax: company:<per_company_limit>:<expected_companies>.
+Example: --limit company:100:102 samples up to 100 posts per company and records
+an expected-company warning if the detected company count is not 102.
 """
 
 import argparse
@@ -41,12 +43,25 @@ def company_from_row(row, company_field):
     return company or "unknown_company"
 
 
+def parse_limit_mode(limit_value, per_company_limit, expected_companies):
+    raw = str(limit_value or "0").strip()
+    if raw.lower().startswith("company:"):
+        parts = raw.split(":")
+        if len(parts) not in {2, 3}:
+            raise ValueError("company limit syntax must be company:<per_company_limit> or company:<per_company_limit>:<expected_companies>")
+        per_company_limit = int(parts[1])
+        if len(parts) == 3 and parts[2] != "":
+            expected_companies = int(parts[2])
+        return 0, per_company_limit, expected_companies, raw
+    return int(raw), per_company_limit, expected_companies, raw
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, default=Path("data/derived/humor/humor_classification_input.csv"))
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
-    parser.add_argument("--limit", type=int, default=0, help="0 means all rows in global mode")
+    parser.add_argument("--limit", default="0", help="0 means all rows; company:100:102 enables per-company sampling")
     parser.add_argument("--per-company-limit", type=int, default=0, help="0 disables per-company sampling")
     parser.add_argument("--expected-companies", type=int, default=0, help="0 disables expected-company check")
     parser.add_argument(
@@ -58,9 +73,15 @@ def main():
     parser.add_argument("--company-field", default="company_name")
     args = parser.parse_args()
 
-    if args.limit < 0:
+    row_limit, per_company_limit, expected_companies, raw_limit = parse_limit_mode(
+        args.limit,
+        args.per_company_limit,
+        args.expected_companies,
+    )
+
+    if row_limit < 0:
         raise ValueError("--limit cannot be negative")
-    if args.per_company_limit < 0:
+    if per_company_limit < 0:
         raise ValueError("--per-company-limit cannot be negative")
     if not args.input.exists():
         raise FileNotFoundError(f"Input CSV not found: {args.input}")
@@ -89,10 +110,10 @@ def main():
 
             available_by_company[company] += 1
 
-            if args.per_company_limit:
-                if selected_by_company[company] >= args.per_company_limit:
+            if per_company_limit:
+                if selected_by_company[company] >= per_company_limit:
                     continue
-            elif args.limit and len(rows) >= args.limit:
+            elif row_limit and len(rows) >= row_limit:
                 break
 
             gid = normalize_text(row.get("global_post_id"))
@@ -114,9 +135,9 @@ def main():
             selected_by_company[company] += 1
 
     company_count = len(available_by_company)
-    if args.expected_companies and args.expected_companies_mode != "off" and company_count != args.expected_companies:
+    if expected_companies and args.expected_companies_mode != "off" and company_count != expected_companies:
         msg = (
-            f"Expected {args.expected_companies} companies, found {company_count}. "
+            f"Expected {expected_companies} companies, found {company_count}. "
             "Proceeding because expected-company mode is not strict."
         )
         if args.expected_companies_mode == "strict":
@@ -136,23 +157,24 @@ def main():
         writer.writerows(rows)
 
     shortfall_by_company = {}
-    if args.per_company_limit:
+    if per_company_limit:
         shortfall_by_company = {
-            company: args.per_company_limit - selected
+            company: per_company_limit - selected
             for company, selected in selected_by_company.items()
-            if selected < args.per_company_limit
+            if selected < per_company_limit
         }
 
     manifest = {
         "input": str(args.input),
         "output": str(args.output),
-        "sampling_mode": "per_company" if args.per_company_limit else "global_or_full",
-        "requested_limit": args.limit,
-        "per_company_limit": args.per_company_limit,
-        "expected_companies": args.expected_companies,
+        "sampling_mode": "per_company" if per_company_limit else "global_or_full",
+        "raw_limit_input": raw_limit,
+        "requested_limit": row_limit,
+        "per_company_limit": per_company_limit,
+        "expected_companies": expected_companies,
         "expected_companies_mode": args.expected_companies_mode,
         "actual_companies": company_count,
-        "target_rows_if_all_companies_full": company_count * args.per_company_limit if args.per_company_limit else None,
+        "target_rows_if_all_companies_full": company_count * per_company_limit if per_company_limit else None,
         "output_rows": len(rows),
         "skipped_empty_text_rows": skipped_empty_text,
         "synthetic_ids_created": synthetic_ids_created,
