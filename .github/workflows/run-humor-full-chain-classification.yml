@@ -3,12 +3,22 @@ name: Run Humor Full Chain Classification
 on:
   workflow_dispatch:
     inputs:
+      run_mode:
+        description: "Run mode selector: test sample or full run"
+        required: true
+        default: "test_company_100_each"
+        type: choice
+        options:
+          - test_company_100_each
+          - test_first_100
+          - full_all_posts
+          - manual_from_fields
       input_path:
         description: "Full post input CSV path"
         required: true
         default: "data/derived/humor/humor_classification_input.csv"
       row_limit:
-        description: "0 means all rows; use a positive value only for diagnostics"
+        description: "Manual row limit. 0 means all rows. Ignored unless run_mode=manual_from_fields."
         required: true
         default: "0"
       presence_shard_size:
@@ -41,6 +51,7 @@ permissions:
   actions: read
 
 env:
+  RUN_MODE: ${{ github.event.inputs.run_mode || 'test_company_100_each' }}
   INPUT_PATH: ${{ github.event.inputs.input_path || 'data/derived/humor/humor_classification_input.csv' }}
   ROW_LIMIT: ${{ github.event.inputs.row_limit || '0' }}
   PRESENCE_SHARD_SIZE: ${{ github.event.inputs.presence_shard_size || '2000' }}
@@ -54,9 +65,37 @@ jobs:
       actual_rows: ${{ steps.plan.outputs.actual_rows }}
       presence_shards: ${{ steps.plan.outputs.presence_shards }}
       sentiment_shards: ${{ steps.plan.outputs.sentiment_shards }}
+      effective_row_limit: ${{ steps.resolve.outputs.effective_row_limit }}
+      run_mode: ${{ steps.resolve.outputs.run_mode }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Resolve run mode
+        id: resolve
+        run: |
+          case "${RUN_MODE}" in
+            test_company_100_each)
+              EFFECTIVE_ROW_LIMIT="company:100:102"
+              ;;
+            test_first_100)
+              EFFECTIVE_ROW_LIMIT="100"
+              ;;
+            full_all_posts)
+              EFFECTIVE_ROW_LIMIT="0"
+              ;;
+            manual_from_fields)
+              EFFECTIVE_ROW_LIMIT="${ROW_LIMIT}"
+              ;;
+            *)
+              echo "Unknown RUN_MODE=${RUN_MODE}" >&2
+              exit 1
+              ;;
+          esac
+          echo "run_mode=${RUN_MODE}" >> "$GITHUB_OUTPUT"
+          echo "effective_row_limit=${EFFECTIVE_ROW_LIMIT}" >> "$GITHUB_OUTPUT"
+          echo "RUN_MODE=${RUN_MODE}"
+          echo "EFFECTIVE_ROW_LIMIT=${EFFECTIVE_ROW_LIMIT}"
 
       - name: Build full-chain input and training seed
         run: |
@@ -67,7 +106,7 @@ jobs:
             --input "${INPUT_PATH}" \
             --output data/derived/humor/full_chain/inputs/humor_full_chain_input.csv \
             --manifest data/derived/humor/full_chain/inputs/humor_full_chain_input_manifest.json \
-            --limit "${ROW_LIMIT}"
+            --limit "${{ steps.resolve.outputs.effective_row_limit }}"
 
       - name: Plan full-chain shards
         id: plan
@@ -460,6 +499,8 @@ jobs:
         with:
           name: humor-full-chain-final
           path: |
+            full_chain_inputs/humor_full_chain_input_manifest.json
+            full_chain_inputs/humor_full_chain_input.csv
             data/derived/humor/full_chain/humor_full_chain_master.csv
             data/audit/full_chain/humor_full_chain_summary.json
             data/audit/full_chain/humor_full_chain_summary.csv
