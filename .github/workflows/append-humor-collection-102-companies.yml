@@ -16,23 +16,23 @@ on:
         required: true
         default: '12'
       max_parallel:
-        description: 'Maximum shard jobs to run in parallel. Recommended: 3'
+        description: 'Maximum shard jobs to run in parallel. Recommended: 2-3'
         required: true
         default: '3'
       start_offset:
         description: 'Rotate target order before sharding. Use 0, 10, 20, ..., 90 across repeated runs.'
         required: true
         default: '0'
-      incremental_only:
-        description: 'Stop early when already-known tweet IDs are encountered'
+      collection_mode:
+        description: 'incremental stops on known IDs; backfill keeps scrolling to find older missing posts'
         required: true
-        default: 'true'
+        default: 'incremental'
         type: choice
         options:
-          - 'true'
-          - 'false'
+          - 'incremental'
+          - 'backfill'
       existing_stop_threshold:
-        description: 'Known tweet IDs observed before early stop'
+        description: 'Known tweet IDs observed before early stop in incremental mode'
         required: true
         default: '30'
       min_scrolls_before_stop:
@@ -79,7 +79,6 @@ jobs:
           shard_count='${{ inputs.shard_count }}'
           max_parallel='${{ inputs.max_parallel }}'
           start_offset='${{ inputs.start_offset }}'
-
           if [ "$shard_count" -lt 1 ] || [ "$shard_count" -gt 12 ]; then
             echo "::error::shard_count must be between 1 and 12"
             exit 1
@@ -92,7 +91,6 @@ jobs:
             echo "::error::start_offset must be between 0 and 101"
             exit 1
           fi
-
           python - <<'PY'
           import csv
           from pathlib import Path
@@ -106,7 +104,6 @@ jobs:
           assert len(fortune) == 100, len(fortune)
           assert len(benchmark) == 2, len(benchmark)
           PY
-
           echo "shard_count=$shard_count" >> "$GITHUB_OUTPUT"
           echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
           echo "start_offset=$start_offset" >> "$GITHUB_OUTPUT"
@@ -137,22 +134,18 @@ jobs:
           python - <<'PY'
           import csv, os
           from pathlib import Path
-
           shard_index = int(os.environ['SHARD_INDEX'])
           shard_count = int(os.environ['SHARD_COUNT'])
           start_offset = int(os.environ['START_OFFSET'])
-
           rows = list(csv.DictReader(Path('config/humor_collection_append_targets.csv').open(encoding='utf-8-sig')))
           if rows:
               start_offset = start_offset % len(rows)
               rows = rows[start_offset:] + rows[:start_offset]
-
           selected = [row for i, row in enumerate(rows) if i % shard_count == shard_index]
           with Path('shard_work/targets.csv').open('w', encoding='utf-8', newline='') as handle:
               writer = csv.DictWriter(handle, fieldnames=['fortune_rank', 'company_name', 'handle', 'sample_group'])
               writer.writeheader()
               writer.writerows(selected)
-
           print(f'shard_index={shard_index}')
           print(f'shard_count={shard_count}')
           print(f'start_offset={start_offset}')
@@ -177,6 +170,82 @@ jobs:
           pip install -r requirements-scrape.txt
           python -m playwright install --with-deps chromium
 
+      - name: Patch append runner for broad existing ID lookup
+        if: ${{ steps.shard.outputs.target_count != '0' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          runner = Path('scripts/run_humor_append_collection.py')
+          text = runner.read_text(encoding='utf-8')
+          old = '''    brand_dir = get_fortune_dir(rank, name)
+    account_folder = f"01_primary_{slugify(handle.lstrip('@'))}"
+    posts_csv = brand_dir / "accounts" / account_folder / "posts.csv"
+    if not posts_csv.exists():
+        posts_csv = brand_dir / "posts.csv"
+
+    return {
+        "is_benchmark": False,
+        "brand_dir": brand_dir,
+        "posts_csv": posts_csv,
+        "temp_json": brand_dir / "temp_append.json",
+        "state_file": brand_dir / "temp_append_state.json",
+    }'''
+          new = '''    brand_dir = get_fortune_dir(rank, name)
+    existing_paths = [brand_dir / "posts.csv"]
+    accounts_dir = brand_dir / "accounts"
+    if accounts_dir.exists():
+        existing_paths.extend(sorted(accounts_dir.glob("*/posts.csv")))
+    existing_paths = list(dict.fromkeys(existing_paths))
+    posts_csv = max(existing_paths, key=get_posts_count_csv)
+
+    return {
+        "is_benchmark": False,
+        "brand_dir": brand_dir,
+        "posts_csv": posts_csv,
+        "existing_paths": existing_paths,
+        "temp_json": brand_dir / "temp_append.json",
+        "state_file": brand_dir / "temp_append_state.json",
+    }'''
+          if old not in text:
+              raise SystemExit('expected resolve_target_paths block not found')
+          text = text.replace(old, new)
+          old = '''            posts_csv = paths["posts_csv"]  # type: ignore[assignment]
+            prev_count = get_posts_count_csv(posts_csv)
+            existing_ids = load_existing_ids_csv(posts_csv)'''
+          new = '''            posts_csv = paths["posts_csv"]  # type: ignore[assignment]
+            source_paths = paths.get("existing_paths", [posts_csv])
+            existing_ids = set()
+            prev_ids = set()
+            for source_path in source_paths:
+                ids = load_existing_ids_csv(source_path)
+                existing_ids.update(ids)
+                prev_ids.update(ids)
+            prev_count = len(prev_ids)'''
+          if old not in text:
+              raise SystemExit('expected existing_ids block not found')
+          text = text.replace(old, new)
+          old = '''            "SCRAPE_METRICS_FILE": str(metrics_path),'''
+          new = '''            "SCRAPE_METRICS_FILE": str(metrics_path),
+            "SKIP_EXISTING_RECORDS": "1",'''
+          text = text.replace(old, new)
+          runner.write_text(text, encoding='utf-8')
+
+          scraper = Path('src/x_scrapper/collection/x_scraper.py')
+          text = scraper.read_text(encoding='utf-8')
+          text = text.replace(
+              "STOP_ON_EXISTING = os.getenv('STOP_ON_EXISTING', '0').lower() in {'1', 'true', 'yes'}",
+              "STOP_ON_EXISTING = os.getenv('STOP_ON_EXISTING', '0').lower() in {'1', 'true', 'yes'}\nSKIP_EXISTING_RECORDS = os.getenv('SKIP_EXISTING_RECORDS', '0').lower() in {'1', 'true', 'yes'}",
+          )
+          text = text.replace(
+              "if STOP_ON_EXISTING and tweet_id in known_ids:",
+              "if (STOP_ON_EXISTING or SKIP_EXISTING_RECORDS) and tweet_id in known_ids:",
+          )
+          scraper.write_text(text, encoding='utf-8')
+          PY
+
       - name: Run shard append collection
         if: ${{ steps.shard.outputs.target_count != '0' }}
         env:
@@ -187,7 +256,7 @@ jobs:
             --targets shard_work/targets.csv \
             --max-posts '${{ inputs.max_posts }}' \
             --max-scrolls '${{ inputs.max_scrolls }}' \
-            ${{ inputs.incremental_only == 'true' && '--incremental-only' || '--no-incremental-only' }} \
+            ${{ inputs.collection_mode == 'incremental' && '--incremental-only' || '--no-incremental-only' }} \
             --existing-stop-threshold '${{ inputs.existing_stop_threshold }}' \
             --min-scrolls-before-stop '${{ inputs.min_scrolls_before_stop }}' \
             --retry-attempts '${{ inputs.retry_attempts }}'
@@ -250,15 +319,12 @@ jobs:
           python - <<'PY'
           import csv, shutil
           from pathlib import Path
-
           root = Path('artifact_downloads')
           summary_rows = []
           summary_fields = None
-
           for source in sorted(root.glob('**/*')):
               if not source.is_file() or 'data' not in source.parts:
                   continue
-
               rel = Path(*source.parts[source.parts.index('data'):])
               if source.name.startswith('humor_collection_append_summary_shard_'):
                   with source.open(encoding='utf-8-sig', newline='') as handle:
@@ -267,26 +333,17 @@ jobs:
                           summary_fields = reader.fieldnames
                       summary_rows.extend(list(reader))
                   continue
-
               dest = Path(rel)
               dest.parent.mkdir(parents=True, exist_ok=True)
               shutil.copy2(source, dest)
-
           if summary_fields is None:
-              summary_fields = [
-                  'fortune_rank','company_name','handle','sample_group','status','attempts',
-                  'previous_posts','final_posts','new_unique_posts','merge_added_posts',
-                  'existing_id_count','new_posts_collected','known_posts_seen',
-                  'stopped_on_existing','stop_reason','scrolls_completed','last_error'
-              ]
-
+              summary_fields = ['fortune_rank','company_name','handle','sample_group','status','attempts','previous_posts','final_posts','new_unique_posts','merge_added_posts','existing_id_count','new_posts_collected','known_posts_seen','stopped_on_existing','stop_reason','scrolls_completed','last_error']
           out = Path('data/audit/humor_collection_append_summary.csv')
           out.parent.mkdir(parents=True, exist_ok=True)
           with out.open('w', encoding='utf-8', newline='') as handle:
               writer = csv.DictWriter(handle, fieldnames=summary_fields)
               writer.writeheader()
               writer.writerows(summary_rows)
-
           failed = [row for row in summary_rows if str(row.get('status', '')).startswith('failed')]
           if failed:
               failed_out = Path('data/audit/humor_collection_append_failed_targets.csv')
@@ -294,7 +351,6 @@ jobs:
                   writer = csv.DictWriter(handle, fieldnames=summary_fields)
                   writer.writeheader()
                   writer.writerows(failed)
-
           print('-' * 60)
           print(f'Total target rows in summaries: {len(summary_rows)}')
           print(f'Success rows: {sum(1 for row in summary_rows if str(row.get("status", "")).startswith("success"))}')
@@ -302,11 +358,6 @@ jobs:
           print(f'Previous total posts: {sum(int(row.get("previous_posts") or 0) for row in summary_rows)}')
           print(f'Final total posts: {sum(int(row.get("final_posts") or 0) for row in summary_rows)}')
           print(f'New unique posts: {sum(int(row.get("new_unique_posts") or 0) for row in summary_rows)}')
-          for name in ['Coca-Cola', "Wendy's", 'MoonPie']:
-              row = next((entry for entry in summary_rows if entry.get('company_name') == name), None)
-              if row:
-                  print(f'{name}: prev={row.get("previous_posts")}, final={row.get("final_posts")}, new={row.get("new_unique_posts")}, status={row.get("status")}, stop_reason={row.get("stop_reason")}')
-          print('-' * 60)
           PY
 
       - name: Ensure dashboard data was not modified
@@ -335,5 +386,5 @@ jobs:
             exit 0
           fi
           git commit -m 'data: append collected humor posts for 102 targets' \
-            -m 'Merged shard artifacts from incremental append-only browser collection. Official X API was not used. Dashboard data was not synced.'
+            -m 'Merged shard artifacts from append-only browser collection. Dashboard data was not synced.'
           git push origin HEAD:main
