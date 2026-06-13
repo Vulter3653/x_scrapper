@@ -23,6 +23,10 @@ on:
         description: "ML Non-Humor Threshold"
         required: true
         default: "0.30"
+      classifier_version:
+        description: "Classifier Version Tag"
+        required: true
+        default: "local-smoke-v2-github-actions"
 
 permissions:
   contents: write
