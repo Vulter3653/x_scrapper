@@ -35,6 +35,13 @@ permissions:
   contents: write
   actions: read
 
+env:
+  PILOT_ROWS: ${{ github.event.inputs.pilot_rows || '100' }}
+  SHARD_SIZE: ${{ github.event.inputs.shard_size || '50' }}
+  MAX_PARALLEL: ${{ github.event.inputs.max_parallel || '2' }}
+  HUMOR_THRESHOLD: ${{ github.event.inputs.humor_threshold || '0.70' }}
+  NON_HUMOR_THRESHOLD: ${{ github.event.inputs.non_humor_threshold || '0.30' }}
+
 jobs:
   plan-local-smoke-shards:
     runs-on: ubuntu-latest
@@ -48,8 +55,8 @@ jobs:
         id: plan
         run: |
           # Simple sharding logic for 100 rows
-          TOTAL=${{ github.event.inputs.pilot_rows }}
-          SIZE=${{ github.event.inputs.shard_size }}
+          TOTAL=${{ env.PILOT_ROWS }}
+          SIZE=${{ env.SHARD_SIZE }}
           NUM_SHARDS=$(( (TOTAL + SIZE - 1) / SIZE ))
           SHARDS=$(seq 1 $NUM_SHARDS | jq -R -s -c 'split("\n")[:-1]')
           echo "shards=$SHARDS" >> $GITHUB_OUTPUT
@@ -60,7 +67,7 @@ jobs:
     strategy:
       matrix:
         shard: ${{ fromJson(needs.plan-local-smoke-shards.outputs.shards) }}
-      max-parallel: ${{ fromJson(github.event.inputs.max_parallel) }}
+      max-parallel: ${{ env.MAX_PARALLEL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -80,8 +87,8 @@ jobs:
             --fortune-n 60 --wendys-n 20 --moonpie-n 20
           
           # Crude sharding:
-          START=$(( (${{ matrix.shard }} - 1) * ${{ github.event.inputs.shard_size }} ))
-          END=$(( ${{ matrix.shard }} * ${{ github.event.inputs.shard_size }} ))
+          START=$(( (${{ matrix.shard }} - 1) * ${{ env.SHARD_SIZE }} ))
+          END=$(( ${{ matrix.shard }} * ${{ env.SHARD_SIZE }} ))
           
           head -n 1 data/derived/humor/humor_presence_local_smoke_sample.csv > shard_${{ matrix.shard }}.csv
           tail -n +2 data/derived/humor/humor_presence_local_smoke_sample.csv | sed -n "$((START+1)),${END}p" >> shard_${{ matrix.shard }}.csv
@@ -158,9 +165,9 @@ jobs:
             --output-audit data/audit/humor_presence_local_smoke_audit_summary.csv \
             --output-review-sample data/audit/humor_presence_local_smoke_review_sample.csv \
             --mode smoke \
-            --sample-size ${{ github.event.inputs.pilot_rows }} \
-            --humor-threshold ${{ github.event.inputs.humor_threshold }} \
-            --non-humor-threshold ${{ github.event.inputs.non_humor_threshold }}
+            --sample-size ${{ env.PILOT_ROWS }} \
+            --humor-threshold ${{ env.HUMOR_THRESHOLD }} \
+            --non-humor-threshold ${{ env.NON_HUMOR_THRESHOLD }}
 
       - name: Upload Evaluation Artifacts
         uses: actions/upload-artifact@v4
