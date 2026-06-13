@@ -3,61 +3,116 @@
 This guide explains how to manually run the 800-row diagnostic pilot for the local humor presence classifier using GitHub Actions.
 
 ## 1. Workflow Name
+
 In the GitHub Actions tab, select:
-**"Run Local Humor Presence Pilot"**
+
+**Run Local Humor Presence Pilot**
 
 ## 2. workflow_dispatch Inputs
-When clicking "Run workflow", use the following default or recommended values:
+
+Use the default values unless you are deliberately testing a threshold variant.
 
 - **pilot_rows**: `800`
 - **shard_size**: `200`
 - **max_parallel**: `4`
 - **humor_threshold**: `0.70`
 - **non_humor_threshold**: `0.30`
-- **classifier_version**: `local-pilot-v1-github-actions`
+- **classifier_version**: `local-pilot-v2-integrity`
 
-## 3. Before Running
-- Ensure all recent changes to `config/humor_presence_rule_cues.json` and `scripts/classify_humor_presence_local.py` have been pushed to the `main` branch.
-- Verify that the training seed data (Wendy's and MoonPie HSQ results) is present in the repository.
+## 3. What Changed in the Integrity Repair
 
-## 4. Steps to Monitor
-Monitor the following jobs in the GitHub Actions UI:
-1. **plan-local-pilot-shards**: Splits the 800 rows into 4 shards.
-2. **classify-local-pilot-shards**: Runs the local classifier on each shard in parallel.
-3. **aggregate-local-pilot-results**: Merges the shard outputs into a single CSV.
-4. **evaluate-local-pilot-results**: Generates metrics, audit summaries, and review samples.
+The prior pilot produced successful jobs but only `441/800` output rows. The likely cause was shell-based CSV sharding with `sed`, which can corrupt records when post text contains embedded newlines. The repaired workflow uses a single centrally generated pilot sample and CSV-aware record sharding.
+
+The repaired workflow now enforces:
+
+1. one shared pilot input artifact for all shards;
+2. CSV-aware sharding via `scripts/shard_csv_records.py`;
+3. sample/result row-count validation;
+4. allowed `sample_group` whitelist validation;
+5. workflow failure if `output_rows != input_rows`;
+6. integrity audit artifact upload.
+
+Allowed sample groups:
+
+- `benchmark_aggressive_wendys`
+- `benchmark_self_defeating_moonpie`
+- `fortune_top100_ranked`
+
+## 4. Jobs to Monitor
+
+1. **build-local-pilot-inputs**
+   - builds training seed;
+   - builds one 800-row pilot sample;
+   - writes a sample manifest;
+   - uploads `humor-presence-local-pilot-inputs`.
+
+2. **classify-local-pilot-shards**
+   - downloads the shared pilot input artifact;
+   - creates CSV-aware record shards;
+   - classifies each shard.
+
+3. **aggregate-local-pilot-results**
+   - merges shard outputs;
+   - validates sample/result integrity;
+   - uploads aggregated results and integrity audit.
+
+4. **evaluate-local-pilot-results**
+   - evaluates the aggregated output;
+   - fails under `--strict-integrity` if row count, failed rows, or sample groups are invalid.
 
 ## 5. Success Criteria
-The run is successful if:
-- All jobs complete with a "Success" status.
-- **input rows** = 800
-- **output rows** = 800
-- **failed rows** = 0
-- Artifacts are generated and available for download.
+
+The run is successful only if:
+
+- all jobs complete with success;
+- `input_rows = 800`;
+- `output_rows = 800`;
+- `failed_rows = 0`;
+- `integrity_pass = true`;
+- no invalid `sample_group` values appear;
+- artifacts are generated.
 
 ## 6. Artifacts to Check
-Download the following artifacts:
-- **humor-presence-local-pilot-evaluation**: Contains:
-  - `data/audit/humor_presence_local_pilot_audit_summary.csv`
-  - `data/audit/humor_presence_local_pilot_ambiguous_diagnosis.csv`
-  - `data/audit/humor_presence_local_pilot_review_sample.csv`
-- **humor-presence-local-pilot-aggregated**: The full results file.
 
-## 7. Important Restrictions
-- **DO NOT** perform a full run (55,788 rows) yet.
-- **DO NOT** attempt HSQ 4-type classification.
-- **DO NOT** update the dashboard with these results.
-- These results are for **diagnostic purposes only**.
+- **humor-presence-local-pilot-inputs**
+  - `humor_presence_training_seed.csv`
+  - `humor_presence_local_pilot_sample.csv`
+  - `humor_presence_local_pilot_manifest.json`
 
-## 8. Feedback to Gemini
-After the run completes, please provide the following information to Gemini:
+- **humor-presence-local-pilot-aggregated**
+  - `humor_presence_local_pilot_results.csv`
 
-1. **Workflow Run URL**: (e.g., `https://github.com/Vulter3653/x_scrapper/actions/runs/...`)
-2. **Run Status**: (Success/Failure)
-3. **Total Run Time**: (e.g., 2m 45s)
-4. **Input/Output Row Counts**: (e.g., 800/800)
-5. **Failed Rows**: (e.g., 0)
-6. **Humor/Non-humor/Ambiguous Counts**: (e.g., 50/150/600)
-7. **Mean/Median Confidence**: (e.g., 0.58/0.55)
-8. **Top Review Bucket Observations**: (Optional, after looking at the review sample)
-9. **Any Error/Warning Logs**: (Paste snippet if applicable)
+- **humor-presence-local-pilot-integrity**
+  - `humor_presence_local_pilot_integrity_audit.csv`
+
+- **humor-presence-local-pilot-evaluation**
+  - `humor_presence_local_pilot_audit_summary.csv`
+  - `humor_presence_local_pilot_ambiguous_diagnosis.csv`
+  - `humor_presence_local_pilot_review_sample.csv`
+
+## 7. Restrictions
+
+Do not run:
+
+- 55,788-row full classification;
+- HSQ 4-type classification;
+- humor intensity generation;
+- dashboard sync.
+
+This pilot is still diagnostic only.
+
+## 8. Information to Report After Running
+
+Provide:
+
+1. Workflow Run URL
+2. Run Status
+3. Total Run Time
+4. `input_rows / output_rows`
+5. `failed_rows`
+6. `integrity_pass`
+7. Humor / Non-humor / Ambiguous counts
+8. Rule coverage rate
+9. ML decisive rate
+10. Mean / median confidence
+11. Any invalid sample group or row-count warning
