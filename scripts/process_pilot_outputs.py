@@ -1,58 +1,177 @@
 #!/usr/bin/env python3
-"""Process pilot classification outputs to generate audit and review samples."""
+"""Process humor presence pilot outputs to generate merged results, audit, and review samples."""
+
+from __future__ import annotations
 
 import argparse
 import csv
 import os
 import sys
-from pathlib import Path
 from collections import Counter
+from pathlib import Path
+from typing import Iterable
 
-def main():
-    parser = argparse.ArgumentParser()
+
+DEFAULT_RESULTS_GLOB = "**/humor_presence_pilot_results_shard_*.csv"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Process humor presence pilot output CSV files.")
     parser.add_argument("--input", type=Path, required=True, help="Path to pilot sample CSV")
-    parser.add_argument("--results", type=Path, required=True, help="Path to pilot results CSV")
-    parser.add_argument("--audit", type=Path, required=True, help="Path to output audit CSV")
-    parser.add_argument("--review", type=Path, required=True, help="Path to output review sample CSV")
+    parser.add_argument("--results", type=Path, help="Path to a single pilot results CSV")
+    parser.add_argument(
+        "--shard-results-root",
+        type=Path,
+        help="Directory containing shard result artifacts to merge recursively",
+    )
+    parser.add_argument("--output", type=Path, help="Merged output CSV path when using shard results")
+    parser.add_argument("--audit", "--audit-output", dest="audit", type=Path, required=True, help="Path to output audit CSV")
+    parser.add_argument(
+        "--review",
+        "--review-output",
+        dest="review",
+        type=Path,
+        required=True,
+        help="Path to output low-confidence review sample CSV",
+    )
     parser.add_argument("--model", default="gemini-3.5-flash")
-    parser.add_argument("--prompt-path", default="config/prompts/humor_presence_zero_shot_prompt.md")
-    parser.add_argument("--schema-path", default="config/schemas/humor_presence_classification_output.schema.json")
-    args = parser.parse_args()
+    parser.add_argument("--prompt", "--prompt-path", dest="prompt_path", default="config/prompts/humor_presence_zero_shot_prompt.md")
+    parser.add_argument(
+        "--schema",
+        "--schema-path",
+        dest="schema_path",
+        default="config/schemas/humor_presence_classification_output.schema.json",
+    )
+    return parser.parse_args()
 
-    if not args.input.exists():
-        print(f"Error: Input file {args.input} not found.")
-        sys.exit(1)
-    if not args.results.exists():
-        print(f"Error: Results file {args.results} not found.")
-        sys.exit(1)
 
-    # Load input to count rows
-    with args.input.open(encoding="utf-8-sig", newline="") as f:
-        input_rows = list(csv.DictReader(f))
-        input_ids = {row["global_post_id"] for row in input_rows}
+def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+    if not path.exists():
+        raise SystemExit(f"CSV file not found: {path}")
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        fieldnames = list(reader.fieldnames or [])
+        rows = list(reader)
+    if not fieldnames:
+        raise SystemExit(f"CSV file has no header: {path}")
+    return fieldnames, rows
 
-    # Load results
-    with args.results.open(encoding="utf-8-sig", newline="") as f:
-        results_rows = list(csv.DictReader(f))
 
-    # Counters
-    status_counts = Counter(r["classification_status"] for r in results_rows)
-    presence_counts = Counter(r["humor_presence"] for r in results_rows)
-    review_counts = Counter(r["needs_manual_review"].lower() == "true" for r in results_rows)
-    group_counts = Counter(r["sample_group"] for r in results_rows)
-    
-    # Nested counters for rates
-    group_presence = Counter((r["sample_group"], r["humor_presence"]) for r in results_rows)
+def write_csv(path: Path, fieldnames: Iterable[str], rows: list[dict[str, str]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(fieldnames))
+        writer.writeheader()
+        writer.writerows(rows)
 
-    def get_rate(group, presence_type):
+
+def load_result_rows(args: argparse.Namespace) -> tuple[list[str], list[dict[str, str]], list[Path]]:
+    if bool(args.results) == bool(args.shard_results_root):
+        raise SystemExit("Provide exactly one of --results or --shard-results-root")
+
+    if args.results:
+        fieldnames, rows = read_csv(args.results)
+        return fieldnames, rows, [args.results]
+
+    if not args.shard_results_root.exists():
+        raise SystemExit(f"Shard results root not found: {args.shard_results_root}")
+
+    result_paths = sorted(args.shard_results_root.glob(DEFAULT_RESULTS_GLOB))
+    if not result_paths:
+        raise SystemExit(
+            f"No shard result files found under {args.shard_results_root} with pattern {DEFAULT_RESULTS_GLOB}"
+        )
+
+    merged_rows: list[dict[str, str]] = []
+    fieldnames: list[str] | None = None
+    for result_path in result_paths:
+        current_fieldnames, current_rows = read_csv(result_path)
+        if fieldnames is None:
+            fieldnames = current_fieldnames
+        elif current_fieldnames != fieldnames:
+            raise SystemExit(f"Shard fieldnames mismatch: {result_path}")
+        merged_rows.extend(current_rows)
+
+    return fieldnames or [], merged_rows, result_paths
+
+
+def validate_result_ids(input_rows: list[dict[str, str]], results_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    input_ids = [row.get("global_post_id", "") for row in input_rows]
+    if any(not value for value in input_ids):
+        raise SystemExit("Input contains rows with empty global_post_id")
+
+    input_id_set = set(input_ids)
+    result_by_id: dict[str, dict[str, str]] = {}
+    duplicate_ids: list[str] = []
+    for row in results_rows:
+        global_post_id = row.get("global_post_id", "")
+        if not global_post_id:
+            raise SystemExit("Result contains row with empty global_post_id")
+        if global_post_id in result_by_id:
+            duplicate_ids.append(global_post_id)
+            continue
+        result_by_id[global_post_id] = row
+
+    if duplicate_ids:
+        sample = ", ".join(duplicate_ids[:10])
+        raise SystemExit(f"Duplicate global_post_id values in results: {len(duplicate_ids)} sample={sample}")
+
+    result_id_set = set(result_by_id)
+    missing_ids = sorted(input_id_set - result_id_set)
+    extra_ids = sorted(result_id_set - input_id_set)
+    if missing_ids or extra_ids:
+        raise SystemExit(
+            "Input/result global_post_id mismatch: "
+            f"missing={len(missing_ids)} extra={len(extra_ids)} "
+            f"missing_sample={missing_ids[:5]} extra_sample={extra_ids[:5]}"
+        )
+
+    return [result_by_id[global_post_id] for global_post_id in input_ids]
+
+
+def build_review_sample(results_rows: list[dict[str, str]], limit: int = 200) -> list[dict[str, str]]:
+    review_sample: list[dict[str, str]] = []
+    for row in results_rows:
+        needs_review = str(row.get("needs_manual_review", "")).lower() == "true"
+        is_ambiguous = row.get("humor_presence") == "ambiguous"
+        failed = row.get("classification_status") == "failed"
+        try:
+            confidence = float(row.get("confidence_score") or 0.0)
+        except ValueError:
+            confidence = 0.0
+        if needs_review or is_ambiguous or confidence < 0.70 or failed:
+            review_sample.append(row)
+            if len(review_sample) >= limit:
+                break
+    return review_sample
+
+
+def main() -> int:
+    args = parse_args()
+    input_fieldnames, input_rows = read_csv(args.input)
+    result_fieldnames, loaded_results, result_paths = load_result_rows(args)
+    ordered_results = validate_result_ids(input_rows, loaded_results)
+
+    if args.output:
+        write_csv(args.output, result_fieldnames, ordered_results)
+        print(f"Generated merged output: {args.output} ({len(ordered_results)} rows)")
+
+    status_counts = Counter(row.get("classification_status", "") for row in ordered_results)
+    presence_counts = Counter(row.get("humor_presence", "") for row in ordered_results)
+    review_counts = Counter(str(row.get("needs_manual_review", "")).lower() == "true" for row in ordered_results)
+    group_counts = Counter(row.get("sample_group", "") for row in ordered_results)
+    group_presence = Counter((row.get("sample_group", ""), row.get("humor_presence", "")) for row in ordered_results)
+
+    def get_rate(group: str, presence_type: str) -> float:
         total = group_counts.get(group, 0)
-        if total == 0: return 0.0
+        if total == 0:
+            return 0.0
         return group_presence.get((group, presence_type), 0) / total
 
-    # Audit Data
     audit_data = [
         ("pilot_input_rows", len(input_rows)),
-        ("pilot_output_rows", len(results_rows)),
+        ("pilot_output_rows", len(ordered_results)),
+        ("shard_result_files", len(result_paths)),
         ("classification_status_classified", status_counts.get("classified", 0)),
         ("classification_status_failed", status_counts.get("failed", 0)),
         ("humor_presence_humor", presence_counts.get("humor", 0)),
@@ -77,37 +196,21 @@ def main():
         ("github_sha", os.environ.get("GITHUB_SHA", "local")),
     ]
 
-    with args.audit.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.writer(f)
+    args.audit.parent.mkdir(parents=True, exist_ok=True)
+    with args.audit.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.writer(handle)
         writer.writerow(["audit_key", "audit_value"])
         writer.writerows(audit_data)
 
-    # Low-confidence review sample
-    # Conditions: needs_manual_review=true OR humor_presence=ambiguous OR confidence_score < 0.70 OR classification_status=failed
-    review_sample = []
-    for r in results_rows:
-        needs_review = r["needs_manual_review"].lower() == "true"
-        is_ambiguous = r["humor_presence"] == "ambiguous"
-        failed = r["classification_status"] == "failed"
-        try:
-            conf = float(r["confidence_score"])
-        except (ValueError, KeyError):
-            conf = 0.0
-        
-        if needs_review or is_ambiguous or conf < 0.70 or failed:
-            review_sample.append(r)
-            if len(review_sample) >= 200:
-                break
+    review_sample = build_review_sample(ordered_results)
+    if ordered_results:
+        write_csv(args.review, result_fieldnames, review_sample)
 
-    if results_rows:
-        with args.review.open("w", encoding="utf-8-sig", newline="") as f:
-            writer = csv.DictReader(results_rows[0].keys()) # dummy for fieldnames
-            writer = csv.DictWriter(f, fieldnames=results_rows[0].keys())
-            writer.writeheader()
-            writer.writerows(review_sample)
-
+    print(f"Processed result files: {len(result_paths)}")
     print(f"Generated audit: {args.audit}")
     print(f"Generated review sample: {args.review} ({len(review_sample)} rows)")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
