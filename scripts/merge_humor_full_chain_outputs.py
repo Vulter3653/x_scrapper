@@ -5,7 +5,7 @@ import argparse
 import csv
 import json
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 
@@ -53,6 +53,7 @@ def write_company_summary(path, master_rows):
             "company_name", "row_count", "humor_count", "non_humor_count", "ambiguous_count", "humor_rate",
             "positive_count", "negative_count", "neutral_count", "positive_rate", "negative_rate",
             "affiliative_count", "self_enhancing_count", "aggressive_count", "self_defeating_count",
+            "humor_type_review_count", "humor_type_review_rate",
         ]
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
@@ -61,6 +62,7 @@ def write_company_summary(path, master_rows):
             h = Counter(r.get("humor_presence", "") for r in rows)
             s = Counter(r.get("sentiment_label", "") for r in rows)
             t = Counter(r.get("humor_type", "") for r in rows)
+            review_count = sum(1 for r in rows if r.get("humor_type_review_flag") == "true")
             n = len(rows)
             writer.writerow({
                 "company_name": company,
@@ -78,6 +80,8 @@ def write_company_summary(path, master_rows):
                 "self_enhancing_count": t.get("self_enhancing", 0),
                 "aggressive_count": t.get("aggressive", 0),
                 "self_defeating_count": t.get("self_defeating", 0),
+                "humor_type_review_count": review_count,
+                "humor_type_review_rate": rate(review_count, n),
             })
 
 
@@ -86,6 +90,9 @@ def write_crosstab(path, master_rows):
     pairs = [
         ("humor_presence", "sentiment_label"),
         ("humor_type", "sentiment_label"),
+        ("humor_type", "target_of_humor"),
+        ("humor_type", "humor_function"),
+        ("humor_type", "harm_potential"),
         ("company_name", "humor_presence"),
         ("company_name", "sentiment_label"),
     ]
@@ -96,6 +103,35 @@ def write_crosstab(path, master_rows):
             counts = Counter((r.get(row_var, ""), r.get(col_var, "")) for r in master_rows)
             for (row_value, col_value), count in sorted(counts.items()):
                 writer.writerow([row_var, col_var, row_value, col_value, count])
+
+
+def type_metadata_or_defaults(humor_type_row, presence_label, missing=False):
+    if presence_label == "humor" and humor_type_row and not missing:
+        return {
+            "humor_type_secondary_label": humor_type_row.get("secondary_label", ""),
+            "target_of_humor": humor_type_row.get("target_of_humor", ""),
+            "humor_function": humor_type_row.get("humor_function", ""),
+            "harm_potential": humor_type_row.get("harm_potential", ""),
+            "humor_type_key_cues": humor_type_row.get("key_cues", ""),
+            "matched_type_cues": humor_type_row.get("matched_type_cues", ""),
+        }
+    if presence_label == "non_humor":
+        return {
+            "humor_type_secondary_label": "none",
+            "target_of_humor": "not_applicable",
+            "humor_function": "not_applicable",
+            "harm_potential": "not_applicable",
+            "humor_type_key_cues": "",
+            "matched_type_cues": "",
+        }
+    return {
+        "humor_type_secondary_label": "none",
+        "target_of_humor": "unclear",
+        "humor_function": "unclear",
+        "harm_potential": "unclear",
+        "humor_type_key_cues": "",
+        "matched_type_cues": "",
+    }
 
 
 def main():
@@ -167,6 +203,7 @@ def main():
                 type_reason = "Missing humor type output for humor-present row."
                 type_review = "true"
                 type_status = "missing"
+                type_meta = type_metadata_or_defaults({}, presence_label, missing=True)
             else:
                 if humor_type.get("humor_type_status") == "failed":
                     type_failed += 1
@@ -175,18 +212,21 @@ def main():
                 type_reason = humor_type.get("humor_type_rationale", "")
                 type_review = humor_type.get("humor_type_review_flag", "")
                 type_status = humor_type.get("humor_type_status", "")
+                type_meta = type_metadata_or_defaults(humor_type, presence_label)
         elif presence_label == "non_humor":
             type_label = "not_applicable"
             type_conf = "1.000000"
             type_reason = "Humor type not applicable because humor_presence=non_humor."
             type_review = "false"
             type_status = "not_applicable"
+            type_meta = type_metadata_or_defaults({}, presence_label)
         else:
             type_label = "ambiguous_or_review"
             type_conf = "0.000000"
             type_reason = "Humor type deferred because humor_presence is ambiguous or missing."
             type_review = "true"
             type_status = "deferred"
+            type_meta = type_metadata_or_defaults({}, presence_label)
 
         out = {
             "global_post_id": gid,
@@ -209,6 +249,12 @@ def main():
             "humor_type_reason": type_reason,
             "humor_type_review_flag": type_review,
             "humor_type_status": type_status,
+            "humor_type_secondary_label": type_meta["humor_type_secondary_label"],
+            "target_of_humor": type_meta["target_of_humor"],
+            "humor_function": type_meta["humor_function"],
+            "harm_potential": type_meta["harm_potential"],
+            "humor_type_key_cues": type_meta["humor_type_key_cues"],
+            "matched_type_cues": type_meta["matched_type_cues"],
             "sentiment_label": sentiment.get("sentiment_label", "missing_sentiment"),
             "sentiment_confidence": sentiment.get("sentiment_confidence", ""),
             "sentiment_reason": sentiment.get("sentiment_rationale", ""),
@@ -234,6 +280,10 @@ def main():
     presence_counts = Counter(r.get("humor_presence") for r in master_rows)
     type_counts = Counter(r.get("humor_type") for r in master_rows)
     sentiment_counts = Counter(r.get("sentiment_label") for r in master_rows)
+    target_counts = Counter(r.get("target_of_humor") for r in master_rows)
+    function_counts = Counter(r.get("humor_function") for r in master_rows)
+    harm_counts = Counter(r.get("harm_potential") for r in master_rows)
+    type_review_counts = Counter(r.get("humor_type_review_flag") for r in master_rows)
 
     summary = {
         "integrity_pass": not errors,
@@ -253,6 +303,10 @@ def main():
         "humor_presence_rates": {k: rate(v, n) for k, v in presence_counts.items()},
         "humor_type_distribution": dict(type_counts),
         "humor_type_rates": {k: rate(v, n) for k, v in type_counts.items()},
+        "humor_type_review_distribution": dict(type_review_counts),
+        "target_of_humor_distribution": dict(target_counts),
+        "humor_function_distribution": dict(function_counts),
+        "harm_potential_distribution": dict(harm_counts),
         "sentiment_distribution": dict(sentiment_counts),
         "sentiment_rates": {k: rate(v, n) for k, v in sentiment_counts.items()},
         "errors": errors,
