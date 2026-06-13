@@ -1,0 +1,3 @@
+version,input_rows,output_rows,failed_rows,humor_count,non_humor_count,ambiguous_count,humor_rate,non_humor_rate,ambiguous_rate,mean_confidence,median_confidence,rule_coverage_rate,ml_decisive_rate,rule_ml_conflict_count,manual_review_count,manual_review_rate
+v1,100,100,0,2,18,80,0.02,0.18,0.8,0.529883,0.526341,0.2,0.0,0,80,0.8
+v2,100,100,0,7,22,71,0.07,0.22,0.71,0.607209,0.595372,0.24,0.13,6,71,0.71

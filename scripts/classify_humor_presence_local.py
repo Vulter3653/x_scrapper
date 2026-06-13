@@ -33,6 +33,7 @@ OUTPUT_FIELDS = [
     "classification_rationale",
     "needs_manual_review",
     "manual_review_reason",
+    "decision_source",
     "model_name",
     "prompt_version",
     "classification_status",
@@ -246,7 +247,7 @@ def final_decision(text, cues, model):
     clean = normalize_text(text)
     rule_label, rule_evidence, rule_reason = rule_decision(clean, cues)
     if not clean:
-        return rule_label, 1.0, rule_evidence, rule_reason, False, "", 0.0, rule_label, rule_evidence
+        return rule_label, 1.0, rule_evidence, rule_reason, False, "", 0.0, rule_label, rule_evidence, "rule"
 
     probability = humor_probability(model, clean)
     humor_threshold = float(cues.get("ml_humor_threshold", 0.70))
@@ -272,17 +273,18 @@ def final_decision(text, cues, model):
             probability,
             rule_label,
             rule_evidence,
+            "rule_ml_conflict",
         )
 
     if rule_label:
         needs_review = rule_label == "ambiguous"
         review_reason = "rule_ambiguous" if needs_review else ""
-        return rule_label, ml_confidence, rule_evidence, rule_reason, needs_review, review_reason, probability, rule_label, rule_evidence
+        return rule_label, ml_confidence, rule_evidence, rule_reason, needs_review, review_reason, probability, rule_label, rule_evidence, "rule"
 
     needs_review = ml_label == "ambiguous"
     review_reason = "ml_probability_between_thresholds" if needs_review else ""
     rationale = f"Local TF-IDF logistic regression humor probability={probability:.3f}."
-    return ml_label, ml_confidence, "", rationale, needs_review, review_reason, probability, "", ""
+    return ml_label, ml_confidence, "", rationale, needs_review, review_reason, probability, "", "", "ml"
 
 
 def read_processed_ids(path):
@@ -328,9 +330,12 @@ def main():
                 continue
             if args.limit is not None and written >= args.limit:
                 break
-            text = row.get("text", "")
+            
+            # Text fallback mapping
+            text = row.get("text") or row.get("full_text") or row.get("content") or row.get("body") or ""
+            
             try:
-                label, confidence, evidence, rationale, needs_review, review_reason, probability, rule_label, rule_evidence = final_decision(
+                label, confidence, evidence, rationale, needs_review, review_reason, probability, rule_label, rule_evidence, source = final_decision(
                     text, cues, model
                 )
                 status = "classified"
@@ -346,6 +351,7 @@ def main():
                 probability = 0.5
                 rule_label = ""
                 rule_evidence = ""
+                source = "error"
                 status = "failed"
                 error_type = type(exc).__name__
                 error_message = str(exc)
@@ -363,8 +369,9 @@ def main():
                     "classification_rationale": rationale,
                     "needs_manual_review": str(bool(needs_review)).lower(),
                     "manual_review_reason": review_reason,
+                    "decision_source": source,
                     "model_name": "local_tfidf_logreg_humor_presence_v1",
-                    "prompt_version": "local-rules-v1.0.0",
+                    "prompt_version": "local-rules-v1.0.1",
                     "classification_status": status,
                     "classified_at": datetime.now(timezone.utc).isoformat(),
                     "error_type": error_type,

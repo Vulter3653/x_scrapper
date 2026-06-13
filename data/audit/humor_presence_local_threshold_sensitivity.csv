@@ -1,0 +1,5 @@
+humor_threshold,non_humor_threshold,humor_count,non_humor_count,ambiguous_count,humor_rate,non_humor_rate,ambiguous_rate,ml_decisive_count,ml_decisive_rate
+0.7,0.3,2,18,80,0.0200,0.1800,0.8000,0,0.0000
+0.65,0.35,2,18,80,0.0200,0.1800,0.8000,0,0.0000
+0.6,0.4,2,18,80,0.0200,0.1800,0.8000,0,0.0000
+0.55,0.45,13,13,74,0.1300,0.1300,0.7400,19,0.1900
