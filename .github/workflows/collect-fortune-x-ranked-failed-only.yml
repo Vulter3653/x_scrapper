@@ -7,6 +7,10 @@ on:
         description: 'Comma-separated statuses to rerun from summary. Recommended: failed'
         required: true
         default: 'failed'
+      exclude_ranks:
+        description: 'Comma-separated Fortune ranks to exclude from failed-only rerun; e.g., 4 for Apple manual zero-post case'
+        required: false
+        default: ''
       summary_file:
         description: 'Summary CSV used to select ranks for failed-only rerun'
         required: true
@@ -89,6 +93,7 @@ jobs:
           python scripts/build_fortune_x_failed_rank_matrix.py \
             --summary-file "${{ inputs.summary_file }}" \
             --status-filter "${{ inputs.status_filter }}" \
+            --exclude-ranks "${{ inputs.exclude_ranks }}" \
             --matrix-output "$GITHUB_OUTPUT"
 
   collect-failed-ranks:
