@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       source_run_id:
-        description: "Workflow run ID containing the humor-full-chain-final artifact"
+        description: "Full-data workflow run ID containing the humor-full-chain-final artifact"
         required: true
       artifact_name:
         description: "Full-chain final artifact name"
@@ -21,11 +21,31 @@ on:
       presence_confidence:
         description: "Minimum confidence for presence pseudo-labels"
         required: true
-        default: "0.75"
+        default: "0.70"
       type_confidence:
         description: "Minimum confidence for humor-type pseudo-labels"
         required: true
-        default: "0.67"
+        default: "0.60"
+      high_intensity_confidence:
+        description: "Minimum combined strength for high-intensity humor seeds"
+        required: true
+        default: "0.70"
+      hard_negative_confidence:
+        description: "Minimum confidence for hard-negative non-humor seeds"
+        required: true
+        default: "0.65"
+      min_master_rows:
+        description: "Minimum master rows required; 50000 enforces full-data source"
+        required: true
+        default: "50000"
+      max_presence_per_class:
+        description: "Class cap for balanced presence pseudo-label output"
+        required: true
+        default: "5000"
+      max_type_per_class:
+        description: "Class cap for class-capped humor-type pseudo-label output"
+        required: true
+        default: "2000"
 
 permissions:
   contents: read
@@ -61,7 +81,7 @@ jobs:
           echo "master_path=$MASTER_PATH" >> "$GITHUB_OUTPUT"
           echo "MASTER_PATH=$MASTER_PATH"
 
-      - name: Build validation and pseudo-label datasets
+      - name: Build full-data validation, pseudo-label, and seed datasets
         run: |
           mkdir -p data/derived/humor/hsq_validation_pseudo
           python scripts/build_hsq_validation_and_pseudo_labels.py \
@@ -70,7 +90,12 @@ jobs:
             --sample-per-bucket "${{ github.event.inputs.sample_per_bucket }}" \
             --rare-sample-per-bucket "${{ github.event.inputs.rare_sample_per_bucket }}" \
             --presence-confidence "${{ github.event.inputs.presence_confidence }}" \
-            --type-confidence "${{ github.event.inputs.type_confidence }}"
+            --type-confidence "${{ github.event.inputs.type_confidence }}" \
+            --high-intensity-confidence "${{ github.event.inputs.high_intensity_confidence }}" \
+            --hard-negative-confidence "${{ github.event.inputs.hard_negative_confidence }}" \
+            --min-master-rows "${{ github.event.inputs.min_master_rows }}" \
+            --max-presence-per-class "${{ github.event.inputs.max_presence_per_class }}" \
+            --max-type-per-class "${{ github.event.inputs.max_type_per_class }}"
 
       - name: Upload HSQ validation and pseudo-label artifacts
         uses: actions/upload-artifact@v4
