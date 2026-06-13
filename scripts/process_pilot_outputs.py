@@ -6,13 +6,15 @@ from __future__ import annotations
 import argparse
 import csv
 import os
-import sys
 from collections import Counter
 from pathlib import Path
 from typing import Iterable
 
 
-DEFAULT_RESULTS_GLOB = "**/humor_presence_pilot_results_shard_*.csv"
+DEFAULT_RESULTS_GLOBS = [
+    "**/humor_presence_pilot_results_shard_*.csv",
+    "**/humor_presence_speed_test_results_shard_*.csv",
+]
 
 
 def parse_args() -> argparse.Namespace:
@@ -65,6 +67,14 @@ def write_csv(path: Path, fieldnames: Iterable[str], rows: list[dict[str, str]])
         writer.writerows(rows)
 
 
+def find_shard_result_paths(root: Path) -> list[Path]:
+    paths: list[Path] = []
+    for pattern in DEFAULT_RESULTS_GLOBS:
+        paths.extend(root.glob(pattern))
+    unique_paths = sorted({path.resolve(): path for path in paths}.values())
+    return unique_paths
+
+
 def load_result_rows(args: argparse.Namespace) -> tuple[list[str], list[dict[str, str]], list[Path]]:
     if bool(args.results) == bool(args.shard_results_root):
         raise SystemExit("Provide exactly one of --results or --shard-results-root")
@@ -76,11 +86,10 @@ def load_result_rows(args: argparse.Namespace) -> tuple[list[str], list[dict[str
     if not args.shard_results_root.exists():
         raise SystemExit(f"Shard results root not found: {args.shard_results_root}")
 
-    result_paths = sorted(args.shard_results_root.glob(DEFAULT_RESULTS_GLOB))
+    result_paths = find_shard_result_paths(args.shard_results_root)
     if not result_paths:
-        raise SystemExit(
-            f"No shard result files found under {args.shard_results_root} with pattern {DEFAULT_RESULTS_GLOB}"
-        )
+        patterns = ", ".join(DEFAULT_RESULTS_GLOBS)
+        raise SystemExit(f"No shard result files found under {args.shard_results_root} with patterns: {patterns}")
 
     merged_rows: list[dict[str, str]] = []
     fieldnames: list[str] | None = None
@@ -148,7 +157,7 @@ def build_review_sample(results_rows: list[dict[str, str]], limit: int = 200) ->
 
 def main() -> int:
     args = parse_args()
-    input_fieldnames, input_rows = read_csv(args.input)
+    _, input_rows = read_csv(args.input)
     result_fieldnames, loaded_results, result_paths = load_result_rows(args)
     ordered_results = validate_result_ids(input_rows, loaded_results)
 
