@@ -104,6 +104,15 @@ jobs:
             --out-missing    data/derived/brand_equity_linkage/brand_equity_market_reaction_missing_inputs.csv \
             --out-manifest   data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json
 
+      - name: Enrich linkage with korea_uni ticker CIK NAICS fallback
+        run: |
+          set -euo pipefail
+          python scripts/enrich_brand_equity_linkage_with_korea_uni_crosswalk.py \
+            --readiness data/derived/brand_equity_linkage/brand_equity_market_reaction_linkage_readiness.csv \
+            --manifest data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json \
+            --missing data/derived/brand_equity_linkage/brand_equity_market_reaction_missing_inputs.csv \
+            --korea-event '${{ inputs.korea_uni_event_dataset_path }}'
+
       - name: Verify outputs and manifest constraints
         run: |
           set -euo pipefail
