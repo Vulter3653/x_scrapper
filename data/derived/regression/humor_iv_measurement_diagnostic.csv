@@ -1,0 +1,199 @@
+﻿section,metric,value,note
+D1_post_presence,total_posts,68020,
+D1_post_presence,humor_posts,9701,14.3%
+D1_post_presence,non_humor_posts,25570,37.6%
+D1_post_presence,ambiguous_posts,32749,48.1%
+D1_post_presence,other_posts,0,0.0%
+D1_post_presence,ambiguous_rate,48.15,"CRITICAL — ambiguous posts are deferred, not classified"
+D2_confidence_zone,prob_<0.30,33,0.1% of scored posts
+D2_confidence_zone,prob_0.30-0.40,967,1.4% of scored posts
+D2_confidence_zone,prob_0.40-0.45,2414,3.5% of scored posts
+D2_confidence_zone,prob_0.45-0.50,5539,8.1% of scored posts
+D2_confidence_zone,prob_0.50-0.55,8962,13.2% of scored posts
+D2_confidence_zone,prob_0.55-0.60,12761,18.8% of scored posts
+D2_confidence_zone,prob_0.60-0.70,28012,41.2% of scored posts
+D2_confidence_zone,prob_≥0.70,9332,13.7% of scored posts
+D2_confidence_zone,"ambiguous_probability_zone_[0.40,0.60)_n",29676,43.6% of scored posts — near-decision-boundary
+D3_type_dist_post,affiliative,4668,48.1% of humor posts
+D3_type_dist_post,self_enhancing,4887,50.4% of humor posts
+D3_type_dist_post,aggressive,105,1.1% of humor posts
+D3_type_dist_post,self_defeating,41,0.4% of humor posts
+D3_type_dist_post,aggressive_rate_of_humor_posts,1.08,CRITICAL SPARSITY — aggressive humor is <2% of humor posts
+D3_type_dist_post,aggressive_rate_of_all_posts,0.15,
+D4_aggressive_sparsity,aggressive_posts_total,105,
+D4_aggressive_sparsity,companies_with_ge1_agg_post,45,45.5% of companies
+D4_aggressive_sparsity,companies_total_in_full_chain,99,
+D4_aggressive_sparsity,firm_period_rows_total,3767,
+D4_aggressive_sparsity,firm_period_agg_count_zero,3676,97.6%
+D4_aggressive_sparsity,firm_period_agg_count_ge1,91,2.4%
+D4_aggressive_sparsity,firm_period_agg_count_ge3,3,0.1%
+D4_aggressive_sparsity,firm_period_agg_count_max,4,
+D4_aggressive_sparsity,regression_primary_sample_n,430,
+D4_aggressive_sparsity,regression_primary_agg_nonzero,5,1.2% nonzero — H3 effectively unidentified
+D5_dilution,median_total_posts_per_firm_period,13.0,
+D5_dilution,p90_total_posts_per_firm_period,38.0,
+D5_dilution,median_humor_count_per_firm_period,1.0,
+D5_dilution,median_humor_share,0.1132,
+D5_dilution,p90_humor_share,0.3077,
+D5_dilution,firm_period_zero_humor_n,1126,29.9%
+D5_dilution,dilution_note,humor_share = humor_count / total_posts; high total_posts dilutes signal,"median total_posts=13, median humor_count=1"
+D5_dilution,median_within_company_humor_share_std,0.1173,low within-company variation → limited time-series identification
+D5_dilution,companies_with_zero_std_humor_share,1,companies with no within-company humor_share variation across periods
+D6_iv_distribution,humor_share_n,430,H1a main IV
+D6_iv_distribution,humor_share_zero_n,143,H1a main IV
+D6_iv_distribution,humor_share_zero_pct,33.26,H1a main IV
+D6_iv_distribution,humor_share_mean,0.148447,H1a main IV
+D6_iv_distribution,humor_share_median,0.111111,H1a main IV
+D6_iv_distribution,humor_share_std,0.17983,H1a main IV
+D6_iv_distribution,humor_share_p10,0.0,H1a main IV
+D6_iv_distribution,humor_share_p25,0.0,H1a main IV
+D6_iv_distribution,humor_share_p75,0.213346,H1a main IV
+D6_iv_distribution,humor_share_p90,0.333333,H1a main IV
+D6_iv_distribution,humor_share_max,1.0,H1a main IV
+D6_iv_distribution,humor_share_nonzero_n,287,66.7% nonzero in primary sample
+D6_iv_distribution,humor_presence_any_n,430,H1b binary IV
+D6_iv_distribution,humor_presence_any_zero_n,143,H1b binary IV
+D6_iv_distribution,humor_presence_any_zero_pct,33.26,H1b binary IV
+D6_iv_distribution,humor_presence_any_mean,0.667442,H1b binary IV
+D6_iv_distribution,humor_presence_any_median,1.0,H1b binary IV
+D6_iv_distribution,humor_presence_any_std,0.471679,H1b binary IV
+D6_iv_distribution,humor_presence_any_p10,0.0,H1b binary IV
+D6_iv_distribution,humor_presence_any_p25,0.0,H1b binary IV
+D6_iv_distribution,humor_presence_any_p75,1.0,H1b binary IV
+D6_iv_distribution,humor_presence_any_p90,1.0,H1b binary IV
+D6_iv_distribution,humor_presence_any_max,1.0,H1b binary IV
+D6_iv_distribution,humor_presence_any_nonzero_n,287,66.7% nonzero in primary sample
+D6_iv_distribution,aggressive_share_n,430,H2a aggressive
+D6_iv_distribution,aggressive_share_zero_n,425,H2a aggressive
+D6_iv_distribution,aggressive_share_zero_pct,98.84,H2a aggressive
+D6_iv_distribution,aggressive_share_mean,0.000458,H2a aggressive
+D6_iv_distribution,aggressive_share_median,0.0,H2a aggressive
+D6_iv_distribution,aggressive_share_std,0.004666,H2a aggressive
+D6_iv_distribution,aggressive_share_p10,0.0,H2a aggressive
+D6_iv_distribution,aggressive_share_p25,0.0,H2a aggressive
+D6_iv_distribution,aggressive_share_p75,0.0,H2a aggressive
+D6_iv_distribution,aggressive_share_p90,0.0,H2a aggressive
+D6_iv_distribution,aggressive_share_max,0.058824,H2a aggressive
+D6_iv_distribution,aggressive_share_nonzero_n,5,1.2% nonzero in primary sample
+D6_iv_distribution,self_enhancing_share_n,430,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_zero_n,210,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_zero_pct,48.84,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_mean,0.079084,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_median,0.021508,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_std,0.132084,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_p10,0.0,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_p25,0.0,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_p75,0.111111,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_p90,0.201429,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_max,1.0,H2a self_enhancing
+D6_iv_distribution,self_enhancing_share_nonzero_n,220,51.2% nonzero in primary sample
+D6_iv_distribution,self_defeating_share_n,430,H2a self_defeating
+D6_iv_distribution,self_defeating_share_zero_n,426,H2a self_defeating
+D6_iv_distribution,self_defeating_share_zero_pct,99.07,H2a self_defeating
+D6_iv_distribution,self_defeating_share_mean,0.000375,H2a self_defeating
+D6_iv_distribution,self_defeating_share_median,0.0,H2a self_defeating
+D6_iv_distribution,self_defeating_share_std,0.004372,H2a self_defeating
+D6_iv_distribution,self_defeating_share_p10,0.0,H2a self_defeating
+D6_iv_distribution,self_defeating_share_p25,0.0,H2a self_defeating
+D6_iv_distribution,self_defeating_share_p75,0.0,H2a self_defeating
+D6_iv_distribution,self_defeating_share_p90,0.0,H2a self_defeating
+D6_iv_distribution,self_defeating_share_max,0.0625,H2a self_defeating
+D6_iv_distribution,self_defeating_share_nonzero_n,4,0.9% nonzero in primary sample
+D6_iv_distribution,affiliative_share_n,430,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_zero_n,228,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_zero_pct,53.02,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_mean,0.06853,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_median,0.0,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_std,0.122676,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_p10,0.0,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_p25,0.0,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_p75,0.1,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_p90,0.2,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_max,1.0,H2a reference (excluded)
+D6_iv_distribution,affiliative_share_nonzero_n,202,47.0% nonzero in primary sample
+D6_iv_distribution,rare_negative_humor_share_n,430,H2b
+D6_iv_distribution,rare_negative_humor_share_zero_n,421,H2b
+D6_iv_distribution,rare_negative_humor_share_zero_pct,97.91,H2b
+D6_iv_distribution,rare_negative_humor_share_mean,0.000834,H2b
+D6_iv_distribution,rare_negative_humor_share_median,0.0,H2b
+D6_iv_distribution,rare_negative_humor_share_std,0.006367,H2b
+D6_iv_distribution,rare_negative_humor_share_p10,0.0,H2b
+D6_iv_distribution,rare_negative_humor_share_p25,0.0,H2b
+D6_iv_distribution,rare_negative_humor_share_p75,0.0,H2b
+D6_iv_distribution,rare_negative_humor_share_p90,0.0,H2b
+D6_iv_distribution,rare_negative_humor_share_max,0.0625,H2b
+D6_iv_distribution,rare_negative_humor_share_nonzero_n,9,2.1% nonzero in primary sample
+D6_iv_distribution,aggressive_humor_usage_intensity_n,430,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_zero_n,425,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_zero_pct,98.84,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_mean,0.000458,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_median,0.0,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_std,0.004666,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_p10,0.0,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_p25,0.0,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_p75,0.0,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_p90,0.0,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_max,0.058824,H3 linear
+D6_iv_distribution,aggressive_humor_usage_intensity_nonzero_n,5,1.2% nonzero in primary sample
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_n,430,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_zero_n,425,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_zero_pct,98.84,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_mean,2.2e-05,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_median,0.0,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_std,0.000249,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_p10,0.0,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_p25,0.0,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_p75,0.0,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_p90,0.0,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_max,0.00346,H3 quadratic
+D6_iv_distribution,aggressive_humor_usage_intensity_sq_nonzero_n,5,1.2% nonzero in primary sample
+D6_iv_distribution,ambiguity_rate_n,430,control
+D6_iv_distribution,ambiguity_rate_zero_n,31,control
+D6_iv_distribution,ambiguity_rate_zero_pct,7.21,control
+D6_iv_distribution,ambiguity_rate_mean,0.482236,control
+D6_iv_distribution,ambiguity_rate_median,0.5,control
+D6_iv_distribution,ambiguity_rate_std,0.231549,control
+D6_iv_distribution,ambiguity_rate_p10,0.2,control
+D6_iv_distribution,ambiguity_rate_p25,0.333333,control
+D6_iv_distribution,ambiguity_rate_p75,0.6,control
+D6_iv_distribution,ambiguity_rate_p90,0.756675,control
+D6_iv_distribution,ambiguity_rate_max,1.0,control
+D6_iv_distribution,ambiguity_rate_nonzero_n,399,92.8% nonzero in primary sample
+D7_zero_inflation,humor_share_zero_pct,33.26,
+D7_zero_inflation,aggressive_share_zero_pct,98.84,
+D7_zero_inflation,self_enhancing_share_zero_pct,48.84,
+D7_zero_inflation,self_defeating_share_zero_pct,99.07,
+D7_zero_inflation,rare_negative_humor_share_zero_pct,97.91,
+D7_zero_inflation,aggressive_humor_usage_intensity_zero_pct,98.84,
+D8_sample_coverage,primary_n_rows,430,
+D8_sample_coverage,primary_n_companies,78,
+D8_sample_coverage,primary_n_periods,3,
+D8_sample_coverage,primary_median_total_posts,10.0,
+D8_sample_coverage,primary_median_humor_count,1.0,
+D8_sample_coverage,primary_median_humor_share,0.1111,
+D8_sample_coverage,primary_zero_humor_count_n,143,"33.3% — humor IV=0, no signal contribution"
+D9_classifier_confidence,total_posts_with_prob_score,68020,
+D9_classifier_confidence,near_boundary_0.45_0.55_n,14501,21.3% near decision boundary
+D9_classifier_confidence,high_confidence_ge0.80_n,277,0.4%
+D9_classifier_confidence,low_confidence_le0.30_n,33,0.1%
+D9_classifier_confidence,ambiguous_posts_with_prob,32749,
+D9_classifier_confidence,ambiguous_prob_mean,0.6212,
+D9_classifier_confidence,ambiguous_prob_median,0.6185,
+D9_classifier_confidence,ambiguous_prob_std,0.068,
+D10_correlation,high_corr_humor_share_x_humor_presence_any,0.5834,r≥0.50 — potential multicollinearity
+D10_correlation,high_corr_humor_share_x_log_humor_count,0.5091,r≥0.50 — potential multicollinearity
+D10_correlation,high_corr_humor_share_x_self_enhancing_share,0.73,r≥0.50 — potential multicollinearity
+D10_correlation,high_corr_humor_share_x_affiliative_share,0.6773,r≥0.50 — potential multicollinearity
+D10_correlation,high_corr_humor_presence_any_x_log_humor_count,0.8008,r≥0.50 — potential multicollinearity
+D10_correlation,high_corr_aggressive_share_x_aggressive_humor_usage_intensity,1.0,r≥0.50 — potential multicollinearity
+D10_correlation,humor_share_x_log_humor_count_r,0.5091,share and count log both used as IV+control — check orthogonality
+SUMMARY_bottleneck,bottleneck_1,AMBIGUITY CEILING: 48.1% of posts unclassified (ambiguous). Effective humor-classified corpus is severely reduced.,
+SUMMARY_bottleneck,bottleneck_2,AGGRESSIVE SPARSITY: Only 1.08% of humor posts (105 posts) classified as aggressive. H2a/H3 focal IVs are near-constant at zero. Regression effectively unidentified.,
+SUMMARY_bottleneck,bottleneck_3,ZERO INFLATION (humor_share): 33.3% of primary sample rows have humor_share=0. H1 IV has low effective variation.,
+SUMMARY_bottleneck,bottleneck_4,EXTREME ZERO INFLATION (aggressive_share): 98.8% zero. Share is not a meaningful IV at this sparsity level.,
+SUMMARY_flags,raw_data_modified,False,
+SUMMARY_flags,car_calculation_run,False,
+SUMMARY_flags,regression_run,False,
+SUMMARY_flags,causal_claim_made,False,
+SUMMARY_flags,tobins_q_initiated,False,
+SUMMARY_flags,brand_equity_claimed,False,
