@@ -3,13 +3,20 @@
   "profile_url": "https://x.com/Wendys",
   "total_unique_posts": 978,
   "last_response_url": "https://x.com/i/api/graphql/RyDU3I9VJtPF-Pnl6vrRlw/UserTweets",
-  "last_saved_at": 1781370209,
-  "last_completed_at": 1781370255,
+  "last_saved_at": 1781456480,
+  "last_completed_at": 1781456499,
   "profile_loaded": false,
   "account_exists": true,
   "login_wall": false,
   "error_page": false,
   "profile_url_current": "https://x.com/Wendys",
   "profile_title": "",
-  "posts_count": 978
+  "posts_count": 978,
+  "existing_id_count": 0,
+  "new_posts_collected": 978,
+  "known_posts_seen": 0,
+  "consecutive_existing_seen": 0,
+  "stopped_on_existing": false,
+  "stop_reason": "idle_limit_reached",
+  "scrolls_completed": 60
 }
