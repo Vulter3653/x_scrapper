@@ -1,0 +1,126 @@
+{
+  "version": "1.0",
+  "description": "Output column schema for the humor model-free evidence package (no human labels). All outputs are derived from v1 operational labels and v1-v2 A/B disagreement analysis. No ground truth, gold labels, or human-adjudicated labels are defined at this stage.",
+  "constraint_note": "None of these outputs contain human_label, gold_label, coder_label, adjudicated_label, or any consensus-as-ground-truth column. v1-v2 agreement is a consistency indicator, not an accuracy estimate.",
+  "outputs": {
+    "humor_v1_model_free_overall_summary.csv": {
+      "path": "data/derived/humor/evidence/humor_v1_model_free_overall_summary.csv",
+      "description": "Aggregate model-free statistics from the full v1 full-chain master (68,020 rows). One row per metric.",
+      "format": "long (metric / value / note)",
+      "columns": [
+        {
+          "name": "metric",
+          "type": "string",
+          "description": "Metric name (e.g. total_posts, humor_rate, aggressive_count)"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "description": "Metric value (integer count or decimal rate)"
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "description": "Interpretation note and source definition for the metric"
+        }
+      ],
+      "key_metrics": [
+        "total_posts", "humor_posts", "non_humor_posts", "ambiguous_posts",
+        "humor_rate", "ambiguous_rate",
+        "affiliative_count", "self_enhancing_count", "aggressive_count", "self_defeating_count",
+        "aggressive_rate", "self_defeating_rate",
+        "positive_count", "negative_count", "neutral_count",
+        "positive_sentiment_rate", "negative_sentiment_rate",
+        "no_human_label", "gold_label_created"
+      ]
+    },
+    "humor_v1_model_free_company_summary.csv": {
+      "path": "data/derived/humor/evidence/humor_v1_model_free_company_summary.csv",
+      "description": "Per-company model-free statistics from the v1 full-chain master. One row per company_name.",
+      "format": "wide (one row per company)",
+      "columns": [
+        {"name": "company_name",      "type": "string",  "description": "Fortune 500 company name"},
+        {"name": "source_x_handle",   "type": "string",  "description": "X (Twitter) handle (first encountered per company)"},
+        {"name": "total_posts",       "type": "integer", "description": "Total rows in master for this company"},
+        {"name": "humor_posts",       "type": "integer", "description": "humor_presence == humor"},
+        {"name": "non_humor_posts",   "type": "integer", "description": "humor_presence == non_humor"},
+        {"name": "ambiguous_posts",   "type": "integer", "description": "humor_presence == ambiguous"},
+        {"name": "humor_rate",        "type": "float",   "description": "humor_posts / total_posts"},
+        {"name": "ambiguous_rate",    "type": "float",   "description": "ambiguous_posts / total_posts"},
+        {"name": "affiliative_count", "type": "integer", "description": "humor_type == affiliative (v1 label)"},
+        {"name": "self_enhancing_count", "type": "integer", "description": "humor_type == self_enhancing (v1 label)"},
+        {"name": "aggressive_count",  "type": "integer", "description": "humor_type == aggressive (v1 label); exploratory — no human label"},
+        {"name": "self_defeating_count", "type": "integer", "description": "humor_type == self_defeating (v1 label); exploratory — no human label"},
+        {"name": "aggressive_rate_among_humor",    "type": "float", "description": "aggressive_count / humor_posts; 0 if humor_posts==0"},
+        {"name": "self_defeating_rate_among_humor","type": "float", "description": "self_defeating_count / humor_posts; 0 if humor_posts==0"},
+        {"name": "positive_count",    "type": "integer", "description": "sentiment_label == positive"},
+        {"name": "neutral_count",     "type": "integer", "description": "sentiment_label == neutral"},
+        {"name": "negative_count",    "type": "integer", "description": "sentiment_label == negative"},
+        {"name": "positive_rate",     "type": "float",   "description": "positive_count / total_posts"},
+        {"name": "negative_rate",     "type": "float",   "description": "negative_count / total_posts"}
+      ]
+    },
+    "humor_v1_v2_disagreement_audit.csv": {
+      "path": "data/derived/humor/evidence/humor_v1_v2_disagreement_audit.csv",
+      "description": "Structured audit of v1-v2 label disagreements on the 941-row A/B test sample. Multiple analysis_type sections within one file.",
+      "format": "long (analysis_type / v1_label / v2_label / transition_type / count / share)",
+      "analysis_types": [
+        "transition_type_summary — one row per transition_type with total count and share",
+        "v1_v2_cross_tab — one row per (v1_label, v2_label) pair with count and per-v1-label share",
+        "ambiguous_resolution — v2 label distribution for v1-ambiguous rows",
+        "rare_class_transition — (v1,v2) pairs involving aggressive or self_defeating",
+        "type_shift_to_aggressive — affiliative/self_enhancing → aggressive reclassification"
+      ],
+      "columns": [
+        {"name": "analysis_type",    "type": "string",  "description": "Section identifier"},
+        {"name": "v1_label",         "type": "string",  "description": "v1 humor type label (empty for transition_type_summary rows)"},
+        {"name": "v2_label",         "type": "string",  "description": "v2 humor type label (empty for transition_type_summary rows)"},
+        {"name": "transition_type",  "type": "string",  "description": "Transition category (same, resolved_to_humor, humor_to_not_humor, etc.)"},
+        {"name": "count",            "type": "integer", "description": "Number of rows matching this analysis row"},
+        {"name": "share_of_total",   "type": "float",   "description": "count / total sample rows (941)"},
+        {"name": "share_of_v1_label","type": "float",   "description": "count / all rows with this v1_label; empty where not applicable"},
+        {"name": "note",             "type": "string",  "description": "Interpretation note"}
+      ]
+    },
+    "humor_rare_class_sensitivity_summary.csv": {
+      "path": "data/derived/humor/evidence/humor_rare_class_sensitivity_summary.csv",
+      "description": "Focused sensitivity summary for aggressive and self_defeating rare humor types. All values are exploratory — no human labels exist.",
+      "format": "long (metric / source / value / interpretation)",
+      "columns": [
+        {"name": "metric",         "type": "string", "description": "Metric name"},
+        {"name": "source",         "type": "string", "description": "Data source (full_chain_master, A/B sample, priority_sample)"},
+        {"name": "value",          "type": "string", "description": "Metric value"},
+        {"name": "interpretation", "type": "string", "description": "Interpretation note including caution about no human label"}
+      ],
+      "key_metrics": [
+        "v1_aggressive_count", "v1_self_defeating_count",
+        "v1_aggressive_rate_of_humor", "v1_self_defeating_rate_of_humor",
+        "ab_sample_size",
+        "v2_aggressive_count_in_sample", "v2_self_defeating_count_in_sample",
+        "aggressive_delta_in_sample", "self_defeating_delta_in_sample",
+        "P0_rare_humor_candidates", "P3_type_shift_candidates", "total_rare_class_candidates",
+        "human_label_available", "gold_label_created", "cue_calibration_performed",
+        "v2_production_converted"
+      ]
+    },
+    "humor_no_human_label_evidence_manifest.json": {
+      "path": "data/audit/humor/evidence/humor_no_human_label_evidence_manifest.json",
+      "description": "Run manifest for the evidence package. Records source files, output paths, row counts, and constraint flags.",
+      "top_level_keys": [
+        "created_at", "source_files", "output_files", "row_counts",
+        "constraints", "interpretation_notes"
+      ],
+      "constraints_flags": {
+        "no_human_label":              "bool — always true in this package",
+        "gold_label_created":          "bool — always false",
+        "coder_label_created":         "bool — always false",
+        "adjudicated_label_created":   "bool — always false",
+        "v1_v2_consensus_as_gold":     "bool — always false",
+        "v2_production_converted":     "bool — always false",
+        "full_chain_overwritten":      "bool — always false",
+        "raw_data_modified":           "bool — always false",
+        "cue_calibration_performed":   "bool — always false"
+      }
+    }
+  }
+}

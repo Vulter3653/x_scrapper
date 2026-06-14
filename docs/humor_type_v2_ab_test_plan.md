@@ -166,3 +166,24 @@ Human review segment:
 - 이 workflow는 sample A/B test 전용. full_all_posts 재분류가 아님.
 - v2 직접 분류기는 로컬 rule-based 방식이며 Gemini API를 사용하지 않음.
 - 기존 `data/derived/humor/full_chain/humor_full_chain_master.csv`는 수정하지 않음.
+
+---
+
+## 7. A/B test 이후: evidence package (human label 없음, 보류 중)
+
+v2 A/B test (agreement 39.53%, 941 sample)가 완료되었으나 **현재 human label이 없다**.
+이에 따라 다음 해석 원칙이 적용된다.
+
+**v1-v2 agreement는 accuracy가 아니다.**
+agreement rate (39.53%)는 두 분류기 간 consistency indicator다. 어느 쪽이 맞는지는 human adjudication 전까지 알 수 없다. v1-v2 consensus는 gold label이 아니다.
+
+**v2는 candidate generator / disagreement detector로만 사용한다.**
+v2를 production classifier로 전환하지 않는다. 전체 68k rows를 v2로 재분류하지 않는다. v2는 human review가 필요한 후보 행을 식별하는 도구로만 기능한다.
+
+**rare class (aggressive, self_defeating)는 exploratory evidence로만 해석한다.**
+v1 aggressive 105 rows, v2 sample에서 125 rows — 방향성은 있으나 human label 없이 검증 불가. 이 수치를 검증된 count로 보고하지 않는다.
+
+**human label 이후에만 논의 가능한 항목:**
+v1/v2 accuracy 평가, cue/threshold calibration (adjustment), production classifier 결정, gold label dataset 구축.
+
+현재 evidence package 상세: `docs/humor_no_human_label_analysis_plan.md` 참조.

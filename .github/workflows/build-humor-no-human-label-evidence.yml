@@ -1,0 +1,136 @@
+name: Build Humor No-Human-Label Evidence Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit evidence outputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      master_path:
+        description: "Full-chain master CSV path"
+        required: true
+        default: "data/derived/humor/full_chain/humor_full_chain_master.csv"
+      comparison_path:
+        description: "v1-v2 comparison CSV path"
+        required: true
+        default: "data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv"
+      summary_path:
+        description: "v1-v2 A/B summary JSON path"
+        required: true
+        default: "data/audit/humor/evaluation/humor_type_v1_v2_summary.json"
+      priority_path:
+        description: "Human review priority sample CSV path"
+        required: true
+        default: "data/derived/humor/evaluation/humor_type_human_review_priority_sample.csv"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-humor-no-human-label-evidence
+  cancel-in-progress: false
+
+jobs:
+  build-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify input files exist
+        run: |
+          set -euo pipefail
+          for f in \
+            '${{ inputs.master_path }}' \
+            '${{ inputs.comparison_path }}' \
+            '${{ inputs.summary_path }}' \
+            '${{ inputs.priority_path }}'; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing input::Required input not found: $f"
+              exit 1
+            fi
+            echo "OK: $f"
+          done
+
+      - name: Build evidence package
+        id: build
+        run: |
+          set -euo pipefail
+          python scripts/build_humor_no_human_label_evidence.py \
+            --master     '${{ inputs.master_path }}' \
+            --comparison '${{ inputs.comparison_path }}' \
+            --summary    '${{ inputs.summary_path }}' \
+            --priority   '${{ inputs.priority_path }}' \
+            --out-overall      data/derived/humor/evidence/humor_v1_model_free_overall_summary.csv \
+            --out-company      data/derived/humor/evidence/humor_v1_model_free_company_summary.csv \
+            --out-disagreement data/derived/humor/evidence/humor_v1_v2_disagreement_audit.csv \
+            --out-rare         data/derived/humor/evidence/humor_rare_class_sensitivity_summary.csv \
+            --out-manifest     data/audit/humor/evidence/humor_no_human_label_evidence_manifest.json
+
+      - name: Verify outputs exist
+        run: |
+          set -euo pipefail
+          for f in \
+            data/derived/humor/evidence/humor_v1_model_free_overall_summary.csv \
+            data/derived/humor/evidence/humor_v1_model_free_company_summary.csv \
+            data/derived/humor/evidence/humor_v1_v2_disagreement_audit.csv \
+            data/derived/humor/evidence/humor_rare_class_sensitivity_summary.csv \
+            data/audit/humor/evidence/humor_no_human_label_evidence_manifest.json; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing output::Expected output not found: $f"
+              exit 1
+            fi
+            wc -l "$f"
+          done
+
+      - name: Upload evidence artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-no-human-label-evidence
+          path: |
+            data/derived/humor/evidence/humor_v1_model_free_overall_summary.csv
+            data/derived/humor/evidence/humor_v1_model_free_company_summary.csv
+            data/derived/humor/evidence/humor_v1_v2_disagreement_audit.csv
+            data/derived/humor/evidence/humor_rare_class_sensitivity_summary.csv
+            data/audit/humor/evidence/humor_no_human_label_evidence_manifest.json
+          retention-days: 30
+
+      - name: Commit evidence outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/humor/evidence/humor_v1_model_free_overall_summary.csv \
+            data/derived/humor/evidence/humor_v1_model_free_company_summary.csv \
+            data/derived/humor/evidence/humor_v1_v2_disagreement_audit.csv \
+            data/derived/humor/evidence/humor_rare_class_sensitivity_summary.csv \
+            data/audit/humor/evidence/humor_no_human_label_evidence_manifest.json \
+            docs/humor_no_human_label_analysis_plan.md \
+            config/humor_no_human_label_evidence_schema.json
+          if git diff --cached --quiet; then
+            echo "No evidence output changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: humor model-free evidence package (no human labels)'
+          git push origin HEAD:main
