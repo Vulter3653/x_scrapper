@@ -1,0 +1,412 @@
+{
+  "created_at": "2026-06-14T21:15:45Z",
+  "gate": "Gate 6 — Humor IV Regression (Design Only)",
+  "based_on_commit": "06219560a84568a0aad2310f982fd7ff41d4ed36",
+  "based_on_manifest": "data/audit/regression/humor_iv_gate6_input_manifest.json",
+  "design_document": "docs/humor_iv_gate6_regression_design_plan.md",
+  "iv_source_file": "data/derived/regression/humor_iv_reconstructed_candidates_gate5_1.csv",
+  "regression_run": false,
+  "dvs": {
+    "primary": "CAR_m1_p1",
+    "robustness": [
+      "CAR_m3_p3",
+      "CAR_m5_p5"
+    ],
+    "forbidden": [
+      "CAR_0_p3",
+      "CAR_0_p5"
+    ],
+    "window_type": "symmetric",
+    "interpretation": "short-window market reaction proxy only"
+  },
+  "sample": {
+    "filter": "alignment_type in {prefiling_lag_1m, prefiling_lag_3m} AND join_ready_for_CAR_<window>==True",
+    "expected_n": 430,
+    "expected_companies": "78-80",
+    "expected_fiscal_years": 3
+  },
+  "controls": {
+    "CTRL_BASE": [
+      "ambiguity_rate",
+      "high_ambiguity_flag",
+      "source_x_handle_count"
+    ],
+    "CTRL_WITH_COUNT": [
+      "ambiguity_rate",
+      "high_ambiguity_flag",
+      "source_x_handle_count",
+      "log_humor_count"
+    ],
+    "usage_rules": {
+      "H1_primary_models": "CTRL_BASE (humor_prob_mean already captures humor dimension)",
+      "H1_count_iv_models": "CTRL_BASE (drop log_humor_count to avoid collinearity with count IV)",
+      "H2_models": "CTRL_WITH_COUNT (log_humor_count controls for baseline humor volume)",
+      "H3_models": "CTRL_WITH_COUNT"
+    }
+  },
+  "fixed_effects": {
+    "primary": {
+      "label": "Period+NAICS",
+      "spec": [
+        "target_report_year",
+        "naics_sector_code"
+      ],
+      "formula_token": "C(target_report_year) + C(naics_sector_code)"
+    },
+    "robustness": {
+      "label": "Period+Company",
+      "spec": [
+        "target_report_year",
+        "company_name"
+      ],
+      "formula_token": "C(target_report_year) + C(company_name)",
+      "used_in": "H1a_compFE only"
+    }
+  },
+  "cluster_se": {
+    "default": "HC3_heteroscedasticity_robust",
+    "robustness_option": "cluster_by_company_name",
+    "implementation": "statsmodels OLS .fit(cov_type='HC3')"
+  },
+  "h1_models": [
+    {
+      "model_id": "H1a_gate6",
+      "focal_iv": "humor_prob_mean",
+      "controls": "CTRL_BASE",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "primary",
+      "note": "bounded [0,1]; 100% nonzero; same as ambiguity_adjusted_humor_share"
+    },
+    {
+      "model_id": "H1a_alias",
+      "focal_iv": "ambiguity_adjusted_humor_share",
+      "controls": "CTRL_BASE",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1"
+      ],
+      "role": "confirmation_only",
+      "note": "identical to humor_prob_mean; run once only; not an independent finding"
+    },
+    {
+      "model_id": "H1b_share",
+      "focal_iv": "hc_humor_share",
+      "controls": "CTRL_BASE",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    },
+    {
+      "model_id": "H1b_binary",
+      "focal_iv": "hc_humor_presence_any",
+      "controls": "CTRL_BASE",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    },
+    {
+      "model_id": "H1b_logcount",
+      "focal_iv": "hc_log_humor_count",
+      "controls": "CTRL_BASE",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness",
+      "note": "CTRL_BASE only — log_humor_count excluded from controls"
+    },
+    {
+      "model_id": "H1b_scoresum",
+      "focal_iv": "humor_candidate_score_sum",
+      "controls": "CTRL_BASE",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness",
+      "note": "renamed from humor_prob_sum; unbounded sum"
+    },
+    {
+      "model_id": "H1a_compFE",
+      "focal_iv": "humor_prob_mean",
+      "controls": "CTRL_BASE",
+      "fe": "Period+Company",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness_company_fe"
+    }
+  ],
+  "h1_total_models_planned": 21,
+  "h2_models": [
+    {
+      "model_id": "H2a_gate6",
+      "focal_iv": "hc_v2_aggressive_candidate_count",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "primary",
+      "warning": "firm-level fixed score possible; count only; do not normalize"
+    },
+    {
+      "model_id": "H2a_logv2",
+      "focal_iv": "hc_log_v2_aggressive_candidate",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    },
+    {
+      "model_id": "H2a_binary",
+      "focal_iv": "hc_v2_aggressive_candidate_presence",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    },
+    {
+      "model_id": "H2b_scoresum",
+      "focal_iv": "aggressive_candidate_score_sum",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness",
+      "note": "corrected formula: P(humor) x P(type|humor)"
+    },
+    {
+      "model_id": "H2b_scoremean",
+      "focal_iv": "aggressive_candidate_score_mean",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    },
+    {
+      "model_id": "H2b_scoremax",
+      "focal_iv": "aggressive_candidate_score_max",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness",
+      "note": "most extreme single-post aggressive signal"
+    },
+    {
+      "model_id": "H2c_rare",
+      "focal_iv": "hc_rare_class_candidate_count",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    },
+    {
+      "model_id": "H2c_rarelogg",
+      "focal_iv": "hc_log_rare_class_candidate",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    },
+    {
+      "model_id": "H2c_rarebinary",
+      "focal_iv": "hc_rare_class_candidate_presence",
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness"
+    }
+  ],
+  "h2_total_models_planned": 27,
+  "h3_models": [
+    {
+      "model_id": "H3a_gate6",
+      "focal_ivs": [
+        "aggressive_candidate_score_intensity_bounded",
+        "aggressive_candidate_score_intensity_bounded_sq"
+      ],
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "primary_planned",
+      "label": "EXPLORATORY"
+    },
+    {
+      "model_id": "H3a_rob1",
+      "focal_ivs": [
+        "aggressive_candidate_score_sum",
+        "aggressive_candidate_score_sum_sq"
+      ],
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness_planned",
+      "label": "EXPLORATORY"
+    },
+    {
+      "model_id": "H3a_rob2",
+      "focal_ivs": [
+        "hc_rare_class_candidate_intensity_bounded",
+        "hc_rare_class_candidate_intensity_bounded_sq"
+      ],
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness_planned",
+      "label": "EXPLORATORY"
+    },
+    {
+      "model_id": "H3a_rob3",
+      "focal_ivs": [
+        "sd_candidate_score_intensity_bounded",
+        "sd_candidate_score_intensity_bounded_sq"
+      ],
+      "controls": "CTRL_WITH_COUNT",
+      "fe": "Period+NAICS",
+      "dvs": [
+        "CAR_m1_p1",
+        "CAR_m3_p3",
+        "CAR_m5_p5"
+      ],
+      "role": "robustness_planned",
+      "label": "EXPLORATORY"
+    }
+  ],
+  "h3_total_models_planned": 12,
+  "allowed_ivs_used": {
+    "H1": [
+      "humor_prob_mean",
+      "ambiguity_adjusted_humor_share",
+      "hc_humor_share",
+      "hc_humor_presence_any",
+      "hc_log_humor_count",
+      "humor_candidate_score_sum"
+    ],
+    "H2": [
+      "hc_v2_aggressive_candidate_count",
+      "hc_log_v2_aggressive_candidate",
+      "hc_v2_aggressive_candidate_presence",
+      "aggressive_candidate_score_sum",
+      "aggressive_candidate_score_mean",
+      "aggressive_candidate_score_max",
+      "hc_rare_class_candidate_count",
+      "hc_log_rare_class_candidate",
+      "hc_rare_class_candidate_presence"
+    ],
+    "H3_primary": [
+      "aggressive_candidate_score_intensity_bounded"
+    ],
+    "H3_robustness": [
+      "aggressive_candidate_score_sum",
+      "hc_rare_class_candidate_intensity_bounded",
+      "sd_candidate_score_intensity_bounded"
+    ]
+  },
+  "forbidden_ivs_excluded": [
+    "hc_v2_aggressive_candidate_share",
+    "hc_v2_aggressive_candidate_intensity",
+    "hc_v2_aggressive_candidate_intensity_bounded",
+    "hc_v2_aggressive_candidate_ratio_to_hard_humor",
+    "hc_negative_humor_intensity",
+    "top_k_aggressive_score",
+    "top_k_aggressive_type_confidence",
+    "aggressive_prob_sum",
+    "aggressive_prob_mean",
+    "aggressive_prob_max",
+    "aggressive_prob_intensity",
+    "CAR_0_p3",
+    "CAR_0_p5"
+  ],
+  "h3_exploratory_label_required": true,
+  "h3_manual_validation_required_before_execution": true,
+  "h3_manual_validation_file": "data/derived/validation/humor_candidate_manual_audit_sample.csv",
+  "h3_execution_blocked_until": [
+    "human coding of manual_audit_sample complete",
+    "inter-rater reliability >= 0.60 (if multiple coders)",
+    "score-to-label correlation documented",
+    "PI sign-off obtained"
+  ],
+  "expected_output_files_when_executed": [
+    "data/derived/regression/humor_iv_gate6_regression_results.csv",
+    "data/derived/regression/humor_iv_gate6_model_diagnostics.csv",
+    "data/audit/regression/humor_iv_gate6_regression_manifest.json",
+    "docs/humor_iv_gate6_regression_summary.md"
+  ],
+  "car_used_as_tobins_q": false,
+  "car_used_as_direct_brand_equity": false,
+  "causal_claim_made": false,
+  "tobins_q_initiated": false,
+  "brand_equity_claimed": false,
+  "regression_auto_run": false,
+  "raw_data_modified": false,
+  "existing_iv_overwritten": false,
+  "forbidden_iv_used": false,
+  "car_0_p3_used": false,
+  "car_0_p5_used": false,
+  "v2_candidate_ground_truth_claimed": false
+}
