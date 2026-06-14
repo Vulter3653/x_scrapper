@@ -1,0 +1,13 @@
+﻿variable_name,variable_type,n,min,max,has_negative_value,exceeds_one,expected_range,denominator_column,numerator_column,denominator_zero_n,numerator_greater_than_denominator_n,bounded_share_valid,action_required,recommended_rename
+hc_humor_share,share,584,0.0,1.0,False,False,"[0,1]",total_posts,humor_count,0,0,True,ok,hc_humor_share
+hc_v2_aggressive_candidate_share,share,584,0.0,8.0,False,True,"[0,1]",total_posts,hc_v2_aggressive_candidate_count,0,40,False,rename_and_rebound,hc_v2_aggressive_candidate_ratio
+hc_rare_class_candidate_share,share,584,0.0,1.0,False,False,"[0,1]",total_posts,hc_rare_class_candidate_count,0,0,True,ok,hc_rare_class_candidate_share
+hc_negative_humor_share,share,584,0.0,0.25,False,False,"[0,1]",total_posts,hc_negative_humor_count,0,0,True,ok,hc_negative_humor_share
+hc_aggressive_share_among_humor,share,584,0.0,1.0,False,False,"[0,1]",humor_count,hc_aggressive_count,200,0,True,ok,hc_aggressive_share_among_humor
+hc_v2_aggressive_candidate_intensity,intensity,584,0.0,7.0,False,True,"[0,1]?",humor_count,hc_v2_aggressive_candidate_count,200,58,False,rename_and_rebound,hc_v2_aggressive_candidate_ratio_to_hard_humor
+hc_rare_class_candidate_intensity,intensity,584,0.0,2.0,False,True,"[0,1]?",humor_count,hc_rare_class_candidate_count,200,6,False,rename_and_rebound,hc_rare_class_candidate_ratio_to_hard_humor
+hc_negative_humor_intensity,intensity,584,0.0,1.0,False,False,"[0,1]",humor_count,hc_negative_humor_count,200,0,True,ok,hc_negative_humor_intensity
+aggressive_prob_sum,probability_sum,584,0.0,1.014104,False,True,unbounded,—,—,0,0,False,rename_to_candidate_score,aggressive_candidate_score_sum
+aggressive_prob_intensity,intensity,584,0.0,0.353134,False,False,"[0,1]?",humor_count,aggressive_prob_sum,200,0,True,ok,aggressive_prob_intensity
+ambiguity_adjusted_humor_share,share,584,0.484783,0.789377,False,False,"[0,1]",total_posts,humor_prob_sum,0,0,True,ok,ambiguity_adjusted_humor_share
+humor_prob_mean,mean,584,0.484783,0.789377,False,False,"[0,1]",total_posts,—,0,0,True,ok,humor_prob_mean

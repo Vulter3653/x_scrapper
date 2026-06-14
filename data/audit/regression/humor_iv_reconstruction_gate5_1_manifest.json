@@ -1,0 +1,67 @@
+{
+  "created_at": "2026-06-14T20:40:10Z",
+  "gate": "Gate 5.1 — Paper-grounded IV reconstruction repair",
+  "based_on_commit": "d4c20be22c71185bd3bb7609d76a20acc5e060b8",
+  "script": "scripts/build_humor_iv_gate5_1_repair.py",
+  "aggressive_base_rate": 0.010824,
+  "self_defeating_base_rate": 0.004226,
+  "seed": 42,
+  "hsq_codebook_created": true,
+  "probability_provenance_audited": true,
+  "share_intensity_sanity_checked": true,
+  "manual_validation_sample_created": true,
+  "threshold_sensitivity_created": true,
+  "corrected_candidate_panel_created": true,
+  "aggressive_prob_sum_is_true_aggressive_probability": false,
+  "aggressive_prob_sum_formula_issue": "Classified aggressive posts: uses humor_type_confidence only (missing ml_humor_probability factor). Ambiguous posts: ml_humor_probability × base_rate. Inconsistent formula. Corrected formula in Gate5.1: ml_humor_probability × humor_type_confidence for classified.",
+  "rename_required_variables": [
+    "humor_prob_sum",
+    "aggressive_prob_sum",
+    "aggressive_prob_mean",
+    "aggressive_prob_max",
+    "aggressive_prob_intensity",
+    "top_k_aggressive_score",
+    "hc_v2_aggressive_candidate_share",
+    "hc_v2_aggressive_candidate_intensity",
+    "hc_rare_class_candidate_intensity"
+  ],
+  "sanity_issues": [
+    "hc_v2_aggressive_candidate_share",
+    "hc_v2_aggressive_candidate_intensity",
+    "hc_rare_class_candidate_intensity",
+    "aggressive_prob_sum"
+  ],
+  "v2_candidate_exceeds_one_variables": [
+    "hc_v2_aggressive_candidate_share",
+    "hc_v2_aggressive_candidate_intensity",
+    "hc_rare_class_candidate_intensity"
+  ],
+  "v2_firm_level_finding": "CRITICAL: v2_aggressive_candidate_count exceeds total_posts in 189/3767 firm-periods (max ratio=9.0). Variable appears to be a firm-level fixed score, not a per-period post count. Normalization by total_posts or humor_count is INVALID. hc_v2_aggressive_candidate_share and hc_v2_aggressive_candidate_intensity are INVALID as share/intensity. Use hc_v2_aggressive_candidate_count as raw count IV only.",
+  "h3_regressionable_candidates": [
+    "aggressive_candidate_score_sum",
+    "aggressive_candidate_score_intensity_bounded",
+    "hc_rare_class_candidate_intensity_bounded",
+    "sd_candidate_score_intensity_bounded"
+  ],
+  "h3_best_candidate": "aggressive_candidate_score_sum",
+  "h3_best_nonzero_n": 399,
+  "manual_audit_sample_n": 546,
+  "manual_audit_sample_groups": {
+    "aggressive_v1_hard": 105,
+    "aggressive_v2_only": 100,
+    "ambiguous_high_aggressive_candidate_score": 100,
+    "affiliative_or_self_enhancing_comparison": 100,
+    "non_humor_low_score_comparison": 100,
+    "self_defeating_v1": 41
+  },
+  "manual_audit_sample_seed": 42,
+  "raw_data_modified": false,
+  "existing_iv_overwritten": false,
+  "hypothesis_variables_overwritten": false,
+  "regression_master_overwritten": false,
+  "regression_run": false,
+  "tobins_q_initiated": false,
+  "causal_claim_made": false,
+  "brand_equity_claimed": false,
+  "v2_candidate_interpreted_as_ground_truth": false
+}
