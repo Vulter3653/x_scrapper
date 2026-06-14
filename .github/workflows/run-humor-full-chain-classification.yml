@@ -45,9 +45,17 @@ on:
         description: "Maximum parallel humor-type shards"
         required: true
         default: "6"
+      commit_results:
+        description: "Commit and push full-chain classification outputs"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
 permissions:
-  contents: read
+  contents: write
   actions: read
 
 env:
@@ -572,3 +580,22 @@ jobs:
             data/audit/full_chain/humor_full_chain_summary.csv
             data/audit/full_chain/humor_full_chain_company_summary.csv
             data/audit/full_chain/humor_full_chain_cross_tab.csv
+
+      - name: Commit classification outputs to main
+        if: ${{ github.event.inputs.commit_results == 'true' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/humor/full_chain/humor_full_chain_master.csv \
+            data/audit/full_chain/humor_full_chain_summary.json \
+            data/audit/full_chain/humor_full_chain_summary.csv \
+            data/audit/full_chain/humor_full_chain_company_summary.csv \
+            data/audit/full_chain/humor_full_chain_cross_tab.csv
+          if git diff --cached --quiet; then
+            echo "No full-chain classification output changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: update humor full-chain classification outputs'
+          git push origin HEAD:main
