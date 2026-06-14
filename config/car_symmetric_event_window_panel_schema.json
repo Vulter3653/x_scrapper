@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.0",
+  "description": "Column and constraint definitions for the CAR symmetric event-window panel.",
+
+  "dv_role_note": {
+    "tobins_q": "Primary Brand Equity DV — DEFERRED (financial statement panel not yet available). Scaffold maintained at data/derived/brand_equity/tobins_q_brand_equity_panel.csv.",
+    "CAR_m1_p1": "Secondary DV — short-window capital market response proxy. Currently executable.",
+    "CAR_m3_p3": "Secondary DV — medium-window robustness proxy. Requires daily abnormal returns file.",
+    "CAR_m5_p5": "Secondary DV — wider-window robustness proxy. Requires daily abnormal returns file.",
+    "forbidden": [
+      "CAR = Tobin's Q",
+      "CAR = direct Brand Equity",
+      "CAR = consumer-based brand equity",
+      "CAR results = causal brand equity effects"
+    ]
+  },
+
+  "car_windows": {
+    "CAR_m1_p1": {
+      "window":      "[-1, +1]",
+      "window_days": 3,
+      "formula":     "sum(abnormal_return for event_day in {-1, 0, +1})",
+      "role":        "primary short-window market reaction proxy",
+      "available":   true,
+      "source":      "direct column from korea_uni event study dataset"
+    },
+    "CAR_m3_p3": {
+      "window":      "[-3, +3]",
+      "window_days": 7,
+      "formula":     "sum(abnormal_return for event_day in {-3,-2,-1,0,+1,+2,+3})",
+      "role":        "medium-window robustness proxy",
+      "available":   false,
+      "source":      "requires event_window_daily_abnormal_returns.csv (not yet in repo)",
+      "not_equivalent_to": "CAR_0_p3 ([0,+3])"
+    },
+    "CAR_m5_p5": {
+      "window":      "[-5, +5]",
+      "window_days": 11,
+      "formula":     "sum(abnormal_return for event_day in {-5,...,0,...,+5})",
+      "role":        "wider-window robustness proxy",
+      "available":   false,
+      "source":      "requires event_window_daily_abnormal_returns.csv (not yet in repo)",
+      "caution":     "confounding event risk increases with wider window",
+      "not_equivalent_to": "CAR_0_p5 ([0,+5])"
+    }
+  },
+
+  "supplemental_asymmetric_windows": {
+    "CAR_0_p3": {
+      "window":    "[0, +3]",
+      "available": true,
+      "source":    "korea_uni event study",
+      "note":      "Post-filing window only. NOT equivalent to CAR_m3_p3. Supplemental analysis only."
+    },
+    "CAR_0_p5": {
+      "window":    "[0, +5]",
+      "available": true,
+      "source":    "korea_uni event study",
+      "note":      "Post-filing window only. NOT equivalent to CAR_m5_p5. Supplemental analysis only."
+    }
+  },
+
+  "date_alignment_rules": {
+    "same_month_alignment": {
+      "rule":    "humor period == filing_date YYYY-MM",
+      "risk":    "simultaneity (filing within same month as humor measurement)",
+      "use":     "sensitivity check only"
+    },
+    "prefiling_lag_1m_alignment": {
+      "rule":    "humor period == filing_month - 1",
+      "risk":    "low (temporal ordering preserved)",
+      "use":     "recommended primary analysis"
+    },
+    "prefiling_lag_3m_alignment": {
+      "rule":    "humor period in {filing_month-3, filing_month-2, filing_month-1}",
+      "risk":    "low (temporal ordering preserved)",
+      "use":     "recommended primary analysis or robustness"
+    },
+    "recommended_main_alignment": "prefiling_lag_1m or prefiling_lag_3m"
+  },
+
+  "outputs": {
+    "car_panel_csv": {
+      "path": "data/derived/car_event_windows/car_symmetric_event_window_panel.csv",
+      "description": "One row per company × 10-K filing event. CAR values for available windows.",
+      "unique_key_columns": ["ticker", "filing_date"],
+      "columns": [
+        {"name": "company_name",          "type": "string"},
+        {"name": "ticker",                "type": "string"},
+        {"name": "cik",                   "type": "string"},
+        {"name": "cik_padded",            "type": "string"},
+        {"name": "target_report_year",    "type": "integer"},
+        {"name": "filing_date",           "type": "date"},
+        {"name": "event_trading_date",    "type": "date"},
+        {"name": "naics_code",            "type": "string", "note": "empty in current dataset; use naics_sector_code"},
+        {"name": "naics_sector_code",     "type": "string"},
+        {"name": "naics_sector_name",     "type": "string"},
+        {"name": "CAR_m1_p1",             "type": "float",   "note": "direct from korea_uni"},
+        {"name": "CAR_m3_p3",             "type": "float",   "note": "empty until daily AR file available"},
+        {"name": "CAR_m5_p5",             "type": "float",   "note": "empty until daily AR file available"},
+        {"name": "CAR_m1_p1_available",   "type": "boolean"},
+        {"name": "CAR_m3_p3_available",   "type": "boolean"},
+        {"name": "CAR_m5_p5_available",   "type": "boolean"},
+        {"name": "car_source",            "type": "string"},
+        {"name": "car_calculation_status","type": "string"},
+        {"name": "missing_car_reason",    "type": "string"},
+        {"name": "future_date_flag",      "type": "boolean"},
+        {"name": "date_alignment_warning","type": "string"}
+      ]
+    },
+
+    "humor_car_linkage_csv": {
+      "path": "data/derived/car_event_windows/humor_car_linkage_panel.csv",
+      "description": "Joined panel: humor × CAR. One row per (company_name, period, filing_date) alignment.",
+      "unique_key_columns": ["company_name", "period", "filing_date"],
+      "industry_control_note": "industry_homogeneity_control = naics_sector_code. Use as fixed effect or cluster variable in regression.",
+      "columns": [
+        {"name": "company_name"},
+        {"name": "period",               "note": "YYYY-MM humor measurement period"},
+        {"name": "period_year"},
+        {"name": "period_month"},
+        {"name": "ticker"},
+        {"name": "cik"},
+        {"name": "target_report_year"},
+        {"name": "filing_date"},
+        {"name": "humor_share"},
+        {"name": "humor_count"},
+        {"name": "total_posts"},
+        {"name": "humor_share_ambiguity_as_zero"},
+        {"name": "humor_share_ambiguity_excluded"},
+        {"name": "humor_share_ambiguity_as_missing"},
+        {"name": "humor_presence_any"},
+        {"name": "aggressive_share"},
+        {"name": "aggressive_count"},
+        {"name": "aggressive_humor_usage_intensity"},
+        {"name": "aggressive_humor_usage_intensity_sq"},
+        {"name": "rare_negative_humor_share"},
+        {"name": "ambiguity_rate"},
+        {"name": "high_ambiguity_flag"},
+        {"name": "source_x_handle_count"},
+        {"name": "source_x_handle_list"},
+        {"name": "CAR_m1_p1"},
+        {"name": "CAR_m3_p3"},
+        {"name": "CAR_m5_p5"},
+        {"name": "CAR_m1_p1_available"},
+        {"name": "CAR_m3_p3_available"},
+        {"name": "CAR_m5_p5_available"},
+        {"name": "same_month_alignment"},
+        {"name": "prefiling_lag_1m_alignment"},
+        {"name": "prefiling_lag_3m_alignment"},
+        {"name": "recommended_main_alignment"},
+        {"name": "naics_code"},
+        {"name": "naics_sector_code"},
+        {"name": "naics_sector_name"},
+        {"name": "industry_homogeneity_control", "note": "= naics_sector_code; use as FE or cluster in regression"},
+        {"name": "join_ready_for_CAR_m1_p1"},
+        {"name": "join_ready_for_CAR_m3_p3"},
+        {"name": "join_ready_for_CAR_m5_p5"}
+      ]
+    },
+
+    "variable_dictionary_csv": {
+      "path": "data/derived/car_event_windows/car_window_variable_dictionary.csv",
+      "description": "Codebook for CAR window variables including availability and cautions."
+    },
+
+    "manifest_json": {
+      "path": "data/audit/car_event_windows/car_symmetric_event_window_manifest.json",
+      "required_fields": [
+        "created_at", "reference_date", "car_dv_note",
+        "humor_input_rows", "car_event_rows",
+        "daily_abnormal_return_input_available", "daily_abnormal_return_rows",
+        "CAR_m1_p1_available_rows", "CAR_m3_p3_available_rows", "CAR_m5_p5_available_rows",
+        "humor_car_linked_rows",
+        "same_month_alignment_rows", "prefiling_lag_1m_alignment_rows", "prefiling_lag_3m_alignment_rows",
+        "join_ready_for_CAR_m1_p1_rows", "join_ready_for_CAR_m3_p3_rows", "join_ready_for_CAR_m5_p5_rows",
+        "future_event_count", "requires_date_audit",
+        "tobins_q_deferred",
+        "car_used_as_tobins_q", "car_used_as_direct_brand_equity",
+        "regression_run", "causal_claim_made",
+        "external_data_downloaded", "sec_collection_run",
+        "market_data_collection_run", "x_collection_run",
+        "raw_data_modified", "humor_outputs_modified"
+      ],
+      "constraint_flags": {
+        "description": "All must be false in every valid run",
+        "flags": [
+          "car_used_as_tobins_q",
+          "car_used_as_direct_brand_equity",
+          "regression_run",
+          "causal_claim_made",
+          "external_data_downloaded",
+          "sec_collection_run",
+          "market_data_collection_run",
+          "x_collection_run",
+          "raw_data_modified",
+          "humor_outputs_modified"
+        ]
+      }
+    }
+  },
+
+  "forbidden_operations": [
+    "Using CAR as a substitute for or equivalent to Tobin's Q",
+    "Labeling CAR as 'direct Brand Equity' or 'consumer-based brand equity'",
+    "Renaming CAR_0_p3 to CAR_m3_p3 (different windows)",
+    "Renaming CAR_0_p5 to CAR_m5_p5 (different windows)",
+    "Imputing or estimating missing CAR_m3_p3 or CAR_m5_p5 values",
+    "Computing CAR_m3_p3 or CAR_m5_p5 without the daily abnormal return file",
+    "Making causal claims from CAR regressions",
+    "Downloading external data during script execution",
+    "Collecting market data, SEC data, or X/social media data",
+    "Running H1-H3 regressions"
+  ]
+}
