@@ -136,7 +136,20 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: humor-type-ab-sample
-          path: data/derived/humor/evaluation/
+          path: artifact_downloads/sample/
+
+      - name: Normalize sample artifact path
+        run: |
+          set -euo pipefail
+          mkdir -p data/derived/humor/evaluation
+          SAMPLE_PATH=$(find artifact_downloads/sample -name humor_type_ab_test_sample.csv -type f | head -n 1)
+          if [ -z "$SAMPLE_PATH" ]; then
+            echo "::error title=Missing sample artifact::humor_type_ab_test_sample.csv not found after artifact download"
+            find artifact_downloads/sample -maxdepth 6 -type f | sort || true
+            exit 1
+          fi
+          cp "$SAMPLE_PATH" data/derived/humor/evaluation/humor_type_ab_test_sample.csv
+          ls -lah data/derived/humor/evaluation/humor_type_ab_test_sample.csv
 
       - name: Run v2 direct classifier on sample
         run: |
@@ -176,13 +189,43 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: humor-type-ab-sample
-          path: data/derived/humor/evaluation/
+          path: artifact_downloads/sample/
+
+      - name: Normalize sample artifact path
+        run: |
+          set -euo pipefail
+          mkdir -p data/derived/humor/evaluation data/audit/humor/evaluation
+          SAMPLE_PATH=$(find artifact_downloads/sample -name humor_type_ab_test_sample.csv -type f | head -n 1)
+          if [ -z "$SAMPLE_PATH" ]; then
+            echo "::error title=Missing sample artifact::humor_type_ab_test_sample.csv not found after artifact download"
+            find artifact_downloads/sample -maxdepth 6 -type f | sort || true
+            exit 1
+          fi
+          cp "$SAMPLE_PATH" data/derived/humor/evaluation/humor_type_ab_test_sample.csv
+          MANIFEST_PATH=$(find artifact_downloads/sample -name humor_type_ab_test_sample_manifest.json -type f | head -n 1)
+          if [ -n "$MANIFEST_PATH" ]; then
+            cp "$MANIFEST_PATH" data/audit/humor/evaluation/humor_type_ab_test_sample_manifest.json
+          fi
+          ls -lah data/derived/humor/evaluation/humor_type_ab_test_sample.csv
 
       - name: Download v2 classification artifact
         uses: actions/download-artifact@v4
         with:
           name: humor-type-v2-classified
-          path: data/derived/humor/evaluation/
+          path: artifact_downloads/v2/
+
+      - name: Normalize v2 artifact path
+        run: |
+          set -euo pipefail
+          mkdir -p data/derived/humor/evaluation
+          V2_PATH=$(find artifact_downloads/v2 -name humor_type_v2_classified_sample.csv -type f | head -n 1)
+          if [ -z "$V2_PATH" ]; then
+            echo "::error title=Missing v2 artifact::humor_type_v2_classified_sample.csv not found after artifact download"
+            find artifact_downloads/v2 -maxdepth 6 -type f | sort || true
+            exit 1
+          fi
+          cp "$V2_PATH" data/derived/humor/evaluation/humor_type_v2_classified_sample.csv
+          ls -lah data/derived/humor/evaluation/humor_type_v2_classified_sample.csv
 
       - name: Run v1 vs v2 comparison
         run: |
