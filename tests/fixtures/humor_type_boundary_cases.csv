@@ -1,0 +1,31 @@
+case_id,text,expected_label,boundary_type,rationale
+1,Our new burger is available now at all locations.,not_humor,humor_vs_not_humor,Purely informational statement about product availability.
+2,Why did the chicken cross the road? To get to our drive-thru.,humor,humor_vs_not_humor,Classic joke structure applied to the brand.
+3,We are proud to announce our quarterly results.,not_humor,humor_vs_not_humor,Corporate announcement without any humorous intent.
+4,I told my wife I was going to the gym but I ended up at the taco stand again.,humor,humor_vs_not_humor,Relatable anecdotal humor involving a minor deception.
+5,Click the link in our bio to learn more about our sustainability efforts.,not_humor,humor_vs_not_humor,Call to action for informational content.
+6,We're all in this together unless there's only one slice of pizza left.,affiliative,affiliative_vs_self_enhancing,Inclusive "we" humor that focuses on shared social experience.
+7,I finally found a workout routine I like: it's called 'walking to the fridge'.,self_enhancing,affiliative_vs_self_enhancing,Focuses on the speaker's own habits in a humorous but self-supportive way.
+8,Who else is ready for the weekend?,affiliative,affiliative_vs_self_enhancing,Simple inclusive engagement aimed at bonding with the audience.
+9,My superpower is making a whole pizza disappear in ten minutes.,self_enhancing,affiliative_vs_self_enhancing,Humorous boast about a personal "skill" that isn't particularly social.
+10,Monday morning and I've already lost my car keys twice. Living my best life.,self_enhancing,affiliative_vs_self_enhancing,Sarcastic self-coping humor about a personal mishap.
+11,I'm a professional at making bad decisions.,self_enhancing,self_enhancing_vs_self_defeating,Self-deprecating but in a lighthearted coping/bragging way.
+12,I am a total failure and nobody should ever listen to me.,self_defeating,self_enhancing_vs_self_defeating,Genuine-sounding self-abasement that goes beyond lighthearted humor.
+13,Me trying to be productive is the funniest joke I know.,self_enhancing,self_enhancing_vs_self_defeating,Humorous self-observation used as a coping mechanism.
+14,I'm basically a trash can for spicy wings.,self_enhancing,self_enhancing_vs_self_defeating,Metaphorical self-deprecation that is clearly for comedic effect.
+15,Everything I touch turns to dust.,self_defeating,self_enhancing_vs_self_defeating,Negative self-view expressed without a clear humorous "wink".
+16,We love our fans almost as much as we love our secret sauce.,affiliative,affiliative_vs_aggressive,Warm inclusive humor aimed at building community.
+17,Imagine not liking our fries. Couldn't be me.,aggressive,affiliative_vs_aggressive,Uses "imagine..." to mock a different opinion (potential outgroup).
+18,Bestie you dropped this: [Crown Emoji],affiliative,affiliative_vs_aggressive,Supportive slang-based humor directed at a customer.
+19,Ratio + L + our nuggets are better.,aggressive,affiliative_vs_aggressive,Explicitly uses competitive/hostile internet slang.
+20,We see you tagging your friends. Real friends bring fries.,affiliative,affiliative_vs_aggressive,Playful social commentary on friendship and the brand.
+21,Buy one get one free this Tuesday!,not_humor,promotional_copy_vs_humor,Standard promotional offer text.
+22,Our nuggets are so good you'll want to marry them. (Legally we can't do that).,humor,promotional_copy_vs_humor,Hyperbolic product praise followed by a humorous disclaimer.
+23,Flash sale! 50% off for the next hour.,not_humor,promotional_copy_vs_humor,Time-sensitive sales announcement.
+24,The only thing better than our coffee is having two of them.,humor,promotional_copy_vs_humor,Playful way to encourage more purchases using a humorous "only thing better" trope.
+25,New seasonal flavors are here. Try them today!,not_humor,promotional_copy_vs_humor,Informational product launch copy.
+26,We are so happy to see our community growing.,not_humor,positive_sentiment_vs_humor,Sincere positive sentiment without a punchline.
+27,Our employees are the heartbeat of this company.,not_humor,positive_sentiment_vs_humor,Earnest appreciation that isn't intended to be funny.
+28,Is it even a road trip if you don't stop here?,humor,positive_sentiment_vs_humor,Rhetorical question that uses a relatable scenario for light humor.
+29,Today is a beautiful day for a cold drink.,not_humor,positive_sentiment_vs_humor,Simple pleasant observation.
+30,If you don't like our new soda, we can't be friends. Just kidding (unless?).,humor,positive_sentiment_vs_humor,Playful "threat" humor that builds brand affinity through sentiment.
