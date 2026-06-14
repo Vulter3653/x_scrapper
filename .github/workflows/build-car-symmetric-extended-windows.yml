@@ -1,0 +1,314 @@
+name: Build CAR Symmetric Extended Windows (Gemini Pre-Audit)
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit updated outputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      daily_returns_path:
+        description: "Daily return panel CSV (relative_trading_day, firm_return, market_return)"
+        required: true
+        default: "data/external/korea_uni/daily_market_data_10k_events.csv"
+      estimation_diagnostics_path:
+        description: "Market model diagnostics CSV (event_id, market_model_alpha, market_model_beta)"
+        required: true
+        default: "data/external/korea_uni/event_study_estimation_diagnostics.csv"
+      event_study_dataset_path:
+        description: "Event study dataset CSV — used for (ticker, filing_date)→event_id join key"
+        required: true
+        default: "data/external/korea_uni/ai_10k_event_study_analysis_dataset.csv"
+      existing_car_panel:
+        description: "Existing CAR event panel to update"
+        required: true
+        default: "data/derived/car_event_windows/car_symmetric_event_window_panel.csv"
+      existing_linkage:
+        description: "Existing humor-CAR linkage panel to update"
+        required: true
+        default: "data/derived/car_event_windows/humor_car_linkage_panel.csv"
+      existing_regression_master:
+        description: "Existing regression master to update"
+        required: true
+        default: "data/derived/regression/humor_car_hypothesis_regression_master.csv"
+      existing_car_manifest:
+        description: "Existing CAR event window manifest JSON"
+        required: true
+        default: "data/audit/car_event_windows/car_symmetric_event_window_manifest.json"
+      existing_regression_manifest:
+        description: "Existing regression master manifest JSON"
+        required: true
+        default: "data/audit/regression/humor_car_regression_master_manifest.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-car-symmetric-extended-windows
+  cancel-in-progress: false
+
+jobs:
+  build-extended-car:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify required input files exist
+        run: |
+          set -euo pipefail
+          MISSING=0
+          for f in \
+            '${{ inputs.daily_returns_path }}' \
+            '${{ inputs.estimation_diagnostics_path }}' \
+            '${{ inputs.event_study_dataset_path }}' \
+            '${{ inputs.existing_car_panel }}' \
+            '${{ inputs.existing_linkage }}' \
+            '${{ inputs.existing_regression_master }}' \
+            '${{ inputs.existing_car_manifest }}' \
+            '${{ inputs.existing_regression_manifest }}'; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing input::$f not found"
+              MISSING=$((MISSING+1))
+            else
+              echo "OK: $f"
+            fi
+          done
+          if [ "$MISSING" -gt 0 ]; then
+            echo ""
+            echo "::error title=Missing inputs::$MISSING required file(s) missing."
+            echo "daily_market_data_10k_events.csv and event_study_estimation_diagnostics.csv"
+            echo "must be copied from the korea_uni source repository to data/external/korea_uni/"
+            echo "before running this workflow."
+            exit 1
+          fi
+
+      - name: Validate daily return panel header
+        run: |
+          set -euo pipefail
+          python3 -c "
+          import csv, sys
+          path = '${{ inputs.daily_returns_path }}'
+          with open(path, encoding='utf-8-sig', newline='') as f:
+              reader = csv.DictReader(f)
+              cols = reader.fieldnames or []
+          cols_lower = [c.lower() for c in cols]
+          required = {
+              'relative_trading_day': ['relative_trading_day','trading_day_relative','event_day','day_relative','rel_day'],
+              'firm_return':           ['firm_return','ret_firm','daily_firm_return','stock_return'],
+              'market_return':         ['market_return','ret_market','daily_market_return','benchmark_return'],
+          }
+          missing = []
+          matched = {}
+          for label, candidates in required.items():
+              found = next((c for c in candidates if c in cols_lower), None)
+              if found:
+                  matched[label] = found
+              else:
+                  missing.append(label)
+          if missing:
+              print(f'ERROR: daily return panel missing expected columns: {missing}', file=sys.stderr)
+              print(f'  Actual columns: {cols}', file=sys.stderr)
+              print(f'  Expected (any of): {required}', file=sys.stderr)
+              sys.exit(1)
+          print(f'Daily return panel header OK: {matched}')
+          print(f'All columns: {cols}')
+          "
+
+      - name: Validate estimation diagnostics header
+        run: |
+          set -euo pipefail
+          python3 -c "
+          import csv, sys
+          path = '${{ inputs.estimation_diagnostics_path }}'
+          with open(path, encoding='utf-8-sig', newline='') as f:
+              reader = csv.DictReader(f)
+              cols = reader.fieldnames or []
+          cols_lower = [c.lower() for c in cols]
+          required = {
+              'event_id':           ['event_id'],
+              'market_model_alpha': ['market_model_alpha','alpha','mm_alpha','est_alpha'],
+              'market_model_beta':  ['market_model_beta','beta','mm_beta','est_beta'],
+          }
+          missing = []
+          matched = {}
+          for label, candidates in required.items():
+              found = next((c for c in candidates if c in cols_lower), None)
+              if found:
+                  matched[label] = found
+              else:
+                  missing.append(label)
+          if missing:
+              print(f'ERROR: estimation diagnostics missing expected columns: {missing}', file=sys.stderr)
+              print(f'  Actual columns: {cols}', file=sys.stderr)
+              sys.exit(1)
+          print(f'Estimation diagnostics header OK: {matched}')
+          print(f'All columns: {cols}')
+          "
+
+      - name: Run Gemini pre-audit CAR extended windows computation
+        id: build
+        run: |
+          set -euo pipefail
+          python scripts/build_car_symmetric_extended_windows.py \
+            --daily-returns                '${{ inputs.daily_returns_path }}' \
+            --estimation-diagnostics       '${{ inputs.estimation_diagnostics_path }}' \
+            --event-study-dataset          '${{ inputs.event_study_dataset_path }}' \
+            --existing-car-panel           '${{ inputs.existing_car_panel }}' \
+            --existing-linkage             '${{ inputs.existing_linkage }}' \
+            --existing-regression-master   '${{ inputs.existing_regression_master }}' \
+            --existing-car-manifest        '${{ inputs.existing_car_manifest }}' \
+            --existing-regression-manifest '${{ inputs.existing_regression_manifest }}' \
+            --out-car-panel                '${{ inputs.existing_car_panel }}' \
+            --out-linkage                  '${{ inputs.existing_linkage }}' \
+            --out-regression-master        '${{ inputs.existing_regression_master }}' \
+            --out-car-manifest             '${{ inputs.existing_car_manifest }}' \
+            --out-regression-manifest      '${{ inputs.existing_regression_manifest }}'
+          SCRIPT_EXIT=$?
+          if [ "$SCRIPT_EXIT" -eq 3 ]; then
+            echo "::warning title=CAR_m1_p1 cross-check CONDITIONAL FAIL::Outputs written but cross-check failed. Review return definition (log vs simple) and alpha/beta source."
+            echo "crosscheck_fail=true" >> "$GITHUB_OUTPUT"
+          elif [ "$SCRIPT_EXIT" -ne 0 ]; then
+            exit $SCRIPT_EXIT
+          else
+            echo "crosscheck_fail=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify output files exist
+        run: |
+          set -euo pipefail
+          for f in \
+            '${{ inputs.existing_car_panel }}' \
+            '${{ inputs.existing_linkage }}' \
+            '${{ inputs.existing_regression_master }}' \
+            '${{ inputs.existing_car_manifest }}' \
+            '${{ inputs.existing_regression_manifest }}'; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing output::$f not found after script run"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+
+      - name: Verify output manifest constraint flags
+        run: |
+          set -euo pipefail
+          python3 -c "
+          import json, sys
+
+          car_m = json.load(open('${{ inputs.existing_car_manifest }}'))
+          reg_m = json.load(open('${{ inputs.existing_regression_manifest }}'))
+
+          errors = []
+
+          # CAR manifest: forbidden_operations block — all must be false
+          fops = car_m.get('forbidden_operations', {})
+          # Check specific flags explicitly required by Gemini pre-audit
+          required_false_fops = [
+              'firm_return_sum_used_as_CAR',
+              'CAR_m1_p1_overwritten',
+              'ticker_average_alpha_beta_used',
+              'company_average_alpha_beta_used',
+              'overall_average_alpha_beta_used',
+              'CAR_0_p3_renamed_to_CAR_m3_p3',
+              'CAR_0_p5_renamed_to_CAR_m5_p5',
+              'causal_claim_made',
+              'regression_auto_run',
+          ]
+          for flag in required_false_fops:
+              if fops.get(flag):
+                  errors.append(f'forbidden_operations.{flag}=true in car_manifest')
+
+          # Top-level flags in both manifests
+          top_level_false = ['causal_claim_made', 'raw_data_modified', 'humor_outputs_modified', 'regression_run']
+          for label, m in [('car_manifest', car_m), ('reg_manifest', reg_m)]:
+              for flag in top_level_false:
+                  if m.get(flag):
+                      errors.append(f'{label}.{flag}=true')
+
+          # CAR_0_p3 / CAR_0_p5 symmetric-window flags — check both locations
+          for flag in ['CAR_0_p3_used_as_symmetric_window', 'CAR_0_p5_used_as_symmetric_window']:
+              if car_m.get(flag) or fops.get(flag):
+                  errors.append(f'car_manifest.{flag}=true')
+
+          # gemini integration flag must be set
+          if not car_m.get('gemini_preaudit_integrated'):
+              errors.append('car_manifest.gemini_preaudit_integrated not set')
+
+          if errors:
+              print('CONSTRAINT VIOLATIONS:', file=sys.stderr)
+              for e in errors:
+                  print(f'  {e}', file=sys.stderr)
+              sys.exit(1)
+
+          # Report summary
+          xcheck = car_m.get('CAR_m1_p1_crosscheck', {})
+          print('All constraint flags OK.')
+          print(f'  gemini_preaudit_integrated:       {car_m.get(\"gemini_preaudit_integrated\")}')
+          print(f'  ar_formula:                       {car_m.get(\"ar_formula\")}')
+          print(f'  alpha_beta_join_level:            {car_m.get(\"alpha_beta_join_level\")}')
+          print(f'  return_definition:                {car_m.get(\"return_definition\")}')
+          print(f'  return_definition_uncertain:      {car_m.get(\"return_definition_uncertain\")}')
+          print(f'  CAR_m3_p3_available_rows:         {car_m.get(\"CAR_m3_p3_available_rows\")}')
+          print(f'  CAR_m5_p5_available_rows:         {car_m.get(\"CAR_m5_p5_available_rows\")}')
+          print(f'  crosscheck_status:                {xcheck.get(\"status\")}')
+          print(f'  crosscheck_fail_rate:             {xcheck.get(\"fail_rate\")}')
+          print(f'  crosscheck_mean_abs_diff:         {xcheck.get(\"mean_abs_diff\")}')
+          print(f'  crosscheck_max_abs_diff:          {xcheck.get(\"max_abs_diff\")}')
+          print(f'  CAR_m3_p3_in_master:              {reg_m.get(\"CAR_m3_p3_available_in_master\")}')
+          print(f'  CAR_m5_p5_in_master:              {reg_m.get(\"CAR_m5_p5_available_in_master\")}')
+          print(f'  regression_run (car_manifest):    {car_m.get(\"regression_run\")}')
+          print(f'  regression_run (reg_manifest):    {reg_m.get(\"regression_run\")}')
+
+          if xcheck.get('status') == 'CONDITIONAL_FAIL':
+              print(f'::warning title=Cross-check CONDITIONAL FAIL::{xcheck.get(\"note\")}')
+          "
+
+      - name: Upload outputs as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: car-symmetric-extended-windows
+          path: |
+            ${{ inputs.existing_car_panel }}
+            ${{ inputs.existing_linkage }}
+            ${{ inputs.existing_regression_master }}
+            ${{ inputs.existing_car_manifest }}
+            ${{ inputs.existing_regression_manifest }}
+          retention-days: 30
+
+      - name: Commit updated outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            '${{ inputs.existing_car_panel }}' \
+            '${{ inputs.existing_linkage }}' \
+            '${{ inputs.existing_regression_master }}' \
+            '${{ inputs.existing_car_manifest }}' \
+            '${{ inputs.existing_regression_manifest }}'
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m 'feat: gemini pre-audit CAR_m3_p3 / CAR_m5_p5 from daily return panel'
+          git push origin HEAD:main

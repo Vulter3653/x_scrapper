@@ -213,8 +213,8 @@ def load_daily_returns(path):
     market_col = next((col_lower[c] for c in market_candidates if c in col_lower), None)
 
     # Detect trading day relative column
-    day_candidates = ["trading_day_relative", "event_day", "relative_day", "day_relative",
-                      "t", "rel_day", "event_day_rel", "day"]
+    day_candidates = ["relative_trading_day", "trading_day_relative", "event_day",
+                      "relative_day", "day_relative", "t", "rel_day", "event_day_rel", "day"]
     day_col = next((col_lower[c] for c in day_candidates if c in col_lower), None)
 
     if not all([firm_col, market_col, day_col]):
