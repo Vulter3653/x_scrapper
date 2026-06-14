@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "description": "Model specifications and constraint definitions for H1-H3 × CAR_m1_p1 regressions.",
+  "regression_master_column_count": 38,
+  "regression_master_column_count_note": "Corrected from prior report of 36; verified from CSV header.",
+
+  "dv_hierarchy": {
+    "primary_dv_deferred": {
+      "variable": "tobins_q",
+      "status": "DEFERRED — financial statement panel not yet available",
+      "note": "CAR does NOT substitute for Tobin's Q."
+    },
+    "secondary_dv_active": {
+      "variable": "CAR_m1_p1",
+      "window": "[-1, +1]",
+      "interpretation": "short-window capital market response proxy",
+      "forbidden": [
+        "CAR = Tobin's Q",
+        "CAR = direct Brand Equity",
+        "CAR = consumer-based brand equity",
+        "CAR result = causal brand equity effect"
+      ]
+    },
+    "placeholder_dvs": {
+      "CAR_m3_p3": "MISSING — daily abnormal return panel not yet available",
+      "CAR_m5_p5": "MISSING — daily abnormal return panel not yet available"
+    }
+  },
+
+  "samples": {
+    "primary": {
+      "filter": "alignment_type in ('prefiling_lag_1m', 'prefiling_lag_3m') AND join_ready_for_CAR_m1_p1 == True",
+      "n_rows": 430,
+      "n_companies": 78,
+      "n_years": 3,
+      "use_for": "main analysis"
+    },
+    "robustness_lag1m": {
+      "filter": "alignment_type == 'prefiling_lag_1m' AND join_ready_for_CAR_m1_p1 == True",
+      "n_rows": 140
+    },
+    "robustness_lag3m": {
+      "filter": "alignment_type == 'prefiling_lag_3m' AND join_ready_for_CAR_m1_p1 == True",
+      "n_rows": 290
+    },
+    "sensitivity_samemon": {
+      "filter": "alignment_type == 'same_month' AND join_ready_for_CAR_m1_p1 == True",
+      "n_rows": 150,
+      "caution": "simultaneity risk — filing in same month as humor measurement"
+    }
+  },
+
+  "fixed_effects": {
+    "main": ["target_report_year (period FE, 3 years → 2 dummies)", "naics_sector_code (8 sectors → 7 dummies)"],
+    "robustness_compFE": ["target_report_year", "company_name (78 companies → 77 dummies)"],
+    "note": "Company FE not used in main models — too many DoF absorbed relative to 430 rows. Used in H1a_compFE robustness only."
+  },
+
+  "controls": ["log_humor_count", "ambiguity_rate", "high_ambiguity_flag", "source_x_handle_count"],
+
+  "models": {
+    "H1a": {
+      "hypothesis": "H1",
+      "focal_iv": "humor_share",
+      "formula": "CAR_m1_p1 ~ humor_share + controls + period_FE + naics_FE",
+      "sample": "primary",
+      "note": "Primary H1 specification"
+    },
+    "H1b": {
+      "hypothesis": "H1",
+      "focal_iv": "humor_presence_any",
+      "formula": "CAR_m1_p1 ~ humor_presence_any + controls + period_FE + naics_FE",
+      "sample": "primary",
+      "note": "Binary IV alternative"
+    },
+    "H2a": {
+      "hypothesis": "H2",
+      "focal_ivs": ["aggressive_share", "self_enhancing_share", "self_defeating_share"],
+      "formula": "CAR_m1_p1 ~ aggressive_share + self_enhancing_share + self_defeating_share + controls + period_FE + naics_FE",
+      "reference_category": "affiliative_share (excluded — implicit baseline)",
+      "constraint": "humor_share must NOT be included simultaneously with type shares",
+      "sample": "primary"
+    },
+    "H2b": {
+      "hypothesis": "H2",
+      "focal_iv": "rare_negative_humor_share",
+      "formula": "CAR_m1_p1 ~ rare_negative_humor_share + controls + period_FE + naics_FE",
+      "sample": "primary"
+    },
+    "H3": {
+      "hypothesis": "H3",
+      "focal_ivs": ["aggressive_humor_usage_intensity", "aggressive_humor_usage_intensity_sq"],
+      "formula": "CAR_m1_p1 ~ aggressive_humor_usage_intensity + aggressive_humor_usage_intensity_sq + controls + period_FE + naics_FE",
+      "expected_direction": "β1 > 0, β2 < 0 (inverted-U)",
+      "status": "EXPLORATORY ONLY",
+      "sparsity_note": "5 nonzero rows in primary sample (98.8% zero). No causal or confirmatory inference possible.",
+      "sample": "primary"
+    },
+    "H1a_lag1m":   {"sample": "robustness_lag1m",   "focal_iv": "humor_share"},
+    "H1a_lag3m":   {"sample": "robustness_lag3m",   "focal_iv": "humor_share"},
+    "H1a_samemon": {"sample": "sensitivity_samemon", "focal_iv": "humor_share"},
+    "H1a_compFE":  {"sample": "primary",             "focal_iv": "humor_share", "fe": "period + company"}
+  },
+
+  "h3_inverted_u_criterion": {
+    "required_for_support": ["β1 > 0 (linear term)", "β2 < 0 (quadratic term)"],
+    "current_status": "direction consistent but p-values far from significance; 5 nonzero rows — exploratory only"
+  },
+
+  "constraint_flags_in_manifest": {
+    "must_be_false": [
+      "causal_claim_made",
+      "car_used_as_tobins_q",
+      "car_used_as_direct_brand_equity",
+      "CAR_m3_p3_used",
+      "CAR_m5_p5_used",
+      "CAR_0_p3_used_as_symmetric_window",
+      "CAR_0_p5_used_as_symmetric_window",
+      "raw_data_modified",
+      "humor_outputs_modified",
+      "korea_uni_source_repo_modified"
+    ],
+    "must_be_true": ["tobins_q_deferred", "regression_run"]
+  }
+}

@@ -1,0 +1,197 @@
+name: Run Humor CAR Hypothesis Regressions
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit regression outputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      regression_master_path:
+        description: "H1-H3 × CAR regression master CSV"
+        required: true
+        default: "data/derived/regression/humor_car_hypothesis_regression_master.csv"
+      regression_master_manifest_path:
+        description: "Regression master manifest JSON"
+        required: true
+        default: "data/audit/regression/humor_car_regression_master_manifest.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: run-humor-car-hypothesis-regressions
+  cancel-in-progress: false
+
+jobs:
+  run-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify required inputs exist
+        run: |
+          set -euo pipefail
+          for f in \
+            '${{ inputs.regression_master_path }}' \
+            '${{ inputs.regression_master_manifest_path }}'; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing required input::$f not found."
+              echo "Run Build Humor CAR Regression Master first (commit_results=true)."
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+
+      - name: Verify upstream master manifest constraints
+        run: |
+          set -euo pipefail
+          python3 -c "
+          import json, sys
+          m = json.load(open('${{ inputs.regression_master_manifest_path }}'))
+          if m.get('regression_run'):
+              print('ERROR: master manifest already shows regression_run=true', file=sys.stderr)
+              sys.exit(1)
+          for flag in ['car_used_as_tobins_q','car_used_as_direct_brand_equity',
+                       'raw_data_modified','humor_outputs_modified']:
+              if m.get(flag):
+                  print(f'UPSTREAM CONSTRAINT VIOLATION: {flag}=true', file=sys.stderr)
+                  sys.exit(1)
+          if not m.get('tobins_q_deferred'):
+              print('ERROR: tobins_q_deferred must be true in master manifest', file=sys.stderr)
+              sys.exit(1)
+          print('Master manifest constraints OK.')
+          print(f'input_rows:              {m.get(\"input_rows\")}')
+          print(f'CAR_m1_p1_ready_rows:    {m.get(\"CAR_m1_p1_ready_rows\")}')
+          h3 = m.get('h3_sparsity_in_regression_master', {})
+          nonzero = h3.get('nonzero_aggressive_intensity_rows', 0)
+          zero_sh = h3.get('aggressive_intensity_zero_share', 1.0)
+          print(f'H3_nonzero_rows:         {nonzero}')
+          print(f'H3_zero_share:           {zero_sh}')
+          if nonzero < 20:
+              print(f'::warning title=H3 sparsity::{nonzero} nonzero aggressive intensity rows. H3 will be exploratory only.')
+          "
+
+      - name: Run H1-H3 hypothesis regressions
+        id: run
+        run: |
+          set -euo pipefail
+          python scripts/run_humor_car_hypothesis_regressions.py \
+            --master        '${{ inputs.regression_master_path }}' \
+            --in-manifest   '${{ inputs.regression_master_manifest_path }}' \
+            --out-results   data/derived/regression/humor_car_hypothesis_regression_results.csv \
+            --out-diag      data/derived/regression/humor_car_hypothesis_model_diagnostics.csv \
+            --out-manifest  data/audit/regression/humor_car_hypothesis_regression_manifest.json
+
+      - name: Verify outputs and regression manifest constraints
+        run: |
+          set -euo pipefail
+          for f in \
+            data/derived/regression/humor_car_hypothesis_regression_results.csv \
+            data/derived/regression/humor_car_hypothesis_model_diagnostics.csv \
+            data/audit/regression/humor_car_hypothesis_regression_manifest.json; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing output::$f not found after script run"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+          python3 -c "
+          import json, sys
+          m = json.load(open('data/audit/regression/humor_car_hypothesis_regression_manifest.json'))
+
+          # These must remain false
+          forbidden = {
+              'causal_claim_made',
+              'car_used_as_tobins_q',
+              'car_used_as_direct_brand_equity',
+              'CAR_m3_p3_used',
+              'CAR_m5_p5_used',
+              'CAR_0_p3_used_as_symmetric_window',
+              'CAR_0_p5_used_as_symmetric_window',
+              'raw_data_modified',
+              'humor_outputs_modified',
+              'korea_uni_source_repo_modified',
+          }
+          violations = [(k, m.get(k)) for k in forbidden if m.get(k)]
+          if violations:
+              print('CONSTRAINT VIOLATION:', violations, file=sys.stderr)
+              sys.exit(1)
+
+          if not m.get('tobins_q_deferred'):
+              print('ERROR: tobins_q_deferred must be true', file=sys.stderr)
+              sys.exit(1)
+
+          if not m.get('regression_run'):
+              print('ERROR: regression_run should be true in regression manifest', file=sys.stderr)
+              sys.exit(1)
+
+          if m.get('models_failed', 0) > 0:
+              print(f'::warning title=Models failed::{m[\"models_failed\"]} models failed to run.')
+
+          print('Constraints OK.')
+          print(f'regression_sample_rows:         {m.get(\"regression_sample_rows\")}')
+          print(f'CAR_m1_p1_ready_rows:           {m.get(\"CAR_m1_p1_ready_rows\")}')
+          print(f'models_attempted:               {m.get(\"models_attempted\")}')
+          print(f'models_completed:               {m.get(\"models_completed\")}')
+          print(f'models_failed:                  {m.get(\"models_failed\")}')
+          print(f'h1_models_completed:            {m.get(\"h1_models_completed\")}')
+          print(f'h2_models_completed:            {m.get(\"h2_models_completed\")}')
+          print(f'h3_models_completed:            {m.get(\"h3_models_completed\")}')
+          print(f'h3_nonzero_aggressive_rows:     {m.get(\"h3_nonzero_aggressive_intensity_rows\")}')
+          print(f'h3_zero_share:                  {m.get(\"h3_zero_share\")}')
+          print(f'tobins_q_deferred:              {m.get(\"tobins_q_deferred\")}')
+          h3_nonzero = m.get('h3_nonzero_aggressive_intensity_rows', 0)
+          if h3_nonzero < 20:
+              print(f'::warning title=H3 exploratory::{h3_nonzero} nonzero aggressive intensity rows — H3 results are exploratory only.')
+          if not m.get('CAR_m3_p3_used') and not m.get('CAR_m5_p5_used'):
+              print('CAR_m3_p3/m5_p5: correctly excluded (missing — daily AR pending).')
+          "
+
+      - name: Upload regression output artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-car-hypothesis-regression-results
+          path: |
+            data/derived/regression/humor_car_hypothesis_regression_results.csv
+            data/derived/regression/humor_car_hypothesis_model_diagnostics.csv
+            data/audit/regression/humor_car_hypothesis_regression_manifest.json
+          retention-days: 30
+
+      - name: Commit regression outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/regression/humor_car_hypothesis_regression_results.csv \
+            data/derived/regression/humor_car_hypothesis_model_diagnostics.csv \
+            data/audit/regression/humor_car_hypothesis_regression_manifest.json \
+            docs/humor_car_hypothesis_regression_plan.md \
+            config/humor_car_regression_models_schema.json
+          if git diff --cached --quiet; then
+            echo "No regression changes to commit."
+            exit 0
+          fi
+          git commit -m 'results: h1-h3 x car hypothesis regression results'
+          git push origin HEAD:main

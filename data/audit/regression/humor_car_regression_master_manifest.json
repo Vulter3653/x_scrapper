@@ -54,5 +54,7 @@
     "Gemini daily AR panel audit: if event_window_daily_abnormal_returns.csv exists in korea_uni, copy to data/external/korea_uni/ and re-run build_car_symmetric_event_window_panel.py → re-run this script.",
     "Tobin's Q: obtain total_assets, total_liabilities, market_cap from SEC EDGAR XBRL or Compustat → run build_tobins_q_brand_equity_panel.py --financial-panel <path>.",
     "H3 power: note that 9/584 nonzero aggressive intensity rows is extremely sparse. Interpret H3 results with caution or consider descriptive H3 only."
-  ]
+  ],
+  "regression_master_column_count": 38,
+  "regression_master_column_count_note": "Corrected from prior report of 36; verified from CSV header (38 columns)."
 }
