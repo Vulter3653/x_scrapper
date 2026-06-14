@@ -1,0 +1,66 @@
+{
+  "input_path": "data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv",
+  "output_path": "data/derived/humor/evaluation/humor_type_human_review_priority_sample.csv",
+  "manifest_path": "data/audit/humor/evaluation/humor_type_human_review_priority_manifest.json",
+  "random_seed": 42,
+  "low_confidence_threshold": 0.4,
+  "total_input_rows": 941,
+  "total_selected_rows": 346,
+  "deduplication_rule": "A row can appear in at most one segment; higher-priority segments claim rows first.",
+  "segments": {
+    "v1_ambiguous_to_v2_rare_humor": {
+      "priority": "P0",
+      "requested": "all",
+      "available_after_higher_priority_exclusion": 21,
+      "sampled": 21,
+      "shortfall": 0,
+      "selection_rule": "seeded_random_without_replacement"
+    },
+    "v1_humor_to_v2_not_humor": {
+      "priority": "P1",
+      "requested": 80,
+      "available_after_higher_priority_exclusion": 127,
+      "sampled": 80,
+      "shortfall": 0,
+      "selection_rule": "seeded_random_without_replacement"
+    },
+    "v1_not_humor_to_v2_humor": {
+      "priority": "P2",
+      "requested": 80,
+      "available_after_higher_priority_exclusion": 68,
+      "sampled": 68,
+      "shortfall": 12,
+      "selection_rule": "seeded_random_without_replacement"
+    },
+    "v1_positive_humor_to_v2_aggressive": {
+      "priority": "P3",
+      "requested": 80,
+      "available_after_higher_priority_exclusion": 17,
+      "sampled": 17,
+      "shortfall": 63,
+      "selection_rule": "seeded_random_without_replacement"
+    },
+    "v1_ambiguous_to_v2_not_humor": {
+      "priority": "P4",
+      "requested": 80,
+      "available_after_higher_priority_exclusion": 153,
+      "sampled": 80,
+      "shortfall": 0,
+      "selection_rule": "seeded_random_without_replacement"
+    },
+    "low_confidence_or_review_flag": {
+      "priority": "P5",
+      "requested": 80,
+      "available_after_higher_priority_exclusion": 512,
+      "sampled": 80,
+      "shortfall": 0,
+      "selection_rule": "lowest_v2_confidence_first"
+    }
+  },
+  "notes": [
+    "v2 is treated as a human-review candidate generator, not a production replacement classifier.",
+    "Gold labels should be produced through human adjudication, not by v1-v2 consensus alone.",
+    "P0 rare-class transitions are included exhaustively after higher-priority exclusion logic, because they are central to aggressive/self-defeating validity checks.",
+    "Cue/rule calibration should only be performed after human review confirms the error pattern."
+  ]
+}
