@@ -62,6 +62,40 @@
 | `rare_negative_humor_share` | `rare_negative_humor_count / total_posts` | 통합 희귀 클래스 비율 |
 | `v2_aggressive_candidate_count` | v2가 aggressive으로 분류한 행 수 (company-level, 진단용) | Production label 아님 |
 
+### H2 회귀 설계 및 공선성 주의
+
+H2의 type-share 변수는 모두 `type_count / total_posts`로 정의된다. 따라서 네 개의 type-share 합은 항상 1이 아니라 `humor_share`와 같아진다.
+
+```text
+aggressive_share
++ affiliative_share
++ self_enhancing_share
++ self_defeating_share
+= humor_share
+```
+
+이에 따라 H2 회귀모형에서는 다음 원칙을 적용한다.
+
+- 4개 type-share 변수를 모두 투입하는 경우, `humor_share`를 같은 회귀식에 동시에 포함하지 않는다.
+- `humor_share`를 별도로 통제해야 하는 경우, 4개 type-share 중 하나를 reference category로 제외한다.
+- 기본 reference category 후보는 `affiliative_share`이다. Affiliative humor는 사회적 유대와 친화성을 나타내는 상대적으로 표준적인 positive humor baseline으로 해석할 수 있기 때문이다.
+- H2의 핵심 검정은 단순히 `aggressive_share` 계수의 유의성만 보는 것이 아니라, type-share 계수 간 차이 검정으로 수행한다.
+
+예상 검정:
+
+```text
+H0: β_aggressive = β_affiliative
+H0: β_aggressive = β_self_enhancing
+H0: β_aggressive = β_self_defeating
+```
+
+권장 진단:
+
+- H2 회귀 전 type-share 변수 간 correlation matrix를 확인한다.
+- H2 회귀 후 VIF 또는 equivalent collinearity diagnostics를 확인한다.
+- `aggressive`와 `self_defeating`은 rare class이므로, `rare_negative_humor_share`를 보조 분석 변수로 유지한다.
+- `v2_aggressive_candidate_count`는 label 보정 변수가 아니라 disagreement/candidate diagnostic 변수로만 사용한다.
+
 ---
 
 ## E. H3 변수 정의
