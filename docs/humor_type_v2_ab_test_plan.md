@@ -187,3 +187,23 @@ v1 aggressive 105 rows, v2 sample에서 125 rows — 방향성은 있으나 huma
 v1/v2 accuracy 평가, cue/threshold calibration (adjustment), production classifier 결정, gold label dataset 구축.
 
 현재 evidence package 상세: `docs/humor_no_human_label_analysis_plan.md` 참조.
+
+---
+
+## 8. Evidence package 이후: H1-H3 hypothesis variable construction
+
+no-human-label evidence package 이후의 다음 단계는 H1-H3 가설 검증용 hypothesis variable construction이다.
+
+**목적**: v1 full-chain 분류 결과를 firm-period 수준의 regression-ready 독립변수로 변환하는 것. Descriptive dashboard가 아니라 hypothesis testing용 측정 변수 구축이다.
+
+**v2 역할**: v2는 production classifier가 아니다. v2는 candidate generator / disagreement detector로만 사용한다. H2/H3 변수의 robustness diagnostic flag로만 포함된다.
+
+**가설별 변수 연결**:
+- **H1**: humor presence / humor usage variables (`humor_share`, `log_humor_count`, `humor_presence_any`)
+- **H2**: humor type variables, especially aggressive humor (`aggressive_share`, `affiliative_share`, `self_enhancing_share`)
+- **H3**: aggressive humor usage intensity and squared term (`aggressive_humor_usage_intensity`, `aggressive_humor_usage_intensity_sq`)
+
+**H3 intensity 정의**: `aggressive_humor_usage_intensity`는 메시지 수준의 semantic intensity가 아니라 firm-level usage intensity, 즉 `aggressive_count / total_posts`이다. Inverted-U 조절 효과 검증을 위해 squared term (`_sq`)이 함께 생성된다.
+
+상세: `docs/humor_hypothesis_variable_construction_plan.md` 참조.
+산출 workflow: **Build Humor Hypothesis Variables**

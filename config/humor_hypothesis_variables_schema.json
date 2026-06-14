@@ -1,0 +1,167 @@
+{
+  "version": "1.0",
+  "description": "Schema for hypothesis-ready humor variable outputs (H1/H2/H3 regression analysis). All variables are derived from v1 operational labels. No human labels or gold labels exist at this stage.",
+  "constraint_note": "No human_label, gold_label, coder_label, or adjudicated_label is defined. v1-v2 consensus is NOT treated as ground truth. v2 candidate counts are diagnostic flags only.",
+  "allowed_hypothesis_tags": ["H1", "H2", "H3", "Robustness", "Diagnostic"],
+  "allowed_ambiguity_handling": [
+    "conservative",
+    "ambiguity_as_zero",
+    "ambiguity_excluded",
+    "ambiguity_as_missing",
+    "not_applicable"
+  ],
+  "allowed_variable_roles": [
+    "IV",
+    "IV (raw count)",
+    "IV (log-transformed)",
+    "IV (binary)",
+    "IV (combined rare class)",
+    "IV (combined rare class share)",
+    "IV (relative contrast)",
+    "IV (Robustness)",
+    "Moderator (H3)",
+    "Moderator squared (H3 inverted-U)",
+    "Moderator (robustness, H3)",
+    "Moderator squared (robustness)",
+    "Binary moderator / IV",
+    "Interaction term",
+    "Interaction term (inverted-U)",
+    "Control / Denominator",
+    "Diagnostic",
+    "Diagnostic flag (NOT production label)",
+    "Flag / Exclusion criterion",
+    "Metadata"
+  ],
+  "outputs": {
+    "humor_firm_period_hypothesis_variables.csv": {
+      "path": "data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv",
+      "description": "Full set of H1/H2/H3 hypothesis variables aggregated at firm-period (company × YYYY-MM) level.",
+      "aggregation_level": "firm × YYYY-MM",
+      "columns": [
+        {"name": "company_name",       "type": "string",  "description": "Fortune 500 company name"},
+        {"name": "source_x_handle",    "type": "string",  "description": "X (Twitter) handle"},
+        {"name": "period",             "type": "string",  "description": "YYYY-MM extracted from created_at"},
+        {"name": "total_posts",        "type": "integer", "description": "Total posts for this firm-period"},
+        {"name": "humor_count",        "type": "integer", "description": "Posts with humor_presence == 'humor' (v1)"},
+        {"name": "non_humor_count",    "type": "integer", "description": "Posts with humor_presence == 'non_humor' (v1)"},
+        {"name": "ambiguous_count",    "type": "integer", "description": "Posts with humor_presence == 'ambiguous' (v1)"},
+        {"name": "ambiguity_rate",     "type": "float",   "description": "ambiguous_count / total_posts"},
+        {"name": "humor_share",        "type": "float",   "description": "H1 IV (primary). humor_count / total_posts. Conservative: ambiguous not counted as humor."},
+        {"name": "humor_share_ambiguity_as_zero",  "type": "float",  "description": "H1 robustness. Identical to humor_share. Explicit label for sensitivity analysis."},
+        {"name": "humor_share_ambiguity_excluded", "type": "float",  "description": "H1 robustness. humor_count / (humor_count + non_humor_count). Empty if denominator == 0."},
+        {"name": "humor_share_ambiguity_as_missing","type": "float", "description": "H1 robustness. humor_share if ambiguity_rate < 0.50, else empty (NA)."},
+        {"name": "log_humor_count",    "type": "float",   "description": "H1 IV (log). log(1 + humor_count)."},
+        {"name": "humor_presence_any", "type": "integer", "description": "H1 IV (binary). 1 if humor_count > 0."},
+        {"name": "affiliative_count",  "type": "integer", "description": "H2. humor_type == 'affiliative' (v1)."},
+        {"name": "self_enhancing_count","type": "integer","description": "H2. humor_type == 'self_enhancing' (v1)."},
+        {"name": "aggressive_count",   "type": "integer", "description": "H2/H3. humor_type == 'aggressive' (v1). Rare class (105/68k). EXPLORATORY."},
+        {"name": "self_defeating_count","type": "integer","description": "H2. humor_type == 'self_defeating' (v1). Rare class (41/68k). EXPLORATORY."},
+        {"name": "affiliative_share",  "type": "float",   "description": "H2. affiliative_count / total_posts."},
+        {"name": "self_enhancing_share","type": "float",  "description": "H2. self_enhancing_count / total_posts."},
+        {"name": "aggressive_share",   "type": "float",   "description": "H2/H3. aggressive_count / total_posts. EXPLORATORY."},
+        {"name": "self_defeating_share","type": "float",  "description": "H2. self_defeating_count / total_posts. EXPLORATORY."},
+        {"name": "rare_negative_humor_count", "type": "integer", "description": "H2/H3 robustness. aggressive_count + self_defeating_count."},
+        {"name": "rare_negative_humor_share", "type": "float",   "description": "H2/H3 robustness. rare_negative_humor_count / total_posts."},
+        {"name": "aggressive_minus_other_humor_share","type": "float","description": "H2. aggressive_share minus sum of all other humor type shares."},
+        {"name": "aggressive_humor_usage_intensity",   "type": "float","description": "H3 moderator. aggressive_count / total_posts. Firm-level usage intensity, NOT message-level semantic intensity."},
+        {"name": "aggressive_humor_usage_intensity_sq","type": "float","description": "H3 moderator squared. (aggressive_count / total_posts)^2. For inverted-U test."},
+        {"name": "log_aggressive_count",  "type": "float","description": "H3. log(1 + aggressive_count)."},
+        {"name": "aggressive_presence_any","type": "integer","description": "H3 binary. 1 if aggressive_count > 0."},
+        {"name": "aggressive_share_ambiguity_excluded","type": "float","description": "H3 robustness. aggressive_count / (humor_count + non_humor_count)."},
+        {"name": "rare_negative_humor_usage_intensity",   "type": "float","description": "H3 robustness moderator. (aggressive + self_defeating) / total_posts."},
+        {"name": "rare_negative_humor_usage_intensity_sq","type": "float","description": "H3 robustness squared term."},
+        {"name": "humor_share_x_aggressive_intensity",      "type": "float","description": "H3 interaction. humor_share × aggressive_humor_usage_intensity."},
+        {"name": "humor_share_x_aggressive_intensity_sq",   "type": "float","description": "H3 interaction (inverted-U). humor_share × aggressive_humor_usage_intensity_sq."},
+        {"name": "aggressive_presence_x_aggressive_intensity",   "type": "float","description": "H3 interaction. aggressive_presence_any × aggressive_humor_usage_intensity."},
+        {"name": "aggressive_presence_x_aggressive_intensity_sq","type": "float","description": "H3 interaction (inverted-U)."},
+        {"name": "v2_aggressive_candidate_count",      "type": "integer","description": "Diagnostic. Company-level v2 aggressive candidates from 941-row A/B sample. NOT period-specific."},
+        {"name": "v1_v2_disagreement_candidate_count", "type": "integer","description": "Diagnostic. Company-level v1-v2 disagreement count from A/B sample. NOT period-specific."},
+        {"name": "rare_class_candidate_count",         "type": "integer","description": "Diagnostic. P0 priority review candidates (company-level). Awaiting human review."},
+        {"name": "high_ambiguity_flag", "type": "integer","description": "1 if ambiguity_rate >= 0.50. Firm-period has unreliable humor measurement."},
+        {"name": "no_human_label_flag", "type": "integer","description": "Always 1. All variables are v1 operational labels only. No human labels available."}
+      ]
+    },
+    "humor_h1_variables.csv": {
+      "path": "data/derived/humor/hypothesis_variables/humor_h1_variables.csv",
+      "description": "H1-relevant variables only. Subset of humor_firm_period_hypothesis_variables.csv.",
+      "hypothesis": "H1",
+      "columns": [
+        "company_name", "source_x_handle", "period", "total_posts",
+        "humor_count", "humor_share", "log_humor_count", "humor_presence_any",
+        "humor_share_ambiguity_as_zero", "humor_share_ambiguity_excluded",
+        "humor_share_ambiguity_as_missing", "ambiguity_rate", "high_ambiguity_flag"
+      ]
+    },
+    "humor_h2_type_variables.csv": {
+      "path": "data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv",
+      "description": "H2-relevant variables only. Humor type shares and rare-class diagnostic flags.",
+      "hypothesis": "H2",
+      "columns": [
+        "company_name", "source_x_handle", "period", "total_posts",
+        "affiliative_count", "self_enhancing_count", "aggressive_count", "self_defeating_count",
+        "affiliative_share", "self_enhancing_share", "aggressive_share", "self_defeating_share",
+        "aggressive_minus_other_humor_share",
+        "rare_negative_humor_count", "rare_negative_humor_share",
+        "v2_aggressive_candidate_count", "v1_v2_disagreement_candidate_count", "rare_class_candidate_count"
+      ]
+    },
+    "humor_h3_intensity_variables.csv": {
+      "path": "data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv",
+      "description": "H3-relevant variables only. Aggressive intensity, squared terms, and interaction terms.",
+      "hypothesis": "H3",
+      "columns": [
+        "company_name", "source_x_handle", "period", "total_posts",
+        "aggressive_count", "aggressive_share",
+        "aggressive_humor_usage_intensity", "aggressive_humor_usage_intensity_sq",
+        "log_aggressive_count", "aggressive_presence_any", "aggressive_share_ambiguity_excluded",
+        "rare_negative_humor_usage_intensity", "rare_negative_humor_usage_intensity_sq",
+        "humor_share_x_aggressive_intensity", "humor_share_x_aggressive_intensity_sq",
+        "aggressive_presence_x_aggressive_intensity", "aggressive_presence_x_aggressive_intensity_sq",
+        "ambiguity_rate", "high_ambiguity_flag"
+      ]
+    },
+    "humor_variable_dictionary.csv": {
+      "path": "data/derived/humor/hypothesis_variables/humor_variable_dictionary.csv",
+      "description": "Codebook for all hypothesis variables. One row per variable.",
+      "columns": [
+        {"name": "variable_name",       "description": "Column name in output CSVs"},
+        {"name": "hypothesis",          "description": "Hypothesis tag (H1, H2, H3, Robustness, Diagnostic)"},
+        {"name": "construct",           "description": "What the variable measures"},
+        {"name": "role",                "description": "Role in the regression model (IV, Moderator, Interaction, etc.)"},
+        {"name": "numerator",           "description": "What is counted in the numerator"},
+        {"name": "denominator",         "description": "What is in the denominator"},
+        {"name": "formula",             "description": "Calculation formula in text form"},
+        {"name": "ambiguity_handling",  "description": "How ambiguous posts are treated"},
+        {"name": "interpretation",      "description": "How to interpret the variable in context"},
+        {"name": "limitation",          "description": "Known limitations and caveats"},
+        {"name": "no_human_label_warning", "description": "Specific warning about missing human validation"}
+      ]
+    },
+    "humor_hypothesis_variables_manifest.json": {
+      "path": "data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json",
+      "description": "Run manifest for hypothesis variable construction.",
+      "key_fields": [
+        "created_at", "source_files", "output_files",
+        "input_rows", "output_rows", "aggregation_level",
+        "period_column_used", "company_column_used", "handle_column_used", "label_columns_used",
+        "unique_companies", "unique_periods", "high_ambiguity_cells", "high_ambiguity_threshold",
+        "v2_note", "constraints", "limitations"
+      ],
+      "constraint_flags": {
+        "no_human_label":              "bool — always true at this stage",
+        "gold_label_created":          "bool — always false",
+        "coder_label_created":         "bool — always false",
+        "adjudicated_label_created":   "bool — always false",
+        "v1_v2_consensus_as_gold":     "bool — always false",
+        "v2_production_converted":     "bool — always false",
+        "full_chain_overwritten":      "bool — always false",
+        "raw_data_modified":           "bool — always false",
+        "classification_run":          "bool — always false",
+        "hypothesis_testing_ready":    "bool — true when all H1/H2/H3 variables are successfully created",
+        "h1_variables_created":        "bool",
+        "h2_variables_created":        "bool",
+        "h3_variables_created":        "bool"
+      }
+    }
+  }
+}

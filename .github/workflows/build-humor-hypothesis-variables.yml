@@ -1,0 +1,160 @@
+name: Build Humor Hypothesis Variables
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit hypothesis variable outputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      master_path:
+        description: "Full-chain master CSV path"
+        required: true
+        default: "data/derived/humor/full_chain/humor_full_chain_master.csv"
+      comparison_path:
+        description: "v1-v2 comparison CSV path"
+        required: true
+        default: "data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv"
+      ab_summary_path:
+        description: "v1-v2 A/B summary JSON path"
+        required: true
+        default: "data/audit/humor/evaluation/humor_type_v1_v2_summary.json"
+      priority_path:
+        description: "Human review priority sample CSV path"
+        required: true
+        default: "data/derived/humor/evaluation/humor_type_human_review_priority_sample.csv"
+      high_ambiguity_threshold:
+        description: "Ambiguity rate threshold for high_ambiguity_flag (0.0–1.0)"
+        required: false
+        default: "0.50"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-humor-hypothesis-variables
+  cancel-in-progress: false
+
+jobs:
+  build-variables:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify input files exist
+        run: |
+          set -euo pipefail
+          for f in \
+            '${{ inputs.master_path }}' \
+            '${{ inputs.comparison_path }}' \
+            '${{ inputs.ab_summary_path }}' \
+            '${{ inputs.priority_path }}'; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing input::Required input not found: $f"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+
+      - name: Build hypothesis variables
+        id: build
+        run: |
+          set -euo pipefail
+          python scripts/build_humor_hypothesis_variables.py \
+            --master      '${{ inputs.master_path }}' \
+            --comparison  '${{ inputs.comparison_path }}' \
+            --ab-summary  '${{ inputs.ab_summary_path }}' \
+            --priority    '${{ inputs.priority_path }}' \
+            --out-full    data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv \
+            --out-h1      data/derived/humor/hypothesis_variables/humor_h1_variables.csv \
+            --out-h2      data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv \
+            --out-h3      data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv \
+            --out-dict    data/derived/humor/hypothesis_variables/humor_variable_dictionary.csv \
+            --out-manifest data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json \
+            --high-ambiguity-threshold '${{ inputs.high_ambiguity_threshold }}'
+
+      - name: Verify outputs exist
+        run: |
+          set -euo pipefail
+          for f in \
+            data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_h1_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_variable_dictionary.csv \
+            data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing output::Expected output not found: $f"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+          python3 -c "
+          import json, sys
+          m = json.load(open('data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json'))
+          c = m.get('constraints', {})
+          violations = [(k, v) for k, v in c.items() if k in
+            {'gold_label_created','v2_production_converted','full_chain_overwritten',
+             'raw_data_modified','classification_run','v1_v2_consensus_as_gold'} and v]
+          if violations:
+              print('CONSTRAINT VIOLATION:', violations, file=sys.stderr)
+              sys.exit(1)
+          print('Constraints OK: no prohibited actions taken.')
+          print(f'Firm-period rows: {m.get(\"output_rows\")}')
+          print(f'Companies: {m.get(\"unique_companies\")}')
+          print(f'Periods: {m.get(\"unique_periods\")}')
+          "
+
+      - name: Upload hypothesis variable artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-hypothesis-variables
+          path: |
+            data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv
+            data/derived/humor/hypothesis_variables/humor_h1_variables.csv
+            data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv
+            data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv
+            data/derived/humor/hypothesis_variables/humor_variable_dictionary.csv
+            data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json
+          retention-days: 30
+
+      - name: Commit hypothesis variable outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_h1_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv \
+            data/derived/humor/hypothesis_variables/humor_variable_dictionary.csv \
+            data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json \
+            docs/humor_hypothesis_variable_construction_plan.md \
+            config/humor_hypothesis_variables_schema.json
+          if git diff --cached --quiet; then
+            echo "No hypothesis variable changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: humor hypothesis variables for H1-H3 regression analysis'
+          git push origin HEAD:main
