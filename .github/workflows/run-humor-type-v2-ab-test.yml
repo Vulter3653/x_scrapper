@@ -85,11 +85,16 @@ jobs:
         id: build
         run: |
           set -euo pipefail
+          EXTRA_ARGS=""
+          if [ "${{ inputs.sample_size_mode }}" = "manual" ]; then
+            EXTRA_ARGS="--ambiguous-n ${{ inputs.ambiguous_n }} --self-enhancing-n ${{ inputs.self_enhancing_n }} --affiliative-n ${{ inputs.affiliative_n }} --aggressive-n ${{ inputs.aggressive_n }} --self-defeating-n ${{ inputs.self_defeating_n }} --non-humor-n ${{ inputs.non_humor_n }}"
+          fi
           python scripts/build_humor_type_ab_test_sample.py \
             --input '${{ inputs.master_path }}' \
             --output data/derived/humor/evaluation/humor_type_ab_test_sample.csv \
             --manifest data/audit/humor/evaluation/humor_type_ab_test_sample_manifest.json \
-            --seed '${{ inputs.random_seed }}'
+            --seed '${{ inputs.random_seed }}' \
+            $EXTRA_ARGS
           count=$(python -c "
           import csv
           with open('data/derived/humor/evaluation/humor_type_ab_test_sample.csv', encoding='utf-8-sig') as f:

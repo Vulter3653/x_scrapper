@@ -1,6 +1,7 @@
 {
   "version": "2.0",
   "description": "HSQ-derived humor type codebook for brand X (Twitter/X) posts. Operationalizes the Humor Styles Questionnaire at the text level for Fortune 500 corporate social media. Designed for direct 5-class classification without a prior humor-presence gate.",
+  "classifier_note": "v2 direct classifier is a rule/cue-based prototype for A/B evaluation, not a production LLM classifier. Implements this codebook as a local scoring function; not a fine-tuned model or zero-shot LLM prompt.",
   "labels": {
     "affiliative": {
       "display": "Affiliative",

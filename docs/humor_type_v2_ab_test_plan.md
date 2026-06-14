@@ -1,14 +1,16 @@
 # Humor Type v2 A/B Test Plan
 
+> **Classifier type notice**: v2 direct classifier is a rule/cue-based prototype for A/B evaluation, not a production LLM classifier. `classify_humor_type_v2_direct.py` implements this codebook as a local lexical scoring function. It does not call any external API or model; all decisions are made from keyword/phrase match scores. This is intentional for rapid, cost-free evaluation before committing to an LLM-based replacement.
+
 ## 1. 왜 v2가 필요한가
 
-현재 full-chain classification 결과(66,823 rows, 99 companies)의 주요 문제:
+현재 full-chain classification 결과(68,020 rows, 99 companies, run 27500086401)의 주요 문제:
 
 | 지표 | 현재 값 | 목표 |
 |------|---------|------|
-| ambiguous_or_review | 48.04% (32,103 rows) | <20% |
-| aggressive | 0.16% (105 rows) | 1–3% |
-| self_defeating | 0.06% (40 rows) | 0.5–2% |
+| ambiguous_or_review | ~48% (32,749 rows) | <20% |
+| aggressive | 0.15% (105 rows) | 1–3% |
+| self_defeating | 0.06% (41 rows) | 0.5–2% |
 | affiliative/self_enhancing 구분 정확도 | 불명확 | 검증 필요 |
 
 세 가지 근본 원인:

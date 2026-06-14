@@ -122,13 +122,38 @@ def main():
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
+    # Per-stratum size overrides (used in manual mode; default_stratified ignores these)
+    parser.add_argument("--ambiguous-n",      type=int, default=None, help="Max rows for ambiguous_or_review stratum")
+    parser.add_argument("--self-enhancing-n", type=int, default=None, help="Max rows for self_enhancing stratum")
+    parser.add_argument("--affiliative-n",    type=int, default=None, help="Max rows for affiliative stratum")
+    parser.add_argument("--aggressive-n",     type=int, default=None, help="Max rows for aggressive stratum")
+    parser.add_argument("--self-defeating-n", type=int, default=None, help="Max rows for self_defeating stratum")
+    parser.add_argument("--non-humor-n",      type=int, default=None, help="Max rows for non_humor stratum")
     args = parser.parse_args()
+
+    # Apply per-stratum overrides when provided (manual mode)
+    stratum_overrides = {
+        "ambiguous_or_review": args.ambiguous_n,
+        "self_enhancing":      args.self_enhancing_n,
+        "affiliative":         args.affiliative_n,
+        "aggressive":          args.aggressive_n,
+        "self_defeating":      args.self_defeating_n,
+        "non_humor":           args.non_humor_n,
+    }
+    effective_strata = [
+        (name, col, val, stratum_overrides.get(name) if stratum_overrides.get(name) is not None else max_n)
+        for name, col, val, max_n in STRATA
+    ]
+    if any(v is not None for v in stratum_overrides.values()):
+        print("Manual stratum sizes applied:")
+        for name, col, val, max_n in effective_strata:
+            print(f"  {name}: max_n={max_n}")
 
     print(f"Loading master from: {args.input}")
     rows = load_master(args.input)
     print(f"  Master rows: {len(rows)}")
 
-    sampled_rows, strata_detail = build_sample(rows, STRATA, seed=args.seed)
+    sampled_rows, strata_detail = build_sample(rows, effective_strata, seed=args.seed)
     print(f"  Total sampled: {len(sampled_rows)}")
 
     if not sampled_rows:
