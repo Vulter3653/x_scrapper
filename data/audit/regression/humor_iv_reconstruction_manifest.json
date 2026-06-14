@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-06-14T20:22:28Z",
+  "gate": "Gate 5 — Humor IV Reconstruction / Measurement Repair",
+  "script": "scripts/build_humor_iv_reconstructed_candidates.py",
+  "aggressive_base_rate_used": 0.010824,
+  "top_k": 3,
+  "inputs": {
+    "full_chain_posts": 68020,
+    "hypothesis_variables_rows": 3767,
+    "regression_master_rows": 584,
+    "candidate_panel_rows": 584,
+    "primary_sample_rows": 430
+  },
+  "candidate_ivs_total": 31,
+  "h1_candidates": 7,
+  "h2_candidates": 18,
+  "h3_candidates": 6,
+  "h3_feasibility": {
+    "hc_v2_aggressive_candidate_intensity": {
+      "nonzero_n": 177,
+      "verdict": "H3_LIMITED_ROBUSTNESS_POSSIBLE (nonzero=177 ≥ 50)"
+    },
+    "hc_rare_class_candidate_intensity": {
+      "nonzero_n": 64,
+      "verdict": "H3_LIMITED_ROBUSTNESS_POSSIBLE (nonzero=64 ≥ 50)"
+    },
+    "hc_negative_humor_intensity": {
+      "nonzero_n": 9,
+      "verdict": "H3_BLOCKED (nonzero=9 < 30)"
+    },
+    "aggressive_prob_intensity": {
+      "nonzero_n": 277,
+      "verdict": "H3_LIMITED_ROBUSTNESS_POSSIBLE (nonzero=277 ≥ 50)"
+    },
+    "aggressive_prob_sum": {
+      "nonzero_n": 399,
+      "verdict": "H3_LIMITED_ROBUSTNESS_POSSIBLE (nonzero=399 ≥ 50)"
+    },
+    "top_k_aggressive_score": {
+      "nonzero_n": 5,
+      "verdict": "H3_BLOCKED (nonzero=5 < 30)"
+    }
+  },
+  "h3_regressionable_candidates": [
+    "hc_v2_aggressive_candidate_intensity",
+    "hc_rare_class_candidate_intensity",
+    "aggressive_prob_intensity",
+    "aggressive_prob_sum"
+  ],
+  "h3_best_candidate": {
+    "iv": "aggressive_prob_sum",
+    "nonzero_n": 399,
+    "verdict": "H3_LIMITED_ROBUSTNESS_POSSIBLE (nonzero=399 ≥ 50)"
+  },
+  "existing_iv_overwritten": false,
+  "hypothesis_variables_overwritten": false,
+  "regression_master_overwritten": false,
+  "raw_data_modified": false,
+  "regression_run": false,
+  "causal_claim_made": false,
+  "tobins_q_initiated": false,
+  "brand_equity_claimed": false
+}

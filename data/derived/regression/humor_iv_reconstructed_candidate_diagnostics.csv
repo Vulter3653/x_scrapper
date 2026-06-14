@@ -1,0 +1,32 @@
+﻿iv_name,label,note,n,zero_n,zero_pct,nonzero_n,nonzero_pct,mean,median,std,min,max,p10,p25,p75,p90,hypothesis,within_company_std_median,corr_with_humor_share,corr_with_aggressive_share,corr_with_aggressive_humor_usage_intensity,corr_with_ambiguity_rate
+hc_humor_count,H1 count (raw),existing reconstructed,430,143,33.26,287,66.74,2.15814,1.0,2.850284,0.0,19.0,0.0,0.0,3.0,5.1,H1,1.293893,0.3534,0.1147,0.1147,-0.0453
+hc_log_humor_count,H1 log(1+count),existing reconstructed,430,143,33.26,287,66.74,0.8497,0.693147,0.749871,0.0,2.995732,0.0,0.0,1.386294,1.807175,H1,0.521037,0.5091,0.1235,0.1235,-0.1071
+hc_humor_presence_any,H1 binary,existing reconstructed,430,143,33.26,287,66.74,0.667442,1.0,0.471679,0.0,1.0,0.0,0.0,1.0,1.0,H1,0.440959,0.5834,0.0694,0.0694,-0.1653
+hc_humor_share,H1 share (existing),existing reconstructed,430,143,33.26,287,66.74,0.148447,0.111111,0.17983,0.0,1.0,0.0,0.0,0.213346,0.333333,H1,0.092823,1.0,0.06,0.06,-0.3443
+humor_prob_sum,H1 prob-weighted sum,sum(P_humor) over all posts,430,0,0.0,430,100.0,9.181503,6.399061,9.450318,0.519974,71.684531,1.18814,2.960021,12.388026,19.888442,H1,3.297116,-0.007,0.0708,0.0708,0.0606
+humor_prob_mean,H1 prob-weighted mean,mean(P_humor) over all posts,430,0,0.0,430,100.0,0.619624,0.620581,0.045483,0.484783,0.789377,0.560092,0.589353,0.646515,0.677415,H1,0.025898,0.4593,0.0439,0.0439,0.1573
+ambiguity_adjusted_humor_share,H1 ambiguity-adj share,sum(P_humor)/total_posts; treats ambiguous proportionally,430,0,0.0,430,100.0,0.619624,0.620581,0.045483,0.484783,0.789377,0.560092,0.589353,0.646515,0.677415,H1,0.025898,0.4593,0.0439,0.0439,0.1573
+hc_aggressive_count,H2 aggressive count (original),98.8% zero — baseline,430,425,98.84,5,1.16,0.011628,0.0,0.107329,0.0,1.0,0.0,0.0,0.0,0.0,H2,0.0,0.0408,0.9068,0.9068,-0.0043
+hc_aggressive_presence,H2 aggressive binary,original,430,425,98.84,5,1.16,0.011628,0.0,0.107329,0.0,1.0,0.0,0.0,0.0,0.0,H2,0.0,0.0408,0.9068,0.9068,-0.0043
+hc_log_aggressive,H2 log(1+aggressive),original log,430,425,98.84,5,1.16,0.00806,0.0,0.074395,0.0,0.693147,0.0,0.0,0.0,0.0,H2,0.0,0.0408,0.9068,0.9068,-0.0043
+hc_aggressive_share_among_humor,H2 aggressive share/humor,original,430,425,98.84,5,1.16,0.002583,0.0,0.0283,0.0,0.5,0.0,0.0,0.0,0.0,H2,0.0,0.0148,0.8301,0.8301,-0.0055
+hc_v2_aggressive_candidate_count,H2 v2 aggressive candidate count,BROADER DEFINITION — includes candidates,430,171,39.77,259,60.23,1.334884,1.0,1.55083,0.0,8.0,0.0,0.0,2.0,3.0,H2,0.0,0.0658,0.0327,0.0327,0.0248
+hc_log_v2_aggressive_candidate,H2 log(1+v2_candidate),log-transformed broader IV,430,171,39.77,259,60.23,0.654088,0.693147,0.61265,0.0,2.197225,0.0,0.0,1.098612,1.386294,H2,0.0,0.0725,0.0362,0.0362,0.0267
+hc_v2_aggressive_candidate_presence,H2 v2 candidate binary,binary: any v2 aggressive candidate,430,171,39.77,259,60.23,0.602326,1.0,0.489988,0.0,1.0,0.0,0.0,1.0,1.0,H2,0.0,0.0629,0.0314,0.0314,0.0324
+hc_v2_aggressive_candidate_share,H2 v2 candidate share/total,v2_count/total_posts,430,171,39.77,259,60.23,0.302488,0.058824,0.753376,0.0,7.0,0.0,0.0,0.222222,0.722857,H2,0.008359,0.1139,-0.0295,-0.0295,0.0368
+hc_rare_class_candidate_count,H2 rare class candidate count,rare_class_candidate_count,430,345,80.23,85,19.77,0.260465,0.0,0.564753,0.0,2.0,0.0,0.0,0.0,1.0,H2,0.0,-0.0304,0.0066,0.0066,0.0263
+hc_rare_class_candidate_presence,H2 rare class binary,binary rare class,430,345,80.23,85,19.77,0.197674,0.0,0.398709,0.0,1.0,0.0,0.0,0.0,1.0,H2,0.0,-0.021,0.0249,0.0249,0.0829
+hc_negative_humor_count,H2 negative humor count,aggressive + self_defeating,430,421,97.91,9,2.09,0.02093,0.0,0.143318,0.0,1.0,0.0,0.0,0.0,0.0,H2,0.0,0.0362,0.6727,0.6727,-0.0135
+hc_negative_humor_presence_any,H2 negative binary,any negative humor type,430,421,97.91,9,2.09,0.02093,0.0,0.143318,0.0,1.0,0.0,0.0,0.0,0.0,H2,0.0,0.0362,0.6727,0.6727,-0.0135
+hc_negative_humor_share,H2 negative share/total,negative/total_posts,430,421,97.91,9,2.09,0.000834,0.0,0.006367,0.0,0.0625,0.0,0.0,0.0,0.0,H2,0.0,0.0521,0.7271,0.7271,-0.0198
+aggressive_prob_sum,H2 aggressive prob sum,Σ P(aggressive) per post,430,31,7.21,399,92.79,0.059005,0.033364,0.103122,0.0,1.014104,0.006342,0.013865,0.072573,0.117499,H2,0.020998,-0.0002,0.6939,0.6939,0.1222
+aggressive_prob_mean,H2 aggressive prob mean,mean P(aggressive),430,31,7.21,399,92.79,0.003648,0.00333,0.003624,0.0,0.047704,0.00139,0.002412,0.004225,0.005642,H2,0.001396,-0.0978,0.8836,0.8836,0.4339
+aggressive_prob_max,H2 aggressive prob max,max P(aggressive) per firm-period,430,31,7.21,399,92.79,0.015418,0.007607,0.077991,0.0,0.8,0.006233,0.007006,0.008037,0.008452,H2,0.000615,0.0365,0.8679,0.8679,0.0136
+top_k_aggressive_score,H2 top-k aggressive score,mean of top-3 type_confidence for aggressive posts,430,425,98.84,5,1.16,0.008465,0.0,0.078713,0.0,0.8,0.0,0.0,0.0,0.0,H2,0.0,0.0417,0.8686,0.8686,-0.0016
+negative_humor_presence_any_post,H2 negative post-level binary,any aggressive/self_defeating post,430,421,97.91,9,2.09,0.02093,0.0,0.143318,0.0,1.0,0.0,0.0,0.0,0.0,H2,0.0,0.0362,0.6727,0.6727,-0.0135
+hc_v2_aggressive_candidate_intensity,H3 v2 candidate intensity,v2_count/humor_count — BROADER,430,253,58.84,177,41.16,0.475145,0.0,0.982762,0.0,7.0,0.0,0.0,0.5,1.025,H3,0.002532,0.2962,-0.0209,-0.0209,-0.1184
+hc_rare_class_candidate_intensity,H3 rare class intensity,rare_count/humor_count,430,366,85.12,64,14.88,0.092416,0.0,0.288953,0.0,2.0,0.0,0.0,0.0,0.205,H3,0.0,0.0471,-0.0112,-0.0112,-0.0253
+hc_negative_humor_intensity,H3 negative intensity,(aggressive+self_defeat)/humor_count,430,421,97.91,9,2.09,0.005038,0.0,0.040785,0.0,0.5,0.0,0.0,0.0,0.0,H3,0.0,0.0117,0.5701,0.5701,-0.0199
+aggressive_prob_intensity,H3 aggressive prob intensity,Σ P(aggressive)/humor_count,430,153,35.58,277,64.42,0.018224,0.011297,0.029462,0.0,0.34415,0.0,0.0,0.022092,0.042744,H3,0.013157,-0.0577,0.5361,0.5361,0.1245
+aggressive_prob_sum,H3 aggressive prob sum (alt),used as continuous IV alternative,430,31,7.21,399,92.79,0.059005,0.033364,0.103122,0.0,1.014104,0.006342,0.013865,0.072573,0.117499,H3,0.020998,-0.0002,0.6939,0.6939,0.1222
+top_k_aggressive_score,H3 top-k score (alt),alternative intensity proxy,430,425,98.84,5,1.16,0.008465,0.0,0.078713,0.0,0.8,0.0,0.0,0.0,0.0,H3,0.0,0.0417,0.8686,0.8686,-0.0016
