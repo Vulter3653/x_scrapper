@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "description": "Gemini Pre-Audit Integration: CAR_m3_p3 and CAR_m5_p5 computation from daily return panel.",
+  "script": "scripts/build_car_symmetric_extended_windows.py",
+  "workflow": ".github/workflows/build-car-symmetric-extended-windows.yml",
+
+  "required_inputs": {
+    "daily_market_data_10k_events.csv": {
+      "source": "korea_uni source repository",
+      "expected_path": "data/external/korea_uni/daily_market_data_10k_events.csv",
+      "description": "Daily return panel (NOT abnormal return panel). Contains firm_return and market_return per event-day.",
+      "required_columns": ["event_id", "trading_day_relative (or event_day)", "firm_return", "market_return"],
+      "event_id_format": "padded-CIK: {TICKER}_{FISCAL_YEAR}_{10-digit-CIK}",
+      "status": "NOT YET IN REPO — must be copied from korea_uni source"
+    },
+    "event_study_estimation_diagnostics.csv": {
+      "source": "korea_uni source repository",
+      "expected_path": "data/external/korea_uni/event_study_estimation_diagnostics.csv",
+      "description": "Market model parameters per event. Provides alpha and beta for AR computation.",
+      "required_columns": ["event_id", "market_model_alpha", "market_model_beta"],
+      "event_id_format": "padded-CIK: {TICKER}_{FISCAL_YEAR}_{10-digit-CIK}",
+      "status": "NOT YET IN REPO — must be copied from korea_uni source"
+    }
+  },
+
+  "join_key": {
+    "primary": "(ticker, filing_date) → event_id_estimate [from ai_10k_event_study_analysis_dataset.csv]",
+    "fallback": "(cik_padded_10digit, filing_date) → event_id_estimate",
+    "note": "event_id_estimate matches market-data-pipeline event_id (padded CIK). event_id in event_study uses unpadded CIK and does NOT match."
+  },
+
+  "ar_formula": {
+    "formula": "AR_it = firm_return_it - (alpha_i + beta_i * market_return_it)",
+    "alpha_beta_source": "event_study_estimation_diagnostics.csv",
+    "join_level": "event_id (event-level)",
+    "forbidden": [
+      "ticker-level average alpha or beta",
+      "company-level average alpha or beta",
+      "overall average alpha or beta"
+    ]
+  },
+
+  "car_windows": {
+    "CAR_m1_p1": {"low": -1, "high": 1, "window_n": 3, "role": "cross-check only — NOT overwritten"},
+    "CAR_m3_p3": {"low": -3, "high": 3, "window_n": 7, "role": "robustness DV (previously missing)"},
+    "CAR_m5_p5": {"low": -5, "high": 5, "window_n": 11, "role": "robustness DV (previously missing)"}
+  },
+
+  "crosscheck": {
+    "target": "CAR_m1_p1 recomputed vs existing (from event study)",
+    "threshold_per_row": 1e-6,
+    "fail_rate_trigger": 0.05,
+    "on_conditional_fail": "outputs written; manifests flagged crosscheck_pass=false; script exits with code 3"
+  },
+
+  "output_files_updated": [
+    "data/derived/car_event_windows/car_symmetric_event_window_panel.csv",
+    "data/derived/car_event_windows/humor_car_linkage_panel.csv",
+    "data/derived/regression/humor_car_hypothesis_regression_master.csv",
+    "data/audit/car_event_windows/car_symmetric_event_window_manifest.json",
+    "data/audit/regression/humor_car_regression_master_manifest.json"
+  ],
+
+  "new_columns_added": {
+    "car_symmetric_event_window_panel": [
+      "CAR_m3_p3_window_n",
+      "CAR_m3_p3_nonmissing_ar_n",
+      "CAR_m3_p3_complete_window",
+      "CAR_m5_p5_window_n",
+      "CAR_m5_p5_nonmissing_ar_n",
+      "CAR_m5_p5_complete_window",
+      "CAR_m1_p1_recomputed",
+      "ar_computation_status",
+      "crosscheck_pass"
+    ],
+    "humor_car_linkage_panel": [
+      "CAR_m3_p3_window_n",
+      "CAR_m3_p3_nonmissing_ar_n",
+      "CAR_m3_p3_complete_window",
+      "CAR_m5_p5_window_n",
+      "CAR_m5_p5_nonmissing_ar_n",
+      "CAR_m5_p5_complete_window",
+      "ar_computation_status"
+    ],
+    "humor_car_hypothesis_regression_master": [
+      "CAR_m3_p3_complete_window",
+      "CAR_m5_p5_complete_window",
+      "ar_computation_status"
+    ]
+  },
+
+  "forbidden_operations": {
+    "CAR_0_p3_renamed_to_CAR_m3_p3": false,
+    "CAR_0_p5_renamed_to_CAR_m5_p5": false,
+    "firm_return_sum_used_as_CAR": false,
+    "market_return_not_subtracted": false,
+    "alpha_beta_not_used": false,
+    "ticker_average_alpha_beta_used": false,
+    "company_average_alpha_beta_used": false,
+    "overall_average_alpha_beta_used": false,
+    "CAR_m1_p1_overwritten": false,
+    "causal_claim_made": false,
+    "regression_auto_run": false
+  },
+
+  "exit_codes": {
+    "0": "success",
+    "1": "script error (bad column names, parse failure, etc.)",
+    "2": "missing required input files (daily_returns or estimation_diagnostics not present)",
+    "3": "CONDITIONAL FAIL — outputs written but CAR_m1_p1 cross-check failed"
+  },
+
+  "next_steps_after_completion": [
+    "Verify CAR_m3_p3 / CAR_m5_p5 row counts in manifest",
+    "If crosscheck_pass=false: diagnose return_definition (log vs simple) and re-run",
+    "Re-run run-humor-car-hypothesis-regressions.yml with extended CARs as robustness DVs",
+    "Update humor_car_regression_models_schema.json: set placeholder_dvs.CAR_m3_p3 / CAR_m5_p5 to 'available'"
+  ]
+}

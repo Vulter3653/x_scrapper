@@ -3,7 +3,6 @@
   "description": "Model specifications and constraint definitions for H1-H3 × CAR_m1_p1 regressions.",
   "regression_master_column_count": 38,
   "regression_master_column_count_note": "Corrected from prior report of 36; verified from CSV header.",
-
   "dv_hierarchy": {
     "primary_dv_deferred": {
       "variable": "tobins_q",
@@ -22,11 +21,10 @@
       ]
     },
     "placeholder_dvs": {
-      "CAR_m3_p3": "MISSING — daily abnormal return panel not yet available",
-      "CAR_m5_p5": "MISSING — daily abnormal return panel not yet available"
+      "CAR_m3_p3": "PENDING — run build-car-symmetric-extended-windows workflow once daily_market_data_10k_events.csv and event_study_estimation_diagnostics.csv are available in data/external/korea_uni/",
+      "CAR_m5_p5": "PENDING — same as CAR_m3_p3"
     }
   },
-
   "samples": {
     "primary": {
       "filter": "alignment_type in ('prefiling_lag_1m', 'prefiling_lag_3m') AND join_ready_for_CAR_m1_p1 == True",
@@ -49,15 +47,23 @@
       "caution": "simultaneity risk — filing in same month as humor measurement"
     }
   },
-
   "fixed_effects": {
-    "main": ["target_report_year (period FE, 3 years → 2 dummies)", "naics_sector_code (8 sectors → 7 dummies)"],
-    "robustness_compFE": ["target_report_year", "company_name (78 companies → 77 dummies)"],
+    "main": [
+      "target_report_year (period FE, 3 years → 2 dummies)",
+      "naics_sector_code (8 sectors → 7 dummies)"
+    ],
+    "robustness_compFE": [
+      "target_report_year",
+      "company_name (78 companies → 77 dummies)"
+    ],
     "note": "Company FE not used in main models — too many DoF absorbed relative to 430 rows. Used in H1a_compFE robustness only."
   },
-
-  "controls": ["log_humor_count", "ambiguity_rate", "high_ambiguity_flag", "source_x_handle_count"],
-
+  "controls": [
+    "log_humor_count",
+    "ambiguity_rate",
+    "high_ambiguity_flag",
+    "source_x_handle_count"
+  ],
   "models": {
     "H1a": {
       "hypothesis": "H1",
@@ -75,7 +81,11 @@
     },
     "H2a": {
       "hypothesis": "H2",
-      "focal_ivs": ["aggressive_share", "self_enhancing_share", "self_defeating_share"],
+      "focal_ivs": [
+        "aggressive_share",
+        "self_enhancing_share",
+        "self_defeating_share"
+      ],
       "formula": "CAR_m1_p1 ~ aggressive_share + self_enhancing_share + self_defeating_share + controls + period_FE + naics_FE",
       "reference_category": "affiliative_share (excluded — implicit baseline)",
       "constraint": "humor_share must NOT be included simultaneously with type shares",
@@ -89,24 +99,41 @@
     },
     "H3": {
       "hypothesis": "H3",
-      "focal_ivs": ["aggressive_humor_usage_intensity", "aggressive_humor_usage_intensity_sq"],
+      "focal_ivs": [
+        "aggressive_humor_usage_intensity",
+        "aggressive_humor_usage_intensity_sq"
+      ],
       "formula": "CAR_m1_p1 ~ aggressive_humor_usage_intensity + aggressive_humor_usage_intensity_sq + controls + period_FE + naics_FE",
       "expected_direction": "β1 > 0, β2 < 0 (inverted-U)",
       "status": "EXPLORATORY ONLY",
       "sparsity_note": "5 nonzero rows in primary sample (98.8% zero). No causal or confirmatory inference possible.",
       "sample": "primary"
     },
-    "H1a_lag1m":   {"sample": "robustness_lag1m",   "focal_iv": "humor_share"},
-    "H1a_lag3m":   {"sample": "robustness_lag3m",   "focal_iv": "humor_share"},
-    "H1a_samemon": {"sample": "sensitivity_samemon", "focal_iv": "humor_share"},
-    "H1a_compFE":  {"sample": "primary",             "focal_iv": "humor_share", "fe": "period + company"}
+    "H1a_lag1m": {
+      "sample": "robustness_lag1m",
+      "focal_iv": "humor_share"
+    },
+    "H1a_lag3m": {
+      "sample": "robustness_lag3m",
+      "focal_iv": "humor_share"
+    },
+    "H1a_samemon": {
+      "sample": "sensitivity_samemon",
+      "focal_iv": "humor_share"
+    },
+    "H1a_compFE": {
+      "sample": "primary",
+      "focal_iv": "humor_share",
+      "fe": "period + company"
+    }
   },
-
   "h3_inverted_u_criterion": {
-    "required_for_support": ["β1 > 0 (linear term)", "β2 < 0 (quadratic term)"],
+    "required_for_support": [
+      "β1 > 0 (linear term)",
+      "β2 < 0 (quadratic term)"
+    ],
     "current_status": "direction consistent but p-values far from significance; 5 nonzero rows — exploratory only"
   },
-
   "constraint_flags_in_manifest": {
     "must_be_false": [
       "causal_claim_made",
@@ -120,6 +147,19 @@
       "humor_outputs_modified",
       "korea_uni_source_repo_modified"
     ],
-    "must_be_true": ["tobins_q_deferred", "regression_run"]
+    "must_be_true": [
+      "tobins_q_deferred",
+      "regression_run"
+    ]
+  },
+  "gemini_preaudit_integration": {
+    "script": "scripts/build_car_symmetric_extended_windows.py",
+    "workflow": ".github/workflows/build-car-symmetric-extended-windows.yml",
+    "config": "config/car_symmetric_extended_windows_schema.json",
+    "status": "READY — script built; input files not yet in repo",
+    "required_inputs_missing": [
+      "data/external/korea_uni/daily_market_data_10k_events.csv",
+      "data/external/korea_uni/event_study_estimation_diagnostics.csv"
+    ]
   }
 }
