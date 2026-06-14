@@ -363,16 +363,24 @@ async def scrape_profile() -> None:
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(
             headless=HEADLESS,
-            args=['--disable-blink-features=AutomationControlled'],
+            args=[
+                '--disable-blink-features=AutomationControlled',
+                '--disable-dev-shm-usage',
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+            ],
         )
         context = await browser.new_context(
-            viewport={'width': 1440, 'height': 1800},
+            viewport={'width': 1440, 'height': 900},
             user_agent=(
                 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                 'AppleWebKit/537.36 (KHTML, like Gecko) '
-                'Chrome/125.0.0.0 Safari/537.36'
+                'Chrome/136.0.0.0 Safari/537.36'
             ),
             locale='en-US',
+        )
+        await context.add_init_script(
+            "Object.defineProperty(navigator, 'webdriver', { get: () => undefined });"
         )
         await context.add_cookies([
             {'name': 'auth_token', 'value': AUTH_TOKEN, 'domain': '.x.com', 'path': '/', 'httpOnly': True, 'secure': True},

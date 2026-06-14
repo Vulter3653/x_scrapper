@@ -7,7 +7,7 @@ from pathlib import Path
 argv0 = Path(sys.argv[0]).name if sys.argv else ""
 
 if argv0 == "run_humor_append_collection.py":
-    os.environ["PAGE_TIMEOUT_MS"] = "15000"
+    os.environ.setdefault("PAGE_TIMEOUT_MS", "45000")
     if "--retry-attempts" in sys.argv:
         i = sys.argv.index("--retry-attempts")
         if i + 1 < len(sys.argv):
