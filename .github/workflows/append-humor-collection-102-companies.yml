@@ -12,7 +12,7 @@ on:
         required: true
         default: '2500'
       shard_count:
-        description: 'Number of shards to split 102 targets into. Supported: 1-12'
+        description: 'Number of shards to split targets into. Supported: 1-12'
         required: true
         default: '12'
       max_parallel:
@@ -23,6 +23,14 @@ on:
         description: 'Rotate target order before sharding. Use 0, 10, 20, ..., 90 across repeated runs.'
         required: true
         default: '0'
+      target_scope:
+        description: 'Target source: all 102 targets or only latest failed targets'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'failed_only'
       collection_mode:
         description: 'incremental stops on known IDs; backfill keeps scrolling to find older missing posts'
         required: true
@@ -86,7 +94,12 @@ jobs:
           assert len(rows) == 102, len(rows)
           assert sum(r['fortune_rank'] != 'benchmark' for r in rows) == 100
           assert sum(r['fortune_rank'] == 'benchmark' for r in rows) == 2
+          failed_path = Path('data/audit/humor_collection_append_failed_targets.csv')
+          failed_rows = []
+          if failed_path.exists():
+              failed_rows = [r for r in csv.DictReader(failed_path.open(encoding='utf-8-sig')) if r.get('handle')]
           print(f'target_count={len(rows)}')
+          print(f'latest_failed_target_count={len(failed_rows)}')
           PY
           echo "shard_count=$shard_count" >> "$GITHUB_OUTPUT"
           echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
@@ -109,6 +122,7 @@ jobs:
           SHARD_INDEX: ${{ matrix.shard_index }}
           SHARD_COUNT: ${{ needs.validate-targets.outputs.shard_count }}
           START_OFFSET: ${{ needs.validate-targets.outputs.start_offset }}
+          TARGET_SCOPE: ${{ inputs.target_scope }}
         run: |
           set -euo pipefail
           mkdir -p shard_work shard_output/data/audit
@@ -118,7 +132,29 @@ jobs:
           shard_index = int(os.environ['SHARD_INDEX'])
           shard_count = int(os.environ['SHARD_COUNT'])
           start_offset = int(os.environ['START_OFFSET'])
-          rows = list(csv.DictReader(Path('config/humor_collection_append_targets.csv').open(encoding='utf-8-sig')))
+          target_scope = os.environ.get('TARGET_SCOPE', 'all')
+          if target_scope == 'failed_only':
+              source_path = Path('data/audit/humor_collection_append_failed_targets.csv')
+              if source_path.exists():
+                  raw_rows = list(csv.DictReader(source_path.open(encoding='utf-8-sig')))
+              else:
+                  raw_rows = []
+              rows = []
+              seen_handles = set()
+              for row in raw_rows:
+                  handle = (row.get('handle') or '').strip()
+                  if not handle or handle in seen_handles:
+                      continue
+                  seen_handles.add(handle)
+                  rows.append({
+                      'fortune_rank': row.get('fortune_rank', ''),
+                      'company_name': row.get('company_name', ''),
+                      'handle': handle,
+                      'sample_group': row.get('sample_group', ''),
+                  })
+          else:
+              source_path = Path('config/humor_collection_append_targets.csv')
+              rows = list(csv.DictReader(source_path.open(encoding='utf-8-sig')))
           if rows:
               start_offset %= len(rows)
               rows = rows[start_offset:] + rows[:start_offset]
@@ -126,6 +162,8 @@ jobs:
           with Path('shard_work/targets.csv').open('w', encoding='utf-8', newline='') as f:
               w = csv.DictWriter(f, fieldnames=['fortune_rank', 'company_name', 'handle', 'sample_group'])
               w.writeheader(); w.writerows(selected)
+          print(f'target_scope={target_scope}')
+          print(f'source_target_count={len(rows)}')
           print(f'shard_index={shard_index}')
           print(f'shard_target_count={len(selected)}')
           Path('shard_work/count.txt').write_text(str(len(selected)), encoding='utf-8')
@@ -252,5 +290,5 @@ jobs:
             echo 'No append collection output changes to commit.'
             exit 0
           fi
-          git commit -m 'data: append collected humor posts for 102 targets'
+          git commit -m 'data: append collected humor posts for selected targets'
           git push origin HEAD:main
