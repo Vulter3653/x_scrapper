@@ -94,6 +94,7 @@ A/B test 목표:
 | `scripts/compare_humor_type_v1_v2.py` | v1 vs v2 비교 리포트 |
 | `.github/workflows/run-humor-type-v2-ab-test.yml` | GitHub Actions 워크플로우 |
 | `docs/humor_type_v2_ab_test_plan.md` | 이 문서 |
+| `scripts/build_humor_type_human_review_sample.py` | v1-v2 disagreement 기반 human review 우선순위 표본 생성 |
 
 ---
 
@@ -118,10 +119,47 @@ GitHub Actions → **Run Humor Type v2 A/B Test** 워크플로우 수동 실행
 - `data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv` — 행별 비교 (v1/v2 label, transition_type)
 - `data/audit/humor/evaluation/humor_type_ab_test_sample_manifest.json` — 샘플 구성 확인
 
-### Step 3: 전면 교체 결정 기준
+### Step 3: Human review 우선순위 표본 생성
+
+v2 A/B test 이후에는 v2를 바로 production classifier로 전환하지 않는다. 먼저 v1-v2 disagreement row를 대상으로 human review 표본을 만든다.
+
+권장 실행:
+
+```
+python scripts/build_humor_type_human_review_sample.py \
+  --input data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv \
+  --output data/derived/humor/evaluation/humor_type_human_review_priority_sample.csv \
+  --manifest data/audit/humor/evaluation/humor_type_human_review_priority_manifest.json \
+  --seed 42
+```
+
+생성 파일:
+- `data/derived/humor/evaluation/humor_type_human_review_priority_sample.csv`
+- `data/audit/humor/evaluation/humor_type_human_review_priority_manifest.json`
+
+Human review segment:
+
+| Priority | Segment | Policy |
+|----------|---------|--------|
+| P0 | v1 ambiguous_or_review → v2 aggressive/self_defeating | 전수 포함 |
+| P1 | v1 humor 계열 → v2 not_humor | 최대 80개 |
+| P2 | v1 not_humor → v2 humor 계열 | 최대 80개 |
+| P3 | v1 affiliative/self_enhancing → v2 aggressive | 최대 80개 |
+| P4 | v1 ambiguous_or_review → v2 not_humor | 최대 80개 |
+| P5 | v2_review_flag=true 또는 low v2 confidence | 최대 80개 |
+
+운영 원칙:
+- v2는 production replacement가 아니라 human-review candidate generator로 평가한다.
+- gold label은 v1-v2 consensus만으로 만들지 않는다.
+- disagreement row는 human coder와 adjudication을 거쳐 확정한다.
+- cue/rule calibration은 human review 이후에만 수행한다.
+- “fine-tuning”이라는 표현은 사용하지 않는다. 현재 v2는 model fine-tuning 대상이 아니라 rule/cue calibration 대상이다.
+
+### Step 4: 전면 교체 결정 기준
+
 평가 지표 기준을 충족하고, aggressive/self_defeating 증가 사례를 수동으로 확인한 뒤:
 - v2를 전면 교체: `classify_humor_type_v2_direct.py`를 기존 full-chain workflow에 통합
-- 추가 튜닝 후 재평가: cue 사전 수정 → 재실행
+- 추가 보정 후 재평가: cue 사전 및 threshold 조정 → 재실행
 - v1 유지: 결과 차이가 유의미하지 않거나 오분류가 증가한 경우
 
 ### 주의사항
