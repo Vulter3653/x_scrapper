@@ -167,6 +167,7 @@ jobs:
         id: build
         run: |
           set -euo pipefail
+          set +e
           python scripts/build_car_symmetric_extended_windows.py \
             --daily-returns                '${{ inputs.daily_returns_path }}' \
             --estimation-diagnostics       '${{ inputs.estimation_diagnostics_path }}' \
@@ -182,6 +183,7 @@ jobs:
             --out-car-manifest             '${{ inputs.existing_car_manifest }}' \
             --out-regression-manifest      '${{ inputs.existing_regression_manifest }}'
           SCRIPT_EXIT=$?
+          set -e
           if [ "$SCRIPT_EXIT" -eq 3 ]; then
             echo "::warning title=CAR_m1_p1 cross-check CONDITIONAL FAIL::Outputs written but cross-check failed. Review return definition (log vs simple) and alpha/beta source."
             echo "crosscheck_fail=true" >> "$GITHUB_OUTPUT"
@@ -223,6 +225,8 @@ jobs:
           # Check specific flags explicitly required by Gemini pre-audit
           required_false_fops = [
               'firm_return_sum_used_as_CAR',
+              'market_return_not_subtracted',
+              'alpha_beta_not_used',
               'CAR_m1_p1_overwritten',
               'ticker_average_alpha_beta_used',
               'company_average_alpha_beta_used',
