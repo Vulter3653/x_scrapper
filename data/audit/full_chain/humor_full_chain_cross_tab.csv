@@ -1,0 +1,642 @@
+﻿row_variable,column_variable,row_value,column_value,count
+humor_presence,sentiment_label,ambiguous,negative,1037
+humor_presence,sentiment_label,ambiguous,neutral,17822
+humor_presence,sentiment_label,ambiguous,positive,13890
+humor_presence,sentiment_label,humor,negative,365
+humor_presence,sentiment_label,humor,neutral,4763
+humor_presence,sentiment_label,humor,positive,4573
+humor_presence,sentiment_label,non_humor,negative,830
+humor_presence,sentiment_label,non_humor,neutral,15554
+humor_presence,sentiment_label,non_humor,positive,9186
+humor_type,sentiment_label,affiliative,negative,197
+humor_type,sentiment_label,affiliative,neutral,2591
+humor_type,sentiment_label,affiliative,positive,1880
+humor_type,sentiment_label,aggressive,negative,6
+humor_type,sentiment_label,aggressive,neutral,50
+humor_type,sentiment_label,aggressive,positive,49
+humor_type,sentiment_label,ambiguous_or_review,negative,1037
+humor_type,sentiment_label,ambiguous_or_review,neutral,17822
+humor_type,sentiment_label,ambiguous_or_review,positive,13890
+humor_type,sentiment_label,not_applicable,negative,830
+humor_type,sentiment_label,not_applicable,neutral,15554
+humor_type,sentiment_label,not_applicable,positive,9186
+humor_type,sentiment_label,self_defeating,negative,4
+humor_type,sentiment_label,self_defeating,neutral,7
+humor_type,sentiment_label,self_defeating,positive,30
+humor_type,sentiment_label,self_enhancing,negative,158
+humor_type,sentiment_label,self_enhancing,neutral,2115
+humor_type,sentiment_label,self_enhancing,positive,2614
+humor_type,target_of_humor,affiliative,situation,767
+humor_type,target_of_humor,affiliative,unclear,3901
+humor_type,target_of_humor,aggressive,other_individual,105
+humor_type,target_of_humor,ambiguous_or_review,unclear,32749
+humor_type,target_of_humor,not_applicable,not_applicable,25570
+humor_type,target_of_humor,self_defeating,self,41
+humor_type,target_of_humor,self_enhancing,self,4887
+humor_type,humor_function,affiliative,relationship_building,767
+humor_type,humor_function,affiliative,tension_reduction,3901
+humor_type,humor_function,aggressive,criticism,20
+humor_type,humor_function,aggressive,ridicule,85
+humor_type,humor_function,ambiguous_or_review,unclear,32749
+humor_type,humor_function,not_applicable,not_applicable,25570
+humor_type,humor_function,self_defeating,self_deprecation,41
+humor_type,humor_function,self_enhancing,coping,275
+humor_type,humor_function,self_enhancing,emotion_regulation,4612
+humor_type,harm_potential,affiliative,low,4668
+humor_type,harm_potential,aggressive,high,85
+humor_type,harm_potential,aggressive,medium,20
+humor_type,harm_potential,ambiguous_or_review,unclear,32749
+humor_type,harm_potential,not_applicable,not_applicable,25570
+humor_type,harm_potential,self_defeating,high,41
+humor_type,harm_potential,self_enhancing,low,4887
+company_name,humor_presence,AT&T,ambiguous,472
+company_name,humor_presence,AT&T,humor,155
+company_name,humor_presence,AT&T,non_humor,306
+company_name,humor_presence,AbbVie,ambiguous,314
+company_name,humor_presence,AbbVie,humor,65
+company_name,humor_presence,AbbVie,non_humor,460
+company_name,humor_presence,Albertsons,ambiguous,368
+company_name,humor_presence,Albertsons,humor,101
+company_name,humor_presence,Albertsons,non_humor,296
+company_name,humor_presence,Allstate,ambiguous,309
+company_name,humor_presence,Allstate,humor,83
+company_name,humor_presence,Allstate,non_humor,176
+company_name,humor_presence,Alphabet,ambiguous,240
+company_name,humor_presence,Alphabet,humor,131
+company_name,humor_presence,Alphabet,non_humor,105
+company_name,humor_presence,Amazon,ambiguous,506
+company_name,humor_presence,Amazon,humor,167
+company_name,humor_presence,Amazon,non_humor,413
+company_name,humor_presence,American Airlines Group,ambiguous,102
+company_name,humor_presence,American Airlines Group,humor,43
+company_name,humor_presence,American Airlines Group,non_humor,43
+company_name,humor_presence,American Express,ambiguous,471
+company_name,humor_presence,American Express,humor,136
+company_name,humor_presence,American Express,non_humor,224
+company_name,humor_presence,Archer Daniels Midland,ambiguous,411
+company_name,humor_presence,Archer Daniels Midland,humor,169
+company_name,humor_presence,Archer Daniels Midland,non_humor,215
+company_name,humor_presence,Bank of America,ambiguous,427
+company_name,humor_presence,Bank of America,humor,167
+company_name,humor_presence,Bank of America,non_humor,243
+company_name,humor_presence,Boeing,ambiguous,475
+company_name,humor_presence,Boeing,humor,213
+company_name,humor_presence,Boeing,non_humor,281
+company_name,humor_presence,Bristol-Myers Squibb,ambiguous,417
+company_name,humor_presence,Bristol-Myers Squibb,humor,95
+company_name,humor_presence,Bristol-Myers Squibb,non_humor,418
+company_name,humor_presence,Broadcom,ambiguous,89
+company_name,humor_presence,Broadcom,humor,27
+company_name,humor_presence,Broadcom,non_humor,67
+company_name,humor_presence,CVS Health,ambiguous,290
+company_name,humor_presence,CVS Health,humor,100
+company_name,humor_presence,CVS Health,non_humor,184
+company_name,humor_presence,Capital One Financial,ambiguous,329
+company_name,humor_presence,Capital One Financial,humor,139
+company_name,humor_presence,Capital One Financial,non_humor,160
+company_name,humor_presence,Cardinal Health,ambiguous,227
+company_name,humor_presence,Cardinal Health,humor,77
+company_name,humor_presence,Cardinal Health,non_humor,216
+company_name,humor_presence,Caterpillar,ambiguous,426
+company_name,humor_presence,Caterpillar,humor,134
+company_name,humor_presence,Caterpillar,non_humor,331
+company_name,humor_presence,Cencora,ambiguous,223
+company_name,humor_presence,Cencora,humor,128
+company_name,humor_presence,Cencora,non_humor,128
+company_name,humor_presence,Centene,ambiguous,224
+company_name,humor_presence,Centene,humor,97
+company_name,humor_presence,Centene,non_humor,144
+company_name,humor_presence,Charter Communications,ambiguous,202
+company_name,humor_presence,Charter Communications,humor,86
+company_name,humor_presence,Charter Communications,non_humor,369
+company_name,humor_presence,Chevron,ambiguous,334
+company_name,humor_presence,Chevron,humor,71
+company_name,humor_presence,Chevron,non_humor,400
+company_name,humor_presence,Cigna Group,ambiguous,327
+company_name,humor_presence,Cigna Group,humor,96
+company_name,humor_presence,Cigna Group,non_humor,163
+company_name,humor_presence,Cisco Systems,ambiguous,404
+company_name,humor_presence,Cisco Systems,humor,77
+company_name,humor_presence,Cisco Systems,non_humor,526
+company_name,humor_presence,Citigroup,ambiguous,136
+company_name,humor_presence,Citigroup,humor,49
+company_name,humor_presence,Citigroup,non_humor,215
+company_name,humor_presence,Coca-Cola,ambiguous,548
+company_name,humor_presence,Coca-Cola,humor,52
+company_name,humor_presence,Coca-Cola,non_humor,424
+company_name,humor_presence,Comcast,ambiguous,598
+company_name,humor_presence,Comcast,humor,202
+company_name,humor_presence,Comcast,non_humor,296
+company_name,humor_presence,ConocoPhillips,ambiguous,456
+company_name,humor_presence,ConocoPhillips,humor,126
+company_name,humor_presence,ConocoPhillips,non_humor,360
+company_name,humor_presence,Dell Technologies,ambiguous,360
+company_name,humor_presence,Dell Technologies,humor,96
+company_name,humor_presence,Dell Technologies,non_humor,269
+company_name,humor_presence,Delta Air Lines,ambiguous,381
+company_name,humor_presence,Delta Air Lines,humor,109
+company_name,humor_presence,Delta Air Lines,non_humor,224
+company_name,humor_presence,Elevance Health,ambiguous,309
+company_name,humor_presence,Elevance Health,humor,98
+company_name,humor_presence,Elevance Health,non_humor,205
+company_name,humor_presence,Eli Lilly,ambiguous,243
+company_name,humor_presence,Eli Lilly,humor,72
+company_name,humor_presence,Eli Lilly,non_humor,248
+company_name,humor_presence,Energy Transfer,ambiguous,333
+company_name,humor_presence,Energy Transfer,humor,132
+company_name,humor_presence,Energy Transfer,non_humor,232
+company_name,humor_presence,Enterprise Products Partners,ambiguous,286
+company_name,humor_presence,Enterprise Products Partners,humor,2
+company_name,humor_presence,Enterprise Products Partners,non_humor,473
+company_name,humor_presence,Exxon Mobil,ambiguous,271
+company_name,humor_presence,Exxon Mobil,humor,116
+company_name,humor_presence,Exxon Mobil,non_humor,195
+company_name,humor_presence,Fannie Mae,ambiguous,344
+company_name,humor_presence,Fannie Mae,humor,69
+company_name,humor_presence,Fannie Mae,non_humor,186
+company_name,humor_presence,FedEx,ambiguous,406
+company_name,humor_presence,FedEx,humor,172
+company_name,humor_presence,FedEx,non_humor,304
+company_name,humor_presence,Ford Motor,ambiguous,631
+company_name,humor_presence,Ford Motor,humor,164
+company_name,humor_presence,Ford Motor,non_humor,351
+company_name,humor_presence,Freddie Mac,ambiguous,84
+company_name,humor_presence,Freddie Mac,humor,31
+company_name,humor_presence,Freddie Mac,non_humor,101
+company_name,humor_presence,Galaxy Digital,ambiguous,70
+company_name,humor_presence,Galaxy Digital,humor,12
+company_name,humor_presence,Galaxy Digital,non_humor,55
+company_name,humor_presence,General Dynamics,ambiguous,765
+company_name,humor_presence,General Dynamics,humor,214
+company_name,humor_presence,General Dynamics,non_humor,514
+company_name,humor_presence,General Motors,ambiguous,364
+company_name,humor_presence,General Motors,humor,107
+company_name,humor_presence,General Motors,non_humor,223
+company_name,humor_presence,Goldman Sachs Group,ambiguous,496
+company_name,humor_presence,Goldman Sachs Group,humor,108
+company_name,humor_presence,Goldman Sachs Group,non_humor,408
+company_name,humor_presence,HCA Healthcare,ambiguous,271
+company_name,humor_presence,HCA Healthcare,humor,64
+company_name,humor_presence,HCA Healthcare,non_humor,249
+company_name,humor_presence,HP,ambiguous,217
+company_name,humor_presence,HP,humor,88
+company_name,humor_presence,HP,non_humor,100
+company_name,humor_presence,Home Depot,ambiguous,413
+company_name,humor_presence,Home Depot,humor,85
+company_name,humor_presence,Home Depot,non_humor,894
+company_name,humor_presence,Humana,ambiguous,356
+company_name,humor_presence,Humana,humor,124
+company_name,humor_presence,Humana,non_humor,278
+company_name,humor_presence,IBM,ambiguous,253
+company_name,humor_presence,IBM,humor,83
+company_name,humor_presence,IBM,non_humor,205
+company_name,humor_presence,Ingram Micro Holding,ambiguous,498
+company_name,humor_presence,Ingram Micro Holding,humor,151
+company_name,humor_presence,Ingram Micro Holding,non_humor,282
+company_name,humor_presence,Intel,ambiguous,153
+company_name,humor_presence,Intel,humor,64
+company_name,humor_presence,Intel,non_humor,71
+company_name,humor_presence,JPMorgan Chase,ambiguous,430
+company_name,humor_presence,JPMorgan Chase,humor,136
+company_name,humor_presence,JPMorgan Chase,non_humor,269
+company_name,humor_presence,Johnson & Johnson,ambiguous,346
+company_name,humor_presence,Johnson & Johnson,humor,132
+company_name,humor_presence,Johnson & Johnson,non_humor,282
+company_name,humor_presence,Kroger,ambiguous,439
+company_name,humor_presence,Kroger,humor,120
+company_name,humor_presence,Kroger,non_humor,329
+company_name,humor_presence,Liberty Mutual Insurance Group,ambiguous,539
+company_name,humor_presence,Liberty Mutual Insurance Group,humor,100
+company_name,humor_presence,Liberty Mutual Insurance Group,non_humor,379
+company_name,humor_presence,Lockheed Martin,ambiguous,435
+company_name,humor_presence,Lockheed Martin,humor,179
+company_name,humor_presence,Lockheed Martin,non_humor,247
+company_name,humor_presence,Lowe's,ambiguous,474
+company_name,humor_presence,Lowe's,humor,138
+company_name,humor_presence,Lowe's,non_humor,295
+company_name,humor_presence,Marathon Petroleum,ambiguous,175
+company_name,humor_presence,Marathon Petroleum,humor,44
+company_name,humor_presence,Marathon Petroleum,non_humor,158
+company_name,humor_presence,Massachusetts Mutual Life,ambiguous,459
+company_name,humor_presence,Massachusetts Mutual Life,humor,153
+company_name,humor_presence,Massachusetts Mutual Life,non_humor,247
+company_name,humor_presence,McKesson,ambiguous,408
+company_name,humor_presence,McKesson,humor,90
+company_name,humor_presence,McKesson,non_humor,342
+company_name,humor_presence,Merck,ambiguous,205
+company_name,humor_presence,Merck,humor,33
+company_name,humor_presence,Merck,non_humor,269
+company_name,humor_presence,MetLife,ambiguous,377
+company_name,humor_presence,MetLife,humor,144
+company_name,humor_presence,MetLife,non_humor,260
+company_name,humor_presence,Meta Platforms,ambiguous,74
+company_name,humor_presence,Meta Platforms,humor,19
+company_name,humor_presence,Meta Platforms,non_humor,58
+company_name,humor_presence,Microsoft,ambiguous,329
+company_name,humor_presence,Microsoft,humor,113
+company_name,humor_presence,Microsoft,non_humor,218
+company_name,humor_presence,MoonPie,ambiguous,400
+company_name,humor_presence,MoonPie,humor,48
+company_name,humor_presence,MoonPie,non_humor,484
+company_name,humor_presence,Morgan Stanley,ambiguous,370
+company_name,humor_presence,Morgan Stanley,humor,121
+company_name,humor_presence,Morgan Stanley,non_humor,355
+company_name,humor_presence,Nationwide,ambiguous,578
+company_name,humor_presence,Nationwide,humor,100
+company_name,humor_presence,Nationwide,non_humor,471
+company_name,humor_presence,New York Life Insurance,ambiguous,225
+company_name,humor_presence,New York Life Insurance,humor,63
+company_name,humor_presence,New York Life Insurance,non_humor,168
+company_name,humor_presence,Nike,ambiguous,84
+company_name,humor_presence,Nike,humor,23
+company_name,humor_presence,Nike,non_humor,85
+company_name,humor_presence,Nvidia,ambiguous,552
+company_name,humor_presence,Nvidia,humor,156
+company_name,humor_presence,Nvidia,non_humor,414
+company_name,humor_presence,Oracle,ambiguous,418
+company_name,humor_presence,Oracle,humor,130
+company_name,humor_presence,Oracle,non_humor,361
+company_name,humor_presence,PepsiCo,ambiguous,428
+company_name,humor_presence,PepsiCo,humor,156
+company_name,humor_presence,PepsiCo,non_humor,233
+company_name,humor_presence,Performance Food Group,ambiguous,2
+company_name,humor_presence,Performance Food Group,non_humor,1
+company_name,humor_presence,Pfizer,ambiguous,188
+company_name,humor_presence,Pfizer,humor,63
+company_name,humor_presence,Pfizer,non_humor,132
+company_name,humor_presence,Phillips 66,ambiguous,307
+company_name,humor_presence,Phillips 66,humor,90
+company_name,humor_presence,Phillips 66,non_humor,286
+company_name,humor_presence,Procter & Gamble,ambiguous,150
+company_name,humor_presence,Procter & Gamble,humor,34
+company_name,humor_presence,Procter & Gamble,non_humor,84
+company_name,humor_presence,Progressive,ambiguous,91
+company_name,humor_presence,Progressive,humor,23
+company_name,humor_presence,Progressive,non_humor,56
+company_name,humor_presence,Prudential Financial,ambiguous,463
+company_name,humor_presence,Prudential Financial,humor,160
+company_name,humor_presence,Prudential Financial,non_humor,251
+company_name,humor_presence,Publix Super Markets,ambiguous,401
+company_name,humor_presence,Publix Super Markets,humor,52
+company_name,humor_presence,Publix Super Markets,non_humor,398
+company_name,humor_presence,RTX,ambiguous,414
+company_name,humor_presence,RTX,humor,120
+company_name,humor_presence,RTX,non_humor,331
+company_name,humor_presence,State Farm Insurance,ambiguous,73
+company_name,humor_presence,State Farm Insurance,humor,15
+company_name,humor_presence,State Farm Insurance,non_humor,59
+company_name,humor_presence,StoneX Group,ambiguous,430
+company_name,humor_presence,StoneX Group,humor,128
+company_name,humor_presence,StoneX Group,non_humor,290
+company_name,humor_presence,Sysco,ambiguous,431
+company_name,humor_presence,Sysco,humor,180
+company_name,humor_presence,Sysco,non_humor,252
+company_name,humor_presence,TD Synnex,ambiguous,236
+company_name,humor_presence,TD Synnex,humor,82
+company_name,humor_presence,TD Synnex,non_humor,170
+company_name,humor_presence,TIAA,ambiguous,109
+company_name,humor_presence,TIAA,humor,45
+company_name,humor_presence,TIAA,non_humor,63
+company_name,humor_presence,TJX,ambiguous,225
+company_name,humor_presence,TJX,humor,24
+company_name,humor_presence,TJX,non_humor,660
+company_name,humor_presence,Target,ambiguous,263
+company_name,humor_presence,Target,humor,45
+company_name,humor_presence,Target,non_humor,287
+company_name,humor_presence,Tesla,ambiguous,331
+company_name,humor_presence,Tesla,humor,82
+company_name,humor_presence,Tesla,non_humor,297
+company_name,humor_presence,Travelers,ambiguous,428
+company_name,humor_presence,Travelers,humor,121
+company_name,humor_presence,Travelers,non_humor,286
+company_name,humor_presence,Tyson Foods,ambiguous,574
+company_name,humor_presence,Tyson Foods,humor,179
+company_name,humor_presence,Tyson Foods,non_humor,328
+company_name,humor_presence,UPS,ambiguous,88
+company_name,humor_presence,UPS,humor,20
+company_name,humor_presence,UPS,non_humor,92
+company_name,humor_presence,USAA,ambiguous,482
+company_name,humor_presence,USAA,humor,194
+company_name,humor_presence,USAA,non_humor,223
+company_name,humor_presence,Uber Technologies,ambiguous,462
+company_name,humor_presence,Uber Technologies,humor,159
+company_name,humor_presence,Uber Technologies,non_humor,333
+company_name,humor_presence,United Airlines Holdings,ambiguous,126
+company_name,humor_presence,United Airlines Holdings,humor,54
+company_name,humor_presence,United Airlines Holdings,non_humor,112
+company_name,humor_presence,UnitedHealth Group,ambiguous,61
+company_name,humor_presence,UnitedHealth Group,humor,22
+company_name,humor_presence,UnitedHealth Group,non_humor,72
+company_name,humor_presence,Valero Energy,ambiguous,107
+company_name,humor_presence,Valero Energy,humor,16
+company_name,humor_presence,Valero Energy,non_humor,63
+company_name,humor_presence,Verizon Communications,ambiguous,19
+company_name,humor_presence,Verizon Communications,humor,9
+company_name,humor_presence,Verizon Communications,non_humor,15
+company_name,humor_presence,Walmart,ambiguous,346
+company_name,humor_presence,Walmart,humor,49
+company_name,humor_presence,Walmart,non_humor,447
+company_name,humor_presence,Walt Disney,ambiguous,789
+company_name,humor_presence,Walt Disney,humor,222
+company_name,humor_presence,Walt Disney,non_humor,342
+company_name,humor_presence,Wells Fargo,ambiguous,144
+company_name,humor_presence,Wells Fargo,humor,34
+company_name,humor_presence,Wells Fargo,non_humor,78
+company_name,humor_presence,Wendy's,ambiguous,435
+company_name,humor_presence,Wendy's,humor,134
+company_name,humor_presence,Wendy's,non_humor,408
+company_name,sentiment_label,AT&T,negative,21
+company_name,sentiment_label,AT&T,neutral,669
+company_name,sentiment_label,AT&T,positive,243
+company_name,sentiment_label,AbbVie,negative,15
+company_name,sentiment_label,AbbVie,neutral,596
+company_name,sentiment_label,AbbVie,positive,228
+company_name,sentiment_label,Albertsons,negative,15
+company_name,sentiment_label,Albertsons,neutral,439
+company_name,sentiment_label,Albertsons,positive,311
+company_name,sentiment_label,Allstate,negative,21
+company_name,sentiment_label,Allstate,neutral,271
+company_name,sentiment_label,Allstate,positive,276
+company_name,sentiment_label,Alphabet,negative,5
+company_name,sentiment_label,Alphabet,neutral,259
+company_name,sentiment_label,Alphabet,positive,212
+company_name,sentiment_label,Amazon,negative,15
+company_name,sentiment_label,Amazon,neutral,706
+company_name,sentiment_label,Amazon,positive,365
+company_name,sentiment_label,American Airlines Group,negative,13
+company_name,sentiment_label,American Airlines Group,neutral,80
+company_name,sentiment_label,American Airlines Group,positive,95
+company_name,sentiment_label,American Express,negative,16
+company_name,sentiment_label,American Express,neutral,433
+company_name,sentiment_label,American Express,positive,382
+company_name,sentiment_label,Archer Daniels Midland,negative,20
+company_name,sentiment_label,Archer Daniels Midland,neutral,310
+company_name,sentiment_label,Archer Daniels Midland,positive,465
+company_name,sentiment_label,Bank of America,negative,24
+company_name,sentiment_label,Bank of America,neutral,478
+company_name,sentiment_label,Bank of America,positive,335
+company_name,sentiment_label,Boeing,negative,19
+company_name,sentiment_label,Boeing,neutral,478
+company_name,sentiment_label,Boeing,positive,472
+company_name,sentiment_label,Bristol-Myers Squibb,negative,23
+company_name,sentiment_label,Bristol-Myers Squibb,neutral,480
+company_name,sentiment_label,Bristol-Myers Squibb,positive,427
+company_name,sentiment_label,Broadcom,negative,7
+company_name,sentiment_label,Broadcom,neutral,108
+company_name,sentiment_label,Broadcom,positive,68
+company_name,sentiment_label,CVS Health,negative,23
+company_name,sentiment_label,CVS Health,neutral,280
+company_name,sentiment_label,CVS Health,positive,271
+company_name,sentiment_label,Capital One Financial,negative,23
+company_name,sentiment_label,Capital One Financial,neutral,366
+company_name,sentiment_label,Capital One Financial,positive,239
+company_name,sentiment_label,Cardinal Health,negative,12
+company_name,sentiment_label,Cardinal Health,neutral,258
+company_name,sentiment_label,Cardinal Health,positive,250
+company_name,sentiment_label,Caterpillar,negative,11
+company_name,sentiment_label,Caterpillar,neutral,455
+company_name,sentiment_label,Caterpillar,positive,425
+company_name,sentiment_label,Cencora,negative,23
+company_name,sentiment_label,Cencora,neutral,228
+company_name,sentiment_label,Cencora,positive,228
+company_name,sentiment_label,Centene,negative,16
+company_name,sentiment_label,Centene,neutral,190
+company_name,sentiment_label,Centene,positive,259
+company_name,sentiment_label,Charter Communications,negative,10
+company_name,sentiment_label,Charter Communications,neutral,405
+company_name,sentiment_label,Charter Communications,positive,242
+company_name,sentiment_label,Chevron,negative,9
+company_name,sentiment_label,Chevron,neutral,473
+company_name,sentiment_label,Chevron,positive,323
+company_name,sentiment_label,Cigna Group,negative,29
+company_name,sentiment_label,Cigna Group,neutral,224
+company_name,sentiment_label,Cigna Group,positive,333
+company_name,sentiment_label,Cisco Systems,negative,36
+company_name,sentiment_label,Cisco Systems,neutral,553
+company_name,sentiment_label,Cisco Systems,positive,418
+company_name,sentiment_label,Citigroup,negative,24
+company_name,sentiment_label,Citigroup,neutral,259
+company_name,sentiment_label,Citigroup,positive,117
+company_name,sentiment_label,Coca-Cola,negative,11
+company_name,sentiment_label,Coca-Cola,neutral,734
+company_name,sentiment_label,Coca-Cola,positive,279
+company_name,sentiment_label,Comcast,negative,10
+company_name,sentiment_label,Comcast,neutral,616
+company_name,sentiment_label,Comcast,positive,470
+company_name,sentiment_label,ConocoPhillips,negative,15
+company_name,sentiment_label,ConocoPhillips,neutral,518
+company_name,sentiment_label,ConocoPhillips,positive,409
+company_name,sentiment_label,Dell Technologies,negative,23
+company_name,sentiment_label,Dell Technologies,neutral,495
+company_name,sentiment_label,Dell Technologies,positive,207
+company_name,sentiment_label,Delta Air Lines,negative,20
+company_name,sentiment_label,Delta Air Lines,neutral,465
+company_name,sentiment_label,Delta Air Lines,positive,229
+company_name,sentiment_label,Elevance Health,negative,25
+company_name,sentiment_label,Elevance Health,neutral,357
+company_name,sentiment_label,Elevance Health,positive,230
+company_name,sentiment_label,Eli Lilly,negative,31
+company_name,sentiment_label,Eli Lilly,neutral,251
+company_name,sentiment_label,Eli Lilly,positive,281
+company_name,sentiment_label,Energy Transfer,negative,36
+company_name,sentiment_label,Energy Transfer,neutral,352
+company_name,sentiment_label,Energy Transfer,positive,309
+company_name,sentiment_label,Enterprise Products Partners,neutral,290
+company_name,sentiment_label,Enterprise Products Partners,positive,471
+company_name,sentiment_label,Exxon Mobil,negative,15
+company_name,sentiment_label,Exxon Mobil,neutral,319
+company_name,sentiment_label,Exxon Mobil,positive,248
+company_name,sentiment_label,Fannie Mae,negative,38
+company_name,sentiment_label,Fannie Mae,neutral,282
+company_name,sentiment_label,Fannie Mae,positive,279
+company_name,sentiment_label,FedEx,negative,10
+company_name,sentiment_label,FedEx,neutral,469
+company_name,sentiment_label,FedEx,positive,403
+company_name,sentiment_label,Ford Motor,negative,21
+company_name,sentiment_label,Ford Motor,neutral,612
+company_name,sentiment_label,Ford Motor,positive,513
+company_name,sentiment_label,Freddie Mac,negative,7
+company_name,sentiment_label,Freddie Mac,neutral,143
+company_name,sentiment_label,Freddie Mac,positive,66
+company_name,sentiment_label,Galaxy Digital,negative,2
+company_name,sentiment_label,Galaxy Digital,neutral,59
+company_name,sentiment_label,Galaxy Digital,positive,76
+company_name,sentiment_label,General Dynamics,negative,33
+company_name,sentiment_label,General Dynamics,neutral,886
+company_name,sentiment_label,General Dynamics,positive,574
+company_name,sentiment_label,General Motors,negative,20
+company_name,sentiment_label,General Motors,neutral,349
+company_name,sentiment_label,General Motors,positive,325
+company_name,sentiment_label,Goldman Sachs Group,negative,99
+company_name,sentiment_label,Goldman Sachs Group,neutral,690
+company_name,sentiment_label,Goldman Sachs Group,positive,223
+company_name,sentiment_label,HCA Healthcare,negative,20
+company_name,sentiment_label,HCA Healthcare,neutral,252
+company_name,sentiment_label,HCA Healthcare,positive,312
+company_name,sentiment_label,HP,negative,9
+company_name,sentiment_label,HP,neutral,169
+company_name,sentiment_label,HP,positive,227
+company_name,sentiment_label,Home Depot,negative,129
+company_name,sentiment_label,Home Depot,neutral,845
+company_name,sentiment_label,Home Depot,positive,418
+company_name,sentiment_label,Humana,negative,17
+company_name,sentiment_label,Humana,neutral,370
+company_name,sentiment_label,Humana,positive,371
+company_name,sentiment_label,IBM,negative,28
+company_name,sentiment_label,IBM,neutral,312
+company_name,sentiment_label,IBM,positive,201
+company_name,sentiment_label,Ingram Micro Holding,negative,16
+company_name,sentiment_label,Ingram Micro Holding,neutral,259
+company_name,sentiment_label,Ingram Micro Holding,positive,656
+company_name,sentiment_label,Intel,negative,3
+company_name,sentiment_label,Intel,neutral,151
+company_name,sentiment_label,Intel,positive,134
+company_name,sentiment_label,JPMorgan Chase,negative,40
+company_name,sentiment_label,JPMorgan Chase,neutral,515
+company_name,sentiment_label,JPMorgan Chase,positive,280
+company_name,sentiment_label,Johnson & Johnson,negative,16
+company_name,sentiment_label,Johnson & Johnson,neutral,393
+company_name,sentiment_label,Johnson & Johnson,positive,351
+company_name,sentiment_label,Kroger,negative,46
+company_name,sentiment_label,Kroger,neutral,547
+company_name,sentiment_label,Kroger,positive,295
+company_name,sentiment_label,Liberty Mutual Insurance Group,negative,26
+company_name,sentiment_label,Liberty Mutual Insurance Group,neutral,650
+company_name,sentiment_label,Liberty Mutual Insurance Group,positive,342
+company_name,sentiment_label,Lockheed Martin,negative,13
+company_name,sentiment_label,Lockheed Martin,neutral,602
+company_name,sentiment_label,Lockheed Martin,positive,246
+company_name,sentiment_label,Lowe's,negative,11
+company_name,sentiment_label,Lowe's,neutral,540
+company_name,sentiment_label,Lowe's,positive,356
+company_name,sentiment_label,Marathon Petroleum,negative,3
+company_name,sentiment_label,Marathon Petroleum,neutral,171
+company_name,sentiment_label,Marathon Petroleum,positive,203
+company_name,sentiment_label,Massachusetts Mutual Life,negative,23
+company_name,sentiment_label,Massachusetts Mutual Life,neutral,399
+company_name,sentiment_label,Massachusetts Mutual Life,positive,437
+company_name,sentiment_label,McKesson,negative,13
+company_name,sentiment_label,McKesson,neutral,323
+company_name,sentiment_label,McKesson,positive,504
+company_name,sentiment_label,Merck,negative,10
+company_name,sentiment_label,Merck,neutral,301
+company_name,sentiment_label,Merck,positive,196
+company_name,sentiment_label,MetLife,negative,32
+company_name,sentiment_label,MetLife,neutral,315
+company_name,sentiment_label,MetLife,positive,434
+company_name,sentiment_label,Meta Platforms,negative,6
+company_name,sentiment_label,Meta Platforms,neutral,94
+company_name,sentiment_label,Meta Platforms,positive,51
+company_name,sentiment_label,Microsoft,negative,15
+company_name,sentiment_label,Microsoft,neutral,371
+company_name,sentiment_label,Microsoft,positive,274
+company_name,sentiment_label,MoonPie,negative,40
+company_name,sentiment_label,MoonPie,neutral,710
+company_name,sentiment_label,MoonPie,positive,182
+company_name,sentiment_label,Morgan Stanley,negative,81
+company_name,sentiment_label,Morgan Stanley,neutral,525
+company_name,sentiment_label,Morgan Stanley,positive,240
+company_name,sentiment_label,Nationwide,negative,8
+company_name,sentiment_label,Nationwide,neutral,722
+company_name,sentiment_label,Nationwide,positive,419
+company_name,sentiment_label,New York Life Insurance,negative,17
+company_name,sentiment_label,New York Life Insurance,neutral,146
+company_name,sentiment_label,New York Life Insurance,positive,293
+company_name,sentiment_label,Nike,negative,3
+company_name,sentiment_label,Nike,neutral,135
+company_name,sentiment_label,Nike,positive,54
+company_name,sentiment_label,Nvidia,negative,23
+company_name,sentiment_label,Nvidia,neutral,681
+company_name,sentiment_label,Nvidia,positive,418
+company_name,sentiment_label,Oracle,negative,15
+company_name,sentiment_label,Oracle,neutral,456
+company_name,sentiment_label,Oracle,positive,438
+company_name,sentiment_label,PepsiCo,negative,19
+company_name,sentiment_label,PepsiCo,neutral,399
+company_name,sentiment_label,PepsiCo,positive,399
+company_name,sentiment_label,Performance Food Group,neutral,2
+company_name,sentiment_label,Performance Food Group,positive,1
+company_name,sentiment_label,Pfizer,negative,33
+company_name,sentiment_label,Pfizer,neutral,172
+company_name,sentiment_label,Pfizer,positive,178
+company_name,sentiment_label,Phillips 66,negative,6
+company_name,sentiment_label,Phillips 66,neutral,322
+company_name,sentiment_label,Phillips 66,positive,355
+company_name,sentiment_label,Procter & Gamble,negative,4
+company_name,sentiment_label,Procter & Gamble,neutral,145
+company_name,sentiment_label,Procter & Gamble,positive,119
+company_name,sentiment_label,Progressive,negative,1
+company_name,sentiment_label,Progressive,neutral,103
+company_name,sentiment_label,Progressive,positive,66
+company_name,sentiment_label,Prudential Financial,negative,29
+company_name,sentiment_label,Prudential Financial,neutral,425
+company_name,sentiment_label,Prudential Financial,positive,420
+company_name,sentiment_label,Publix Super Markets,negative,9
+company_name,sentiment_label,Publix Super Markets,neutral,549
+company_name,sentiment_label,Publix Super Markets,positive,293
+company_name,sentiment_label,RTX,negative,6
+company_name,sentiment_label,RTX,neutral,615
+company_name,sentiment_label,RTX,positive,244
+company_name,sentiment_label,State Farm Insurance,negative,1
+company_name,sentiment_label,State Farm Insurance,neutral,73
+company_name,sentiment_label,State Farm Insurance,positive,73
+company_name,sentiment_label,StoneX Group,negative,219
+company_name,sentiment_label,StoneX Group,neutral,495
+company_name,sentiment_label,StoneX Group,positive,134
+company_name,sentiment_label,Sysco,negative,19
+company_name,sentiment_label,Sysco,neutral,384
+company_name,sentiment_label,Sysco,positive,460
+company_name,sentiment_label,TD Synnex,negative,7
+company_name,sentiment_label,TD Synnex,neutral,236
+company_name,sentiment_label,TD Synnex,positive,245
+company_name,sentiment_label,TIAA,negative,3
+company_name,sentiment_label,TIAA,neutral,95
+company_name,sentiment_label,TIAA,positive,119
+company_name,sentiment_label,TJX,negative,58
+company_name,sentiment_label,TJX,neutral,418
+company_name,sentiment_label,TJX,positive,433
+company_name,sentiment_label,Target,negative,4
+company_name,sentiment_label,Target,neutral,448
+company_name,sentiment_label,Target,positive,143
+company_name,sentiment_label,Tesla,negative,31
+company_name,sentiment_label,Tesla,neutral,511
+company_name,sentiment_label,Tesla,positive,168
+company_name,sentiment_label,Travelers,negative,100
+company_name,sentiment_label,Travelers,neutral,386
+company_name,sentiment_label,Travelers,positive,349
+company_name,sentiment_label,Tyson Foods,negative,14
+company_name,sentiment_label,Tyson Foods,neutral,518
+company_name,sentiment_label,Tyson Foods,positive,549
+company_name,sentiment_label,UPS,negative,1
+company_name,sentiment_label,UPS,neutral,143
+company_name,sentiment_label,UPS,positive,56
+company_name,sentiment_label,USAA,negative,38
+company_name,sentiment_label,USAA,neutral,369
+company_name,sentiment_label,USAA,positive,492
+company_name,sentiment_label,Uber Technologies,negative,21
+company_name,sentiment_label,Uber Technologies,neutral,647
+company_name,sentiment_label,Uber Technologies,positive,286
+company_name,sentiment_label,United Airlines Holdings,negative,12
+company_name,sentiment_label,United Airlines Holdings,neutral,193
+company_name,sentiment_label,United Airlines Holdings,positive,87
+company_name,sentiment_label,UnitedHealth Group,negative,8
+company_name,sentiment_label,UnitedHealth Group,neutral,92
+company_name,sentiment_label,UnitedHealth Group,positive,55
+company_name,sentiment_label,Valero Energy,negative,3
+company_name,sentiment_label,Valero Energy,neutral,57
+company_name,sentiment_label,Valero Energy,positive,126
+company_name,sentiment_label,Verizon Communications,negative,12
+company_name,sentiment_label,Verizon Communications,neutral,22
+company_name,sentiment_label,Verizon Communications,positive,9
+company_name,sentiment_label,Walmart,negative,24
+company_name,sentiment_label,Walmart,neutral,669
+company_name,sentiment_label,Walmart,positive,149
+company_name,sentiment_label,Walt Disney,negative,4
+company_name,sentiment_label,Walt Disney,neutral,968
+company_name,sentiment_label,Walt Disney,positive,381
+company_name,sentiment_label,Wells Fargo,negative,8
+company_name,sentiment_label,Wells Fargo,neutral,91
+company_name,sentiment_label,Wells Fargo,positive,157
+company_name,sentiment_label,Wendy's,negative,29
+company_name,sentiment_label,Wendy's,neutral,753
+company_name,sentiment_label,Wendy's,positive,195

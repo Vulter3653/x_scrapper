@@ -1,0 +1,81 @@
+{
+  "integrity_pass": true,
+  "expected_rows": 68020,
+  "full_input_rows": 68020,
+  "presence_rows": 68020,
+  "sentiment_rows": 68020,
+  "humor_type_rows": 9701,
+  "master_output_rows": 68020,
+  "presence_failed_rows": 0,
+  "sentiment_failed_rows": 0,
+  "type_failed_rows": 0,
+  "missing_presence_rows": 0,
+  "missing_sentiment_rows": 0,
+  "missing_type_for_humor_rows": 0,
+  "humor_presence_distribution": {
+    "non_humor": 25570,
+    "ambiguous": 32749,
+    "humor": 9701
+  },
+  "humor_presence_rates": {
+    "non_humor": 0.375919,
+    "ambiguous": 0.481461,
+    "humor": 0.14262
+  },
+  "humor_type_distribution": {
+    "not_applicable": 25570,
+    "ambiguous_or_review": 32749,
+    "self_enhancing": 4887,
+    "affiliative": 4668,
+    "self_defeating": 41,
+    "aggressive": 105
+  },
+  "humor_type_rates": {
+    "not_applicable": 0.375919,
+    "ambiguous_or_review": 0.481461,
+    "self_enhancing": 0.071847,
+    "affiliative": 0.068627,
+    "self_defeating": 0.000603,
+    "aggressive": 0.001544
+  },
+  "humor_type_review_distribution": {
+    "false": 25780,
+    "true": 42240
+  },
+  "target_of_humor_distribution": {
+    "not_applicable": 25570,
+    "unclear": 36650,
+    "self": 4928,
+    "situation": 767,
+    "other_individual": 105
+  },
+  "humor_function_distribution": {
+    "not_applicable": 25570,
+    "unclear": 32749,
+    "emotion_regulation": 4612,
+    "relationship_building": 767,
+    "coping": 275,
+    "tension_reduction": 3901,
+    "self_deprecation": 41,
+    "ridicule": 85,
+    "criticism": 20
+  },
+  "harm_potential_distribution": {
+    "not_applicable": 25570,
+    "unclear": 32749,
+    "low": 9555,
+    "high": 126,
+    "medium": 20
+  },
+  "sentiment_distribution": {
+    "neutral": 38139,
+    "positive": 27649,
+    "negative": 2232
+  },
+  "sentiment_rates": {
+    "neutral": 0.560703,
+    "positive": 0.406483,
+    "negative": 0.032814
+  },
+  "errors": []
+}
