@@ -209,7 +209,7 @@ jobs:
         env:
           X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           X_CT0: ${{ secrets.X_CT0 }}
-          PAGE_TIMEOUT_MS: '25000'
+          PAGE_TIMEOUT_MS: '45000'
         run: |
           python scripts/run_humor_append_collection.py \
             --targets shard_work/targets.csv \
@@ -218,7 +218,8 @@ jobs:
             ${{ inputs.collection_mode == 'incremental' && '--incremental-only' || '--no-incremental-only' }} \
             --existing-stop-threshold '${{ inputs.existing_stop_threshold }}' \
             --min-scrolls-before-stop '${{ inputs.min_scrolls_before_stop }}' \
-            --retry-attempts '${{ inputs.retry_attempts }}'
+            --retry-attempts '${{ inputs.retry_attempts }}' \
+            --between-company-delay-seconds 30
       - shell: bash
         env:
           SHARD_INDEX: ${{ matrix.shard_index }}

@@ -285,6 +285,7 @@ def run_append_collection() -> None:
     parser.add_argument("--min-scrolls-before-stop", type=int, default=3)
     parser.add_argument("--retry-attempts", type=int, default=2)
     parser.add_argument("--retry-delay-seconds", type=int, default=10)
+    parser.add_argument("--between-company-delay-seconds", type=int, default=0)
     args = parser.parse_args()
 
     targets_path = Path(args.targets)
@@ -357,6 +358,10 @@ def run_append_collection() -> None:
             metrics_path=metrics_path,
         )
         metrics = read_metrics(metrics_path)
+
+        if args.between_company_delay_seconds > 0:
+            print(f"Waiting {args.between_company_delay_seconds}s before next company...", flush=True)
+            time.sleep(args.between_company_delay_seconds)
 
         merge_added = 0
         if status == "success":
