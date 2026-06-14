@@ -1,0 +1,177 @@
+name: Sync korea_uni Market Reaction Inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit copied korea_uni CSV inputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      korea_uni_ref:
+        description: "korea_uni branch/commit/tag to read"
+        required: true
+        default: "main"
+      target_dir:
+        description: "Target directory inside x_scrapper"
+        required: true
+        default: "data/external/korea_uni"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-korea-uni-market-reaction-inputs
+  cancel-in-progress: false
+
+jobs:
+  sync-inputs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout x_scrapper
+        uses: actions/checkout@v4
+        with:
+          path: x_scrapper
+
+      - name: Checkout korea_uni read-only source
+        uses: actions/checkout@v4
+        with:
+          repository: Vulter3653/korea_uni
+          ref: ${{ inputs.korea_uni_ref }}
+          path: korea_uni_source
+          persist-credentials: false
+
+      - name: Copy selected korea_uni CSV inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd x_scrapper
+          TARGET='${{ inputs.target_dir }}'
+          mkdir -p "$TARGET"
+
+          declare -A FILES
+          FILES["../korea_uni_source/data/derived/causal/ai_10k_event_study_analysis_dataset.csv"]="$TARGET/ai_10k_event_study_analysis_dataset.csv"
+          FILES["../korea_uni_source/data/derived/market_extension/post_filing_market_reaction_estimates.csv"]="$TARGET/post_filing_market_reaction_estimates.csv"
+          FILES["../korea_uni_source/data/derived/market_extension/market_data_collection_report.csv"]="$TARGET/market_data_collection_report.csv"
+
+          for src in "${!FILES[@]}"; do
+            dst="${FILES[$src]}"
+            if [ ! -f "$src" ]; then
+              echo "::error title=Missing korea_uni source file::$src not found"
+              exit 1
+            fi
+            cp "$src" "$dst"
+            echo "Copied $src -> $dst ($(wc -l < "$dst") lines, $(wc -c < "$dst") bytes)"
+          done
+
+      - name: Build sync manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd x_scrapper
+          TARGET='${{ inputs.target_dir }}'
+          python3 - <<'PY'
+          import csv, json, os
+          from datetime import datetime, timezone
+          target = os.environ.get('TARGET_DIR') or '${{ inputs.target_dir }}'
+          files = [
+              'ai_10k_event_study_analysis_dataset.csv',
+              'post_filing_market_reaction_estimates.csv',
+              'market_data_collection_report.csv',
+          ]
+          manifest = {
+              'created_at': datetime.now(timezone.utc).isoformat(),
+              'source_repo': 'Vulter3653/korea_uni',
+              'source_ref': '${{ inputs.korea_uni_ref }}',
+              'target_repo': 'Vulter3653/x_scrapper',
+              'target_dir': target,
+              'source_repo_modified': False,
+              'external_api_called': False,
+              'market_data_collection_run': False,
+              'sec_collection_run': False,
+              'x_collection_run': False,
+              'files_copied': {},
+              'purpose': 'Read-only companion-repo CSV copy for Brand Equity / market reaction linkage readiness. CAR is a short-window market reaction proxy, not Tobin\'s Q and not direct consumer-based Brand Equity.'
+          }
+          for name in files:
+              path = os.path.join(target, name)
+              with open(path, newline='', encoding='utf-8') as f:
+                  row_count = sum(1 for _ in f) - 1
+              manifest['files_copied'][name] = {
+                  'path': path,
+                  'rows_excluding_header': row_count,
+                  'size_bytes': os.path.getsize(path),
+              }
+          out = os.path.join(target, 'korea_uni_market_reaction_sync_manifest.json')
+          with open(out, 'w', encoding='utf-8') as f:
+              json.dump(manifest, f, ensure_ascii=False, indent=2)
+              f.write('\n')
+          print(json.dumps(manifest, indent=2))
+          PY
+        env:
+          TARGET_DIR: ${{ inputs.target_dir }}
+
+      - name: Verify synced files
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd x_scrapper
+          TARGET='${{ inputs.target_dir }}'
+          for f in \
+            "$TARGET/ai_10k_event_study_analysis_dataset.csv" \
+            "$TARGET/post_filing_market_reaction_estimates.csv" \
+            "$TARGET/market_data_collection_report.csv" \
+            "$TARGET/korea_uni_market_reaction_sync_manifest.json"; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing synced file::$f not found"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines, $(wc -c < "$f") bytes)"
+          done
+          python3 - <<'PY'
+          import json
+          m = json.load(open('${{ inputs.target_dir }}/korea_uni_market_reaction_sync_manifest.json'))
+          forbidden = [
+              'source_repo_modified',
+              'external_api_called',
+              'market_data_collection_run',
+              'sec_collection_run',
+              'x_collection_run',
+          ]
+          violations = [(k, m.get(k)) for k in forbidden if m.get(k)]
+          if violations:
+              raise SystemExit(f'CONSTRAINT VIOLATION: {violations}')
+          print('Constraints OK: read-only source copy only.')
+          PY
+
+      - name: Upload synced CSV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-uni-market-reaction-inputs
+          path: |
+            x_scrapper/${{ inputs.target_dir }}/ai_10k_event_study_analysis_dataset.csv
+            x_scrapper/${{ inputs.target_dir }}/post_filing_market_reaction_estimates.csv
+            x_scrapper/${{ inputs.target_dir }}/market_data_collection_report.csv
+            x_scrapper/${{ inputs.target_dir }}/korea_uni_market_reaction_sync_manifest.json
+          retention-days: 30
+
+      - name: Commit synced inputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd x_scrapper
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add '${{ inputs.target_dir }}'
+          if git diff --cached --quiet; then
+            echo "No synced input changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: sync korea_uni market reaction inputs'
+          git push origin HEAD:main
