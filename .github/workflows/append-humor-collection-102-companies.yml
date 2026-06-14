@@ -1,4 +1,4 @@
-name: Append Humor Collection (102 Companies)
+name: Append Humor Collection (99 Active Targets)
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ on:
         required: true
         default: '0'
       target_scope:
-        description: 'Target source: all 102 targets or only latest failed targets'
+        description: 'Target source: all 99 active targets or only latest failed active targets'
         required: true
         default: 'all'
         type: choice
@@ -64,7 +64,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: append-humor-collection-102-companies
+  group: append-humor-collection-active-targets
   cancel-in-progress: false
 
 jobs:
@@ -86,20 +86,28 @@ jobs:
           start_offset='${{ inputs.start_offset }}'
           test "$shard_count" -ge 1 && test "$shard_count" -le 12
           test "$max_parallel" -ge 1 && test "$max_parallel" -le 12
-          test "$start_offset" -ge 0 && test "$start_offset" -le 101
+          test "$start_offset" -ge 0 && test "$start_offset" -le 98
           python - <<'PY'
           import csv
           from pathlib import Path
+          excluded_handles = {'@apple', '@berkshire', '@costco'}
           rows = list(csv.DictReader(Path('config/humor_collection_append_targets.csv').open(encoding='utf-8-sig')))
-          assert len(rows) == 102, len(rows)
-          assert sum(r['fortune_rank'] != 'benchmark' for r in rows) == 100
+          assert len(rows) == 99, len(rows)
+          assert sum(r['fortune_rank'] != 'benchmark' for r in rows) == 97
           assert sum(r['fortune_rank'] == 'benchmark' for r in rows) == 2
+          assert not any((r.get('handle') or '').strip().lower() in excluded_handles for r in rows)
           failed_path = Path('data/audit/humor_collection_append_failed_targets.csv')
           failed_rows = []
           if failed_path.exists():
               failed_rows = [r for r in csv.DictReader(failed_path.open(encoding='utf-8-sig')) if r.get('handle')]
+          active_failed_rows = [
+              r for r in failed_rows
+              if (r.get('handle') or '').strip().lower() not in excluded_handles
+          ]
           print(f'target_count={len(rows)}')
           print(f'latest_failed_target_count={len(failed_rows)}')
+          print(f'latest_failed_active_target_count={len(active_failed_rows)}')
+          print('excluded_zero_post_handles=' + ','.join(sorted(excluded_handles)))
           PY
           echo "shard_count=$shard_count" >> "$GITHUB_OUTPUT"
           echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
@@ -133,6 +141,8 @@ jobs:
           shard_count = int(os.environ['SHARD_COUNT'])
           start_offset = int(os.environ['START_OFFSET'])
           target_scope = os.environ.get('TARGET_SCOPE', 'all')
+          excluded_handles = {'@apple', '@berkshire', '@costco'}
+          excluded_seen = 0
           if target_scope == 'failed_only':
               source_path = Path('data/audit/humor_collection_append_failed_targets.csv')
               if source_path.exists():
@@ -143,6 +153,10 @@ jobs:
               seen_handles = set()
               for row in raw_rows:
                   handle = (row.get('handle') or '').strip()
+                  normalized_handle = handle.lower()
+                  if normalized_handle in excluded_handles:
+                      excluded_seen += 1
+                      continue
                   if not handle or handle in seen_handles:
                       continue
                   seen_handles.add(handle)
@@ -155,6 +169,12 @@ jobs:
           else:
               source_path = Path('config/humor_collection_append_targets.csv')
               rows = list(csv.DictReader(source_path.open(encoding='utf-8-sig')))
+              before = len(rows)
+              rows = [
+                  row for row in rows
+                  if (row.get('handle') or '').strip().lower() not in excluded_handles
+              ]
+              excluded_seen = before - len(rows)
           if rows:
               start_offset %= len(rows)
               rows = rows[start_offset:] + rows[:start_offset]
@@ -164,6 +184,7 @@ jobs:
               w.writeheader(); w.writerows(selected)
           print(f'target_scope={target_scope}')
           print(f'source_target_count={len(rows)}')
+          print(f'excluded_zero_post_target_count={excluded_seen}')
           print(f'shard_index={shard_index}')
           print(f'shard_target_count={len(selected)}')
           Path('shard_work/count.txt').write_text(str(len(selected)), encoding='utf-8')
@@ -255,6 +276,11 @@ jobs:
               dst = Path(rel); dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(src, dst)
           if fields is None:
               fields = ['fortune_rank','company_name','handle','sample_group','status','attempts','previous_posts','final_posts','new_unique_posts','merge_added_posts','existing_id_count','new_posts_collected','known_posts_seen','stopped_on_existing','stop_reason','scrolls_completed','last_error']
+          excluded_handles = {'@apple', '@berkshire', '@costco'}
+          rows = [
+              r for r in rows
+              if (r.get('handle') or '').strip().lower() not in excluded_handles
+          ]
           out = Path('data/audit/humor_collection_append_summary.csv')
           out.parent.mkdir(parents=True, exist_ok=True)
           with out.open('w', encoding='utf-8', newline='') as f:
@@ -264,8 +290,12 @@ jobs:
               fail = Path('data/audit/humor_collection_append_failed_targets.csv')
               with fail.open('w', encoding='utf-8', newline='') as f:
                   w = csv.DictWriter(f, fieldnames=fields); w.writeheader(); w.writerows(failed)
-          print(f'Total target rows in summaries: {len(rows)}')
-          print(f'Failed/skipped rows: {len(failed)}')
+          else:
+              fail = Path('data/audit/humor_collection_append_failed_targets.csv')
+              if fail.exists():
+                  fail.unlink()
+          print(f'Total active target rows in summaries: {len(rows)}')
+          print(f'Failed/skipped active rows: {len(failed)}')
           print(f'New unique posts: {sum(int(r.get("new_unique_posts") or 0) for r in rows)}')
           PY
       - shell: bash
