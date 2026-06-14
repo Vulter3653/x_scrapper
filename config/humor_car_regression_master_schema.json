@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0",
+  "description": "Schema for the H1-H3 × CAR regression-ready master dataset.",
+
+  "dv_hierarchy": {
+    "tobins_q": {
+      "role": "primary Brand Equity DV (long-run, level-based)",
+      "status": "DEFERRED — financial statement panel not yet available",
+      "scaffold": "data/derived/brand_equity/tobins_q_brand_equity_panel.csv",
+      "note": "CAR does NOT substitute for Tobin's Q."
+    },
+    "CAR_m1_p1": {
+      "role": "secondary DV — short-window capital market response proxy",
+      "window": "[-1, +1]",
+      "status": "AVAILABLE — 580 rows ready",
+      "source": "data/derived/car_event_windows/humor_car_linkage_panel.csv",
+      "forbidden_interpretations": [
+        "CAR = Tobin's Q",
+        "CAR = direct Brand Equity",
+        "CAR = consumer-based brand equity",
+        "CAR results = causal brand equity effects"
+      ]
+    },
+    "CAR_m3_p3": {
+      "role": "robustness DV — medium-window (placeholder)",
+      "window": "[-3, +3]",
+      "status": "MISSING — requires daily abnormal return panel",
+      "note": "NOT equivalent to CAR_0_p3 ([0,+3]). Gemini korea_uni audit pending."
+    },
+    "CAR_m5_p5": {
+      "role": "robustness DV — wide-window (placeholder)",
+      "window": "[-5, +5]",
+      "status": "MISSING — requires daily abnormal return panel",
+      "note": "NOT equivalent to CAR_0_p5 ([0,+5])."
+    }
+  },
+
+  "hypothesis_iv_mapping": {
+    "H1_humor_presence_and_usage": {
+      "primary_ivs":   ["humor_share", "humor_presence_any"],
+      "secondary_ivs": ["humor_count", "log_humor_count"],
+      "sensitivity":   ["humor_share_ambiguity_as_zero", "humor_share_ambiguity_excluded", "humor_share_ambiguity_as_missing"]
+    },
+    "H2_humor_type_effect": {
+      "primary_ivs":   ["aggressive_share", "affiliative_share"],
+      "secondary_ivs": ["self_enhancing_share", "self_defeating_share"],
+      "composite":     ["rare_negative_humor_share"]
+    },
+    "H3_aggressive_intensity_inverted_U": {
+      "primary_ivs":   ["aggressive_humor_usage_intensity", "aggressive_humor_usage_intensity_sq"],
+      "sparsity_note": "97.6% zero in full humor panel; 98.5% zero in regression master (9/584 nonzero rows). H3 power severely limited."
+    }
+  },
+
+  "outputs": {
+    "regression_master_csv": {
+      "path": "data/derived/regression/humor_car_hypothesis_regression_master.csv",
+      "description": "Regression-ready master dataset. One row per (company_name, period, filing_date).",
+      "unique_key_columns": ["company_name", "period", "filing_date"],
+      "row_count": 584,
+      "columns": [
+        {"name": "company_name",             "type": "string",   "group": "identifier"},
+        {"name": "ticker",                   "type": "string",   "group": "identifier"},
+        {"name": "cik",                      "type": "string",   "group": "identifier"},
+        {"name": "period",                   "type": "YYYY-MM",  "group": "identifier"},
+        {"name": "filing_date",              "type": "date",     "group": "identifier"},
+        {"name": "target_report_year",       "type": "integer",  "group": "identifier"},
+        {"name": "alignment_type",           "type": "categorical", "group": "alignment",
+         "values": ["prefiling_lag_1m", "prefiling_lag_3m", "same_month", "unaligned"],
+         "note": "Use to filter rows for main analysis (prefiling_lag_1m or prefiling_lag_3m recommended)"},
+        {"name": "recommended_main_alignment","type": "string",  "group": "alignment"},
+        {"name": "same_month_alignment",     "type": "boolean",  "group": "alignment"},
+        {"name": "prefiling_lag_1m_alignment","type": "boolean", "group": "alignment"},
+        {"name": "prefiling_lag_3m_alignment","type": "boolean", "group": "alignment"},
+        {"name": "CAR_m1_p1",               "type": "float",    "group": "DV", "window": "[-1,+1]", "available": true},
+        {"name": "CAR_m3_p3",               "type": "float",    "group": "DV", "window": "[-3,+3]", "available": false, "note": "empty — daily AR required"},
+        {"name": "CAR_m5_p5",               "type": "float",    "group": "DV", "window": "[-5,+5]", "available": false, "note": "empty — daily AR required"},
+        {"name": "join_ready_for_CAR_m1_p1","type": "boolean",  "group": "DV_flag"},
+        {"name": "join_ready_for_CAR_m3_p3","type": "boolean",  "group": "DV_flag", "note": "always false currently"},
+        {"name": "join_ready_for_CAR_m5_p5","type": "boolean",  "group": "DV_flag", "note": "always false currently"},
+        {"name": "humor_share",              "type": "float",    "group": "H1_IV"},
+        {"name": "humor_count",              "type": "integer",  "group": "H1_IV"},
+        {"name": "log_humor_count",          "type": "float",    "group": "H1_IV", "note": "log(1 + humor_count)"},
+        {"name": "humor_presence_any",       "type": "binary",   "group": "H1_IV"},
+        {"name": "humor_share_ambiguity_as_zero",    "type": "float", "group": "H1_sensitivity"},
+        {"name": "humor_share_ambiguity_excluded",   "type": "float", "group": "H1_sensitivity"},
+        {"name": "humor_share_ambiguity_as_missing", "type": "float or empty", "group": "H1_sensitivity"},
+        {"name": "aggressive_share",         "type": "float",    "group": "H2_IV"},
+        {"name": "affiliative_share",        "type": "float",    "group": "H2_IV"},
+        {"name": "self_enhancing_share",     "type": "float",    "group": "H2_IV"},
+        {"name": "self_defeating_share",     "type": "float",    "group": "H2_IV"},
+        {"name": "rare_negative_humor_share","type": "float",    "group": "H2_IV"},
+        {"name": "aggressive_humor_usage_intensity",    "type": "float", "group": "H3_IV"},
+        {"name": "aggressive_humor_usage_intensity_sq", "type": "float", "group": "H3_IV"},
+        {"name": "total_posts",              "type": "integer",  "group": "diagnostic"},
+        {"name": "ambiguity_rate",           "type": "float",    "group": "diagnostic"},
+        {"name": "high_ambiguity_flag",      "type": "binary",   "group": "diagnostic"},
+        {"name": "source_x_handle_count",    "type": "integer",  "group": "diagnostic"},
+        {"name": "naics_sector_code",        "type": "categorical", "group": "control", "note": "sector-level only; full 6-digit NAICS not available"},
+        {"name": "naics_sector_name",        "type": "string",   "group": "control"},
+        {"name": "industry_homogeneity_control", "type": "categorical", "group": "control", "note": "= naics_sector_code; use as FE or cluster"}
+      ]
+    },
+
+    "variable_dictionary_csv": {
+      "path": "data/derived/regression/humor_car_hypothesis_variable_dictionary.csv",
+      "description": "Variable codebook with hypothesis mapping, role, and availability."
+    },
+
+    "manifest_json": {
+      "path": "data/audit/regression/humor_car_regression_master_manifest.json",
+      "constraint_flags_must_all_be_false": [
+        "regression_run",
+        "causal_claim_made",
+        "car_used_as_tobins_q",
+        "car_used_as_direct_brand_equity",
+        "CAR_m3_p3_computed",
+        "CAR_m5_p5_computed",
+        "raw_data_modified",
+        "humor_outputs_modified",
+        "korea_uni_source_repo_modified",
+        "external_api_called"
+      ]
+    }
+  },
+
+  "alignment_recommendation": {
+    "main_analysis":     "prefiling_lag_1m (alignment_type='prefiling_lag_1m')",
+    "robustness":        "prefiling_lag_3m (alignment_type='prefiling_lag_3m')",
+    "sensitivity_only":  "same_month (alignment_type='same_month') — simultaneity risk"
+  },
+
+  "update_triggers": {
+    "CAR_m3_p3_m5_p5": "Copy event_window_daily_abnormal_returns.csv to data/external/korea_uni/ → re-run build_car_symmetric_event_window_panel.py → re-run build_humor_car_regression_master.py",
+    "tobins_q":         "Supply financial panel → run build_tobins_q_brand_equity_panel.py --financial-panel <path>"
+  }
+}

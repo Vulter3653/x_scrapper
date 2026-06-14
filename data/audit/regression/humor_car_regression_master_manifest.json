@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-06-14T18:11:02Z",
+  "dv_hierarchy_note": "Tobin's Q is the primary Brand Equity DV but is DEFERRED (financial panel absent). CAR_m1_p1 is the currently executable secondary DV (short-window market reaction proxy). CAR is NOT Tobin's Q. CAR is NOT direct Brand Equity.",
+  "source_manifests": {
+    "humor_hypothesis_variables": "data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json",
+    "car_symmetric_event_window": "data/audit/car_event_windows/car_symmetric_event_window_manifest.json"
+  },
+  "input_rows": 584,
+  "output_rows": 584,
+  "unique_companies": 80,
+  "unique_tickers": 80,
+  "unique_key_columns": [
+    "company_name",
+    "period",
+    "filing_date"
+  ],
+  "duplicate_rows": 0,
+  "CAR_m1_p1_ready_rows": 580,
+  "CAR_m3_p3_ready_rows": 0,
+  "CAR_m5_p5_ready_rows": 0,
+  "same_month_rows": 151,
+  "prefiling_lag_1m_rows": 141,
+  "prefiling_lag_3m_rows": 292,
+  "recommended_main_alignment_rows": 433,
+  "h3_sparsity_in_regression_master": {
+    "total_rows": 584,
+    "nonzero_aggressive_intensity_rows": 9,
+    "aggressive_intensity_zero_share": 0.984589,
+    "sparsity_warning": "H3 aggressive intensity is zero in 98.5% of regression master rows (9 nonzero out of 584). Inverted-U test (H3) has severely limited statistical power."
+  },
+  "h3_sparsity_full_humor_panel": {
+    "aggressive_count_total": 105,
+    "nonzero_aggressive_firm_period_count": 91,
+    "aggressive_intensity_zero_share": 0.975843,
+    "max_aggressive_intensity": 0.25,
+    "mean_aggressive_intensity": 0.001291,
+    "median_aggressive_intensity": 0.0,
+    "rare_negative_count_total": 146,
+    "nonzero_rare_negative_firm_period_count": 129
+  },
+  "tobins_q_deferred": true,
+  "regression_run": false,
+  "causal_claim_made": false,
+  "car_used_as_tobins_q": false,
+  "car_used_as_direct_brand_equity": false,
+  "CAR_m3_p3_computed": false,
+  "CAR_m5_p5_computed": false,
+  "daily_abnormal_return_required_for_symmetric_long_windows": true,
+  "raw_data_modified": false,
+  "humor_outputs_modified": false,
+  "korea_uni_source_repo_modified": false,
+  "external_api_called": false,
+  "pending_for_full_regression_readiness": [
+    "Gemini daily AR panel audit: if event_window_daily_abnormal_returns.csv exists in korea_uni, copy to data/external/korea_uni/ and re-run build_car_symmetric_event_window_panel.py → re-run this script.",
+    "Tobin's Q: obtain total_assets, total_liabilities, market_cap from SEC EDGAR XBRL or Compustat → run build_tobins_q_brand_equity_panel.py --financial-panel <path>.",
+    "H3 power: note that 9/584 nonzero aggressive intensity rows is extremely sparse. Interpret H3 results with caution or consider descriptive H3 only."
+  ]
+}

@@ -1,0 +1,24 @@
+﻿variable_name,hypothesis,role,var_type,description,available_in_master,availability_note
+CAR_m1_p1,"H1, H2, H3",DV — primary (currently executable),continuous,"Cumulative Abnormal Return over symmetric window [-1,+1] trading days around 10-K filing date. Short-window capital market response proxy. NOT equivalent to Tobin's Q. NOT direct Brand Equity.",true,580 rows ready (join_ready_for_CAR_m1_p1=true)
+CAR_m3_p3,"H1, H2, H3",DV — medium-window robustness (placeholder),continuous,"Cumulative Abnormal Return over symmetric window [-3,+3]. Requires daily abnormal return panel.",false,"Missing. Requires event_window_daily_abnormal_returns.csv. NOT computed from CAR_0_p3 ([0,+3]). Gemini audit of korea_uni daily AR panel pending."
+CAR_m5_p5,"H1, H2, H3",DV — wide-window robustness (placeholder),continuous,"Cumulative Abnormal Return over symmetric window [-5,+5]. Requires daily abnormal return panel.",false,"Missing. Requires event_window_daily_abnormal_returns.csv. NOT computed from CAR_0_p5 ([0,+5]). Confounding event risk increases with wider window."
+humor_share,H1,IV — primary (continuous),"continuous [0,1]",Share of posts classified as humor. Primary H1 measure of humor usage/exposure.,true,
+humor_count,H1,IV (count),integer,Absolute count of humor posts in firm-period.,true,
+log_humor_count,H1,IV — log-transformed count,continuous,log(1 + humor_count). Reduces skew from high-posting firms.,true,Computed from humor_count: log(1 + count)
+humor_presence_any,H1,IV — binary indicator,binary,"1 if any humor post in firm-period, 0 otherwise. Binary H1 IV.",true,
+humor_share_ambiguity_as_zero,H1,IV — ambiguity sensitivity variant,"continuous [0,1]",humor_share treating ambiguous posts as non-humor.,true,
+humor_share_ambiguity_excluded,H1,IV — ambiguity sensitivity variant,"continuous [0,1]",humor_share excluding ambiguous posts from denominator.,true,
+humor_share_ambiguity_as_missing,H1,IV — ambiguity sensitivity variant,continuous or NA,humor_share set to missing (empty) if ambiguity_rate >= 0.50.,true,
+aggressive_share,H2,IV — humor type (continuous),"continuous [0,1]",Share of posts classified as aggressive humor. H2 main type predictor.,true,
+affiliative_share,H2,IV — humor type (continuous),"continuous [0,1]",Share of posts classified as affiliative humor.,true,Joined from humor_firm_period_hypothesis_variables.csv
+self_enhancing_share,H2,IV — humor type (continuous),"continuous [0,1]",Share of posts classified as self-enhancing humor.,true,Joined from humor_firm_period_hypothesis_variables.csv
+self_defeating_share,H2,IV — humor type (continuous),"continuous [0,1]",Share of posts classified as self-defeating humor.,true,Joined from humor_firm_period_hypothesis_variables.csv
+rare_negative_humor_share,H2,IV — composite negative type,"continuous [0,1]",Share of aggressive + self-defeating humor. Rare negative humor composite.,true,
+aggressive_humor_usage_intensity,H3,IV — intensity (linear term),continuous,Aggressive humor intensity per firm-period. SPARSITY WARNING: 97.6% of firm-period observations are zero in the full humor panel. In the regression master (584 rows): ~98.5% zero.,true,Extreme sparsity — H3 inverted-U test has low statistical power.
+aggressive_humor_usage_intensity_sq,H3,IV — intensity squared (quadratic term for inverted-U),continuous,Square of aggressive_humor_usage_intensity. Used for H3 inverted-U moderation.,true,Same extreme sparsity as the linear term.
+total_posts,all,diagnostic / scale control,integer,Total posts in firm-period. Use as denominator check or control for posting volume.,true,
+ambiguity_rate,all,diagnostic,"continuous [0,1]",Share of ambiguous classifications. High values → uncertain humor measurement.,true,
+high_ambiguity_flag,all,diagnostic / exclusion flag,binary,Flag for firm-periods with high classification ambiguity. Consider excluding in robustness checks.,true,
+naics_sector_code,all,control — industry FE,categorical,NAICS sector-level code. Use as fixed effect or cluster variable. Full NAICS code not available in dataset.,true,naics_code (6-digit) not available; naics_sector_code used instead.
+industry_homogeneity_control,all,control — industry FE (identical to naics_sector_code),categorical,Industry homogeneity control for regression. = naics_sector_code.,true,
+alignment_type,all,alignment meta / subsetting flag,categorical,"Temporal alignment between humor period and filing event. Values: prefiling_lag_1m (recommended), prefiling_lag_3m (recommended), same_month (caution). Use as filter: retain prefiling_lag_1m or prefiling_lag_3m rows for main analysis.",true,

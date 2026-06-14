@@ -1,0 +1,203 @@
+name: Build Humor CAR Regression Master
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit regression master outputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      humor_variables_path:
+        description: "Humor firm-period hypothesis variables CSV"
+        required: true
+        default: "data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv"
+      humor_manifest_path:
+        description: "Humor hypothesis variables manifest JSON"
+        required: true
+        default: "data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json"
+      linkage_panel_path:
+        description: "humor-CAR linkage panel (output of Build CAR Symmetric Event Window Panel)"
+        required: true
+        default: "data/derived/car_event_windows/humor_car_linkage_panel.csv"
+      car_manifest_path:
+        description: "CAR symmetric event window manifest JSON"
+        required: true
+        default: "data/audit/car_event_windows/car_symmetric_event_window_manifest.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-humor-car-regression-master
+  cancel-in-progress: false
+
+jobs:
+  build-regression-master:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify required inputs exist
+        run: |
+          set -euo pipefail
+          for f in \
+            '${{ inputs.humor_variables_path }}' \
+            '${{ inputs.humor_manifest_path }}' \
+            '${{ inputs.linkage_panel_path }}' \
+            '${{ inputs.car_manifest_path }}'; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing required input::$f not found."
+              echo "Run prerequisite workflows first:"
+              echo "  1. Build Humor Hypothesis Variables (commit_results=true)"
+              echo "  2. Build CAR Symmetric Event Window Panel (commit_results=true)"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+
+      - name: Verify upstream CAR manifest constraints
+        run: |
+          set -euo pipefail
+          python3 -c "
+          import json, sys
+          m = json.load(open('${{ inputs.car_manifest_path }}'))
+          if not m.get('tobins_q_deferred'):
+              print('ERROR: car manifest tobins_q_deferred must be true', file=sys.stderr)
+              sys.exit(1)
+          for flag in ['car_used_as_tobins_q','car_used_as_direct_brand_equity',
+                       'external_data_downloaded','raw_data_modified']:
+              if m.get(flag):
+                  print(f'CONSTRAINT VIOLATION from upstream: {flag}={m[flag]}', file=sys.stderr)
+                  sys.exit(1)
+          print('Upstream CAR manifest constraints OK.')
+          print(f'CAR_m1_p1_available_rows:         {m.get(\"CAR_m1_p1_available_rows\")}')
+          print(f'daily_abnormal_return_available:  {m.get(\"daily_abnormal_return_input_available\")}')
+          if not m.get('daily_abnormal_return_input_available'):
+              print('::warning title=CAR_m3_m5 missing::CAR_m3_p3 and CAR_m5_p5 will remain as missing placeholders in regression master.')
+          "
+
+      - name: Build regression master dataset
+        id: build
+        run: |
+          set -euo pipefail
+          python scripts/build_humor_car_regression_master.py \
+            --linkage        '${{ inputs.linkage_panel_path }}' \
+            --car-manifest   '${{ inputs.car_manifest_path }}' \
+            --humor-vars     '${{ inputs.humor_variables_path }}' \
+            --humor-manifest '${{ inputs.humor_manifest_path }}' \
+            --out-master   data/derived/regression/humor_car_hypothesis_regression_master.csv \
+            --out-dict     data/derived/regression/humor_car_hypothesis_variable_dictionary.csv \
+            --out-manifest data/audit/regression/humor_car_regression_master_manifest.json
+
+      - name: Verify outputs and manifest constraints
+        run: |
+          set -euo pipefail
+          for f in \
+            data/derived/regression/humor_car_hypothesis_regression_master.csv \
+            data/derived/regression/humor_car_hypothesis_variable_dictionary.csv \
+            data/audit/regression/humor_car_regression_master_manifest.json; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing output::$f not found after script run"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+          python3 -c "
+          import json, sys
+          m = json.load(open('data/audit/regression/humor_car_regression_master_manifest.json'))
+
+          # Constraint flags — must ALL be false
+          forbidden = {
+              'regression_run',
+              'causal_claim_made',
+              'car_used_as_tobins_q',
+              'car_used_as_direct_brand_equity',
+              'CAR_m3_p3_computed',
+              'CAR_m5_p5_computed',
+              'raw_data_modified',
+              'humor_outputs_modified',
+              'korea_uni_source_repo_modified',
+              'external_api_called',
+          }
+          violations = [(k, m.get(k)) for k in forbidden if m.get(k)]
+          if violations:
+              print('CONSTRAINT VIOLATION:', violations, file=sys.stderr)
+              sys.exit(1)
+
+          if not m.get('tobins_q_deferred'):
+              print('tobins_q_deferred must be true', file=sys.stderr)
+              sys.exit(1)
+
+          if m.get('duplicate_rows', -1) != 0:
+              print(f'UNIQUENESS VIOLATION: duplicate_rows={m[\"duplicate_rows\"]}', file=sys.stderr)
+              sys.exit(1)
+
+          print('Constraints OK.')
+          print(f'output_rows:                    {m.get(\"output_rows\")}')
+          print(f'unique_companies:               {m.get(\"unique_companies\")}')
+          print(f'CAR_m1_p1_ready_rows:           {m.get(\"CAR_m1_p1_ready_rows\")}')
+          print(f'CAR_m3_p3_ready_rows:           {m.get(\"CAR_m3_p3_ready_rows\")}')
+          print(f'CAR_m5_p5_ready_rows:           {m.get(\"CAR_m5_p5_ready_rows\")}')
+          print(f'prefiling_lag_1m_rows:          {m.get(\"prefiling_lag_1m_rows\")}')
+          print(f'prefiling_lag_3m_rows:          {m.get(\"prefiling_lag_3m_rows\")}')
+          print(f'recommended_main_alignment_rows:{m.get(\"recommended_main_alignment_rows\")}')
+          print(f'same_month_rows:                {m.get(\"same_month_rows\")}')
+          print(f'tobins_q_deferred:              {m.get(\"tobins_q_deferred\")}')
+          print(f'regression_run:                 {m.get(\"regression_run\")}')
+          h3 = m.get('h3_sparsity_in_regression_master', {})
+          print(f'H3_nonzero_rows:                {h3.get(\"nonzero_aggressive_intensity_rows\")}')
+          print(f'H3_zero_share:                  {h3.get(\"aggressive_intensity_zero_share\")}')
+          if m.get('CAR_m3_p3_ready_rows', 0) == 0:
+              print('::warning title=CAR_m3_m5 placeholder::CAR_m3_p3 and CAR_m5_p5 remain as missing placeholders. Supply daily abnormal return panel to activate.')
+          h3_nonzero = h3.get('nonzero_aggressive_intensity_rows', 0)
+          if h3_nonzero < 20:
+              print(f'::warning title=H3 sparsity::Only {h3_nonzero} rows with nonzero aggressive intensity. H3 inverted-U test has severely limited power.')
+          "
+
+      - name: Upload regression master artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-car-regression-master
+          path: |
+            data/derived/regression/humor_car_hypothesis_regression_master.csv
+            data/derived/regression/humor_car_hypothesis_variable_dictionary.csv
+            data/audit/regression/humor_car_regression_master_manifest.json
+          retention-days: 30
+
+      - name: Commit regression master outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/regression/humor_car_hypothesis_regression_master.csv \
+            data/derived/regression/humor_car_hypothesis_variable_dictionary.csv \
+            data/audit/regression/humor_car_regression_master_manifest.json \
+            docs/humor_car_regression_master_plan.md \
+            config/humor_car_regression_master_schema.json
+          if git diff --cached --quiet; then
+            echo "No regression master changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: h1-h3 x car regression-ready master dataset'
+          git push origin HEAD:main
