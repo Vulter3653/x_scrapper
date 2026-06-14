@@ -1,0 +1,65 @@
+{
+  "input_path": "data/derived/humor/full_chain/humor_full_chain_master.csv",
+  "output_path": "data/derived/humor/evaluation/humor_type_ab_test_sample.csv",
+  "manifest_path": "data/audit/humor/evaluation/humor_type_ab_test_sample_manifest.json",
+  "total_master_rows": 68020,
+  "total_sampled": 941,
+  "random_seed": 42,
+  "strata": {
+    "ambiguous_or_review": {
+      "filter_column": "humor_type",
+      "filter_value": "ambiguous_or_review",
+      "requested": 300,
+      "available": 32749,
+      "sampled": 300,
+      "shortfall": 0
+    },
+    "self_enhancing": {
+      "filter_column": "humor_type",
+      "filter_value": "self_enhancing",
+      "requested": 150,
+      "available": 4887,
+      "sampled": 150,
+      "shortfall": 0
+    },
+    "affiliative": {
+      "filter_column": "humor_type",
+      "filter_value": "affiliative",
+      "requested": 150,
+      "available": 4668,
+      "sampled": 150,
+      "shortfall": 0
+    },
+    "aggressive": {
+      "filter_column": "humor_type",
+      "filter_value": "aggressive",
+      "requested": 100,
+      "available": 105,
+      "sampled": 100,
+      "shortfall": 0
+    },
+    "self_defeating": {
+      "filter_column": "humor_type",
+      "filter_value": "self_defeating",
+      "requested": 100,
+      "available": 41,
+      "sampled": 41,
+      "shortfall": 59
+    },
+    "non_humor": {
+      "filter_column": "humor_type",
+      "filter_value": "not_applicable",
+      "requested": 200,
+      "available": 25570,
+      "sampled": 200,
+      "shortfall": 0
+    }
+  },
+  "notes": [
+    "Sample is stratified by humor_type from the full-chain master.",
+    "non_humor stratum uses humor_type == not_applicable.",
+    "If a stratum had fewer rows than requested, all available rows were included.",
+    "Shortfall > 0 indicates under-represented class in the full-chain master.",
+    "This sample is intended for v1 vs v2 A/B comparison only, not for training."
+  ]
+}

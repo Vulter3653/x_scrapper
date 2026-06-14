@@ -1,0 +1,636 @@
+{
+  "total_sample_rows": 941,
+  "matched_v2_rows": 941,
+  "unmatched_v2_rows": 0,
+  "overall_agreement_count": 372,
+  "overall_agreement_rate": 0.3953,
+  "v1_label_distribution": {
+    "ambiguous_or_review": 300,
+    "self_enhancing": 150,
+    "affiliative": 150,
+    "aggressive": 100,
+    "self_defeating": 41,
+    "not_humor": 200
+  },
+  "v2_label_distribution": {
+    "not_humor": 409,
+    "self_enhancing": 257,
+    "affiliative": 86,
+    "aggressive": 125,
+    "self_defeating": 36,
+    "ambiguous_review": 28
+  },
+  "transition_counts": {
+    "resolved_to_not_humor": 153,
+    "resolved_to_humor": 146,
+    "still_ambiguous": 1,
+    "same": 372,
+    "humor_to_not_humor": 127,
+    "type_change_self_enhancing_to_affiliative": 14,
+    "type_change_self_enhancing_to_aggressive": 7,
+    "humor_to_ambiguous": 24,
+    "type_change_affiliative_to_aggressive": 10,
+    "type_change_affiliative_to_self_enhancing": 4,
+    "type_change_aggressive_to_self_enhancing": 5,
+    "type_change_aggressive_to_affiliative": 5,
+    "type_change_aggressive_to_self_defeating": 1,
+    "type_change_self_defeating_to_affiliative": 1,
+    "not_humor_to_humor": 68,
+    "not_humor_to_ambiguous": 3
+  },
+  "ambiguous_resolution": {
+    "resolved_to_humor": 146,
+    "resolved_to_not_humor": 153,
+    "still_ambiguous": 1,
+    "resolution_rate": 0.9967
+  },
+  "rare_class_change": {
+    "v1_aggressive": 100,
+    "v2_aggressive": 125,
+    "aggressive_delta": 25,
+    "v1_self_defeating": 41,
+    "v2_self_defeating": 36,
+    "self_defeating_delta": -5
+  },
+  "not_humor_reclassification": {
+    "humor_to_not_humor": 127,
+    "not_humor_to_humor": 68
+  },
+  "company_transition_counts": {
+    "AT&T": {
+      "resolved_to_humor": 2,
+      "resolved_to_not_humor": 3,
+      "same": 4,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "AbbVie": {
+      "resolved_to_not_humor": 2,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "humor_to_not_humor": 1,
+      "same": 5
+    },
+    "Albertsons": {
+      "resolved_to_humor": 5,
+      "same": 10,
+      "humor_to_not_humor": 3,
+      "type_change_aggressive_to_self_enhancing": 1
+    },
+    "Allstate": {
+      "type_change_self_enhancing_to_aggressive": 1,
+      "same": 1
+    },
+    "Alphabet": {
+      "resolved_to_humor": 1,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "humor_to_not_humor": 1,
+      "humor_to_ambiguous": 1
+    },
+    "Amazon": {
+      "resolved_to_not_humor": 2,
+      "resolved_to_humor": 1,
+      "same": 9,
+      "humor_to_not_humor": 3,
+      "type_change_affiliative_to_self_enhancing": 1,
+      "humor_to_ambiguous": 2,
+      "type_change_aggressive_to_self_defeating": 1,
+      "not_humor_to_humor": 1
+    },
+    "American Airlines Group": {
+      "resolved_to_humor": 3,
+      "resolved_to_not_humor": 1,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "same": 1,
+      "not_humor_to_ambiguous": 1,
+      "not_humor_to_humor": 2
+    },
+    "American Express": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 3,
+      "humor_to_not_humor": 1,
+      "humor_to_ambiguous": 1,
+      "same": 2,
+      "not_humor_to_humor": 1
+    },
+    "Archer Daniels Midland": {
+      "resolved_to_humor": 3,
+      "resolved_to_not_humor": 3,
+      "still_ambiguous": 1,
+      "same": 6,
+      "humor_to_not_humor": 3,
+      "humor_to_ambiguous": 1
+    },
+    "Bank of America": {
+      "resolved_to_humor": 2,
+      "resolved_to_not_humor": 1,
+      "same": 10,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "humor_to_not_humor": 3,
+      "not_humor_to_humor": 1
+    },
+    "Boeing": {
+      "resolved_to_humor": 4,
+      "same": 4,
+      "humor_to_ambiguous": 2,
+      "humor_to_not_humor": 5,
+      "type_change_affiliative_to_aggressive": 1
+    },
+    "Bristol-Myers Squibb": {
+      "resolved_to_not_humor": 2,
+      "resolved_to_humor": 1,
+      "type_change_self_enhancing_to_aggressive": 1,
+      "humor_to_not_humor": 2,
+      "same": 4
+    },
+    "Broadcom": {
+      "resolved_to_not_humor": 1,
+      "same": 1
+    },
+    "CVS Health": {
+      "resolved_to_humor": 1,
+      "humor_to_not_humor": 2
+    },
+    "Capital One Financial": {
+      "resolved_to_not_humor": 3,
+      "resolved_to_humor": 3,
+      "same": 2,
+      "humor_to_not_humor": 1,
+      "humor_to_ambiguous": 1
+    },
+    "Cardinal Health": {
+      "resolved_to_not_humor": 1,
+      "same": 1,
+      "not_humor_to_humor": 1
+    },
+    "Caterpillar": {
+      "resolved_to_not_humor": 3,
+      "resolved_to_humor": 1,
+      "same": 4,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "humor_to_not_humor": 1,
+      "humor_to_ambiguous": 1,
+      "not_humor_to_humor": 4
+    },
+    "Cencora": {
+      "resolved_to_humor": 2,
+      "same": 4,
+      "type_change_affiliative_to_aggressive": 1,
+      "humor_to_not_humor": 1
+    },
+    "Centene": {
+      "resolved_to_humor": 1,
+      "same": 4,
+      "type_change_self_enhancing_to_aggressive": 1,
+      "not_humor_to_humor": 1
+    },
+    "Charter Communications": {
+      "resolved_to_humor": 1,
+      "same": 1,
+      "humor_to_not_humor": 1,
+      "type_change_aggressive_to_self_enhancing": 1
+    },
+    "Chevron": {
+      "humor_to_ambiguous": 1,
+      "same": 2,
+      "not_humor_to_humor": 1
+    },
+    "Cigna Group": {
+      "resolved_to_not_humor": 7,
+      "resolved_to_humor": 1,
+      "same": 1,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "humor_to_not_humor": 2,
+      "not_humor_to_humor": 1
+    },
+    "Cisco Systems": {
+      "resolved_to_not_humor": 2,
+      "resolved_to_humor": 1,
+      "same": 8
+    },
+    "Citigroup": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 1,
+      "same": 1
+    },
+    "Coca-Cola": {
+      "resolved_to_not_humor": 5,
+      "resolved_to_humor": 2,
+      "humor_to_not_humor": 1,
+      "same": 4,
+      "not_humor_to_humor": 1
+    },
+    "Comcast": {
+      "resolved_to_not_humor": 8,
+      "resolved_to_humor": 2,
+      "humor_to_not_humor": 8,
+      "same": 2,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "not_humor_to_humor": 2
+    },
+    "ConocoPhillips": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 1,
+      "same": 4,
+      "humor_to_ambiguous": 1
+    },
+    "Dell Technologies": {
+      "resolved_to_humor": 1,
+      "same": 2,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "Delta Air Lines": {
+      "resolved_to_not_humor": 4,
+      "humor_to_not_humor": 3
+    },
+    "Elevance Health": {
+      "resolved_to_humor": 5,
+      "resolved_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "Eli Lilly": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 1,
+      "same": 3
+    },
+    "Energy Transfer": {
+      "resolved_to_humor": 4,
+      "same": 2,
+      "type_change_affiliative_to_self_enhancing": 2,
+      "type_change_aggressive_to_self_enhancing": 2,
+      "humor_to_ambiguous": 1,
+      "not_humor_to_humor": 2
+    },
+    "Enterprise Products Partners": {
+      "same": 3
+    },
+    "Exxon Mobil": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 2,
+      "same": 3
+    },
+    "Fannie Mae": {
+      "resolved_to_humor": 2,
+      "humor_to_not_humor": 2,
+      "same": 7,
+      "not_humor_to_humor": 1
+    },
+    "FedEx": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 7,
+      "same": 7,
+      "humor_to_not_humor": 3,
+      "not_humor_to_humor": 2
+    },
+    "Ford Motor": {
+      "resolved_to_humor": 5,
+      "resolved_to_not_humor": 2,
+      "humor_to_not_humor": 6,
+      "type_change_aggressive_to_affiliative": 2,
+      "same": 4
+    },
+    "Freddie Mac": {
+      "same": 1
+    },
+    "General Dynamics": {
+      "resolved_to_humor": 2,
+      "same": 5,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "type_change_self_enhancing_to_aggressive": 1,
+      "type_change_affiliative_to_aggressive": 2,
+      "humor_to_not_humor": 4,
+      "not_humor_to_humor": 3
+    },
+    "General Motors": {
+      "type_change_self_enhancing_to_affiliative": 1,
+      "same": 2
+    },
+    "Goldman Sachs Group": {
+      "resolved_to_humor": 1,
+      "same": 3,
+      "humor_to_not_humor": 3
+    },
+    "HCA Healthcare": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 3
+    },
+    "HP": {
+      "same": 3,
+      "humor_to_not_humor": 1
+    },
+    "Home Depot": {
+      "resolved_to_not_humor": 1,
+      "same": 5,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 4
+    },
+    "Humana": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 1,
+      "same": 7,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "IBM": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 1,
+      "same": 5,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "Ingram Micro Holding": {
+      "resolved_to_humor": 3,
+      "resolved_to_not_humor": 2,
+      "type_change_self_enhancing_to_aggressive": 2,
+      "humor_to_not_humor": 1,
+      "same": 2
+    },
+    "Intel": {
+      "same": 2,
+      "humor_to_not_humor": 1
+    },
+    "JPMorgan Chase": {
+      "resolved_to_not_humor": 3,
+      "humor_to_not_humor": 4,
+      "same": 1,
+      "not_humor_to_humor": 1
+    },
+    "Johnson & Johnson": {
+      "same": 3,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "Kroger": {
+      "resolved_to_not_humor": 5,
+      "resolved_to_humor": 2,
+      "same": 9,
+      "not_humor_to_humor": 1
+    },
+    "Liberty Mutual Insurance Group": {
+      "resolved_to_not_humor": 2,
+      "resolved_to_humor": 2,
+      "same": 5,
+      "humor_to_not_humor": 4,
+      "not_humor_to_humor": 1
+    },
+    "Lockheed Martin": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 4,
+      "same": 6,
+      "type_change_affiliative_to_aggressive": 1,
+      "humor_to_not_humor": 3,
+      "not_humor_to_ambiguous": 1
+    },
+    "Lowe's": {
+      "resolved_to_humor": 4,
+      "same": 6,
+      "not_humor_to_ambiguous": 1
+    },
+    "Marathon Petroleum": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 1,
+      "humor_to_ambiguous": 1,
+      "type_change_aggressive_to_affiliative": 1
+    },
+    "Massachusetts Mutual Life": {
+      "resolved_to_not_humor": 4,
+      "resolved_to_humor": 2,
+      "type_change_self_enhancing_to_aggressive": 1,
+      "type_change_self_enhancing_to_affiliative": 2,
+      "humor_to_not_humor": 2,
+      "same": 3,
+      "humor_to_ambiguous": 1,
+      "type_change_self_defeating_to_affiliative": 1
+    },
+    "McKesson": {
+      "resolved_to_humor": 2,
+      "resolved_to_not_humor": 1,
+      "same": 7,
+      "not_humor_to_humor": 1
+    },
+    "Merck": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 2,
+      "same": 2
+    },
+    "MetLife": {
+      "resolved_to_not_humor": 4,
+      "resolved_to_humor": 1,
+      "same": 8,
+      "humor_to_not_humor": 3,
+      "type_change_affiliative_to_aggressive": 1,
+      "not_humor_to_humor": 2
+    },
+    "Meta Platforms": {
+      "same": 1
+    },
+    "Microsoft": {
+      "same": 3,
+      "humor_to_not_humor": 1
+    },
+    "MoonPie": {
+      "resolved_to_not_humor": 3,
+      "same": 7,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 2
+    },
+    "Morgan Stanley": {
+      "resolved_to_humor": 3,
+      "resolved_to_not_humor": 2,
+      "same": 5,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "Nationwide": {
+      "resolved_to_humor": 4,
+      "resolved_to_not_humor": 4,
+      "humor_to_not_humor": 1,
+      "same": 4,
+      "type_change_aggressive_to_affiliative": 1,
+      "not_humor_to_humor": 4
+    },
+    "New York Life Insurance": {
+      "resolved_to_not_humor": 1,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "humor_to_not_humor": 1,
+      "same": 2
+    },
+    "Nike": {
+      "resolved_to_not_humor": 3,
+      "humor_to_not_humor": 2
+    },
+    "Nvidia": {
+      "resolved_to_not_humor": 3,
+      "resolved_to_humor": 1,
+      "humor_to_not_humor": 4,
+      "humor_to_ambiguous": 1,
+      "same": 3,
+      "not_humor_to_humor": 1
+    },
+    "Oracle": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 2,
+      "same": 5,
+      "humor_to_not_humor": 2,
+      "humor_to_ambiguous": 2,
+      "not_humor_to_humor": 2
+    },
+    "PepsiCo": {
+      "resolved_to_not_humor": 5,
+      "resolved_to_humor": 3,
+      "same": 13,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 2
+    },
+    "Pfizer": {
+      "resolved_to_humor": 2,
+      "same": 3,
+      "humor_to_not_humor": 1,
+      "type_change_aggressive_to_affiliative": 1
+    },
+    "Phillips 66": {
+      "resolved_to_humor": 2,
+      "resolved_to_not_humor": 3,
+      "same": 8,
+      "humor_to_not_humor": 2,
+      "not_humor_to_humor": 2
+    },
+    "Procter & Gamble": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 1
+    },
+    "Progressive": {
+      "resolved_to_not_humor": 1,
+      "same": 3,
+      "not_humor_to_humor": 2
+    },
+    "Prudential Financial": {
+      "resolved_to_not_humor": 2,
+      "resolved_to_humor": 2,
+      "same": 9,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "type_change_affiliative_to_aggressive": 1
+    },
+    "Publix Super Markets": {
+      "resolved_to_not_humor": 2,
+      "resolved_to_humor": 2,
+      "not_humor_to_humor": 2
+    },
+    "RTX": {
+      "resolved_to_not_humor": 3,
+      "resolved_to_humor": 2,
+      "same": 4,
+      "humor_to_not_humor": 1
+    },
+    "StoneX Group": {
+      "resolved_to_humor": 3,
+      "resolved_to_not_humor": 3,
+      "same": 11,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "Sysco": {
+      "resolved_to_humor": 5,
+      "resolved_to_not_humor": 4,
+      "same": 5,
+      "type_change_affiliative_to_aggressive": 1,
+      "humor_to_not_humor": 2,
+      "humor_to_ambiguous": 1
+    },
+    "TD Synnex": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 1,
+      "type_change_self_enhancing_to_affiliative": 1,
+      "same": 3
+    },
+    "TIAA": {
+      "resolved_to_humor": 1,
+      "humor_to_not_humor": 1,
+      "same": 3
+    },
+    "TJX": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 1,
+      "not_humor_to_humor": 1,
+      "same": 1
+    },
+    "Target": {
+      "type_change_affiliative_to_aggressive": 1,
+      "humor_to_ambiguous": 1
+    },
+    "Tesla": {
+      "resolved_to_not_humor": 1,
+      "resolved_to_humor": 1,
+      "same": 3,
+      "humor_to_not_humor": 3,
+      "type_change_aggressive_to_self_enhancing": 1,
+      "humor_to_ambiguous": 3
+    },
+    "Travelers": {
+      "resolved_to_humor": 2,
+      "resolved_to_not_humor": 1,
+      "same": 8,
+      "humor_to_not_humor": 3,
+      "not_humor_to_humor": 1
+    },
+    "Tyson Foods": {
+      "resolved_to_not_humor": 2,
+      "same": 5,
+      "type_change_affiliative_to_aggressive": 1,
+      "humor_to_not_humor": 2,
+      "humor_to_ambiguous": 1,
+      "not_humor_to_humor": 3
+    },
+    "USAA": {
+      "resolved_to_not_humor": 3,
+      "resolved_to_humor": 2,
+      "same": 11,
+      "humor_to_not_humor": 4
+    },
+    "Uber Technologies": {
+      "resolved_to_humor": 4,
+      "resolved_to_not_humor": 3,
+      "same": 9,
+      "humor_to_not_humor": 3,
+      "not_humor_to_humor": 1
+    },
+    "United Airlines Holdings": {
+      "resolved_to_humor": 1,
+      "resolved_to_not_humor": 1,
+      "same": 2,
+      "not_humor_to_humor": 1
+    },
+    "UnitedHealth Group": {
+      "same": 2
+    },
+    "Valero Energy": {
+      "resolved_to_humor": 2,
+      "same": 1
+    },
+    "Verizon Communications": {
+      "resolved_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    },
+    "Walmart": {
+      "resolved_to_not_humor": 2,
+      "resolved_to_humor": 2,
+      "same": 8
+    },
+    "Walt Disney": {
+      "resolved_to_not_humor": 4,
+      "resolved_to_humor": 2,
+      "type_change_affiliative_to_self_enhancing": 1,
+      "humor_to_not_humor": 4,
+      "humor_to_ambiguous": 1
+    },
+    "Wells Fargo": {
+      "same": 2
+    },
+    "Wendy's": {
+      "resolved_to_not_humor": 2,
+      "same": 17,
+      "humor_to_not_humor": 1,
+      "not_humor_to_humor": 1
+    }
+  }
+}
