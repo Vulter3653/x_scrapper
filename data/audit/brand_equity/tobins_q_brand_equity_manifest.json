@@ -1,0 +1,43 @@
+{
+  "created_at": "2026-06-14T17:27:04Z",
+  "tobins_q_formula": "(market_cap + total_liabilities) / total_assets",
+  "market_cap_formula": "stock_price_fiscal_year_end × shares_outstanding",
+  "tobins_q_theoretical_basis": "Simon & Sullivan (1993) financial-market-based brand equity approach",
+  "car_note": "CAR is NOT used as a substitute for Tobin's Q. CAR is a short-window capital market response proxy (event-study). Tobin's Q is the primary long-run level-based DV.",
+  "source_files": {
+    "korea_uni_event_study": "data/external/korea_uni/ai_10k_event_study_analysis_dataset.csv",
+    "financial_panel": "not_provided"
+  },
+  "firm_year_rows": 273,
+  "unique_companies": 92,
+  "companies_with_ticker": 92,
+  "companies_with_cik": 92,
+  "rows_with_total_assets": 0,
+  "rows_with_total_liabilities": 0,
+  "rows_with_market_cap": 0,
+  "rows_with_tobins_q": 0,
+  "missing_total_assets_count": 273,
+  "missing_total_liabilities_count": 273,
+  "missing_market_cap_count": 273,
+  "tobins_q_available": false,
+  "regression_ready_with_tobins_q": false,
+  "reason_tobins_q_not_ready": "total_assets missing for all rows (financial statement panel not available); total_liabilities missing for all rows; market_cap missing for all rows (stock price × shares not available)",
+  "fiscal_years_in_panel": [
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "external_data_downloaded": false,
+  "sec_collection_run": false,
+  "market_data_collection_run": false,
+  "tobins_q_imputed": false,
+  "car_used_as_tobins_q": false,
+  "raw_data_modified": false,
+  "humor_outputs_modified": false,
+  "next_steps_to_enable_tobins_q": [
+    "Obtain total_assets and total_liabilities from SEC EDGAR XBRL companyfacts API (concept: us-gaap/Assets and us-gaap/Liabilities, form: 10-K) — store at data/external/financial_panel/sec_xbrl_financial_panel.csv",
+    "Obtain stock_price_fiscal_year_end and shares_outstanding from CRSP or Yahoo Finance — store at data/external/financial_panel/market_price_panel.csv",
+    "Supply either file as --financial-panel to this script for automatic Tobin's Q computation",
+    "Alternatively, use Compustat Fundamentals Annual: at (total assets), lt (total liabilities), mkvalt (market cap) by GVKEY/fiscal_year"
+  ]
+}

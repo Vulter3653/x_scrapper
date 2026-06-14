@@ -1,0 +1,167 @@
+name: Build Tobins Q Brand Equity Panel
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit panel outputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      korea_uni_event_dataset_path:
+        description: "korea_uni event study dataset (company/ticker/CIK/fiscal_year scaffold source)"
+        required: true
+        default: "data/external/korea_uni/ai_10k_event_study_analysis_dataset.csv"
+      financial_panel_path:
+        description: "Optional: external financial panel CSV (total_assets, total_liabilities, market_cap keyed by ticker/cik × fiscal_year). Leave blank if not yet available."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-tobins-q-brand-equity-panel
+  cancel-in-progress: false
+
+jobs:
+  build-tobins-q-panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify scaffold source exists
+        run: |
+          set -euo pipefail
+          KOREA_EVENT='${{ inputs.korea_uni_event_dataset_path }}'
+          if [ ! -f "${KOREA_EVENT}" ]; then
+            echo "::error title=Missing scaffold source::${KOREA_EVENT} not found."
+            echo "Copy ai_10k_event_study_analysis_dataset.csv from korea_uni repo to data/external/korea_uni/ and commit it first."
+            exit 1
+          fi
+          echo "OK: ${KOREA_EVENT} ($(wc -l < "${KOREA_EVENT}") lines)"
+
+      - name: Check optional financial panel
+        run: |
+          set -euo pipefail
+          FIN_PANEL='${{ inputs.financial_panel_path }}'
+          if [ -z "${FIN_PANEL}" ]; then
+            echo "::warning title=No financial panel provided::--financial-panel not supplied. All financial components (total_assets, total_liabilities, market_cap) will be marked missing. Tobin's Q will not be computable. This is expected for the scaffold stage."
+          elif [ -f "${FIN_PANEL}" ]; then
+            echo "Financial panel found: ${FIN_PANEL} ($(wc -l < "${FIN_PANEL}") lines)"
+          else
+            echo "::error title=Financial panel not found::${FIN_PANEL} specified but not found on disk."
+            exit 1
+          fi
+
+      - name: Build Tobin's Q panel scaffold
+        id: build
+        run: |
+          set -euo pipefail
+          FIN_PANEL='${{ inputs.financial_panel_path }}'
+          FIN_ARG=""
+          if [ -n "${FIN_PANEL}" ] && [ -f "${FIN_PANEL}" ]; then
+            FIN_ARG="--financial-panel ${FIN_PANEL}"
+          fi
+          python scripts/build_tobins_q_brand_equity_panel.py \
+            --korea-event '${{ inputs.korea_uni_event_dataset_path }}' \
+            ${FIN_ARG} \
+            --out-panel    data/derived/brand_equity/tobins_q_brand_equity_panel.csv \
+            --out-missing  data/derived/brand_equity/tobins_q_missing_components.csv \
+            --out-manifest data/audit/brand_equity/tobins_q_brand_equity_manifest.json
+
+      - name: Verify outputs and manifest constraints
+        run: |
+          set -euo pipefail
+          for f in \
+            data/derived/brand_equity/tobins_q_brand_equity_panel.csv \
+            data/derived/brand_equity/tobins_q_missing_components.csv \
+            data/audit/brand_equity/tobins_q_brand_equity_manifest.json; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing output::$f not found after script run"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+          python3 -c "
+          import json, sys
+          m = json.load(open('data/audit/brand_equity/tobins_q_brand_equity_manifest.json'))
+
+          # Constraint flags — must ALL be false
+          forbidden = {
+              'external_data_downloaded',
+              'sec_collection_run',
+              'market_data_collection_run',
+              'tobins_q_imputed',
+              'car_used_as_tobins_q',
+              'raw_data_modified',
+              'humor_outputs_modified',
+          }
+          violations = [(k, m.get(k)) for k in forbidden if m.get(k)]
+          if violations:
+              print('CONSTRAINT VIOLATION:', violations, file=sys.stderr)
+              sys.exit(1)
+
+          print('Constraints OK.')
+          print(f'firm_year_rows:                  {m.get(\"firm_year_rows\")}')
+          print(f'unique_companies:                {m.get(\"unique_companies\")}')
+          print(f'companies_with_ticker:           {m.get(\"companies_with_ticker\")}')
+          print(f'companies_with_cik:              {m.get(\"companies_with_cik\")}')
+          print(f'rows_with_total_assets:          {m.get(\"rows_with_total_assets\")}')
+          print(f'rows_with_total_liabilities:     {m.get(\"rows_with_total_liabilities\")}')
+          print(f'rows_with_market_cap:            {m.get(\"rows_with_market_cap\")}')
+          print(f'rows_with_tobins_q:              {m.get(\"rows_with_tobins_q\")}')
+          print(f'tobins_q_available:              {m.get(\"tobins_q_available\")}')
+          print(f'regression_ready_with_tobins_q:  {m.get(\"regression_ready_with_tobins_q\")}')
+          if not m.get('regression_ready_with_tobins_q'):
+              print(f'reason: {m.get(\"reason_tobins_q_not_ready\")}')
+          fys = m.get('fiscal_years_in_panel', [])
+          print(f'fiscal_years_in_panel:           {fys}')
+          "
+
+      - name: Upload Tobin's Q panel artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tobins-q-brand-equity-panel
+          path: |
+            data/derived/brand_equity/tobins_q_brand_equity_panel.csv
+            data/derived/brand_equity/tobins_q_missing_components.csv
+            data/audit/brand_equity/tobins_q_brand_equity_manifest.json
+          retention-days: 30
+
+      - name: Commit Tobin's Q panel outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/brand_equity/tobins_q_brand_equity_panel.csv \
+            data/derived/brand_equity/tobins_q_missing_components.csv \
+            data/audit/brand_equity/tobins_q_brand_equity_manifest.json \
+            docs/tobins_q_brand_equity_dv_construction_plan.md \
+            config/tobins_q_brand_equity_panel_schema.json
+          if git diff --cached --quiet; then
+            echo "No Tobin's Q panel changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: tobins q brand equity firm-year panel scaffold'
+          git push origin HEAD:main

@@ -1,0 +1,274 @@
+﻿company_name,ticker,cik,fiscal_year,filing_date,total_assets,total_liabilities,market_cap,shares_outstanding,stock_price_fiscal_year_end,tobins_q,tobins_q_formula_used,data_available_flag,missing_component_reason
+Amazon,AMZN,1018724,2023,2024-02-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Amazon,AMZN,1018724,2024,2025-02-07,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Amazon,AMZN,1018724,2025,2026-02-06,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Walmart,WMT,104169,2023,2023-03-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Walmart,WMT,104169,2024,2024-03-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Walmart,WMT,104169,2025,2025-03-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+UnitedHealth Group,UNH,731766,2023,2024-02-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+UnitedHealth Group,UNH,731766,2024,2025-02-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+UnitedHealth Group,UNH,731766,2025,2026-03-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Apple,AAPL,320193,2023,2023-11-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Apple,AAPL,320193,2024,2024-11-01,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Apple,AAPL,320193,2025,2025-10-31,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Alphabet,GOOGL,1652044,2023,2024-01-31,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Alphabet,GOOGL,1652044,2024,2025-02-05,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Alphabet,GOOGL,1652044,2025,2026-02-05,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+CVS Health,CVS,64803,2023,2024-02-07,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+CVS Health,CVS,64803,2024,2025-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+CVS Health,CVS,64803,2025,2026-02-10,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Berkshire Hathaway,BRK-B,1067983,2023,2024-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Berkshire Hathaway,BRK-B,1067983,2024,2025-02-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Berkshire Hathaway,BRK-B,1067983,2025,2026-03-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+McKesson,MCK,927653,2023,2023-05-09,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+McKesson,MCK,927653,2024,2024-05-08,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+McKesson,MCK,927653,2025,2025-05-09,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Exxon Mobil,XOM,34088,2023,2024-02-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Exxon Mobil,XOM,34088,2024,2025-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Exxon Mobil,XOM,34088,2025,2026-02-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cencora,COR,1140859,2023,2023-11-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cencora,COR,1140859,2024,2024-11-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cencora,COR,1140859,2025,2025-11-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Microsoft,MSFT,789019,2023,2023-07-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Microsoft,MSFT,789019,2024,2024-07-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Microsoft,MSFT,789019,2025,2025-07-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+JPMorgan Chase,JPM,19617,2023,2024-02-16,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+JPMorgan Chase,JPM,19617,2024,2025-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+JPMorgan Chase,JPM,19617,2025,2026-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Costco Wholesale,COST,909832,2023,2023-10-11,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Costco Wholesale,COST,909832,2024,2024-10-09,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Costco Wholesale,COST,909832,2025,2025-10-08,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cigna Group,CI,1739940,2023,2024-02-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cigna Group,CI,1739940,2024,2025-02-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cigna Group,CI,1739940,2025,2026-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cardinal Health,CAH,721371,2023,2023-08-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cardinal Health,CAH,721371,2024,2024-08-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cardinal Health,CAH,721371,2025,2025-08-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Nvidia,NVDA,1045810,2023,2023-02-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Nvidia,NVDA,1045810,2024,2024-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Nvidia,NVDA,1045810,2025,2025-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Meta Platforms,META,1326801,2023,2024-02-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Meta Platforms,META,1326801,2024,2025-01-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Meta Platforms,META,1326801,2025,2026-01-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Elevance Health,ELV,1156039,2023,2024-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Elevance Health,ELV,1156039,2024,2025-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Elevance Health,ELV,1156039,2025,2026-02-06,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Centene,CNC,1071739,2023,2024-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Centene,CNC,1071739,2024,2025-02-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Centene,CNC,1071739,2025,2026-02-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Bank of America,BAC,70858,2023,2024-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Bank of America,BAC,70858,2024,2025-02-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Bank of America,BAC,70858,2025,2026-02-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Chevron,CVX,93410,2023,2024-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Chevron,CVX,93410,2024,2025-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Chevron,CVX,93410,2025,2026-02-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Ford Motor,F,37996,2023,2024-02-07,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Ford Motor,F,37996,2024,2025-02-06,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Ford Motor,F,37996,2025,2026-02-11,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+General Motors,GM,1467858,2023,2024-01-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+General Motors,GM,1467858,2024,2025-01-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+General Motors,GM,1467858,2025,2026-01-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Citigroup,C,831001,2023,2024-02-23,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Citigroup,C,831001,2024,2025-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Citigroup,C,831001,2025,2026-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Home Depot,HD,354950,2023,2023-03-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Home Depot,HD,354950,2024,2024-03-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Home Depot,HD,354950,2025,2025-03-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Fannie Mae,FNMA,310522,2023,2024-02-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Fannie Mae,FNMA,310522,2024,2025-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Fannie Mae,FNMA,310522,2025,2026-02-11,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Kroger,KR,56873,2023,2023-03-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Kroger,KR,56873,2024,2024-04-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Kroger,KR,56873,2025,2025-04-01,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Verizon Communications,VZ,732712,2023,2024-02-09,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Verizon Communications,VZ,732712,2024,2025-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Verizon Communications,VZ,732712,2025,2026-02-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Phillips 66,PSX,1534701,2023,2024-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Phillips 66,PSX,1534701,2024,2025-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Phillips 66,PSX,1534701,2025,2026-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Marathon Petroleum,MPC,1510295,2023,2024-02-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Marathon Petroleum,MPC,1510295,2024,2025-02-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Marathon Petroleum,MPC,1510295,2025,2026-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+StoneX Group,SNEX,913760,2023,2023-11-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+StoneX Group,SNEX,913760,2024,2024-11-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+StoneX Group,SNEX,913760,2025,2025-11-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Freddie Mac,FMCC,1026214,2023,2024-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Freddie Mac,FMCC,1026214,2024,2025-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Freddie Mac,FMCC,1026214,2025,2026-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Humana,HUM,49071,2023,2024-02-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Humana,HUM,49071,2024,2025-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Humana,HUM,49071,2025,2026-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+AT&T,T,732717,2023,2024-02-23,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+AT&T,T,732717,2024,2025-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+AT&T,T,732717,2025,2026-02-09,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Goldman Sachs Group,GS,886982,2023,2024-02-23,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Goldman Sachs Group,GS,886982,2024,2025-02-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Goldman Sachs Group,GS,886982,2025,2026-02-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Comcast,CMCSA,1166691,2023,2024-01-31,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Comcast,CMCSA,1166691,2024,2025-01-31,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Comcast,CMCSA,1166691,2025,2026-02-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Wells Fargo,WFC,72971,2023,2024-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Wells Fargo,WFC,72971,2024,2025-02-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Wells Fargo,WFC,72971,2025,2026-02-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Morgan Stanley,MS,895421,2023,2024-02-22,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Morgan Stanley,MS,895421,2024,2025-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Morgan Stanley,MS,895421,2025,2026-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Valero Energy,VLO,1035002,2023,2024-02-22,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Valero Energy,VLO,1035002,2024,2025-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Valero Energy,VLO,1035002,2025,2026-02-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Dell Technologies,DELL,1571996,2023,2023-03-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Dell Technologies,DELL,1571996,2024,2024-03-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Dell Technologies,DELL,1571996,2025,2025-03-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Target,TGT,27419,2023,2023-03-08,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Target,TGT,27419,2024,2024-03-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Target,TGT,27419,2025,2025-03-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Tesla,TSLA,1318605,2023,2024-01-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Tesla,TSLA,1318605,2024,2025-01-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Tesla,TSLA,1318605,2025,2026-01-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Walt Disney,DIS,1744489,2023,2023-11-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Walt Disney,DIS,1744489,2024,2024-11-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Walt Disney,DIS,1744489,2025,2025-11-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Johnson & Johnson,JNJ,200406,2023,2024-02-16,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Johnson & Johnson,JNJ,200406,2024,2025-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Johnson & Johnson,JNJ,200406,2025,2026-02-11,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+PepsiCo,PEP,77476,2023,2024-02-09,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+PepsiCo,PEP,77476,2024,2025-02-04,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+PepsiCo,PEP,77476,2025,2026-02-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Boeing,BA,12927,2023,2024-01-31,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Boeing,BA,12927,2024,2025-02-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Boeing,BA,12927,2025,2026-01-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+UPS,UPS,1090727,2023,2024-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+UPS,UPS,1090727,2024,2025-02-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+UPS,UPS,1090727,2025,2026-02-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+RTX,RTX,101829,2023,2024-02-05,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+RTX,RTX,101829,2024,2025-02-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+RTX,RTX,101829,2025,2026-02-06,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+FedEx,FDX,1048911,2023,2023-07-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+FedEx,FDX,1048911,2024,2024-07-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+FedEx,FDX,1048911,2025,2025-07-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Progressive,PGR,80661,2023,2024-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Progressive,PGR,80661,2024,2025-03-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Progressive,PGR,80661,2025,2026-03-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Lowe's,LOW,60667,2023,2023-03-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Lowe's,LOW,60667,2024,2024-03-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Lowe's,LOW,60667,2025,2025-03-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Energy Transfer,ET,1276187,2023,2024-02-16,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Energy Transfer,ET,1276187,2024,2025-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Energy Transfer,ET,1276187,2025,2026-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Procter & Gamble,PG,80424,2023,2023-08-04,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Procter & Gamble,PG,80424,2024,2024-08-05,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Procter & Gamble,PG,80424,2025,2025-08-04,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Sysco,SYY,96021,2023,2023-08-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Sysco,SYY,96021,2024,2024-08-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Sysco,SYY,96021,2025,2025-08-22,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+American Express,AXP,4962,2023,2024-02-09,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+American Express,AXP,4962,2024,2025-02-07,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+American Express,AXP,4962,2025,2026-02-06,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Albertsons,ACI,1646972,2023,2023-04-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Albertsons,ACI,1646972,2024,2024-04-22,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Albertsons,ACI,1646972,2025,2025-04-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Archer Daniels Midland,ADM,7084,2023,2024-03-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Archer Daniels Midland,ADM,7084,2024,2025-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Archer Daniels Midland,ADM,7084,2025,2026-02-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+MetLife,MET,1099219,2023,2024-02-16,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+MetLife,MET,1099219,2024,2025-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+MetLife,MET,1099219,2025,2026-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+HCA Healthcare,HCA,860730,2023,2024-02-16,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+HCA Healthcare,HCA,860730,2024,2025-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+HCA Healthcare,HCA,860730,2025,2026-02-10,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Lockheed Martin,LMT,936468,2023,2024-01-23,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Lockheed Martin,LMT,936468,2024,2025-01-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Lockheed Martin,LMT,936468,2025,2026-01-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Capital One Financial,COF,927628,2023,2024-02-23,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Capital One Financial,COF,927628,2024,2025-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Capital One Financial,COF,927628,2025,2026-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Allstate,ALL,899051,2023,2024-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Allstate,ALL,899051,2024,2025-02-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Allstate,ALL,899051,2025,2026-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Caterpillar,CAT,18230,2023,2024-02-16,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Caterpillar,CAT,18230,2024,2025-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Caterpillar,CAT,18230,2025,2026-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+IBM,IBM,51143,2023,2024-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+IBM,IBM,51143,2024,2025-02-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+IBM,IBM,51143,2025,2026-02-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Eli Lilly,LLY,59478,2023,2024-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Eli Lilly,LLY,59478,2024,2025-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Eli Lilly,LLY,59478,2025,2026-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Merck,MRK,310158,2023,2024-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Merck,MRK,310158,2024,2025-02-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Merck,MRK,310158,2025,2026-02-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Broadcom,AVGO,1730168,2023,2023-12-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Broadcom,AVGO,1730168,2024,2024-12-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Broadcom,AVGO,1730168,2025,2025-12-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Delta Air Lines,DAL,27904,2023,2024-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Delta Air Lines,DAL,27904,2024,2025-02-11,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Delta Air Lines,DAL,27904,2025,2026-02-11,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Pfizer,PFE,78003,2023,2024-02-22,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Pfizer,PFE,78003,2024,2025-02-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Pfizer,PFE,78003,2025,2026-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+TD Synnex,SNX,1177394,2023,2024-01-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+TD Synnex,SNX,1177394,2024,2025-01-24,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+TD Synnex,SNX,1177394,2025,2026-01-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+ConocoPhillips,COP,1163165,2023,2024-02-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+ConocoPhillips,COP,1163165,2024,2025-02-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+ConocoPhillips,COP,1163165,2025,2026-02-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Galaxy Digital,GLXY,1859392,2025,2026-02-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+AbbVie,ABBV,1551152,2023,2024-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+AbbVie,ABBV,1551152,2024,2025-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+AbbVie,ABBV,1551152,2025,2026-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Prudential Financial,PRU,1137774,2023,2024-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Prudential Financial,PRU,1137774,2024,2025-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Prudential Financial,PRU,1137774,2025,2026-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+TJX,TJX,109198,2023,2023-03-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+TJX,TJX,109198,2024,2024-04-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+TJX,TJX,109198,2025,2025-04-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Performance Food Group,PFGC,1618673,2023,2023-08-16,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Performance Food Group,PFGC,1618673,2024,2024-08-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Performance Food Group,PFGC,1618673,2025,2025-08-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+United Airlines Holdings,UAL,100517,2023,2024-02-29,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+United Airlines Holdings,UAL,100517,2024,2025-02-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+United Airlines Holdings,UAL,100517,2025,2026-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Oracle,ORCL,1341439,2023,2023-06-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Oracle,ORCL,1341439,2024,2024-06-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Oracle,ORCL,1341439,2025,2025-06-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cisco Systems,CSCO,858877,2023,2023-09-07,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cisco Systems,CSCO,858877,2024,2024-09-05,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Cisco Systems,CSCO,858877,2025,2025-09-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+HP,HPQ,47217,2023,2023-12-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+HP,HPQ,47217,2024,2024-12-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+HP,HPQ,47217,2025,2025-12-10,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Charter Communications,CHTR,1091667,2023,2024-02-02,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Charter Communications,CHTR,1091667,2024,2025-01-31,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Charter Communications,CHTR,1091667,2025,2026-01-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+American Airlines Group,AAL,6201,2023,2024-02-21,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+American Airlines Group,AAL,6201,2024,2025-02-19,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+American Airlines Group,AAL,6201,2025,2026-02-18,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Tyson Foods,TSN,100493,2023,2023-11-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Tyson Foods,TSN,100493,2024,2024-11-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Tyson Foods,TSN,100493,2025,2025-11-10,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Intel,INTC,50863,2023,2024-01-26,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Intel,INTC,50863,2024,2025-01-31,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Intel,INTC,50863,2025,2026-01-23,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Enterprise Products Partners,EPD,1061219,2023,2024-02-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Enterprise Products Partners,EPD,1061219,2024,2025-02-28,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Enterprise Products Partners,EPD,1061219,2025,2026-02-27,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Ingram Micro Holding,INGM,1897762,2024,2025-03-05,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Ingram Micro Holding,INGM,1897762,2025,2026-03-03,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+General Dynamics,GD,40533,2023,2024-02-08,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+General Dynamics,GD,40533,2024,2025-02-07,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+General Dynamics,GD,40533,2025,2026-01-30,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Uber Technologies,UBER,1543151,2023,2024-02-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Uber Technologies,UBER,1543151,2024,2025-02-14,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Uber Technologies,UBER,1543151,2025,2026-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Travelers,TRV,86312,2023,2024-02-15,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Travelers,TRV,86312,2024,2025-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Travelers,TRV,86312,2025,2026-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Bristol-Myers Squibb,BMY,14272,2023,2024-02-13,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Bristol-Myers Squibb,BMY,14272,2024,2025-02-12,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Bristol-Myers Squibb,BMY,14272,2025,2026-02-11,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Coca-Cola,KO,21344,2023,2024-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Coca-Cola,KO,21344,2024,2025-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Coca-Cola,KO,21344,2025,2026-02-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Nike,NKE,320187,2023,2023-07-20,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Nike,NKE,320187,2024,2024-07-25,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding
+Nike,NKE,320187,2025,2025-07-17,,,,,,,,false,total_assets; total_liabilities; market_cap; stock_price_fiscal_year_end; shares_outstanding

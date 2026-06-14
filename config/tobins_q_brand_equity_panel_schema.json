@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "description": "Column and constraint definitions for the Tobin's Q Brand Equity firm-year panel scaffold.",
+  "tobins_q_theoretical_basis": "Simon & Sullivan (1993) financial-market-based brand equity approach",
+  "tobins_q_formula": "(market_cap + total_liabilities) / total_assets",
+  "market_cap_formula": "stock_price_fiscal_year_end × shares_outstanding",
+  "formula_variant": "Chung & Pruitt (1994) simplified Tobin's Q approximation",
+  "car_role_note": "CAR is NOT a substitute for Tobin's Q. CAR is a short-window event-study market reaction proxy. Tobin's Q is the primary long-run level-based Brand Equity DV.",
+
+  "outputs": {
+    "panel_csv": {
+      "path": "data/derived/brand_equity/tobins_q_brand_equity_panel.csv",
+      "description": "Firm-year panel with Tobin's Q computation status. One row per (company_name, fiscal_year).",
+      "unique_key_columns": ["ticker", "fiscal_year"],
+      "columns": [
+        {"name": "company_name",               "type": "string",  "description": "Company name from korea_uni event study"},
+        {"name": "ticker",                      "type": "string",  "description": "Stock ticker symbol (upper-case)"},
+        {"name": "cik",                         "type": "string",  "description": "SEC Central Index Key (leading zeros stripped)"},
+        {"name": "fiscal_year",                 "type": "integer", "description": "Fiscal year (e.g., 2023, 2024, 2025)"},
+        {"name": "filing_date",                 "type": "date",    "description": "10-K filing date (YYYY-MM-DD) from korea_uni"},
+        {"name": "total_assets",                "type": "float",   "description": "Total assets from financial statement panel (book value). Empty if not available."},
+        {"name": "total_liabilities",           "type": "float",   "description": "Total liabilities from financial statement panel (book value). Empty if not available."},
+        {"name": "market_cap",                  "type": "float",   "description": "Market capitalization at fiscal year-end. Derived as stock_price_fiscal_year_end × shares_outstanding or sourced directly. Empty if not available."},
+        {"name": "shares_outstanding",          "type": "float",   "description": "Shares outstanding at fiscal year-end. Empty if not available."},
+        {"name": "stock_price_fiscal_year_end", "type": "float",   "description": "Closing stock price at fiscal year-end date. Empty if not available."},
+        {"name": "tobins_q",                    "type": "float",   "description": "Tobin's Q = (market_cap + total_liabilities) / total_assets. Empty if any component is missing."},
+        {"name": "tobins_q_formula_used",       "type": "string",  "description": "Formula string used to compute Tobin's Q. Empty if computation was not possible."},
+        {"name": "data_available_flag",         "type": "boolean", "description": "true if Tobin's Q was computed for this row; false otherwise."},
+        {"name": "missing_component_reason",    "type": "string",  "description": "Semicolon-delimited list of financial components that are missing and prevented Tobin's Q computation."}
+      ]
+    },
+
+    "missing_components_csv": {
+      "path": "data/derived/brand_equity/tobins_q_missing_components.csv",
+      "description": "Aggregate report of which financial components are missing and how to resolve them.",
+      "columns": [
+        {"name": "component_name",  "type": "string",  "description": "Name of the financial component (e.g., total_assets)"},
+        {"name": "required_for",    "type": "string",  "description": "Role in Tobin's Q formula (numerator, denominator, intermediate)"},
+        {"name": "source_type",     "type": "string",  "description": "Category of external data source needed"},
+        {"name": "rows_missing",    "type": "integer", "description": "Number of panel rows where this component is missing"},
+        {"name": "status",          "type": "string",  "description": "not_available_in_repo | available | partial"},
+        {"name": "resolution_path", "type": "string",  "description": "Recommended data source and join key to resolve this gap"}
+      ]
+    },
+
+    "manifest_json": {
+      "path": "data/audit/brand_equity/tobins_q_brand_equity_manifest.json",
+      "description": "Run manifest with counts, coverage stats, and constraint flags.",
+      "required_fields": [
+        "created_at",
+        "tobins_q_formula",
+        "market_cap_formula",
+        "tobins_q_theoretical_basis",
+        "car_note",
+        "source_files",
+        "firm_year_rows",
+        "unique_companies",
+        "companies_with_ticker",
+        "companies_with_cik",
+        "rows_with_total_assets",
+        "rows_with_total_liabilities",
+        "rows_with_market_cap",
+        "rows_with_tobins_q",
+        "missing_total_assets_count",
+        "missing_total_liabilities_count",
+        "missing_market_cap_count",
+        "tobins_q_available",
+        "regression_ready_with_tobins_q",
+        "reason_tobins_q_not_ready",
+        "fiscal_years_in_panel",
+        "external_data_downloaded",
+        "sec_collection_run",
+        "market_data_collection_run",
+        "tobins_q_imputed",
+        "car_used_as_tobins_q",
+        "raw_data_modified",
+        "humor_outputs_modified",
+        "next_steps_to_enable_tobins_q"
+      ],
+      "constraint_flags": {
+        "description": "These fields must ALL be false in every valid run.",
+        "flags": {
+          "external_data_downloaded":   "No external data was downloaded during script execution",
+          "sec_collection_run":         "No SEC EDGAR collection or API call was made",
+          "market_data_collection_run": "No market price data was collected or fetched",
+          "tobins_q_imputed":           "No Tobin's Q value was estimated, imputed, or approximated from proxies",
+          "car_used_as_tobins_q":       "CAR was not used as or substituted for Tobin's Q",
+          "raw_data_modified":          "No raw/external data files were modified",
+          "humor_outputs_modified":     "No humor analysis outputs were modified"
+        }
+      }
+    }
+  },
+
+  "scaffold_data_sources": {
+    "identifier_source": {
+      "file": "data/external/korea_uni/ai_10k_event_study_analysis_dataset.csv",
+      "provides": ["company_name", "ticker", "cik", "fiscal_year", "filing_date"],
+      "does_not_provide": ["total_assets", "total_liabilities", "market_cap", "shares_outstanding", "stock_price_fiscal_year_end"]
+    },
+    "financial_panel_source": {
+      "file": "not yet available",
+      "status": "MISSING",
+      "note": "Must be supplied via --financial-panel argument. Not included in repo."
+    }
+  },
+
+  "financial_component_sources": {
+    "total_assets": {
+      "sec_xbrl_concept": "us-gaap/Assets",
+      "compustat_field": "at (Fundamentals Annual)",
+      "join_key": "(ticker or cik) × fiscal_year",
+      "form": "10-K"
+    },
+    "total_liabilities": {
+      "sec_xbrl_concept": "us-gaap/Liabilities",
+      "compustat_field": "lt (Fundamentals Annual)",
+      "join_key": "(ticker or cik) × fiscal_year",
+      "form": "10-K"
+    },
+    "shares_outstanding": {
+      "sec_xbrl_concept": "us-gaap/CommonStockSharesOutstanding",
+      "compustat_field": "csho (Fundamentals Annual)",
+      "crsp_field": "shrout (CRSP daily/monthly)",
+      "join_key": "(ticker or cik) × fiscal_year_end_date"
+    },
+    "stock_price_fiscal_year_end": {
+      "crsp_field": "prc (CRSP daily)",
+      "compustat_field": "prcc_f (CRSP-Compustat merged)",
+      "join_key": "(ticker or cik) × fiscal_year_end_date"
+    },
+    "market_cap": {
+      "derived_from": "stock_price_fiscal_year_end × shares_outstanding",
+      "compustat_direct": "mkvalt (Fundamentals Annual)",
+      "crsp_direct": "prc × shrout (CRSP daily at FY-end date)"
+    }
+  },
+
+  "forbidden_operations": [
+    "Imputing or estimating Tobin's Q when financial components are missing",
+    "Using CAR as a substitute for or equivalent to Tobin's Q",
+    "Using AbnormalVolume as a substitute for Tobin's Q",
+    "Treating CAR as direct consumer-based brand equity",
+    "Making causal claims from cross-sectional correlations",
+    "Downloading external financial data during script execution",
+    "Calling SEC EDGAR API or any external market data API",
+    "Modifying korea_uni source files",
+    "Modifying humor analysis outputs",
+    "Generating arbitrary Tobin's Q values"
+  ]
+}
