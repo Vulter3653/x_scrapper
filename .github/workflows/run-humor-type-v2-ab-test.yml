@@ -1,0 +1,218 @@
+name: Run Humor Type v2 A/B Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      sample_size_mode:
+        description: "Sampling mode: default_stratified uses built-in strata targets; manual overrides per-stratum counts"
+        required: true
+        default: "default_stratified"
+        type: choice
+        options:
+          - "default_stratified"
+          - "manual"
+      ambiguous_n:
+        description: "[manual mode only] Max rows for ambiguous_or_review stratum"
+        required: false
+        default: "300"
+      self_enhancing_n:
+        description: "[manual mode only] Max rows for self_enhancing stratum"
+        required: false
+        default: "150"
+      affiliative_n:
+        description: "[manual mode only] Max rows for affiliative stratum"
+        required: false
+        default: "150"
+      aggressive_n:
+        description: "[manual mode only] Max rows for aggressive stratum"
+        required: false
+        default: "100"
+      self_defeating_n:
+        description: "[manual mode only] Max rows for self_defeating stratum"
+        required: false
+        default: "100"
+      non_humor_n:
+        description: "[manual mode only] Max rows for non_humor stratum"
+        required: false
+        default: "200"
+      random_seed:
+        description: "Random seed for reproducible sampling"
+        required: true
+        default: "42"
+      master_path:
+        description: "Full-chain master CSV path"
+        required: true
+        default: "data/derived/humor/full_chain/humor_full_chain_master.csv"
+      commit_results:
+        description: "Commit and push A/B test outputs to main"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: humor-type-v2-ab-test
+  cancel-in-progress: false
+
+jobs:
+  build-sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      sample_rows: ${{ steps.build.outputs.sample_rows }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build stratified sample
+        id: build
+        run: |
+          set -euo pipefail
+          python scripts/build_humor_type_ab_test_sample.py \
+            --input '${{ inputs.master_path }}' \
+            --output data/derived/humor/evaluation/humor_type_ab_test_sample.csv \
+            --manifest data/audit/humor/evaluation/humor_type_ab_test_sample_manifest.json \
+            --seed '${{ inputs.random_seed }}'
+          count=$(python -c "
+          import csv
+          with open('data/derived/humor/evaluation/humor_type_ab_test_sample.csv', encoding='utf-8-sig') as f:
+              print(sum(1 for _ in csv.DictReader(f)))
+          ")
+          echo "sample_rows=$count" >> "$GITHUB_OUTPUT"
+          echo "Sample rows: $count"
+
+      - name: Upload sample artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-type-ab-sample
+          path: |
+            data/derived/humor/evaluation/humor_type_ab_test_sample.csv
+            data/audit/humor/evaluation/humor_type_ab_test_sample_manifest.json
+          retention-days: 7
+
+  classify-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: build-sample
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download sample artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-type-ab-sample
+          path: data/derived/humor/evaluation/
+
+      - name: Run v2 direct classifier on sample
+        run: |
+          set -euo pipefail
+          python scripts/classify_humor_type_v2_direct.py \
+            --input  data/derived/humor/evaluation/humor_type_ab_test_sample.csv \
+            --output data/derived/humor/evaluation/humor_type_v2_classified_sample.csv
+
+      - name: Upload v2 classification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-type-v2-classified
+          path: data/derived/humor/evaluation/humor_type_v2_classified_sample.csv
+          retention-days: 7
+
+  compare-v1-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: classify-v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download sample artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-type-ab-sample
+          path: data/derived/humor/evaluation/
+
+      - name: Download v2 classification artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: humor-type-v2-classified
+          path: data/derived/humor/evaluation/
+
+      - name: Run v1 vs v2 comparison
+        run: |
+          set -euo pipefail
+          python scripts/compare_humor_type_v1_v2.py \
+            --sample  data/derived/humor/evaluation/humor_type_ab_test_sample.csv \
+            --v2      data/derived/humor/evaluation/humor_type_v2_classified_sample.csv \
+            --comparison-output data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv \
+            --summary-output    data/audit/humor/evaluation/humor_type_v1_v2_summary.json
+
+      - name: Upload comparison artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: humor-type-v1-v2-comparison
+          path: |
+            data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv
+            data/audit/humor/evaluation/humor_type_v1_v2_summary.json
+          retention-days: 14
+
+      - name: Commit A/B test outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/humor/evaluation/humor_type_ab_test_sample.csv \
+            data/derived/humor/evaluation/humor_type_v2_classified_sample.csv \
+            data/audit/humor/evaluation/humor_type_ab_test_sample_manifest.json \
+            data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv \
+            data/audit/humor/evaluation/humor_type_v1_v2_summary.json
+          if git diff --cached --quiet; then
+            echo "No A/B test output changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: humor type v2 A/B test sample and comparison outputs'
+          git push origin HEAD:main

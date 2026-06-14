@@ -1,0 +1,221 @@
+{
+  "version": "2.0",
+  "description": "HSQ-derived humor type codebook for brand X (Twitter/X) posts. Operationalizes the Humor Styles Questionnaire at the text level for Fortune 500 corporate social media. Designed for direct 5-class classification without a prior humor-presence gate.",
+  "labels": {
+    "affiliative": {
+      "display": "Affiliative",
+      "definition": "Humor that creates shared amusement, builds social bonds, includes the audience, or uses warmth to bring people together. The brand positions itself as a friendly, relatable companion. No clear target of ridicule.",
+      "decision_questions": [
+        "Does the post invite the audience to laugh together rather than at someone?",
+        "Does the humor reference shared experiences, common feelings, or universal situations?",
+        "Does the post use inclusive language (we, everyone, y'all, us) in a warm, non-adversarial way?",
+        "Is the tone playful and welcoming without competitive or self-deprecating edge?"
+      ],
+      "positive_indicators": [
+        "Tag-a-friend prompts (tag someone who..., send this to...)",
+        "Shared experience framing (we all know, who else, raise your hand if)",
+        "Inclusive collectivism (the group chat, squad goals, for the team)",
+        "Warm holiday or occasion humor (happy [holiday], celebrating [moment])",
+        "Meme formats that invite participation (this is us, this energy)",
+        "Fan community humor (obsessed, can't stop, same tbh)",
+        "Playful seasonal or event callbacks without competitive framing",
+        "Relatable everyday struggle humor shared with the audience (Mondays, coffee)",
+        "Humor using mascots or brand characters in warm, friendly scenarios"
+      ],
+      "negative_indicators": [
+        "Explicit competitive or derogatory reference to others",
+        "Brand self-deprecation framed as embarrassment or failure",
+        "Sarcasm directed at an identifiable target",
+        "Pure promotional language without humor signals"
+      ],
+      "boundary_cases": [
+        {
+          "case": "Affiliative vs Self-enhancing",
+          "rule": "If humor is about a shared external situation (Monday, weather, universal feeling), classify as affiliative. If humor is about the brand's own positive traits or internal experience, classify as self_enhancing."
+        },
+        {
+          "case": "Affiliative vs not_humor",
+          "rule": "A warm, friendly promotional post with no humor device (wordplay, absurdity, incongruity, callback, meme format) is not_humor. At least one humor mechanism must be present."
+        }
+      ]
+    },
+    "self_enhancing": {
+      "display": "Self-enhancing",
+      "definition": "Humor that showcases the brand's own positive qualities, confidence, playful superiority, or optimistic outlook. The brand is the subject of its own humor, framing itself in a favorable, entertaining light without targeting others.",
+      "decision_questions": [
+        "Is the brand laughing about itself in a positive, confident way?",
+        "Does the humor highlight the brand's own traits, products, or achievements through playful framing?",
+        "Is the tone self-congratulatory, flexing, or meme-confident rather than self-deprecating?",
+        "Is the primary subject the brand itself rather than the audience or a third party?"
+      ],
+      "positive_indicators": [
+        "Confident brand voice with playful tone (no big deal, just dropped, casual)",
+        "Flex framing (understood the assignment, ate and left no crumbs, main character energy)",
+        "Product bragging through humor (this hits different, slaps, built different)",
+        "Playful POV framing from the brand's perspective (POV: you tried our product)",
+        "Meme-format self-promotion (nobody: / [brand]: literally delivering greatness)",
+        "Humor about brand history or milestones in a celebratory tone",
+        "Slay / killing it / on a roll framing without competitive reference",
+        "Brand-as-protagonist storytelling with comedic confidence"
+      ],
+      "negative_indicators": [
+        "Humor explicitly acknowledges failure, mistake, or embarrassment",
+        "Humor invites the audience to laugh together at an external situation (affiliative)",
+        "Sarcasm or ridicule directed at a competitor or third party (aggressive)",
+        "Factual announcement with no humor device"
+      ],
+      "boundary_cases": [
+        {
+          "case": "Self-enhancing vs Affiliative",
+          "rule": "Self-enhancing: brand is the subject. Affiliative: the audience or shared situation is the subject. If the brand is saying 'we are great / funny / confident', it's self_enhancing. If it's saying 'we're all like this together', it's affiliative."
+        },
+        {
+          "case": "Self-enhancing vs Aggressive",
+          "rule": "Self-enhancing stays within the brand's own domain. Aggressive explicitly positions the brand against a competitor or external target. Mentioning being 'the best' alone is self_enhancing; mentioning '[brand] while others fail' is aggressive."
+        }
+      ]
+    },
+    "aggressive": {
+      "display": "Aggressive",
+      "definition": "Humor that ridicules, mocks, teases, or takes competitive shots at an external target (competitors, critics, trends, public figures, or even consumers). The humor derives from superiority over or at the expense of someone else.",
+      "decision_questions": [
+        "Is there an identifiable target being ridiculed or put down?",
+        "Does the humor derive from making someone or something else look bad, foolish, or inferior?",
+        "Is there sarcasm, shade, or a competitive jab directed at a specific entity or group?",
+        "Does the post celebrate the brand by diminishing an external reference point?"
+      ],
+      "positive_indicators": [
+        "Competitive contrast ('unlike others', 'while the competition', 'the rest vs us')",
+        "Sarcasm directed at a target ('interesting choice', 'must be nice', 'sure jan')",
+        "Dunking on a public trend, behavior, or entity ('how about no', 'hard pass')",
+        "Responding to criticism with dismissive or mocking tone",
+        "Subtle shade toward a competitor category without naming them",
+        "Twitter-native aggression (ratio, cope, L take, the audacity)",
+        "Roast-style humor in response to another account or trend",
+        "Bold superiority claim framed as humor ('we just do it better')",
+        "Sarcastic empathy for a competitor's situation",
+        "Brand mascot or persona mocking a rival or situation"
+      ],
+      "negative_indicators": [
+        "No identifiable external target",
+        "Self-directed humor regardless of edge",
+        "Confident self-promotion without external comparison",
+        "Competitive claims stated factually rather than humorously"
+      ],
+      "boundary_cases": [
+        {
+          "case": "Aggressive vs Self-enhancing",
+          "rule": "If the humor elevates the brand by explicitly contrasting with or diminishing another entity, classify as aggressive. If the humor stays within the brand's own world, classify as self_enhancing."
+        },
+        {
+          "case": "Aggressive vs Affiliative",
+          "rule": "Engaging the audience in shared mockery of a third party (e.g., 'we all know that one person who...') is aggressive because there is a target, even if implied."
+        },
+        {
+          "case": "Mild competitive humor",
+          "rule": "Even subtle competitive framing ('we heard you love [category]... you're welcome') counts as aggressive if the implied target is a competitor or alternative choice."
+        }
+      ]
+    },
+    "self_defeating": {
+      "display": "Self-defeating",
+      "definition": "Humor in which the brand itself is the butt of the joke. The brand deliberately lowers its own status, admits a flaw, acknowledges a mistake, or presents itself as chaotic, inept, or embarrassingly human — for comedic effect.",
+      "decision_questions": [
+        "Is the brand laughing at itself, its own mistakes, or its own inadequacies?",
+        "Does the humor involve the brand admitting something unflattering?",
+        "Does the post frame a brand failure, quirk, or limitation as funny rather than serious?",
+        "Would the brand's PR team wince at this post if it weren't clearly intentional and comedic?"
+      ],
+      "positive_indicators": [
+        "Explicit mistake acknowledgment with humor ('oops', 'our bad', 'accidentally')",
+        "Self-aware chaos framing ('send help', 'we're fine', 'it's fine everything is fine')",
+        "Humor about brand inconsistency or contradiction ('we said what we said... previously')",
+        "Deliberately lowering brand prestige for a laugh ('nobody asked but here we are')",
+        "Plot twist framing around a brand failure or unplanned outcome",
+        "Humble-brag reversed to actual embarrassment (we tried, we really did)",
+        "Brand admitting it doesn't know what it's doing in a self-aware comedic way",
+        "Self-deprecating replies to customer complaints or roasts",
+        "Accidentally relatable failure turned into content"
+      ],
+      "negative_indicators": [
+        "Self-directed humor that is confident or flattering rather than lowering (self_enhancing)",
+        "Apology or correction without humor signals (not_humor, corporate)",
+        "The audience or a third party is the target rather than the brand",
+        "Warm shared-failure humor where the brand is empathizing not embarrassed (affiliative)"
+      ],
+      "boundary_cases": [
+        {
+          "case": "Self-defeating vs Affiliative",
+          "rule": "If the brand says 'we're a mess and so are you (and that's okay)', it's affiliative — the failure is shared and bonding. If the brand says 'we're specifically a mess', it's self_defeating."
+        },
+        {
+          "case": "Self-defeating vs Self-enhancing",
+          "rule": "Self-defeating: brand is lowering its own status. Self-enhancing: brand is raising its own status. A post that seems self-deprecating but ends on a confident or superior note is probably self_enhancing."
+        }
+      ]
+    },
+    "not_humor": {
+      "display": "Not humor",
+      "definition": "Content that serves a purely informational, promotional, support, relational, or corporate purpose without deploying a recognizable humor mechanism. No wordplay, no incongruity, no comedic framing, no meme format, no absurdity.",
+      "decision_questions": [
+        "Does the post contain any humor mechanism (wordplay, incongruity, absurdity, meme format, comedic callback)?",
+        "Could this post appear in a press release, product brochure, or investor update without modification?",
+        "Is the primary purpose to inform, announce, promote, or respond rather than to entertain?",
+        "Is the tone earnest, formal, or straightforward rather than playful?"
+      ],
+      "positive_indicators": [
+        "Product announcements with no humor framing ('announcing', 'introducing', 'now available')",
+        "Promotional CTAs ('shop now', 'link in bio', 'limited time offer', 'use code')",
+        "Corporate milestones stated earnestly ('proud to announce', 'honored to share')",
+        "Investor / financial content ('earnings', 'fiscal quarter', 'dividend', 'shareholder')",
+        "Customer support responses ('please DM us', 'contact our team', 'we've reached out')",
+        "Sustainability / CSR statements without irony",
+        "Hiring and recruitment posts ('join our team', 'we're hiring', 'open positions')",
+        "Retweets or quotes of news without added humor commentary",
+        "Event or webinar promotion without comedic framing",
+        "Brand affirmation without any humor device ('we believe in...')"
+      ],
+      "negative_indicators": [
+        "Any wordplay or pun, even mild",
+        "Emoji usage in a meme or comedic context",
+        "Absurdist or non-sequitur framing",
+        "Self-aware meta-commentary on the post itself"
+      ],
+      "boundary_cases": [
+        {
+          "case": "Warm brand voice vs Affiliative",
+          "rule": "A friendly, approachable post without a humor mechanism is not_humor. A post that deploys an identifiable humor device (even a light pun or relatable meme format) is affiliative at minimum."
+        },
+        {
+          "case": "Product hype vs Self-enhancing",
+          "rule": "If the product promotion uses comedic hyperbole, absurdism, or meme confidence ('this might literally save your life / no pressure'), it is self_enhancing. If it is straightforward praise, it is not_humor."
+        }
+      ]
+    },
+    "ambiguous_review": {
+      "display": "Ambiguous / Human Review",
+      "definition": "The post contains signals from multiple humor types at similar strength, or the humor mechanism is present but the type cannot be reliably determined from text alone. Human review is required before assigning a final label.",
+      "when_to_assign": [
+        "Multiple type scores are within 2 points of each other AND all scores are below 4",
+        "The post contains both humor and non-humor signals at similar strength",
+        "Context (image, video, thread context) appears critical for correct classification",
+        "The humor type depends on brand-specific knowledge not available in the text",
+        "Sarcasm direction (self vs. other) cannot be determined from text alone"
+      ]
+    }
+  },
+  "scoring_guidance": {
+    "not_humor_threshold": 5,
+    "humor_min_score": 2,
+    "forced_choice_threshold": 4,
+    "ambiguous_margin": 2
+  },
+  "brand_context_notes": [
+    "Fortune 500 brands rarely deploy overt aggressive humor publicly; subtle competitive shade is more common.",
+    "Self-defeating humor is deliberately rare for large brands — when present it is intentional and high-signal.",
+    "Promotional language dominates brand feeds; apply not_humor liberally for standard marketing copy.",
+    "Emojis alone are not humor signals — they must co-occur with a humor mechanism.",
+    "URL-dominant posts are likely not_humor unless the link text or surrounding copy contains a humor cue.",
+    "Short posts ('🔥', 'Yes.', '👀') may be humor via cultural context — flag for review if isolated."
+  ]
+}
