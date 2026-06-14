@@ -43,8 +43,8 @@
   "causal_claim_made": false,
   "car_used_as_tobins_q": false,
   "car_used_as_direct_brand_equity": false,
-  "CAR_m3_p3_computed": false,
-  "CAR_m5_p5_computed": false,
+  "CAR_m3_p3_computed": true,
+  "CAR_m5_p5_computed": true,
   "daily_abnormal_return_required_for_symmetric_long_windows": true,
   "raw_data_modified": false,
   "humor_outputs_modified": false,
@@ -56,5 +56,12 @@
     "H3 power: note that 9/584 nonzero aggressive intensity rows is extremely sparse. Interpret H3 results with caution or consider descriptive H3 only."
   ],
   "regression_master_column_count": 38,
-  "regression_master_column_count_note": "Corrected from prior report of 36; verified from CSV header (38 columns)."
+  "regression_master_column_count_note": "Corrected from prior report of 36; verified from CSV header (38 columns).",
+  "gemini_preaudit_integrated": true,
+  "CAR_m3_p3_available_in_master": 580,
+  "CAR_m5_p5_available_in_master": 580,
+  "CAR_m3_p3_complete_window_in_master": 580,
+  "CAR_m5_p5_complete_window_in_master": 580,
+  "car_m1p1_crosscheck_pass": true,
+  "car_m1p1_crosscheck_status": "PASS"
 }
