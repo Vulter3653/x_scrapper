@@ -35,12 +35,13 @@
   "outputs": {
     "humor_firm_period_hypothesis_variables.csv": {
       "path": "data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv",
-      "description": "Full set of H1/H2/H3 hypothesis variables aggregated at firm-period (company × YYYY-MM) level.",
-      "aggregation_level": "firm × YYYY-MM",
+      "description": "Full set of H1/H2/H3 hypothesis variables aggregated at firm-period (company_name × YYYY-MM) level. Unique key: company_name × period. Firms with multiple X handles have counts summed; see source_x_handle_count and source_x_handle_list.",
+      "aggregation_level": "firm × YYYY-MM (unique key: company_name × period)",
       "columns": [
-        {"name": "company_name",       "type": "string",  "description": "Fortune 500 company name"},
-        {"name": "source_x_handle",    "type": "string",  "description": "X (Twitter) handle"},
-        {"name": "period",             "type": "string",  "description": "YYYY-MM extracted from created_at"},
+        {"name": "company_name",          "type": "string",  "description": "Fortune 500 company name"},
+        {"name": "period",                "type": "string",  "description": "YYYY-MM extracted from created_at. Together with company_name, forms the unique key."},
+        {"name": "source_x_handle_count", "type": "integer", "description": "Number of distinct X handles contributing to this firm-period row (≥1). >1 means multiple handles were collapsed."},
+        {"name": "source_x_handle_list",  "type": "string",  "description": "Sorted, deduplicated X handles joined with '; '. Diagnostic metadata for the handle collapse."},
         {"name": "total_posts",        "type": "integer", "description": "Total posts for this firm-period"},
         {"name": "humor_count",        "type": "integer", "description": "Posts with humor_presence == 'humor' (v1)"},
         {"name": "non_humor_count",    "type": "integer", "description": "Posts with humor_presence == 'non_humor' (v1)"},
@@ -86,7 +87,7 @@
       "description": "H1-relevant variables only. Subset of humor_firm_period_hypothesis_variables.csv.",
       "hypothesis": "H1",
       "columns": [
-        "company_name", "source_x_handle", "period", "total_posts",
+        "company_name", "period", "source_x_handle_count", "source_x_handle_list", "total_posts",
         "humor_count", "humor_share", "log_humor_count", "humor_presence_any",
         "humor_share_ambiguity_as_zero", "humor_share_ambiguity_excluded",
         "humor_share_ambiguity_as_missing", "ambiguity_rate", "high_ambiguity_flag"
@@ -97,7 +98,7 @@
       "description": "H2-relevant variables only. Humor type shares and rare-class diagnostic flags.",
       "hypothesis": "H2",
       "columns": [
-        "company_name", "source_x_handle", "period", "total_posts",
+        "company_name", "period", "source_x_handle_count", "source_x_handle_list", "total_posts",
         "affiliative_count", "self_enhancing_count", "aggressive_count", "self_defeating_count",
         "affiliative_share", "self_enhancing_share", "aggressive_share", "self_defeating_share",
         "aggressive_minus_other_humor_share",
@@ -110,7 +111,7 @@
       "description": "H3-relevant variables only. Aggressive intensity, squared terms, and interaction terms.",
       "hypothesis": "H3",
       "columns": [
-        "company_name", "source_x_handle", "period", "total_posts",
+        "company_name", "period", "source_x_handle_count", "source_x_handle_list", "total_posts",
         "aggressive_count", "aggressive_share",
         "aggressive_humor_usage_intensity", "aggressive_humor_usage_intensity_sq",
         "log_aggressive_count", "aggressive_presence_any", "aggressive_share_ambiguity_excluded",

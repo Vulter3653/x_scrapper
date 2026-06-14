@@ -63,7 +63,9 @@ HIGH_AMBIGUITY_THRESHOLD = 0.50
 # Output column schemas
 # ---------------------------------------------------------------------------
 FULL_FIELDS = [
-    "company_name", "source_x_handle", "period",
+    "company_name", "period",
+    # Handle collapse metadata (source_x_handle collapsed across all handles per company-period)
+    "source_x_handle_count", "source_x_handle_list",
     # Presence counts
     "total_posts", "humor_count", "non_humor_count", "ambiguous_count", "ambiguity_rate",
     # H1 variables
@@ -87,14 +89,14 @@ FULL_FIELDS = [
 ]
 
 H1_FIELDS = [
-    "company_name", "source_x_handle", "period", "total_posts",
+    "company_name", "period", "source_x_handle_count", "source_x_handle_list", "total_posts",
     "humor_count", "humor_share", "log_humor_count", "humor_presence_any",
     "humor_share_ambiguity_as_zero", "humor_share_ambiguity_excluded",
     "humor_share_ambiguity_as_missing", "ambiguity_rate", "high_ambiguity_flag",
 ]
 
 H2_FIELDS = [
-    "company_name", "source_x_handle", "period", "total_posts",
+    "company_name", "period", "source_x_handle_count", "source_x_handle_list", "total_posts",
     "affiliative_count", "self_enhancing_count", "aggressive_count", "self_defeating_count",
     "affiliative_share", "self_enhancing_share", "aggressive_share", "self_defeating_share",
     "aggressive_minus_other_humor_share",
@@ -103,7 +105,7 @@ H2_FIELDS = [
 ]
 
 H3_FIELDS = [
-    "company_name", "source_x_handle", "period", "total_posts",
+    "company_name", "period", "source_x_handle_count", "source_x_handle_list", "total_posts",
     "aggressive_count", "aggressive_share",
     "aggressive_humor_usage_intensity", "aggressive_humor_usage_intensity_sq",
     "log_aggressive_count", "aggressive_presence_any", "aggressive_share_ambiguity_excluded",
@@ -689,7 +691,13 @@ def parse_period(date_str: str) -> str:
 # ---------------------------------------------------------------------------
 
 def aggregate_master(rows: list[dict]) -> list[dict]:
-    """Group master rows by (company_name, source_x_handle, period) and compute all variables."""
+    """Group master rows by (company_name, period), collapsing all source_x_handle values.
+
+    Firms with multiple handles in the same period have their counts summed.
+    source_x_handle values are collected into source_x_handle_list (sorted, '; '-joined,
+    deduplicated) and counted in source_x_handle_count.
+    The unique key of the output is (company_name, period).
+    """
 
     # Find key columns robustly
     sample = rows[0] if rows else {}
@@ -718,20 +726,27 @@ def aggregate_master(rows: list[dict]) -> list[dict]:
     print(f"  company_col={company_col!r}, handle_col={handle_col!r}, date_col={date_col!r}")
     print(f"  presence_col={presence_col!r}, htype_col={htype_col!r}")
 
-    # Group
-    groups: dict[tuple, list[dict]] = defaultdict(list)
+    # Group by (company, period) — all handles collapsed into one row per company-period
+    groups:  dict[tuple, list[dict]] = defaultdict(list)
+    handles: dict[tuple, set]        = defaultdict(set)
     for r in rows:
         company = r.get(company_col, "").strip() or "_unknown"
-        handle  = r.get(handle_col, "").strip() if handle_col else ""
         period  = parse_period(r.get(date_col, "")) if date_col else "all"
-        groups[(company, handle, period)].append(r)
+        handle  = r.get(handle_col, "").strip() if handle_col else ""
+        key = (company, period)
+        groups[key].append(r)
+        if handle:
+            handles[key].add(handle)
 
-    unknown_period = sum(1 for (_, _, p), _ in groups.items() if p == "unknown")
+    unknown_period = sum(1 for (_, p) in groups if p == "unknown")
     if unknown_period > 0:
         print(f"  WARNING: {unknown_period} groups have period='unknown' (date parse failed)")
 
     output_rows = []
-    for (company, handle, period), grp in sorted(groups.items()):
+    for (company, period), grp in sorted(groups.items()):
+        handle_list_sorted = sorted(handles.get((company, period), set()))
+        handle_list_str    = "; ".join(handle_list_sorted)
+        handle_count       = len(handle_list_sorted)
         n = len(grp)
         presence  = Counter(r.get(presence_col, "").strip() for r in grp)
         htype     = Counter(r.get(htype_col, "").strip() for r in grp)
@@ -769,10 +784,11 @@ def aggregate_master(rows: list[dict]) -> list[dict]:
         agg_presence = 1 if aggressive > 0 else 0
 
         output_rows.append({
-            "company_name":    company,
-            "source_x_handle": handle,
-            "period":          period,
-            "total_posts":     n,
+            "company_name":          company,
+            "period":                period,
+            "source_x_handle_count": handle_count,
+            "source_x_handle_list":  handle_list_str,
+            "total_posts":           n,
             "humor_count":     humor_count,
             "non_humor_count": non_humor_count,
             "ambiguous_count": ambiguous_count,
@@ -900,9 +916,53 @@ def main():
         ab_summary = {}
 
     # Aggregate
-    print("\nAggregating master to firm-period...")
+    print("\nAggregating master to firm-period (company_name × period)...")
     firm_period_rows, period_fallback = aggregate_master(master)
     print(f"  Firm-period cells: {len(firm_period_rows)}")
+
+    # Validate unique key — must be 0 by construction; fail fast if there is a bug
+    seen_keys: set = set()
+    company_period_dup_count = 0
+    for row in firm_period_rows:
+        key = (row["company_name"], row["period"])
+        if key in seen_keys:
+            company_period_dup_count += 1
+        seen_keys.add(key)
+    if company_period_dup_count > 0:
+        print(
+            f"FATAL: {company_period_dup_count} duplicate company_name×period keys after aggregation. "
+            "This is an aggregation bug.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    print(f"  Unique key check: company_period_duplicate_count={company_period_dup_count} (OK)")
+
+    # Handle collapse diagnostics
+    handle_counts            = [r["source_x_handle_count"] for r in firm_period_rows]
+    source_x_handle_count_max = max(handle_counts, default=0)
+    multi_handle_fp_count    = sum(1 for c in handle_counts if c > 1)
+    print(f"  source_x_handle_count_max={source_x_handle_count_max}, multi_handle_firm_period_count={multi_handle_fp_count}")
+
+    # H3 sparsity diagnostics
+    agg_intensities          = [float(r["aggressive_humor_usage_intensity"]) for r in firm_period_rows]
+    aggressive_count_total   = sum(int(r["aggressive_count"]) for r in firm_period_rows)
+    nonzero_aggressive_fp    = sum(1 for x in agg_intensities if x > 0)
+    n_fp = len(agg_intensities)
+    agg_intensity_zero_share = round(safe_div(n_fp - nonzero_aggressive_fp, n_fp), 6) if n_fp else 0.0
+    max_agg_intensity        = round(max(agg_intensities), 9) if agg_intensities else 0.0
+    mean_agg_intensity       = round(safe_div(sum(agg_intensities), n_fp), 9) if n_fp else 0.0
+    sorted_agg = sorted(agg_intensities)
+    if n_fp % 2 == 1:
+        median_agg = sorted_agg[n_fp // 2]
+    elif n_fp > 0:
+        median_agg = (sorted_agg[n_fp // 2 - 1] + sorted_agg[n_fp // 2]) / 2
+    else:
+        median_agg = 0.0
+    median_agg = round(median_agg, 9)
+
+    rare_neg_intensities     = [float(r["rare_negative_humor_usage_intensity"]) for r in firm_period_rows]
+    rare_negative_count_total   = sum(int(r["rare_negative_humor_count"]) for r in firm_period_rows)
+    nonzero_rare_neg_fp      = sum(1 for x in rare_neg_intensities if x > 0)
 
     # v2 company flags
     print("Computing v2 company-level flags...")
@@ -953,15 +1013,30 @@ def main():
         "input_rows":  len(master),
         "output_rows": n_full,
         "aggregation_level":    "firm-period (company_name × YYYY-MM)" if not period_fallback else "firm-level (no date column)",
+        "unique_key_columns":   ["company_name", "period"],
+        "company_period_duplicate_count": company_period_dup_count,
+        "source_x_handle_collapsed":      True,
+        "source_x_handle_count_max":      source_x_handle_count_max,
+        "multi_handle_firm_period_count": multi_handle_fp_count,
         "period_column_used":   "created_at" if not period_fallback else None,
         "period_fallback_to_firm_level": period_fallback,
         "company_column_used":  "company_name",
-        "handle_column_used":   "source_x_handle",
+        "handle_column_used":   "source_x_handle (collapsed)",
         "label_columns_used":   ["humor_presence", "humor_type"],
         "unique_companies":     unique_companies,
         "unique_periods":       unique_periods,
         "high_ambiguity_cells": high_ambig_cells,
         "high_ambiguity_threshold": args.high_ambiguity_threshold,
+        "h3_sparsity_diagnostics": {
+            "aggressive_count_total":             aggressive_count_total,
+            "nonzero_aggressive_firm_period_count": nonzero_aggressive_fp,
+            "aggressive_intensity_zero_share":    agg_intensity_zero_share,
+            "max_aggressive_intensity":           max_agg_intensity,
+            "mean_aggressive_intensity":          mean_agg_intensity,
+            "median_aggressive_intensity":        median_agg,
+            "rare_negative_count_total":          rare_negative_count_total,
+            "nonzero_rare_negative_firm_period_count": nonzero_rare_neg_fp,
+        },
         "v2_note": (
             "v2 candidate counts are company-level aggregates from the 941-row A/B stratified sample. "
             "They are NOT period-specific and are repeated for all firm-periods of each company. "
@@ -977,7 +1052,7 @@ def main():
             "full_chain_overwritten":      False,
             "raw_data_modified":           False,
             "classification_run":          False,
-            "hypothesis_testing_ready":    True,
+            "hypothesis_testing_ready":    company_period_dup_count == 0,
             "h1_variables_created":        True,
             "h2_variables_created":        True,
             "h3_variables_created":        True,
@@ -989,6 +1064,7 @@ def main():
             "All variables are v1 operational labels. No precision/recall claims are possible.",
             "Cue/threshold calibration requires human adjudication labels; deferred.",
             "v2 candidate counts are from the 941-row stratified sample and are not period-specific.",
+            "Firms with multiple X handles have counts summed across handles per period; source_x_handle_list records all handles.",
         ],
     }
 
@@ -998,7 +1074,10 @@ def main():
     )
     print(f"  Manifest → {args.out_manifest}")
     print(f"\nDone. {unique_companies} companies × {unique_periods} periods → {n_full} firm-period rows")
+    print(f"  company_period_duplicate_count: {company_period_dup_count}")
+    print(f"  multi_handle_firm_period_count: {multi_handle_fp_count} (source_x_handle_count_max={source_x_handle_count_max})")
     print(f"  High-ambiguity cells: {high_ambig_cells} / {n_full} ({100*high_ambig_cells/n_full:.1f}%)")
+    print(f"  H3 sparsity: aggressive_count_total={aggressive_count_total}, nonzero_fp={nonzero_aggressive_fp}, zero_share={agg_intensity_zero_share:.3f}")
 
 
 if __name__ == "__main__":

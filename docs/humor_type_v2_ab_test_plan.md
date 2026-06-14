@@ -196,6 +196,8 @@ no-human-label evidence package 이후의 다음 단계는 H1-H3 가설 검증�
 
 **목적**: v1 full-chain 분류 결과를 firm-period 수준의 regression-ready 독립변수로 변환하는 것. Descriptive dashboard가 아니라 hypothesis testing용 측정 변수 구축이다.
 
+**Regression unit**: `company_name × period (YYYY-MM)`. 하나의 기업이 같은 월에 복수의 X 핸들(`source_x_handle`)을 운용하는 경우, 모든 카운트를 합산하여 **1개의 firm-period 행**으로 집약한다. 어떤 핸들이 합산되었는지는 `source_x_handle_list`(sorted, `; `-joined)와 `source_x_handle_count` 컬럼에 기록된다. `company_name × period` unique key 기준으로 중복이 0임을 manifest의 `company_period_duplicate_count`로 검증한다.
+
 **v2 역할**: v2는 production classifier가 아니다. v2는 candidate generator / disagreement detector로만 사용한다. H2/H3 변수의 robustness diagnostic flag로만 포함된다.
 
 **가설별 변수 연결**:
@@ -203,7 +205,7 @@ no-human-label evidence package 이후의 다음 단계는 H1-H3 가설 검증�
 - **H2**: humor type variables, especially aggressive humor (`aggressive_share`, `affiliative_share`, `self_enhancing_share`)
 - **H3**: aggressive humor usage intensity and squared term (`aggressive_humor_usage_intensity`, `aggressive_humor_usage_intensity_sq`)
 
-**H3 intensity 정의**: `aggressive_humor_usage_intensity`는 메시지 수준의 semantic intensity가 아니라 firm-level usage intensity, 즉 `aggressive_count / total_posts`이다. Inverted-U 조절 효과 검증을 위해 squared term (`_sq`)이 함께 생성된다.
+**H3 intensity 정의**: `aggressive_humor_usage_intensity`는 메시지 수준의 semantic intensity가 아니라 firm-level usage intensity, 즉 `aggressive_count / total_posts`이다. Inverted-U 조절 효과 검증을 위해 squared term (`_sq`)이 함께 생성된다. aggressive와 self_defeating은 희귀 클래스이므로 대부분의 firm-period 셀이 0이다. 분석 전 manifest의 `h3_sparsity_diagnostics` 필드(`nonzero_aggressive_firm_period_count`, `aggressive_intensity_zero_share` 등)를 확인하라.
 
 상세: `docs/humor_hypothesis_variable_construction_plan.md` 참조.
 산출 workflow: **Build Humor Hypothesis Variables**

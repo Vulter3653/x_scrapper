@@ -117,10 +117,24 @@ jobs:
           if violations:
               print('CONSTRAINT VIOLATION:', violations, file=sys.stderr)
               sys.exit(1)
+          dup_count = m.get('company_period_duplicate_count', -1)
+          if dup_count != 0:
+              print(f'FIRM-PERIOD UNIQUENESS VIOLATION: company_period_duplicate_count={dup_count}', file=sys.stderr)
+              sys.exit(1)
+          if not c.get('hypothesis_testing_ready'):
+              print('hypothesis_testing_ready is not True', file=sys.stderr)
+              sys.exit(1)
           print('Constraints OK: no prohibited actions taken.')
           print(f'Firm-period rows: {m.get(\"output_rows\")}')
           print(f'Companies: {m.get(\"unique_companies\")}')
           print(f'Periods: {m.get(\"unique_periods\")}')
+          print(f'company_period_duplicate_count: {dup_count}')
+          print(f'source_x_handle_count_max: {m.get(\"source_x_handle_count_max\")}')
+          print(f'multi_handle_firm_period_count: {m.get(\"multi_handle_firm_period_count\")}')
+          h3 = m.get('h3_sparsity_diagnostics', {})
+          print(f'aggressive_count_total: {h3.get(\"aggressive_count_total\")}')
+          print(f'nonzero_aggressive_firm_period_count: {h3.get(\"nonzero_aggressive_firm_period_count\")}')
+          print(f'aggressive_intensity_zero_share: {h3.get(\"aggressive_intensity_zero_share\")}')
           "
 
       - name: Upload hypothesis variable artifacts

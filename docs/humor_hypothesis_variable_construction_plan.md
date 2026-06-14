@@ -8,6 +8,8 @@
 - Descriptive evidence 또는 dashboard 구축이 **아니다**.
 - Measurement-validity step이다: v1 full-chain 분류 결과를 firm-period 수준의 regression-ready 독립변수로 변환한다.
 
+**Regression unit**: `company_name × period (YYYY-MM)`. 이것이 분석의 관측 단위다. 하나의 기업이 같은 월에 복수의 X 계정(`source_x_handle`)을 운용하는 경우, 모든 계정의 포스트 카운트를 합산하여 **1개의 firm-period 행**으로 집약한다. `source_x_handle_list`와 `source_x_handle_count`가 어떤 계정이 합산되었는지를 기록한다.
+
 가설:
 
 > **H1.** 브랜드의 SNS에서 활용되는 Humor는 Brand Equity를 증가시킬 것이다.
@@ -27,6 +29,8 @@
 | H3 | `aggressive_humor_usage_intensity`, `aggressive_humor_usage_intensity_sq` | 역 U자형 조절 검증용 squared term |
 
 **H3 intensity 정의 주의사항**: `aggressive_humor_usage_intensity`는 메시지 수준의 주관적 강도(semantic intensity)가 아니다. 이것은 **firm-period 수준의 사용 강도(usage intensity)**, 즉 해당 기업의 전체 포스트 중 aggressive humor 포스트의 비율(`aggressive_count / total_posts`)이다.
+
+**Rare class 희소성 주의**: aggressive(전체 68k 기준 ~105건)와 self_defeating(~41건)는 firm-period 수준에서 거의 대부분의 셀이 0이다. `h3_sparsity_diagnostics` manifest 필드에서 `nonzero_aggressive_firm_period_count`와 `aggressive_intensity_zero_share`를 확인한 뒤 분석 전략(zero-inflated model 등)을 결정해야 한다.
 
 ---
 
@@ -130,12 +134,12 @@
 
 | 파일 | 내용 |
 |------|------|
-| `data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv` | 전체 H1/H2/H3 변수 (firm-period, ~3,779 rows) |
-| `data/derived/humor/hypothesis_variables/humor_h1_variables.csv` | H1 전용 서브셋 |
-| `data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv` | H2 전용 서브셋 |
-| `data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv` | H3 전용 서브셋 |
+| `data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv` | 전체 H1/H2/H3 변수. **Unique key: `company_name × period`.** 복수 핸들은 합산. `source_x_handle_count`, `source_x_handle_list` 컬럼 포함. |
+| `data/derived/humor/hypothesis_variables/humor_h1_variables.csv` | H1 전용 서브셋 (full과 동일 row 수) |
+| `data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv` | H2 전용 서브셋 (full과 동일 row 수) |
+| `data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv` | H3 전용 서브셋 (full과 동일 row 수) |
 | `data/derived/humor/hypothesis_variables/humor_variable_dictionary.csv` | 변수 코드북 (38개 변수) |
-| `data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json` | 실행 manifest (제약 플래그 포함) |
+| `data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json` | 실행 manifest. `company_period_duplicate_count`, `source_x_handle_collapsed`, `h3_sparsity_diagnostics` 포함. |
 
 ---
 
