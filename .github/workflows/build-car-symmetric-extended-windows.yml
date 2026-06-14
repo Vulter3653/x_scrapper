@@ -303,16 +303,32 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          echo "Working tree before sync:"
+          git status --short
+
+          if git diff --quiet && git diff --cached --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+
+          git stash push -u -m "generated car extended window outputs"
+
           git pull --rebase origin main
+
+          git stash pop
+
           git add \
             '${{ inputs.existing_car_panel }}' \
             '${{ inputs.existing_linkage }}' \
             '${{ inputs.existing_regression_master }}' \
             '${{ inputs.existing_car_manifest }}' \
             '${{ inputs.existing_regression_manifest }}'
+
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No CAR extended window output changes to commit after sync."
             exit 0
           fi
-          git commit -m 'feat: gemini pre-audit CAR_m3_p3 / CAR_m5_p5 from daily return panel'
+
+          git commit -m 'data: update CAR symmetric extended windows'
           git push origin HEAD:main
