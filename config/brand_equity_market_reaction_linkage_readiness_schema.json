@@ -1,0 +1,135 @@
+{
+  "version": "1.0",
+  "description": "Schema for Brand Equity and Market Reaction Linkage Readiness outputs. Defines DV roles, output columns, and constraint flags. No regression is run; no brand equity values are generated.",
+  "dv_role_definitions": {
+    "tobins_q": {
+      "role": "Primary long-run Brand Equity / firm value proxy",
+      "basis": "Simon & Sullivan (1993) financial-market-based approach",
+      "status": "MISSING — financial statement panel not present in x_scrapper",
+      "allowed_expressions": [
+        "long-run market valuation proxy for Brand Equity",
+        "financial-market-based brand equity proxy",
+        "level-based market valuation proxy"
+      ]
+    },
+    "CAR": {
+      "role": "Short-window capital market response proxy",
+      "basis": "Event-study based market-based firm value response around 10-K filing dates",
+      "allowed_expressions": [
+        "market-based brand equity proxy",
+        "market-based firm value response",
+        "capital market response",
+        "short-window market reaction proxy",
+        "event-study based value response"
+      ],
+      "forbidden_expressions": [
+        "CAR is equivalent to Tobin's Q",
+        "direct consumer-based brand equity",
+        "causal brand equity effect",
+        "direct brand equity measure"
+      ]
+    },
+    "AbnormalVolume": {
+      "role": "Investor attention / trading attention proxy",
+      "basis": "Event-study based abnormal trading volume around 10-K filing dates",
+      "allowed_expressions": [
+        "investor attention proxy",
+        "trading attention proxy",
+        "investor engagement proxy"
+      ]
+    }
+  },
+  "date_alignment_rules": {
+    "same_month_alignment": {
+      "definition": "humor period (YYYY-MM) == YYYY-MM of 10-K filing date",
+      "limitation": "Simultaneity risk: humor posts in the same month as filing may violate temporal ordering",
+      "recommended_use": "Diagnostic / sensitivity check only"
+    },
+    "prefiling_lag_alignment": {
+      "definition": "humor period == filing_month - 1, or within range [filing_month - 3, filing_month - 1]",
+      "limitation": "Lag window choice requires theoretical justification",
+      "recommended_use": "Primary alignment for regression: ensures temporal ordering (humor precedes filing)"
+    }
+  },
+  "outputs": {
+    "brand_equity_market_reaction_linkage_readiness.csv": {
+      "path": "data/derived/brand_equity_linkage/brand_equity_market_reaction_linkage_readiness.csv",
+      "description": "Per company-period linkage readiness flags. Unique key: company_name × period. Joins humor variables with crosswalk and korea_uni availability flags.",
+      "unique_key": ["company_name", "period"],
+      "columns": [
+        {"name": "company_name",           "type": "string",  "description": "Fortune 500 company name (from humor variables)"},
+        {"name": "period",                 "type": "string",  "description": "YYYY-MM (from humor variables). Unique key with company_name."},
+        {"name": "period_year",            "type": "string",  "description": "YYYY extracted from period"},
+        {"name": "period_month",           "type": "string",  "description": "MM extracted from period"},
+        {"name": "total_posts",            "type": "integer", "description": "Total X posts for this firm-period"},
+        {"name": "humor_count",            "type": "integer", "description": "Humor posts (v1 label)"},
+        {"name": "humor_share",            "type": "float",   "description": "humor_count / total_posts (conservative)"},
+        {"name": "aggressive_count",       "type": "integer", "description": "Aggressive humor posts (v1 label, rare class)"},
+        {"name": "aggressive_humor_usage_intensity", "type": "float", "description": "aggressive_count / total_posts (H3 moderator)"},
+        {"name": "source_x_handle_count", "type": "integer", "description": "Number of X handles contributing to this firm-period"},
+        {"name": "source_x_handle_list",  "type": "string",  "description": "Handles joined with '; '"},
+        {"name": "ticker_available",       "type": "bool_str","description": "'true' if sec_ticker resolved in fortune crosswalk"},
+        {"name": "cik_available",          "type": "bool_str","description": "'true' if sec_cik resolved in fortune crosswalk"},
+        {"name": "matched_ticker",         "type": "string",  "description": "Resolved ticker symbol (empty if not resolved)"},
+        {"name": "matched_cik",            "type": "string",  "description": "Resolved SEC CIK (empty if not resolved)"},
+        {"name": "matched_korea_uni_company_name", "type": "string", "description": "Company name as it appears in korea_uni event data"},
+        {"name": "korea_uni_match_status", "type": "string",  "description": "matched | partial_match | unmatched | korea_uni_data_not_available"},
+        {"name": "tobins_q_available",     "type": "bool_str","description": "Always 'false' — financial panel not present"},
+        {"name": "tobins_q_join_ready",    "type": "bool_str","description": "Always 'false' at this stage"},
+        {"name": "tobins_q_blocking_reason","type": "string", "description": "Reason Tobin's Q join is not possible"},
+        {"name": "car_outcome_available",  "type": "bool_str","description": "'true' if korea_uni data loaded and company matched"},
+        {"name": "matched_event_count",    "type": "integer", "description": "Number of 10-K filing events for matched company in korea_uni"},
+        {"name": "nearest_filing_date",    "type": "string",  "description": "Filing date of nearest event to this humor period"},
+        {"name": "nearest_event_trading_date","type": "string","description": "First trading date at/after nearest filing"},
+        {"name": "nearest_target_report_year","type": "string","description": "Fiscal year of nearest filing"},
+        {"name": "nearest_event_time_gap_days","type": "integer","description": "Absolute day gap between humor period start and nearest filing date"},
+        {"name": "CAR_m1_p1_available",    "type": "bool_str","description": "'true' if CAR_m1_p1 column present in korea_uni event data and company matched"},
+        {"name": "CAR_0_p1_available",     "type": "bool_str","description": "'true' if CAR_0_p1 present and company matched"},
+        {"name": "CAR_0_p3_available",     "type": "bool_str","description": "'true' if CAR_0_p3 present and company matched"},
+        {"name": "CAR_0_p5_available",     "type": "bool_str","description": "'true' if CAR_0_p5 present and company matched"},
+        {"name": "AbnormalVolume_0_p1_available","type": "bool_str","description": "'true' if AbnormalVolume_0_p1 present and company matched"},
+        {"name": "AbnormalVolume_0_p3_available","type": "bool_str","description": "'true' if AbnormalVolume_0_p3 present and company matched"},
+        {"name": "AbnormalVolume_0_p5_available","type": "bool_str","description": "'true' if AbnormalVolume_0_p5 present and company matched"},
+        {"name": "placebo_outcome_available","type": "bool_str","description": "'true' if any placebo outcome column present and company matched"},
+        {"name": "same_month_alignment_ready","type": "bool_str","description": "'true' if humor period == filing month (simultaneity risk — use with caution)"},
+        {"name": "prefiling_lag_alignment_ready","type": "bool_str","description": "'true' if humor period is 1-3 months before filing date (recommended for temporal ordering)"},
+        {"name": "join_ready_for_tobins_q","type": "bool_str","description": "Always 'false' — Tobin's Q data not available"},
+        {"name": "join_ready_for_car",     "type": "bool_str","description": "'true' if matched and same_month or prefiling_lag alignment ready"},
+        {"name": "future_date_flag",       "type": "bool_str","description": "'true' if nearest filing date is after reference_date"},
+        {"name": "date_alignment_warning", "type": "string",  "description": "Warning message for date alignment issues"}
+      ]
+    },
+    "dv_candidate_variable_dictionary.csv": {
+      "path": "data/derived/brand_equity_linkage/dv_candidate_variable_dictionary.csv",
+      "description": "Dictionary of all DV candidates for H1-H3 regression. 13 candidates covering Tobin's Q, CAR, AbnormalVolume, and placebo outcomes.",
+      "columns": [
+        "dv_candidate", "conceptual_role", "measurement_type",
+        "required_inputs", "source_repo_or_source_type",
+        "currently_available", "recommended_use", "limitations"
+      ]
+    },
+    "brand_equity_market_reaction_missing_inputs.csv": {
+      "path": "data/derived/brand_equity_linkage/brand_equity_market_reaction_missing_inputs.csv",
+      "description": "List of missing inputs required to proceed with regression. One row per missing item.",
+      "columns": [
+        "missing_input", "category", "required_for",
+        "current_status", "blocking_reason", "resolution_path"
+      ]
+    },
+    "brand_equity_market_reaction_linkage_manifest.json": {
+      "path": "data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json",
+      "description": "Run manifest for linkage readiness assessment.",
+      "constraint_flags": {
+        "external_repo_modified":     "bool — always false",
+        "external_data_downloaded":   "bool — always false (no network calls)",
+        "x_collection_run":           "bool — always false",
+        "market_data_collection_run": "bool — always false",
+        "sec_collection_run":         "bool — always false",
+        "humor_outputs_modified":     "bool — always false",
+        "raw_data_modified":          "bool — always false",
+        "car_is_direct_brand_equity": "bool — always false (CAR is NOT direct brand equity)",
+        "car_is_equivalent_to_tobins_q": "bool — always false"
+      }
+    }
+  }
+}

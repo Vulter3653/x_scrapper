@@ -1,0 +1,185 @@
+name: Build Brand Equity Market Reaction Linkage Readiness
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_results:
+        description: "Commit linkage readiness outputs to main (default: artifact only)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      humor_variables_path:
+        description: "Humor firm-period hypothesis variables CSV"
+        required: true
+        default: "data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv"
+      humor_manifest_path:
+        description: "Humor hypothesis variables manifest JSON"
+        required: true
+        default: "data/audit/humor/hypothesis_variables/humor_hypothesis_variables_manifest.json"
+      korea_uni_event_dataset_path:
+        description: "korea_uni event study CSV (optional — place manually in data/external/korea_uni/)"
+        required: false
+        default: "data/external/korea_uni/ai_10k_event_study_analysis_dataset.csv"
+      korea_uni_market_estimates_path:
+        description: "korea_uni market reaction estimates CSV (optional)"
+        required: false
+        default: "data/external/korea_uni/post_filing_market_reaction_estimates.csv"
+      korea_uni_market_report_path:
+        description: "korea_uni market data report CSV (optional)"
+        required: false
+        default: "data/external/korea_uni/market_data_collection_report.csv"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-brand-equity-market-reaction-linkage-readiness
+  cancel-in-progress: false
+
+jobs:
+  build-linkage-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify required inputs exist
+        run: |
+          set -euo pipefail
+          for f in \
+            '${{ inputs.humor_variables_path }}' \
+            '${{ inputs.humor_manifest_path }}'; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing required input::$f not found. Run Build Humor Hypothesis Variables first (commit_results=true)."
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+
+      - name: Check optional korea_uni inputs
+        run: |
+          set -euo pipefail
+          KOREA_UNI_FOUND=0
+          for f in \
+            '${{ inputs.korea_uni_event_dataset_path }}' \
+            '${{ inputs.korea_uni_market_estimates_path }}' \
+            '${{ inputs.korea_uni_market_report_path }}'; do
+            if [ -f "$f" ]; then
+              echo "Optional input found: $f ($(wc -l < "$f") lines)"
+              KOREA_UNI_FOUND=$((KOREA_UNI_FOUND+1))
+            else
+              echo "::warning title=Optional input not found::$f not found. Copy from korea_uni repo to enable CAR linkage. Workflow will continue without it."
+            fi
+          done
+          echo "korea_uni files found: ${KOREA_UNI_FOUND}/3"
+
+      - name: Build linkage readiness
+        id: build
+        run: |
+          set -euo pipefail
+          python scripts/build_brand_equity_market_reaction_linkage_readiness.py \
+            --humor-variables    '${{ inputs.humor_variables_path }}' \
+            --humor-manifest     '${{ inputs.humor_manifest_path }}' \
+            --korea-uni-event    '${{ inputs.korea_uni_event_dataset_path }}' \
+            --korea-uni-market   '${{ inputs.korea_uni_market_estimates_path }}' \
+            --korea-uni-report   '${{ inputs.korea_uni_market_report_path }}' \
+            --out-readiness  data/derived/brand_equity_linkage/brand_equity_market_reaction_linkage_readiness.csv \
+            --out-dv-dict    data/derived/brand_equity_linkage/dv_candidate_variable_dictionary.csv \
+            --out-missing    data/derived/brand_equity_linkage/brand_equity_market_reaction_missing_inputs.csv \
+            --out-manifest   data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json
+
+      - name: Verify outputs and manifest constraints
+        run: |
+          set -euo pipefail
+          for f in \
+            data/derived/brand_equity_linkage/brand_equity_market_reaction_linkage_readiness.csv \
+            data/derived/brand_equity_linkage/dv_candidate_variable_dictionary.csv \
+            data/derived/brand_equity_linkage/brand_equity_market_reaction_missing_inputs.csv \
+            data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Missing output::$f not found after script run"
+              exit 1
+            fi
+            echo "OK: $f ($(wc -l < "$f") lines)"
+          done
+          python3 -c "
+          import json, sys
+          m = json.load(open('data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json'))
+          # Constraint checks: these flags must NEVER be true
+          forbidden = {
+            'external_repo_modified', 'external_data_downloaded',
+            'x_collection_run', 'market_data_collection_run', 'sec_collection_run',
+            'humor_outputs_modified', 'raw_data_modified',
+            'car_is_direct_brand_equity', 'car_is_equivalent_to_tobins_q',
+          }
+          violations = [(k, m.get(k)) for k in forbidden if m.get(k)]
+          if violations:
+              print('CONSTRAINT VIOLATION:', violations, file=sys.stderr)
+              sys.exit(1)
+          # humor input sanity check
+          dup = m.get('humor_company_period_duplicate_count', -1)
+          if dup != 0:
+              print(f'HUMOR DUPLICATE COUNT ERROR: company_period_duplicate_count={dup}', file=sys.stderr)
+              sys.exit(1)
+          print('Constraints OK.')
+          print(f'Humor firm-period rows:          {m.get(\"humor_input_rows\")}')
+          print(f'Unique humor companies:          {m.get(\"unique_humor_companies\")}')
+          print(f'korea_uni_inputs_available:      {m.get(\"korea_uni_inputs_available\")}')
+          print(f'car_outcome_data_available:      {m.get(\"car_outcome_data_available\")}')
+          print(f'matched_company_count:           {m.get(\"matched_company_count\")}')
+          print(f'same_month_alignment_ready_rows: {m.get(\"same_month_alignment_ready_rows\")}')
+          print(f'prefiling_lag_alignment_ready_rows: {m.get(\"prefiling_lag_alignment_ready_rows\")}')
+          print(f'future_event_count:              {m.get(\"future_event_count\")}')
+          print(f'requires_date_audit:             {m.get(\"requires_date_audit\")}')
+          print(f'regression_ready:                {m.get(\"regression_ready\")}')
+          if not m.get('regression_ready'):
+              print(f'reason_regression_not_ready:     {m.get(\"reason_regression_not_ready\")}')
+          "
+
+      - name: Upload linkage readiness artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: brand-equity-market-reaction-linkage-readiness
+          path: |
+            data/derived/brand_equity_linkage/brand_equity_market_reaction_linkage_readiness.csv
+            data/derived/brand_equity_linkage/dv_candidate_variable_dictionary.csv
+            data/derived/brand_equity_linkage/brand_equity_market_reaction_missing_inputs.csv
+            data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json
+          retention-days: 30
+
+      - name: Commit linkage readiness outputs to main
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add \
+            data/derived/brand_equity_linkage/brand_equity_market_reaction_linkage_readiness.csv \
+            data/derived/brand_equity_linkage/dv_candidate_variable_dictionary.csv \
+            data/derived/brand_equity_linkage/brand_equity_market_reaction_missing_inputs.csv \
+            data/audit/brand_equity_linkage/brand_equity_market_reaction_linkage_manifest.json \
+            docs/brand_equity_market_reaction_linkage_readiness_plan.md \
+            config/brand_equity_market_reaction_linkage_readiness_schema.json
+          if git diff --cached --quiet; then
+            echo "No linkage readiness changes to commit."
+            exit 0
+          fi
+          git commit -m 'data: brand equity market reaction linkage readiness assessment'
+          git push origin HEAD:main
