@@ -1,0 +1,62 @@
+{
+  "created_at": "2026-06-14T19:52:06Z",
+  "script": "scripts/run_humor_car_extended_robustness_regressions.py",
+  "dv_note": "CAR_m1_p1 is the main DV (short-window market reaction proxy). CAR_m3_p3 and CAR_m5_p5 are robustness DVs computed from daily return panel using per-event market model alpha/beta. CAR is NOT Tobin's Q. CAR is NOT direct Brand Equity. All results are correlational — no causal claims.",
+  "dvs_used": [
+    "CAR_m1_p1",
+    "CAR_m3_p3",
+    "CAR_m5_p5"
+  ],
+  "dv_summary": {
+    "CAR_m1_p1": {
+      "window": "[-1,+1]",
+      "role": "main_dv",
+      "n_primary": 430,
+      "H1a_humor_share_beta": 0.01293733,
+      "H1a_humor_share_se": 0.01822869,
+      "H1a_humor_share_p": 0.478274
+    },
+    "CAR_m3_p3": {
+      "window": "[-3,+3]",
+      "role": "robustness_dv",
+      "n_primary": 430,
+      "H1a_humor_share_beta": 0.01498497,
+      "H1a_humor_share_se": 0.01987449,
+      "H1a_humor_share_p": 0.451289
+    },
+    "CAR_m5_p5": {
+      "window": "[-5,+5]",
+      "role": "robustness_dv",
+      "n_primary": 430,
+      "H1a_humor_share_beta": -0.00831323,
+      "H1a_humor_share_se": 0.0228833,
+      "H1a_humor_share_p": 0.716575
+    }
+  },
+  "input_rows": 584,
+  "models_attempted": 27,
+  "models_completed": 27,
+  "models_failed": 0,
+  "h3_nonzero_aggressive_intensity_rows": 5,
+  "h3_zero_share": 0.9884,
+  "h3_interpretation_note": "H3 has only 5 nonzero aggressive intensity rows (98.8% zero) in primary sample. Report as exploratory evidence only. No confirmatory inference.",
+  "H3_exploratory_only": true,
+  "regression_run": true,
+  "causal_claim_made": false,
+  "car_used_as_tobins_q": false,
+  "car_used_as_direct_brand_equity": false,
+  "CAR_m1_p1_used": true,
+  "CAR_m3_p3_used": true,
+  "CAR_m5_p5_used": true,
+  "CAR_0_p3_used_as_symmetric_window": false,
+  "CAR_0_p5_used_as_symmetric_window": false,
+  "CAR_0_p3_used": false,
+  "CAR_0_p5_used": false,
+  "tobins_q_deferred": true,
+  "raw_data_modified": false,
+  "humor_outputs_modified": false,
+  "korea_uni_source_repo_modified": false,
+  "daily_return_panel_used_for_car_m3_m5": true,
+  "daily_abnormal_return_panel_used": false,
+  "abnormal_return_recomputed_from_market_model": true
+}

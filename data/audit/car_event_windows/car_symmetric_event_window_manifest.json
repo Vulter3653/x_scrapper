@@ -10,7 +10,7 @@
   },
   "humor_input_rows": 3767,
   "car_event_rows": 273,
-  "daily_abnormal_return_input_available": true,
+  "daily_abnormal_return_input_available": false,
   "daily_abnormal_return_rows": 0,
   "CAR_m1_p1_available_rows": 272,
   "CAR_m3_p3_available_rows": 272,
@@ -24,7 +24,7 @@
   "join_ready_for_CAR_m5_p5_rows": 580,
   "future_event_count": 0,
   "requires_date_audit": false,
-  "missing_car_reason": "CAR_m3_p3 and CAR_m5_p5: daily abnormal return input not available (event_window_daily_abnormal_returns.csv not found in data/external/korea_uni/)",
+  "missing_car_reason": "COMPLETED — CAR_m3_p3/CAR_m5_p5 computed from daily return panel using event-level alpha/beta",
   "tobins_q_deferred": true,
   "car_used_as_tobins_q": false,
   "car_used_as_direct_brand_equity": false,
@@ -82,5 +82,8 @@
     "CAR_m1_p1_overwritten": false,
     "causal_claim_made": false,
     "regression_auto_run": false
-  }
+  },
+  "daily_return_panel_available": true,
+  "abnormal_return_recomputed": true,
+  "daily_return_panel_used_for_car_m3_m5": true
 }
