@@ -1,0 +1,277 @@
+{
+  "created_at": "2026-06-14T21:05:42Z",
+  "gate": "Gate 6 — Humor IV Final Selection for Regression",
+  "based_on_gate": "5.1",
+  "based_on_commit": "ab0985d",
+  "script_reference": "scripts/build_humor_iv_gate5_1_repair.py",
+  "allowed_h1_ivs": [
+    {
+      "iv": "humor_prob_mean",
+      "alias": "ambiguity_adjusted_humor_share",
+      "note": "mean(P(humor)) per firm-period; bounded [0,1]; 100% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "primary_H1_continuous"
+    },
+    {
+      "iv": "ambiguity_adjusted_humor_share",
+      "note": "identical to humor_prob_mean; bounded [0,1]",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "primary_H1_continuous_alias"
+    },
+    {
+      "iv": "hc_humor_presence_any",
+      "note": "binary; 66.7% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H1_binary"
+    },
+    {
+      "iv": "hc_humor_count",
+      "note": "raw count; 66.7% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H1_count"
+    },
+    {
+      "iv": "hc_log_humor_count",
+      "note": "log(1+count); 66.7% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H1_log_count"
+    },
+    {
+      "iv": "hc_humor_share",
+      "note": "existing humor_share from hypothesis_variables; 66.7% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H1_share_existing"
+    },
+    {
+      "iv": "humor_candidate_score_sum",
+      "renamed_from": "humor_prob_sum",
+      "note": "sum(P(humor)); unbounded; rename required before use",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H1_probability_sum_robustness"
+    }
+  ],
+  "allowed_h2_ivs": [
+    {
+      "iv": "hc_v2_aggressive_candidate_count",
+      "note": "count only; NOT share/intensity; 60.2% nonzero; firm-level fixed value",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "primary_H2_count",
+      "warning": "v2_aggressive_candidate_count is a firm-level score, not per-period post count; do not normalize"
+    },
+    {
+      "iv": "hc_log_v2_aggressive_candidate",
+      "note": "log(1+v2_count); 60.2% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_log_count"
+    },
+    {
+      "iv": "hc_v2_aggressive_candidate_presence",
+      "note": "binary; 60.2% nonzero; bounded",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_binary"
+    },
+    {
+      "iv": "aggressive_candidate_score_sum",
+      "note": "corrected formula: sum(P(humor)×P(type=aggressive|humor)); 92.8% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_probability_sum"
+    },
+    {
+      "iv": "aggressive_candidate_score_mean",
+      "note": "mean per-post aggressive score; 92.8% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_probability_mean"
+    },
+    {
+      "iv": "aggressive_candidate_score_max",
+      "note": "max per-post aggressive score; 92.8% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_probability_max"
+    },
+    {
+      "iv": "hc_rare_class_candidate_count",
+      "note": "rare class candidate count; 19.8% nonzero; not normalized",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_rare_count"
+    },
+    {
+      "iv": "hc_log_rare_class_candidate",
+      "note": "log(1+rare_count); 19.8% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_log_rare_count"
+    },
+    {
+      "iv": "hc_rare_class_candidate_presence",
+      "note": "binary; 19.8% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "role": "H2_rare_binary"
+    }
+  ],
+  "allowed_h3_primary_iv": {
+    "iv": "aggressive_candidate_score_intensity_bounded",
+    "note": "aggressive_candidate_score_sum / total_posts; bounded [0,1]; 92.8% nonzero; corrected formula",
+    "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+    "nonzero_n": 399,
+    "nonzero_pct": 92.8,
+    "bounded_0_1": true,
+    "h3_label": "exploratory"
+  },
+  "allowed_h3_robustness_ivs": [
+    {
+      "iv": "aggressive_candidate_score_sum",
+      "note": "unbounded sum; robust alternative to bounded intensity; 92.8% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "nonzero_n": 399,
+      "bounded_0_1": false,
+      "h3_label": "exploratory_robustness"
+    },
+    {
+      "iv": "hc_rare_class_candidate_intensity_bounded",
+      "note": "rare_class_count / total_posts; bounded [0,1]; 19.8% nonzero",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "nonzero_n": 85,
+      "bounded_0_1": true,
+      "h3_label": "exploratory_robustness"
+    },
+    {
+      "iv": "sd_candidate_score_intensity_bounded",
+      "note": "self-defeating score / total_posts; bounded [0,1]; 92.8% nonzero; H3 alternative",
+      "file": "humor_iv_reconstructed_candidates_gate5_1.csv",
+      "nonzero_n": 399,
+      "bounded_0_1": true,
+      "h3_label": "exploratory_robustness"
+    }
+  ],
+  "forbidden_ivs": [
+    {
+      "iv": "hc_v2_aggressive_candidate_share",
+      "reason": "exceeds 1.0 (max=8.0); v2_count is firm-level fixed value, not per-period count"
+    },
+    {
+      "iv": "hc_v2_aggressive_candidate_intensity",
+      "reason": "exceeds 1.0 (max=7.0); same firm-level v2 issue"
+    },
+    {
+      "iv": "hc_v2_aggressive_candidate_intensity_bounded",
+      "reason": "still exceeds 1.0 because v2_count > total_posts in 189 firm-periods"
+    },
+    {
+      "iv": "hc_v2_aggressive_candidate_ratio_to_hard_humor",
+      "reason": "exceeds 1.0; explicitly labeled as ratio, not bounded"
+    },
+    {
+      "iv": "hc_negative_humor_intensity",
+      "reason": "H3 BLOCKED: nonzero_n=9 < 30 threshold"
+    },
+    {
+      "iv": "top_k_aggressive_score",
+      "reason": "H3 BLOCKED: nonzero_n=5 < 30; legacy name"
+    },
+    {
+      "iv": "top_k_aggressive_type_confidence",
+      "reason": "H3 BLOCKED: nonzero_n=5 < 30; renamed from top_k_aggressive_score"
+    },
+    {
+      "iv": "aggressive_prob_sum",
+      "reason": "legacy Gate5 formula; inconsistent (missing ml_humor_probability for classified posts); max>1"
+    },
+    {
+      "iv": "aggressive_prob_mean",
+      "reason": "legacy Gate5 formula; same issue"
+    },
+    {
+      "iv": "aggressive_prob_max",
+      "reason": "legacy Gate5 formula; same issue"
+    },
+    {
+      "iv": "aggressive_prob_intensity",
+      "reason": "legacy formula + wrong denominator (humor_count not total_posts)"
+    },
+    {
+      "iv": "CAR_0_p3",
+      "reason": "asymmetric window; forbidden DV; must not be used as symmetric window proxy"
+    },
+    {
+      "iv": "CAR_0_p5",
+      "reason": "asymmetric window; forbidden DV; must not be used as symmetric window proxy"
+    }
+  ],
+  "rename_required_ivs": [
+    {
+      "from": "humor_prob_sum",
+      "to": "humor_candidate_score_sum",
+      "reason": "not a probability — probability-weighted count sum"
+    },
+    {
+      "from": "aggressive_prob_sum",
+      "to": "aggressive_candidate_score_sum",
+      "reason": "legacy formula; inconsistent probability definition"
+    },
+    {
+      "from": "aggressive_prob_mean",
+      "to": "aggressive_candidate_score_mean",
+      "reason": "legacy formula"
+    },
+    {
+      "from": "aggressive_prob_max",
+      "to": "aggressive_candidate_score_max",
+      "reason": "legacy formula"
+    },
+    {
+      "from": "aggressive_prob_intensity",
+      "to": "aggressive_candidate_score_intensity_bounded",
+      "reason": "legacy formula + wrong denominator; rebound required"
+    },
+    {
+      "from": "top_k_aggressive_score",
+      "to": "top_k_aggressive_type_confidence",
+      "reason": "clarify it is type confidence, not a probability; H3 BLOCKED"
+    },
+    {
+      "from": "hc_v2_aggressive_candidate_share",
+      "to": "INVALID_DO_NOT_USE",
+      "reason": "v2 is firm-level; normalization produces values > 1"
+    },
+    {
+      "from": "hc_v2_aggressive_candidate_intensity",
+      "to": "INVALID_DO_NOT_USE",
+      "reason": "v2 is firm-level; normalization produces values > 1"
+    },
+    {
+      "from": "hc_rare_class_candidate_intensity",
+      "to": "hc_rare_class_candidate_intensity_bounded",
+      "reason": "original exceeds 1.0; bounded version uses total_posts denominator"
+    }
+  ],
+  "robustness_only_ivs": [
+    {
+      "iv": "aggressive_candidate_score_sum",
+      "robustness_for": "H3",
+      "reason": "unbounded; primary IV is bounded intensity; use as secondary check only"
+    },
+    {
+      "iv": "hc_rare_class_candidate_intensity_bounded",
+      "robustness_for": "H3",
+      "reason": "19.8% nonzero; weaker coverage; exploratory robustness only"
+    },
+    {
+      "iv": "sd_candidate_score_intensity_bounded",
+      "robustness_for": "H3",
+      "reason": "self-defeating; exploratory alternative; not primary H3 measure"
+    },
+    {
+      "iv": "hc_log_v2_aggressive_candidate",
+      "robustness_for": "H2",
+      "reason": "log-transformed count; use as robustness to primary count IV"
+    }
+  ],
+  "h3_exploratory_label_required": true,
+  "h3_regression_pre_condition": "human coding of manual_audit_sample required first",
+  "v2_candidate_is_ground_truth": false,
+  "regression_run": false,
+  "tobins_q_initiated": false,
+  "causal_claim_made": false,
+  "brand_equity_claimed": false,
+  "raw_data_modified": false,
+  "existing_iv_overwritten": false
+}
