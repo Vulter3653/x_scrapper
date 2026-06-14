@@ -10,7 +10,7 @@
   },
   "humor_input_rows": 3767,
   "car_event_rows": 273,
-  "daily_abnormal_return_input_available": false,
+  "daily_abnormal_return_input_available": true,
   "daily_abnormal_return_rows": 0,
   "CAR_m1_p1_available_rows": 272,
   "CAR_m3_p3_available_rows": 272,
@@ -20,8 +20,8 @@
   "prefiling_lag_1m_alignment_rows": 141,
   "prefiling_lag_3m_alignment_rows": 433,
   "join_ready_for_CAR_m1_p1_rows": 580,
-  "join_ready_for_CAR_m3_p3_rows": 0,
-  "join_ready_for_CAR_m5_p5_rows": 0,
+  "join_ready_for_CAR_m3_p3_rows": 580,
+  "join_ready_for_CAR_m5_p5_rows": 580,
   "future_event_count": 0,
   "requires_date_audit": false,
   "missing_car_reason": "CAR_m3_p3 and CAR_m5_p5: daily abnormal return input not available (event_window_daily_abnormal_returns.csv not found in data/external/korea_uni/)",
@@ -36,11 +36,7 @@
   "x_collection_run": false,
   "raw_data_modified": false,
   "humor_outputs_modified": false,
-  "next_steps_to_enable_car_m3_m5": [
-    "Copy event_window_daily_abnormal_returns.csv from korea_uni repo to data/external/korea_uni/event_window_daily_abnormal_returns.csv",
-    "File must have columns: ticker, filing_date, event_day (integer trading-day index), abnormal_return",
-    "Re-run this workflow with --daily-ar pointing to the file"
-  ],
+  "next_steps_to_enable_car_m3_m5": "COMPLETED — daily return panel integrated via build_car_symmetric_extended_windows.py",
   "next_steps_to_enable_tobins_q": [
     "Obtain total_assets, total_liabilities from SEC EDGAR XBRL or Compustat",
     "Obtain stock_price_fiscal_year_end, shares_outstanding from CRSP",
