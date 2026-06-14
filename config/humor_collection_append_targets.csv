@@ -2,16 +2,13 @@ fortune_rank,company_name,handle,sample_group
 1,Amazon,@amazon,fortune_top100_ranked
 2,Walmart,@walmart,fortune_top100_ranked
 3,UnitedHealth Group,@UnitedHealthGrp,fortune_top100_ranked
-4,Apple,@apple,fortune_top100_ranked
 5,Alphabet,@Alphabetlnc,fortune_top100_ranked
 6,CVS Health,@cvshealth,fortune_top100_ranked
-7,Berkshire Hathaway,@berkshire,fortune_top100_ranked
 8,McKesson,@mckesson,fortune_top100_ranked
 9,Exxon Mobil,@exxonmobil,fortune_top100_ranked
 10,Cencora,@CencoraGlobal,fortune_top100_ranked
 11,Microsoft,@microsoft,fortune_top100_ranked
 12,JPMorgan Chase,@jpmorgan,fortune_top100_ranked
-13,Costco Wholesale,@Costco,fortune_top100_ranked
 14,Cigna Group,@TheCignaGroup,fortune_top100_ranked
 15,Cardinal Health,@cardinalhealth,fortune_top100_ranked
 16,Nvidia,@nvidia,fortune_top100_ranked
