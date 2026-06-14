@@ -1,0 +1,74 @@
+{
+  "created_at": "2026-06-14T15:59:20Z",
+  "source_files": {
+    "master": "data/derived/humor/full_chain/humor_full_chain_master.csv",
+    "comparison": "data/audit/humor/evaluation/humor_type_v1_v2_comparison.csv",
+    "ab_summary": "data/audit/humor/evaluation/humor_type_v1_v2_summary.json",
+    "priority_sample": "data/derived/humor/evaluation/humor_type_human_review_priority_sample.csv"
+  },
+  "output_files": {
+    "full_hypothesis_variables": "data/derived/humor/hypothesis_variables/humor_firm_period_hypothesis_variables.csv",
+    "h1_variables": "data/derived/humor/hypothesis_variables/humor_h1_variables.csv",
+    "h2_variables": "data/derived/humor/hypothesis_variables/humor_h2_type_variables.csv",
+    "h3_variables": "data/derived/humor/hypothesis_variables/humor_h3_intensity_variables.csv",
+    "variable_dictionary": "data/derived/humor/hypothesis_variables/humor_variable_dictionary.csv"
+  },
+  "input_rows": 68020,
+  "output_rows": 3767,
+  "aggregation_level": "firm-period (company_name × YYYY-MM)",
+  "unique_key_columns": [
+    "company_name",
+    "period"
+  ],
+  "company_period_duplicate_count": 0,
+  "source_x_handle_collapsed": true,
+  "source_x_handle_count_max": 2,
+  "multi_handle_firm_period_count": 12,
+  "period_column_used": "created_at",
+  "period_fallback_to_firm_level": false,
+  "company_column_used": "company_name",
+  "handle_column_used": "source_x_handle (collapsed)",
+  "label_columns_used": [
+    "humor_presence",
+    "humor_type"
+  ],
+  "unique_companies": 99,
+  "unique_periods": 133,
+  "high_ambiguity_cells": 1900,
+  "high_ambiguity_threshold": 0.5,
+  "h3_sparsity_diagnostics": {
+    "aggressive_count_total": 105,
+    "nonzero_aggressive_firm_period_count": 91,
+    "aggressive_intensity_zero_share": 0.975843,
+    "max_aggressive_intensity": 0.25,
+    "mean_aggressive_intensity": 0.001291,
+    "median_aggressive_intensity": 0.0,
+    "rare_negative_count_total": 146,
+    "nonzero_rare_negative_firm_period_count": 129
+  },
+  "v2_note": "v2 candidate counts are company-level aggregates from the 941-row A/B stratified sample. They are NOT period-specific and are repeated for all firm-periods of each company. v2 is NOT a production label; these counts are diagnostic flags only.",
+  "constraints": {
+    "no_human_label": true,
+    "gold_label_created": false,
+    "coder_label_created": false,
+    "adjudicated_label_created": false,
+    "v1_v2_consensus_as_gold": false,
+    "v2_production_converted": false,
+    "full_chain_overwritten": false,
+    "raw_data_modified": false,
+    "classification_run": false,
+    "hypothesis_testing_ready": true,
+    "h1_variables_created": true,
+    "h2_variables_created": true,
+    "h3_variables_created": true
+  },
+  "limitations": [
+    "~48% of posts (32,749/68,020) are ambiguous_or_review; all humor type counts are lower-bound estimates.",
+    "aggressive (105/68k) and self_defeating (41/68k) are rare classes with no human validation; treat as exploratory.",
+    "v1-v2 agreement rate (39.53%) is a consistency indicator, not an accuracy estimate.",
+    "All variables are v1 operational labels. No precision/recall claims are possible.",
+    "Cue/threshold calibration requires human adjudication labels; deferred.",
+    "v2 candidate counts are from the 941-row stratified sample and are not period-specific.",
+    "Firms with multiple X handles have counts summed across handles per period; source_x_handle_list records all handles."
+  ]
+}
