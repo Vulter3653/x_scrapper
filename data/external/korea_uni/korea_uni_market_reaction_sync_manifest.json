@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-06-14T16:44:05.651416+00:00",
+  "source_repo": "Vulter3653/korea_uni",
+  "source_ref": "main",
+  "target_repo": "Vulter3653/x_scrapper",
+  "target_dir": "data/external/korea_uni",
+  "source_repo_modified": false,
+  "external_api_called": false,
+  "market_data_collection_run": false,
+  "sec_collection_run": false,
+  "x_collection_run": false,
+  "files_copied": {
+    "ai_10k_event_study_analysis_dataset.csv": {
+      "path": "data/external/korea_uni/ai_10k_event_study_analysis_dataset.csv",
+      "rows_excluding_header": 273,
+      "size_bytes": 354930
+    },
+    "post_filing_market_reaction_estimates.csv": {
+      "path": "data/external/korea_uni/post_filing_market_reaction_estimates.csv",
+      "rows_excluding_header": 273,
+      "size_bytes": 76067
+    },
+    "market_data_collection_report.csv": {
+      "path": "data/external/korea_uni/market_data_collection_report.csv",
+      "rows_excluding_header": 273,
+      "size_bytes": 40103
+    }
+  },
+  "purpose": "Read-only companion-repo CSV copy for Brand Equity / market reaction linkage readiness. CAR is a short-window market reaction proxy, not Tobin's Q and not direct consumer-based Brand Equity."
+}
