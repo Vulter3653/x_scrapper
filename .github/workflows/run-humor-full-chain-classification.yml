@@ -97,6 +97,72 @@ jobs:
           echo "RUN_MODE=${RUN_MODE}"
           echo "EFFECTIVE_ROW_LIMIT=${EFFECTIVE_ROW_LIMIT}"
 
+      - name: Rebuild canonical classification input from raw posts
+        run: |
+          set -euo pipefail
+          CANONICAL_INPUT_PATH="data/derived/humor/humor_classification_input.csv"
+          CANONICAL_MANIFEST_PATH="data/derived/humor/humor_classification_input_manifest.json"
+
+          if [ "${INPUT_PATH}" != "${CANONICAL_INPUT_PATH}" ]; then
+            echo "INPUT_PATH=${INPUT_PATH} is custom. Skipping raw-post rebuild."
+            exit 0
+          fi
+
+          python scripts/build_humor_classification_input_from_raw.py \
+            --output "${CANONICAL_INPUT_PATH}" \
+            --manifest "${CANONICAL_MANIFEST_PATH}"
+
+          echo "Canonical raw-based input manifest:"
+          cat "${CANONICAL_MANIFEST_PATH}"
+
+      - name: Validate rebuilt canonical input
+        run: |
+          set -euo pipefail
+          CANONICAL_INPUT_PATH="data/derived/humor/humor_classification_input.csv"
+          CANONICAL_MANIFEST_PATH="data/derived/humor/humor_classification_input_manifest.json"
+
+          if [ "${INPUT_PATH}" != "${CANONICAL_INPUT_PATH}" ]; then
+            echo "INPUT_PATH=${INPUT_PATH} is custom. Skipping canonical rebuild validation."
+            exit 0
+          fi
+
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          baseline_rows = 55788
+          csv_path = Path("data/derived/humor/humor_classification_input.csv")
+          manifest_path = Path("data/derived/humor/humor_classification_input_manifest.json")
+
+          if not csv_path.exists():
+              raise SystemExit(f"Missing rebuilt input: {csv_path}")
+          if not manifest_path.exists():
+              raise SystemExit(f"Missing rebuilt manifest: {manifest_path}")
+
+          with csv_path.open(encoding="utf-8-sig", newline="") as handle:
+              row_count = sum(1 for _ in csv.DictReader(handle))
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          manifest_rows = int(manifest.get("row_count", -1))
+          company_count = int(manifest.get("company_count", -1))
+
+          print(f"rebuilt_input_rows={row_count}")
+          print(f"manifest_row_count={manifest_rows}")
+          print(f"company_count={company_count}")
+          print("sample_group_distribution=" + json.dumps(manifest.get("sample_group_distribution", {}), ensure_ascii=False, sort_keys=True))
+          print("top_companies=" + json.dumps(manifest.get("top_companies", {}), ensure_ascii=False, sort_keys=True))
+
+          if row_count != manifest_rows:
+              raise SystemExit(f"CSV row count {row_count} does not match manifest row_count {manifest_rows}")
+          if row_count <= baseline_rows:
+              raise SystemExit(
+                  f"Rebuilt raw-based input has {row_count} rows, not greater than prior baseline {baseline_rows}. "
+                  "New raw posts are still not reflected."
+              )
+          if company_count < 99:
+              raise SystemExit(f"Company count unexpectedly low: {company_count}")
+          PY
+
       - name: Build full-chain input and training seed
         run: |
           mkdir -p data/derived/humor/full_chain/inputs
