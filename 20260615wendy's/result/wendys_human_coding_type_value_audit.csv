@@ -1,0 +1,23 @@
+type_source,raw_type_value,suggested_normalized_value,count,issue_type,notes
+coder1,,,728,missing,공란 — 해당 행의 유머 타입 미부여
+coder1,none,none,76,non_humor_marker,비유머 표시값 — missing 처리 권장
+coder1,affiliative,affiliative,74,valid,
+coder1,aggressive,aggressive,51,valid,
+coder1,self-enhancing,self-enhancing,38,valid,
+coder1,self-defeating,self-defeating,9,valid,
+coder1,self-enchancing,self-enhancing,2,typo_candidate,'self-enchancing' → 'self-enhancing' 정규화 필요
+human,,,910,missing,공란 — 해당 행의 유머 타입 미부여
+human,none,none,30,non_humor_marker,비유머 표시값 — missing 처리 권장
+human,affiliative,affiliative,21,valid,
+human,aggressive,aggressive,13,valid,
+human,self-enhancing,self-enhancing,3,valid,
+human,self-defeating,self-defeating,1,valid,
+coder2,,,516,missing,공란 — 해당 행의 유머 타입 미부여
+coder2,none,none,326,non_humor_marker,비유머 표시값 — missing 처리 권장
+coder2,aggressive,aggressive,58,valid,
+coder2,affiliative,affiliative,29,valid,
+coder2,self-enhancing,self-enhancing,21,valid,
+coder2,affliative,affiliative,19,typo_candidate,'affliative' → 'affiliative' 정규화 필요
+coder2,self-defeating,self-defeating,6,valid,
+coder2,self_enhancing,self-enhancing,2,typo_candidate,'self_enhancing' → 'self-enhancing' 정규화 필요
+coder2,self-affliative,affiliative,1,typo_candidate,'self-affliative' → 'affiliative' 정규화 필요

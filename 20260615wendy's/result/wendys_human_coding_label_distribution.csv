@@ -1,0 +1,5 @@
+label_source,total_rows,available_count,humor_count,nonhumor_count,missing_count,humor_share_among_available,nonhumor_share_among_available
+coder1,978,250,173,77,728,0.6920,0.3080
+human,978,167,83,84,811,0.4970,0.5030
+coder2,978,404,136,268,574,0.3366,0.6634
+final,978,597,309,288,381,0.5176,0.4824

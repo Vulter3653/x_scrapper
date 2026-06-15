@@ -1,0 +1,7 @@
+comparison,overlap_count,agreement_count,disagreement_count,agreement_rate,notes
+coder1 vs human (binary),68,68,0,1.0000,일치율 100.0%
+coder1 vs coder2 (binary),83,28,55,0.3373,일치율 33.7%
+human vs coder2 (binary),73,42,31,0.5753,일치율 57.5%
+coder1 vs human (type),38,38,0,1.0000,정규화 후 일치율 100.0%
+coder1 vs coder2 (type),17,5,12,0.2941,정규화 후 일치율 29.4%
+human vs coder2 (type),0,0,0,0.0000,정규화 후 일치율 0.0%
