@@ -69,13 +69,19 @@ def main():
             c2_unmatched += 1
     print(f"코더2: 매칭={c2_matched} / 미매칭={c2_unmatched}")
 
-    # ── 4. review sheet에 컬럼 추가
+    # ── 4. 출력 컬럼 정의 (중복 방지: 기존 coder/final 컬럼 제거 후 재정의)
+    BASE_COLS = [
+        "no", "id", "tweet_url", "text",
+        "model_humor", "p_humor", "humor_grade", "humor_score_rule", "p_humor_ml",
+        "human_coded", "human_humor_label", "human_humor_binary", "human_type",
+        "model_vs_human",
+    ]
     new_cols = [
         "coder1_humor", "coder1_humor_binary", "coder1_type",
         "coder2_humor", "coder2_humor_binary", "coder2_type",
-        "final_humor_binary", "final_humor_source",
+        "final_humor_binary", "final_humor_source", "final_humor_label_available",
     ]
-    out_cols = list(review_rows[0].keys()) + new_cols
+    out_cols = BASE_COLS + new_cols
 
     updated = []
     for r in review_rows:
@@ -119,6 +125,8 @@ def main():
         else:
             row["final_humor_binary"] = ""
             row["final_humor_source"] = ""
+
+        row["final_humor_label_available"] = "1" if row["final_humor_binary"] in ("0", "1") else "0"
 
         updated.append(row)
 
