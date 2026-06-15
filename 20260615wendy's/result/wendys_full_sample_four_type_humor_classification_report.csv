@@ -1,0 +1,7 @@
+class,precision,recall,f1-score,support
+aggressive,0.4778,0.4526,0.4649,95
+affiliative,0.4831,0.5377,0.5089,106
+self-enhancing,0.3208,0.2742,0.2957,62
+self-defeating,0.1176,0.1333,0.1250,15
+macro avg,0.3498,0.3495,0.3486,278
+weighted avg,0.4253,0.4281,0.4256,278

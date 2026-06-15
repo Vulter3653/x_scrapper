@@ -1,0 +1,362 @@
+no,id,text,true_label,oof_pred,error_type,p_aggressive,p_affiliative,p_self-enhancing,p_self-defeating
+1,2065192194277818396,if u dress up i will love u forever. Come experience the most bananas drive-thru ever. https://t.co/FDvzC4JTr1,affiliative,aggressive,false_aggressive,0.3398,0.3105,0.1757,0.1740
+2,2064726596179706275,"Her: Gimme 10
+Me: minutes or nuggets?",aggressive,aggressive,correct,0.3067,0.2678,0.3011,0.1244
+8,2060405944735957384,rich asf craving the new Ice Spicy Meal on DoorDash https://t.co/kVe28gJjYt,self-enhancing,aggressive,false_aggressive,0.2881,0.2869,0.2820,0.1429
+9,2060393163458498982,28 and 10? Fine. Free FRENCH fries in the app with $5 purchase for everybody (including aliens 👽),aggressive,affiliative,false_non_aggressive,0.2508,0.2907,0.2544,0.2042
+11,2059459943040753916,"It’s giving fan behavior but I’m a fan of me too, so I get it! https://t.co/ecpi4sU0kz",self-enhancing,affiliative,inter_other_confusion,0.2586,0.3746,0.2312,0.1356
+16,2057589742649192842,it's not roasting if it's true 😌 @Jeopardy https://t.co/Da3mvCbEFB,aggressive,self-enhancing,false_non_aggressive,0.2786,0.2733,0.2858,0.1623
+45,2041272778461258077,The Bourbon Bacon Cheeseburger and Pretzel Bacon Pub Burger have made it to our championship! Get your votes in to decid,affiliative,affiliative,correct,0.2852,0.3085,0.1829,0.2233
+49,2041187699764163013,woke up thinking about who’s gonna dunk in the national championship game tonight to unlock a free small fry and Frosty ,affiliative,aggressive,false_aggressive,0.3225,0.2618,0.2982,0.1175
+56,2039789214120996993,Congrats to these Official Wendy’s Dunk Team athletes on making it to the Final Four. You dunked into hoops. You dunked ,affiliative,affiliative,correct,0.1964,0.3355,0.2965,0.1716
+68,2035444365800214846,"On and off the court, Coen Carr can’t stop (won’t stop) dunking. https://t.co/pvLNEM1zSj",affiliative,affiliative,correct,0.2883,0.3558,0.2475,0.1084
+70,2035415108646490534,I hope Yaxel doesn’t dunk his fries in his Frosty this violently https://t.co/l75Yp2p6YX,aggressive,affiliative,false_non_aggressive,0.2826,0.3083,0.2297,0.1793
+80,2031884901557965271,What the fries at the bottom of my biggie bag see when I go scavenging for them https://t.co/qO9JGCgaXs,self-defeating,affiliative,inter_other_confusion,0.1782,0.4209,0.2312,0.1698
+81,2031738937870364955,travis gonna love the drive thru at his mom's house https://t.co/ssjGEuifjO,aggressive,affiliative,false_non_aggressive,0.2936,0.3812,0.2017,0.1236
+84,2030030060720164942,.@GenoSmith3 in case things don’t work out in free agency we’re looking for a Chief Tasting Officer…,self-enhancing,aggressive,false_aggressive,0.3719,0.3153,0.2233,0.0895
+99,2015935710449009033,kind of seems like you just wanted a reason to eat nothing but wendys chili for a month?,self-enhancing,aggressive,false_aggressive,0.3199,0.3189,0.2247,0.1365
+102,2012261535259726070,"CLOWNS ARE GOIN DOWN. We’re live right now over on
+https://t.co/P0GZ7DIn5g",affiliative,affiliative,correct,0.2794,0.3439,0.2227,0.1541
+103,2012226909820621147,TENDYS VS CLOWNS. WHO U GOT? Streaming some College Football ‘26 later today on twitch https://t.co/FJANT6bsl5,aggressive,affiliative,false_non_aggressive,0.2955,0.3218,0.1942,0.1886
+104,2009777266847363171,life is so crazy bc wdym i’m giving out bogo dave’s singles or doubles on doordash just bc some lady asked where’s the b,self-enhancing,aggressive,false_aggressive,0.4317,0.1462,0.3384,0.0837
+106,2001787208093614204,DMing myself 75% off an energy drink rn lol,affiliative,aggressive,false_aggressive,0.3138,0.2256,0.3075,0.1530
+108,2001787068914225487,"Attn insomniacs
+
+drop your sleep score below &amp; i’ll give you an energy drink deal based on how much your score suc",aggressive,affiliative,false_non_aggressive,0.2859,0.3347,0.2393,0.1401
+113,1988671571091980633,.@fibulaa said we’re Tendy’s now and who are we to argue? Try our new chicken tendys today! https://t.co/8FccP5qRR5,affiliative,affiliative,correct,0.1738,0.4162,0.3008,0.1093
+114,1980393481068831176,ok so maybe don’t hang it in the louvre,aggressive,self-enhancing,false_non_aggressive,0.2893,0.2368,0.3265,0.1474
+115,1976057070555132086,Canceling my hair appointment at angie’s 1.5 salons,aggressive,affiliative,false_non_aggressive,0.2583,0.3544,0.1926,0.1947
+118,1965414892438958172,Here comes the sun with SVG's @Wendys car lighting up Saturday's race with a breakfast worth getting up for. https://t.c,affiliative,self-enhancing,inter_other_confusion,0.2355,0.2687,0.4282,0.0676
+131,1914824035609027011,Can't get Daniel to stop doing swirls in his Talladega @Wendys car https://t.co/o7I4ijkleN,affiliative,affiliative,correct,0.2391,0.3750,0.2578,0.1281
+138,1907472436305813963,Keep your game fresh this March Madness with a $1 JBC or Double Stack in the Wendy’s app (w/ additional purchase). #Noth,aggressive,affiliative,false_non_aggressive,0.2649,0.3790,0.2165,0.1397
+140,1906741707875483676,"Get a $1 JBC or Double Stack all March Madness®. And now for the legal, but we added an emoji to make it cute.
+#INTHEWE",affiliative,affiliative,correct,0.3002,0.3547,0.2312,0.1139
+146,1904565120010723568,"For all of March Madness®, get a $1 JBC or Double Stack in the Wendy’s app. Don’t worry about forgetting, we have a simp",affiliative,affiliative,correct,0.2714,0.3924,0.1782,0.1580
+149,1901851793795219858,March Madness bracket if  you picked each matchup by which School's home stadium is closest to an @Wendys location https,self-enhancing,aggressive,false_aggressive,0.3399,0.2709,0.2183,0.1708
+151,1893347732040880523,"Your outie dips their fries in their Thin Mints Frosty 
+Your outie keeps their thin mints in the freezer 
+Your outie u",aggressive,aggressive,correct,0.4650,0.2271,0.2110,0.0970
+152,1892979312707473537,Im gonna show up at your door selling Thin Mints Frosty,aggressive,aggressive,correct,0.3875,0.2989,0.1758,0.1378
+156,1886095648572760240,If i see my shadow u get 6 more weeks of vanilla frosty,self-defeating,self-enhancing,inter_other_confusion,0.2635,0.2350,0.2993,0.2022
+158,1879984832446623928,Can’t believe we’re getting TikTok ban before gta 6,aggressive,affiliative,false_non_aggressive,0.2321,0.3355,0.3240,0.1084
+161,1874116245085446380,"2025 = 45^2
+
+It's a perfect square.  It will probably be the only perfect square year you ever get to live in.
+
+The ",affiliative,affiliative,correct,0.2908,0.3257,0.2282,0.1554
+173,1847306069816594818,When mom doesn’t stop for a Wendy’s Krabby Patty Kollab burger https://t.co/jZgDsddw1l,self-enhancing,affiliative,inter_other_confusion,0.2273,0.3411,0.2426,0.1890
+180,1841265943395082611,"If you want something done right, you gotta do it yourself. https://t.co/jEKOYLjxGc",affiliative,affiliative,correct,0.2384,0.3721,0.2486,0.1409
+186,1834619968442323418,POV: me going straight from bed to the couch every Saturday,affiliative,self-enhancing,inter_other_confusion,0.2696,0.2704,0.2996,0.1604
+189,1827852148366843989,Unhappy Hour means you can get a $1 Honey Buddy w purchase in the app. See? Life still has meaning - even on Monday morn,affiliative,affiliative,correct,0.2569,0.3235,0.2728,0.1468
+204,1825310472368791724,Unhappy Hour means you can get a $1 Honey Buddy w purchase in the app. Also means monday morning but forget that part.,affiliative,affiliative,correct,0.2892,0.3533,0.2243,0.1332
+212,1818340302802850216,My saucy nuggs get such a good block from the table they do a yurchenko double pike into my mouth,self-enhancing,affiliative,inter_other_confusion,0.3026,0.3506,0.1704,0.1764
+217,1811077661101301959,"Workin’ on the ol’ photoshop skills again…
+Hit us up if your profile pic needs some sauce",self-enhancing,aggressive,false_aggressive,0.2879,0.2572,0.1845,0.2704
+220,1810007794310840603,Whenever i need new tires i just pull up to a pit crew during a nascar race @NASCARChicago,aggressive,aggressive,correct,0.4403,0.2525,0.2154,0.0918
+221,1808626600872665366,.@shanevg97 you asked for some sauce for your race in Chicago. This work? https://t.co/e67YBsIvdK,aggressive,affiliative,false_non_aggressive,0.2396,0.3967,0.2463,0.1173
+230,1793796655512183145,Stop taking the concept of a Biggie Bag and making it worse,aggressive,self-enhancing,false_non_aggressive,0.2181,0.3002,0.3438,0.1378
+237,1785674044190175475,McDonald’s announced plans to create their largest burger ever https://t.co/IMnQErb8sy,aggressive,aggressive,correct,0.3558,0.2975,0.2134,0.1333
+238,1785401765271101734,Look between CAPS LOCK and RETURN on your keyboard. That’s the alphabet. Use it to write an original joke.,aggressive,aggressive,correct,0.3273,0.2392,0.1866,0.2470
+239,1783201437113082357,"Congrats 👑@reggiebush
+Can we get our burger back now https://t.co/nSSLMRUv7m",aggressive,affiliative,false_non_aggressive,0.1552,0.5319,0.1719,0.1409
+240,1783192374044184957,"You can get chili for $1 with purchase in the app today.
+Which means you should get a @Cinnabon Pull-Apart to go with i",aggressive,affiliative,false_non_aggressive,0.2289,0.4416,0.2478,0.0817
+248,1775209957358522399,New @Cinnabon Pull-Apart? It’s okay to have just a lil’ treat. 🥹,aggressive,aggressive,correct,0.3172,0.3071,0.2554,0.1203
+255,1757905771189190791,Struggling to keep the romance fresh? Let Wendy’s &amp; Josh help with perfect pairing package. https://t.co/BSFaYwVdlv,aggressive,affiliative,false_non_aggressive,0.2145,0.3506,0.2790,0.1558
+257,1757109191762747848,". @joshcellars burgers are fun
+red wine is posh
+wanna pair up?
+nvm blame it on the Josh https://t.co/i8bRaSup6s",aggressive,aggressive,correct,0.4206,0.2179,0.2715,0.0900
+266,1744381160086524197,sometimes a vanilla frosty after 8 months is enough to stop the voices,self-enhancing,aggressive,false_aggressive,0.3605,0.1841,0.3167,0.1387
+267,1724894653793833227,"On the 1st Wednesday of Nuggetmas my true love gave to me: FREE NUGGETS.
+.
+.
+.
+.
+
+Get a free 6 pc Nuggs today with",affiliative,self-enhancing,inter_other_confusion,0.1881,0.2680,0.4118,0.1320
+271,1716894851499966760,WHERE IS WENDY,self-enhancing,self-enhancing,correct,0.2764,0.1439,0.4064,0.1734
+293,1667183491551821832,@TheDrum You know why Wendys hasnt posted a ChatGPT ad? They dont cut corners.,aggressive,aggressive,correct,0.3172,0.2485,0.2502,0.1841
+295,1663376242433720321,guess this means they went with our script 💅🔥⛏️ @nuggets @miamiHEAT @NBA #HeatNuggets https://t.co/mcdvyAyQQL,affiliative,affiliative,correct,0.2394,0.4266,0.2121,0.1219
+301,1658178790713876486,A Frosty is a sweet treat. It is a drink. It is a sauce. It is fearless. It’s Frosty and it’s the new look for summer 🍓,self-enhancing,self-enhancing,correct,0.3514,0.1799,0.3804,0.0883
+310,1650820225728741378,Hey @Wendys..... what's happening on your fb,aggressive,aggressive,correct,0.3681,0.2803,0.2489,0.1026
+311,1648417729508958215,Where’s the beef?,aggressive,aggressive,correct,0.4138,0.1584,0.3211,0.1067
+313,1648334094319882240,"McDonald's announced they're changing their burgers.  
+Big Macs &amp; other burgers are getting softer buns, meltier ch",aggressive,aggressive,correct,0.3939,0.2631,0.2184,0.1246
+317,1644140500218179585,"I’m a burger girl, in a burger world https://t.co/E5UsSIHwBE",affiliative,aggressive,false_aggressive,0.3742,0.2666,0.2297,0.1295
+322,1626647347584286720,That’s the perfect place for people that don’t like beef tbh,self-enhancing,aggressive,false_aggressive,0.5418,0.2142,0.1546,0.0894
+323,1625171742267256839,"Just kidding, found it. #Daytona500 #NASCAR",aggressive,self-enhancing,false_non_aggressive,0.3443,0.2261,0.3579,0.0717
+325,1625165317189009409,Where's the beef?,aggressive,aggressive,correct,0.4171,0.1766,0.2839,0.1223
+328,1623545691305046016,A successful Trios Title defense means one thing.. an ELITE @Wendys feast. https://t.co/aA03WhTYrA,self-enhancing,self-enhancing,correct,0.2147,0.2942,0.3092,0.1819
+330,1620468613915504645,"Put out garlic fries and didn’t even think about how it would make the vampires feel. My bad, y’all. That one’s on me.",self-defeating,aggressive,false_aggressive,0.3305,0.3037,0.2201,0.1457
+339,1605335737368342528,"Want to know the secret behind my voice? Warming up with @wendys Holiday Peppermint Frosty. It is literally INSANE, so g",self-enhancing,affiliative,inter_other_confusion,0.2101,0.3059,0.2722,0.2119
+342,1604919683584401410,"Dave’s Double, No Cheese.",aggressive,self-enhancing,false_non_aggressive,0.2586,0.2282,0.2871,0.2262
+344,1604865566057144320,"Since the job seems open, should I step up as the head of Twitter? I will abide by this poll.",aggressive,aggressive,correct,0.4035,0.2739,0.1828,0.1398
+345,1602425619618332673,Love it when a USC Trojan gets what’s rightfully theirs. cc:@ReggieBush https://t.co/rrT0EuFiyt,affiliative,aggressive,false_aggressive,0.3112,0.2953,0.2355,0.1580
+349,1598469601288982528,Jim Cramer says he likes these 3 best-of-breed restaurant stocks https://t.co/wTyUzClLrx,affiliative,self-enhancing,inter_other_confusion,0.2471,0.2877,0.3411,0.1241
+350,1596245866121416704,No one lost. THEREFORE EVERYONE WINS. Free fries with purchase in the Wendy’s app. https://t.co/Wf19A9jLy2,affiliative,self-defeating,inter_other_confusion,0.1671,0.1863,0.1828,0.4639
+351,1596229186192302080,"Right proper match, innit? @wendysuk",affiliative,affiliative,correct,0.2456,0.4368,0.2000,0.1176
+352,1596217383001108480,USA! USA! USA! Let’s get these fries,affiliative,affiliative,correct,0.2239,0.3455,0.2290,0.2017
+359,1585376361237340160,Secure the city. Secure the bag. Come hang while we stream Gotham Knights. 🦇 https://t.co/ppA1jjEaki,affiliative,affiliative,correct,0.2335,0.3601,0.2516,0.1548
+360,1582484431620567040,You afraid of ghosts? Come hang while we stream Ghostbusters! Thanks. 👻https://t.co/P0GZ7DZXWO,affiliative,affiliative,correct,0.1935,0.5371,0.1704,0.0989
+364,1581410264339009536,"I had about 6 French Toast Sticks and I’d do it again. BGs, start your day with @wendys new #FrenchToastSticks #BravoCon",affiliative,affiliative,correct,0.2514,0.3062,0.3038,0.1386
+366,1580580422408622081,"Who’s a TRUE Reggaeton OG? No need to guess, he is here at #PandoraLIVE El Pulso! Join us by RSVP at https://t.co/bcSKvW",affiliative,aggressive,false_aggressive,0.3420,0.2494,0.2349,0.1738
+367,1578434005996695553,"Purple and covered in nerds, just like @Twitch #TwitchCon2022 https://t.co/xZYQpzthC6",aggressive,self-enhancing,false_non_aggressive,0.2405,0.2953,0.3317,0.1326
+368,1577345554614566913,Got tired of chasing trends. Please have a cheeseburger for lunch,affiliative,aggressive,false_aggressive,0.3616,0.3101,0.1643,0.1640
+369,1577337977071706113,Low vibration angel numbers astrology overwatch 2 house of the dragon sir this is a wendy’s Mario movie spooky season br,self-enhancing,self-defeating,inter_other_confusion,0.2431,0.1992,0.1728,0.3850
+371,1574473925165449216,Sci-fi is when you have this Wendy; fantasy is when you have that Wendy https://t.co/NwLaLK2Cs3,affiliative,affiliative,correct,0.2317,0.2996,0.2804,0.1883
+372,1573323893967822851,He was just excited. https://t.co/BpyGBb6pIS,self-enhancing,affiliative,inter_other_confusion,0.3132,0.3740,0.1876,0.1252
+373,1572656302614085632,Walking outside after they say the ice cream machine’s broke https://t.co/fEK83Gk9rr,aggressive,affiliative,false_non_aggressive,0.2826,0.3497,0.2546,0.1131
+374,1570426440428187650,You shouldn’t have said anything … https://t.co/iRUrFOCaNs,self-defeating,affiliative,inter_other_confusion,0.2365,0.5162,0.1548,0.0925
+377,1567614811046920193,"Aw geez, the Rick and Morty merch is limited edition?? Better order a Rick and Morty combo through the @ubereats app to ",self-enhancing,affiliative,inter_other_confusion,0.2778,0.3529,0.2522,0.1171
+379,1562870837283135495,She's still his favorite mom. https://t.co/8Ip4FPIdwI,affiliative,aggressive,false_aggressive,0.3392,0.3045,0.2527,0.1036
+383,1559912735525183488,Are you telling me the French Toasted this stick?,aggressive,aggressive,correct,0.3385,0.2358,0.2192,0.2065
+384,1559639856925626369,"Whoa, chill. No one said anything about compliments. Just trying to tell you we have new French Toast Sticks. Are you gu",aggressive,self-defeating,false_non_aggressive,0.1632,0.1940,0.1272,0.5156
+385,1559627059491704832,"You know what rhymes with Roast? 
+Toast. Let’s do a whole Toast Day thing. Might be fun.",affiliative,aggressive,false_aggressive,0.3659,0.3055,0.2005,0.1280
+387,1555198547494051842,"@facelessfreebie Whoops! My b, bestie. Messed up your handle. Hope that proposal still stands.",aggressive,aggressive,correct,0.3680,0.2616,0.1729,0.1974
+388,1555192002639175681,@MichaelaBarger7 we only have fries for you (and millions of others) #ChooseHotAndCrispy https://t.co/g2AUqoXZYG,affiliative,affiliative,correct,0.1910,0.4957,0.1972,0.1161
+389,1555191997006286852,@FaceleeFreebie I do… not plan on wearing chains #ChooseHotAndCrispy https://t.co/X0Byoml3pt,aggressive,self-enhancing,false_non_aggressive,0.2629,0.2694,0.2780,0.1898
+390,1555191981285974016,@HustleBunnee can we get an amen up in here? #ChooseHotAndCrispy https://t.co/mtlz7F1bty,aggressive,affiliative,false_non_aggressive,0.2783,0.3718,0.2384,0.1115
+392,1555191970682867712,"@ChaosYT_ call us mrs. steal ur anime boi, @BurgerKing  #ChooseHotAndCrispy https://t.co/uEfjlwXbV2",self-enhancing,affiliative,inter_other_confusion,0.2602,0.3695,0.2395,0.1308
+395,1554830029871230979,"If you love us so much, put a 💍 on it baybeee 
+
+Tweet us your fry proposal with #ChooseHotAndCrispy for a chance at FR",affiliative,affiliative,correct,0.2638,0.2909,0.2765,0.1687
+396,1552389305695453184,It’s always BeReal this and BeReal that when it would BeReal nice if you called your mother,aggressive,affiliative,false_non_aggressive,0.3503,0.3562,0.1427,0.1508
+397,1551575748741324801,"Free medium fry with any Frosty. Name a better duo, we’ll wait.",self-enhancing,self-enhancing,correct,0.2688,0.2971,0.3473,0.0868
+398,1550536004293074949,RT @sad_dad_time: babe wake up wendy’s is talking to emo bands again,self-defeating,self-enhancing,inter_other_confusion,0.2642,0.1720,0.3454,0.2184
+399,1550527908137025536,babe wake up wendy’s is talking to emo bands again,affiliative,self-enhancing,inter_other_confusion,0.2642,0.1720,0.3454,0.2184
+406,1546922193661181953,When i text you “🗣” know that sir this is a Wendy’s,self-defeating,aggressive,false_aggressive,0.4785,0.1862,0.2224,0.1129
+407,1546869599492243457,"If your egg wants to go jellyfishing, you picked the wrong breakfast. https://t.co/FZHhrnjNIh",aggressive,affiliative,false_non_aggressive,0.2536,0.3410,0.2503,0.1550
+408,1545154011778748419,sneak a Frosty in your purse https://t.co/piZUzsFJBo,self-enhancing,affiliative,inter_other_confusion,0.3520,0.3670,0.1641,0.1170
+409,1541483384542842883,They’re a 10 but they say they’re lovin’ it 🧐,affiliative,aggressive,false_aggressive,0.4038,0.2390,0.2467,0.1105
+414,1536788752739205121,This is the first Strawberry Frosty Moon in 4.53 billion years! This won’t happen again until the heat death of the univ,affiliative,aggressive,false_aggressive,0.3203,0.1942,0.2426,0.2429
+418,1522284287239897092,"Shout out to all the zero like ratio tweets out there just existing, living the life they want instead of the one they w",aggressive,affiliative,false_non_aggressive,0.3129,0.3260,0.2425,0.1185
+421,1514667895497887748,"Dropped a Spicy Nugget under the front seat one time, but it’s gone now. Not because someone (not me) got out of the car",affiliative,affiliative,correct,0.2764,0.2776,0.2218,0.2242
+422,1513983410930335753,"Well, no one else was using the drive thru. 🤷‍♀️",self-defeating,affiliative,inter_other_confusion,0.2441,0.2986,0.1677,0.2896
+423,1511766482291765248,When they say “let’s split some nuggs” but they actually mean “do you wanna speed eat in silence as we each try to get t,affiliative,affiliative,correct,0.2875,0.3671,0.2386,0.1068
+424,1511410018083647489,That tomatonator is sounding good for lunch,self-enhancing,aggressive,false_aggressive,0.4283,0.2413,0.2476,0.0828
+429,1510996113079296010,"Oh it’s on! @Wendys and @Skittles faced fierce competition, but now it’s time to decide once and for all who the best br",aggressive,aggressive,correct,0.3105,0.2472,0.1813,0.2610
+434,1509591862335655943,"The  #BestOfTweets Brand Bracket Semifinals are here.
+
+In this round, Conversation Starters and Iconic Mascots collide",self-defeating,aggressive,false_aggressive,0.4317,0.2799,0.1901,0.0983
+445,1504835309258817538,"Rounding out the first week of #BestOfTweets Brand Bracket.
+
+On deck: top hats and hot takes. 
+🥜 @MrPeanut’s nonstop ",aggressive,self-defeating,false_non_aggressive,0.1854,0.1868,0.2381,0.3897
+446,1503793289081851912,Let's get moderately schwifty then hit up Morty's Mayhem at Resorts World for the good brekky.,affiliative,affiliative,correct,0.2728,0.3002,0.2464,0.1806
+447,1503780715489423360,Hoops and @wendys Breakfast go hand in hand and there’s only one place to get them together - VEGAS baby! #ad https://t.,affiliative,self-enhancing,inter_other_confusion,0.1320,0.2270,0.4286,0.2124
+448,1503438625672937479,"RT @Wendys: Wendy’s Pick ‘Em is BACK, baby! 
+
+Hit the ❤️, and we’ll hit you up when it’s time to make your picks for E",affiliative,affiliative,correct,0.2066,0.3306,0.1925,0.2703
+449,1500883144530092034,"What if I told ya the classic ✨Dave’s Single ✨ was just $1 in the app? Welp, this is me telling you.",self-enhancing,aggressive,false_aggressive,0.4197,0.2501,0.1587,0.1715
+450,1498659324910047233,"Crispy, chicken &amp; habanero hot honey on a fluffy biscuit - Wendy’s NEW Hot Honey Chicken. How’s that for a “good mor",affiliative,self-enhancing,inter_other_confusion,0.1495,0.1558,0.5737,0.1210
+452,1494385125680893961,Lil ✨sweet✨. Lil 🔥spicy🔥. Wendy’s NEW Hot Honey Chicken Sandwich really can do it all.,self-enhancing,affiliative,inter_other_confusion,0.2161,0.3578,0.3268,0.0993
+453,1493720865254428676,Come hang with the cool kids while we watch @eNASCARCocaCola Series opener of the @iRacing Series at Daytona tonight! St,affiliative,affiliative,correct,0.2058,0.4307,0.1743,0.1892
+454,1491535958713458690,"hi, i'm johnny knoxville and...
+
+Sir, this is a Wendy's.",aggressive,self-defeating,false_non_aggressive,0.2049,0.1470,0.2209,0.4272
+455,1491487068584824843,Soggy fries where? I don’t have any.,self-enhancing,affiliative,inter_other_confusion,0.2719,0.2811,0.2359,0.2111
+458,1486700523201839104,"Whatever wakes ya up, drink it ✨free✨ from a Wendy’s cup. Free drink with any breakfast sandwich.",self-enhancing,self-enhancing,correct,0.1663,0.1957,0.5552,0.0827
+459,1485407829506904069,Tune in for the cool and crispy moves on the Knuckle Huck while crushing some of those hot and crispy Official Fries of ,self-enhancing,affiliative,inter_other_confusion,0.2118,0.3284,0.2909,0.1689
+461,1483861582073548809,From our lawyers: Not based on actual data. “Coca-Cola” is a registered trademark of The Coca-Cola Company.,aggressive,self-enhancing,false_non_aggressive,0.2501,0.2561,0.3526,0.1412
+462,1483829962012569606,Top free drink in your state according to our psychic. https://t.co/zWigqhWQDc,self-enhancing,affiliative,inter_other_confusion,0.2708,0.3638,0.2866,0.0788
+464,1481395692220395527,I heard when they breed the dogs to have faces like that it's really bad for the animal. #NationalRoastDay,aggressive,aggressive,correct,0.3714,0.3080,0.2081,0.1125
+466,1481342770623225856,"New stuff sounds like my little brother trying to cuss for the first time.
+#NationalRoastDay",aggressive,aggressive,correct,0.3076,0.2577,0.2948,0.1399
+468,1481341396430766085,"Everyone good? Feeling great? 
+Still many hours left in the day, but take a quick lunch break because we’re trying to p",self-enhancing,affiliative,inter_other_confusion,0.2626,0.3795,0.2160,0.1418
+469,1481306650132848645,"For something that pretends to be a sport, your ""athletes"" sure suck at rounding bases.
+#NationalRoastDay",aggressive,aggressive,correct,0.3959,0.3614,0.1544,0.0882
+470,1481299289582231566,"Dang, your hair didn't even show up to your birthday party. #NationalRoastDay",aggressive,aggressive,correct,0.4931,0.2583,0.1705,0.0781
+472,1481295012646334468,"It’s #NationalRoastDay™ 
+Drop the “roast me” below 👇
+
+Oh, and don’t forget to get free medium fries with purchase, in",aggressive,aggressive,correct,0.2968,0.2930,0.2899,0.1203
+474,1480539931294511104,What’s up? You’re up. So go pick up any Wendy’s Breakfast Sammie and get a free drink.,self-enhancing,self-enhancing,correct,0.1933,0.3123,0.3266,0.1678
+475,1471541646902935552,Potatoes wish they could be our fries when they grow up.,affiliative,aggressive,false_aggressive,0.4366,0.2729,0.1933,0.0972
+476,1468943521403052038,Me sleeping knowing I’m getting $1 biscuits tomorrow a.m.: 👁👄👁,self-enhancing,aggressive,false_aggressive,0.4359,0.2068,0.2293,0.1280
+477,1466438148829941770,"Even if I didn’t pass math, I still got this breakfast biscuit for just $1. So that’s pretty nice.",affiliative,aggressive,false_aggressive,0.3173,0.2253,0.2708,0.1866
+478,1466406802673717250,How much is a breakfast biscuit at Wendy's? 8÷2(2+2)÷16 Dollars,self-enhancing,self-enhancing,correct,0.1634,0.1877,0.4847,0.1642
+482,1460682535650971649,the internet just couldn't handle how rad these picks are,self-enhancing,aggressive,false_aggressive,0.3412,0.2527,0.2626,0.1435
+484,1459189091984150532,Heard My Space was back https://t.co/6CpTXW2TPX,affiliative,self-defeating,inter_other_confusion,0.1789,0.2294,0.2315,0.3602
+485,1456269198896680968,How many fingers am I holding up? Just one… for the $1 hot &amp; buttery Breakfast Biscuit.,self-enhancing,self-enhancing,correct,0.2225,0.2362,0.4083,0.1330
+486,1455253881135538184,"Ghosts, ghouls, monsters. None of these are nearly as terrifying as cold and soggy fries. Try Wendy’s new hot and crispy",self-enhancing,affiliative,inter_other_confusion,0.2024,0.3317,0.3005,0.1654
+488,1454154005559627781,"Add a spooky thrill with a quick story of fright and freezing to your next drive thru visit. Don't worry, you're safe…yo",affiliative,affiliative,correct,0.2617,0.3850,0.1704,0.1829
+489,1453805031463993346,Changing name to Meat,aggressive,aggressive,correct,0.3202,0.2617,0.2694,0.1488
+490,1453783325517262852,Fries or sauce forks: what do you call them where you're from???,affiliative,self-enhancing,inter_other_confusion,0.2479,0.2451,0.3591,0.1479
+491,1453067485343801349,Dave’s single so why can’t you be? Grow up.,aggressive,aggressive,correct,0.3255,0.3204,0.2408,0.1133
+492,1451578964280025096,repost if you dip your phone i̶̹̦̔͌̊̍͒̉͊̀ņ̷̖̯̩̯̈́͑̀̀̌͊̃ͅ ̷̡̬̤̺̖̫͐̔͌͜t̸̹̠̥́̄͆̕̚͜͝h̴̡̠͕̩͕͉̅̀́͜ė̴̺̄ ̷̢̭̖̱̦̇͆̅̎ẅ̴̻͈̝̩̰͈́͑͛̑̅,aggressive,affiliative,false_non_aggressive,0.3196,0.3554,0.1484,0.1767
+493,1451256272007872517,When you eat all the fries otw home: “T’was just the appetizer.”,affiliative,self-enhancing,inter_other_confusion,0.2747,0.2740,0.2915,0.1597
+494,1450114742375362565,"Alright friendys, Fanta has 3 new Mystery Mixes, and you could win $10,000 if you guess any of the flavors. Best case sc",affiliative,affiliative,correct,0.2229,0.4426,0.2204,0.1141
+497,1445105618357002243,"where the things that should be fresh are frozen, and the things that should be frozen are out of order.",aggressive,aggressive,correct,0.3933,0.2127,0.2799,0.1141
+498,1445088131145940995,Can you lend us a hand? We might lend one back,affiliative,affiliative,correct,0.2201,0.4263,0.1866,0.1670
+499,1445048052235051010,"if u were the person who ran the McDonald's account for a day, what would u tweet",aggressive,aggressive,correct,0.3361,0.2804,0.2075,0.1760
+500,1442946786688057344,"Did you know that every time there’s a pick-six, a Breakfast Baconator gets its six-strips-of-bacon wings?",aggressive,self-defeating,false_non_aggressive,0.1876,0.2591,0.1892,0.3642
+501,1442530592109645832,"Best breakfast sandwich, no bull shirt.",self-enhancing,self-enhancing,correct,0.2380,0.2600,0.3467,0.1553
+502,1442528227717693445,Them Breakfast Baconators From @Wendys Be The Shirt.,self-enhancing,affiliative,inter_other_confusion,0.2155,0.3457,0.3108,0.1281
+510,1440059703296348161,Mid donalds,aggressive,aggressive,correct,0.3374,0.2512,0.2655,0.1459
+511,1439257913428615168,"Every Saturday and Sunday in September, get a free 6pc Spicy Nuggs w/ purchase AND free delivery in the Wendy’s App!
+
+",affiliative,self-enhancing,inter_other_confusion,0.1678,0.2737,0.4038,0.1547
+512,1438927615797104640,Soda in the water cup is about as sneaky as three kids in a trench coat,aggressive,self-enhancing,false_non_aggressive,0.2959,0.1621,0.4392,0.1027
+513,1438222894014865408,Who else has a “normal person voice” they use when they pull up to order at the drive-thru?,aggressive,self-defeating,false_non_aggressive,0.2683,0.2119,0.1119,0.4079
+514,1435333827812106244,Use your big brain to win the right to sit on your big brain. Our Tetris 99 tournament for the Wendy’s Big Brain Bean Ba,affiliative,self-enhancing,inter_other_confusion,0.2268,0.2572,0.2795,0.2366
+516,1434154280542474244,"Best way to get game ready? A good breakfast, duh. Don’t worry tho. We’ve got ya covered.",affiliative,affiliative,correct,0.2757,0.3343,0.3046,0.0854
+519,1431621266583261187,Just cause we’re the Official Breakfast of College Football doesn’t mean we are playing around with breakfast.  ¯\_(ツ)_/,affiliative,self-enhancing,inter_other_confusion,0.2497,0.2900,0.3859,0.0744
+520,1430213213367513093,There are Wendy’s Spicy Nuggs and then there are the knockoffs. #WendysSpicyNuggs,self-enhancing,self-enhancing,correct,0.2162,0.2263,0.3976,0.1599
+521,1428703371024900102,"Croissant or ✨𝒬𝒲𝒜𝒮𝒜𝒰𝒩𝒯✨, no matter how you say it grab one this a.m. for just $1.99.",affiliative,aggressive,false_aggressive,0.2928,0.2329,0.2564,0.2179
+522,1427345012677910533,Best Spicy Nuggs on the block. Verified. #WendysSpicyNuggs,self-enhancing,self-enhancing,correct,0.2002,0.2170,0.4809,0.1019
+527,1425503905832701956,Do you love Wendy’s? Do you love Wendy’s Spicy Nuggs? Do you also love Discord? Then you’re going to triple love our Gen,self-enhancing,affiliative,inter_other_confusion,0.1508,0.3601,0.3187,0.1705
+528,1425189040211566593,"Verified tweets for verified eats. There’s only one top dog in the spicy nugget game, and that’s verified. #WendysSpicyN",self-enhancing,affiliative,inter_other_confusion,0.2352,0.3250,0.2888,0.1510
+531,1419719465453953024,Expand your  ✨🧠𝑀𝐼𝐼𝐼𝐼𝐼𝒩𝒟🧠✨and keep your pockets lined with BOGO $1.,affiliative,aggressive,false_aggressive,0.3853,0.2799,0.2656,0.0692
+532,1419376178671009792,"Hey @Grubhub, what kind of food are you going to have at this livestream tonight? Asking for a hungry friend.",affiliative,aggressive,false_aggressive,0.3617,0.2920,0.1912,0.1550
+534,1417914905617965066,Our BOGO $1 is for the big brains (not smol).,self-enhancing,aggressive,false_aggressive,0.3276,0.2265,0.3117,0.1342
+535,1417199040542949378,Replying to your own tweet about BOGO $1 headshots knowing you’re going to big brain yourself https://t.co/ukbFR9wKJF,self-enhancing,affiliative,inter_other_confusion,0.2823,0.4110,0.2031,0.1036
+536,1417137962215743489,We’re taking BOGO $1 headshots. Who wants one?,aggressive,affiliative,false_non_aggressive,0.2205,0.2998,0.2923,0.1874
+539,1415476190920548354,It’s showtime! Get a FREE 4 piece spicy nuggets with FREE delivery on orders of $15 or more through @grubhub. Things are,self-enhancing,affiliative,inter_other_confusion,0.2045,0.3442,0.3394,0.1119
+540,1415355158700171268,"Get your favorite Wendy’s meal, get your favorite chair, and get ready for @edsheeran to go live tonight at 9pm ET! Tune",affiliative,affiliative,correct,0.2203,0.3942,0.2281,0.1574
+544,1407742489528836099,I am tired of lunch. These clowns. I am tired of people caught in the freezers of their beef. https://t.co/8qMWdd2CGf,aggressive,affiliative,false_non_aggressive,0.2887,0.3176,0.2788,0.1149
+549,1406685219315404801,“And that’s the way the news goes!” https://t.co/147w3Q4SHX,aggressive,affiliative,false_non_aggressive,0.2794,0.3197,0.2241,0.1768
+551,1406047214963728385,"If someone sees a Mr. Meeseeks walking around 14645 Roscoe Blvd, Panorama City, CA, please let him know that his break i",aggressive,aggressive,correct,0.3368,0.2515,0.2236,0.1881
+553,1406015436915945475,"Sir, this is a Morty’s. https://t.co/u7B1GLMGLL",aggressive,self-defeating,false_non_aggressive,0.2269,0.2061,0.2785,0.2885
+562,1400982621757247491,Thank you Julien https://t.co/42jvTo4e68,affiliative,affiliative,correct,0.1839,0.4459,0.1548,0.2153
+564,1397992184213917701,"Every time I eat the Bourbon Bacon Cheeseburger I say “Time to get my Bourb-ON!” 
+
+And then everybody laughs because I",self-defeating,affiliative,inter_other_confusion,0.2671,0.3968,0.2116,0.1245
+566,1397493144254623748,"Britain just got a new favourite redhead. 
+
+#SorryNotSorryRonald 😉",aggressive,self-enhancing,false_non_aggressive,0.2755,0.2876,0.3502,0.0866
+572,1388192293216309250,"Oh, snap! $1 Any Size Fries and Pokemon Snap? Watch us play it on Twitch and grab yourself some $1 fries in our app! htt",affiliative,self-enhancing,inter_other_confusion,0.2263,0.2275,0.3197,0.2265
+574,1385655564835901449,"Wendy, Honey, Butter and Chicken Biscuit are on the hunt again. Watch us stream Monster Hunter Rise on Twitch and grab a",self-enhancing,self-defeating,inter_other_confusion,0.1082,0.2443,0.2389,0.4086
+575,1383119249741348866,We’re hunting monsters in Monster Hunter Rise on Twitch. And if you’re hunting a great deal get the $1.99 Honey Butter C,self-defeating,self-enhancing,inter_other_confusion,0.1579,0.2636,0.5063,0.0722
+577,1382148071656591360,Yellow Wendy’s use to hit different 📈 https://t.co/NIRiwHv43w,self-defeating,affiliative,inter_other_confusion,0.2426,0.4200,0.2316,0.1059
+587,1378437146709782530,"Friends finish each other's sentences, like how @Wendys has a $0 delivery fee on",self-enhancing,self-enhancing,correct,0.2729,0.2803,0.2949,0.1519
+588,1377655396085727235,Free Junior Bacon Cheeseburger for all ya wah wah babies,aggressive,aggressive,correct,0.3218,0.2793,0.2553,0.1436
+589,1377644234833063936,Buy-bu-bu-bu-buy,self-enhancing,aggressive,false_aggressive,0.3414,0.2464,0.2612,0.1510
+593,1376979649578872837,What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! h,self-enhancing,self-enhancing,correct,0.1175,0.1660,0.4922,0.2243
+600,1372971843255164934,"Watch us drain some threes in 2k, and score a free Honey Butter Chicken Biscuit this Saturday. 😎🍯
+https://t.co/P0GZ7DIn",self-enhancing,self-enhancing,correct,0.1362,0.3080,0.3246,0.2312
+601,1372888082979061767,"FREE Honey Butter Chicken Biscuit today and Saturday, NO CATCH. See? No losers in Biscuitball.🤘🏽🍯 https://t.co/VjyFP6uFA",self-enhancing,self-defeating,inter_other_confusion,0.1518,0.2427,0.2323,0.3733
+604,1372241709497774085,"Direct deposit $1,400
+
+Me at @Wendys: 🚨Bag alert major bag alert!!!🚨
+
+💰💰💰",self-enhancing,self-enhancing,correct,0.2839,0.2277,0.2928,0.1955
+608,1371829641674158086,I’m having @Wendys breakfast W or L,self-enhancing,self-enhancing,correct,0.2179,0.2155,0.4903,0.0763
+609,1371526729534222338,"Ok, true story time: they are square because they have four equal sides that meat at 90 degree angles",aggressive,aggressive,correct,0.4217,0.3205,0.1496,0.1082
+613,1370809149626417152,"I’d say your favorite combo is your new jersey number, but then everybody would be 44.",affiliative,aggressive,false_aggressive,0.3691,0.2362,0.2849,0.1098
+615,1370466586314866690,"We’re back to making an Impact. Grab your FREE Spicy 10-Piece in our app, and then hop in the stream. https://t.co/P0GZ7",self-enhancing,affiliative,inter_other_confusion,0.2199,0.4097,0.2403,0.1301
+616,1370124888049061895,"It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.
+
+❤️ ",affiliative,affiliative,correct,0.1678,0.4688,0.2326,0.1308
+624,1367313189030006787,it’s all boneless,aggressive,aggressive,correct,0.3558,0.2840,0.2387,0.1215
+625,1365415423047577602,Should I ban george again?,aggressive,aggressive,correct,0.3440,0.2312,0.1795,0.2453
+626,1365376931051548678,"Well, you convinced us to play genshin impact, but now you have to come to the stream and help us figure out what we’re ",affiliative,affiliative,correct,0.1731,0.5197,0.1770,0.1301
+627,1364258730125197314,"What’s poppin? Is that a thing people say still? Anyway, the answer is this Jalapeño Popper Chicken Sandwich. It rules.",self-enhancing,self-enhancing,correct,0.2432,0.2068,0.4494,0.1005
+629,1362850965838258179,We’re kicking bass and takin lakes! We’re reelin in some fresh fish and dealin out our new Crispy Panko Fish Sandwich. C,self-enhancing,affiliative,inter_other_confusion,0.2262,0.4009,0.2692,0.1037
+631,1361826031137652737,Oh no...how embarrassing. Hopefully no one reads this.,self-defeating,self-defeating,correct,0.2731,0.1636,0.1651,0.3982
+633,1360298310762979329,Savor the moment. The best roasts of #NationalRoastDay 2021 are right here. https://t.co/naLA8BFQrw,affiliative,aggressive,false_aggressive,0.3414,0.2492,0.2580,0.1513
+634,1360011130048049153,"Well, that was fun. To all of those we torched, as they say, “you roast the ones you love.” If we didn’t get to you, may",affiliative,aggressive,false_aggressive,0.3304,0.3069,0.1560,0.2066
+639,1359973584878391306,Looks like you're about to open up a circle pit at a Build-A-Bear. #NationalRoastDay,aggressive,aggressive,correct,0.3802,0.3083,0.2201,0.0914
+642,1359943682221363204,"You're what people put up to scare the scarecrows.
+
+Loved your work in trolls world tour
+
+If you give this guy a swi",aggressive,aggressive,correct,0.4129,0.2448,0.2022,0.1401
+648,1359919274958196736,Congrats on being the world’s first stale flavored chip.  #NationalRoastDay,aggressive,aggressive,correct,0.4095,0.2897,0.1751,0.1257
+650,1359908897054732290,Even Papa John wouldn't eat 40 of you in 30 days. #NationalRoastDay,aggressive,affiliative,false_non_aggressive,0.3188,0.3453,0.1581,0.1778
+653,1359902805901910026,"Dude, your eyes need to start practicing some social distancing. #NationalRoastDay",aggressive,aggressive,correct,0.4417,0.2420,0.2274,0.0890
+657,1359577880326524935,"#NationalRoastDay is tomorrow.
+If you didn’t know, now you know. Either way, you’re a jabroni.",aggressive,aggressive,correct,0.3177,0.2103,0.1808,0.2912
+658,1359215493626949637,"rOaSt Me WeNdY’s
+Fine. Come back on Thursday cause we’re roasting everyone on Thursday cause Thursday is #NationalRoast",aggressive,affiliative,false_non_aggressive,0.2893,0.2908,0.2716,0.1483
+661,1356328102188748802,"Making a mcstake can happen, just glad you learned from it.",affiliative,aggressive,false_aggressive,0.3572,0.3203,0.2310,0.0916
+668,1346894350182182912,"Hey funny zoom background guy, it’s a new year. That means finding something else to make up for your lack of personalit",affiliative,aggressive,false_aggressive,0.3974,0.3060,0.1710,0.1256
+672,1340008979494301696,"First we wake, then we BACONATE! @MMATAband, you ready?",affiliative,affiliative,correct,0.2500,0.3777,0.2458,0.1265
+674,1339620945347178500,"Listen, the family photo shoot turned out great, but Baconator makes everything better. Send us your family holiday card",affiliative,affiliative,correct,0.2342,0.3932,0.2369,0.1358
+676,1338523478648107011,Ain’t no party like a Baconator party cause a Baconator party…,affiliative,aggressive,false_aggressive,0.3736,0.1969,0.2592,0.1703
+677,1337140424444669954,We’re live and we’re taking next-gen to the next level. Watch @itshafu enjoy the sweet taste of victory and other dope m,affiliative,affiliative,correct,0.2245,0.3888,0.2845,0.1021
+681,1334613261128495106,"Baconator O’Clock=the perf time to baconate, if we do say so ourselves. 
+
+Get to Wendy’s and start baconating with a f",self-enhancing,affiliative,inter_other_confusion,0.2088,0.4711,0.2252,0.0950
+683,1333884282247532544,"We’re not gonna say there was a right answer to this, but this seems like y’all were on it. 
+
+Get to Wendy’s and see f",affiliative,self-enhancing,inter_other_confusion,0.1843,0.3489,0.3529,0.1138
+685,1333864403498795008,"Made my first sale on #Redbubble, now I have to figure out how to spend my 22¢! ☺️ @Wendys #AmongUs https://t.co/e7xNqM7",affiliative,affiliative,correct,0.2335,0.2814,0.2475,0.2376
+687,1332670830015180803,🥓 Morning win! 🥓 $5 off Breakfast thru Grubhub. Get it. https://t.co/mhOghjfBS4,affiliative,affiliative,correct,0.1900,0.4148,0.2742,0.1210
+689,1329177361267429376,"Putting stories in the Wendy's app.
+jk no one asked for that. https://t.co/AqIA0o1C2V",self-defeating,self-defeating,correct,0.2090,0.2781,0.1818,0.3311
+690,1328791788988096512,WE’RE GOIN’ TO WENDY’S https://t.co/mPMwZMygLo,self-enhancing,affiliative,inter_other_confusion,0.1385,0.3683,0.2799,0.2134
+694,1327327865160036352,"Only an impostor would not watch this stream. Don’t be sus, join us live: https://t.co/P0GZ7DIn5g",aggressive,affiliative,false_non_aggressive,0.2435,0.3291,0.2662,0.1612
+699,1326221906916352003,Y’all want a free chicken sandwich?,affiliative,self-enhancing,inter_other_confusion,0.2865,0.1744,0.4352,0.1039
+705,1321203076171182080,that fry is longer than waiting for a text back,aggressive,self-enhancing,false_non_aggressive,0.2328,0.2738,0.3110,0.1824
+711,1318624118070280192,lol hope they'll still take your return at Spirit Halloween after the stink of this tweet gets on the costume,aggressive,aggressive,correct,0.3972,0.2516,0.1916,0.1596
+712,1318616066386481152,"Stick to pushing the food that’s so “good”you took it out of your name. 
+
+My grandma has more heat in her roasts.",aggressive,affiliative,false_non_aggressive,0.2577,0.3030,0.2197,0.2196
+713,1318582764652867591,Here’s some advice about spice: It’s always better on a donut (like the Spicy Ghost Pepper Donut). 🔥🍩 #DunkinSpicySide h,self-enhancing,aggressive,false_aggressive,0.2908,0.2907,0.2608,0.1577
+716,1316371848960061440,"You put in the work, now it’s time for your reward. Head to @UberEats now and get up to 30% off breakfast today through ",affiliative,affiliative,correct,0.2846,0.3943,0.2179,0.1032
+718,1315790897695666176,the first thing you order when you leave the bubble,self-enhancing,aggressive,false_aggressive,0.3478,0.2892,0.1977,0.1654
+723,1314250917953318912,Burger King could never https://t.co/5aCAxQtEXM,aggressive,affiliative,false_non_aggressive,0.3066,0.3324,0.2250,0.1360
+725,1310646202082492417,"don't think they'll live long, or prosper tbh",aggressive,aggressive,correct,0.3508,0.2553,0.2779,0.1161
+728,1309543210793009152,"Pretzel Bacon Pub Cheeseburger. @DrPepper. We call it the Dr PubberCombo. Well, not officially, but you could. https://t",aggressive,affiliative,false_non_aggressive,0.2178,0.3412,0.1700,0.2710
+734,1303726230966075392,Sliding into your mentions like https://t.co/kKfWx8zdMO,affiliative,aggressive,false_aggressive,0.3100,0.2928,0.2987,0.0986
+741,1300451564763709440,Friends don’t let friends miss a breakfast BOGO. https://t.co/1BDp1fKpa4,affiliative,self-enhancing,inter_other_confusion,0.2407,0.3035,0.3469,0.1090
+746,1298984742822412288,One for you and one for you. 😎 https://t.co/dk6c4f4GqQ,affiliative,affiliative,correct,0.1949,0.3670,0.2193,0.2187
+750,1297919369109012481,"Some of you are still sleeping on our breakfast? Tag a friend that needs a lesson in good, morning eating.",affiliative,self-enhancing,inter_other_confusion,0.2117,0.3152,0.3593,0.1138
+751,1296875748834320388,I dip... you dip...,affiliative,aggressive,false_aggressive,0.3626,0.2823,0.2050,0.1502
+754,1296100179976822785,Been working on the ol' photoshop skills. Hit us up and we’ll spice up your profile pic.,affiliative,affiliative,correct,0.2784,0.3799,0.1878,0.1539
+758,1294005354607542274,"Wendy's back on the Fall Guys again
+
+0 dubs so far 😂👌",self-defeating,aggressive,false_aggressive,0.3503,0.2354,0.2829,0.1315
+762,1293256222922203138,"Hope your server maintenance is as active as your twitter 😉
+
+(and make sure the crowns aren’t paper)",aggressive,aggressive,correct,0.4579,0.2161,0.2303,0.0956
+766,1291837518455779328,4:44 on the clock I’m in my drop top getting some eats.,affiliative,self-enhancing,inter_other_confusion,0.2907,0.1914,0.3372,0.1807
+767,1291462568511406081,The burgers are square for a reason.,aggressive,aggressive,correct,0.4181,0.2358,0.2320,0.1140
+776,1286650842225848321,"Wakey wakey, eggs and bac-y-nator.",affiliative,self-enhancing,inter_other_confusion,0.1939,0.3158,0.3478,0.1425
+778,1285658885366386688,We’re heading back to the island for a quick swim. Grab a Strawberry Lemonade to sip while we dip in the stream. https:/,affiliative,affiliative,correct,0.1961,0.3809,0.2621,0.1609
+779,1283561455787347973,"Sorry, Nick. No dice.",aggressive,self-defeating,false_non_aggressive,0.1736,0.2092,0.1927,0.4244
+799,1268326640972595206,We’re about putting our money where our mouth is. So here’s our money and here’s our mouth. We are committed to donating,self-enhancing,affiliative,inter_other_confusion,0.2024,0.4164,0.2879,0.0933
+801,1266395345996652552,We’re moving National Roast Day because there are going to be better times for it. Love you guys.,affiliative,affiliative,correct,0.2413,0.3611,0.3070,0.0906
+802,1266084754832719872,"#NationalRoastDay starts right here tomorrow at 11am ET. For everyone that’s said “Roast Me Wendy’s,”...Tomorrow’s looki",aggressive,aggressive,correct,0.3367,0.2578,0.2678,0.1377
+805,1263549059962408962,"Alright Wendys, your time has come. Do you have what it takes to be the Queen of the Hill? Suit up and enter our Super S",affiliative,affiliative,correct,0.1996,0.4122,0.2154,0.1728
+810,1260917780594884608,"Sorry, private meeting. Elite breakfast foods only. https://t.co/skbJUhiqgc",self-enhancing,affiliative,inter_other_confusion,0.1849,0.3663,0.3372,0.1116
+844,1257152398566592516,"No, this is THE Wendy's.",affiliative,self-defeating,inter_other_confusion,0.1975,0.1179,0.1902,0.4944
+846,1257082671118913537,"This week, we will be hiding codes. Lots of codes. Codes that will score you free Wendy's. Hidden across our entire inte",affiliative,affiliative,correct,0.2130,0.4203,0.1928,0.1739
+854,1254757690321932288,Now that really honey butters my biscuit! https://t.co/xkZxxXsVwM,affiliative,self-defeating,inter_other_confusion,0.2005,0.2959,0.1923,0.3113
+859,1252980092113993730,"Everyone has become their own hairstylist. We all need a nug. This Friday ONLY, we’re giving America a big GroupNug. Get",affiliative,affiliative,correct,0.1910,0.4503,0.2204,0.1383
+862,1252379047335608320,We’re giving America a GroupNug this Friday. ♥ this tweet and we’ll remind you when to get your free 4pc nuggets! https:,affiliative,affiliative,correct,0.1597,0.5913,0.1502,0.0988
+863,1252355382657216512,"Not gonna lie, all this love y’all are showing has inspired us. We wish we could give you a hug, but instead…how about a",affiliative,affiliative,correct,0.2360,0.3624,0.2089,0.1927
+864,1252250012676997123,"Everyone could use some extra love right now, so we’re trading our usual roasting for a little toasting.
+
+Let’s use th",affiliative,affiliative,correct,0.3076,0.3454,0.1637,0.1833
+867,1250053580716990467,"Had so much fun last week, we figured we’d do it again! Get your hands on a free Breakfast Baconator in the Wendy's app ",affiliative,affiliative,correct,0.1873,0.4971,0.2215,0.0941
+875,1248698613045366785,"Shout out to the girl that keeps ""losing"" her phone. 
+
+Maybe while she downloads the findmyphone app you can enjoy a F",aggressive,affiliative,false_non_aggressive,0.3044,0.3365,0.2495,0.1096
+876,1248693897263448071,"Um, hey, Cousin. Give the HDMI back. This is not a game.
+You have 48 hours.
+
+In the meantime we will enjoy a Free Dav",aggressive,affiliative,false_non_aggressive,0.3008,0.3588,0.1936,0.1467
+885,1248679862384185347,Shout out to LostMermaid. It's never too late to reply back. Even if it has been like...a year. The internet can see you,affiliative,affiliative,correct,0.3372,0.3614,0.1921,0.1093
+888,1248677421588586496,"Come on now! You can't hit them with the old fruit and scoot! 
+
+Might be out of oranges, but at least you've still got",affiliative,affiliative,correct,0.2433,0.4126,0.2032,0.1408
+912,1235705290755960832,"We love you too sweet, sweet Guillermo.",affiliative,affiliative,correct,0.2282,0.3605,0.2984,0.1129
+915,1234448367230627840,BREAKFAST NEWS! Wendy's is now serving up breakfast. Sources say it's “pretty lit.” https://t.co/meBemp31hH,self-enhancing,affiliative,inter_other_confusion,0.1717,0.3390,0.3298,0.1595
+919,1233494419925585924,Here lies mediocrity. #EggRIPMuffin https://t.co/fYxcn8LObe,aggressive,self-enhancing,false_non_aggressive,0.1959,0.2748,0.3166,0.2127
+927,1229264235387129856,"BURGER KING is testing a sandwich with nothing but french fries:
+
+https://t.co/cMELl6fZaV https://t.co/D1taIscJk2",aggressive,self-enhancing,false_non_aggressive,0.2295,0.3043,0.3517,0.1145
+933,1224794757559455746,When they ask what your weaknesses are during the interview.,aggressive,aggressive,correct,0.3700,0.3025,0.1890,0.1384
+940,1220437845388730370,Is it a garbage truck?,aggressive,self-enhancing,false_non_aggressive,0.3430,0.1799,0.3859,0.0912
+944,1217123276549427201,That's what we call a glow up.,affiliative,affiliative,correct,0.3150,0.4325,0.1527,0.0998
+945,1216894246021713920,Looked who dropped by to see what Spicy Nuggets were supposed to taste like.,affiliative,aggressive,false_aggressive,0.3095,0.2162,0.2865,0.1878
+947,1216801098608017413,Not saying eating our french fries gets you an #Oscar nomination but also...sup,self-defeating,aggressive,false_aggressive,0.3397,0.3223,0.2371,0.1009
+951,1207700570213101585,"meryl can have a little french fries, as a treat.",affiliative,aggressive,false_aggressive,0.3293,0.1951,0.1817,0.2939
+958,1205932906406920194,Watch Rick and Morty with us on Sunday and try to get five in a row on this game your grandma loves that we can’t legall,affiliative,affiliative,correct,0.2139,0.4993,0.2006,0.0863
+961,1205531387975090177,Wendy’s cups should be square but no one wants to poke that tiger,aggressive,self-defeating,false_non_aggressive,0.2928,0.1990,0.1469,0.3612
+971,1198858858267127809,What's the most disrespectful diss track of all time?,aggressive,affiliative,false_non_aggressive,0.2892,0.3866,0.1565,0.1677
+972,1198363148094328832,"To be fair, you have to have a very high IQ to understand Rick and Morty. So make sure you watch it this Sunday night, g",affiliative,affiliative,correct,0.2857,0.3857,0.1972,0.1314

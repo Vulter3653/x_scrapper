@@ -1,0 +1,141 @@
+class,rank,feature,weight
+aggressive,1,nationalroastday,1.025002
+aggressive,2,your,0.752630
+aggressive,3,should,0.666581
+aggressive,4,they,0.652138
+aggressive,5,hope,0.466481
+aggressive,6,ban,0.456113
+aggressive,7,wants,0.453519
+aggressive,8,it,0.453180
+aggressive,9,hair,0.413822
+aggressive,10,her,0.407448
+aggressive,11,their,0.406191
+aggressive,12,his,0.394694
+aggressive,13,where the,0.384794
+aggressive,14,burgers,0.381739
+aggressive,15,pull,0.369422
+aggressive,16,up to,0.354311
+aggressive,17,why,0.339930
+aggressive,18,mcdonald,0.337058
+aggressive,19,burger king,0.336777
+aggressive,20,king,0.336777
+aggressive,21,not,0.335570
+aggressive,22,burgers are,0.335517
+aggressive,23,square,0.334885
+aggressive,24,on your,0.327428
+aggressive,25,we get,0.322908
+aggressive,26,can we,0.322908
+aggressive,27,fries in,0.317867
+aggressive,28,the beef,0.316223
+aggressive,29,meat,0.315787
+aggressive,30,wants to,0.309095
+aggressive,31,cheese,0.308713
+aggressive,32,taking,0.308147
+aggressive,33,roast me,0.303297
+aggressive,34,josh,0.300624
+aggressive,35,fresh,0.299334
+affiliative,1,we,1.096297
+affiliative,2,right,0.842239
+affiliative,3,you,0.823713
+affiliative,4,and,0.635071
+affiliative,5,love,0.504846
+affiliative,6,let,0.504077
+affiliative,7,with,0.492057
+affiliative,8,off,0.476068
+affiliative,9,be,0.464657
+affiliative,10,can,0.454922
+affiliative,11,come,0.441241
+affiliative,12,morning,0.437089
+affiliative,13,favorite,0.409775
+affiliative,14,the wendy,0.398193
+affiliative,15,tonight,0.394573
+affiliative,16,is the,0.390349
+affiliative,17,while we,0.386894
+affiliative,18,get,0.385347
+affiliative,19,happen,0.384352
+affiliative,20,into,0.362821
+affiliative,21,us,0.362747
+affiliative,22,now,0.355886
+affiliative,23,car,0.353878
+affiliative,24,for you,0.352253
+affiliative,25,of,0.349370
+affiliative,26,let get,0.337421
+affiliative,27,and we,0.335631
+affiliative,28,year,0.332951
+affiliative,29,dip,0.321575
+affiliative,30,nuggets,0.317530
+affiliative,31,got,0.317048
+affiliative,32,guess,0.308035
+affiliative,33,hand,0.306953
+affiliative,34,44,0.305737
+affiliative,35,ready,0.296949
+self-enhancing,1,breakfast,1.020391
+self-enhancing,2,spicy,0.947494
+self-enhancing,3,is,0.831766
+self-enhancing,4,wendys,0.826812
+self-enhancing,5,thing,0.715434
+self-enhancing,6,in your,0.628046
+self-enhancing,7,free,0.604796
+self-enhancing,8,elite,0.569705
+self-enhancing,9,anime,0.534224
+self-enhancing,10,sandwich,0.532275
+self-enhancing,11,any,0.505660
+self-enhancing,12,drink,0.502691
+self-enhancing,13,shirt,0.497972
+self-enhancing,14,me,0.484886
+self-enhancing,15,was just,0.484348
+self-enhancing,16,knowing,0.473974
+self-enhancing,17,biscuit,0.473048
+self-enhancing,18,where,0.469176
+self-enhancing,19,free drink,0.466987
+self-enhancing,20,frosty,0.463059
+self-enhancing,21,better,0.455313
+self-enhancing,22,mouth,0.446694
+self-enhancing,23,verified,0.438870
+self-enhancing,24,some,0.425256
+self-enhancing,25,wendysspicynuggs,0.422387
+self-enhancing,26,chicken biscuit,0.411860
+self-enhancing,27,butter,0.411860
+self-enhancing,28,honey butter,0.411860
+self-enhancing,29,soggy fries,0.410797
+self-enhancing,30,soggy,0.410797
+self-enhancing,31,nuggs,0.408224
+self-enhancing,32,our,0.406491
+self-enhancing,33,chicken,0.389589
+self-enhancing,34,block,0.384232
+self-enhancing,35,to wendy,0.383395
+self-defeating,1,no one,1.307393
+self-defeating,2,one,1.248821
+self-defeating,3,wendy,1.104936
+self-defeating,4,use,1.037030
+self-defeating,5,my,1.009425
+self-defeating,6,said anything,0.964441
+self-defeating,7,anything,0.964441
+self-defeating,8,hit,0.956419
+self-defeating,9,no,0.952706
+self-defeating,10,see,0.906958
+self-defeating,11,said,0.829220
+self-defeating,12,again,0.788968
+self-defeating,13,back on,0.760775
+self-defeating,14,at the,0.753695
+self-defeating,15,you an,0.687364
+self-defeating,16,eating,0.683974
+self-defeating,17,guys,0.671987
+self-defeating,18,vanilla frosty,0.670574
+self-defeating,19,vanilla,0.670574
+self-defeating,20,text,0.656519
+self-defeating,21,fries,0.652755
+self-defeating,22,more,0.635458
+self-defeating,23,know that,0.599089
+self-defeating,24,also,0.590886
+self-defeating,25,how,0.547185
+self-defeating,26,putting,0.528393
+self-defeating,27,oh,0.521735
+self-defeating,28,french fries,0.521608
+self-defeating,29,gets,0.517993
+self-defeating,30,asked for,0.515337
+self-defeating,31,else,0.486789
+self-defeating,32,biggie,0.478753
+self-defeating,33,biggie bag,0.478753
+self-defeating,34,didn even,0.478213
+self-defeating,35,you know,0.477717

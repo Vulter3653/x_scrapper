@@ -1,0 +1,27 @@
+metric,value
+n_train,278
+n_full,978
+n_folds,5
+oof_accuracy,0.4281
+oof_macro_f1,0.3486
+oof_weighted_f1,0.4256
+oof_macro_auc,0.6182
+train_n_aggressive,95
+train_n_affiliative,106
+train_n_self_enhancing,62
+train_n_self_defeating,15
+small_class_warning,True
+small_class_note,self-defeating n=15 < 20; fold당 약 3건. 소표본 클래스 결과 해석 주의.
+full_pred_non_humor,414
+full_pred_aggressive,187
+full_pred_affiliative,251
+full_pred_self_enhancing,96
+full_pred_self_defeating,30
+full_pred_missing,0
+gate_non_humor_count,414
+gate_model_predicted_count,564
+gate_missing_count,0
+feature,text_only
+vectorizer,"TfidfVectorizer(ngram_range=(1,2),min_df=2,max_df=0.95,sublinear_tf=True,max_features=5000)"
+classifier,"LogisticRegression(multi_class=multinomial,solver=lbfgs,class_weight=balanced,max_iter=1000)"
+note,exploratory model-based full-sample classification. engagement 변수 및 기존 모델 예측값 feature 미사용.

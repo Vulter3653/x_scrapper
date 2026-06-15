@@ -1,0 +1,21 @@
+check,status,detail
+01_train_sample_size,PASS,n=278
+02_all_classes_present,PASS,"{'affiliative': 106, 'aggressive': 95, 'self-enhancing': 62, 'self-defeating': 15}"
+03_small_class_warning_in_diag,PASS,small_class_warning=True
+04_n_folds_5,PASS,n_folds=5
+05_oof_pred_length,PASS,oof=278 train=278
+06_oof_acc_above_chance,PASS,acc=0.4281
+07_oof_f1_valid,PASS,macro-F1=0.3486
+08_full_pred_row_count,PASS,n=978
+09_non_humor_gate_count,PASS,n=414
+10_model_predicted_count,PASS,n=564
+11_no_missing_gate,PASS,missing=0
+12_final_non_humor_414,PASS,n=414
+13_humor_type_sum_564,PASS,sum=564
+14_prob_row_sum_1,PASS,max_dev=0.000000
+15_feature_weights_all_classes,PASS,"{'aggressive', 'self-defeating', 'affiliative', 'self-enhancing'}"
+16_feature_weights_top30_each,PASS,"{'aggressive': 35, 'affiliative': 35, 'self-enhancing': 35, 'self-defeating': 35}"
+17_confusion_matrix_4x4,PASS,"shape=(4, 4)"
+18_oof_auc_above_0_5,PASS,AUC=0.6182
+19_pred_values_valid,PASS,"{'self-defeating', 'aggressive', 'non_humor', 'affiliative', 'self-enhancing'}"
+20_diag_small_class_warning_true,PASS,confirmed
