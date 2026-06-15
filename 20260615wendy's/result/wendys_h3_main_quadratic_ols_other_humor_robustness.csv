@@ -1,0 +1,9 @@
+dv,n,predictor,coef_linear,p_linear,coef_quadratic,p_quadratic,turning_point,x_min,x_max,turning_point_in_range,r_squared,h3_main_exploratory_support,note
+log1p_engagement_total,960,other_humor_proportion_quarter_loo,1.8261,0.2659,-1.6771,0.4437,0.5444,0.0,0.6667,True,0.0034,약한_탐색적_지지(tp_in_range),other_humor_proportion_loo: non-aggressive humor robustness check
+log1p_engagement_favorite_retweet,960,other_humor_proportion_quarter_loo,2.2521,0.1759,-2.1637,0.3296,0.5204,0.0,0.6667,True,0.0044,약한_탐색적_지지(tp_in_range),other_humor_proportion_loo: non-aggressive humor robustness check
+log1p_favorite_count,960,other_humor_proportion_quarter_loo,1.8465,0.3417,-1.59,0.5393,0.5807,0.0,0.6667,True,0.003,약한_탐색적_지지(tp_in_range),other_humor_proportion_loo: non-aggressive humor robustness check
+log1p_retweet_count,960,other_humor_proportion_quarter_loo,0.2459,0.8836,-0.5999,0.7889,0.2049,0.0,0.6667,True,0.0004,약한_탐색적_지지(tp_in_range),other_humor_proportion_loo: non-aggressive humor robustness check
+log1p_reply_count,960,other_humor_proportion_quarter_loo,-1.1522,0.4585,2.5901,0.2117,0.2224,0.0,0.6667,True,0.0064,H3main_불지지,other_humor_proportion_loo: non-aggressive humor robustness check
+log1p_quote_count,960,other_humor_proportion_quarter_loo,-0.4741,0.7848,1.5575,0.5014,0.1522,0.0,0.6667,True,0.0035,H3main_불지지,other_humor_proportion_loo: non-aggressive humor robustness check
+log1p_bookmark_count,960,other_humor_proportion_quarter_loo,-3.763,0.0175,2.1725,0.3034,0.8661,0.0,0.6667,False,0.0392,H3main_불지지,other_humor_proportion_loo: non-aggressive humor robustness check
+log1p_view_count,960,other_humor_proportion_quarter_loo,-64.1755,0.0,53.0977,0.0,0.6043,0.0,0.6667,True,0.4886,H3main_불지지,other_humor_proportion_loo: non-aggressive humor robustness check

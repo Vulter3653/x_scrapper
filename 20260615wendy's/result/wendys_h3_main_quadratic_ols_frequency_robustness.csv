@@ -1,0 +1,9 @@
+dv,n,predictor,coef_linear,p_linear,coef_quadratic,p_quadratic,turning_point,x_min,x_max,turning_point_in_range,r_squared,h3_main_exploratory_support
+log1p_engagement_total,960,aggressive_humor_frequency_quarter,-0.07154,0.0547,0.002103,0.0957,17.01,0.0,26.0,True,0.0047,H3main_불지지
+log1p_engagement_favorite_retweet,960,aggressive_humor_frequency_quarter,-0.061817,0.1018,0.001854,0.1476,16.67,0.0,26.0,True,0.0032,H3main_불지지
+log1p_favorite_count,960,aggressive_humor_frequency_quarter,-0.067288,0.1268,0.001983,0.1844,16.97,0.0,26.0,True,0.0029,H3main_불지지
+log1p_retweet_count,960,aggressive_humor_frequency_quarter,-0.103109,0.0065,0.002659,0.0384,19.39,0.0,26.0,True,0.0143,H3main_불지지
+log1p_reply_count,960,aggressive_humor_frequency_quarter,-0.105097,0.0028,0.002882,0.0156,18.23,0.0,26.0,True,0.014,H3main_불지지
+log1p_quote_count,960,aggressive_humor_frequency_quarter,-0.102016,0.0095,0.002875,0.031,17.74,0.0,26.0,True,0.0097,H3main_불지지
+log1p_bookmark_count,960,aggressive_humor_frequency_quarter,-0.240741,0.0,0.006284,0.0,19.16,0.0,26.0,True,0.081,H3main_불지지
+log1p_view_count,960,aggressive_humor_frequency_quarter,-1.464867,0.0,0.036133,0.0,20.27,0.0,26.0,True,0.3025,H3main_불지지

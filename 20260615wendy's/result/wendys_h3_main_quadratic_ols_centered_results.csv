@@ -1,0 +1,9 @@
+dv,n,coef_centered_linear,p_centered_linear,coef_centered_quadratic,p_centered_quadratic,r_squared,adj_r_squared,b2_sign,note
+log1p_engagement_total,960,-0.4063,0.6173,2.5539,0.7388,0.0004,-0.0017,positive,centered_for_multicollinearity_check
+log1p_engagement_favorite_retweet,960,-0.2544,0.7577,2.4041,0.7569,0.0002,-0.0019,positive,centered_for_multicollinearity_check
+log1p_favorite_count,960,-1.2641,0.1886,1.4932,0.869,0.0018,-0.0002,positive,centered_for_multicollinearity_check
+log1p_retweet_count,960,-0.3125,0.7068,5.2683,0.5009,0.0006,-0.0015,positive,centered_for_multicollinearity_check
+log1p_reply_count,960,-1.8023,0.0193,-0.1391,0.9847,0.0057,0.0036,negative,centered_for_multicollinearity_check
+log1p_quote_count,960,-1.3579,0.1142,6.5645,0.4174,0.0033,0.0013,positive,centered_for_multicollinearity_check
+log1p_bookmark_count,960,-2.8399,0.0003,23.431,0.0017,0.0238,0.0218,positive,centered_for_multicollinearity_check
+log1p_view_count,960,-16.0744,0.0,91.4798,0.0003,0.0494,0.0474,positive,centered_for_multicollinearity_check

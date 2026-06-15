@@ -1,0 +1,9 @@
+dv,n_periods,coef_linear,p_linear,coef_quadratic,p_quadratic,turning_point,x_min,x_max,turning_point_in_range,r_squared,h3_main_direction,h3_main_exploratory_support,note
+log1p_engagement_total,25,1.2364,0.8496,-4.773,0.7812,0.1295,0.0,0.3333,True,0.0068,inverted_U,약한_탐색적_지지(tp_in_range),exploratory_period_level_n25
+log1p_engagement_favorite_retweet,25,1.6065,0.8102,-5.3963,0.7595,0.1489,0.0,0.3333,True,0.0059,inverted_U,약한_탐색적_지지(tp_in_range),exploratory_period_level_n25
+log1p_favorite_count,25,1.1968,0.8578,-6.3335,0.7191,0.0945,0.0,0.3333,True,0.0207,inverted_U,약한_탐색적_지지(tp_in_range),exploratory_period_level_n25
+log1p_retweet_count,25,-0.9846,0.879,1.3768,0.9356,0.3576,0.0,0.3333,False,0.0034,U_shape_or_convex,H3main_불지지,exploratory_period_level_n25
+log1p_reply_count,25,0.0044,0.9994,-4.8423,0.7476,0.0005,0.0,0.3333,True,0.0539,inverted_U,약한_탐색적_지지(tp_in_range),exploratory_period_level_n25
+log1p_quote_count,25,-1.7057,0.7957,0.1595,0.9927,5.3463,0.0,0.3333,False,0.0334,U_shape_or_convex,H3main_불지지,exploratory_period_level_n25
+log1p_bookmark_count,25,-9.6083,0.1967,17.7329,0.361,0.2709,0.0,0.3333,True,0.1254,U_shape_or_convex,H3main_불지지,exploratory_period_level_n25
+log1p_view_count,25,-50.9687,0.4122,95.9285,0.5564,0.2657,0.0,0.3333,True,0.0511,U_shape_or_convex,H3main_불지지,exploratory_period_level_n25
