@@ -1,0 +1,8 @@
+dv,n_obs,iv,beta,se,t_value,p_value,ci_lower_95,ci_upper_95,r_squared,h1_interpretation
+log1p_engagement_total,978,log1p_p_humor_human168,6.584651,0.967271,6.8074,0.000000,5.536868,8.482822,0.045329,H1 예비적 지지
+log1p_engagement_fav_rt,978,log1p_p_humor_human168,6.745283,0.980489,6.8795,0.000000,5.353365,8.669392,0.046249,H1 예비적 지지
+log1p_favorite_count,978,log1p_p_humor_human168,7.926105,1.141204,6.9454,0.000000,4.815285,10.165601,0.047097,H1 예비적 지지
+log1p_retweet_count,978,log1p_p_humor_human168,4.873144,1.002215,4.8624,0.000001,3.307857,6.839888,0.023651,H1 예비적 지지
+log1p_reply_count,978,log1p_p_humor_human168,5.683608,0.917110,6.1973,0.000000,3.038879,7.483343,0.037861,H1 예비적 지지
+log1p_quote_count,978,log1p_p_humor_human168,3.078443,1.049128,2.9343,0.003421,2.500975,5.137249,0.008745,H1 예비적 지지
+log1p_bookmark_count,978,log1p_p_humor_human168,2.667627,0.975240,2.7354,0.006344,2.331570,4.581435,0.007608,H1 예비적 지지
