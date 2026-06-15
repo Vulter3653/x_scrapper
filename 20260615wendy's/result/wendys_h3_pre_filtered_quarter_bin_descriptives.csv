@@ -1,0 +1,10 @@
+predictor,bin_basis,bin,n_posts,n_periods,min_predictor,max_predictor,mean_predictor,tertile_t33,tertile_t67,mean_log1p_engagement_total,median_log1p_engagement_total,mean_log1p_engagement_favorite_retweet,mean_log1p_favorite_count,mean_log1p_retweet_count,mean_log1p_reply_count,mean_log1p_quote_count,mean_log1p_bookmark_count,mean_log1p_view_count
+humor_proportion_quarter_loo,proportion_loo,low,332,13,0.1579,0.5185,0.4006,0.5185,0.6562,7.2985,7.1468,7.1498,6.9544,4.5494,4.4798,2.7526,3.0312,9.7231
+humor_proportion_quarter_loo,proportion_loo,medium,335,8,0.5806,0.6562,0.6249,0.5185,0.6562,7.6837,7.6788,7.5713,7.4382,4.6058,4.7645,3.1377,2.7087,2.4995
+humor_proportion_quarter_loo,proportion_loo,high,293,7,0.6585,0.9167,0.7326,0.5185,0.6562,7.2073,7.224,7.0822,6.8228,4.1796,4.4945,2.761,1.9873,0.0
+humor_frequency_quarter,frequency,low,345,14,3.0,19.0,12.458,19.0,35.0,7.3029,7.216,7.1513,6.9508,4.5535,4.5213,2.7856,3.0703,9.7942
+humor_frequency_quarter,frequency,medium,319,7,22.0,35.0,29.5893,19.0,35.0,7.6015,7.4911,7.4749,7.2821,4.6115,4.7627,3.1406,2.6844,2.1517
+humor_frequency_quarter,frequency,high,296,4,36.0,78.0,57.098,19.0,35.0,7.3124,7.236,7.2079,7.0226,4.1756,4.4634,2.7402,1.9611,0.0
+humor_proportion_quarter,proportion,low,326,12,0.2,0.5,0.3988,0.5,0.6538,7.3112,7.1511,7.1644,6.9671,4.5604,4.4771,2.7603,3.0308,9.6826
+humor_proportion_quarter,proportion,medium,325,7,0.5455,0.6538,0.6215,0.5,0.6538,7.5705,7.4894,7.4521,7.2838,4.5406,4.6672,3.0562,2.7075,2.7966
+humor_proportion_quarter,proportion,high,309,6,0.6615,0.88,0.7282,0.5,0.6538,7.33,7.3556,7.2093,6.9941,4.2576,4.6082,2.8507,2.0326,0.0

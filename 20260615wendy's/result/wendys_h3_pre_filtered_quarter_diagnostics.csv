@@ -1,0 +1,36 @@
+metric,value
+filter_criterion,quarter_total_posts>=10
+total_rows_before_filter,978
+excluded_posts,18
+excluded_quarters,"['2009-Q4', '2023-Q4', '2025-Q3']"
+filtered_posts,960
+filtered_quarters,25
+filtered_humor_posts,557
+filtered_non_humor_posts,403
+loo_missing_in_filtered,0
+post_loo_proportion_min,0.1579
+post_loo_proportion_max,0.9167
+post_loo_proportion_mean,0.5802
+post_loo_proportion_sd,0.153
+post_loo_proportion_p25,0.4815
+post_loo_proportion_p75,0.6623
+post_frequency_min,3.0
+post_frequency_max,78.0
+post_frequency_mean,31.9146
+post_frequency_sd,20.9419
+period_loo_proportion_min,0.2
+period_loo_proportion_max,0.88
+period_loo_proportion_mean,0.5328
+period_loo_proportion_sd,0.1781
+period_frequency_min,3
+period_frequency_max,78
+period_frequency_mean,22.28
+period_frequency_sd,17.4607
+loo_tertile_t33,0.5185
+loo_tertile_t67,0.6562
+freq_tertile_t33,19.0
+freq_tertile_t67,35.0
+descriptive_pattern_loo_proportion,inverted_U (low<medium>high)
+descriptive_pattern_frequency,inverted_U (low<medium>high)
+h3_regression_performed,False
+original_posts_json_modified,False
