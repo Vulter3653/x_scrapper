@@ -1,0 +1,9 @@
+model_name,number_of_time_variables,included_time_fe,n,iv,coefficient,p_value,r_squared,adj_r_squared,interpretation_flag
+M0_baseline,0,none,978,pred_humor_final_050,0.5008,0.0,0.0197,0.0187,supports_H1
+M1_year_fe,1,year_FE,978,pred_humor_final_050,0.4207,0.0003,0.0573,0.0485,supports_H1
+M2_month_fe,1,month_FE,978,pred_humor_final_050,0.5085,0.0,0.0992,0.088,supports_H1
+M3_hour_fe,1,hour_FE,978,pred_humor_final_050,0.5027,0.0,0.0651,0.0436,supports_H1
+M4_year_month_fe,2,year_FE+month_FE,978,pred_humor_final_050,0.443,0.0001,0.129,0.1108,supports_H1
+M5_year_hour_fe,2,year_FE+hour_FE,978,pred_humor_final_050,0.4368,0.0002,0.1002,0.0717,supports_H1
+M6_month_hour_fe,2,month_FE+hour_FE,978,pred_humor_final_050,0.5182,0.0,0.1377,0.1075,supports_H1
+M7_year_month_hour_fe,3,year_FE+month_FE+hour_FE,978,pred_humor_final_050,0.4677,0.0,0.1646,0.128,supports_H1
