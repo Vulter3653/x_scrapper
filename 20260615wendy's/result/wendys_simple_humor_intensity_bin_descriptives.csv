@@ -1,0 +1,7 @@
+period_type,bin,n_posts,n_periods,n_bins_available,min_humor_intensity,max_humor_intensity,mean_humor_intensity,mean_log1p_engagement_total,median_log1p_engagement_total,mean_log1p_engagement_favorite_retweet,mean_log1p_favorite_count,mean_log1p_retweet_count,mean_log1p_reply_count,mean_log1p_quote_count,mean_log1p_bookmark_count,mean_log1p_view_count
+month,low,204,27,3,0.0,0.4167,0.299,7.3533,7.2618,7.1822,6.9755,4.6243,4.6768,2.9032,3.3488,11.6549
+month,medium,397,25,3,0.4286,0.6531,0.5567,7.1781,6.993,7.0571,6.8343,4.2426,4.337,2.6045,2.3571,3.4201
+month,high,377,28,3,0.6667,1.0,0.748,7.6947,7.6143,7.5789,7.429,4.6226,4.8184,3.2165,2.5207,1.4656
+quarter,low,186,9,3,0.2,0.3889,0.3334,7.2717,7.1424,7.0921,6.9613,4.5191,4.6619,3.0215,3.5493,12.7228
+quarter,medium,354,10,3,0.4286,0.625,0.5452,7.2872,7.1499,7.1634,6.9536,4.3961,4.3998,2.6404,2.6022,5.4279
+quarter,high,438,9,3,0.64,1.0,0.7055,7.5764,7.5369,7.4637,7.2615,4.5059,4.7208,3.0643,2.2554,0.0
