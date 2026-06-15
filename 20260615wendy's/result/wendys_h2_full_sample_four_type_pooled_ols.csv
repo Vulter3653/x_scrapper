@@ -1,0 +1,9 @@
+dv,n,coef_aggressive_vs_pooled_other,std_error,t_value,p_value,r_squared,h2_direction,h2_preliminary_support
+log1p_engagement_total,564,0.4737,0.1543,3.0707,0.0022,0.0165,H2방향,예비적지지(p<.05)
+log1p_engagement_favorite_retweet,564,0.4864,0.1565,3.109,0.002,0.0169,H2방향,예비적지지(p<.05)
+log1p_favorite_count,564,0.5876,0.174,3.3776,0.0008,0.0199,H2방향,예비적지지(p<.05)
+log1p_retweet_count,564,0.4533,0.1644,2.7568,0.006,0.0133,H2방향,예비적지지(p<.05)
+log1p_reply_count,564,0.1939,0.1442,1.3449,0.1792,0.0032,H2방향,방향성만지지
+log1p_quote_count,564,0.3728,0.1679,2.2197,0.0268,0.0087,H2방향,예비적지지(p<.05)
+log1p_bookmark_count,564,0.5289,0.1476,3.5834,0.0004,0.0223,H2방향,예비적지지(p<.05)
+log1p_view_count,564,1.4661,0.4878,3.0053,0.0028,0.0158,H2방향,예비적지지(p<.05)

@@ -1,0 +1,21 @@
+metric,value
+total_rows,978
+merged_rows,978
+full_sample_rows,978
+predicted_humor_rows,564
+predicted_non_humor_rows,414
+predicted_aggressive_rows,187
+predicted_affiliative_rows,251
+predicted_self_enhancing_rows,96
+predicted_self_defeating_rows,30
+pooled_other_humor_rows,377
+missing_predicted_type_rows,0
+primary_dv_missing_rows,0
+full_4type_model_oof_accuracy,0.4281
+full_4type_model_macro_f1,0.3486
+full_4type_model_macro_auc,0.6182
+small_class_warning,True
+small_class_note,self-defeating 학습 n=15; 예측 30건. 결과 해석 매우 제한적.
+engagement_feature_used_in_classifier,False
+original_posts_json_modified,False
+analysis_type,exploratory supplemental full-sample H2 analysis using model-based 4-type predictions

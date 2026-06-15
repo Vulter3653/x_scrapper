@@ -1,0 +1,9 @@
+dv,n_aggressive,n_pooled_other_humor,mean_aggressive,mean_pooled_other_humor,diff_aggressive_minus_pooled_other,t_stat,p_value,cohens_d,effect_size_label,h2_direction,h2_preliminary_support
+log1p_engagement_total,187,377,7.9424,7.4687,0.4737,2.9444,0.0035,0.2747,small,H2방향,예비적지지(p<.05)
+log1p_engagement_favorite_retweet,187,377,7.8288,7.3423,0.4864,2.9804,0.0031,0.2781,small,H2방향,예비적지지(p<.05)
+log1p_favorite_count,187,377,7.753,7.1655,0.5876,3.3821,0.0008,0.3021,small,H2방향,예비적지지(p<.05)
+log1p_retweet_count,187,377,4.8809,4.4276,0.4533,2.6174,0.0093,0.2466,small,H2방향,예비적지지(p<.05)
+log1p_reply_count,187,377,4.9072,4.7133,0.1939,1.3169,0.1887,0.1203,negligible,H2방향,방향성만지지
+log1p_quote_count,187,377,3.2529,2.8802,0.3728,2.1103,0.0356,0.1985,negligible,H2방향,예비적지지(p<.05)
+log1p_bookmark_count,187,377,2.9221,2.3931,0.5289,3.519,0.0005,0.3205,small,H2방향,예비적지지(p<.05)
+log1p_view_count,187,377,4.149,2.6829,1.4661,2.8709,0.0044,0.2688,small,H2방향,예비적지지(p<.05)

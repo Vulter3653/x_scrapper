@@ -1,0 +1,6 @@
+predicted_type,n,share_total,share_predicted_humor,mean_log1p_engagement_total,median_log1p_engagement_total,mean_log1p_engagement_favorite_retweet,mean_log1p_favorite_count,mean_log1p_retweet_count,mean_log1p_reply_count,mean_log1p_quote_count,mean_log1p_bookmark_count,mean_log1p_view_count
+aggressive,187,0.1912,0.3316,7.9424,7.9452,7.8288,7.753,4.8809,4.9072,3.2529,2.9221,4.149
+affiliative,251,0.2566,0.445,7.33,7.2211,7.2086,6.9916,4.3609,4.5236,2.6797,2.3142,2.5629
+self-enhancing,96,0.0982,0.1702,7.6327,7.5981,7.4816,7.4316,4.3294,5.156,3.2432,2.4003,2.68
+self-defeating,30,0.0307,0.0532,8.1047,7.894,8.0156,7.7684,5.2996,4.8842,3.3962,3.0307,3.6957
+non_humor,414,0.4233,nan,7.125,6.9339,6.9856,6.7289,4.3199,4.3425,2.7651,2.7067,6.0402
