@@ -73,6 +73,7 @@ def main():
     new_cols = [
         "coder1_humor", "coder1_humor_binary", "coder1_type",
         "coder2_humor", "coder2_humor_binary", "coder2_type",
+        "final_humor_binary", "final_humor_source",
     ]
     out_cols = list(review_rows[0].keys()) + new_cols
 
@@ -101,6 +102,25 @@ def main():
         else:
             row["coder2_humor"] = row["coder2_humor_binary"] = row["coder2_type"] = ""
 
+        # ── 종합 컬럼: human과 coder1은 100% 일치 → source_A로 통합
+        # 우선순위: human > coder1 > coder2
+        h_bin  = row.get("human_humor_binary", "") if row.get("human_coded") == "1" else ""
+        c1_bin = row.get("coder1_humor_binary", "")
+        c2_bin = row.get("coder2_humor_binary", "")
+
+        if h_bin in ("0", "1"):
+            row["final_humor_binary"] = h_bin
+            row["final_humor_source"] = "human"
+        elif c1_bin in ("0", "1"):
+            row["final_humor_binary"] = c1_bin
+            row["final_humor_source"] = "coder1"
+        elif c2_bin in ("0", "1"):
+            row["final_humor_binary"] = c2_bin
+            row["final_humor_source"] = "coder2"
+        else:
+            row["final_humor_binary"] = ""
+            row["final_humor_source"] = ""
+
         updated.append(row)
 
     # ── 5. 저장
@@ -110,14 +130,22 @@ def main():
         w.writerows(updated)
 
     # ── 6. 요약
-    n_c1 = sum(1 for r in updated if r["coder1_humor"])
-    n_c2 = sum(1 for r in updated if r["coder2_humor"])
-    n_both = sum(1 for r in updated if r["coder1_humor"] and r["coder2_humor"])
+    n_c1    = sum(1 for r in updated if r["coder1_humor"])
+    n_c2    = sum(1 for r in updated if r["coder2_humor"])
+    n_both  = sum(1 for r in updated if r["coder1_humor"] and r["coder2_humor"])
+    n_final = sum(1 for r in updated if r["final_humor_binary"] in ("0","1"))
+    src_cnt = {}
+    for r in updated:
+        s = r["final_humor_source"]
+        if s: src_cnt[s] = src_cnt.get(s, 0) + 1
     print(f"\n저장: {OUT_CSV}")
     print(f"전체 행: {len(updated)}")
     print(f"coder1 레이블 있음: {n_c1}건")
     print(f"coder2 레이블 있음: {n_c2}건")
     print(f"양쪽 모두 있음: {n_both}건")
+    print(f"\nfinal_humor_binary 유효: {n_final}건")
+    for s, cnt in sorted(src_cnt.items()):
+        print(f"  출처={s}: {cnt}건")
 
 
 if __name__ == "__main__":
