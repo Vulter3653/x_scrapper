@@ -1,0 +1,8 @@
+sample_type,model_name,dv,iv,n,aggressive_n,other_humor_n,aggressive_mean,other_humor_mean,mean_difference,coefficient,p_value,r_squared,adj_r_squared,aic,bic,welch_t,welch_p,interpretation_flag
+human_validation_n278,M_aggressive_vs_other,log1p_engagement_total,final_humor_type_group_aggressive_dummy,278,95,183,8.3411,7.6338,0.7074,0.7074,0.0007,0.0413,0.0378,271.1971,278.4523,3.2896,0.0012,supports_H2
+human_validation_n278,M_aggressive_vs_other,log1p_engagement_favorite_retweet,final_humor_type_group_aggressive_dummy,278,95,183,8.212,7.5009,0.7111,0.7111,0.0008,0.04,0.0365,283.2483,290.5036,3.2304,0.0015,supports_H2
+human_validation_n278,M_aggressive_vs_other,log1p_favorite_count,final_humor_type_group_aggressive_dummy,278,95,183,8.1418,7.3858,0.756,0.756,0.0008,0.04,0.0365,317.3529,324.6082,3.3352,0.001,supports_H2
+human_validation_n278,M_aggressive_vs_other,log1p_retweet_count,final_humor_type_group_aggressive_dummy,278,95,183,5.4009,4.5306,0.8703,0.8703,0.0001,0.0538,0.0504,308.9676,316.2229,3.7714,0.0002,supports_H2
+human_validation_n278,M_aggressive_vs_other,log1p_reply_count,final_humor_type_group_aggressive_dummy,278,95,183,5.312,4.9438,0.3682,0.3682,0.0439,0.0146,0.0111,204.1173,211.3726,1.9551,0.0522,supports_H2
+human_validation_n278,M_aggressive_vs_other,log1p_quote_count,final_humor_type_group_aggressive_dummy,278,95,183,3.8651,3.0616,0.8035,0.8035,0.0006,0.0423,0.0389,334.7106,341.9658,3.2933,0.0012,supports_H2
+human_validation_n278,M_aggressive_vs_other,log1p_bookmark_count,final_humor_type_group_aggressive_dummy,278,95,183,3.3405,2.5014,0.8391,0.8391,0.0,0.0594,0.0559,259.8455,267.1007,4.1835,0.0,supports_H2
