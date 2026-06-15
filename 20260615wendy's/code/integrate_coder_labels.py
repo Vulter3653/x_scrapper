@@ -102,18 +102,17 @@ def main():
         else:
             row["coder2_humor"] = row["coder2_humor_binary"] = row["coder2_type"] = ""
 
-        # ── 종합 컬럼: human과 coder1은 100% 일치 → source_A로 통합
-        # 우선순위: human > coder1 > coder2
+        # ── 종합 컬럼: 우선순위 coder1 > human > coder2
         h_bin  = row.get("human_humor_binary", "") if row.get("human_coded") == "1" else ""
         c1_bin = row.get("coder1_humor_binary", "")
         c2_bin = row.get("coder2_humor_binary", "")
 
-        if h_bin in ("0", "1"):
-            row["final_humor_binary"] = h_bin
-            row["final_humor_source"] = "human"
-        elif c1_bin in ("0", "1"):
+        if c1_bin in ("0", "1"):
             row["final_humor_binary"] = c1_bin
             row["final_humor_source"] = "coder1"
+        elif h_bin in ("0", "1"):
+            row["final_humor_binary"] = h_bin
+            row["final_humor_source"] = "human"
         elif c2_bin in ("0", "1"):
             row["final_humor_binary"] = c2_bin
             row["final_humor_source"] = "coder2"
