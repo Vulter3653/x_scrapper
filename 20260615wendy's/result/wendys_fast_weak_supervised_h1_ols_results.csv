@@ -1,0 +1,7 @@
+dv,model_name,n_obs,iv,intercept,beta_log1p_p_humor_ml,standard_error,t_value,p_value,ci_lower_95,ci_upper_95,r_squared,adj_r_squared,direction,h1_interpretation,notes
+log1p_engagement_total,Simple OLS,978,log1p_p_humor_ml,7.246892,0.533425,0.532398,1.0019,0.316626,7.591979,1.578201,0.001027,0.000004,positive,H1 방향성 지지,단순 이변량 OLS; 통제변수 없음; FE 없음; 표준 SE
+log1p_favorite_count,Simple OLS,978,log1p_p_humor_ml,7.042284,0.162101,0.629017,0.2577,0.796689,7.449996,1.396482,0.000068,-0.000956,positive,H1 방향성 지지,단순 이변량 OLS; 통제변수 없음; FE 없음; 표준 SE
+log1p_retweet_count,Simple OLS,978,log1p_p_humor_ml,4.404813,0.204152,0.545714,0.3741,0.708411,4.758531,1.275060,0.000143,-0.000881,positive,H1 방향성 지지,단순 이변량 OLS; 통제변수 없음; FE 없음; 표준 SE
+log1p_reply_count,Simple OLS,978,log1p_p_humor_ml,4.595581,-0.006846,0.503084,-0.0136,0.989145,4.921667,0.980405,0.000000,-0.001024,negative,H1 지지 없음,단순 이변량 OLS; 통제변수 없음; FE 없음; 표준 SE
+log1p_quote_count,Simple OLS,978,log1p_p_humor_ml,2.888163,0.046536,0.566986,0.0821,0.934603,3.255669,1.159188,0.000007,-0.001018,positive,H1 방향성 지지,단순 이변량 OLS; 통제변수 없음; FE 없음; 표준 SE
+log1p_bookmark_count,Simple OLS,978,log1p_p_humor_ml,3.169307,-1.733372,0.523824,-3.3091,0.000970,3.508836,-0.705422,0.011095,0.010082,negative,H1 지지 없음,단순 이변량 OLS; 통제변수 없음; FE 없음; 표준 SE
