@@ -1,0 +1,15 @@
+dv,scale,group_variable,n_humor,n_nonhumor,mean_humor,mean_nonhumor,diff_mean,median_humor,median_nonhumor,sd_humor,sd_nonhumor,t_stat,p_value,ci_lower_95,ci_upper_95,cohens_d,effect_size,significance,h1_interpretation,notes
+engagement_total,raw,final_humor_binary,309,288,13284.9741,6605.7361,6679.2380,2079.0000,1311.5000,60783.3848,19203.8049,1.8358,0.067181,-474.9122,13833.3882,0.1461,negligible,†,H1 방향성 지지,사람 최종 라벨(coder1>human>coder2) 기준
+engagement_favorite_retweet,raw,final_humor_binary,309,288,12378.6408,6043.8958,6334.7449,1822.0000,1144.0000,58781.4206,18163.5060,1.8042,0.072009,-569.3924,13238.8823,0.1435,negligible,†,H1 방향성 지지,사람 최종 라벨(coder1>human>coder2) 기준
+favorite_count,raw,final_humor_binary,309,288,11251.1036,5629.6667,5621.4369,1710.0000,1028.5000,51830.0585,17111.0576,1.8040,0.072030,-505.6685,11748.5423,0.1436,negligible,†,H1 방향성 지지,사람 최종 라벨(coder1>human>coder2) 기준
+retweet_count,raw,final_humor_binary,309,288,1127.5372,414.2292,713.3081,96.0000,67.0000,7039.6405,1307.1949,1.7491,0.081199,-88.9238,1515.5399,0.1386,negligible,†,H1 방향성 지지,사람 최종 라벨(coder1>human>coder2) 기준
+reply_count,raw,final_humor_binary,309,288,480.0129,277.3854,202.6275,139.0000,115.5000,1507.0024,575.1506,2.1980,0.028518,21.3992,383.8558,0.1754,negligible,*,H1 예비적 지지,사람 최종 라벨(coder1>human>coder2) 기준
+quote_count,raw,final_humor_binary,309,288,244.5599,143.7917,100.7682,20.0000,15.0000,997.7800,737.3546,1.4097,0.159179,-39.6346,241.1710,0.1143,negligible,n.s.,H1 방향성 지지,사람 최종 라벨(coder1>human>coder2) 기준
+bookmark_count,raw,final_humor_binary,309,288,181.7605,140.6632,41.0973,14.0000,17.0000,1283.7594,513.2801,0.5199,0.603402,-114.2885,196.4832,0.0415,negligible,n.s.,H1 방향성 지지,사람 최종 라벨(coder1>human>coder2) 기준
+log1p_engagement_total,log1p,final_humor_binary,309,288,7.7739,7.2696,0.5043,7.6401,7.1797,1.7095,1.7532,3.5546,0.000409,0.2257,0.7830,0.2914,small,***,H1 예비적 지지,사람 최종 라벨(coder1>human>coder2) 기준
+log1p_engagement_favorite_retweet,log1p,final_humor_binary,309,288,7.6412,7.1236,0.5176,7.5082,7.0432,1.7435,1.7803,3.5855,0.000364,0.2341,0.8012,0.2939,small,***,H1 예비적 지지,사람 최종 라벨(coder1>human>coder2) 기준
+log1p_favorite_count,log1p,final_humor_binary,309,288,7.5437,6.9293,0.6144,7.4448,6.9366,1.8356,2.0638,3.8330,0.000141,0.2996,0.9292,0.3152,small,***,H1 예비적 지지,사람 최종 라벨(coder1>human>coder2) 기준
+log1p_retweet_count,log1p,final_humor_binary,309,288,4.7501,4.4236,0.3265,4.5747,4.2194,1.8225,1.6848,2.2745,0.023292,0.0446,0.6084,0.1858,negligible,*,H1 예비적 지지,사람 최종 라벨(coder1>human>coder2) 기준
+log1p_reply_count,log1p,final_humor_binary,309,288,4.9666,4.5400,0.4266,4.9416,4.7579,1.4753,1.6367,3.3367,0.000902,0.1755,0.6777,0.2743,small,***,H1 예비적 지지,사람 최종 라벨(coder1>human>coder2) 기준
+log1p_quote_count,log1p,final_humor_binary,309,288,3.2422,2.8889,0.3533,3.0445,2.7726,1.8899,1.8143,2.3303,0.020126,0.0555,0.6511,0.1906,negligible,*,H1 예비적 지지,사람 최종 라벨(coder1>human>coder2) 기준
+log1p_bookmark_count,log1p,final_humor_binary,309,288,2.8554,3.0357,-0.1803,2.7081,2.8904,1.7158,1.8225,-1.2425,0.214539,-0.4653,0.1047,-0.1020,negligible,n.s.,H1 지지 없음,사람 최종 라벨(coder1>human>coder2) 기준

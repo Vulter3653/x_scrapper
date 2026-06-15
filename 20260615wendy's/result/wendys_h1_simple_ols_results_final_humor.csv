@@ -1,0 +1,8 @@
+dv,model_name,n_obs,iv,intercept,beta,standard_error,t_value,p_value,ci_lower_95,ci_upper_95,r_squared,adj_r_squared,direction,h1_interpretation,notes
+log1p_engagement_total,Simple OLS,978,log1p_p_humor_final_tfidf_logreg,6.794346,1.521396,0.498425,3.0524,0.002332,0.543288,2.499503,0.009456,0.008441,positive,H1 예비적 지지,
+log1p_engagement_favorite_retweet,Simple OLS,978,log1p_p_humor_final_tfidf_logreg,6.646521,1.566542,0.505405,3.0996,0.001994,0.574736,2.558347,0.009748,0.008733,positive,H1 예비적 지지,
+log1p_favorite_count,Simple OLS,978,log1p_p_humor_final_tfidf_logreg,6.249665,2.071319,0.587671,3.5246,0.000444,0.918076,3.224562,0.012568,0.011557,positive,H1 예비적 지지,
+log1p_retweet_count,Simple OLS,978,log1p_p_humor_final_tfidf_logreg,4.233380,0.577932,0.512764,1.1271,0.259981,-0.428315,1.584178,0.001300,0.000277,positive,H1 방향성 지지,
+log1p_reply_count,Simple OLS,978,log1p_p_humor_final_tfidf_logreg,3.989013,1.484538,0.470588,3.1546,0.001656,0.561057,2.408020,0.010094,0.009079,positive,H1 예비적 지지,
+log1p_quote_count,Simple OLS,978,log1p_p_humor_final_tfidf_logreg,2.650463,0.619577,0.532692,1.1631,0.245071,-0.425777,1.664931,0.001384,0.000361,positive,H1 방향성 지지,
+log1p_bookmark_count,Simple OLS,978,log1p_p_humor_final_tfidf_logreg,3.095047,-1.149557,0.493866,-2.3277,0.020133,-2.118718,-0.180396,0.005521,0.004502,negative,H1 지지 없음,
