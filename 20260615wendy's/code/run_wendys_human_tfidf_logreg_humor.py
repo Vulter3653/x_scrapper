@@ -25,8 +25,8 @@ Wendy's human-coded seed label 기반 TF-IDF + Logistic Regression 유머 분류
    따라서 모델 학습에는 오직 text와 human_humor_binary만 사용한다.
 
 5. 전체 978개 확장 예측의 한계:
-   현재 seed label은 68건으로 소규모이며, review_priority 기준 선발(비무작위) 표본이다.
-   따라서 확장 예측 결과는 exploratory calibration이며 최종 확정 라벨이 아니다.
+   현재 seed label은 Wendy's 전체 게시글에서 추출된 랜덤 human-coded sample(68건)이다.
+   표본 수가 작으므로 확장 예측 결과는 exploratory calibration이며 최종 확정 라벨이 아니다.
 
 6. H1 재분석의 의미:
    p_humor_tfidf_logreg_human을 IV로 사용하여 H1(유머 → engagement)을 재검토한다.
@@ -650,7 +650,7 @@ def _write_summary(n_file, n_used, n_humor, n_nonhumor, n_none,
 
 생성일시: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}
 
-> **본 결과는 human-coded partial review sample을 기반으로 한 exploratory calibration이다.
+> **본 결과는 Wendy's 전체 게시글에서 추출된 랜덤 human-coded sample(68건)을 기반으로 한 exploratory calibration이다.
 > 전체 Wendy's 데이터에 대한 최종 확정 분류로 해석하지 않는다.**
 
 ---
@@ -715,7 +715,7 @@ engagement 변수는 학습에 사용하지 않음.
 {cv_row('roc_auc')}
 {cv_row('balanced_accuracy')}
 
-> **현재 cross-validation 성능은 표본 수가 작고 표본이 비무작위이므로 참고용으로만 해석한다.**
+> **현재 cross-validation 성능은 표본 수가 68건으로 작으므로 참고용으로만 해석한다.**
 
 ---
 
@@ -774,20 +774,25 @@ IV: `log1p_p_humor_tfidf_logreg_human`
 
 ## 10. 해석
 
+사람이 코딩한 {n_used}건은 Wendy's 전체 게시글에서 추출된 랜덤 샘플이다. 따라서 전체 데이터로 확장할 근거가 있다. 다만 표본 수가 {n_used}건으로 작고 단일 코더 기반이므로, 본 결과는 여전히 exploratory calibration으로 해석한다.
+
+랜덤 human-coded sample을 기반으로 TF-IDF + Logistic Regression 유머 분류기를 학습하고 전체 Wendy's 게시글에 확장 예측한 결과, `log1p_p_humor_tfidf_logreg_human`은 `log1p_engagement_total`과 유의한 양의 연관성을 보였다. 이는 H1에 대한 예비적 지지로 해석할 수 있다.
+
+본 분석은 관측적 연관성 분석이며, 유머가 engagement를 증가시킨다는 인과관계를 주장할 수 없다.
+
 `p_humor_tfidf_logreg_human`은 human-coded seed label로 보정된 유머 가능성 점수이다.
 기존 `humor_score`(rule-based) 및 `p_humor_ml`(weak-supervised)과의 상관을 보면,
 세 측정값이 어느 정도 일치하는지 확인할 수 있다.
 
-H1 방향성은 {'양의 방향으로 나타남' if mr['beta'] > 0 else '음의 방향으로 나타남'}
-(β = {mr['beta']:.4f}, p = {mr['p']:.4f}).
+(β = {mr['beta']:.4f}, p = {mr['p']:.4f})
 
 ---
 
 ## 11. 한계
 
-- human-coded label은 현재 partial review sample 기반이며 완전 무작위 표본이 아니다.
-- 라벨 수가 약 {n_used}건으로 작기 때문에 TF-IDF Logistic Regression 결과는 exploratory calibration으로 해석해야 한다.
-- 단일 코더 기반이므로 inter-rater reliability가 검증되지 않았다.
+- {n_used}건 랜덤 human-coded sample 기반 — 전체 데이터로 확장할 근거는 있으나, 표본 수가 작기 때문에 exploratory calibration으로 해석한다.
+- 표본 수가 {n_used}건으로 작아 cross-validation 및 전체 확장 예측의 불확실성이 크다.
+- 단일 코더 기반이므로 inter-rater reliability는 검증되지 않았다.
 - `p_humor_tfidf_logreg_human`은 human-coded seed label 기반 예측값이며 최종 확정 라벨이 아니다.
 - H1 분석은 관측적 연관성 분석이며 인과관계를 주장할 수 없다.
 - engagement 변수는 모델 학습에는 사용하지 않았고, H1의 종속변수로만 사용하였다.
