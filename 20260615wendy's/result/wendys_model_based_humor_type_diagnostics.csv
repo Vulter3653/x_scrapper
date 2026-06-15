@@ -1,0 +1,2 @@
+"total_rows","human_type_training_rows","human_type_aggressive_rows","human_type_other_humor_rows","excluded_non_humor_rows","excluded_humor_missing_type_rows","excluded_unlabeled_rows","full_prediction_rows","predicted_non_humor_rows","predicted_aggressive_rows","predicted_other_humor_rows","mean_p_type_aggressive","median_p_type_aggressive","min_p_type_aggressive","max_p_type_aggressive","original_posts_json_modified"
+"978","278","95","183","288","31","381","978","414","200","364","0.4402","0.4294","0.1996","0.7409","False"

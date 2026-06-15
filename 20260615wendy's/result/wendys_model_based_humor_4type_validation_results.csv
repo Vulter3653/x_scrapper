@@ -1,0 +1,6 @@
+"metric","value","note"
+"model_type","exploratory 4-type classification","4-type model은 exploratory 전용. self-defeating=15건(<20건 기준 미달)이므로 primary로 사용하지 않음."
+"n_train","278","{'affiliative': 106, 'aggressive': 95, 'self-enhancing': 62, 'self-defeating': 15}"
+"n_folds","5","min_class=15"
+"oof_accuracy","0.4568",""
+"oof_macro_f1","0.3421",""
