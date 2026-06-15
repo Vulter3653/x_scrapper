@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "wendys_human_label_raw_linked",
+  "description": "Wendy's partial human-coded humor labels linked to raw posts.json engagement data. NOT a full gold label set.",
+  "type": "object",
+  "properties": {
+    "global_post_id":             { "type": "string", "pattern": "^benchmark:wendys:\\d+$" },
+    "tweet_id":                   { "type": "string", "pattern": "^\\d+$" },
+    "company_name":               { "type": "string" },
+    "source_x_handle":            { "type": "string" },
+    "human_label_source":         { "type": "string", "const": "Wendy's partial human review sample" },
+    "human_label_scope":          { "type": "string", "enum": ["partial"] },
+    "human_humor_label_raw":      { "type": "string", "enum": ["humor", "non_humor", "none", ""] },
+    "human_humor_binary":         { "type": "string", "enum": ["0", "1", ""] },
+    "human_humor_type_raw":       { "type": "string" },
+    "human_humor_type_normalized":{ "type": "string", "enum": ["affiliative", "aggressive", "self_enhancing", "self_defeating", "none", ""] },
+    "label_missing_flag":         { "type": "string", "enum": ["true", "false"] },
+    "raw_match_status":           { "type": "string", "enum": ["matched", "unmatched"] },
+    "raw_text_match_status":      { "type": "string", "enum": ["match", "mismatch", "no_raw"] },
+    "human_text":                 { "type": "string" },
+    "raw_text":                   { "type": "string" },
+    "text_normalized_equal":      { "type": "string", "enum": ["true", "false", "no_raw"] },
+    "created_at_human":           { "type": "string" },
+    "created_at_raw":             { "type": "string" },
+    "tweet_url":                  { "type": "string" },
+    "reply_count":                { "type": "string" },
+    "favorite_count":             { "type": "string" },
+    "retweet_count":              { "type": "string" },
+    "quote_count":                { "type": "string" },
+    "bookmark_count":             { "type": "string" },
+    "view_count":                 { "type": "string" },
+    "lang":                       { "type": "string" },
+    "conversation_id":            { "type": "string" },
+    "is_quote_status":            { "type": "string" },
+    "raw_source":                 { "type": "string" },
+    "raw_scraped_at":             { "type": "string" }
+  },
+  "required": [
+    "global_post_id", "tweet_id", "human_humor_label_raw", "human_humor_binary",
+    "raw_match_status", "label_missing_flag"
+  ]
+}

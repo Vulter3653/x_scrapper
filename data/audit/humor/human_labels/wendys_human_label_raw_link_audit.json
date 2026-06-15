@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-06-15T12:35:31.642939Z",
+  "script": "scripts/build_wendys_human_label_raw_link.py",
+  "inputs": {
+    "human_labels_path": "data/manual_labels/wendys_human_humor_labels.csv",
+    "raw_posts_path": "data/wendys/posts.json"
+  },
+  "outputs": {
+    "linked_csv": "data/derived/humor/human_labels/wendys_human_label_raw_linked.csv",
+    "audit_json": "data/audit/humor/human_labels/wendys_human_label_raw_link_audit.json"
+  },
+  "summary": {
+    "n_input_human_rows": 69,
+    "n_output_rows": 69,
+    "n_matched": 69,
+    "n_unmatched": 0,
+    "n_label_missing": 1,
+    "n_text_mismatch": 0,
+    "n_raw_posts": 978,
+    "none_humor_as_nonhumor": 2
+  },
+  "humor_value_counts": {
+    "humor": 37,
+    "non_humor": 29,
+    "none": 2,
+    "": 1
+  },
+  "type_value_counts": {
+    "affiliative": 21,
+    "aggressive": 13,
+    "self-enhancing": 3,
+    "self-defeating": 1,
+    "self_enhancing": 0,
+    "self_defeating": 0,
+    "none": 30,
+    "": 1
+  },
+  "unmatched_tweet_ids": [],
+  "label_missing_tweet_ids": [
+    "1206433794796015617"
+  ],
+  "text_mismatch_tweet_ids": [],
+  "raw_data_modified": false,
+  "dashboard_data_modified": false,
+  "notes": [
+    "human labels는 Wendy's partial human review sample로만 취급한다.",
+    "전체 정답(gold label)이나 full human annotation으로 일반화하지 않는다.",
+    "id exact match 실패 행은 unmatched로 처리하며 임의 매칭하지 않는다.",
+    "'none' humor 값은 비유머(0)로 정규화하되 human_humor_label_raw에 원본값을 보존한다.",
+    "text mismatch가 있어도 id match가 성공한 행은 연결을 유지하고 raw_text_match_status=mismatch로 표시한다."
+  ]
+}
