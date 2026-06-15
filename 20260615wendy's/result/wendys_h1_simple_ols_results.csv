@@ -1,0 +1,7 @@
+dv,model_name,n_obs,intercept,beta_log1p_humor_score,standard_error,t_value,p_value,ci_lower_95,ci_upper_95,r_squared,adj_r_squared,direction,h1_interpretation,notes
+log1p_engagement_total,Simple OLS,978,7.391081,0.378703,0.429993,0.8807,0.378686,7.512751,1.222521,0.000794,-0.000230,positive,Directional support for H1,Simple bivariate OLS; no controls; no FE; conventional SE
+log1p_favorite_count,Simple OLS,978,7.063005,0.500438,0.507733,0.9856,0.324558,7.206672,1.496812,0.000994,-0.000029,positive,Directional support for H1,Simple bivariate OLS; no controls; no FE; conventional SE
+log1p_retweet_count,Simple OLS,978,4.449996,0.311800,0.440615,0.7076,0.479333,4.574671,1.176463,0.000513,-0.000511,positive,Directional support for H1,Simple bivariate OLS; no controls; no FE; conventional SE
+log1p_reply_count,Simple OLS,978,4.572092,0.356173,0.406111,0.8770,0.380683,4.687004,1.153124,0.000787,-0.000236,positive,Directional support for H1,Simple bivariate OLS; no controls; no FE; conventional SE
+log1p_quote_count,Simple OLS,978,2.863751,0.650224,0.457403,1.4216,0.155475,2.993177,1.547831,0.002066,0.001044,positive,Directional support for H1,Simple bivariate OLS; no controls; no FE; conventional SE
+log1p_bookmark_count,Simple OLS,978,2.608291,0.312290,0.425268,0.7343,0.462920,2.728623,1.146834,0.000552,-0.000472,positive,Directional support for H1,Simple bivariate OLS; no controls; no FE; conventional SE
