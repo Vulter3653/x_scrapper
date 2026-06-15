@@ -1,0 +1,9 @@
+dv,n,predictor,coef_linear,p_linear,coef_quadratic,p_quadratic,turning_point,x_min,x_max,turning_point_in_range,r_squared,h3_pre_direction,h3_pre_preliminary_support
+log1p_engagement_total,960,humor_frequency_quarter,0.015122,0.1288,-0.000227,0.0483,33.32,3.0,78.0,True,0.0061,inverted_U,강한_예비적_지지(p<.05)
+log1p_engagement_favorite_retweet,960,humor_frequency_quarter,0.018281,0.0702,-0.000256,0.028,35.69,3.0,78.0,True,0.0063,inverted_U,강한_예비적_지지(p<.05)
+log1p_favorite_count,960,humor_frequency_quarter,0.018628,0.1141,-0.000252,0.0637,36.92,3.0,78.0,True,0.0042,inverted_U,약한_예비적_지지(tp_in_range)
+log1p_retweet_count,960,humor_frequency_quarter,-0.004997,0.6217,-6.3e-05,0.5881,-39.48,3.0,78.0,False,0.0145,other,H3pre_불지지
+log1p_reply_count,960,humor_frequency_quarter,0.002421,0.7977,-8.4e-05,0.4418,14.44,3.0,78.0,True,0.0039,inverted_U,약한_예비적_지지(tp_in_range)
+log1p_quote_count,960,humor_frequency_quarter,0.014619,0.1648,-0.00024,0.0487,30.52,3.0,78.0,True,0.0076,inverted_U,강한_예비적_지지(p<.05)
+log1p_bookmark_count,960,humor_frequency_quarter,-0.037278,0.0001,0.000181,0.0963,102.98,3.0,78.0,False,0.0744,U_shape,H3pre_불지지
+log1p_view_count,960,humor_frequency_quarter,-0.556999,0.0,0.004734,0.0,58.83,3.0,78.0,True,0.4756,U_shape,H3pre_불지지

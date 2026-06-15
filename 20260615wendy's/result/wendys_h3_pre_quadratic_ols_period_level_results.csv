@@ -1,0 +1,9 @@
+dv,n_periods,coef_linear,p_linear,coef_quadratic,p_quadratic,turning_point,x_min,x_max,turning_point_in_range,r_squared,interpretation
+log1p_engagement_total,25,-2.7023,0.5264,3.0231,0.4433,0.4469,0.2,0.88,True,0.0462,exploratory_period_level_n25_U_shape
+log1p_engagement_favorite_retweet,25,-2.111,0.6289,2.557,0.5266,0.4128,0.2,0.88,True,0.0443,exploratory_period_level_n25_U_shape
+log1p_favorite_count,25,-3.1744,0.4723,3.3562,0.411,0.4729,0.2,0.88,True,0.0417,exploratory_period_level_n25_U_shape
+log1p_retweet_count,25,-2.7959,0.5139,2.4894,0.5287,0.5616,0.2,0.88,True,0.0198,exploratory_period_level_n25_U_shape
+log1p_reply_count,25,-7.1095,0.0538,6.9459,0.0422,0.5118,0.2,0.88,True,0.181,exploratory_period_level_n25_U_shape
+log1p_quote_count,25,-6.5738,0.1255,6.4502,0.1044,0.5096,0.2,0.88,True,0.1209,exploratory_period_level_n25_U_shape
+log1p_bookmark_count,25,-8.0186,0.0515,5.004,0.1777,0.8012,0.2,0.88,True,0.4236,exploratory_period_level_n25_U_shape
+log1p_view_count,25,-39.5822,0.1245,10.3056,0.6566,1.9204,0.2,0.88,False,0.6453,exploratory_period_level_n25_U_shape

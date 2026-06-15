@@ -1,0 +1,27 @@
+metric,value
+total_rows_before_filter,978
+filtered_rows,960
+excluded_rows,18
+filtered_quarters,25
+excluded_quarters,"2009-Q4, 2023-Q4, 2025-Q3"
+primary_predictor,humor_proportion_quarter_loo
+primary_predictor_missing_rows,0
+primary_predictor_min,0.1579
+primary_predictor_max,0.9167
+primary_predictor_mean,0.5802
+primary_predictor_sd,0.153
+primary_dv_missing_rows,0
+h3_regression_performed,True
+primary_model_beta1,0.1917
+primary_model_beta2,0.3153
+primary_model_beta1_sign,positive
+primary_model_beta2_sign,positive
+primary_model_turning_point,-0.304
+primary_model_turning_point_in_range,False
+primary_model_p_quadratic,0.8708
+primary_model_h3_pre_support,H3pre_불지지
+frequency_robustness_performed,True
+nonloo_robustness_performed,True
+period_level_ols_performed,True
+quarter_fixed_effects_used,False
+original_posts_json_modified,False

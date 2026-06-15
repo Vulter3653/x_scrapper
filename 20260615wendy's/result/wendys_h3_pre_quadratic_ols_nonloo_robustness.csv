@@ -1,0 +1,9 @@
+dv,n,predictor,coef_linear,p_linear,coef_quadratic,p_quadratic,turning_point,x_min,x_max,turning_point_in_range,r_squared,h3_pre_direction,h3_pre_preliminary_support,note
+log1p_engagement_total,960,humor_proportion_quarter,-0.5184,0.8132,1.0419,0.5984,0.2488,0.2,0.88,True,0.0031,U_shape,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
+log1p_engagement_favorite_retweet,960,humor_proportion_quarter,0.1841,0.934,0.4947,0.8051,-0.1861,0.2,0.88,False,0.0039,other,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
+log1p_favorite_count,960,humor_proportion_quarter,-0.41,0.8745,0.8931,0.7028,0.2295,0.2,0.88,True,0.0019,U_shape,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
+log1p_retweet_count,960,humor_proportion_quarter,-1.9051,0.396,1.5313,0.4492,0.6221,0.2,0.88,True,0.001,U_shape,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
+log1p_reply_count,960,humor_proportion_quarter,-5.5214,0.0078,5.4949,0.0033,0.5024,0.2,0.88,True,0.0109,U_shape,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
+log1p_quote_count,960,humor_proportion_quarter,-4.4759,0.0537,4.4803,0.0322,0.4995,0.2,0.88,True,0.006,U_shape,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
+log1p_bookmark_count,960,humor_proportion_quarter,-7.7213,0.0002,4.4242,0.0185,0.8726,0.2,0.88,True,0.0696,U_shape,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
+log1p_view_count,960,humor_proportion_quarter,-59.5584,0.0,27.0572,0.0,1.1006,0.2,0.88,False,0.5978,U_shape,H3pre_불지지,LOO 대안 robustness: focal post 자기 포함 proportion
