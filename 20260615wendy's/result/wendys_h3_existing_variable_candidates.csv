@@ -1,0 +1,20 @@
+variable,source_file,h3_role,exists_in_file,n_total,non_missing_n,missing_n,missing_rate,unique_n,min,max,mean,std,note
+humor_frequency_month,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,20,0.0,37.0,12.469325,9.613811,
+humor_frequency_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,21,1.0,78.0,31.380368,21.11218,
+humor_proportion_month,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,47,0.0,1.0,0.576687,0.188958,
+humor_proportion_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,27,0.2,1.0,0.576687,0.154388,
+humor_proportion_month_loo,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,975,3,0.0031,61,0.0,1.0,0.57641,0.195297,
+humor_proportion_quarter_loo,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,977,1,0.001,52,0.157895,0.916667,0.576254,0.154817,H3-pre primary LOO predictor — quarter FE와 식별 불가
+aggressive_humor_frequency_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,13,0.0,26.0,10.478528,6.773877,
+aggressive_humor_proportion_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,26,0.0,1.0,0.204499,0.075911,
+aggressive_humor_proportion_quarter_loo,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,977,1,0.001,43,0.0,0.337662,0.203685,0.072738,H3-main primary LOO predictor — quarter FE와 식별 불가
+other_humor_frequency_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,20,0.0,57.0,20.90184,15.985682,
+other_humor_proportion_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,28,0.0,0.651163,0.372188,0.154873,
+other_humor_proportion_quarter_loo,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,977,1,0.001,46,0.0,0.666667,0.372569,0.155271,
+aggressive_share_among_humor_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,978,0,0.0,21,0.0,1.0,0.371773,0.166388,
+aggressive_share_among_humor_quarter_loo,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H3_predictor,True,978,977,1,0.001,51,0.0,1.0,0.371129,0.16766,
+quarter_total_posts,wendys_h3_aggressive_vs_other_intensity_dataset.csv,period_identifier,True,978,978,0,0.0,27,1.0,110.0,50.773006,27.30411,
+month_total_posts,wendys_h3_aggressive_vs_other_intensity_dataset.csv,period_identifier,True,978,978,0,0.0,28,1.0,50.0,20.349693,13.225561,
+year_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,period_identifier,True,978,978,0,0.0,28,n/a,n/a,n/a,n/a,quarter FE 사용 금지 (LOO 변수와 식별 불가)
+year_month,wendys_h3_aggressive_vs_other_intensity_dataset.csv,period_identifier,True,978,978,0,0.0,80,n/a,n/a,n/a,n/a,
+in_h3_aggressive_filtered,wendys_h3_aggressive_vs_other_intensity_dataset.csv,period_identifier,True,978,978,0,0.0,2,0.0,1.0,0.981595,0.134479,

@@ -1,0 +1,26 @@
+variable,source_file,h2_role,n_total,non_missing_n,missing_n,missing_rate,unique_n,example_unique_values,note
+final_humor_type,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,566,31,0.0519,5,"self-defeating, affiliative, self-enhancing, non_humor, aggressive",H2 사람 코딩 타입 라벨
+final_humor_type_group,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,4,"other_humor, aggressive, missing, non_humor",H2 사람 코딩 타입 라벨
+final_humor_type_source,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,4,"coder1, coder2, missing, non_humor",H2 사람 코딩 타입 라벨
+final_humor_type_available,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,2,"0, 1",H2 사람 코딩 타입 라벨
+final_humor_label_available,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,1,1,H2 사람 코딩 타입 라벨
+aggressive_humor,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,2,"1, 0",H2 사람 코딩 타입 라벨
+other_humor_flag,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,2,"0, 1",H2 사람 코딩 타입 라벨
+non_humor_flag,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,2,"1, 0",H2 사람 코딩 타입 라벨
+humor_missing_type,wendys_h2_coder1_priority_dataset.csv,H2_type_label,597,597,0,0.0,2,"1, 0",H2 사람 코딩 타입 라벨
+pred_humor_type_group_model,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H2_type_model_prediction,978,978,0,0.0,3,"other_humor, aggressive, non_humor",H2 모델 기반 타입 예측값 (978건)
+p_type_aggressive_model,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H2_type_model_prediction,978,978,0,0.0,794,"0.4209, 0.3242, 0.3730, 0.3284, 0.5186",H2 모델 기반 타입 예측값 (978건)
+p_type_other_humor_model,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H2_type_model_prediction,978,978,0,0.0,794,"0.6918, 0.7209, 0.6472, 0.4157, 0.4502",H2 모델 기반 타입 예측값 (978건)
+pred_humor_type_group_model_050,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H2_type_model_prediction,978,978,0,0.0,3,"other_humor, aggressive, non_humor",H2 모델 기반 타입 예측값 (978건)
+is_aggressive_humor,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H2_type_model_prediction,978,978,0,0.0,2,"1, 0",H2 모델 기반 타입 예측값 (978건)
+is_other_humor,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H2_type_model_prediction,978,978,0,0.0,2,"0, 1",H2 모델 기반 타입 예측값 (978건)
+is_non_humor,wendys_h3_aggressive_vs_other_intensity_dataset.csv,H2_type_model_prediction,978,978,0,0.0,2,"1, 0",H2 모델 기반 타입 예측값 (978건)
+final_humor_type,wendys_humor_review_sheet.csv,H2_4type_label,978,947,31,0.0317,5,"self-defeating, affiliative, self-enhancing, non_humor, aggressive",리뷰시트 기반 4-type 라벨 (278건 available)
+final_humor_type_group,wendys_humor_review_sheet.csv,H2_4type_label,978,978,0,0.0,4,"other_humor, aggressive, missing, non_humor",리뷰시트 기반 4-type 라벨 (278건 available)
+log1p_engagement_total,wendys_h2_coder1_priority_dataset.csv,H2_DV_candidate,597,597,0,0.0,570,"8.689127655323706, 8.244596756382498, 8.999125391527247, 5.808142489980444, 6.996681488176539",H2 engagement DV
+log1p_engagement_favorite_retweet,wendys_h2_coder1_priority_dataset.csv,H2_DV_candidate,597,597,0,0.0,561,"5.808142489980444, 8.332308352219117, 5.921578419643816, 5.420534999272286, 5.583496308781699",H2 engagement DV
+log1p_favorite_count,wendys_h2_coder1_priority_dataset.csv,H2_DV_candidate,597,597,0,0.0,559,"6.452048954437226, 6.338594078203183, 6.523562306149512, 8.420241665339788, 10.627915353129104",H2 engagement DV
+log1p_retweet_count,wendys_h2_coder1_priority_dataset.csv,H2_DV_candidate,597,597,0,0.0,310,"6.1092475827643655, 8.350902451694811, 6.025865973825314, 4.605170185988092, 6.030685260261263",H2 engagement DV
+log1p_reply_count,wendys_h2_coder1_priority_dataset.csv,H2_DV_candidate,597,597,0,0.0,343,"8.032035314398824, 6.452048954437226, 5.910796644040527, 5.648974238161206, 5.420534999272286",H2 engagement DV
+log1p_quote_count,wendys_h2_coder1_priority_dataset.csv,H2_DV_candidate,597,597,0,0.0,183,"1.6094379124341003, 4.1588830833596715, 5.808142489980444, 4.23410650459726, 2.9444389791664403",H2 engagement DV
+log1p_bookmark_count,wendys_h2_coder1_priority_dataset.csv,H2_DV_candidate,597,597,0,0.0,171,"5.683579767338681, 6.927557906278317, 1.6094379124341003, 4.1588830833596715, 5.521460917862246",H2 engagement DV

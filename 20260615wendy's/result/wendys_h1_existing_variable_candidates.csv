@@ -1,0 +1,33 @@
+variable,source_file,h1_role,n_total,non_missing_n,missing_n,missing_rate,unique_n,note
+log1p_engagement_total,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,900,log1p 변환 engagement 지표
+log1p_engagement_favorite_retweet,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,888,log1p 변환 engagement 지표
+log1p_favorite_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,871,log1p 변환 engagement 지표
+log1p_retweet_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,401,log1p 변환 engagement 지표
+log1p_reply_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,435,log1p 변환 engagement 지표
+log1p_quote_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,235,log1p 변환 engagement 지표
+log1p_bookmark_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,202,log1p 변환 engagement 지표
+log1p_view_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,DV_candidate,978,978,0,0.0,345,log1p 변환 engagement 지표
+pred_humor_final_050,wendys_h3_aggressive_vs_other_intensity_dataset.csv,IV_candidate,978,978,0,0.0,2,humor presence 예측값
+p_humor_final_tfidf_logreg,wendys_h3_aggressive_vs_other_intensity_dataset.csv,IV_candidate,978,978,0,0.0,907,humor presence 예측값
+final_humor_binary,wendys_final_humor_presence_full_predictions.csv,IV_human_label,978,597,381,0.3896,2,사람 코딩 기반 유머 유무 라벨
+final_humor_label_available,wendys_final_humor_presence_full_predictions.csv,IV_human_label,978,978,0,0.0,2,사람 코딩 기반 유머 유무 라벨
+created_year,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,9,시간 관련 기존 변수
+created_month,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,12,시간 관련 기존 변수
+created_day,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,31,시간 관련 기존 변수
+created_time,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,946,시간 관련 기존 변수
+created_hour,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,22,시간 관련 기존 변수
+created_date,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,600,시간 관련 기존 변수
+year_month,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,80,시간 관련 기존 변수
+year_quarter,wendys_h3_aggressive_vs_other_intensity_dataset.csv,time_control_candidate,978,978,0,0.0,28,시간 관련 기존 변수
+day_of_week,N/A,time_control_candidate,978,0,978,1.0,0,존재하지 않음 (has_dow=False): created_date에서 계산 가능하나 이번 작업에서 생성하지 않음
+quarter_total_posts,wendys_h3_aggressive_vs_other_intensity_dataset.csv,posting_intensity_candidate,978,978,0,0.0,27,기간별 총 게시글 수
+month_total_posts,wendys_h3_aggressive_vs_other_intensity_dataset.csv,posting_intensity_candidate,978,978,0,0.0,28,기간별 총 게시글 수
+text_length,wendys_fast_weak_supervised_humor_dataset.csv,post_format_existing,978,978,0,0.0,243,텍스트 계산 없이 기존 컬럼으로 존재
+url_count,wendys_fast_weak_supervised_humor_dataset.csv,post_format_existing,978,978,0,0.0,4,텍스트 계산 없이 기존 컬럼으로 존재
+mention_count,wendys_fast_weak_supervised_humor_dataset.csv,post_format_existing,978,978,0,0.0,8,텍스트 계산 없이 기존 컬럼으로 존재
+hashtag_count,wendys_fast_weak_supervised_humor_dataset.csv,post_format_existing,978,978,0,0.0,5,텍스트 계산 없이 기존 컬럼으로 존재
+emoji_count,wendys_fast_weak_supervised_humor_dataset.csv,post_format_existing,978,978,0,0.0,5,텍스트 계산 없이 기존 컬럼으로 존재
+is_quote_status,wendys_fast_weak_supervised_humor_dataset.csv,post_format_existing,978,978,0,0.0,2,텍스트 계산 없이 기존 컬럼으로 존재
+is_retweet_text,wendys_fast_weak_supervised_humor_dataset.csv,post_format_existing,978,978,0,0.0,2,텍스트 계산 없이 기존 컬럼으로 존재
+view_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,exposure_candidate,978,978,0,0.0,345,노출 수 (결측 주의)
+log1p_view_count,wendys_h3_aggressive_vs_other_intensity_dataset.csv,exposure_candidate,978,978,0,0.0,345,노출 수 (결측 주의)
