@@ -1,0 +1,101 @@
+rank,direction,feature,coefficient
+1,humor_positive,love,0.967733
+2,humor_positive,up,0.863149
+3,humor_positive,it,0.840272
+4,humor_positive,your,0.830733
+5,humor_positive,wendy,0.802796
+6,humor_positive,here,0.794201
+7,humor_positive,nationalroastday,0.775163
+8,humor_positive,at,0.746852
+9,humor_positive,was,0.731839
+10,humor_positive,means,0.722353
+11,humor_positive,as,0.703905
+12,humor_positive,just,0.673089
+13,humor_positive,an,0.642276
+14,humor_positive,bogo,0.639155
+15,humor_positive,that,0.616112
+16,humor_positive,let,0.588516
+17,humor_positive,should,0.580162
+18,humor_positive,you know,0.567818
+19,humor_positive,and,0.563436
+20,humor_positive,burger,0.562678
+21,humor_positive,right,0.550019
+22,humor_positive,top,0.535721
+23,humor_positive,bag,0.534379
+24,humor_positive,call,0.526619
+25,humor_positive,so,0.525320
+26,humor_positive,drink,0.521181
+27,humor_positive,is wendy,0.505323
+28,humor_positive,breakfast,0.497633
+29,humor_positive,have,0.495181
+30,humor_positive,name,0.494528
+31,humor_positive,french fries,0.492441
+32,humor_positive,they,0.491446
+33,humor_positive,no,0.483906
+34,humor_positive,the first,0.477627
+35,humor_positive,fries,0.472771
+36,humor_positive,where,0.464604
+37,humor_positive,even,0.456119
+38,humor_positive,then,0.453968
+39,humor_positive,not,0.451342
+40,humor_positive,his,0.451285
+41,humor_positive,re,0.449677
+42,humor_positive,beef,0.448616
+43,humor_positive,while we,0.445635
+44,humor_positive,way,0.445392
+45,humor_positive,saturday,0.442370
+46,humor_positive,hit,0.436237
+47,humor_positive,world,0.432650
+48,humor_positive,choosehotandcrispy,0.426617
+49,humor_positive,into,0.425806
+50,humor_positive,yaxel,0.425439
+1,humor_negative,url,-3.144060
+2,humor_negative,vote,-1.285836
+3,humor_negative,mention url,-1.205667
+4,humor_negative,mention,-1.029381
+5,humor_negative,url url,-0.853560
+6,humor_negative,does,-0.780474
+7,humor_negative,see,-0.774740
+8,humor_negative,tomorrow,-0.712268
+9,humor_negative,play,-0.685222
+10,humor_negative,order,-0.682080
+11,humor_negative,day,-0.673378
+12,humor_negative,frosty,-0.650072
+13,humor_negative,caramel,-0.637258
+14,humor_negative,mention and,-0.547197
+15,humor_negative,real,-0.541722
+16,humor_negative,code,-0.534023
+17,humor_negative,am,-0.514388
+18,humor_negative,rt,-0.507353
+19,humor_negative,strawberry,-0.486788
+20,humor_negative,yet,-0.483004
+21,humor_negative,spicy chicken,-0.452923
+22,humor_negative,same,-0.452625
+23,humor_negative,get your,-0.451918
+24,humor_negative,dollar,-0.451882
+25,humor_negative,fortnite,-0.448374
+26,humor_negative,wait,-0.447871
+27,humor_negative,appetite,-0.443636
+28,humor_negative,rt mention,-0.440537
+29,humor_negative,out url,-0.439967
+30,humor_negative,caramel frosty,-0.431222
+31,humor_negative,the ground,-0.429586
+32,humor_negative,ground,-0.429586
+33,humor_negative,read,-0.423351
+34,humor_negative,thought,-0.419396
+35,humor_negative,check,-0.405884
+36,humor_negative,welcome,-0.405595
+37,humor_negative,new spicy,-0.401167
+38,humor_negative,kissed,-0.398700
+39,humor_negative,tomorrow morning,-0.393809
+40,humor_negative,mention why,-0.391712
+41,humor_negative,more,-0.390872
+42,humor_negative,she,-0.388587
+43,humor_negative,again url,-0.387324
+44,humor_negative,national,-0.385572
+45,humor_negative,salted,-0.383012
+46,humor_negative,salted caramel,-0.383012
+47,humor_negative,winner,-0.380837
+48,humor_negative,carr,-0.376561
+49,humor_negative,life,-0.373475
+50,humor_negative,18,-0.373266
