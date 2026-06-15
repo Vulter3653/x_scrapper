@@ -1,0 +1,34 @@
+metric,value
+total_rows,978
+merged_rows,978
+predicted_non_humor_rows,414
+predicted_aggressive_rows,200
+predicted_other_humor_rows,364
+predicted_humor_rows,564
+quarter_count_before_filter,28
+filtered_rows,960
+filtered_quarters,25
+excluded_rows,18
+excluded_quarters,"2009-Q4, 2023-Q4, 2025-Q3"
+filter_criterion,quarter_total_posts>=10
+aggressive_proportion_loo_missing_rows,0
+other_proportion_loo_missing_rows,0
+aggressive_share_among_humor_loo_missing_rows,0
+aggressive_proportion_loo_min,0.0
+aggressive_proportion_loo_max,0.337662
+aggressive_proportion_loo_mean,0.20625
+aggressive_proportion_loo_sd,0.070264
+other_proportion_loo_min,0.0
+other_proportion_loo_max,0.666667
+other_proportion_loo_mean,0.373958
+other_proportion_loo_sd,0.155747
+aggressive_share_among_humor_loo_min,0.0
+aggressive_share_among_humor_loo_max,1.0
+aggressive_share_among_humor_loo_mean,0.374577
+aggressive_share_among_humor_loo_sd,0.165106
+descriptive_pattern_aggressive_proportion_loo,inverted_U (low<medium>high)
+descriptive_pattern_aggressive_frequency,monotone_decrease
+descriptive_pattern_aggressive_share_among_humor_loo,inverted_U (low<medium>high)
+descriptive_pattern_other_proportion_loo,inverted_U (low<medium>high)
+h3_main_regression_performed,False
+original_posts_json_modified,False

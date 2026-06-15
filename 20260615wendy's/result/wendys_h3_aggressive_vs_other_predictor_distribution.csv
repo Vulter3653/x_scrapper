@@ -1,0 +1,8 @@
+predictor,n,missing,min,max,mean,sd,p25,median,p75,t33,t67
+aggressive_humor_proportion_quarter_loo,960,0,0.0,0.337662,0.20625,0.070264,0.163636,0.192661,0.25,0.183486,0.225
+aggressive_humor_frequency_quarter,960,0,0.0,26.0,10.664583,6.697703,6.0,9.0,12.0,8.0,10.0
+aggressive_humor_proportion_quarter,960,0,0.0,0.333333,0.20625,0.069116,0.160714,0.190909,0.25,0.186047,0.21875
+aggressive_share_among_humor_quarter_loo,960,0,0.0,1.0,0.374577,0.165106,0.25974,0.333333,0.5,0.269231,0.444444
+other_humor_proportion_quarter_loo,960,0,0.0,0.666667,0.373958,0.155747,0.25,0.387097,0.513761,0.311688,0.454545
+other_humor_frequency_quarter,960,0,1.0,57.0,21.25,15.929066,8.0,16.0,26.0,12.0,26.0
+other_humor_proportion_quarter,960,0,0.071429,0.651163,0.373958,0.155168,0.25,0.380952,0.518182,0.307692,0.464286

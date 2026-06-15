@@ -1,0 +1,13 @@
+predictor,bin,n_posts,n_quarters,min_predictor,max_predictor,mean_predictor,mean_log1p_engagement_total,median_log1p_engagement_total,mean_log1p_engagement_favorite_retweet,mean_log1p_favorite_count,mean_log1p_retweet_count,mean_log1p_reply_count,mean_log1p_quote_count,mean_log1p_bookmark_count,mean_log1p_view_count,descriptive_pattern
+aggressive_humor_proportion_quarter_loo,low,337,14,0.0,0.183486,0.137728,7.333679,7.192182,7.194583,7.09832,4.304082,4.637967,2.899596,2.794629,5.507263,descriptive_only
+aggressive_humor_proportion_quarter_loo,medium,304,12,0.183673,0.225,0.197558,7.602834,7.455557,7.480894,7.264214,4.685604,4.721708,3.055538,2.471046,2.336868,descriptive_only
+aggressive_humor_proportion_quarter_loo,high,319,11,0.225806,0.337662,0.286922,7.291956,7.216709,7.167549,6.894237,4.398395,4.394695,2.720769,2.517457,4.699185,descriptive_only
+aggressive_humor_frequency_quarter,low,437,16,0.0,8.0,5.837529,7.478356,7.46049,7.334769,7.139407,4.609381,4.721064,2.969711,2.87005,6.605791,descriptive_only
+aggressive_humor_frequency_quarter,medium,254,5,9.0,10.0,9.358268,7.458511,7.11923,7.33315,7.214758,4.49684,4.595943,3.002162,2.765097,4.640413,descriptive_only
+aggressive_humor_frequency_quarter,high,269,4,12.0,26.0,19.739777,7.235472,7.167038,7.127509,6.867091,4.16911,4.348801,2.653011,2.005614,0.0,descriptive_only
+aggressive_share_among_humor_quarter_loo,low,327,9,0.0,0.269231,0.220342,7.258999,7.160846,7.129565,6.999965,4.187893,4.569825,2.807982,2.400698,2.915126,descriptive_only
+aggressive_share_among_humor_quarter_loo,medium,336,11,0.272727,0.444444,0.344876,7.667723,7.668313,7.535385,7.323191,4.769413,4.838095,3.23541,2.82965,3.579716,descriptive_only
+aggressive_share_among_humor_quarter_loo,high,297,12,0.461538,1.0,0.577991,7.268679,7.146772,7.144637,6.902814,4.397385,4.311007,2.588097,2.559818,6.428838,descriptive_only
+other_humor_proportion_quarter_loo,low,341,15,0.0,0.311688,0.204498,7.253292,7.144407,7.105256,6.924096,4.453939,4.458576,2.699136,2.962954,9.647619,descriptive_only
+other_humor_proportion_quarter_loo,medium,322,8,0.315789,0.454545,0.38846,7.548062,7.541412,7.430313,7.203129,4.595611,4.624491,3.060416,2.712571,2.408564,descriptive_only
+other_humor_proportion_quarter_loo,high,297,6,0.472727,0.666667,0.552801,7.424231,7.307202,7.305593,7.135328,4.307768,4.682967,2.922941,2.061419,0.0,descriptive_only
