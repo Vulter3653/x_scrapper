@@ -1,0 +1,8 @@
+dv,model,n_obs,sample,iv,intercept,beta_aggressive,se,t_value,p_value,sig,ci_lower_95,ci_upper_95,r_squared,adj_r_squared,h2_interpretation
+log1p_engagement_total,Simple OLS (humor-only),309,humor_only (n=309),"aggressive_humor (1=aggressive, 0=other)",7.511486,0.900917,0.208139,4.3284,0.000020,***,0.491358,1.310477,0.057517,0.054447,H2 예비적 지지
+log1p_engagement_favorite_retweet,Simple OLS (humor-only),309,humor_only (n=309),"aggressive_humor (1=aggressive, 0=other)",7.378236,0.902922,0.212499,4.2491,0.000029,***,0.484782,1.321061,0.055543,0.052467,H2 예비적 지지
+log1p_favorite_count,Simple OLS (humor-only),309,humor_only (n=309),"aggressive_humor (1=aggressive, 0=other)",7.269396,0.941776,0.223847,4.2072,0.000034,***,0.501307,1.382245,0.054514,0.051434,H2 예비적 지지
+log1p_retweet_count,Simple OLS (humor-only),309,humor_only (n=309),"aggressive_humor (1=aggressive, 0=other)",4.457180,1.005701,0.221243,4.5457,0.000008,***,0.570357,1.441046,0.063063,0.060011,H2 예비적 지지
+log1p_reply_count,Simple OLS (humor-only),309,humor_only (n=309),"aggressive_humor (1=aggressive, 0=other)",4.792769,0.596684,0.181856,3.2811,0.001153,**,0.238842,0.954526,0.033879,0.030732,H2 예비적 지지
+log1p_quote_count,Simple OLS (humor-only),309,humor_only (n=309),"aggressive_humor (1=aggressive, 0=other)",2.946993,1.013666,0.229844,4.4102,0.000014,***,0.561397,1.465935,0.059581,0.056518,H2 예비적 지지
+log1p_bookmark_count,Simple OLS (humor-only),309,humor_only (n=309),"aggressive_humor (1=aggressive, 0=other)",2.653795,0.692207,0.211524,3.2725,0.001188,**,0.275987,1.108426,0.033707,0.030560,H2 예비적 지지
