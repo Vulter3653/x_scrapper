@@ -82,13 +82,13 @@ def main():
 
         # p_humor 등급 (사람 읽기 편의용)
         if p_humor >= 0.65:
-            humor_grade = "높음"
+            humor_grade = "high"
         elif p_humor >= 0.50:
-            humor_grade = "보통"
+            humor_grade = "medium"
         elif p_humor >= 0.35:
-            humor_grade = "낮음"
+            humor_grade = "low"
         else:
-            humor_grade = "매우낮음"
+            humor_grade = "very_low"
 
         out_rows.append({
             "no":                  i,
