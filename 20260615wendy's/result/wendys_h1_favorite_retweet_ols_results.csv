@@ -1,0 +1,2 @@
+dv,model_name,n_obs,iv,intercept,beta_log1p_p_humor_ml,standard_error,t_value,p_value,ci_lower_95,ci_upper_95,r_squared,adj_r_squared,direction,h1_interpretation,notes
+log1p_engagement_favorite_retweet,Simple OLS,978,log1p_p_humor_ml,7.095397,0.603911,0.539865,1.1186,0.263572,7.445323,1.663340,0.001280,0.000257,positive,H1 방향성 지지,단순 이변량 OLS; 통제변수 없음; FE 없음; 표준 SE; DV=favorite+retweet only
