@@ -1,0 +1,121 @@
+coding_id,id,tweet_url,review_priority,humor_score,log1p_humor_score,p_humor_ml,log1p_p_humor_ml,weak_humor_label,weak_label_source,dominant_topic,dominant_topic_weight
+WENDYS_HUMOR_001,1448326668599320576,https://x.com/Wendys/status/1448326668599320576,false_negative_candidate,0.0,0.0,0.467222,0.383371,,unlabeled,2,0.411527
+WENDYS_HUMOR_002,1620815679707582465,https://x.com/Wendys/status/1620815679707582465,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_003,1549785096974209024,https://x.com/Wendys/status/1549785096974209024,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_004,1395802538310606852,https://x.com/Wendys/status/1395802538310606852,boundary_case,0.0,0.0,0.440866,0.365244,,unlabeled,7,0.219949
+WENDYS_HUMOR_005,1750997136404029658,https://x.com/Wendys/status/1750997136404029658,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_006,1316371848960061440,https://x.com/Wendys/status/1316371848960061440,false_negative_candidate,0.0,0.0,0.437618,0.362988,,unlabeled,5,0.083894
+WENDYS_HUMOR_007,1654524291231129600,https://x.com/Wendys/status/1654524291231129600,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_008,1425937918149943298,https://x.com/Wendys/status/1425937918149943298,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_009,1352663870469500930,https://x.com/Wendys/status/1352663870469500930,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_010,1483861582073548809,https://x.com/Wendys/status/1483861582073548809,boundary_case,0.32,0.2776317365982795,0.52164,0.419789,,unlabeled,5,0.006139
+WENDYS_HUMOR_011,1485407829506904069,https://x.com/Wendys/status/1485407829506904069,high_confidence_humor,0.703,0.5323914016805512,0.745827,0.557228,1,humor_score>=0.60 or strong_cue,5,0.039263
+WENDYS_HUMOR_012,1537586561033744384,https://x.com/Wendys/status/1537586561033744384,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_013,1938000813210714481,https://x.com/Wendys/status/1938000813210714481,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_014,1379243596214329349,https://x.com/Wendys/status/1379243596214329349,false_negative_candidate,0.0,0.0,0.471955,0.386591,,unlabeled,1,0.181087
+WENDYS_HUMOR_015,1293256222922203138,https://x.com/Wendys/status/1293256222922203138,false_negative_candidate,0.0,0.0,0.455632,0.37544,,unlabeled,5,0.022248
+WENDYS_HUMOR_016,1224709867753168899,https://x.com/Wendys/status/1224709867753168899,high_confidence_humor,0.5,0.4054651081081644,0.709569,0.536241,1,humor_score>=0.60 or strong_cue,6,0.447587
+WENDYS_HUMOR_017,1549774834535645196,https://x.com/Wendys/status/1549774834535645196,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_018,1581745509441556482,https://x.com/Wendys/status/1581745509441556482,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_019,1359215493626949637,https://x.com/Wendys/status/1359215493626949637,high_confidence_humor,0.5,0.4054651081081644,0.713754,0.538686,1,humor_score>=0.60 or strong_cue,6,0.084024
+WENDYS_HUMOR_020,2064726596179706275,https://x.com/Wendys/status/2064726596179706275,high_confidence_humor,0.928,0.6564831961883539,0.755204,0.562585,1,humor_score>=0.60 or strong_cue,5,0.040481
+WENDYS_HUMOR_021,1285956361189240832,https://x.com/Wendys/status/1285956361189240832,false_negative_candidate,0.0,0.0,0.41582,0.347709,,unlabeled,5,0.081637
+WENDYS_HUMOR_022,1359931378826027009,https://x.com/Wendys/status/1359931378826027009,high_confidence_humor,0.5,0.4054651081081644,0.744773,0.556624,1,humor_score>=0.60 or strong_cue,6,0.582973
+WENDYS_HUMOR_023,1879575467256422436,https://x.com/Wendys/status/1879575467256422436,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.108126
+WENDYS_HUMOR_024,1241035122654220288,https://x.com/Wendys/status/1241035122654220288,boundary_case,0.26,0.23111172096338664,0.49615,0.402895,1,humor_score>=0.60 or strong_cue,0,0.063865
+WENDYS_HUMOR_025,1641560467918270465,https://x.com/Wendys/status/1641560467918270465,false_negative_candidate,0.0,0.0,0.477499,0.390351,,unlabeled,2,0.042922
+WENDYS_HUMOR_026,1801112110136500397,https://x.com/Wendys/status/1801112110136500397,false_negative_candidate,0.0,0.0,0.430382,0.357942,,unlabeled,5,0.089163
+WENDYS_HUMOR_027,1618685219955171328,https://x.com/Wendys/status/1618685219955171328,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_028,1671254412919205888,https://x.com/Wendys/status/1671254412919205888,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_029,1441107722926104591,https://x.com/Wendys/status/1441107722926104591,false_negative_candidate,0.0,0.0,0.442172,0.36615,,unlabeled,5,0.101278
+WENDYS_HUMOR_030,1216883915820060673,https://x.com/Wendys/status/1216883915820060673,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_031,1360007619256209416,https://x.com/Wendys/status/1360007619256209416,false_negative_candidate,0.0,0.0,0.445344,0.368347,,unlabeled,5,0.01358
+WENDYS_HUMOR_032,1359895187464613889,https://x.com/Wendys/status/1359895187464613889,high_confidence_humor,0.5,0.4054651081081644,0.721976,0.543472,1,humor_score>=0.60 or strong_cue,6,0.114203
+WENDYS_HUMOR_033,1255937272907776001,https://x.com/Wendys/status/1255937272907776001,high_confidence_humor,0.71,0.5364933705145685,0.709943,0.53646,1,humor_score>=0.60 or strong_cue,2,0.116938
+WENDYS_HUMOR_034,1266084754832719872,https://x.com/Wendys/status/1266084754832719872,high_confidence_humor,0.5,0.4054651081081644,0.71616,0.540089,1,humor_score>=0.60 or strong_cue,6,0.116801
+WENDYS_HUMOR_035,1481395069823471618,https://x.com/Wendys/status/1481395069823471618,high_confidence_humor,0.5,0.4054651081081644,0.744773,0.556624,1,humor_score>=0.60 or strong_cue,6,0.582973
+WENDYS_HUMOR_036,1268327435206111232,https://x.com/Wendys/status/1268327435206111232,false_negative_candidate,0.0,0.0,0.484774,0.395263,,unlabeled,5,0.060596
+WENDYS_HUMOR_037,1266395345996652552,https://x.com/Wendys/status/1266395345996652552,high_confidence_humor,0.835,0.6070444815065336,0.790454,0.582469,1,humor_score>=0.60 or strong_cue,6,0.129546
+WENDYS_HUMOR_038,1224780999906775040,https://x.com/Wendys/status/1224780999906775040,false_negative_candidate,0.0,0.0,0.40964,0.343334,,unlabeled,5,0.002789
+WENDYS_HUMOR_039,1359944987291627520,https://x.com/Wendys/status/1359944987291627520,high_confidence_humor,0.5,0.4054651081081644,0.744773,0.556624,1,humor_score>=0.60 or strong_cue,6,0.482535
+WENDYS_HUMOR_040,1957893154453041344,https://x.com/Wendys/status/1957893154453041344,false_negative_candidate,0.0,0.0,0.404908,0.339972,,unlabeled,5,0.076736
+WENDYS_HUMOR_041,1522284287239897092,https://x.com/Wendys/status/1522284287239897092,high_confidence_humor,0.819,0.5982868995359851,0.737862,0.552656,1,humor_score>=0.60 or strong_cue,5,0.06105
+WENDYS_HUMOR_042,2057589742649192842,https://x.com/Wendys/status/2057589742649192842,high_confidence_humor,1.0,0.6931471805599453,0.742053,0.555064,1,humor_score>=0.60 or strong_cue,1,0.161941
+WENDYS_HUMOR_043,1205566516281917441,https://x.com/Wendys/status/1205566516281917441,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_044,1248681442474889216,https://x.com/Wendys/status/1248681442474889216,false_negative_candidate,0.0,0.0,0.418146,0.34935,,unlabeled,1,0.068952
+WENDYS_HUMOR_045,1481342165573906443,https://x.com/Wendys/status/1481342165573906443,high_confidence_humor,0.61,0.4762341789963716,0.783273,0.57845,1,humor_score>=0.60 or strong_cue,6,0.582973
+WENDYS_HUMOR_046,1237381359347339265,https://x.com/Wendys/status/1237381359347339265,high_confidence_humor,0.5,0.4054651081081644,0.71296,0.538223,1,humor_score>=0.60 or strong_cue,1,0.093295
+WENDYS_HUMOR_047,1920237379442397554,https://x.com/Wendys/status/1920237379442397554,false_negative_candidate,0.0,0.0,0.477176,0.390132,,unlabeled,7,0.166745
+WENDYS_HUMOR_048,1481306650132848645,https://x.com/Wendys/status/1481306650132848645,high_confidence_humor,0.5,0.4054651081081644,0.718485,0.541443,1,humor_score>=0.60 or strong_cue,5,0.022034
+WENDYS_HUMOR_049,1699798695691395159,https://x.com/Wendys/status/1699798695691395159,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_050,1254847872614502402,https://x.com/Wendys/status/1254847872614502402,boundary_case,0.0,0.0,0.433579,0.360174,,unlabeled,2,0.063602
+WENDYS_HUMOR_051,1248715156521172992,https://x.com/Wendys/status/1248715156521172992,false_negative_candidate,0.0,0.0,0.424918,0.354114,,unlabeled,1,0.049934
+WENDYS_HUMOR_052,1646139417172783117,https://x.com/Wendys/status/1646139417172783117,false_negative_candidate,0.0,0.0,0.40964,0.343334,,unlabeled,5,0.010131
+WENDYS_HUMOR_053,1359923876583645184,https://x.com/Wendys/status/1359923876583645184,high_confidence_humor,0.5,0.4054651081081644,0.709086,0.535959,1,humor_score>=0.60 or strong_cue,5,0.03552
+WENDYS_HUMOR_054,1508469601495138308,https://x.com/Wendys/status/1508469601495138308,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_055,2054257059399389281,https://x.com/Wendys/status/2054257059399389281,false_negative_candidate,0.0,0.0,0.493219,0.400934,,unlabeled,7,0.169042
+WENDYS_HUMOR_056,1359905095396323335,https://x.com/Wendys/status/1359905095396323335,high_confidence_humor,0.5,0.4054651081081644,0.719255,0.541891,1,humor_score>=0.60 or strong_cue,5,0.02193
+WENDYS_HUMOR_057,2014446063961178239,https://x.com/Wendys/status/2014446063961178239,boundary_case,0.0,0.0,0.447086,0.369552,,unlabeled,2,0.06962
+WENDYS_HUMOR_058,2056803537636467033,https://x.com/Wendys/status/2056803537636467033,high_confidence_humor,0.743,0.5556077665378838,0.714933,0.539374,1,humor_score>=0.60 or strong_cue,5,0.047126
+WENDYS_HUMOR_059,1340008979494301696,https://x.com/Wendys/status/1340008979494301696,false_negative_candidate,0.0,0.0,0.467293,0.383419,,unlabeled,1,0.082532
+WENDYS_HUMOR_060,1942770676286505156,https://x.com/Wendys/status/1942770676286505156,boundary_case,0.0,0.0,0.40964,0.343334,,unlabeled,0,0.0
+WENDYS_HUMOR_061,1570174502453084160,https://x.com/Wendys/status/1570174502453084160,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_062,1669414854078218240,https://x.com/Wendys/status/1669414854078218240,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_063,1293228415823347718,https://x.com/Wendys/status/1293228415823347718,false_negative_candidate,0.0,0.0,0.438441,0.36356,,unlabeled,1,0.072659
+WENDYS_HUMOR_064,1359920580439457799,https://x.com/Wendys/status/1359920580439457799,high_confidence_humor,0.5,0.4054651081081644,0.744773,0.556624,1,humor_score>=0.60 or strong_cue,6,0.582973
+WENDYS_HUMOR_065,1198286207198924800,https://x.com/Wendys/status/1198286207198924800,false_negative_candidate,0.0,0.0,0.476993,0.390008,,unlabeled,1,0.200832
+WENDYS_HUMOR_066,1440059703296348161,https://x.com/Wendys/status/1440059703296348161,false_negative_candidate,0.0,0.0,0.40964,0.343334,,unlabeled,0,0.0
+WENDYS_HUMOR_067,1599873034529042432,https://x.com/Wendys/status/1599873034529042432,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_068,1604921931530207236,https://x.com/Wendys/status/1604921931530207236,false_negative_candidate,0.0,0.0,0.419805,0.35052,,unlabeled,1,0.080912
+WENDYS_HUMOR_069,1488512462223667201,https://x.com/Wendys/status/1488512462223667201,high_confidence_humor,0.67,0.5128236264286637,0.708254,0.535472,1,humor_score>=0.60 or strong_cue,5,0.07855
+WENDYS_HUMOR_070,1258082734414663685,https://x.com/Wendys/status/1258082734414663685,false_negative_candidate,0.0,0.0,0.437063,0.362601,,unlabeled,5,0.043094
+WENDYS_HUMOR_071,1453805031463993346,https://x.com/Wendys/status/1453805031463993346,false_negative_candidate,0.0,0.0,0.40964,0.343334,,unlabeled,5,0.000611
+WENDYS_HUMOR_072,1359919274958196736,https://x.com/Wendys/status/1359919274958196736,high_confidence_humor,0.5,0.4054651081081644,0.716877,0.540507,1,humor_score>=0.60 or strong_cue,5,0.024747
+WENDYS_HUMOR_073,1359932399870738433,https://x.com/Wendys/status/1359932399870738433,high_confidence_humor,0.5,0.4054651081081644,0.768265,0.569999,1,humor_score>=0.60 or strong_cue,7,0.016849
+WENDYS_HUMOR_074,1491487068584824843,https://x.com/Wendys/status/1491487068584824843,false_negative_candidate,0.0,0.0,0.446982,0.36948,,unlabeled,5,0.053662
+WENDYS_HUMOR_075,1359902805901910026,https://x.com/Wendys/status/1359902805901910026,high_confidence_humor,0.56,0.44468582126144574,0.709193,0.536021,1,humor_score>=0.60 or strong_cue,5,0.025993
+WENDYS_HUMOR_076,1206433794796015617,https://x.com/Wendys/status/1206433794796015617,boundary_case,0.0,0.0,0.40964,0.343334,,unlabeled,5,0.006514
+WENDYS_HUMOR_077,1440059703296348161,https://x.com/Wendys/status/1440059703296348161,boundary_case,0.0,0.0,0.40964,0.343334,,unlabeled,0,0.0
+WENDYS_HUMOR_078,1216894246021713920,https://x.com/Wendys/status/1216894246021713920,boundary_case,0.0,0.0,0.482731,0.393886,,unlabeled,5,0.054531
+WENDYS_HUMOR_079,1260238918638854147,https://x.com/Wendys/status/1260238918638854147,boundary_case,0.0,0.0,0.443639,0.367167,,unlabeled,5,0.057917
+WENDYS_HUMOR_080,1212819812331720705,https://x.com/Wendys/status/1212819812331720705,false_negative_candidate,0.0,0.0,0.466405,0.382814,,unlabeled,5,0.042309
+WENDYS_HUMOR_081,1668661154325966852,https://x.com/Wendys/status/1668661154325966852,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_082,1359577880326524935,https://x.com/Wendys/status/1359577880326524935,high_confidence_humor,0.5,0.4054651081081644,0.703043,0.532417,1,humor_score>=0.60 or strong_cue,5,0.054836
+WENDYS_HUMOR_083,1355322273226493959,https://x.com/Wendys/status/1355322273226493959,boundary_case,0.26,0.23111172096338664,0.560274,0.444861,1,humor_score>=0.60 or strong_cue,2,0.07579
+WENDYS_HUMOR_084,1321830152662327297,https://x.com/Wendys/status/1321830152662327297,false_negative_candidate,0.0,0.0,0.442921,0.36667,,unlabeled,5,0.047043
+WENDYS_HUMOR_085,1205531387975090177,https://x.com/Wendys/status/1205531387975090177,false_negative_candidate,0.0,0.0,0.467222,0.383371,,unlabeled,2,0.155066
+WENDYS_HUMOR_086,1509591862335655943,https://x.com/Wendys/status/1509591862335655943,boundary_case,0.26,0.23111172096338664,0.407963,0.342144,,unlabeled,4,0.120684
+WENDYS_HUMOR_087,1559639856925626369,https://x.com/Wendys/status/1559639856925626369,boundary_case,0.0,0.0,0.406912,0.341397,,unlabeled,5,0.067183
+WENDYS_HUMOR_088,1359903118033620994,https://x.com/Wendys/status/1359903118033620994,high_confidence_humor,0.61,0.4762341789963716,0.783273,0.57845,1,humor_score>=0.60 or strong_cue,6,0.582973
+WENDYS_HUMOR_089,1254067898349428737,https://x.com/Wendys/status/1254067898349428737,boundary_case,0.0,0.0,0.415231,0.347293,,unlabeled,5,0.068003
+WENDYS_HUMOR_090,1481299289582231566,https://x.com/Wendys/status/1481299289582231566,high_confidence_humor,0.5,0.4054651081081644,0.700261,0.530782,1,humor_score>=0.60 or strong_cue,5,0.025377
+WENDYS_HUMOR_091,1316371848960061440,https://x.com/Wendys/status/1316371848960061440,boundary_case,0.0,0.0,0.437618,0.362988,,unlabeled,5,0.083894
+WENDYS_HUMOR_092,1455209020629950464,https://x.com/Wendys/status/1455209020629950464,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_093,1724568790820687971,https://x.com/Wendys/status/1724568790820687971,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_094,1598721162506215424,https://x.com/Wendys/status/1598721162506215424,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_095,1781022004847522155,https://x.com/Wendys/status/1781022004847522155,false_negative_candidate,0.0,0.0,0.426013,0.354882,,unlabeled,5,0.040762
+WENDYS_HUMOR_096,2054933542442848652,https://x.com/Wendys/status/2054933542442848652,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_097,1909664559243178141,https://x.com/Wendys/status/1909664559243178141,boundary_case,0.0,0.0,0.447784,0.370034,,unlabeled,7,0.208076
+WENDYS_HUMOR_098,1699796550636200229,https://x.com/Wendys/status/1699796550636200229,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_099,1359967792624238592,https://x.com/Wendys/status/1359967792624238592,high_confidence_humor,0.5,0.4054651081081644,0.715207,0.539534,1,humor_score>=0.60 or strong_cue,5,0.043771
+WENDYS_HUMOR_100,1456269198896680968,https://x.com/Wendys/status/1456269198896680968,false_negative_candidate,0.0,0.0,0.444382,0.367682,,unlabeled,3,0.07494
+WENDYS_HUMOR_101,1874116245085446380,https://x.com/Wendys/status/1874116245085446380,false_negative_candidate,0.0,0.0,0.442315,0.366249,,unlabeled,5,0.021356
+WENDYS_HUMOR_102,1342838056269840385,https://x.com/Wendys/status/1342838056269840385,boundary_case,0.0,0.0,0.419428,0.350254,,unlabeled,5,0.033351
+WENDYS_HUMOR_103,1419719465453953024,https://x.com/Wendys/status/1419719465453953024,boundary_case,0.0,0.0,0.40964,0.343334,,unlabeled,5,0.021615
+WENDYS_HUMOR_104,1315790897695666176,https://x.com/Wendys/status/1315790897695666176,false_negative_candidate,0.0,0.0,0.43666,0.362321,,unlabeled,5,0.024517
+WENDYS_HUMOR_105,1359919021202825223,https://x.com/Wendys/status/1359919021202825223,high_confidence_humor,0.61,0.4762341789963716,0.731149,0.548785,1,humor_score>=0.60 or strong_cue,6,0.206904
+WENDYS_HUMOR_106,1662099102618857473,https://x.com/Wendys/status/1662099102618857473,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_107,1864373989759471899,https://x.com/Wendys/status/1864373989759471899,false_negative_candidate,0.0,0.0,0.467293,0.383419,0,score=0 and (plain_promotion or url_only),1,0.397325
+WENDYS_HUMOR_108,1480986154765885443,https://x.com/Wendys/status/1480986154765885443,high_confidence_humor,0.896,0.6397464038328301,0.805374,0.590768,1,humor_score>=0.60 or strong_cue,6,0.117576
+WENDYS_HUMOR_109,1258109329816813568,https://x.com/Wendys/status/1258109329816813568,boundary_case,0.5,0.4054651081081644,0.53806,0.430522,1,humor_score>=0.60 or strong_cue,5,0.066217
+WENDYS_HUMOR_110,1651965168270671872,https://x.com/Wendys/status/1651965168270671872,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_111,2060406022825554333,https://x.com/Wendys/status/2060406022825554333,false_negative_candidate,0.0,0.0,0.430035,0.357699,,unlabeled,1,0.006007
+WENDYS_HUMOR_112,1491487068584824843,https://x.com/Wendys/status/1491487068584824843,boundary_case,0.0,0.0,0.446982,0.36948,,unlabeled,5,0.053662
+WENDYS_HUMOR_113,1826436504614273198,https://x.com/Wendys/status/1826436504614273198,false_negative_candidate,0.0,0.0,0.40964,0.343334,,unlabeled,1,0.0032
+WENDYS_HUMOR_114,1301144281281974274,https://x.com/Wendys/status/1301144281281974274,false_negative_candidate,0.0,0.0,0.437541,0.362934,,unlabeled,5,0.104548
+WENDYS_HUMOR_115,1650820225728741378,https://x.com/Wendys/status/1650820225728741378,false_negative_candidate,0.0,0.0,0.421056,0.3514,,unlabeled,1,0.077178
+WENDYS_HUMOR_116,1503438625672937479,https://x.com/Wendys/status/1503438625672937479,false_negative_candidate,0.0,0.0,0.478652,0.391131,,unlabeled,2,0.048227
+WENDYS_HUMOR_117,1692596616299999573,https://x.com/Wendys/status/1692596616299999573,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
+WENDYS_HUMOR_118,1233563046875926528,https://x.com/Wendys/status/1233563046875926528,false_negative_candidate,0.0,0.0,0.40964,0.343334,,unlabeled,5,0.006789
+WENDYS_HUMOR_119,1506347581982613504,https://x.com/Wendys/status/1506347581982613504,false_negative_candidate,0.0,0.0,0.40964,0.343334,,unlabeled,5,0.009251
+WENDYS_HUMOR_120,1619013166251544577,https://x.com/Wendys/status/1619013166251544577,high_confidence_nonhumor,0.0,0.0,0.08009,0.077044,0,score=0 and (plain_promotion or url_only),0,0.361686
