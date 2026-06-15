@@ -1,0 +1,9 @@
+model_set,sample,n_rows,n_cols_with_const,rank,rank_deficient,condition_number,condition_severity
+A_time_only,primary_n597,597,5,5,False,1.49,acceptable
+A_time_only,full_n978,978,5,5,False,1.34,acceptable
+B_time_posting_intensity,primary_n597,597,7,7,False,3.7,acceptable
+B_time_posting_intensity,full_n978,978,7,7,False,4.27,acceptable
+C_time_posting_format,primary_n597,597,14,14,False,3.89,acceptable
+C_time_posting_format,full_n978,978,14,14,False,4.47,acceptable
+D_exposure_robustness,primary_n597,597,7,7,False,3.8,acceptable
+D_exposure_robustness,full_n978,978,7,7,False,3.81,acceptable
