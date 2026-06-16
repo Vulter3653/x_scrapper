@@ -1,0 +1,8 @@
+sample_type,model_name,dv,iv,n,humor_n,nonhumor_n,humor_mean,nonhumor_mean,coefficient,standard_error,t_value,p_value,r_squared,adj_r_squared,significance,interpretation_flag,included_time_fe,included_post_format_variables,notes
+human_coded_n597,Simple_OLS,log1p_engagement_total,유머레이블최종,597,309,288,7.773889,7.269567,0.504322,0.141754,3.5577,0.000404,0.02083,0.019184,***,supports_H1,none,none,"Simple OLS, no FE, no controls"
+human_coded_n597,Simple_OLS,log1p_engagement_favorite_retweet,유머레이블최종,597,309,288,7.641223,7.123593,0.51763,0.144263,3.5881,0.000361,0.021179,0.019534,***,supports_H1,none,none,"Simple OLS, no FE, no controls"
+human_coded_n597,Simple_OLS,log1p_favorite_count,유머레이블최종,597,309,288,7.543699,6.929289,0.614411,0.159636,3.8488,0.000132,0.024292,0.022652,***,supports_H1,none,none,"Simple OLS, no FE, no controls"
+human_coded_n597,Simple_OLS,log1p_retweet_count,유머레이블최종,597,309,288,4.750103,4.423613,0.32649,0.143942,2.2682,0.023674,0.008573,0.006906,**,supports_H1,none,none,"Simple OLS, no FE, no controls"
+human_coded_n597,Simple_OLS,log1p_reply_count,유머레이블최종,597,309,288,4.966561,4.539973,0.426588,0.127383,3.3489,0.000863,0.0185,0.01685,***,supports_H1,none,none,"Simple OLS, no FE, no controls"
+human_coded_n597,Simple_OLS,log1p_quote_count,유머레이블최종,597,309,288,3.242235,2.888924,0.353311,0.151837,2.3269,0.020304,0.009018,0.007352,**,supports_H1,none,none,"Simple OLS, no FE, no controls"
+human_coded_n597,Simple_OLS,log1p_bookmark_count,유머레이블최종,597,309,288,2.855409,3.035728,-0.180319,0.144815,-1.2452,0.213558,0.002599,0.000923,,not_support,none,none,"Simple OLS, no FE, no controls"
