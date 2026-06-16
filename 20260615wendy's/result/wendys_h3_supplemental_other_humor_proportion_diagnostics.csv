@@ -1,0 +1,38 @@
+check,value
+main_source_file,wendys_h3_aggressive_vs_other_intensity_dataset.csv
+format_source_file,wendys_fast_weak_supervised_humor_dataset.csv
+merge_key,id
+left_n,978
+right_n,978
+merged_n,978
+unmatched_rows,0
+duplicate_key,0
+row_count_after_filter,960
+col_count,69
+unique_year_quarter,25
+quarter_filter,>= 10
+predictor_missing,0
+predictor_sq_missing,0
+predictor_min,0.0
+predictor_max,0.666667
+predictor_mean,0.373958
+predictor_std,0.155747
+text_length_missing,0
+hashtag_count_missing,0
+mention_count_missing,0
+created_year_unique,"[2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]"
+created_month_unique,"[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+created_hour_unique_count,22
+year_quarter_FE_used,False
+quarter_FE_used,False
+frequency_count_used,False
+view_count_used,False
+emoji_count_used,False
+url_count_used,False
+is_quote_status_used,False
+is_retweet_text_used,False
+aggressive_proportion_in_model,False
+general_proportion_in_model,False
+H1_performed,False
+H2_performed,False
+new_humor_classifier,False
