@@ -1,0 +1,61 @@
+label,check,value
+H3-pre,source_file,wendys_humor_frequency_proportion_post_level_dataset.csv
+H3-pre,format_source_file,wendys_fast_weak_supervised_humor_dataset.csv
+H3-pre,merge_key,id
+H3-pre,row_count_after_merge_and_filter,960
+H3-pre,col_count,49
+H3-pre,unique_year_quarter,25
+H3-pre,quarter_filter_applied,>= 10
+H3-pre,predictor_missing,0
+H3-pre,predictor_sq_missing,0
+H3-pre,predictor_min,0.157895
+H3-pre,predictor_max,0.916667
+H3-pre,predictor_mean,0.580208
+H3-pre,predictor_std,0.153014
+H3-pre,text_length_missing,0
+H3-pre,hashtag_count_missing,0
+H3-pre,mention_count_missing,0
+H3-pre,created_year_unique,"[2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]"
+H3-pre,created_month_unique,"[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+H3-pre,created_hour_unique_count,22
+H3-pre,year_quarter_FE_used,False
+H3-pre,quarter_FE_used,False
+H3-pre,frequency_count_used,False
+H3-pre,view_count_used,False
+H3-pre,emoji_count_used,False
+H3-pre,url_count_used,False
+H3-pre,is_quote_status_used,False
+H3-pre,is_retweet_text_used,False
+H3-pre,H1_performed,False
+H3-pre,H2_performed,False
+H3-pre,new_humor_classifier,False
+H3-main,source_file,wendys_h3_aggressive_vs_other_intensity_dataset.csv
+H3-main,format_source_file,wendys_fast_weak_supervised_humor_dataset.csv
+H3-main,merge_key,id
+H3-main,row_count_after_merge_and_filter,960
+H3-main,col_count,69
+H3-main,unique_year_quarter,25
+H3-main,quarter_filter_applied,>= 10
+H3-main,predictor_missing,0
+H3-main,predictor_sq_missing,0
+H3-main,predictor_min,0.0
+H3-main,predictor_max,0.337662
+H3-main,predictor_mean,0.20625
+H3-main,predictor_std,0.070264
+H3-main,text_length_missing,0
+H3-main,hashtag_count_missing,0
+H3-main,mention_count_missing,0
+H3-main,created_year_unique,"[2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]"
+H3-main,created_month_unique,"[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+H3-main,created_hour_unique_count,22
+H3-main,year_quarter_FE_used,False
+H3-main,quarter_FE_used,False
+H3-main,frequency_count_used,False
+H3-main,view_count_used,False
+H3-main,emoji_count_used,False
+H3-main,url_count_used,False
+H3-main,is_quote_status_used,False
+H3-main,is_retweet_text_used,False
+H3-main,H1_performed,False
+H3-main,H2_performed,False
+H3-main,new_humor_classifier,False
