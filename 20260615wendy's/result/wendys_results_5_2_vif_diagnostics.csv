@@ -1,0 +1,17 @@
+hypothesis,sample_n,variable,vif,judgment,notes
+H1,978,유머예측이진,1.0763,OK,numeric VIF; reported as GVIF in table
+H1,978,텍스트길이,1.1258,OK,numeric VIF; reported as GVIF in table
+H1,978,해시태그수,1.1336,OK,numeric VIF; reported as GVIF in table
+H1,978,멘션수,1.1897,OK,numeric VIF; reported as GVIF in table
+H2,564,H2공격적유머모델더미,1.0989,OK,numeric VIF; reported as GVIF in table
+H2,564,텍스트길이,1.1741,OK,numeric VIF; reported as GVIF in table
+H2,564,해시태그수,1.1009,OK,numeric VIF; reported as GVIF in table
+H2,564,멘션수,1.0662,OK,numeric VIF; reported as GVIF in table
+H3,960,유머예측이진,1.7162,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
+H3,960,Intensity_c,3.5556,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
+H3,960,Intensity_c_sq,3.3055,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
+H3,960,Humor × Intensity_c,2.8967,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
+H3,960,Humor × Intensity_c_sq,3.4262,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
+H3,960,텍스트길이,1.1569,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
+H3,960,해시태그수,1.1461,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
+H3,960,멘션수,1.1968,OK,numeric VIF; reported as GVIF in table; mean-centered intensity
