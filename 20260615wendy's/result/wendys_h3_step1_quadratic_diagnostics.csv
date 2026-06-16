@@ -1,0 +1,37 @@
+check,label,value
+source_file,H3-pre (general humor),wendys_humor_frequency_proportion_post_level_dataset.csv
+row_count,H3-pre (general humor),960
+col_count,H3-pre (general humor),46
+unique_year_quarter,H3-pre (general humor),25
+quarter_total_posts_filter,H3-pre (general humor),>= 10 applied
+predictor_missing,H3-pre (general humor),0
+predictor_sq_missing,H3-pre (general humor),0
+predictor_min,H3-pre (general humor),0.157895
+predictor_max,H3-pre (general humor),0.916667
+predictor_mean,H3-pre (general humor),0.580208
+predictor_std,H3-pre (general humor),0.153014
+year_quarter_FE_used,H3-pre (general humor),False
+quarter_FE_used,H3-pre (general humor),False
+post_format_controls_used,H3-pre (general humor),False
+view_count_used,H3-pre (general humor),False
+H1_analysis_performed,H3-pre (general humor),False
+H2_analysis_performed,H3-pre (general humor),False
+new_humor_classifier_trained,H3-pre (general humor),False
+source_file,H3-main (aggressive humor),wendys_h3_aggressive_vs_other_intensity_dataset.csv
+row_count,H3-main (aggressive humor),960
+col_count,H3-main (aggressive humor),66
+unique_year_quarter,H3-main (aggressive humor),25
+quarter_total_posts_filter,H3-main (aggressive humor),>= 10 applied
+predictor_missing,H3-main (aggressive humor),0
+predictor_sq_missing,H3-main (aggressive humor),0
+predictor_min,H3-main (aggressive humor),0.0
+predictor_max,H3-main (aggressive humor),0.337662
+predictor_mean,H3-main (aggressive humor),0.20625
+predictor_std,H3-main (aggressive humor),0.070264
+year_quarter_FE_used,H3-main (aggressive humor),False
+quarter_FE_used,H3-main (aggressive humor),False
+post_format_controls_used,H3-main (aggressive humor),False
+view_count_used,H3-main (aggressive humor),False
+H1_analysis_performed,H3-main (aggressive humor),False
+H2_analysis_performed,H3-main (aggressive humor),False
+new_humor_classifier_trained,H3-main (aggressive humor),False
