@@ -1,16 +1,16 @@
-model_name,sample_filter,focal_variable,expected_coefficient,expected_p_value,expected_n,source_result_file,notes
-H1_binary_M7,h1_full_sample_flag==1 (n=978),pred_humor_final_050,0.2918,0.0088,978,wendys_h1_three_post_format_fullsample_binary_results.csv,"M7_all_three; controls: year+month+hour FE, text_length, hashtag_count, mention_count"
-H1_probability_M7,h1_full_sample_flag==1 (n=978),p_humor_final_tfidf_logreg,0.8404,0.0175,978,wendys_h1_three_post_format_fullsample_probability_results.csv,M7_all_three; same controls as binary
-H1_human_M7,h1_human_validation_flag==1 (n=597),final_humor_binary,0.3171,0.0307,597,wendys_h1_three_post_format_human_validation_results.csv,M7_all_three; same controls as binary
-H2_model_M7,h2_model_humor_only_flag==1 (n=564),h2_aggressive_model_dummy,0.4056,0.006,564,wendys_h2_step3_post_format_model_based_results.csv,M7_time_fe_all_post_format; same controls
-H2_human_M7,h2_human_validation_flag==1 (n=278),h2_aggressive_human_dummy,0.6405,0.001,278,wendys_h2_step3_post_format_human_validation_results.csv,M7_time_fe_all_post_format; same controls
-H3_pre_M7_beta1,h3_analysis_flag==1 (n=960),humor_proportion_quarter_loo (linear),-6.3289,0.0103,960,wendys_h3_step3_general_humor_post_format_results.csv,"M7 (all time+format); beta_quadratic=4.3189, p=0.0395; U자형 → H3 기각"
-H3_pre_M7_beta2,h3_analysis_flag==1 (n=960),humor_proportion_quarter_loo_sq (quadratic),4.3189,0.0395,960,wendys_h3_step3_general_humor_post_format_results.csv,beta2>0 → U자형 (역 U자형 아님); H3 기각
-H3_main_M7_beta1,h3_analysis_flag==1 (n=960),aggressive_humor_proportion_quarter_loo (linear),-1.9777,0.5532,960,wendys_h3_step3_aggressive_humor_post_format_results.csv,"Step 3 M7 linear coef; beta_quadratic=-3.2814, p=0.6929; not_support → H3 기각"
-H3_main_M7_beta2,h3_analysis_flag==1 (n=960),aggressive_humor_proportion_quarter_loo_sq (quadratic),-3.2814,0.6929,960,wendys_h3_step3_aggressive_humor_post_format_results.csv,not_support; H3 기각
-H3_other_M8_beta1,h3_analysis_flag==1 (n=960),other_humor_proportion_quarter_loo (linear),-6.8614,0.0043,960,wendys_h3_supplemental_other_humor_proportion_results.csv,"M8 (+time+all format); U_shape (beta2>0, p<.05)"
-H3_other_M8_beta2,h3_analysis_flag==1 (n=960),other_humor_proportion_quarter_loo_sq (quadratic),7.8688,0.0047,960,wendys_h3_supplemental_other_humor_proportion_results.csv,U_shape (역 U자형 아님); H3 기각
-H3_joint_M2_agg_beta1,h3_analysis_flag==1 (n=960),aggressive_humor_proportion_quarter_loo (joint linear),-2.356,0.4944,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,M2 (+time+all format); aggressive_not_support
-H3_joint_M2_agg_beta2,h3_analysis_flag==1 (n=960),aggressive_humor_proportion_quarter_loo_sq (joint quadratic),-3.7276,0.6722,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,aggressive_not_support
-H3_joint_M2_oth_beta1,h3_analysis_flag==1 (n=960),other_humor_proportion_quarter_loo (joint linear),-7.7528,0.0013,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,M2; other_U_shape
-H3_joint_M2_oth_beta2,h3_analysis_flag==1 (n=960),other_humor_proportion_quarter_loo_sq (joint quadratic),8.1417,0.0037,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,other_U_shape; no masking confirmed
+﻿model_name,sample_filter,focal_variable,expected_coefficient,expected_p_value,expected_n,source_result_file,notes
+H1_binary_M7,full sample (n=978),유머예측이진,0.2918,0.0088,978,wendys_h1_three_post_format_fullsample_binary_results.csv,M7: factor(작성연도)+factor(작성월)+factor(작성시간)+텍스트길이+해시태그수+멘션수
+H1_probability_M7,full sample (n=978),유머확률모델,0.8404,0.0175,978,wendys_h1_three_post_format_fullsample_probability_results.csv,M7 동일
+H1_human_M7,H1인간검증표본==1 (n=597),유머레이블최종,0.3171,0.0307,597,wendys_h1_three_post_format_human_validation_results.csv,M7 동일
+H2_model_M7,H2모델유머표본==1 (n=564),H2공격적유머모델더미,0.4056,0.006,564,wendys_h2_step3_post_format_model_based_results.csv,M7 동일
+H2_human_M7,H2인간검증표본==1 (n=278),H2공격적유머인간더미,0.6405,0.001,278,wendys_h2_step3_post_format_human_validation_results.csv,M7 동일
+H3_pre_M7_beta1,H3분석표본==1 (n=960),유머비율LOO분기 (linear),-6.3289,0.0103,960,wendys_h3_step3_general_humor_post_format_results.csv,"beta2=+4.3189(p=0.0395), U자형→H3기각"
+H3_pre_M7_beta2,H3분석표본==1 (n=960),유머비율LOO분기제곱 (quadratic),4.3189,0.0395,960,wendys_h3_step3_general_humor_post_format_results.csv,β2>0 → U자형 (역U자형 아님)
+H3_main_M7_beta1,H3분석표본==1 (n=960),공격적유머비율LOO분기 (linear),-1.9777,0.5532,960,wendys_h3_step3_aggressive_humor_post_format_results.csv,beta2=-3.2814(p=0.6929) not_support
+H3_main_M7_beta2,H3분석표본==1 (n=960),공격적유머비율LOO분기제곱 (quadratic),-3.2814,0.6929,960,wendys_h3_step3_aggressive_humor_post_format_results.csv,not_support → H3기각
+H3_other_M8_beta1,H3분석표본==1 (n=960),기타유머비율LOO분기 (linear),-6.8614,0.0043,960,wendys_h3_supplemental_other_humor_proportion_results.csv,"beta2=+7.8688(p=0.0047), U_shape"
+H3_other_M8_beta2,H3분석표본==1 (n=960),기타유머비율LOO분기제곱 (quadratic),7.8688,0.0047,960,wendys_h3_supplemental_other_humor_proportion_results.csv,β2>0 → U자형 → H3기각
+H3_joint_M2_agg_beta1,H3분석표본==1 (n=960),공격적유머비율LOO분기 (joint linear),-2.356,0.4944,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,agg_not_support
+H3_joint_M2_agg_beta2,H3분석표본==1 (n=960),공격적유머비율LOO분기제곱 (joint quadratic),-3.7276,0.6722,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,masking 없음 확인
+H3_joint_M2_oth_beta1,H3분석표본==1 (n=960),기타유머비율LOO분기 (joint linear),-7.7528,0.0013,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,other_U_shape
+H3_joint_M2_oth_beta2,H3분석표본==1 (n=960),기타유머비율LOO분기제곱 (joint quadratic),8.1417,0.0037,960,wendys_h3_joint_aggressive_other_decomposition_results.csv,β2>0 → U자형

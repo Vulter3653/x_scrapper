@@ -1,40 +1,37 @@
-variable_name,variable_group,used_in,role,description,source_file,expected_type,missing_n,non_missing_n,unique_n,notes
-id,identifier,H1_H2_H3,key,Post unique ID,h3_aggressive_vs_other_intensity_dataset.csv,character,0,978,978,978개 모두 고유
-created_date,date_time,H1_H2_H3,covariate,Post 작성 날짜 (YYYY-MM-DD),h3_aggressive_vs_other_intensity_dataset.csv,character,0,978,600,
-created_year,date_time,H1_H2_H3,time_fe,Post 작성 연도 (factor FE),h3_aggressive_vs_other_intensity_dataset.csv,integer,0,978,9,R: factor(created_year)
-created_month,date_time,H1_H2_H3,time_fe,Post 작성 월 1-12 (factor FE),h3_aggressive_vs_other_intensity_dataset.csv,integer,0,978,12,R: factor(created_month)
-created_hour,date_time,H1_H2_H3,time_fe,Post 작성 시각 0-23 (factor FE),h3_aggressive_vs_other_intensity_dataset.csv,integer,0,978,22,R: factor(created_hour)
-year_quarter,date_time,H3,filter,연도-분기 (YYYY-QN),h3_aggressive_vs_other_intensity_dataset.csv,character,0,978,28,H3 LOO 계산 단위; FE로 사용 금지
-log1p_engagement_total,dv,H1_H2_H3,primary_dv,log1p(favorite+retweet+reply+quote+bookmark),h3_aggressive_vs_other_intensity_dataset.csv,numeric,0,978,900,Primary DV
-log1p_engagement_favorite_retweet,dv,H1_H2_H3,supplemental_dv,log1p(favorite+retweet),h3_aggressive_vs_other_intensity_dataset.csv,numeric,0,978,888,
-log1p_favorite_count,dv,H1_H2_H3,supplemental_dv,log1p(favorite_count),h3_aggressive_vs_other_intensity_dataset.csv,numeric,0,978,871,
-log1p_retweet_count,dv,H1_H2_H3,supplemental_dv,log1p(retweet_count),h3_aggressive_vs_other_intensity_dataset.csv,numeric,0,978,401,
-log1p_reply_count,dv,H1_H2_H3,supplemental_dv,log1p(reply_count),h3_aggressive_vs_other_intensity_dataset.csv,numeric,0,978,435,
-log1p_quote_count,dv,H1_H2_H3,supplemental_dv,log1p(quote_count),h3_aggressive_vs_other_intensity_dataset.csv,numeric,0,978,235,
-log1p_bookmark_count,dv,H1_H2_H3,supplemental_dv,log1p(bookmark_count),h3_aggressive_vs_other_intensity_dataset.csv,numeric,0,978,202,
-pred_humor_final_050,h1_iv,H1,primary_iv,모델 기반 유머 이진 예측 (threshold=0.50),wendys_final_humor_presence_full_predictions.csv,integer,0,978,2,"0=비유머, 1=유머; H1 binary model IV"
-p_humor_final_tfidf_logreg,h1_iv,H1,primary_iv,모델 기반 유머 확률 예측 (TF-IDF LogReg),wendys_final_humor_presence_full_predictions.csv,numeric,0,978,907,H1 probability model IV
-final_humor_label_available,h1_validation,H1,sample_flag_source,"인간 레이블 가용 여부 (1=가용, 0=불가용)",wendys_final_humor_presence_full_predictions.csv,integer,0,978,2,합계=597 → h1_human_validation_flag 기준
-final_humor_binary,h1_validation,H1,validation_iv,"최종 유머 이진 레이블 (인간 코딩 우선, 모델 보완)",wendys_final_humor_presence_full_predictions.csv,integer,381,597,2,H1 human validation IV; subset(h1_human_validation_flag==1)에서 사용
-pred_humor_type_group_model,h2_iv,H2,primary_iv,모델 기반 유머 유형 예측 (aggressive/other_humor/non_humor),h3_aggressive_vs_other_intensity_dataset.csv,character,0,978,3,H2 model-based IV 기반 변수
-is_aggressive_humor,h2_iv,H2,covariate,공격적 유머 이진 더미 (model-based),h3_aggressive_vs_other_intensity_dataset.csv,integer,0,978,2,0/1; is_aggressive_humor=1이면 h2_aggressive_model_dummy=1
-is_other_humor,h2_iv,H2,covariate,기타 유머 이진 더미 (model-based),h3_aggressive_vs_other_intensity_dataset.csv,integer,0,978,2,0/1
-final_humor_type_group,h2_validation,H2,validation_iv,최종 유머 유형 그룹 (인간 코딩 우선; aggressive/other_humor/non_humor/missing),wendys_model_based_humor_type_full_predictions.csv,character,0,978,4,H2 human validation IV 기반 변수
-text_length,control_post_format,H1_H2_H3,covariate,텍스트 길이 (문자 수),wendys_fast_weak_supervised_humor_dataset.csv,integer,0,978,243,
-hashtag_count,control_post_format,H1_H2_H3,covariate,해시태그 수,wendys_fast_weak_supervised_humor_dataset.csv,integer,0,978,5,
-mention_count,control_post_format,H1_H2_H3,covariate,멘션(@) 수,wendys_fast_weak_supervised_humor_dataset.csv,integer,0,978,8,
-quarter_total_posts,filter,H3,filter_source,해당 year_quarter 내 총 게시물 수,h3_aggressive_vs_other_intensity_dataset.csv,integer,0,978,27,H3 필터 기준 변수
-h3_quarter_filter_10,filter,H3,filter,"quarter_total_posts >= 10이면 1, 아니면 0",derived,integer,0,978,2,h3_analysis_flag와 동일
-humor_proportion_quarter_loo,h3_predictor,H3,primary_predictor,"전체 유머 비율 (LOO, quarter-level)",wendys_humor_frequency_proportion_post_level_dataset.csv,numeric,1,977,52,H3-pre primary predictor; 1 NA in full sample (quarter_total_posts<10)
-aggressive_humor_proportion_quarter_loo,h3_predictor,H3,primary_predictor,"공격적 유머 비율 (LOO, quarter-level)",h3_aggressive_vs_other_intensity_dataset.csv,numeric,1,977,43,H3-main primary predictor
-other_humor_proportion_quarter_loo,h3_predictor,H3,primary_predictor,"기타 유머 비율 (LOO, quarter-level)",h3_aggressive_vs_other_intensity_dataset.csv,numeric,1,977,46,H3-supplemental predictor
-humor_proportion_quarter_loo_sq,h3_squared_term,H3,quadratic_term,humor_proportion_quarter_loo의 제곱항,derived,numeric,1,977,52,H3 quadratic model 재현용
-aggressive_humor_proportion_quarter_loo_sq,h3_squared_term,H3,quadratic_term,aggressive_humor_proportion_quarter_loo의 제곱항,derived,numeric,1,977,43,H3 quadratic model 재현용
-other_humor_proportion_quarter_loo_sq,h3_squared_term,H3,quadratic_term,other_humor_proportion_quarter_loo의 제곱항,derived,numeric,1,977,46,H3 quadratic model 재현용
-h1_full_sample_flag,sample_flag,H1,sample_flag,H1 전체 표본 flag (전체=1),derived,integer,0,978,1,전체 978=1
-h1_human_validation_flag,sample_flag,H1,sample_flag,H1 인간 검증 표본 flag (final_humor_label_available==1),derived,integer,0,978,2,합계=597
-h2_model_humor_only_flag,sample_flag,H2,sample_flag,H2 모델 유머 only flag (aggressive or other_humor),derived,integer,0,978,2,합계=564
-h2_human_validation_flag,sample_flag,H2,sample_flag,H2 인간 검증 유머 only flag (aggressive or other_humor),derived,integer,0,978,2,합계=278
-h3_analysis_flag,sample_flag,H3,sample_flag,H3 분석 표본 flag (quarter_total_posts>=10),derived,integer,0,978,2,"합계=960, 25개 분기"
-h2_aggressive_model_dummy,h2_iv,H2,r_replication_iv,"H2 모델 기반 공격적 유머 더미 (1=aggressive, 0=other_humor, NA=else)",derived,numeric,414,564,2,R 재현: h2_model_humor_only_flag==1 subset에서 사용
-h2_aggressive_human_dummy,h2_validation,H2,r_replication_iv,"H2 인간 검증 공격적 유머 더미 (1=aggressive, 0=other_humor, NA=else)",derived,numeric,700,278,2,R 재현: h2_human_validation_flag==1 subset에서 사용
+﻿variable_name,variable_group,used_in,role,description,source_file,expected_type,missing_n,non_missing_n,unique_n,notes
+게시물ID,identifier,H1_H2_H3,key,게시물 고유 ID,h3main,character,0,978,978,978개 고유
+트윗URL,identifier,H1_H2_H3,reference,트윗 URL,h3main,character,0,978,978,
+트윗텍스트,identifier,H1_H2_H3,reference,트윗 원문 텍스트,h3main,character,0,978,964,
+답글수,raw_count,H1_H2_H3,raw_dv_source,답글(reply) 수,h3main,integer,0,978,435,R에서 log1p 변환 후 DV로 사용
+좋아요수,raw_count,H1_H2_H3,raw_dv_source,좋아요(favorite) 수,h3main,integer,0,978,871,
+리트윗수,raw_count,H1_H2_H3,raw_dv_source,리트윗(retweet) 수,h3main,integer,0,978,401,참여도합계 계산에 필수
+인용수,raw_count,H1_H2_H3,raw_dv_source,인용(quote) 수,h3main,integer,0,978,235,
+북마크수,raw_count,H1_H2_H3,raw_dv_source,북마크(bookmark) 수,h3main,integer,0,978,202,
+조회수,raw_count,reference,reference,조회(view) 수 — 분석에 사용하지 않음,h3main,integer,0,978,345,분석 제외; 참고용
+작성일,date_time,H1_H2_H3,covariate,게시 날짜 (YYYY-MM-DD),h3main,character,0,978,600,
+작성연도,date_time,H1_H2_H3,time_fe,게시 연도; R: factor(작성연도),h3main,integer,0,978,9,
+작성월,date_time,H1_H2_H3,time_fe,게시 월 1-12; R: factor(작성월),h3main,integer,0,978,12,
+작성시간,date_time,H1_H2_H3,time_fe,게시 시각 0-23; R: factor(작성시간),h3main,integer,0,978,22,
+연도분기,date_time,H3,filter,연도-분기 (YYYY-QN); LOO 계산 단위,h3main,character,0,978,28,H3에서 FE로 사용 금지
+유머예측이진,h1_iv,H1,primary_iv,모델 기반 유머 이진 예측 (threshold=0.50),presence,integer,0,978,2,"0=비유머, 1=유머"
+유머확률모델,h1_iv,H1,primary_iv,모델 기반 유머 확률 (TF-IDF LogReg),presence,numeric,0,978,907,H1 probability model IV
+인간레이블가용,h1_validation,H1,sample_flag_source,인간 레이블 가용 여부 (1=가용),presence,integer,0,978,2,합계=597 → H1인간검증표본 기준
+유머레이블최종,h1_validation,H1,validation_iv,최종 유머 이진 레이블 (인간+모델 병합),presence,integer,381,597,2,H1 human validation IV
+유머유형모델예측,h2_iv,H2,primary_iv,모델 기반 유머 유형 (aggressive/other_humor/non_humor),h3main,character,0,978,3,
+공격적유머여부,h2_iv,H2,covariate,공격적 유머 이진 더미 (model-based),h3main,integer,0,978,2,0/1
+기타유머여부,h2_iv,H2,covariate,기타 유머 이진 더미 (model-based),h3main,integer,0,978,2,0/1
+유머유형최종,h2_validation,H2,validation_iv,최종 유머 유형 그룹 (인간 코딩 우선),humor_type,character,0,978,4,aggressive/other_humor/non_humor/missing
+텍스트길이,control_post_format,H1_H2_H3,covariate,텍스트 길이 (문자 수),fast_ws,integer,0,978,243,
+해시태그수,control_post_format,H1_H2_H3,covariate,해시태그(#) 수,fast_ws,integer,0,978,5,
+멘션수,control_post_format,H1_H2_H3,covariate,멘션(@) 수,fast_ws,integer,0,978,8,
+분기게시물수,filter,H3,filter_source,해당 연도분기 내 총 게시물 수,h3main,integer,0,978,27,H3 필터 기준
+H3분기필터,filter,H3,filter,분기게시물수>=10이면 1,derived,integer,0,978,2,H3분석표본과 동일
+유머비율LOO분기,h3_predictor,H3,primary_predictor,전체 유머 비율 LOO (분기 수준),h3pre,numeric,1,977,52,H3-pre predictor; 1 NA in full sample
+공격적유머비율LOO분기,h3_predictor,H3,primary_predictor,공격적 유머 비율 LOO (분기 수준),h3main,numeric,1,977,43,H3-main predictor
+기타유머비율LOO분기,h3_predictor,H3,primary_predictor,기타 유머 비율 LOO (분기 수준),h3main,numeric,1,977,46,H3-supplemental predictor
+H1인간검증표본,sample_flag,H1,sample_flag,인간레이블가용==1이면 1 (n=597),derived,integer,0,978,2,
+H2모델유머표본,sample_flag,H2,sample_flag,"유머유형모델예측 in {aggressive,other_humor} (n=564)",derived,integer,0,978,2,
+H2인간검증표본,sample_flag,H2,sample_flag,"유머유형최종 in {aggressive,other_humor} (n=278)",derived,integer,0,978,2,
+H3분석표본,sample_flag,H3,sample_flag,분기게시물수>=10이면 1 (n=960),derived,integer,0,978,2,
+H2공격적유머모델더미,h2_iv,H2,r_replication_iv,"H2 모델: aggressive=1, other_humor=0, else=NA",derived,numeric,414,564,2,subset(H2모델유머표본==1)에서 사용
+H2공격적유머인간더미,h2_validation,H2,r_replication_iv,"H2 인간: aggressive=1, other_humor=0, else=NA",derived,numeric,700,278,2,subset(H2인간검증표본==1)에서 사용

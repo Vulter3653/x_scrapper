@@ -1,720 +1,396 @@
 """
-build_wendys_h1_h2_h3_r_replication_dataset.py
+build_wendys_h1_h2_h3_r_replication_dataset.py  (v2 — 한글 컬럼명)
 
-목적: H1-H2-H3 최종 보고서에 사용된 모든 분석 변수를 하나의 R 재현용
-     wide-format CSV로 통합한다. 새로운 분석 또는 회귀분석은 수행하지 않는다.
+목적: H1-H2-H3 최종 보고서에 사용된 분석 변수를 하나의 R 재현용
+     wide-format CSV로 통합한다. 컬럼명은 한글로 변경한다.
+     새로운 분석 또는 회귀분석은 수행하지 않는다.
 
 절대 규칙:
   - data/wendys/posts.json 원본 불변
-  - 새 회귀분석 미수행
-  - 새 유머 분류 모델 미학습
-  - view_count, log1p_view_count 미포함
+  - 새 회귀분석 미수행 / 새 유머 분류 모델 미학습
+  - log1p_view_count 미포함 (view_count 원시값은 참고용으로 포함)
   - emoji_count, url_count, is_quote_status, is_retweet_text 미포함
   - year_quarter FE / quarter FE dummy 미생성
   - frequency count 기반 H3 변수 미포함
-  - month_total_posts 미포함
-  - day_of_week 미생성
+  - month_total_posts 미포함 / day_of_week 미생성
+  - 로그변환 DV 및 squared term은 R 스크립트 내에서 직접 계산
   - squared term 및 sample flag만 신규 생성 허용
 """
 
 import pandas as pd
 import numpy as np
-import os
 
 # ── 경로 설정 ────────────────────────────────────────────────────────────────
-BASE = "20260615wendy's/"
-DATA = BASE + "data/"
+BASE   = "20260615wendy's/"
+DATA   = BASE + "data/"
 RESULT = BASE + "result/"
 
 IN_PRESENCE = RESULT + "wendys_final_humor_presence_full_predictions.csv"
-IN_TYPE = RESULT + "wendys_model_based_humor_type_full_predictions.csv"
-IN_REVIEW = RESULT + "wendys_humor_review_sheet.csv"
-IN_FAST = DATA + "wendys_fast_weak_supervised_humor_dataset.csv"
-IN_H3PRE = DATA + "wendys_humor_frequency_proportion_post_level_dataset.csv"
-IN_H3MAIN = DATA + "wendys_h3_aggressive_vs_other_intensity_dataset.csv"
+IN_TYPE     = RESULT + "wendys_model_based_humor_type_full_predictions.csv"
+IN_FAST     = DATA   + "wendys_fast_weak_supervised_humor_dataset.csv"
+IN_H3PRE    = DATA   + "wendys_humor_frequency_proportion_post_level_dataset.csv"
+IN_H3MAIN   = DATA   + "wendys_h3_aggressive_vs_other_intensity_dataset.csv"
 
-OUT_CSV = DATA + "wendys_h1_h2_h3_r_replication_dataset.csv"
-OUT_DICT = RESULT + "wendys_h1_h2_h3_r_replication_data_dictionary.csv"
-OUT_EXPECTED = RESULT + "wendys_h1_h2_h3_r_replication_expected_coefficients.csv"
+OUT_CSV     = DATA   + "wendys_h1_h2_h3_r_replication_dataset.csv"
+OUT_DICT    = RESULT + "wendys_h1_h2_h3_r_replication_data_dictionary.csv"
+OUT_EXPECTED= RESULT + "wendys_h1_h2_h3_r_replication_expected_coefficients.csv"
 OUT_SUMMARY = RESULT + "wendys_h1_h2_h3_r_replication_dataset_summary.md"
+
+# ── 한글 컬럼명 매핑 ──────────────────────────────────────────────────────────
+COL_RENAME = {
+    'id':                                     '게시물ID',
+    'tweet_url':                              '트윗URL',
+    'text':                                   '트윗텍스트',
+    'reply_count':                            '답글수',
+    'favorite_count':                         '좋아요수',
+    'retweet_count':                          '리트윗수',
+    'quote_count':                            '인용수',
+    'bookmark_count':                         '북마크수',
+    'view_count':                             '조회수',
+    'created_date':                           '작성일',
+    'created_year':                           '작성연도',
+    'created_month':                          '작성월',
+    'created_hour':                           '작성시간',
+    'year_quarter':                           '연도분기',
+    'pred_humor_final_050':                   '유머예측이진',
+    'p_humor_final_tfidf_logreg':             '유머확률모델',
+    'final_humor_label_available':            '인간레이블가용',
+    'final_humor_binary':                     '유머레이블최종',
+    'pred_humor_type_group_model':            '유머유형모델예측',
+    'is_aggressive_humor':                    '공격적유머여부',
+    'is_other_humor':                         '기타유머여부',
+    'final_humor_type_group':                 '유머유형최종',
+    'text_length':                            '텍스트길이',
+    'hashtag_count':                          '해시태그수',
+    'mention_count':                          '멘션수',
+    'quarter_total_posts':                    '분기게시물수',
+    'h3_quarter_filter_10':                   'H3분기필터',
+    'humor_proportion_quarter_loo':           '유머비율LOO분기',
+    'aggressive_humor_proportion_quarter_loo':'공격적유머비율LOO분기',
+    'other_humor_proportion_quarter_loo':     '기타유머비율LOO분기',
+    'h1_human_validation_flag':               'H1인간검증표본',
+    'h2_model_humor_only_flag':               'H2모델유머표본',
+    'h2_human_validation_flag':               'H2인간검증표본',
+    'h3_analysis_flag':                       'H3분석표본',
+    'h2_aggressive_model_dummy':              'H2공격적유머모델더미',
+    'h2_aggressive_human_dummy':              'H2공격적유머인간더미',
+}
 
 # ── 1. 입력 파일 로드 ────────────────────────────────────────────────────────
 print("=== 1. 입력 파일 로드 ===")
-
-h3main = pd.read_csv(IN_H3MAIN)
-h3pre = pd.read_csv(IN_H3PRE)
+h3main   = pd.read_csv(IN_H3MAIN)
+h3pre    = pd.read_csv(IN_H3PRE)
 presence = pd.read_csv(IN_PRESENCE)
-humor_type = pd.read_csv(IN_TYPE)
-fast = pd.read_csv(IN_FAST)
+ht       = pd.read_csv(IN_TYPE)
+fast     = pd.read_csv(IN_FAST)
 
-for name, df in [("h3main", h3main), ("h3pre", h3pre), ("presence", presence),
-                  ("humor_type", humor_type), ("fast", fast)]:
-    dup = df['id'].duplicated().sum()
-    na = df['id'].isna().sum()
-    print(f"  {name}: rows={len(df)}, id_unique={df['id'].nunique()}, id_dup={dup}, id_na={na}")
+for name, df in [("h3main",h3main),("h3pre",h3pre),("presence",presence),("ht",ht),("fast",fast)]:
+    print(f"  {name}: rows={len(df)}, id_dup={df['id'].duplicated().sum()}")
+assert len(h3main)==978 and h3main['id'].duplicated().sum()==0
 
-assert len(h3main) == 978, "h3main row count mismatch"
-assert h3main['id'].duplicated().sum() == 0, "h3main has duplicate ids"
+# ── 2. Base 선택 (h3main) ────────────────────────────────────────────────────
+print("\n=== 2. 컬럼 선택 및 병합 ===")
 
-# ── 2. 병합 – Base: h3main ──────────────────────────────────────────────────
-print("\n=== 2. 병합 ===")
+BASE_COLS = [
+    'id','tweet_url','text',
+    'reply_count','favorite_count','retweet_count','quote_count','bookmark_count','view_count',
+    'created_date','created_year','created_month','created_hour','year_quarter',
+    'pred_humor_final_050','p_humor_final_tfidf_logreg',
+    'pred_humor_type_group_model','is_aggressive_humor','is_other_humor',
+    'quarter_total_posts',
+    'aggressive_humor_proportion_quarter_loo','other_humor_proportion_quarter_loo',
+]
+base = h3main[BASE_COLS].copy()
+print(f"  base: {len(base)} rows")
 
-# 2a. h3main에서 사용할 컬럼 선택 (제외 변수 제거)
-EXCLUDE_FROM_H3MAIN = {
-    # 절대 제외
-    'view_count', 'log1p_view_count',
-    # 불필요 중간 집계
-    'humor_intensity_month', 'humor_intensity_quarter',
-    'humor_intensity_month_loo', 'humor_intensity_quarter_loo',
-    'month_total_posts', 'month_humor_posts', 'month_non_humor_posts',
-    # frequency count (제외 대상)
-    'humor_frequency_month', 'humor_frequency_quarter',
-    'aggressive_humor_frequency_quarter', 'other_humor_frequency_quarter',
-    # non-LOO proportion (최종 모형에 미사용)
-    'humor_proportion_month', 'humor_proportion_month_loo',
-    'humor_proportion_quarter', 'humor_proportion_quarter_loo',  # h3pre에서 가져옴
-    'aggressive_humor_proportion_quarter', 'other_humor_proportion_quarter',
-    # 부수 집계
-    'quarter_humor_posts', 'quarter_non_humor_posts',
-    'quarter_predicted_humor_posts', 'quarter_aggressive_posts', 'quarter_other_humor_posts',
-    # 대안 예측 (미사용)
-    'pred_humor_type_group_model_050',
-    'aggressive_share_among_humor_quarter', 'aggressive_share_among_humor_quarter_loo',
-    'is_non_humor', 'is_predicted_humor',
-    'in_h3_aggressive_filtered',
-    # 원본 counts (필요시 유지; 여기서는 분석에 직접 불필요)
-    'reply_count', 'favorite_count', 'retweet_count', 'quote_count', 'bookmark_count',
-    'engagement_total', 'engagement_favorite_retweet',
-}
+# h3pre → humor_proportion_quarter_loo
+base = base.merge(h3pre[['id','humor_proportion_quarter_loo']], on='id', how='left', validate='1:1')
+print(f"  after h3pre merge: {len(base)} rows, NA humor_prop={base['humor_proportion_quarter_loo'].isna().sum()}")
 
-h3main_cols = [c for c in h3main.columns if c not in EXCLUDE_FROM_H3MAIN]
-base_df = h3main[h3main_cols].copy()
-print(f"  base (h3main 선택 후): {len(base_df)} rows, {len(base_df.columns)} cols")
+# presence → final_humor_binary, final_humor_label_available
+base = base.merge(presence[['id','final_humor_binary','final_humor_label_available']], on='id', how='left', validate='1:1')
+print(f"  after presence merge: {len(base)} rows")
 
-# 2b. h3pre → humor_proportion_quarter_loo
-pre_cols = h3pre[['id', 'humor_proportion_quarter_loo']].copy()
-pre_dup = pre_cols['id'].duplicated().sum()
-print(f"  h3pre (humor_proportion_quarter_loo): rows={len(pre_cols)}, id_dup={pre_dup}")
+# humor_type → final_humor_type_group
+base = base.merge(ht[['id','final_humor_type_group']], on='id', how='left', validate='1:1')
+print(f"  after ht merge: {len(base)} rows")
 
-df = base_df.merge(pre_cols, on='id', how='left', validate='1:1')
-unmatched_pre = df['humor_proportion_quarter_loo'].isna().sum()
-print(f"  after merge h3pre: rows={len(df)}, humor_proportion_quarter_loo NA={unmatched_pre}")
-assert len(df) == 978, f"row count after h3pre merge: {len(df)}"
+# fast → text_length, hashtag_count, mention_count
+base = base.merge(fast[['id','text_length','hashtag_count','mention_count']], on='id', how='left', validate='1:1')
+print(f"  after fast merge: {len(base)} rows")
 
-# 2c. presence → final_humor_binary, final_humor_label_available
-pres_cols = presence[['id', 'final_humor_binary', 'final_humor_label_available']].copy()
-pres_dup = pres_cols['id'].duplicated().sum()
-print(f"  presence (H1 vars): rows={len(pres_cols)}, id_dup={pres_dup}")
+assert len(base)==978
 
-df = df.merge(pres_cols, on='id', how='left', validate='1:1')
-unmatched_pres = df['final_humor_binary'].isna().sum()
-print(f"  after merge presence: rows={len(df)}, final_humor_binary NA={unmatched_pres}")
-assert len(df) == 978, f"row count after presence merge: {len(df)}"
-
-# 2d. humor_type → final_humor_type_group
-ht_cols = humor_type[['id', 'final_humor_type_group']].copy()
-ht_dup = ht_cols['id'].duplicated().sum()
-print(f"  humor_type (final_humor_type_group): rows={len(ht_cols)}, id_dup={ht_dup}")
-
-df = df.merge(ht_cols, on='id', how='left', validate='1:1')
-unmatched_ht = df['final_humor_type_group'].isna().sum()
-print(f"  after merge humor_type: rows={len(df)}, final_humor_type_group NA={unmatched_ht}")
-assert len(df) == 978, f"row count after humor_type merge: {len(df)}"
-
-# 2e. fast_ws → text_length, hashtag_count, mention_count
-fast_cols = fast[['id', 'text_length', 'hashtag_count', 'mention_count']].copy()
-fast_dup = fast_cols['id'].duplicated().sum()
-print(f"  fast (format controls): rows={len(fast_cols)}, id_dup={fast_dup}")
-
-df = df.merge(fast_cols, on='id', how='left', validate='1:1')
-unmatched_fast = df['text_length'].isna().sum()
-print(f"  after merge fast: rows={len(df)}, text_length NA={unmatched_fast}")
-assert len(df) == 978, f"row count after fast merge: {len(df)}"
-
-print(f"\n최종 병합 결과: {len(df)} rows")
-
-# ── 3. 신규 생성 변수 (squared terms, sample flags) ──────────────────────────
+# ── 3. 신규 생성 변수 (sample flag, dummy) ───────────────────────────────────
 print("\n=== 3. 신규 변수 생성 ===")
 
-# H3 squared terms
-df['humor_proportion_quarter_loo_sq'] = df['humor_proportion_quarter_loo'] ** 2
-df['aggressive_humor_proportion_quarter_loo_sq'] = df['aggressive_humor_proportion_quarter_loo'] ** 2
-df['other_humor_proportion_quarter_loo_sq'] = df['other_humor_proportion_quarter_loo'] ** 2
-print("  squared terms 생성 완료")
+base['h3_quarter_filter_10']  = (base['quarter_total_posts'] >= 10).astype(int)
+base['h1_human_validation_flag'] = (base['final_humor_label_available'] == 1).astype(int)
+base['h2_model_humor_only_flag'] = base['pred_humor_type_group_model'].isin(
+    ['aggressive','other_humor']).astype(int)
+base['h2_human_validation_flag'] = base['final_humor_type_group'].isin(
+    ['aggressive','other_humor']).astype(int)
+base['h3_analysis_flag'] = base['h3_quarter_filter_10']
 
-# H3 filter flag
-df['h3_quarter_filter_10'] = (df['quarter_total_posts'] >= 10).astype(int)
+base['h2_aggressive_model_dummy'] = np.where(
+    base['pred_humor_type_group_model']=='aggressive', 1,
+    np.where(base['pred_humor_type_group_model']=='other_humor', 0, np.nan))
 
-# Sample flags
-df['h1_full_sample_flag'] = 1  # 전체 978
-
-# H1 human validation: final_humor_label_available == 1
-df['h1_human_validation_flag'] = (df['final_humor_label_available'] == 1).astype(int)
-
-# H2 model humor-only: pred_humor_type_group_model in {aggressive, other_humor}
-df['h2_model_humor_only_flag'] = df['pred_humor_type_group_model'].isin(
-    ['aggressive', 'other_humor']).astype(int)
-
-# H2 human validation: final_humor_type_group in {aggressive, other_humor}
-df['h2_human_validation_flag'] = df['final_humor_type_group'].isin(
-    ['aggressive', 'other_humor']).astype(int)
-
-# H3 analysis flag
-df['h3_analysis_flag'] = df['h3_quarter_filter_10']
-
-# H2 model dummy: 1=aggressive, 0=other_humor, NA otherwise
-df['h2_aggressive_model_dummy'] = np.where(
-    df['pred_humor_type_group_model'] == 'aggressive', 1,
-    np.where(df['pred_humor_type_group_model'] == 'other_humor', 0, np.nan))
-
-# H2 human dummy: 1=aggressive, 0=other_humor, NA otherwise
-df['h2_aggressive_human_dummy'] = np.where(
-    df['final_humor_type_group'] == 'aggressive', 1,
-    np.where(df['final_humor_type_group'] == 'other_humor', 0, np.nan))
+base['h2_aggressive_human_dummy'] = np.where(
+    base['final_humor_type_group']=='aggressive', 1,
+    np.where(base['final_humor_type_group']=='other_humor', 0, np.nan))
 
 print("  sample flags 및 dummy 생성 완료")
 
-# ── 4. 최종 컬럼 선택 및 정렬 ────────────────────────────────────────────────
-print("\n=== 4. 최종 컬럼 선택 ===")
-
-FINAL_COLS = [
-    # A. 식별자
-    'id', 'created_date', 'created_year', 'created_month', 'created_hour', 'year_quarter',
-    # B. DVs
-    'log1p_engagement_total', 'log1p_engagement_favorite_retweet',
-    'log1p_favorite_count', 'log1p_retweet_count', 'log1p_reply_count',
-    'log1p_quote_count', 'log1p_bookmark_count',
-    # C. H1 model-based IV
-    'pred_humor_final_050', 'p_humor_final_tfidf_logreg',
-    # D. H1 human validation
-    'final_humor_label_available', 'final_humor_binary',
-    # E. H2 model-based
-    'pred_humor_type_group_model', 'is_aggressive_humor', 'is_other_humor',
-    # F. H2 human validation
+# ── 4. 최종 컬럼 순서 정렬 ──────────────────────────────────────────────────
+FINAL_COLS_ENG = [
+    'id','tweet_url','text',
+    'reply_count','favorite_count','retweet_count','quote_count','bookmark_count','view_count',
+    'created_date','created_year','created_month','created_hour','year_quarter',
+    'pred_humor_final_050','p_humor_final_tfidf_logreg',
+    'final_humor_label_available','final_humor_binary',
+    'pred_humor_type_group_model','is_aggressive_humor','is_other_humor',
     'final_humor_type_group',
-    # G. Post format controls
-    'text_length', 'hashtag_count', 'mention_count',
-    # H. H3 filter
-    'quarter_total_posts', 'h3_quarter_filter_10',
-    # I. H3 proportion predictors
+    'text_length','hashtag_count','mention_count',
+    'quarter_total_posts','h3_quarter_filter_10',
     'humor_proportion_quarter_loo',
     'aggressive_humor_proportion_quarter_loo',
     'other_humor_proportion_quarter_loo',
-    # J. H3 squared terms
-    'humor_proportion_quarter_loo_sq',
-    'aggressive_humor_proportion_quarter_loo_sq',
-    'other_humor_proportion_quarter_loo_sq',
-    # K. Sample flags
-    'h1_full_sample_flag', 'h1_human_validation_flag',
-    'h2_model_humor_only_flag', 'h2_human_validation_flag',
+    'h1_human_validation_flag',
+    'h2_model_humor_only_flag','h2_human_validation_flag',
     'h3_analysis_flag',
-    # L. R replication dummies
-    'h2_aggressive_model_dummy', 'h2_aggressive_human_dummy',
+    'h2_aggressive_model_dummy','h2_aggressive_human_dummy',
 ]
+missing = [c for c in FINAL_COLS_ENG if c not in base.columns]
+if missing:
+    raise ValueError(f"Missing cols: {missing}")
 
-# 컬럼 존재 확인
-missing_cols = [c for c in FINAL_COLS if c not in df.columns]
-if missing_cols:
-    raise ValueError(f"Missing columns: {missing_cols}")
+out = base[FINAL_COLS_ENG].copy()
 
-out_df = df[FINAL_COLS].copy()
-print(f"  최종 컬럼 수: {len(FINAL_COLS)}")
+# ── 5. 한글 컬럼명 적용 ──────────────────────────────────────────────────────
+out.rename(columns=COL_RENAME, inplace=True)
+print(f"\n=== 4. 한글 컬럼명 적용 완료 ===")
+print(f"  최종 컬럼 수: {len(out.columns)}")
 
-# ── 5. 제외 변수 검증 ────────────────────────────────────────────────────────
+# ── 6. 제외 변수 검증 ────────────────────────────────────────────────────────
 print("\n=== 5. 제외 변수 검증 ===")
-EXCLUDED_VARS = [
-    'view_count', 'log1p_view_count', 'emoji_count', 'url_count',
-    'is_quote_status', 'is_retweet_text', 'day_of_week',
-    'month_total_posts', 'humor_frequency_quarter',
-    'aggressive_humor_frequency_quarter', 'other_humor_frequency_quarter',
-    'humor_frequency_month',
-]
-for v in EXCLUDED_VARS:
-    in_out = v in out_df.columns
-    status = "❌ FOUND (오류)" if in_out else "OK (미포함)"
-    print(f"  {v}: {status}")
-    assert not in_out, f"제외 변수 {v}가 출력 데이터에 포함됨"
+EXCLUDED = ['log1p_view_count','emoji_count','url_count','is_quote_status','is_retweet_text',
+            'day_of_week','month_total_posts','humor_frequency_quarter',
+            'aggressive_humor_frequency_quarter','other_humor_frequency_quarter']
+for v in EXCLUDED:
+    assert v not in out.columns, f"제외 변수 {v} 포함됨"
+    print(f"  {v}: OK (미포함)")
 
-# ── 6. 검증 조건 확인 ────────────────────────────────────────────────────────
+# ── 7. 검증 조건 ─────────────────────────────────────────────────────────────
 print("\n=== 6. 검증 조건 확인 ===")
+KR = {v: k for k, v in COL_RENAME.items()}  # reverse
 
 checks = {
-    "row_count": (len(out_df), 978),
-    "h1_full_sample_flag_sum": (out_df['h1_full_sample_flag'].sum(), 978),
-    "h1_human_validation_flag_sum": (out_df['h1_human_validation_flag'].sum(), 597),
-    "h2_model_humor_only_flag_sum": (out_df['h2_model_humor_only_flag'].sum(), 564),
-    "h2_model_aggressive_dummy_1": (
-        (out_df['h2_aggressive_model_dummy'] == 1).sum(), 200),
-    "h2_model_aggressive_dummy_0": (
-        (out_df['h2_aggressive_model_dummy'] == 0).sum(), 364),
-    "h2_human_validation_flag_sum": (out_df['h2_human_validation_flag'].sum(), 278),
-    "h2_human_aggressive_dummy_1": (
-        (out_df['h2_aggressive_human_dummy'] == 1).sum(), 95),
-    "h2_human_aggressive_dummy_0": (
-        (out_df['h2_aggressive_human_dummy'] == 0).sum(), 183),
-    "h3_analysis_flag_sum": (out_df['h3_analysis_flag'].sum(), 960),
-    "h3_unique_quarter": (
-        out_df.loc[out_df['h3_analysis_flag'] == 1, 'year_quarter'].nunique(), 25),
-    "text_length_missing": (out_df['text_length'].isna().sum(), 0),
-    "hashtag_count_missing": (out_df['hashtag_count'].isna().sum(), 0),
-    "mention_count_missing": (out_df['mention_count'].isna().sum(), 0),
+    "rows": (len(out), 978),
+    "H1인간검증표본 합계": (out['H1인간검증표본'].sum(), 597),
+    "H2모델유머표본 합계": (out['H2모델유머표본'].sum(), 564),
+    "H2공격적유머모델더미=1": ((out['H2공격적유머모델더미']==1).sum(), 200),
+    "H2공격적유머모델더미=0": ((out['H2공격적유머모델더미']==0).sum(), 364),
+    "H2인간검증표본 합계": (out['H2인간검증표본'].sum(), 278),
+    "H2공격적유머인간더미=1": ((out['H2공격적유머인간더미']==1).sum(), 95),
+    "H2공격적유머인간더미=0": ((out['H2공격적유머인간더미']==0).sum(), 183),
+    "H3분석표본 합계": (out['H3분석표본'].sum(), 960),
+    "H3 unique 분기": (out.loc[out['H3분석표본']==1,'연도분기'].nunique(), 25),
+    "텍스트길이 NA": (out['텍스트길이'].isna().sum(), 0),
+    "해시태그수 NA": (out['해시태그수'].isna().sum(), 0),
+    "멘션수 NA": (out['멘션수'].isna().sum(), 0),
 }
-
-h3_mask = out_df['h3_analysis_flag'] == 1
-for pred in ['humor_proportion_quarter_loo',
-             'aggressive_humor_proportion_quarter_loo',
-             'other_humor_proportion_quarter_loo']:
-    na_in_h3 = out_df.loc[h3_mask, pred].isna().sum()
-    checks[f"{pred}_missing_in_h3"] = (na_in_h3, 0)
+h3mask = out['H3분석표본']==1
+for pred in ['유머비율LOO분기','공격적유머비율LOO분기','기타유머비율LOO분기']:
+    checks[f"{pred} H3내 NA"] = (out.loc[h3mask, pred].isna().sum(), 0)
 
 all_ok = True
 for name, (actual, expected) in checks.items():
-    status = "OK" if actual == expected else f"MISMATCH (actual={actual}, expected={expected})"
-    print(f"  {name}: {status}")
-    if actual != expected:
+    ok = actual == expected
+    print(f"  {name}: {actual} ({'OK' if ok else f'MISMATCH expected={expected}'})")
+    if not ok:
         all_ok = False
-
 if not all_ok:
-    raise ValueError("검증 실패: 위 MISMATCH 항목 확인 필요")
+    raise ValueError("검증 실패")
+print("  모든 검증 통과")
 
-print("\n  모든 검증 조건 통과")
+# ── 8. CSV 저장 ───────────────────────────────────────────────────────────────
+out.to_csv(OUT_CSV, index=False, na_rep='NA', encoding='utf-8-sig')
+print(f"\n=== 7. 저장 완료 ===")
+print(f"  {OUT_CSV}")
+print(f"  rows={len(out)}, cols={len(out.columns)}")
+print(f"  columns: {list(out.columns)}")
 
-# ── 7. CSV 저장 ───────────────────────────────────────────────────────────────
-print(f"\n=== 7. 저장 ===")
-out_df.to_csv(OUT_CSV, index=False, na_rep='NA')
-print(f"  저장 완료: {OUT_CSV}")
-print(f"  rows={len(out_df)}, cols={len(out_df.columns)}")
-
-# ── 8. Data Dictionary 생성 ──────────────────────────────────────────────────
+# ── 9. Data Dictionary ────────────────────────────────────────────────────────
 print("\n=== 8. Data Dictionary 생성 ===")
-
-def col_info(col, group, used_in, role, description, source_file, expected_type, notes=""):
-    s = out_df[col]
-    return {
-        'variable_name': col,
-        'variable_group': group,
-        'used_in': used_in,
-        'role': role,
-        'description': description,
-        'source_file': source_file,
-        'expected_type': expected_type,
-        'missing_n': int(s.isna().sum()),
-        'non_missing_n': int(s.notna().sum()),
-        'unique_n': int(s.nunique(dropna=True)),
-        'notes': notes,
-    }
-
-dict_rows = [
-    col_info('id', 'identifier', 'H1_H2_H3', 'key', 'Post unique ID', 'h3_aggressive_vs_other_intensity_dataset.csv', 'character', '978개 모두 고유'),
-    col_info('created_date', 'date_time', 'H1_H2_H3', 'covariate', 'Post 작성 날짜 (YYYY-MM-DD)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'character', ''),
-    col_info('created_year', 'date_time', 'H1_H2_H3', 'time_fe', 'Post 작성 연도 (factor FE)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'integer', 'R: factor(created_year)'),
-    col_info('created_month', 'date_time', 'H1_H2_H3', 'time_fe', 'Post 작성 월 1-12 (factor FE)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'integer', 'R: factor(created_month)'),
-    col_info('created_hour', 'date_time', 'H1_H2_H3', 'time_fe', 'Post 작성 시각 0-23 (factor FE)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'integer', 'R: factor(created_hour)'),
-    col_info('year_quarter', 'date_time', 'H3', 'filter', '연도-분기 (YYYY-QN)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'character', 'H3 LOO 계산 단위; FE로 사용 금지'),
-    col_info('log1p_engagement_total', 'dv', 'H1_H2_H3', 'primary_dv', 'log1p(favorite+retweet+reply+quote+bookmark)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', 'Primary DV'),
-    col_info('log1p_engagement_favorite_retweet', 'dv', 'H1_H2_H3', 'supplemental_dv', 'log1p(favorite+retweet)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', ''),
-    col_info('log1p_favorite_count', 'dv', 'H1_H2_H3', 'supplemental_dv', 'log1p(favorite_count)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', ''),
-    col_info('log1p_retweet_count', 'dv', 'H1_H2_H3', 'supplemental_dv', 'log1p(retweet_count)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', ''),
-    col_info('log1p_reply_count', 'dv', 'H1_H2_H3', 'supplemental_dv', 'log1p(reply_count)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', ''),
-    col_info('log1p_quote_count', 'dv', 'H1_H2_H3', 'supplemental_dv', 'log1p(quote_count)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', ''),
-    col_info('log1p_bookmark_count', 'dv', 'H1_H2_H3', 'supplemental_dv', 'log1p(bookmark_count)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', ''),
-    col_info('pred_humor_final_050', 'h1_iv', 'H1', 'primary_iv', '모델 기반 유머 이진 예측 (threshold=0.50)', 'wendys_final_humor_presence_full_predictions.csv', 'integer', '0=비유머, 1=유머; H1 binary model IV'),
-    col_info('p_humor_final_tfidf_logreg', 'h1_iv', 'H1', 'primary_iv', '모델 기반 유머 확률 예측 (TF-IDF LogReg)', 'wendys_final_humor_presence_full_predictions.csv', 'numeric', 'H1 probability model IV'),
-    col_info('final_humor_label_available', 'h1_validation', 'H1', 'sample_flag_source', '인간 레이블 가용 여부 (1=가용, 0=불가용)', 'wendys_final_humor_presence_full_predictions.csv', 'integer', '합계=597 → h1_human_validation_flag 기준'),
-    col_info('final_humor_binary', 'h1_validation', 'H1', 'validation_iv', '최종 유머 이진 레이블 (인간 코딩 우선, 모델 보완)', 'wendys_final_humor_presence_full_predictions.csv', 'integer', 'H1 human validation IV; subset(h1_human_validation_flag==1)에서 사용'),
-    col_info('pred_humor_type_group_model', 'h2_iv', 'H2', 'primary_iv', '모델 기반 유머 유형 예측 (aggressive/other_humor/non_humor)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'character', 'H2 model-based IV 기반 변수'),
-    col_info('is_aggressive_humor', 'h2_iv', 'H2', 'covariate', '공격적 유머 이진 더미 (model-based)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'integer', '0/1; is_aggressive_humor=1이면 h2_aggressive_model_dummy=1'),
-    col_info('is_other_humor', 'h2_iv', 'H2', 'covariate', '기타 유머 이진 더미 (model-based)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'integer', '0/1'),
-    col_info('final_humor_type_group', 'h2_validation', 'H2', 'validation_iv', '최종 유머 유형 그룹 (인간 코딩 우선; aggressive/other_humor/non_humor/missing)', 'wendys_model_based_humor_type_full_predictions.csv', 'character', 'H2 human validation IV 기반 변수'),
-    col_info('text_length', 'control_post_format', 'H1_H2_H3', 'covariate', '텍스트 길이 (문자 수)', 'wendys_fast_weak_supervised_humor_dataset.csv', 'integer', ''),
-    col_info('hashtag_count', 'control_post_format', 'H1_H2_H3', 'covariate', '해시태그 수', 'wendys_fast_weak_supervised_humor_dataset.csv', 'integer', ''),
-    col_info('mention_count', 'control_post_format', 'H1_H2_H3', 'covariate', '멘션(@) 수', 'wendys_fast_weak_supervised_humor_dataset.csv', 'integer', ''),
-    col_info('quarter_total_posts', 'filter', 'H3', 'filter_source', '해당 year_quarter 내 총 게시물 수', 'h3_aggressive_vs_other_intensity_dataset.csv', 'integer', 'H3 필터 기준 변수'),
-    col_info('h3_quarter_filter_10', 'filter', 'H3', 'filter', 'quarter_total_posts >= 10이면 1, 아니면 0', 'derived', 'integer', 'h3_analysis_flag와 동일'),
-    col_info('humor_proportion_quarter_loo', 'h3_predictor', 'H3', 'primary_predictor', '전체 유머 비율 (LOO, quarter-level)', 'wendys_humor_frequency_proportion_post_level_dataset.csv', 'numeric', 'H3-pre primary predictor; 1 NA in full sample (quarter_total_posts<10)'),
-    col_info('aggressive_humor_proportion_quarter_loo', 'h3_predictor', 'H3', 'primary_predictor', '공격적 유머 비율 (LOO, quarter-level)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', 'H3-main primary predictor'),
-    col_info('other_humor_proportion_quarter_loo', 'h3_predictor', 'H3', 'primary_predictor', '기타 유머 비율 (LOO, quarter-level)', 'h3_aggressive_vs_other_intensity_dataset.csv', 'numeric', 'H3-supplemental predictor'),
-    col_info('humor_proportion_quarter_loo_sq', 'h3_squared_term', 'H3', 'quadratic_term', 'humor_proportion_quarter_loo의 제곱항', 'derived', 'numeric', 'H3 quadratic model 재현용'),
-    col_info('aggressive_humor_proportion_quarter_loo_sq', 'h3_squared_term', 'H3', 'quadratic_term', 'aggressive_humor_proportion_quarter_loo의 제곱항', 'derived', 'numeric', 'H3 quadratic model 재현용'),
-    col_info('other_humor_proportion_quarter_loo_sq', 'h3_squared_term', 'H3', 'quadratic_term', 'other_humor_proportion_quarter_loo의 제곱항', 'derived', 'numeric', 'H3 quadratic model 재현용'),
-    col_info('h1_full_sample_flag', 'sample_flag', 'H1', 'sample_flag', 'H1 전체 표본 flag (전체=1)', 'derived', 'integer', '전체 978=1'),
-    col_info('h1_human_validation_flag', 'sample_flag', 'H1', 'sample_flag', 'H1 인간 검증 표본 flag (final_humor_label_available==1)', 'derived', 'integer', '합계=597'),
-    col_info('h2_model_humor_only_flag', 'sample_flag', 'H2', 'sample_flag', 'H2 모델 유머 only flag (aggressive or other_humor)', 'derived', 'integer', '합계=564'),
-    col_info('h2_human_validation_flag', 'sample_flag', 'H2', 'sample_flag', 'H2 인간 검증 유머 only flag (aggressive or other_humor)', 'derived', 'integer', '합계=278'),
-    col_info('h3_analysis_flag', 'sample_flag', 'H3', 'sample_flag', 'H3 분석 표본 flag (quarter_total_posts>=10)', 'derived', 'integer', '합계=960, 25개 분기'),
-    col_info('h2_aggressive_model_dummy', 'h2_iv', 'H2', 'r_replication_iv', 'H2 모델 기반 공격적 유머 더미 (1=aggressive, 0=other_humor, NA=else)', 'derived', 'numeric', 'R 재현: h2_model_humor_only_flag==1 subset에서 사용'),
-    col_info('h2_aggressive_human_dummy', 'h2_validation', 'H2', 'r_replication_iv', 'H2 인간 검증 공격적 유머 더미 (1=aggressive, 0=other_humor, NA=else)', 'derived', 'numeric', 'R 재현: h2_human_validation_flag==1 subset에서 사용'),
+dict_rows = []
+meta = [
+    ('게시물ID','identifier','H1_H2_H3','key','게시물 고유 ID','h3main','character','978개 고유'),
+    ('트윗URL','identifier','H1_H2_H3','reference','트윗 URL','h3main','character',''),
+    ('트윗텍스트','identifier','H1_H2_H3','reference','트윗 원문 텍스트','h3main','character',''),
+    ('답글수','raw_count','H1_H2_H3','raw_dv_source','답글(reply) 수','h3main','integer','R에서 log1p 변환 후 DV로 사용'),
+    ('좋아요수','raw_count','H1_H2_H3','raw_dv_source','좋아요(favorite) 수','h3main','integer',''),
+    ('리트윗수','raw_count','H1_H2_H3','raw_dv_source','리트윗(retweet) 수','h3main','integer','참여도합계 계산에 필수'),
+    ('인용수','raw_count','H1_H2_H3','raw_dv_source','인용(quote) 수','h3main','integer',''),
+    ('북마크수','raw_count','H1_H2_H3','raw_dv_source','북마크(bookmark) 수','h3main','integer',''),
+    ('조회수','raw_count','reference','reference','조회(view) 수 — 분석에 사용하지 않음','h3main','integer','분석 제외; 참고용'),
+    ('작성일','date_time','H1_H2_H3','covariate','게시 날짜 (YYYY-MM-DD)','h3main','character',''),
+    ('작성연도','date_time','H1_H2_H3','time_fe','게시 연도; R: factor(작성연도)','h3main','integer',''),
+    ('작성월','date_time','H1_H2_H3','time_fe','게시 월 1-12; R: factor(작성월)','h3main','integer',''),
+    ('작성시간','date_time','H1_H2_H3','time_fe','게시 시각 0-23; R: factor(작성시간)','h3main','integer',''),
+    ('연도분기','date_time','H3','filter','연도-분기 (YYYY-QN); LOO 계산 단위','h3main','character','H3에서 FE로 사용 금지'),
+    ('유머예측이진','h1_iv','H1','primary_iv','모델 기반 유머 이진 예측 (threshold=0.50)','presence','integer','0=비유머, 1=유머'),
+    ('유머확률모델','h1_iv','H1','primary_iv','모델 기반 유머 확률 (TF-IDF LogReg)','presence','numeric','H1 probability model IV'),
+    ('인간레이블가용','h1_validation','H1','sample_flag_source','인간 레이블 가용 여부 (1=가용)','presence','integer','합계=597 → H1인간검증표본 기준'),
+    ('유머레이블최종','h1_validation','H1','validation_iv','최종 유머 이진 레이블 (인간+모델 병합)','presence','integer','H1 human validation IV'),
+    ('유머유형모델예측','h2_iv','H2','primary_iv','모델 기반 유머 유형 (aggressive/other_humor/non_humor)','h3main','character',''),
+    ('공격적유머여부','h2_iv','H2','covariate','공격적 유머 이진 더미 (model-based)','h3main','integer','0/1'),
+    ('기타유머여부','h2_iv','H2','covariate','기타 유머 이진 더미 (model-based)','h3main','integer','0/1'),
+    ('유머유형최종','h2_validation','H2','validation_iv','최종 유머 유형 그룹 (인간 코딩 우선)','humor_type','character','aggressive/other_humor/non_humor/missing'),
+    ('텍스트길이','control_post_format','H1_H2_H3','covariate','텍스트 길이 (문자 수)','fast_ws','integer',''),
+    ('해시태그수','control_post_format','H1_H2_H3','covariate','해시태그(#) 수','fast_ws','integer',''),
+    ('멘션수','control_post_format','H1_H2_H3','covariate','멘션(@) 수','fast_ws','integer',''),
+    ('분기게시물수','filter','H3','filter_source','해당 연도분기 내 총 게시물 수','h3main','integer','H3 필터 기준'),
+    ('H3분기필터','filter','H3','filter','분기게시물수>=10이면 1','derived','integer','H3분석표본과 동일'),
+    ('유머비율LOO분기','h3_predictor','H3','primary_predictor','전체 유머 비율 LOO (분기 수준)','h3pre','numeric','H3-pre predictor; 1 NA in full sample'),
+    ('공격적유머비율LOO분기','h3_predictor','H3','primary_predictor','공격적 유머 비율 LOO (분기 수준)','h3main','numeric','H3-main predictor'),
+    ('기타유머비율LOO분기','h3_predictor','H3','primary_predictor','기타 유머 비율 LOO (분기 수준)','h3main','numeric','H3-supplemental predictor'),
+    ('H1인간검증표본','sample_flag','H1','sample_flag','인간레이블가용==1이면 1 (n=597)','derived','integer',''),
+    ('H2모델유머표본','sample_flag','H2','sample_flag','유머유형모델예측 in {aggressive,other_humor} (n=564)','derived','integer',''),
+    ('H2인간검증표본','sample_flag','H2','sample_flag','유머유형최종 in {aggressive,other_humor} (n=278)','derived','integer',''),
+    ('H3분석표본','sample_flag','H3','sample_flag','분기게시물수>=10이면 1 (n=960)','derived','integer',''),
+    ('H2공격적유머모델더미','h2_iv','H2','r_replication_iv','H2 모델: aggressive=1, other_humor=0, else=NA','derived','numeric','subset(H2모델유머표본==1)에서 사용'),
+    ('H2공격적유머인간더미','h2_validation','H2','r_replication_iv','H2 인간: aggressive=1, other_humor=0, else=NA','derived','numeric','subset(H2인간검증표본==1)에서 사용'),
 ]
+for row in meta:
+    col = row[0]
+    s = out[col]
+    dict_rows.append({
+        'variable_name': col, 'variable_group': row[1],
+        'used_in': row[2], 'role': row[3], 'description': row[4],
+        'source_file': row[5], 'expected_type': row[6],
+        'missing_n': int(s.isna().sum()), 'non_missing_n': int(s.notna().sum()),
+        'unique_n': int(s.nunique(dropna=True)), 'notes': row[7],
+    })
+pd.DataFrame(dict_rows).to_csv(OUT_DICT, index=False, encoding='utf-8-sig')
+print(f"  {OUT_DICT}: {len(dict_rows)} rows")
 
-dict_df = pd.DataFrame(dict_rows)
-dict_df.to_csv(OUT_DICT, index=False)
-print(f"  data dictionary 저장: {OUT_DICT} ({len(dict_df)} rows)")
-
-# ── 9. Expected Coefficients 파일 생성 ───────────────────────────────────────
-print("\n=== 9. Expected Coefficients 파일 생성 ===")
-
-expected_rows = [
-    # H1
-    {'model_name': 'H1_binary_M7', 'sample_filter': 'h1_full_sample_flag==1 (n=978)',
-     'focal_variable': 'pred_humor_final_050', 'expected_coefficient': 0.2918,
-     'expected_p_value': 0.0088, 'expected_n': 978,
-     'source_result_file': 'wendys_h1_three_post_format_fullsample_binary_results.csv',
-     'notes': 'M7_all_three; controls: year+month+hour FE, text_length, hashtag_count, mention_count'},
-    {'model_name': 'H1_probability_M7', 'sample_filter': 'h1_full_sample_flag==1 (n=978)',
-     'focal_variable': 'p_humor_final_tfidf_logreg', 'expected_coefficient': 0.8404,
-     'expected_p_value': 0.0175, 'expected_n': 978,
-     'source_result_file': 'wendys_h1_three_post_format_fullsample_probability_results.csv',
-     'notes': 'M7_all_three; same controls as binary'},
-    {'model_name': 'H1_human_M7', 'sample_filter': 'h1_human_validation_flag==1 (n=597)',
-     'focal_variable': 'final_humor_binary', 'expected_coefficient': 0.3171,
-     'expected_p_value': 0.0307, 'expected_n': 597,
-     'source_result_file': 'wendys_h1_three_post_format_human_validation_results.csv',
-     'notes': 'M7_all_three; same controls as binary'},
-    # H2
-    {'model_name': 'H2_model_M7', 'sample_filter': 'h2_model_humor_only_flag==1 (n=564)',
-     'focal_variable': 'h2_aggressive_model_dummy', 'expected_coefficient': 0.4056,
-     'expected_p_value': 0.0060, 'expected_n': 564,
-     'source_result_file': 'wendys_h2_step3_post_format_model_based_results.csv',
-     'notes': 'M7_time_fe_all_post_format; same controls'},
-    {'model_name': 'H2_human_M7', 'sample_filter': 'h2_human_validation_flag==1 (n=278)',
-     'focal_variable': 'h2_aggressive_human_dummy', 'expected_coefficient': 0.6405,
-     'expected_p_value': 0.0010, 'expected_n': 278,
-     'source_result_file': 'wendys_h2_step3_post_format_human_validation_results.csv',
-     'notes': 'M7_time_fe_all_post_format; same controls'},
-    # H3-pre
-    {'model_name': 'H3_pre_M7_beta1', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'humor_proportion_quarter_loo (linear)', 'expected_coefficient': -6.6063,
-     'expected_p_value': 0.0114, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_step3_general_humor_post_format_results.csv',
-     'notes': 'M7 (all time+format); Step 2 M7 linear coef; Step 3 M7 beta_quadratic=4.3189, p=0.0395'},
-    {'model_name': 'H3_pre_M7_beta2', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'humor_proportion_quarter_loo_sq (quadratic)', 'expected_coefficient': 4.3189,
-     'expected_p_value': 0.0395, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_step3_general_humor_post_format_results.csv',
-     'notes': 'beta2>0 → U자형 (역 U자형 아님); H3 기각'},
-    # H3-main
-    {'model_name': 'H3_main_M7_beta1', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'aggressive_humor_proportion_quarter_loo (linear)', 'expected_coefficient': -3.3810,
-     'expected_p_value': 0.3386, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_step3_aggressive_humor_post_format_results.csv',
-     'notes': 'Step 2 M7 linear coef; Step 3 M7 beta_quadratic=-3.2814, p=0.6929'},
-    {'model_name': 'H3_main_M7_beta2', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'aggressive_humor_proportion_quarter_loo_sq (quadratic)', 'expected_coefficient': -3.2814,
-     'expected_p_value': 0.6929, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_step3_aggressive_humor_post_format_results.csv',
-     'notes': 'not_support; H3 기각'},
-    # H3-supplemental
-    {'model_name': 'H3_other_M8_beta1', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'other_humor_proportion_quarter_loo (linear)', 'expected_coefficient': -6.8614,
-     'expected_p_value': 0.0043, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_supplemental_other_humor_proportion_results.csv',
-     'notes': 'M8 (+time+all format); U_shape (beta2>0, p<.05)'},
-    {'model_name': 'H3_other_M8_beta2', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'other_humor_proportion_quarter_loo_sq (quadratic)', 'expected_coefficient': 7.8688,
-     'expected_p_value': 0.0047, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_supplemental_other_humor_proportion_results.csv',
-     'notes': 'U_shape (역 U자형 아님); H3 기각'},
-    # H3-joint
-    {'model_name': 'H3_joint_M2_agg_beta1', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'aggressive_humor_proportion_quarter_loo (joint linear)', 'expected_coefficient': -2.3560,
-     'expected_p_value': 0.4944, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_joint_aggressive_other_decomposition_results.csv',
-     'notes': 'M2 (+time+all format); aggressive_not_support'},
-    {'model_name': 'H3_joint_M2_agg_beta2', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'aggressive_humor_proportion_quarter_loo_sq (joint quadratic)', 'expected_coefficient': -3.7276,
-     'expected_p_value': 0.6722, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_joint_aggressive_other_decomposition_results.csv',
-     'notes': 'aggressive_not_support'},
-    {'model_name': 'H3_joint_M2_oth_beta1', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'other_humor_proportion_quarter_loo (joint linear)', 'expected_coefficient': -7.7528,
-     'expected_p_value': 0.0013, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_joint_aggressive_other_decomposition_results.csv',
-     'notes': 'M2; other_U_shape'},
-    {'model_name': 'H3_joint_M2_oth_beta2', 'sample_filter': 'h3_analysis_flag==1 (n=960)',
-     'focal_variable': 'other_humor_proportion_quarter_loo_sq (joint quadratic)', 'expected_coefficient': 8.1417,
-     'expected_p_value': 0.0037, 'expected_n': 960,
-     'source_result_file': 'wendys_h3_joint_aggressive_other_decomposition_results.csv',
-     'notes': 'other_U_shape; no masking confirmed'},
+# ── 10. Expected Coefficients ─────────────────────────────────────────────────
+print("\n=== 9. Expected Coefficients 업데이트 ===")
+exp_rows = [
+    ('H1_binary_M7', 'full sample (n=978)', '유머예측이진', 0.2918, 0.0088, 978,
+     'wendys_h1_three_post_format_fullsample_binary_results.csv',
+     'M7: factor(작성연도)+factor(작성월)+factor(작성시간)+텍스트길이+해시태그수+멘션수'),
+    ('H1_probability_M7', 'full sample (n=978)', '유머확률모델', 0.8404, 0.0175, 978,
+     'wendys_h1_three_post_format_fullsample_probability_results.csv', 'M7 동일'),
+    ('H1_human_M7', 'H1인간검증표본==1 (n=597)', '유머레이블최종', 0.3171, 0.0307, 597,
+     'wendys_h1_three_post_format_human_validation_results.csv', 'M7 동일'),
+    ('H2_model_M7', 'H2모델유머표본==1 (n=564)', 'H2공격적유머모델더미', 0.4056, 0.0060, 564,
+     'wendys_h2_step3_post_format_model_based_results.csv', 'M7 동일'),
+    ('H2_human_M7', 'H2인간검증표본==1 (n=278)', 'H2공격적유머인간더미', 0.6405, 0.0010, 278,
+     'wendys_h2_step3_post_format_human_validation_results.csv', 'M7 동일'),
+    ('H3_pre_M7_beta1', 'H3분석표본==1 (n=960)', '유머비율LOO분기 (linear)', -6.3289, 0.0103, 960,
+     'wendys_h3_step3_general_humor_post_format_results.csv', 'beta2=+4.3189(p=0.0395), U자형→H3기각'),
+    ('H3_pre_M7_beta2', 'H3분석표본==1 (n=960)', '유머비율LOO분기제곱 (quadratic)', 4.3189, 0.0395, 960,
+     'wendys_h3_step3_general_humor_post_format_results.csv', 'β2>0 → U자형 (역U자형 아님)'),
+    ('H3_main_M7_beta1', 'H3분석표본==1 (n=960)', '공격적유머비율LOO분기 (linear)', -1.9777, 0.5532, 960,
+     'wendys_h3_step3_aggressive_humor_post_format_results.csv', 'beta2=-3.2814(p=0.6929) not_support'),
+    ('H3_main_M7_beta2', 'H3분석표본==1 (n=960)', '공격적유머비율LOO분기제곱 (quadratic)', -3.2814, 0.6929, 960,
+     'wendys_h3_step3_aggressive_humor_post_format_results.csv', 'not_support → H3기각'),
+    ('H3_other_M8_beta1', 'H3분석표본==1 (n=960)', '기타유머비율LOO분기 (linear)', -6.8614, 0.0043, 960,
+     'wendys_h3_supplemental_other_humor_proportion_results.csv', 'beta2=+7.8688(p=0.0047), U_shape'),
+    ('H3_other_M8_beta2', 'H3분석표본==1 (n=960)', '기타유머비율LOO분기제곱 (quadratic)', 7.8688, 0.0047, 960,
+     'wendys_h3_supplemental_other_humor_proportion_results.csv', 'β2>0 → U자형 → H3기각'),
+    ('H3_joint_M2_agg_beta1', 'H3분석표본==1 (n=960)', '공격적유머비율LOO분기 (joint linear)', -2.3560, 0.4944, 960,
+     'wendys_h3_joint_aggressive_other_decomposition_results.csv', 'agg_not_support'),
+    ('H3_joint_M2_agg_beta2', 'H3분석표본==1 (n=960)', '공격적유머비율LOO분기제곱 (joint quadratic)', -3.7276, 0.6722, 960,
+     'wendys_h3_joint_aggressive_other_decomposition_results.csv', 'masking 없음 확인'),
+    ('H3_joint_M2_oth_beta1', 'H3분석표본==1 (n=960)', '기타유머비율LOO분기 (joint linear)', -7.7528, 0.0013, 960,
+     'wendys_h3_joint_aggressive_other_decomposition_results.csv', 'other_U_shape'),
+    ('H3_joint_M2_oth_beta2', 'H3분석표본==1 (n=960)', '기타유머비율LOO분기제곱 (joint quadratic)', 8.1417, 0.0037, 960,
+     'wendys_h3_joint_aggressive_other_decomposition_results.csv', 'β2>0 → U자형'),
 ]
+pd.DataFrame(exp_rows, columns=[
+    'model_name','sample_filter','focal_variable','expected_coefficient',
+    'expected_p_value','expected_n','source_result_file','notes'
+]).to_csv(OUT_EXPECTED, index=False, encoding='utf-8-sig')
+print(f"  {OUT_EXPECTED}: {len(exp_rows)} rows")
 
-exp_df = pd.DataFrame(expected_rows)
-exp_df.to_csv(OUT_EXPECTED, index=False)
-print(f"  expected coefficients 저장: {OUT_EXPECTED} ({len(exp_df)} rows)")
-
-# ── 10. Summary 생성 ──────────────────────────────────────────────────────────
+# ── 11. Summary ───────────────────────────────────────────────────────────────
 print("\n=== 10. Summary 생성 ===")
+cols_str = "\n".join(f"- `{c}` ({i+1})" for i, c in enumerate(out.columns))
+summary = f"""# Wendy's H1-H2-H3 R 재현용 데이터셋 (v2 — 한글 컬럼명)
 
-summary_txt = f"""# Wendy's H1-H2-H3 R 재현용 데이터셋 — 생성 요약
-
-작성일: 2026-06-16
+작성일: 2026-06-16 (v2 재구성)
 
 ---
 
 ## 1. 작업 목적
-
-최종 보고서(`wendys_humor_h1_h2_h3_final_report.md`)에 사용된 모든 분석 변수를 하나의 R 재현용 wide-format CSV로 통합한다.
-이 데이터셋 하나로 R에서 H1·H2·H3 최종 모형을 모두 재현할 수 있다.
-새로운 분석, 회귀 계산, 유머 분류 모델 학습은 일절 수행하지 않는다.
-
----
+최종 보고서 분석 변수를 단일 wide-format CSV로 통합. 컬럼명을 한글로 변경하여
+연구자가 R에서 `df$좋아요수` 형태로 직접 참조할 수 있도록 구성함.
 
 ## 2. 최종 보고서 경로
-
 `20260615wendy's/result/wendys_humor_h1_h2_h3_final_report.md`
 
----
-
 ## 3. 사용한 입력 파일
-
 | 파일 | rows | 역할 |
 |---|---|---|
-| `result/wendys_final_humor_presence_full_predictions.csv` | 978 | H1 model-based IV, 인간 검증 label |
-| `result/wendys_model_based_humor_type_full_predictions.csv` | 978 | H2 인간 검증 type group |
-| `result/wendys_humor_review_sheet.csv` | 978 | (참고용; final_humor_type_group은 humor_type에서 가져옴) |
-| `data/wendys_fast_weak_supervised_humor_dataset.csv` | 978 | post format controls (text_length, hashtag_count, mention_count) |
-| `data/wendys_humor_frequency_proportion_post_level_dataset.csv` | 978 | H3-pre predictor (humor_proportion_quarter_loo) |
-| `data/wendys_h3_aggressive_vs_other_intensity_dataset.csv` | 978 | base (DVs, time vars, H3-main/other predictors, format controls) |
+| `result/wendys_final_humor_presence_full_predictions.csv` | 978 | H1 IV, 인간 레이블 |
+| `result/wendys_model_based_humor_type_full_predictions.csv` | 978 | H2 유머 유형 |
+| `data/wendys_fast_weak_supervised_humor_dataset.csv` | 978 | post format controls |
+| `data/wendys_humor_frequency_proportion_post_level_dataset.csv` | 978 | H3-pre predictor |
+| `data/wendys_h3_aggressive_vs_other_intensity_dataset.csv` | 978 | base (원시집계, 시간변수, H3 main/other predictor) |
 
----
-
-## 4. 병합 key 및 안정성
-
-- 병합 key: `id` (978개 고유, duplicate 없음, NA 없음 — 전 파일 동일)
+## 4. 병합 안정성
+- 병합 key: `id` (978개 고유, dup=0, NA=0 — 전 파일 동일)
 - 모든 병합: 1:1 left join, 978→978 유지
-- unmatched rows: 0 (전 병합)
 
----
+## 5. 최종 dataset
+- rows: **{len(out)}**
+- cols: **{len(out.columns)}**
 
-## 5. 최종 dataset row count
+## 6. 컬럼 목록
+{cols_str}
 
-**978** (전체 Wendy's 분석 표본)
-
----
-
-## 6. 최종 dataset column count
-
-**{len(out_df.columns)}**
-
----
-
-## 7. 포함한 변수 목록
-
-{chr(10).join(f'- `{c}`' for c in out_df.columns)}
-
----
-
-## 8. 제외한 변수 목록 (포함되지 않음 확인)
-
-- `view_count`, `log1p_view_count`
-- `emoji_count`, `url_count`, `is_quote_status`, `is_retweet_text`
-- `day_of_week`
-- year_quarter FE dummy, quarter FE dummy
-- `month_total_posts`
-- `humor_frequency_quarter`, `aggressive_humor_frequency_quarter`, `other_humor_frequency_quarter`
-- `humor_frequency_month`
-- non-LOO proportion 변수 (humor_proportion_quarter, aggressive_humor_proportion_quarter, other_humor_proportion_quarter)
-- raw count 변수 (reply_count, favorite_count, retweet_count, quote_count, bookmark_count, engagement_total)
-
----
-
-## 9. H1 재현 방법
-
+## 7. R에서 파생 변수 계산 (R 스크립트 내)
 ```r
-# Binary IV — full sample (n=978)
-h1_binary <- lm(
-  log1p_engagement_total ~ pred_humor_final_050 +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h1_full_sample_flag == 1)
-)
-# 기대값: pred_humor_final_050 β ≈ 0.2918, p ≈ 0.0088
-
-# Probability IV — full sample (n=978)
-h1_prob <- lm(
-  log1p_engagement_total ~ p_humor_final_tfidf_logreg +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h1_full_sample_flag == 1)
-)
-# 기대값: p_humor_final_tfidf_logreg β ≈ 0.8404, p ≈ 0.0175
-
-# Human validation (n=597)
-h1_human <- lm(
-  log1p_engagement_total ~ final_humor_binary +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h1_human_validation_flag == 1)
-)
-# 기대값: final_humor_binary β ≈ 0.3171, p ≈ 0.0307
+# 종속변수 (log1p 변환)
+df$참여도합계     <- log1p(df$좋아요수 + df$리트윗수 + df$답글수 + df$인용수 + df$북마크수)
+# H3 이차항
+df$유머비율LOO분기제곱       <- df$유머비율LOO분기^2
+df$공격적유머비율LOO분기제곱 <- df$공격적유머비율LOO분기^2
+df$기타유머비율LOO분기제곱   <- df$기타유머비율LOO분기^2
 ```
 
----
+## 8. 제외 변수 확인
+log1p_view_count, emoji_count, url_count, is_quote_status, is_retweet_text,
+day_of_week, month_total_posts, frequency count 변수, year_quarter FE dummy
+→ 전부 미포함 확인
 
-## 10. H2 재현 방법
+## 9. 검증 결과
+| 조건 | 실제값 | 기대값 |
+|---|---|---|
+| rows | {len(out)} | 978 |
+| H1인간검증표본 합계 | {int(out['H1인간검증표본'].sum())} | 597 |
+| H2모델유머표본 합계 | {int(out['H2모델유머표본'].sum())} | 564 |
+| H2공격적유머모델더미=1 | {int((out['H2공격적유머모델더미']==1).sum())} | 200 |
+| H2공격적유머모델더미=0 | {int((out['H2공격적유머모델더미']==0).sum())} | 364 |
+| H2인간검증표본 합계 | {int(out['H2인간검증표본'].sum())} | 278 |
+| H2공격적유머인간더미=1 | {int((out['H2공격적유머인간더미']==1).sum())} | 95 |
+| H2공격적유머인간더미=0 | {int((out['H2공격적유머인간더미']==0).sum())} | 183 |
+| H3분석표본 합계 | {int(out['H3분석표본'].sum())} | 960 |
+| H3 unique 분기 | {int(out.loc[out['H3분석표본']==1,'연도분기'].nunique())} | 25 |
 
-```r
-# Model-based (n=564)
-h2_model <- lm(
-  log1p_engagement_total ~ h2_aggressive_model_dummy +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h2_model_humor_only_flag == 1)
-)
-# 기대값: h2_aggressive_model_dummy β ≈ 0.4056, p ≈ 0.0060
-
-# Human validation (n=278)
-h2_human <- lm(
-  log1p_engagement_total ~ h2_aggressive_human_dummy +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h2_human_validation_flag == 1)
-)
-# 기대값: h2_aggressive_human_dummy β ≈ 0.6405, p ≈ 0.0010
-```
-
----
-
-## 11. H3 재현 방법
-
-```r
-# H3-pre (n=960)
-h3_pre <- lm(
-  log1p_engagement_total ~ humor_proportion_quarter_loo +
-    humor_proportion_quarter_loo_sq +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h3_analysis_flag == 1)
-)
-# 기대값: β1 ≈ -6.6063, β2 ≈ +4.3189 (U자형; H3 기각)
-
-# H3-main (n=960)
-h3_main <- lm(
-  log1p_engagement_total ~ aggressive_humor_proportion_quarter_loo +
-    aggressive_humor_proportion_quarter_loo_sq +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h3_analysis_flag == 1)
-)
-# 기대값: β1 ≈ -3.3810, β2 ≈ -3.2814, p2 ≈ 0.6929 (not_support; H3 기각)
-
-# H3-supplemental other (n=960)
-h3_other <- lm(
-  log1p_engagement_total ~ other_humor_proportion_quarter_loo +
-    other_humor_proportion_quarter_loo_sq +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h3_analysis_flag == 1)
-)
-# 기대값: β1 ≈ -6.8614, β2 ≈ +7.8688 (U자형; H3 기각)
-
-# H3-joint (n=960)
-h3_joint <- lm(
-  log1p_engagement_total ~
-    aggressive_humor_proportion_quarter_loo +
-    aggressive_humor_proportion_quarter_loo_sq +
-    other_humor_proportion_quarter_loo +
-    other_humor_proportion_quarter_loo_sq +
-    factor(created_year) + factor(created_month) + factor(created_hour) +
-    text_length + hashtag_count + mention_count,
-  data = subset(df, h3_analysis_flag == 1)
-)
-# 기대값: agg β1 ≈ -2.3560, β2 ≈ -3.7276; other γ1 ≈ -7.7528, γ2 ≈ +8.1417
-```
-
----
-
-## 12. R script 실행 방법
-
-```r
-# 1. 데이터 로드
-df <- read.csv("20260615wendy's/data/wendys_h1_h2_h3_r_replication_dataset.csv",
-               stringsAsFactors = FALSE, na.strings = "NA")
-
-# 2. 스크립트 실행
-source("20260615wendy's/code/replicate_wendys_h1_h2_h3_in_R.R")
-```
-
----
-
-## 13. Expected Coefficients 요약
-
-| 모형 | Focal variable | β 기대값 | p 기대값 | n |
-|---|---|---|---|---|
-| H1 binary M7 | pred_humor_final_050 | 0.2918 | 0.0088 | 978 |
-| H1 probability M7 | p_humor_final_tfidf_logreg | 0.8404 | 0.0175 | 978 |
-| H1 human M7 | final_humor_binary | 0.3171 | 0.0307 | 597 |
-| H2 model M7 | h2_aggressive_model_dummy | 0.4056 | 0.0060 | 564 |
-| H2 human M7 | h2_aggressive_human_dummy | 0.6405 | 0.0010 | 278 |
-| H3-pre M7 β1 | humor_proportion_quarter_loo | -6.6063 | 0.0114 | 960 |
-| H3-pre M7 β2 | humor_proportion_quarter_loo_sq | 4.3189 | 0.0395 | 960 |
-| H3-main M7 β1 | aggressive...loo | -3.3810 | 0.3386 | 960 |
-| H3-main M7 β2 | aggressive...loo_sq | -3.2814 | 0.6929 | 960 |
-| H3-other M8 β1 | other...loo | -6.8614 | 0.0043 | 960 |
-| H3-other M8 β2 | other...loo_sq | 7.8688 | 0.0047 | 960 |
-| H3-joint M2 agg β1 | aggressive...loo (joint) | -2.3560 | 0.4944 | 960 |
-| H3-joint M2 agg β2 | aggressive...loo_sq (joint) | -3.7276 | 0.6722 | 960 |
-| H3-joint M2 oth γ1 | other...loo (joint) | -7.7528 | 0.0013 | 960 |
-| H3-joint M2 oth γ2 | other...loo_sq (joint) | 8.1417 | 0.0037 | 960 |
-
----
-
-## 14. posts.json 변경 여부
-
-변경 없음. `data/wendys/posts.json` 원본 파일은 이 스크립트에서 접근하지 않는다.
-
----
-
-## 15. 새 회귀분석 수행 여부
-
-수행하지 않음. 기존 결과 파일의 계수를 expected_coefficients 파일에 기록하였을 뿐이다.
-
----
-
-## 16. 새 유머 분류 모델 학습 여부
-
-학습하지 않음.
-
----
-
-## 17. 주의사항
-
-- R의 `factor()` 기준 범주(reference level)는 최솟값 또는 알파벳 첫 순서로 자동 결정된다.
-  Python/statsmodels의 `pd.get_dummies(..., drop_first=True)`도 동일 방식으로 첫 범주를 제거한다.
-  따라서 focal coefficient는 동일하게 재현되어야 한다. 절편과 FE dummy 계수는 달라질 수 있다.
-- H3 proportion predictor의 1 NA (`humor_proportion_quarter_loo`)는 `quarter_total_posts < 10`인 행에 있다.
-  H3 분석 표본(`h3_analysis_flag == 1`)에서는 NA 없음 (검증 완료).
-- `h2_aggressive_model_dummy`와 `h2_aggressive_human_dummy`는 비유머(non_humor) 행에서 NA이다.
-  H2 재현 시 반드시 `subset(df, h2_model_humor_only_flag == 1)` 또는
-  `subset(df, h2_human_validation_flag == 1)`로 표본을 제한한다.
-
----
-
-## 18. 검증 통과 조건 (모두 확인 완료)
-
-| 조건 | 실제값 | 기대값 | 결과 |
-|---|---|---|---|
-| row_count | {len(out_df)} | 978 | OK |
-| h1_full_sample_flag 합계 | {int(out_df['h1_full_sample_flag'].sum())} | 978 | OK |
-| h1_human_validation_flag 합계 | {int(out_df['h1_human_validation_flag'].sum())} | 597 | OK |
-| h2_model_humor_only_flag 합계 | {int(out_df['h2_model_humor_only_flag'].sum())} | 564 | OK |
-| h2_aggressive_model_dummy=1 합계 | {int((out_df['h2_aggressive_model_dummy']==1).sum())} | 200 | OK |
-| h2_aggressive_model_dummy=0 합계 | {int((out_df['h2_aggressive_model_dummy']==0).sum())} | 364 | OK |
-| h2_human_validation_flag 합계 | {int(out_df['h2_human_validation_flag'].sum())} | 278 | OK |
-| h2_aggressive_human_dummy=1 합계 | {int((out_df['h2_aggressive_human_dummy']==1).sum())} | 95 | OK |
-| h2_aggressive_human_dummy=0 합계 | {int((out_df['h2_aggressive_human_dummy']==0).sum())} | 183 | OK |
-| h3_analysis_flag 합계 | {int(out_df['h3_analysis_flag'].sum())} | 960 | OK |
-| H3 표본 내 unique year_quarter | {int(out_df.loc[out_df['h3_analysis_flag']==1,'year_quarter'].nunique())} | 25 | OK |
-| text_length missing | {int(out_df['text_length'].isna().sum())} | 0 | OK |
-| hashtag_count missing | {int(out_df['hashtag_count'].isna().sum())} | 0 | OK |
-| mention_count missing | {int(out_df['mention_count'].isna().sum())} | 0 | OK |
+## 10. 주의사항
+- 조회수(view_count)는 참고용으로만 포함; 회귀분석에 사용하지 않음
+- 리트윗수는 참여도합계 계산에 필수 (사용자 열 목록에 없었으나 DV 계산상 포함)
+- H2 더미 변수: 비유머 행은 NA → subset() 조건 필수
+- H3: factor(연도분기) 사용 금지 (LOO 변수와 동일 수준)
+- posts.json 변경 없음 / 새 회귀분석 미수행 / 새 분류 모델 미학습
 """
+with open(OUT_SUMMARY,'w',encoding='utf-8') as f:
+    f.write(summary)
+print(f"  {OUT_SUMMARY}")
 
-with open(OUT_SUMMARY, 'w', encoding='utf-8') as f:
-    f.write(summary_txt)
-print(f"  summary 저장: {OUT_SUMMARY}")
-
-# ── 최종 보고 ─────────────────────────────────────────────────────────────────
 print("\n=== 완료 ===")
-print(f"  최종 CSV: {OUT_CSV}")
-print(f"  rows={len(out_df)}, cols={len(out_df.columns)}")
-print(f"  columns: {list(out_df.columns)}")
+print(f"  CSV: {OUT_CSV}  rows={len(out)}, cols={len(out.columns)}")
