@@ -1,0 +1,31 @@
+check_id,check_description,expected_value,actual_value,tolerance,result,notes
+1,H1 Model 1 n = 978,978,978,exact,PASS,
+2,H1 Model 2 n = 978,978,978,exact,PASS,
+3,H1 Model 3 n = 978,978,978,exact,PASS,
+4,H1 Model 4 n = 597,597,597,exact,PASS,
+5,H1 Model 5 n = 597,597,597,exact,PASS,
+6,H1 Model 6 n = 597,597,597,exact,PASS,
+7,H2 Model 1 n = 564,564,564,exact,PASS,
+8,H2 Model 2 n = 564,564,564,exact,PASS,
+9,H2 Model 3 n = 564,564,564,exact,PASS,
+10,H2 Model 4 n = 278,278,278,exact,PASS,
+11,H2 Model 5 n = 278,278,278,exact,PASS,
+12,H2 Model 6 n = 278,278,278,exact,PASS,
+13,H3 Model 1 n = 960,960,960,exact,PASS,
+14,H3 Model 2 n = 960,960,960,exact,PASS,
+15,H3 Model 3 n = 960,960,960,exact,PASS,
+16,H3 quarter_count = 25,25,25,exact,PASS,
+17,H3 Intensity_c mean close to 0 (|mean| < 1e-10),0.0,0.0,1e-10,PASS,actual mean: 1.93e-15
+18,H3 Humor_x_IC correctly computed (max error < 1e-10),0.0,0.0,1e-10,PASS,max abs diff: 0.00e+00
+19,H1 Model 3 coefficient matches existing ≈ 0.2918,0.2918,0.29175431,0.001,PASS,actual: 0.291754
+20,H1 Model 3 p-value matches existing ≈ 0.0088,0.0088,0.00877963,0.01,PASS,actual: 0.008780
+21,H2 Model 3 coefficient matches existing ≈ 0.4056,0.4056,0.4055545,0.001,PASS,actual: 0.405555
+22,H2 Model 3 p-value matches existing ≈ 0.0060,0.006,0.00595553,0.001,PASS,actual: 0.005956
+23,H2 Model 6 coefficient matches existing ≈ 0.6405,0.6405,0.64045953,0.001,PASS,actual: 0.640460
+24,H2 Model 6 p-value matches existing ≈ 0.0010,0.001,0.00095626,0.001,PASS,actual: 0.000956
+25,H3 Model 3 β4 (Humor_x_IC) matches existing ≈ 1.417594,1.417594,1.41759367,0.001,PASS,actual: 1.417594
+26,H3 Model 3 β4 p-value matches existing ≈ 0.076624,0.076624,0.07662441,0.01,PASS,actual: 0.076624
+27,H3 Model 3 β5 (Humor_x_IC_sq) matches existing ≈ 1.964782,1.964782,1.96478159,0.001,PASS,actual: 1.964782
+28,H3 Model 3 β5 p-value matches existing ≈ 0.611397,0.611397,0.61139664,0.01,PASS,actual: 0.611397
+29,기존 H1/H2/H3 결과 파일 수정 없음,no modification,no modification (script never opens existing result files for writing),N/A,PASS,Script only reads existing files as reference; all writes go to new *_for_report files
+30,신규 파일만 추가됨 (7개),7 new files,"wendys_h1_ols_with_se_for_report.csv, wendys_h2_ols_with_se_for_report.csv, wendys_h3_ols_with_se_for_report.csv, wendys_h1_table_with_se_for_report.md, wendys_h2_table_with_se_for_report.md, wendys_h3_table_with_se_for_report.md, wendys_h1_h2_h3_ols_with_se_validation_checks.csv",N/A,PASS,All output files have _for_report or _with_se suffix; no existing files overwritten
