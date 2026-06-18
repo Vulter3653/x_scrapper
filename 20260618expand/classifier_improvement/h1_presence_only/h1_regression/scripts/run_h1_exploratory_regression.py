@@ -1,32 +1,25 @@
 """
 run_h1_exploratory_regression.py
 
-Runs exploratory H1 regression on provisional humor presence labels.
+Simple OLS check: humor presence → log total engagement.
 
-H1 (exploratory): humor presence → log total engagement
+Model:
+  log_total_engagement = β0 + β1 * h1_humor_presence_pred_t50 + ε
 
-Main specification:
-  DV:         log_total_engagement
-  Predictor:  h1_humor_presence_pred_t50  (binary, t=0.50)
-  Controls:   text_length, hashtag_count, mention_count
-  FE:         firm fixed effects + month fixed effects
-  Method:     OLS with iterative two-way FE demeaning (Gauss-Seidel)
-  SE:         Standard OLS
-
-Robustness specifications:
-  - Predictor: t40 / t60 / continuous probability
-  - DV: winsorized 1% / 5%
-  - DV: trimmed (top-1% / top-5% deleted)
+  Method:  Simple OLS (no fixed effects, no control variables)
+  SE:      Standard OLS SE
+  Status:  exploratory — NOT confirmatory
 
 IMPORTANT:
-  - This is an EXPLORATORY regression. Results are provisional.
-  - Classifier is batch1-only (OOF AUC=0.7811, FH F1=0.4770).
-  - H1 regression results do NOT confirm H1.
+  - No firm fixed effects.
+  - No month fixed effects.
+  - No control variables.
+  - This is a first exploratory association check only.
+  - Results do NOT confirm H1.
   - H2/H3 are out of scope.
 
 Outputs (h1_regression/results/):
   h1_regression_main_results.csv
-  h1_regression_robustness_results.csv
   h1_regression_model_summary.csv
   h1_regression_dv_diagnostics.csv
 """
@@ -34,7 +27,6 @@ Outputs (h1_regression/results/):
 from __future__ import annotations
 
 import csv
-import datetime
 import sys
 from pathlib import Path
 
@@ -45,132 +37,75 @@ if str(PYPACKAGES) not in sys.path:
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[5]
-CI = ROOT / "20260618expand" / "classifier_improvement"
-H1 = CI / "h1_presence_only"
-FC = H1 / "full_corpus_classification" / "data"
-REG = H1 / "h1_regression"
-RES = REG / "results"
+CI   = ROOT / "20260618expand" / "classifier_improvement"
+H1   = CI / "h1_presence_only"
+FC   = H1 / "full_corpus_classification" / "data"
+REG  = H1 / "h1_regression"
+RES  = REG / "results"
 
-IN_POSTS = FC / "fortune100_h1_presence_classified_posts.csv"
-OUT_MAIN     = RES / "h1_regression_main_results.csv"
-OUT_ROBUST   = RES / "h1_regression_robustness_results.csv"
-OUT_SUMMARY  = RES / "h1_regression_model_summary.csv"
-OUT_DV_DIAG  = RES / "h1_regression_dv_diagnostics.csv"
+IN_POSTS    = FC / "fortune100_h1_presence_classified_posts.csv"
+OUT_MAIN    = RES / "h1_regression_main_results.csv"
+OUT_SUMMARY = RES / "h1_regression_model_summary.csv"
+OUT_DV_DIAG = RES / "h1_regression_dv_diagnostics.csv"
 
 REGRESSION_STATUS = "exploratory"
 CLASSIFIER_MODEL  = "word_char_comb__lr_liblin_C01"
 CLASSIFIER_STATUS = "provisional (batch1-only, OOF AUC=0.7811)"
 
 
-def parse_month(created_at: str) -> str:
-    try:
-        dt = datetime.datetime.strptime(created_at.strip(), "%a %b %d %H:%M:%S +0000 %Y")
-        return dt.strftime("%Y-%m")
-    except Exception:
-        return ""
-
-
-def winsorize(arr: np.ndarray, lower: float = 0.0, upper: float = 1.0) -> np.ndarray:
-    lo = np.quantile(arr, lower)
-    hi = np.quantile(arr, upper)
-    return np.clip(arr, lo, hi)
-
-
-def demean_twoway(arr: np.ndarray, g1: np.ndarray, g2: np.ndarray,
-                  n_iter: int = 100, tol: float = 1e-7) -> np.ndarray:
-    """Iterative two-way FE demeaning (Gauss-Seidel)."""
-    out = arr.copy().astype(float)
-    for _ in range(n_iter):
-        prev = out.copy()
-        for g in np.unique(g1):
-            mask = g1 == g
-            out[mask] -= out[mask].mean()
-        for g in np.unique(g2):
-            mask = g2 == g
-            out[mask] -= out[mask].mean()
-        if np.max(np.abs(out - prev)) < tol:
-            break
-    return out
-
-
-def ols_fit(X: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """OLS. Returns (coef, se_ols)."""
-    n, k = X.shape
-    XtX = X.T @ X
+def simple_ols(X: np.ndarray, y: np.ndarray) -> dict:
+    """Simple OLS with intercept. X is (n,) predictor vector."""
+    n = len(y)
+    Xd = np.column_stack([np.ones(n), X])  # [intercept, predictor]
+    k = Xd.shape[1]
+    XtX = Xd.T @ Xd
     try:
         XtX_inv = np.linalg.inv(XtX)
     except np.linalg.LinAlgError:
         XtX_inv = np.linalg.pinv(XtX)
-    coef = XtX_inv @ (X.T @ y)
-    resid = y - X @ coef
+    coef = XtX_inv @ (Xd.T @ y)
+    y_hat = Xd @ coef
+    resid = y - y_hat
     df_resid = n - k
     mse = (resid @ resid) / df_resid
-    se_ols = np.sqrt(np.maximum(np.diag(XtX_inv) * mse, 0))
-    return coef, se_ols
-
-
-def r_squared(y: np.ndarray, y_hat: np.ndarray) -> float:
-    ss_res = np.sum((y - y_hat) ** 2)
-    ss_tot = np.sum((y - y.mean()) ** 2)
-    return float(1 - ss_res / ss_tot) if ss_tot > 0 else 0.0
-
-
-def run_spec(y_raw: np.ndarray, predictors: dict[str, np.ndarray],
-             main_pred: str, firm_idx: np.ndarray, month_idx: np.ndarray,
-             dv_label: str, spec_label: str) -> dict:
-    """Run one regression spec: demean, OLS, report coefficient on main_pred."""
-    pred_names = list(predictors.keys())
-    X_raw = np.column_stack([predictors[k] for k in pred_names])
-
-    # Two-way demeaning
-    y_dm = demean_twoway(y_raw, firm_idx, month_idx)
-    X_dm = np.column_stack([
-        demean_twoway(X_raw[:, j], firm_idx, month_idx)
-        for j in range(X_raw.shape[1])
-    ])
-
-    coef, se_ols = ols_fit(X_dm, y_dm)
-    y_hat = X_dm @ coef
-
-    # p-values using normal approximation (large-n)
-    t_stat = coef / np.where(se_ols > 0, se_ols, 1e-12)
+    se = np.sqrt(np.maximum(np.diag(XtX_inv) * mse, 0))
+    t_stat = coef / np.where(se > 0, se, 1e-12)
 
     try:
         from scipy.stats import norm as scipy_norm
         p_val = 2 * (1 - scipy_norm.cdf(np.abs(t_stat)))
     except ImportError:
-        def normal_sf(z):
-            return 0.5 * (1 - np.array([float(np.tanh(x * (1 - x * x / 3) / np.sqrt(2 / np.pi)))
-                                         for x in np.atleast_1d(z)]))
-        p_val = 2 * normal_sf(np.abs(t_stat))
+        def _normal_sf(z: float) -> float:
+            a = abs(float(z)) / (2 ** 0.5)
+            t = 1.0 / (1.0 + 0.3275911 * a)
+            poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 +
+                        t * (-1.453152027 + t * 1.061405429))))
+            return float(np.exp(-a * a) * poly / 2)
+        p_val = np.array([2 * _normal_sf(abs(tv)) for tv in t_stat])
 
-    idx = pred_names.index(main_pred)
-    n   = len(y_raw)
-    r2  = r_squared(y_dm, y_hat)
+    ss_res = float(resid @ resid)
+    ss_tot = float(np.sum((y - y.mean()) ** 2))
+    r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else 0.0
 
     return {
-        "spec_label":        spec_label,
-        "dv":                dv_label,
-        "main_predictor":    main_pred,
-        "coef":              round(float(coef[idx]), 6),
-        "se":                round(float(se_ols[idx]), 6),
-        "t_stat":            round(float(t_stat[idx]), 4),
-        "p_value":           round(float(p_val[idx]), 6),
-        "sig_10pct":         "yes" if abs(t_stat[idx]) > 1.645 else "no",
-        "sig_5pct":          "yes" if abs(t_stat[idx]) > 1.960 else "no",
-        "sig_1pct":          "yes" if abs(t_stat[idx]) > 2.576 else "no",
-        "n_obs":             n,
-        "r_sq_within":       round(r2, 6),
-        "fe":                "firm + month",
-        "regression_status": REGRESSION_STATUS,
-        "classifier_model":  CLASSIFIER_MODEL,
-        "classifier_status": CLASSIFIER_STATUS,
+        "intercept": round(float(coef[0]), 6),
+        "coef":      round(float(coef[1]), 6),
+        "se_intercept": round(float(se[0]), 6),
+        "se":        round(float(se[1]), 6),
+        "t_stat":    round(float(t_stat[1]), 4),
+        "p_value":   round(float(p_val[1]), 6),
+        "sig_10pct": "yes" if abs(t_stat[1]) > 1.645 else "no",
+        "sig_5pct":  "yes" if abs(t_stat[1]) > 1.960 else "no",
+        "sig_1pct":  "yes" if abs(t_stat[1]) > 2.576 else "no",
+        "n_obs":     n,
+        "r_squared": round(r2, 6),
     }
 
 
 def main() -> None:
     print("=== run_h1_exploratory_regression ===")
     print(f"  Status: {REGRESSION_STATUS}")
+    print(f"  Method: simple OLS (no FE, no controls)")
     print(f"  Classifier: {CLASSIFIER_MODEL} ({CLASSIFIER_STATUS})")
 
     # --- Load data ---
@@ -181,64 +116,32 @@ def main() -> None:
         rows = list(csv.DictReader(f))
     print(f"  Rows loaded: {len(rows)}")
 
-    # --- Parse fields ---
-    print("  Parsing fields...")
-    records = []
+    # --- Parse fields (only DV and predictor needed) ---
+    log_eng_list: list[float] = []
+    t50_list: list[float] = []
+
     for r in rows:
-        ca    = r.get("created_at", "")
-        month = parse_month(ca)
-        if not month:
-            continue
         try:
             log_eng = float(r.get("log_total_engagement", "") or "nan")
-            tlen    = float(r.get("text_length", "") or "nan")
-            htag    = float(r.get("hashtag_count", "") or "nan")
-            ment    = float(r.get("mention_count", "") or "nan")
             t50     = float(r.get("h1_humor_presence_pred_t50", "") or "nan")
-            t40     = float(r.get("h1_humor_presence_pred_t40", "") or "nan")
-            t60     = float(r.get("h1_humor_presence_pred_t60", "") or "nan")
-            prob    = float(r.get("h1_humor_presence_probability", "") or "nan")
-            company = r.get("company_name", "")
         except (ValueError, TypeError):
             continue
-        if any(np.isnan(v) for v in [log_eng, tlen, htag, ment, t50, t40, t60, prob]):
+        if log_eng != log_eng or t50 != t50:  # nan check
             continue
-        if not company or not month:
-            continue
-        records.append({
-            "log_eng": log_eng, "tlen": tlen, "htag": htag, "ment": ment,
-            "t50": t50, "t40": t40, "t60": t60, "prob": prob,
-            "company": company, "month": month,
-        })
+        log_eng_list.append(log_eng)
+        t50_list.append(t50)
 
-    print(f"  Records after cleaning: {len(records)}")
-    if len(records) < 1000:
-        raise ValueError("Too few records for regression")
+    log_eng = np.array(log_eng_list)
+    t50     = np.array(t50_list)
+    n       = len(log_eng)
+    print(f"  Records after cleaning: {n}")
+    if n < 1000:
+        raise ValueError(f"Too few records: {n}")
 
-    # --- Encode FE groups ---
-    firms  = sorted(set(r["company"] for r in records))
-    months = sorted(set(r["month"]   for r in records))
-    firm_map  = {f: i for i, f in enumerate(firms)}
-    month_map = {m: i for i, m in enumerate(months)}
-    print(f"  Firms: {len(firms)}   Months: {len(months)}")
-
-    firm_idx  = np.array([firm_map[r["company"]] for r in records])
-    month_idx = np.array([month_map[r["month"]]  for r in records])
-
-    # --- Arrays ---
-    log_eng = np.array([r["log_eng"] for r in records])
-    tlen    = np.array([r["tlen"]    for r in records])
-    htag    = np.array([r["htag"]    for r in records])
-    ment    = np.array([r["ment"]    for r in records])
-    t50     = np.array([r["t50"]     for r in records])
-    t40     = np.array([r["t40"]     for r in records])
-    t60     = np.array([r["t60"]     for r in records])
-    prob    = np.array([r["prob"]    for r in records])
-
-    # DV diagnostics
+    # --- DV diagnostics ---
     RES.mkdir(parents=True, exist_ok=True)
     dv_diag = [
-        {"metric": "n_obs",             "value": len(log_eng)},
+        {"metric": "n_obs",             "value": n},
         {"metric": "dv_mean",           "value": round(float(log_eng.mean()), 4)},
         {"metric": "dv_median",         "value": round(float(np.median(log_eng)), 4)},
         {"metric": "dv_sd",             "value": round(float(log_eng.std()), 4)},
@@ -248,11 +151,7 @@ def main() -> None:
         {"metric": "dv_p05",            "value": round(float(np.quantile(log_eng, 0.05)), 4)},
         {"metric": "dv_p95",            "value": round(float(np.quantile(log_eng, 0.95)), 4)},
         {"metric": "dv_p99",            "value": round(float(np.quantile(log_eng, 0.99)), 4)},
-        {"metric": "n_zero_engagement", "value": int((log_eng == 0).sum())},
         {"metric": "humor_rate_t50",    "value": round(float(t50.mean()), 4)},
-        {"metric": "humor_rate_t40",    "value": round(float(t40.mean()), 4)},
-        {"metric": "humor_rate_t60",    "value": round(float(t60.mean()), 4)},
-        {"metric": "mean_probability",  "value": round(float(prob.mean()), 4)},
     ]
     with open(OUT_DV_DIAG, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["metric", "value"])
@@ -260,122 +159,76 @@ def main() -> None:
         w.writerows(dv_diag)
     print(f"  DV diagnostics → {OUT_DV_DIAG}")
 
-    controls = {"text_length": tlen, "hashtag_count": htag, "mention_count": ment}
+    # --- Simple OLS ---
+    print("\n  Running simple OLS: log_eng ~ intercept + h1_humor_presence_pred_t50")
+    ols = simple_ols(t50, log_eng)
 
-    # ============================
-    # MAIN SPECIFICATION
-    # ============================
-    print("\n  Running MAIN specification (t50, log_eng, firm+month FE)...")
-    main_preds = {**{"h1_humor_presence_t50": t50}, **controls}
-    main_res   = run_spec(log_eng, main_preds, "h1_humor_presence_t50",
-                          firm_idx, month_idx, "log_total_engagement", "main_t50")
-    print(f"    coef_t50={main_res['coef']}  se={main_res['se']}  "
-          f"t={main_res['t_stat']}  p={main_res['p_value']:.4f}  "
-          f"sig_5pct={main_res['sig_5pct']}")
+    main_row = {
+        "spec_label":        "main_t50_simple_ols",
+        "dv":                "log_total_engagement",
+        "predictor":         "h1_humor_presence_pred_t50",
+        "method":            "simple OLS (no FE, no controls)",
+        "intercept":         ols["intercept"],
+        "coef":              ols["coef"],
+        "se":                ols["se"],
+        "t_stat":            ols["t_stat"],
+        "p_value":           ols["p_value"],
+        "sig_10pct":         ols["sig_10pct"],
+        "sig_5pct":          ols["sig_5pct"],
+        "sig_1pct":          ols["sig_1pct"],
+        "n_obs":             ols["n_obs"],
+        "r_squared":         ols["r_squared"],
+        "regression_status": REGRESSION_STATUS,
+        "classifier_model":  CLASSIFIER_MODEL,
+        "classifier_status": CLASSIFIER_STATUS,
+    }
 
-    # ============================
-    # ROBUSTNESS SPECIFICATIONS
-    # ============================
-    robust_results = []
-
-    # Predictor variants
-    for pred_name, pred_arr, label in [
-        ("h1_humor_presence_t40",  t40,  "robust_t40"),
-        ("h1_humor_presence_t60",  t60,  "robust_t60"),
-        ("h1_humor_probability",   prob, "robust_prob"),
-    ]:
-        print(f"  Running robustness: {label}...")
-        preds = {**{pred_name: pred_arr}, **controls}
-        res   = run_spec(log_eng, preds, pred_name, firm_idx, month_idx,
-                         "log_total_engagement", label)
-        robust_results.append(res)
-        print(f"    coef={res['coef']}  t={res['t_stat']}  "
-              f"sig_5pct={res['sig_5pct']}")
-
-    # DV variants: winsorization
-    for pct_lo, pct_hi, label in [
-        (0.00, 0.99, "robust_dv_win99"),
-        (0.00, 0.95, "robust_dv_win95"),
-    ]:
-        print(f"  Running robustness: {label}...")
-        dv_w = winsorize(log_eng, lower=pct_lo, upper=pct_hi)
-        preds = {**{"h1_humor_presence_t50": t50}, **controls}
-        res   = run_spec(dv_w, preds, "h1_humor_presence_t50", firm_idx, month_idx,
-                         f"log_eng_winsorized_{int(pct_hi*100)}pct", label)
-        robust_results.append(res)
-        print(f"    coef={res['coef']}  t={res['t_stat']}  "
-              f"sig_5pct={res['sig_5pct']}")
-
-    # DV variants: trimming (delete extreme observations)
-    for pct_trim, label in [(0.99, "robust_dv_trim99"), (0.95, "robust_dv_trim95")]:
-        print(f"  Running robustness: {label}...")
-        thresh = np.quantile(log_eng, pct_trim)
-        mask   = log_eng <= thresh
-        n_trim = int(mask.sum())
-        preds  = {**{"h1_humor_presence_t50": t50[mask]}, **{
-            "text_length": tlen[mask], "hashtag_count": htag[mask], "mention_count": ment[mask]
-        }}
-        res = run_spec(log_eng[mask], preds, "h1_humor_presence_t50",
-                       firm_idx[mask], month_idx[mask],
-                       f"log_eng_trimmed_{int(pct_trim*100)}pct", label)
-        robust_results.append(res)
-        print(f"    n={n_trim}  coef={res['coef']}  t={res['t_stat']}  "
-              f"sig_5pct={res['sig_5pct']}")
-
-    # ============================
-    # WRITE OUTPUTS
-    # ============================
-    main_keys = [
-        "spec_label", "dv", "main_predictor",
-        "coef", "se", "t_stat", "p_value",
+    MAIN_FIELDS = [
+        "spec_label", "dv", "predictor", "method",
+        "intercept", "coef", "se", "t_stat", "p_value",
         "sig_10pct", "sig_5pct", "sig_1pct",
-        "n_obs", "r_sq_within", "fe",
+        "n_obs", "r_squared",
         "regression_status", "classifier_model", "classifier_status",
     ]
+
     with open(OUT_MAIN, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=main_keys, extrasaction="ignore")
+        w = csv.DictWriter(f, fieldnames=MAIN_FIELDS)
         w.writeheader()
-        w.writerow(main_res)
-    print(f"\n  Written: {OUT_MAIN}")
+        w.writerow(main_row)
+    print(f"  Written: {OUT_MAIN}")
 
-    robust_keys = main_keys.copy()
-    with open(OUT_ROBUST, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=robust_keys, extrasaction="ignore")
-        w.writeheader()
-        w.writerows(robust_results)
-    print(f"  Written: {OUT_ROBUST} ({len(robust_results)} robustness specs)")
-
-    # Summary
-    all_specs = [main_res] + robust_results
-    summary_rows = []
-    for r in all_specs:
-        summary_rows.append({
-            "spec":           r["spec_label"],
-            "dv":             r["dv"],
-            "main_predictor": r["main_predictor"],
-            "coef":           r["coef"],
-            "se":             r["se"],
-            "t_stat":         r["t_stat"],
-            "p_value":        r["p_value"],
-            "sig_5pct":       r["sig_5pct"],
-            "n_obs":          r["n_obs"],
-            "r_sq_within":    r["r_sq_within"],
-        })
-
+    SUMMARY_FIELDS = [
+        "spec", "dv", "predictor", "intercept",
+        "coef", "se", "t_stat", "p_value", "sig_5pct",
+        "n_obs", "r_squared",
+    ]
+    summary_row = {
+        "spec":      main_row["spec_label"],
+        "dv":        main_row["dv"],
+        "predictor": main_row["predictor"],
+        "intercept": main_row["intercept"],
+        "coef":      main_row["coef"],
+        "se":        main_row["se"],
+        "t_stat":    main_row["t_stat"],
+        "p_value":   main_row["p_value"],
+        "sig_5pct":  main_row["sig_5pct"],
+        "n_obs":     main_row["n_obs"],
+        "r_squared": main_row["r_squared"],
+    }
     with open(OUT_SUMMARY, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(summary_rows[0].keys()))
+        w = csv.DictWriter(f, fieldnames=SUMMARY_FIELDS)
         w.writeheader()
-        w.writerows(summary_rows)
-    print(f"  Written: {OUT_SUMMARY} ({len(summary_rows)} specs)")
+        w.writerow(summary_row)
+    print(f"  Written: {OUT_SUMMARY}")
 
-    print("\n  === MAIN RESULT (EXPLORATORY) ===")
-    print(f"  Spec: {main_res['spec_label']}")
-    print(f"  DV: {main_res['dv']}")
-    print(f"  Predictor: {main_res['main_predictor']}")
-    print(f"  coef = {main_res['coef']}  SE = {main_res['se']}")
-    print(f"  t = {main_res['t_stat']}  p = {main_res['p_value']:.4f}")
-    print(f"  Significant at 5%: {main_res['sig_5pct']}")
-    print(f"  N obs = {main_res['n_obs']}  R²_within = {main_res['r_sq_within']}")
+    print("\n  === MAIN RESULT (EXPLORATORY — SIMPLE OLS) ===")
+    print(f"  Model: log_eng = β0 + β1 * h1_humor_presence_pred_t50")
+    print(f"  Method: simple OLS | no FE | no controls")
+    print(f"  β0 (intercept) = {main_row['intercept']}")
+    print(f"  β1 (humor t50) = {main_row['coef']}  SE = {main_row['se']}")
+    print(f"  t = {main_row['t_stat']}  p = {main_row['p_value']:.6f}")
+    print(f"  Significant at 5%: {main_row['sig_5pct']}")
+    print(f"  N = {main_row['n_obs']}  R² = {main_row['r_squared']}")
     print(f"  Status: {REGRESSION_STATUS} — NOT confirmatory evidence")
     print("=== run_h1_exploratory_regression COMPLETE ===")
 

@@ -1,9 +1,2 @@
-spec,dv,main_predictor,coef,se,t_stat,p_value,sig_5pct,n_obs,r_sq_within
-main_t50,log_total_engagement,h1_humor_presence_t50,0.22534,0.011716,19.2328,0.0,yes,65245,0.02317
-robust_t40,log_total_engagement,h1_humor_presence_t40,0.092415,0.014925,6.1921,0.0,yes,65245,0.018208
-robust_t60,log_total_engagement,h1_humor_presence_t60,0.162924,0.023326,6.9846,0.0,yes,65245,0.018366
-robust_prob,log_total_engagement,h1_humor_probability,1.672134,0.086474,19.3368,0.0,yes,65245,0.02323
-robust_dv_win99,log_eng_winsorized_99pct,h1_humor_presence_t50,0.220276,0.011417,19.2945,0.0,yes,65245,0.023877
-robust_dv_win95,log_eng_winsorized_95pct,h1_humor_presence_t50,0.199527,0.010444,19.105,0.0,yes,65245,0.02521
-robust_dv_trim99,log_eng_trimmed_99pct,h1_humor_presence_t50,0.207773,0.011,18.8888,0.0,yes,64592,0.025522
-robust_dv_trim95,log_eng_trimmed_95pct,h1_humor_presence_t50,0.167011,0.009889,16.8889,0.0,yes,61982,0.030273
+spec,dv,predictor,intercept,coef,se,t_stat,p_value,sig_5pct,n_obs,r_squared
+main_t50_simple_ols,log_total_engagement,h1_humor_presence_pred_t50,3.071287,0.955084,0.015841,60.2927,0.0,yes,65245,0.052777
