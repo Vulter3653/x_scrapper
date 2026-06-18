@@ -1,0 +1,51 @@
+experiment,variant,rank,feature,weight,leakage_flag
+hard_masking_v2_top_features,mask_all_leakage_groups,1,word__nationalroastday,0.236089,FAIL
+hard_masking_v2_top_features,mask_all_leakage_groups,2,word__and,-0.234252,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,3,word__competitor_token,0.219186,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,4,word__our,-0.191483,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,5,word__to,-0.17957,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,6,word__we,-0.179486,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,7,word__should,0.177202,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,8,word__where the,0.156589,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,9,word__for,-0.144892,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,10,word__beef,0.140749,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,11,word__the beef,0.140035,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,12,char__nd ,-0.139048,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,13,word__in,-0.137268,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,14,char__ and ,-0.135343,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,15,word__https,-0.134787,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,16,word__co,-0.134529,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,17,word__https co,-0.133898,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,18,char__and ,-0.131942,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,19,char__ould,0.13069,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,20,char__uld,0.13069,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,21,char__ and,-0.129666,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,22,char__oul,0.128965,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,23,char__alr,0.126584,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,24,char__#na,0.123201,PASS
+hard_masking_v2_top_features,mask_all_leakage_groups,25,char__ #na,0.123201,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,1,word__and,-0.234222,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,2,word__campaign_event_token,0.229284,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,3,word__competitor_token,0.217047,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,4,word__our,-0.191313,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,5,word__to,-0.179063,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,6,word__we,-0.179042,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,7,word__should,0.177363,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,8,word__where the,0.157062,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,9,word__for,-0.145454,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,10,word__beef,0.141208,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,11,word__the beef,0.140447,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,12,word__in,-0.139047,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,13,char__nd ,-0.138827,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,14,char__ and ,-0.135336,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,15,word__https,-0.133244,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,16,word__co,-0.132979,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,17,word__https co,-0.132353,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,18,char__and ,-0.131906,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,19,char__ould,0.130104,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,20,char__uld,0.130104,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,21,char__ and,-0.129695,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,22,char__oul,0.128338,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,23,word__drop,0.11907,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,24,char__hou,0.117193,PASS
+hard_masking_v2_top_features,hard_mask_v2_nationalroastday,25,char__ an,-0.112495,PASS

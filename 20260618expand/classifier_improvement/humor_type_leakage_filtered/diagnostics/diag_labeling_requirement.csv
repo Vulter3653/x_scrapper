@@ -1,0 +1,12 @@
+experiment,n_training_rows,n_aggressive_rows,training_fraction,pr_auc_mean,pr_auc_std,variant,target_pr_auc,estimated_n_rows_needed,estimated_n_aggressive_rows_needed,current_n_rows,current_n_aggressive,current_batch1_aggressive,slope_log_fit,intercept_log_fit,diagnostic_note
+labeling_requirement_learning_curve,277,41,0.3,0.3945,0.0875,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_learning_curve,370,55,0.4,0.4234,0.0729,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_learning_curve,463,69,0.5,0.4211,0.0871,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_learning_curve,555,83,0.6,0.4108,0.0699,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_learning_curve,648,97,0.7,0.4443,0.0853,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_learning_curve,740,111,0.8,0.4324,0.0792,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_learning_curve,833,125,0.9,0.4586,0.0966,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_learning_curve,926,139,1.0,0.4601,0.0974,mask_all_leakage_groups,,,,,,,,,
+labeling_requirement_extrapolation,,,,,,mask_all_leakage_groups,0.5,2341,351,926,139,44,0.0485,0.123704,log-linear extrapolation; treat as rough order-of-magnitude estimate only
+labeling_requirement_extrapolation,,,,,,mask_all_leakage_groups,0.55,6566,985,926,139,44,0.0485,0.123704,log-linear extrapolation; treat as rough order-of-magnitude estimate only
+labeling_requirement_extrapolation,,,,,,mask_all_leakage_groups,0.6,18409,2763,926,139,44,0.0485,0.123704,log-linear extrapolation; treat as rough order-of-magnitude estimate only

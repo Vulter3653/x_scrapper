@@ -1,0 +1,5 @@
+experiment,variant,eval_scope,n_rows,n_aggressive_in_test,pr_auc,roc_auc,f1,precision,recall
+hard_masking_v2_source_heldout,mask_all_leakage_groups,train_batch1_test_wendys,278,95,0.4816,0.6621,0.0404,0.5,0.0211
+hard_masking_v2_source_heldout,mask_all_leakage_groups,train_wendys_test_batch1,648,44,0.1466,0.6798,0.2389,0.1484,0.6136
+hard_masking_v2_source_heldout,hard_mask_v2_nationalroastday,train_batch1_test_wendys,278,95,0.4644,0.6438,0.0404,0.5,0.0211
+hard_masking_v2_source_heldout,hard_mask_v2_nationalroastday,train_wendys_test_batch1,648,44,0.1421,0.6828,0.2323,0.1494,0.5227

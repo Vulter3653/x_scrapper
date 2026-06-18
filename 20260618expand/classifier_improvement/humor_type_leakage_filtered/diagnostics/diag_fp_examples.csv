@@ -1,0 +1,31 @@
+example_type,row_id,source,company_name,true_label,true_aggressive,pred_aggressive_prob,text,suspected_leakage_cue
+false_positive,type_combined_0749,wendys_human_type,Wendy's,self-defeating,0,0.5547,When i text you “🗣” know that sir this is a Wendy’s,wendy_brand
+false_positive,type_combined_0852,wendys_human_type,Wendy's,affiliative,0,0.55,"Well, that was fun. To all of those we torched, as they say, “you roast the ones you love.” If we didn’t get to you, maybe that’s the biggest burn of all. Either way, Free Frosty-ccino in the Wendy’s ",nationalroastday_hashtag;wendy_brand;wendy_product;roast_verb
+false_positive,type_combined_0526,batch1_fortune100,Walmart,self-enhancing,0,0.5488,This is your sign that you should shop the Deals while you still can.,modal_should
+false_positive,type_combined_0272,batch1_fortune100,Tesla,self-enhancing,0,0.5487,No other car can do this,none_detected
+false_positive,type_combined_0782,wendys_human_type,Wendy's,affiliative,0,0.5476,Potatoes wish they could be our fries when they grow up.,none_detected
+false_positive,type_combined_0861,wendys_human_type,Wendy's,affiliative,0,0.5431,"Hey funny zoom background guy, it’s a new year. That means finding something else to make up for your lack of personality, and also #NationalRoastDay is about to be back! SOON.",nationalroastday_hashtag;roast_verb
+false_positive,type_combined_0851,wendys_human_type,Wendy's,affiliative,0,0.5417,Savor the moment. The best roasts of #NationalRoastDay 2021 are right here. https://t.co/naLA8BFQrw,nationalroastday_hashtag;roast_verb
+false_positive,type_combined_0922,wendys_human_type,Wendy's,affiliative,0,0.54,"meryl can have a little french fries, as a treat.",none_detected
+false_positive,type_combined_0370,batch1_fortune100,Tesla,self-enhancing,0,0.5384,FSD Supervised sees things you don’t,none_detected
+false_positive,type_combined_0765,wendys_human_type,Wendy's,self-enhancing,0,0.5313,"What if I told ya the classic ✨Dave’s Single ✨ was just $1 in the app? Welp, this is me telling you.",none_detected
+false_positive,type_combined_0666,wendys_human_type,Wendy's,self-enhancing,0,0.5305,life is so crazy bc wdym i’m giving out bogo dave’s singles or doubles on doordash just bc some lady asked where’s the beef 42 years ago,none_detected
+false_positive,type_combined_0770,wendys_human_type,Wendy's,self-enhancing,0,0.5292,Soggy fries where? I don’t have any.,none_detected
+false_positive,type_combined_0631,batch1_fortune100,Publix Super Markets,affiliative,0,0.529,It’s the best wurst day ever! #NationalBratwurstDay,none_detected
+false_positive,type_combined_0027,batch1_fortune100,Publix Super Markets,self-enhancing,0,0.528,"If you could be any Publix Bakery item, which would you be? 🍪🎂🥐",none_detected
+false_positive,type_combined_0728,wendys_human_type,Wendy's,affiliative,0,0.527,Got tired of chasing trends. Please have a cheeseburger for lunch,none_detected
+false_positive,type_combined_0710,wendys_human_type,Wendy's,self-enhancing,0,0.5257,That’s the perfect place for people that don’t like beef tbh,none_detected
+false_positive,type_combined_0588,batch1_fortune100,Walmart,self-enhancing,0,0.5239,"Not right now, Mommy is ordering Sleepy time tea. #NationalRelaxationDay",none_detected
+false_positive,type_combined_0683,wendys_human_type,Wendy's,self-enhancing,0,0.5199,When mom doesn’t stop for a Wendy’s Krabby Patty Kollab burger https://t.co/jZgDsddw1l,wendy_brand
+false_positive,type_combined_0240,batch1_fortune100,Nationwide,affiliative,0,0.5174,That Paintin’ Manning commercial has me rolling every time. Nobody can pull that off but him 😂,none_detected
+false_positive,type_combined_0756,wendys_human_type,Wendy's,self-defeating,0,0.5174,"Well, no one else was using the drive thru. 🤷‍♀️",none_detected
+false_positive,type_combined_0921,wendys_human_type,Wendy's,self-defeating,0,0.5169,Not saying eating our french fries gets you an #Oscar nomination but also...sup,none_detected
+false_positive,type_combined_0850,wendys_human_type,Wendy's,self-defeating,0,0.5162,Oh no...how embarrassing. Hopefully no one reads this.,none_detected
+false_positive,type_combined_0539,batch1_fortune100,AT&T,self-defeating,0,0.516,My mom just asked if she could use her tablet to make a phone call... this is gonna be a loooooooong winter break...,none_detected
+false_positive,type_combined_0610,batch1_fortune100,Walmart,self-defeating,0,0.516,crashing out bc I grabbed a basket but need a cart and that’s a long walk back,none_detected
+false_positive,type_combined_0733,wendys_human_type,Wendy's,self-defeating,0,0.5148,You shouldn’t have said anything … https://t.co/iRUrFOCaNs,modal_should
+false_positive,type_combined_0622,batch1_fortune100,Target,self-defeating,0,0.5146,Who's your crush?,none_detected
+false_positive,type_combined_0738,wendys_human_type,Wendy's,affiliative,0,0.5123,You know what rhymes with Roast? Toast. Let’s do a whole Toast Day thing. Might be fun.,roast_verb
+false_positive,type_combined_0743,wendys_human_type,Wendy's,self-enhancing,0,0.5107,"@ChaosYT_ call us mrs. steal ur anime boi, @BurgerKing #ChooseHotAndCrispy https://t.co/uEfjlwXbV2",none_detected
+false_positive,type_combined_0275,batch1_fortune100,Nationwide,affiliative,0,0.5105,IT'S CUCHOOOOOOOOOO,none_detected
+false_positive,type_combined_0070,batch1_fortune100,Nationwide,affiliative,0,0.5104,She rocked that! 🎸,none_detected
