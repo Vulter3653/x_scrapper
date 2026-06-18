@@ -26,6 +26,8 @@ Readiness checks:
 
 ## H2
 
+Aggressive humor sparsity notice: The current Fortune Top 100 collected data contain only 95 aggressive humor posts (0.15% of the post-level sample). H2 aggressive-humor coefficient comparisons should be interpreted with caution given this extreme sparsity.
+
 Post-level type comparison:
 
 ```text
@@ -41,6 +43,10 @@ log_total_engagement_ij = beta0
 The contrast table should compare aggressive humor against affiliative, self-enhancing, and self-defeating humor. Baseline can be non-humorous or an omitted humor type, but the contrast table must make the aggressive-versus-other comparison explicit.
 
 ## H3
+
+Current data status: The current Fortune Top 100 collected data contain only 95 aggressive humor posts, approximately 0.15% of the deduplicated post-level sample. At the firm-month level, only 84 out of 3,532 firm-month rows have aggressive_humor_usage_intensity greater than zero. Therefore, H3 is not treated as confirmatory inverted-U evidence. It is reported only as exploratory/readiness evidence.
+
+Ambiguous denominator notice: Ambiguous humor_presence rows account for 31,456 posts, or 48.2% of the deduplicated post-level sample. In the current package, all-post denominator usage rates include ambiguous posts in the denominator, while humor and aggressive humor counts only count binary classified humor labels. Therefore, all-post denominator intensity should be interpreted as a conservative lower-bound measure. Because ambiguous rows are large and aggressive humor is extremely sparse, H3 is reported only as exploratory/readiness evidence.
 
 Firm-period baseline:
 
@@ -61,3 +67,5 @@ Interpretation rule:
 - turning point falls inside the observed `aggressive_humor_usage_intensity` range
 
 If firm-month observations are sparse, H3 must be reported as exploratory/readiness evidence rather than confirmatory hypothesis evidence.
+
+Current data trigger: The 84 non-zero firm-month rows and 95 aggressive posts already trigger this rule. H3 is classified as exploratory/readiness for the current Fortune Top 100 collected dataset.

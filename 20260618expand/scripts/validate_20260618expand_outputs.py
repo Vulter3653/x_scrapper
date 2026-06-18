@@ -84,6 +84,53 @@ def main() -> int:
                 continue
             failures.append(f"forbidden output path touched by package traversal: {resolved}")
 
+    # Content checks for required audit documentation
+    content_checks = [
+        (
+            "reports/model_free_evidence.md",
+            "aggressive: 95",
+            "model_free_evidence.md must contain aggressive humor frequency count (aggressive: 95)",
+        ),
+        (
+            "reports/model_free_evidence.md",
+            "ambiguous",
+            "model_free_evidence.md must contain ambiguous post count documentation",
+        ),
+        (
+            "reports/h1_h2_h3_analysis_plan.md",
+            "exploratory",
+            "h1_h2_h3_analysis_plan.md must contain H3 exploratory/readiness downgrade statement",
+        ),
+        (
+            "reports/variable_construction.md",
+            "bookmark_count",
+            "variable_construction.md must document bookmark_count exclusion and DV difference from Wendy's",
+        ),
+    ]
+    for rel, keyword, message in content_checks:
+        path = PACKAGE / rel
+        if path.exists():
+            text = path.read_text(encoding="utf-8")
+            if keyword not in text:
+                failures.append(message)
+
+    # Period format check: all period values in post-level regression-ready must be YYYY-MM or missing_period
+    period_path = PACKAGE / "data/regression_ready/fortune100_post_level_regression_ready.csv"
+    if period_path.exists():
+        import re as _re
+        period_pattern = _re.compile(r"^\d{4}-\d{2}$")
+        bad_periods: list[str] = []
+        with period_path.open("r", encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            for row in reader:
+                val = row.get("period", "")
+                if val and val != "missing_period" and not period_pattern.match(val):
+                    bad_periods.append(val)
+                    if len(bad_periods) >= 5:
+                        break
+        if bad_periods:
+            failures.append(f"period column contains non-YYYY-MM values: {bad_periods[:5]}")
+
     if failures:
         print("VALIDATION FAIL")
         for failure in failures:

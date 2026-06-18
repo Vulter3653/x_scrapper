@@ -8,6 +8,10 @@
 - `scripts/build_fortune100_regression_ready.py`: builds post-level H1/H2 and firm-period H3 regression-ready datasets.
 - `scripts/validate_20260618expand_outputs.py`: validates required files, columns, JSON, and package isolation.
 
+## Engagement DV Note
+
+The Fortune Top 100 expansion defines total_engagement as reply_count + repost_count/retweet_count + like_count/favorite_count + quote_count. bookmark_count is excluded from the default dependent variable because it is not consistently available in the Fortune Top 100 raw collection files. Therefore, the Fortune Top 100 expansion DV may not be identical to the earlier 20260615 Wendy's-only DV, where bookmark_count may have been included. Coefficients or mean values should not be directly compared between the Wendy's-only analysis and the Fortune Top 100 expansion without accounting for this DV difference.
+
 ## Data Outputs
 
 - `data/processed/fortune100_post_master.csv`: deduplicated post-level master dataset.

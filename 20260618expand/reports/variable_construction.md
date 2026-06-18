@@ -20,6 +20,8 @@ This expansion preserves the Wendy's-only structure in `20260615wendy's/` while 
 - total engagement: `reply_count + repost_count + like_count + quote_count`
 - brand equity proxy: `log_total_engagement = log1p(total_engagement)`
 
+bookmark_count is excluded from the default dependent variable because it is not consistently available in the Fortune Top 100 raw collection files. Therefore, the Fortune Top 100 expansion DV may not be identical to the earlier 20260615 Wendy's-only DV, where bookmark_count may have been included. Coefficients or mean values should not be directly compared between the Wendy's-only analysis and the Fortune Top 100 expansion without accounting for this DV difference.
+
 Post format controls are:
 
 - `text_length`
@@ -50,3 +52,5 @@ aggressive_humor_usage_intensity_sq = aggressive_humor_usage_intensity^2
 ```
 
 This is a usage rate, not message-level semantic intensity.
+
+Ambiguous denominator notice: Ambiguous humor_presence rows account for 31,456 posts, or 48.2% of the deduplicated post-level sample. In the current package, all-post denominator usage rates include ambiguous posts in the denominator, while humor and aggressive humor counts only count binary classified humor labels (humor_presence == 1). Therefore, all-post denominator intensity should be interpreted as a conservative lower-bound measure. Because ambiguous rows are large and aggressive humor is extremely sparse (95 posts, 0.15%), H3 is reported only as exploratory/readiness evidence.

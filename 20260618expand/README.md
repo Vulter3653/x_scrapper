@@ -46,7 +46,15 @@ Current repository data:
 
 - H1: post-level
 - H2: post-level
-- H3: firm-month by default, subject to coverage diagnostics
+- H3: firm-month, **exploratory/readiness evidence only** (see H3 Status below)
+
+## H3 Status
+
+Current Fortune Top 100 collected data contain only 95 aggressive humor posts, approximately 0.15% of the deduplicated post-level sample. At the firm-month level, only 84 out of 3,532 firm-month rows have aggressive_humor_usage_intensity greater than zero. Therefore, H3 is not treated as confirmatory inverted-U evidence. It is reported only as exploratory/readiness evidence.
+
+## Engagement DV Difference from Wendy's-Only Analysis
+
+The Fortune Top 100 expansion defines total_engagement as reply_count + repost_count/retweet_count + like_count/favorite_count + quote_count. bookmark_count is excluded from the default dependent variable because it is not consistently available in the Fortune Top 100 raw collection files. Therefore, the Fortune Top 100 expansion DV may not be identical to the earlier 20260615 Wendy's-only DV, where bookmark_count may have been included. Coefficients or mean values should not be directly compared between the Wendy's-only analysis and the Fortune Top 100 expansion without accounting for this DV difference.
 
 ## Execution
 
