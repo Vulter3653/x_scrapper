@@ -1,0 +1,147 @@
+company_name,source_dataset,source_x_handle,total_posts,mean_humor_probability,humor_rate_t40,humor_rate_t50,humor_rate_t60,n_humor_t50,n_non_humor_t50,missing_text_posts
+AT&T,fortune100,@ATT,933,0.52898,0.987138,0.743837,0.069668,694,239,0
+AT&T,fortune100_raw_append,@ATT,4,0.510791,1.0,0.75,0.0,3,1,0
+AbbVie,fortune100,@abbvie,839,0.403102,0.468415,0.029797,0.0,25,814,0
+AbbVie,fortune100_raw_append,@abbvie,2,0.417193,0.5,0.0,0.0,0,2,0
+Albertsons,fortune100,@albertsons,765,0.554352,0.993464,0.830065,0.230065,635,130,0
+Allstate,fortune100,@allstate,568,0.504059,0.97007,0.53169,0.054577,302,266,0
+Alphabet,fortune100,@Alphabetlnc,2,0.552496,1.0,1.0,0.0,2,0,0
+Alphabet,fortune100,@google,474,0.486599,0.947257,0.388186,0.010549,184,290,0
+Amazon,fortune100,@amazon,1086,0.5002,0.955801,0.495396,0.05709,538,548,0
+Amazon,fortune100_raw_append,@amazon,13,0.480946,0.923077,0.615385,0.0,8,5,0
+American Airlines Group,fortune100,@AmericanAir,188,0.498972,0.962766,0.457447,0.074468,86,102,0
+American Express,fortune100,@americanexpress,831,0.485933,0.906137,0.43562,0.034898,362,469,0
+Archer Daniels Midland,fortune100,@ADMupdates,795,0.452549,0.836478,0.178616,0.008805,142,653,0
+Bank of America,fortune100,@bankofamerica,838,0.507786,0.937947,0.565632,0.077566,474,364,0
+Bank of America,fortune100_raw_append,@bankofamerica,1,0.602255,1.0,1.0,1.0,1,0,0
+Boeing,fortune100,@boeing,969,0.460324,0.840041,0.257998,0.008256,250,719,0
+Boeing,fortune100_raw_append,@boeing,1,0.424729,1.0,0.0,0.0,0,1,0
+Bristol-Myers Squibb,fortune100,@bmsnews,930,0.412607,0.531183,0.05914,0.001075,55,875,0
+Bristol-Myers Squibb,fortune100_raw_append,@bmsnews,1,0.452089,1.0,0.0,0.0,0,1,0
+Broadcom,fortune100,@broadcom,183,0.428791,0.743169,0.065574,0.005464,12,171,0
+Broadcom,fortune100_raw_append,@broadcom,1,0.406035,1.0,0.0,0.0,0,1,0
+CVS Health,fortune100,@cvshealth,574,0.422106,0.597561,0.116725,0.008711,67,507,0
+Capital One Financial,fortune100,@CapitalOne,628,0.527095,0.990446,0.684713,0.066879,430,198,0
+Cardinal Health,fortune100,@cardinalhealth,520,0.429154,0.703846,0.094231,0.0,49,471,0
+Caterpillar,fortune100,@CaterpillarInc,891,0.480549,0.881033,0.416386,0.020202,371,520,0
+Cencora,fortune100,@CencoraGlobal,479,0.406852,0.498956,0.043841,0.0,21,458,0
+Centene,fortune100,@centene,465,0.405277,0.531183,0.017204,0.0,8,457,0
+Charter Communications,fortune100,@CharterNewsroom,657,0.434118,0.721461,0.13242,0.009132,87,570,0
+Charter Communications,fortune100_raw_append,@CharterNewsroom,7,0.456752,1.0,0.285714,0.0,2,5,0
+Chevron,fortune100,@chevron,805,0.437066,0.744099,0.115528,0.003727,93,712,0
+Cigna Group,fortune100,@Cigna,527,0.434909,0.688805,0.13852,0.005693,73,454,0
+Cigna Group,fortune100,@TheCignaGroup,59,0.392092,0.423729,0.0,0.0,0,59,0
+Cisco Systems,fortune100,@Cisco,1007,0.455897,0.851043,0.218471,0.005958,220,787,0
+Cisco Systems,fortune100_raw_append,@Cisco,10,0.464808,0.9,0.4,0.0,4,6,0
+Citigroup,fortune100,@Citi,400,0.424049,0.655,0.105,0.0,42,358,0
+Citigroup,fortune100_raw_append,@Citi,3,0.473342,1.0,0.333333,0.0,1,2,0
+Coca-Cola,cocacola_legacy,CocaCola,708,0.551273,0.997175,0.829096,0.190678,587,121,0
+Coca-Cola,fortune100,@cocacola,158,0.561476,1.0,0.898734,0.246835,142,16,0
+Comcast,fortune100,@comcast,1096,0.484554,0.889599,0.421533,0.043796,462,634,0
+Comcast,fortune100_raw_append,@comcast,11,0.534365,1.0,0.636364,0.181818,7,4,0
+ConocoPhillips,fortune100,@conocophillips,942,0.441002,0.766454,0.135881,0.005308,128,814,0
+ConocoPhillips,fortune100_raw_append,@conocophillips,2,0.450422,1.0,0.0,0.0,0,2,0
+Dell Technologies,fortune100,@Dell,724,0.522768,0.969613,0.620166,0.146409,449,275,0
+Dell Technologies,fortune100_raw_append,@Dell,6,0.506664,1.0,0.5,0.0,3,3,0
+Delta Air Lines,fortune100,@Delta,716,0.547394,0.988827,0.769553,0.234637,551,165,0
+Elevance Health,fortune100,@elevancehealth,612,0.413734,0.593137,0.05719,0.0,35,577,0
+Eli Lilly,fortune100,@EliLillyandCo,563,0.413987,0.536412,0.079929,0.0,45,518,0
+Energy Transfer,fortune100,@energytransfer,697,0.458435,0.860832,0.23099,0.005739,161,536,0
+Energy Transfer,fortune100_raw_append,@energytransfer,8,0.427781,0.625,0.0,0.0,0,8,0
+Enterprise Products Partners,fortune100,@EProd_Careers,761,0.515977,1.0,0.604468,0.082786,460,301,0
+Exxon Mobil,fortune100,@exxonmobil,582,0.442413,0.771478,0.14433,0.008591,84,498,0
+Fannie Mae,fortune100,@fanniemae,600,0.428082,0.67,0.105,0.003333,63,537,0
+Fannie Mae,fortune100_raw_append,@fanniemae,2,0.48988,1.0,0.5,0.0,1,1,0
+FedEx,fortune100,@fedex,882,0.521834,0.97619,0.704082,0.070295,621,261,0
+Ford Motor,fortune100,@Ford,1146,0.532894,0.99651,0.760035,0.089005,871,275,0
+Freddie Mac,fortune100,@FreddieMac,215,0.410316,0.618605,0.018605,0.0,4,211,0
+Freddie Mac,fortune100_raw_append,@FreddieMac,5,0.411495,0.8,0.0,0.0,0,5,0
+Galaxy Digital,fortune100,@galaxydigital,137,0.506824,0.985401,0.510949,0.043796,70,67,0
+General Dynamics,fortune100,@generaldynamics,1493,0.469824,0.906229,0.269257,0.003349,402,1091,0
+General Motors,fortune100,@GM,694,0.470494,0.886167,0.304035,0.012968,211,483,0
+Goldman Sachs Group,fortune100,@GoldmanSachs,1012,0.432653,0.748024,0.081028,0.003953,82,930,0
+Goldman Sachs Group,fortune100_raw_append,@GoldmanSachs,2,0.387225,0.0,0.0,0.0,0,2,0
+HCA Healthcare,fortune100,@hcahealthcare,584,0.419314,0.614726,0.066781,0.0,39,545,0
+HCA Healthcare,fortune100_raw_append,@hcahealthcare,1,0.466642,1.0,0.0,0.0,0,1,0
+HP,fortune100,@hp,405,0.485468,0.948148,0.367901,0.014815,149,256,0
+HP,fortune100_raw_append,@hp,2,0.494103,1.0,0.0,0.0,0,2,0
+Home Depot,fortune100,@HDCares,821,0.40823,0.431181,0.192448,0.010962,158,663,0
+Home Depot,fortune100,@homedepot,571,0.512091,0.963222,0.567426,0.085814,324,247,0
+Home Depot,fortune100_raw_append,@homedepot,5,0.557288,1.0,1.0,0.0,5,0,0
+Humana,fortune100,@humana,758,0.429311,0.637203,0.154354,0.009235,117,641,0
+IBM,fortune100,@ibm,541,0.479345,0.911275,0.340111,0.044362,184,357,0
+IBM,fortune100_raw_append,@ibm,5,0.537106,1.0,0.8,0.2,4,1,0
+Ingram Micro Holding,fortune100,@IngramMicroInc,931,0.507136,0.975295,0.54565,0.051557,508,423,0
+Ingram Micro Holding,fortune100_raw_append,@IngramMicroInc,4,0.512406,1.0,0.5,0.0,2,2,0
+Intel,fortune100,@intel,287,0.46822,0.874564,0.289199,0.027875,83,204,0
+Intel,fortune100_raw_append,@intel,4,0.480571,0.75,0.5,0.0,2,2,0
+JPMorgan Chase,fortune100,@jpmorgan,835,0.449652,0.820359,0.177246,0.013174,148,687,0
+JPMorgan Chase,fortune100_raw_append,@jpmorgan,4,0.406567,0.75,0.0,0.0,0,4,0
+Johnson & Johnson,fortune100,@JNJNews,760,0.428375,0.697368,0.102632,0.002632,78,682,0
+Johnson & Johnson,fortune100_raw_append,@JNJNews,1,0.344255,0.0,0.0,0.0,0,1,0
+Kroger,fortune100,@kroger,888,0.53793,0.976351,0.762387,0.161036,677,211,0
+Liberty Mutual Insurance Group,fortune100,@LibertyMutual,1018,0.540434,0.997053,0.820236,0.117878,835,183,0
+Lockheed Martin,fortune100,@lockheedmartin,861,0.479083,0.953542,0.317073,0.00813,273,588,0
+Lockheed Martin,fortune100_raw_append,@lockheedmartin,6,0.449421,1.0,0.166667,0.0,1,5,0
+Lowe's,fortune100,@lowes,908,0.52186,0.97467,0.624449,0.129956,567,341,0
+Lowe's,fortune100_raw_append,@lowes,1,0.544951,1.0,1.0,0.0,1,0,0
+Marathon Petroleum,fortune100,@MarathonPetroCo,377,0.461717,0.904509,0.217507,0.013263,82,295,0
+Marathon Petroleum,fortune100_raw_append,@MarathonPetroCo,2,0.421679,1.0,0.0,0.0,0,2,0
+Massachusetts Mutual Life,fortune100,@massmutual,859,0.485226,0.883586,0.426077,0.044237,366,493,0
+McKesson,fortune100,@mckesson,840,0.405613,0.505952,0.060714,0.002381,51,789,0
+Merck,fortune100,@merck,507,0.400999,0.441815,0.092702,0.0,47,460,0
+MetLife,fortune100,@metlife,779,0.444318,0.770218,0.168164,0.008986,131,648,0
+Meta Platforms,fortune100,@Meta,151,0.495997,0.993377,0.490066,0.013245,74,77,0
+Microsoft,fortune100,@microsoft,666,0.485896,0.930931,0.405405,0.015015,270,396,0
+Microsoft,fortune100_raw_append,@microsoft,4,0.477979,0.75,0.25,0.0,1,3,0
+MoonPie,moonpie_legacy,MoonPie,930,0.563732,0.997849,0.882796,0.269892,821,109,0
+Morgan Stanley,fortune100,@morganstanley,846,0.430424,0.6513,0.117021,0.008274,99,747,0
+Morgan Stanley,fortune100_raw_append,@morganstanley,4,0.405985,0.75,0.0,0.0,0,4,0
+Nationwide,fortune100,@nationwide,1149,0.526767,0.986075,0.711923,0.072237,818,331,0
+New York Life Insurance,fortune100,@NewYorkLife,456,0.500624,0.967105,0.510965,0.048246,233,223,0
+Nike,fortune100,@nike,192,0.543723,1.0,0.838542,0.083333,161,31,0
+Nvidia,fortune100,@nvidia,1117,0.457057,0.844226,0.218442,0.005372,244,873,0
+Nvidia,fortune100_raw_append,@nvidia,15,0.432538,0.8,0.0,0.0,0,15,0
+Oracle,fortune100,@oracle,909,0.453214,0.80088,0.218922,0.009901,199,710,0
+Oracle,fortune100_raw_append,@oracle,4,0.387325,0.25,0.0,0.0,0,4,0
+PepsiCo,fortune100,@pepsico,817,0.488784,0.905753,0.403917,0.079559,330,487,0
+Performance Food Group,fortune100,@PFGCareers,3,0.494462,1.0,0.333333,0.0,1,2,0
+Pfizer,fortune100,@pfizer,382,0.442199,0.751309,0.17801,0.005236,68,314,0
+Pfizer,fortune100_raw_append,@pfizer,1,0.381242,0.0,0.0,0.0,0,1,0
+Phillips 66,fortune100,@Phillips66co,684,0.450116,0.807018,0.223684,0.005848,153,531,0
+Procter & Gamble,fortune100,@ProcterGamble,268,0.462968,0.906716,0.223881,0.011194,60,208,0
+Progressive,fortune100,@progressive,170,0.541945,1.0,0.758824,0.129412,129,41,0
+Prudential Financial,fortune100,@Prudential,874,0.469247,0.889016,0.29405,0.020595,257,617,0
+Publix Super Markets,fortune100,@Publix,851,0.559226,0.976498,0.782609,0.340776,666,185,0
+Publix Super Markets,fortune100_raw_append,@Publix,1,0.548863,1.0,1.0,0.0,1,0,0
+RTX,fortune100,@RTX_News,865,0.439396,0.827746,0.093642,0.001156,81,784,0
+State Farm Insurance,fortune100,@StateFarm,147,0.54148,1.0,0.85034,0.102041,125,22,0
+State Farm Insurance,fortune100_raw_append,@StateFarm,1,0.576703,1.0,1.0,0.0,1,0,0
+StoneX Group,fortune100,@StoneX_Official,848,0.444335,0.865566,0.087264,0.0,74,774,0
+StoneX Group,fortune100_raw_append,@StoneX_Official,4,0.420772,0.75,0.0,0.0,0,4,0
+Sysco,fortune100,@sysco,863,0.484009,0.931634,0.402086,0.01854,347,516,0
+TD Synnex,fortune100,@tdsynnex,488,0.48463,0.938525,0.366803,0.028689,179,309,0
+TIAA,fortune100,@tiaa,217,0.457969,0.861751,0.230415,0.023041,50,167,0
+TJX,fortune100,@tjmaxx,909,0.501999,0.89549,0.547855,0.064906,498,411,0
+Target,fortune100,@target,595,0.550599,0.989916,0.830252,0.188235,494,101,0
+Tesla,fortune100,@tesla,711,0.538987,0.990155,0.786217,0.133615,559,152,0
+Tesla,fortune100_raw_append,@tesla,10,0.572853,1.0,0.9,0.3,9,1,0
+Travelers,fortune100,@travelers,835,0.463014,0.817964,0.305389,0.020359,255,580,0
+Tyson Foods,fortune100,@tysonfoods,1081,0.482601,0.93802,0.362627,0.026827,392,689,0
+Tyson Foods,fortune100_raw_append,@tysonfoods,1,0.448019,1.0,0.0,0.0,0,1,0
+UPS,fortune100,@ups,200,0.518147,0.995,0.66,0.06,132,68,0
+UPS,fortune100_raw_append,@ups,2,0.548544,1.0,1.0,0.0,2,0,0
+USAA,fortune100,@usaa,899,0.494504,0.972191,0.440489,0.025584,396,503,0
+Uber Technologies,fortune100,@Uber,952,0.528586,0.995798,0.720588,0.087185,686,266,0
+Uber Technologies,fortune100_raw_append,@Uber,8,0.537843,1.0,0.875,0.125,7,1,0
+United Airlines Holdings,fortune100,@united,292,0.535136,0.993151,0.732877,0.140411,214,78,0
+United Airlines Holdings,fortune100_raw_append,@united,2,0.539844,1.0,0.5,0.5,1,1,0
+UnitedHealth Group,fortune100,@UnitedHealthGrp,155,0.427681,0.670968,0.096774,0.0,15,140,0
+Valero Energy,fortune100,@valeroenergy,186,0.509237,0.989247,0.586022,0.026882,109,77,0
+Verizon Communications,fortune100,@Verizon,43,0.465779,0.930233,0.325581,0.0,14,29,0
+Verizon Communications,fortune100_raw_append,@Verizon,2,0.492669,1.0,0.0,0.0,0,2,0
+Walmart,fortune100,@walmart,842,0.544902,0.996437,0.776722,0.163895,654,188,0
+Walt Disney,fortune100,@Disney,1353,0.543343,0.999261,0.847746,0.101996,1147,206,0
+Walt Disney,fortune100_raw_append,@Disney,6,0.566038,1.0,1.0,0.0,6,0,0
+Wells Fargo,fortune100,@wellsfargo,256,0.503973,0.953125,0.492188,0.097656,126,130,0
+Wendy's,wendys_legacy,Wendys,977,0.55415,0.997953,0.863869,0.190379,844,133,0

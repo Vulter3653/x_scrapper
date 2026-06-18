@@ -1,0 +1,6 @@
+source_dataset,input_path,raw_rows,parsed_rows,duplicate_rows_removed,final_rows,min_date,max_date,missing_text_rows,missing_date_rows,has_engagement_fields,usable_as_post_corpus,notes
+fortune100,20260618expand/data/processed/fortune100_post_master.csv,65245,65245,0,65245,2015-07-24,2026-06-14,0,0,yes,yes,Fortune 100 post master; treated as highest dedupe priority.
+wendys_legacy,data/wendys/posts.json,978,978,1,977,2009-11-26,2026-06-11,0,0,yes,yes,Existing legacy brand post-level file included.
+moonpie_legacy,data/moonpie/posts.json,932,932,2,930,2012-04-02,2026-05-08,0,0,yes,yes,Existing legacy brand post-level file included.
+cocacola_legacy,data/cocacola/posts.json,866,866,158,708,2017-05-08,2023-09-12,0,0,yes,yes,Existing legacy brand post-level file included.
+fortune100_raw_append,data/raw/fortune_x_2025_ranked,65463,65463,65284,179,2015-07-24,2026-06-18,0,0,yes,yes,Raw Fortune ranked posts from append workflow target directory; deduped after processed Fortune master.

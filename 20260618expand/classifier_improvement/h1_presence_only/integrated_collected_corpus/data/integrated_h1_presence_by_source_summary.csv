@@ -1,0 +1,6 @@
+source_dataset,total_posts,classified_posts,missing_text_posts,missing_date_posts,mean_humor_probability,humor_rate_t40,humor_rate_t50,humor_rate_t60,n_humor_t50,n_non_humor_t50
+cocacola_legacy,708,708,0,0,0.551273,0.997175,0.829096,0.190678,587,121
+fortune100,65245,65245,0,0,0.47795,0.850364,0.386068,0.048525,25189,40056
+fortune100_raw_append,179,179,0,0,0.480938,0.877095,0.407821,0.050279,73,106
+moonpie_legacy,930,930,0,0,0.563732,0.997849,0.882796,0.269892,821,109
+wendys_legacy,977,977,0,0,0.55415,0.997953,0.863869,0.190379,844,133
