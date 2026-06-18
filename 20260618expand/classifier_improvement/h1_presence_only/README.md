@@ -1,0 +1,53 @@
+# h1_presence_only — H1 Humor Presence Classifier Review
+
+## Purpose
+
+This directory documents the **classifier performance review** for H1 hypothesis testing.
+
+The scope is limited to:
+- Binary humor presence classification (humor vs non_humor)
+- batch1 human labels only (1,500 posts, 3 coders)
+- Performance evaluation of the best-identified presence classifier
+
+## What This Is NOT
+
+- This is NOT a H1 regression analysis.
+- This is NOT full corpus classification.
+- type classifier, aggressive detector, H2/H3 are entirely excluded from this scope.
+
+## Research Scope Reduction
+
+Prior scope:
+- H1: humor presence
+- H2: aggressive vs other humor type
+- H3: aggressive intensity / moderation
+
+Current scope (this directory):
+- **H1 only** — binary humor presence classification
+- type classifier: NOT used
+- aggressive detector: NOT used
+- H2/H3: BLOCKED / future work
+
+## Current Stage
+
+This directory covers **Stage: classifier performance review**.
+
+The next stage — full corpus application and H1 regression — is documented in
+`h1_next_step_decision.md` but is NOT executed here.
+
+## Source Results
+
+All performance numbers referenced here come from:
+- `../batch1_only_improvement/results/presence_model_comparison_cv.csv`
+- `../batch1_only_improvement/results/firm_held_out_presence_results.csv`
+- `../batch1_only_improvement/results/presence_cv_threshold_sensitivity.csv`
+
+Source files are not modified. This directory contains interpretation documents only.
+
+## Files
+
+| File | Content |
+|---|---|
+| `h1_presence_classifier_performance_memo.md` | Data, model, metrics, interpretation boundary |
+| `h1_claim_boundaries.md` | Permitted and prohibited claims |
+| `h1_next_step_decision.md` | Decision options for next stage |
