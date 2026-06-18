@@ -157,10 +157,41 @@ jobs:
           set -euo pipefail
           python -m pip install --upgrade pip
           pip install -r requirements-scrape.txt
-      - name: Install Playwright Chromium
-        timeout-minutes: 15
+      - name: Get Playwright version for cache key
+        id: pw-version
         shell: bash
-        run: python -m playwright install --with-deps chromium
+        run: echo "version=$(python -c 'import playwright; print(playwright.__version__)')" >> "$GITHUB_OUTPUT"
+      - name: Cache Playwright Chromium browser binary
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ steps.pw-version.outputs.version }}-${{ runner.os }}
+      - name: Install Playwright Chromium
+        timeout-minutes: 25
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.pw-cache.outputs.cache-hit }}" = 'true' ]; then
+            echo "Browser binary cache HIT — installing system deps only"
+            python -m playwright install-deps chromium
+          else
+            echo "Browser binary cache MISS — downloading with retry (up to 3 attempts)"
+            for attempt in 1 2 3; do
+              echo "=== Playwright install attempt ${attempt}/3 ==="
+              if python -m playwright install --with-deps chromium; then
+                echo "Playwright install succeeded on attempt ${attempt}"
+                break
+              fi
+              if [ "${attempt}" -lt 3 ]; then
+                echo "Attempt ${attempt} failed — waiting 30s before retry"
+                sleep 30
+              else
+                echo "ERROR: All 3 Playwright install attempts failed"
+                exit 1
+              fi
+            done
+          fi
       - name: Apply runtime patches
         shell: bash
         run: python scripts/patch_humor_append_runtime.py
