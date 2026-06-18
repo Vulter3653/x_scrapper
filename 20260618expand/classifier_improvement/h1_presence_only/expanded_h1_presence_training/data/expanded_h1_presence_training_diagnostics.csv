@@ -1,0 +1,3 @@
+source,raw_rows,valid_rows,humor_count,non_humor_count,excluded_rows,duplicate_rows_removed,final_rows
+batch1_fortune100,1500,1482,648,834,18,0,1482
+wendys_human,69,68,37,31,1,0,68
