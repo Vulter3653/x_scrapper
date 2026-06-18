@@ -1,0 +1,264 @@
+name: Backfill Humor Collection Through 2021
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_posts_per_account:
+        description: 'Maximum posts to collect per account during historical backfill (0 for all observable)'
+        required: true
+        default: '0'
+      max_scrolls:
+        description: 'Maximum scrolls per account; high values may be needed for older posts'
+        required: true
+        default: '3500'
+      shard_count:
+        description: 'Number of shards to split targets into. Supported: 1-12'
+        required: true
+        default: '12'
+      max_parallel:
+        description: 'Maximum shard jobs to run in parallel. Recommended: 1-3'
+        required: true
+        default: '2'
+      start_offset:
+        description: 'Rotate target order before sharding'
+        required: true
+        default: '0'
+      target_scope:
+        description: 'Target source: all active targets or latest failed active targets'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'failed_only'
+      cutoff_date:
+        description: 'Historical cutoff date; posts on or before this date are retained'
+        required: true
+        default: '2021-12-31'
+      commit_results:
+        description: 'Commit and push staging backfill outputs'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backfill-humor-through-2021
+  cancel-in-progress: false
+
+jobs:
+  validate-targets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      shard_count: ${{ steps.bounds.outputs.shard_count }}
+      max_parallel: ${{ steps.bounds.outputs.max_parallel }}
+      start_offset: ${{ steps.bounds.outputs.start_offset }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: bounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          shard_count='${{ inputs.shard_count }}'
+          max_parallel='${{ inputs.max_parallel }}'
+          start_offset='${{ inputs.start_offset }}'
+          cutoff_date='${{ inputs.cutoff_date }}'
+          test "$shard_count" -ge 1 && test "$shard_count" -le 12
+          test "$max_parallel" -ge 1 && test "$max_parallel" -le 12
+          test "$start_offset" -ge 0 && test "$start_offset" -le 200
+          test "$cutoff_date" = '2021-12-31'
+          python scripts/validate_backfill_through_2021_outputs.py --allow-empty --cutoff-date "$cutoff_date"
+          echo "shard_count=$shard_count" >> "$GITHUB_OUTPUT"
+          echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
+          echo "start_offset=$start_offset" >> "$GITHUB_OUTPUT"
+
+  collect-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    needs: validate-targets
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.validate-targets.outputs.max_parallel) }}
+      matrix:
+        shard_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    steps:
+      - uses: actions/checkout@v4
+      - id: shard
+        shell: bash
+        env:
+          SHARD_INDEX: ${{ matrix.shard_index }}
+          SHARD_COUNT: ${{ needs.validate-targets.outputs.shard_count }}
+          START_OFFSET: ${{ needs.validate-targets.outputs.start_offset }}
+          TARGET_SCOPE: ${{ inputs.target_scope }}
+        run: |
+          set -euo pipefail
+          mkdir -p shard_work shard_output
+          python - <<'PY'
+          import csv, os
+          from pathlib import Path
+          shard_index = int(os.environ['SHARD_INDEX'])
+          shard_count = int(os.environ['SHARD_COUNT'])
+          start_offset = int(os.environ['START_OFFSET'])
+          target_scope = os.environ.get('TARGET_SCOPE', 'all')
+          excluded_handles = {'@apple', '@berkshire', '@costco'}
+          source_path = Path('data/audit/humor_collection_append_failed_targets.csv') if target_scope == 'failed_only' else Path('config/humor_collection_append_targets.csv')
+          rows = list(csv.DictReader(source_path.open(encoding='utf-8-sig'))) if source_path.exists() else []
+          clean = []
+          seen = set()
+          for row in rows:
+              handle = (row.get('handle') or '').strip()
+              if not handle or handle.lower() in excluded_handles or handle in seen:
+                  continue
+              seen.add(handle)
+              clean.append({
+                  'fortune_rank': row.get('fortune_rank', ''),
+                  'company_name': row.get('company_name', ''),
+                  'handle': handle,
+                  'sample_group': row.get('sample_group') or row.get('source_group', ''),
+              })
+          if clean:
+              start_offset %= len(clean)
+              clean = clean[start_offset:] + clean[:start_offset]
+          selected = [row for i, row in enumerate(clean) if i % shard_count == shard_index]
+          with Path('shard_work/targets.csv').open('w', encoding='utf-8', newline='') as f:
+              w = csv.DictWriter(f, fieldnames=['fortune_rank','company_name','handle','sample_group'])
+              w.writeheader(); w.writerows(selected)
+          Path('shard_work/count.txt').write_text(str(len(selected)), encoding='utf-8')
+          print(f'target_scope={target_scope}')
+          print(f'source_target_count={len(clean)}')
+          print(f'shard_index={shard_index}')
+          print(f'shard_target_count={len(selected)}')
+          PY
+          echo "target_count=$(cat shard_work/count.txt)" >> "$GITHUB_OUTPUT"
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements-scrape.txt
+          python -m playwright install --with-deps chromium
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        shell: bash
+        run: python scripts/patch_humor_append_runtime.py
+      - if: ${{ steps.shard.outputs.target_count != '0' }}
+        env:
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+          PAGE_TIMEOUT_MS: '45000'
+        run: |
+          python scripts/run_humor_backfill_through_2021.py \
+            --targets shard_work/targets.csv \
+            --target-scope all \
+            --max-posts-per-account '${{ inputs.max_posts_per_account }}' \
+            --max-scrolls '${{ inputs.max_scrolls }}' \
+            --cutoff-date '${{ inputs.cutoff_date }}' \
+            --retry-attempts 1 \
+            --between-company-delay-seconds 30
+      - shell: bash
+        env:
+          SHARD_INDEX: ${{ matrix.shard_index }}
+        run: |
+          set -euo pipefail
+          mkdir -p shard_output/data/backfill
+          if [ -d data/backfill/humor_through_2021 ]; then
+            cp -a data/backfill/humor_through_2021 shard_output/data/backfill/
+            if [ -f shard_output/data/backfill/humor_through_2021/audit/backfill_through_2021_summary.csv ]; then
+              mv shard_output/data/backfill/humor_through_2021/audit/backfill_through_2021_summary.csv \
+                 shard_output/data/backfill/humor_through_2021/audit/backfill_through_2021_summary_shard_${SHARD_INDEX}.csv
+            fi
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: humor-backfill-through-2021-shard-${{ matrix.shard_index }}
+          path: shard_output/
+          retention-days: 3
+
+  aggregate-shards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: [validate-targets, collect-shards]
+    if: ${{ always() && needs.validate-targets.result == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git pull --rebase origin main
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: humor-backfill-through-2021-shard-*
+          path: artifact_downloads
+          merge-multiple: false
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv, shutil
+          from pathlib import Path
+          root = Path('artifact_downloads')
+          out = Path('data/backfill/humor_through_2021')
+          rows = []
+          fields = None
+          for src in sorted(root.glob('**/*')):
+              if not src.is_file() or 'data' not in src.parts:
+                  continue
+              rel = Path(*src.parts[src.parts.index('data'):])
+              if src.name.startswith('backfill_through_2021_summary_shard_'):
+                  with src.open(encoding='utf-8-sig', newline='') as f:
+                      reader = csv.DictReader(f)
+                      fields = reader.fieldnames or fields
+                      rows.extend(list(reader))
+                  continue
+              dst = Path(rel)
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(src, dst)
+          if fields is None:
+              fields = ['company_name','handle','source_group','status','attempts','previous_posts','collected_posts_raw','posts_on_or_before_2021','new_unique_posts_on_or_before_2021','duplicate_posts','min_date','max_date','reached_cutoff_date','stopped_reason','scrolls_completed','last_error']
+          audit = out / 'audit'
+          audit.mkdir(parents=True, exist_ok=True)
+          summary = audit / 'backfill_through_2021_summary.csv'
+          with summary.open('w', encoding='utf-8', newline='') as f:
+              w = csv.DictWriter(f, fieldnames=fields)
+              w.writeheader(); w.writerows(rows)
+          failed = [r for r in rows if str(r.get('status', '')).startswith('failed')]
+          if failed:
+              with (audit / 'backfill_through_2021_failed_targets.csv').open('w', encoding='utf-8', newline='') as f:
+                  w = csv.DictWriter(f, fieldnames=fields)
+                  w.writeheader(); w.writerows(failed)
+          (out / 'README.md').write_text('# Humor Historical Backfill Through 2021\n\nStaging output only. Not merged into integrated corpus. Official X API not used.\n', encoding='utf-8')
+          print(f'rows={len(rows)}')
+          print(f'posts_on_or_before_2021={sum(int(r.get("posts_on_or_before_2021") or 0) for r in rows)}')
+          PY
+      - shell: bash
+        run: python scripts/validate_backfill_through_2021_outputs.py --cutoff-date '${{ inputs.cutoff_date }}'
+      - shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "$(git status --short data/raw dashboard/data "20260615wendy's")" ]; then
+            echo "::error title=forbidden paths changed::raw/dashboard/20260615wendy's must not be modified."
+            git status --short data/raw dashboard/data "20260615wendy's"
+            exit 1
+          fi
+      - if: ${{ inputs.commit_results == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/backfill/humor_through_2021
+          if git diff --cached --quiet; then
+            echo 'No through-2021 backfill staging outputs to commit.'
+            exit 0
+          fi
+          git commit -m 'data: add through-2021 humor backfill staging outputs'
+          git push origin HEAD:main
