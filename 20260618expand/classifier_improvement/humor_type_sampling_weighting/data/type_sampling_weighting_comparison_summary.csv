@@ -1,0 +1,9 @@
+method,macro_f1,macro_f1_std,weighted_f1,accuracy,aggressive_f1,self_defeating_f1,leakage_flag,candidate_status
+type_model_a_batch1_only,0.3885,,0.5469,0.5571,0.1739,0.2143,baseline,baseline
+type_model_b_batch1_plus_wendys_human,0.4194,,0.5157,0.5184,0.4551,0.1493,FAIL,baseline
+balanced_undersampling_None,0.3638,0.0374,0.3638,0.3684,0.3472,0.3615,FAIL,diagnostic_only_balanced_sampling
+balanced_undersampling_balanced,0.3701,0.0331,0.3701,0.3735,0.3488,0.3648,FAIL,diagnostic_only_balanced_sampling
+source_weighting_W100,0.4194,,0.5157,0.5184,0.4551,0.1493,FAIL,no_candidate_retain_baseline
+source_weighting_W25,0.3963,,0.4918,0.4935,0.4136,0.1404,FAIL,no_candidate_retain_baseline
+source_weighting_W50,0.3971,,0.4944,0.4957,0.4311,0.125,FAIL,no_candidate_retain_baseline
+source_weighting_W75,0.4154,,0.5092,0.5108,0.4506,0.1515,FAIL,no_candidate_retain_baseline

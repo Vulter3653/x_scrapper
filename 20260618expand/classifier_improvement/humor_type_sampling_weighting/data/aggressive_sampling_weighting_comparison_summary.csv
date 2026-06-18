@@ -1,0 +1,9 @@
+method,pr_auc,pr_auc_std,f1,precision,recall,primary_or_secondary_threshold,leakage_flag,candidate_status
+aggressive_detector_a_batch1_only,0.2002,,0.1892,0.2333,0.1591,baseline,baseline,baseline
+aggressive_detector_b_batch1_plus_wendys_human,0.4356,,0.4474,0.4121,0.4892,baseline,FAIL,baseline
+balanced_undersampling_None,0.7524,0.0305,0.693,0.743,0.6496,yes,FAIL,diagnostic_only_balanced_sampling
+balanced_undersampling_balanced,0.7528,0.03,0.695,0.7449,0.6518,yes,FAIL,diagnostic_only_balanced_sampling
+source_weighting_W100,0.4356,,0.4474,0.4121,0.4892,no,FAIL,no_candidate_retain_baseline
+source_weighting_W25,0.3794,,0.443,0.3955,0.5036,no,FAIL,no_candidate_retain_baseline
+source_weighting_W50,0.4018,,0.4498,0.3895,0.5324,no,FAIL,no_candidate_retain_baseline
+source_weighting_W75,0.4235,,0.434,0.3855,0.4964,no,FAIL,no_candidate_retain_baseline

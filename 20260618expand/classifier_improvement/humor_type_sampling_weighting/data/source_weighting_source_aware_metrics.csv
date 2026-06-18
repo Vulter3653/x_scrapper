@@ -1,0 +1,17 @@
+task,weight_setting,source,n_rows,macro_f1,weighted_f1,accuracy,pr_auc,roc_auc,f1,precision,recall
+type_4class,W100,batch1_fortune100,648,0.4134,0.5421,0.5463,,,,,
+type_4class,W100,wendys_human_type,278,0.3807,0.4558,0.4532,,,,,
+aggressive_detector,W100,batch1_fortune100,648,,,,0.2405,0.8099,0.3704,0.3125,0.4545
+aggressive_detector,W100,wendys_human_type,278,,,,0.541,0.6865,0.4898,0.4752,0.5053
+type_4class,W25,batch1_fortune100,648,0.391,0.5264,0.5278,,,,,
+type_4class,W25,wendys_human_type,278,0.3364,0.4073,0.4137,,,,,
+aggressive_detector,W25,batch1_fortune100,648,,,,0.2486,0.8097,0.3455,0.2879,0.4318
+aggressive_detector,W25,wendys_human_type,278,,,,0.4724,0.629,0.4951,0.4595,0.5368
+type_4class,W50,batch1_fortune100,648,0.392,0.5259,0.5262,,,,,
+type_4class,W50,wendys_human_type,278,0.3418,0.4205,0.4245,,,,,
+aggressive_detector,W50,batch1_fortune100,648,,,,0.2463,0.8114,0.3652,0.2958,0.4773
+aggressive_detector,W50,wendys_human_type,278,,,,0.4998,0.6523,0.4953,0.4454,0.5579
+type_4class,W75,batch1_fortune100,648,0.4068,0.5396,0.5417,,,,,
+type_4class,W75,wendys_human_type,278,0.3674,0.4384,0.4388,,,,,
+aggressive_detector,W75,batch1_fortune100,648,,,,0.2451,0.8111,0.375,0.3088,0.4773
+aggressive_detector,W75,wendys_human_type,278,,,,0.5237,0.6711,0.466,0.4324,0.5053

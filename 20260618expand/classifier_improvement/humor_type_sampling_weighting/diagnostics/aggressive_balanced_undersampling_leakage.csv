@@ -1,0 +1,883 @@
+seed,class_weight,class_label,diagnostic_token,feature,weight,rank_abs_weight,leakage_flag
+0,None,aggressive,wendy,word__wendysspicynuggs,-0.035173,1,FAIL
+0,None,aggressive,wendy,word__me wendy,0.024375,2,FAIL
+0,None,aggressive,wendy,word__wendy,-0.010044,3,FAIL
+0,None,aggressive,wendy,word__the wendy,-0.005848,4,FAIL
+0,None,aggressive,wendy,word__wendy app,-0.005848,5,FAIL
+0,None,aggressive,wendys,word__wendysspicynuggs,-0.035173,1,FAIL
+0,None,aggressive,frosty,word__frosty,0.038529,1,FAIL
+0,None,aggressive,frosty,word__mints frosty,0.023874,2,FAIL
+0,None,aggressive,baconator,word__baconator,-0.025241,1,FAIL
+0,None,aggressive,baconator,word__breakfast baconator,0.002206,2,FAIL
+0,None,aggressive,nuggs,word__nuggs,-0.051277,1,FAIL
+0,None,aggressive,nuggs,word__spicy nuggs,-0.043829,2,FAIL
+0,None,aggressive,nuggs,word__wendysspicynuggs,-0.035173,3,FAIL
+0,None,aggressive,nuggs,char__nuggs,-0.023927,4,FAIL
+0,None,aggressive,roast,word__nationalroastday,0.138862,1,FAIL
+0,None,aggressive,roast,char__roast,0.056663,2,FAIL
+0,None,aggressive,roast,word__roasting,0.044618,3,FAIL
+0,None,aggressive,roast,word__roast me,0.032563,4,FAIL
+0,None,aggressive,roast,word__roast,0.03239,5,FAIL
+0,balanced,aggressive,wendy,word__wendysspicynuggs,-0.035173,1,FAIL
+0,balanced,aggressive,wendy,word__me wendy,0.024375,2,FAIL
+0,balanced,aggressive,wendy,word__wendy,-0.010044,3,FAIL
+0,balanced,aggressive,wendy,word__the wendy,-0.005848,4,FAIL
+0,balanced,aggressive,wendy,word__wendy app,-0.005848,5,FAIL
+0,balanced,aggressive,wendys,word__wendysspicynuggs,-0.035173,1,FAIL
+0,balanced,aggressive,frosty,word__frosty,0.038529,1,FAIL
+0,balanced,aggressive,frosty,word__mints frosty,0.023874,2,FAIL
+0,balanced,aggressive,baconator,word__baconator,-0.025241,1,FAIL
+0,balanced,aggressive,baconator,word__breakfast baconator,0.002206,2,FAIL
+0,balanced,aggressive,nuggs,word__nuggs,-0.051277,1,FAIL
+0,balanced,aggressive,nuggs,word__spicy nuggs,-0.043829,2,FAIL
+0,balanced,aggressive,nuggs,word__wendysspicynuggs,-0.035173,3,FAIL
+0,balanced,aggressive,nuggs,char__nuggs,-0.023927,4,FAIL
+0,balanced,aggressive,roast,word__nationalroastday,0.138862,1,FAIL
+0,balanced,aggressive,roast,char__roast,0.056663,2,FAIL
+0,balanced,aggressive,roast,word__roasting,0.044618,3,FAIL
+0,balanced,aggressive,roast,word__roast me,0.032563,4,FAIL
+0,balanced,aggressive,roast,word__roast,0.03239,5,FAIL
+1,None,aggressive,wendy,word__wendy,-0.039065,1,FAIL
+1,None,aggressive,wendy,word__the wendy,-0.035977,2,FAIL
+1,None,aggressive,wendy,word__wendy app,-0.035977,3,FAIL
+1,None,aggressive,wendy,word__me wendy,0.023096,4,FAIL
+1,None,aggressive,wendy,char__wendy,-0.011888,5,FAIL
+1,None,aggressive,frosty,word__mints frosty,0.023295,1,FAIL
+1,None,aggressive,frosty,word__frosty,-0.006414,2,FAIL
+1,None,aggressive,baconator,word__baconator,-0.017179,1,FAIL
+1,None,aggressive,roast,word__nationalroastday,0.125447,1,FAIL
+1,None,aggressive,roast,char__roast,0.058176,2,FAIL
+1,None,aggressive,roast,word__roasting,0.042898,3,FAIL
+1,None,aggressive,roast,word__roast,0.032262,4,FAIL
+1,None,aggressive,roast,word__roast me,0.030995,5,FAIL
+1,balanced,aggressive,wendy,word__wendy,-0.039065,1,FAIL
+1,balanced,aggressive,wendy,word__the wendy,-0.035977,2,FAIL
+1,balanced,aggressive,wendy,word__wendy app,-0.035977,3,FAIL
+1,balanced,aggressive,wendy,word__me wendy,0.023096,4,FAIL
+1,balanced,aggressive,wendy,char__wendy,-0.011888,5,FAIL
+1,balanced,aggressive,frosty,word__mints frosty,0.023295,1,FAIL
+1,balanced,aggressive,frosty,word__frosty,-0.006414,2,FAIL
+1,balanced,aggressive,baconator,word__baconator,-0.017179,1,FAIL
+1,balanced,aggressive,roast,word__nationalroastday,0.125447,1,FAIL
+1,balanced,aggressive,roast,char__roast,0.058176,2,FAIL
+1,balanced,aggressive,roast,word__roasting,0.042898,3,FAIL
+1,balanced,aggressive,roast,word__roast,0.032262,4,FAIL
+1,balanced,aggressive,roast,word__roast me,0.030995,5,FAIL
+2,None,aggressive,wendy,word__wendy,-0.046531,1,FAIL
+2,None,aggressive,wendy,word__that wendy,-0.024702,2,FAIL
+2,None,aggressive,wendy,word__me wendy,0.024054,3,FAIL
+2,None,aggressive,wendy,char__wendy,-0.020141,4,FAIL
+2,None,aggressive,wendy,word__wendys,0.008101,5,FAIL
+2,None,aggressive,wendys,word__wendys,0.008101,1,FAIL
+2,None,aggressive,frosty,word__frosty,0.024865,1,FAIL
+2,None,aggressive,frosty,word__mints frosty,0.024004,2,FAIL
+2,None,aggressive,baconator,word__baconator,-0.042368,1,FAIL
+2,None,aggressive,baconator,word__breakfast baconator,0.001574,2,FAIL
+2,None,aggressive,roast,word__nationalroastday,0.127517,1,FAIL
+2,None,aggressive,roast,char__roast,0.047467,2,FAIL
+2,None,aggressive,roast,word__roasting,0.04522,3,FAIL
+2,None,aggressive,roast,word__roast me,0.032258,4,FAIL
+2,None,aggressive,roast,word__roasted,-0.026783,5,FAIL
+2,balanced,aggressive,wendy,word__wendy,-0.046531,1,FAIL
+2,balanced,aggressive,wendy,word__that wendy,-0.024702,2,FAIL
+2,balanced,aggressive,wendy,word__me wendy,0.024054,3,FAIL
+2,balanced,aggressive,wendy,char__wendy,-0.020141,4,FAIL
+2,balanced,aggressive,wendy,word__wendys,0.008101,5,FAIL
+2,balanced,aggressive,wendys,word__wendys,0.008101,1,FAIL
+2,balanced,aggressive,frosty,word__frosty,0.024865,1,FAIL
+2,balanced,aggressive,frosty,word__mints frosty,0.024004,2,FAIL
+2,balanced,aggressive,baconator,word__baconator,-0.042368,1,FAIL
+2,balanced,aggressive,baconator,word__breakfast baconator,0.001574,2,FAIL
+2,balanced,aggressive,roast,word__nationalroastday,0.127517,1,FAIL
+2,balanced,aggressive,roast,char__roast,0.047467,2,FAIL
+2,balanced,aggressive,roast,word__roasting,0.04522,3,FAIL
+2,balanced,aggressive,roast,word__roast me,0.032258,4,FAIL
+2,balanced,aggressive,roast,word__roasted,-0.026783,5,FAIL
+3,None,aggressive,wendy,word__to wendy,-0.032281,1,FAIL
+3,None,aggressive,wendy,word__me wendy,0.022615,2,FAIL
+3,None,aggressive,wendy,word__wendy,-0.012077,3,FAIL
+3,None,aggressive,wendy,char__wendy,-0.004882,4,FAIL
+3,None,aggressive,wendy,word__the wendy,0.002197,5,FAIL
+3,None,aggressive,frosty,word__mints frosty,0.02406,1,FAIL
+3,None,aggressive,frosty,word__frosty,0.018732,2,FAIL
+3,None,aggressive,baconator,word__baconator,-0.01566,1,FAIL
+3,None,aggressive,baconator,word__breakfast baconator,-0.005571,2,FAIL
+3,None,aggressive,roast,word__nationalroastday,0.13727,1,FAIL
+3,None,aggressive,roast,char__roast,0.060422,2,FAIL
+3,None,aggressive,roast,word__roasting,0.045111,3,FAIL
+3,None,aggressive,roast,word__roast,0.042124,4,FAIL
+3,None,aggressive,roast,word__roast me,0.031334,5,FAIL
+3,balanced,aggressive,wendy,word__to wendy,-0.032281,1,FAIL
+3,balanced,aggressive,wendy,word__me wendy,0.022615,2,FAIL
+3,balanced,aggressive,wendy,word__wendy,-0.012077,3,FAIL
+3,balanced,aggressive,wendy,char__wendy,-0.004882,4,FAIL
+3,balanced,aggressive,wendy,word__the wendy,0.002197,5,FAIL
+3,balanced,aggressive,frosty,word__mints frosty,0.02406,1,FAIL
+3,balanced,aggressive,frosty,word__frosty,0.018732,2,FAIL
+3,balanced,aggressive,baconator,word__baconator,-0.01566,1,FAIL
+3,balanced,aggressive,baconator,word__breakfast baconator,-0.005571,2,FAIL
+3,balanced,aggressive,roast,word__nationalroastday,0.13727,1,FAIL
+3,balanced,aggressive,roast,char__roast,0.060422,2,FAIL
+3,balanced,aggressive,roast,word__roasting,0.045111,3,FAIL
+3,balanced,aggressive,roast,word__roast,0.042124,4,FAIL
+3,balanced,aggressive,roast,word__roast me,0.031334,5,FAIL
+4,None,aggressive,wendy,word__wendy,0.024466,1,FAIL
+4,None,aggressive,wendy,word__me wendy,0.022156,2,FAIL
+4,None,aggressive,wendy,word__the wendy,-0.014866,3,FAIL
+4,None,aggressive,wendy,word__wendy app,-0.014866,4,FAIL
+4,None,aggressive,wendy,char__wendy,0.00559,5,FAIL
+4,None,aggressive,wendys,word__wendys,0.003415,1,FAIL
+4,None,aggressive,frosty,word__mints frosty,0.025115,1,FAIL
+4,None,aggressive,frosty,word__frosty,0.002421,2,FAIL
+4,None,aggressive,roast,word__nationalroastday,0.127228,1,FAIL
+4,None,aggressive,roast,char__roast,0.04727,2,FAIL
+4,None,aggressive,roast,word__roasting,0.044076,3,FAIL
+4,None,aggressive,roast,word__roast me,0.030922,4,FAIL
+4,None,aggressive,roast,word__roast,0.008943,5,FAIL
+4,balanced,aggressive,wendy,word__wendy,0.024466,1,FAIL
+4,balanced,aggressive,wendy,word__me wendy,0.022156,2,FAIL
+4,balanced,aggressive,wendy,word__the wendy,-0.014866,3,FAIL
+4,balanced,aggressive,wendy,word__wendy app,-0.014866,4,FAIL
+4,balanced,aggressive,wendy,char__wendy,0.00559,5,FAIL
+4,balanced,aggressive,wendys,word__wendys,0.003415,1,FAIL
+4,balanced,aggressive,frosty,word__mints frosty,0.025115,1,FAIL
+4,balanced,aggressive,frosty,word__frosty,0.002421,2,FAIL
+4,balanced,aggressive,roast,word__nationalroastday,0.127228,1,FAIL
+4,balanced,aggressive,roast,char__roast,0.04727,2,FAIL
+4,balanced,aggressive,roast,word__roasting,0.044076,3,FAIL
+4,balanced,aggressive,roast,word__roast me,0.030922,4,FAIL
+4,balanced,aggressive,roast,word__roast,0.008943,5,FAIL
+5,None,aggressive,wendy,word__me wendy,0.021893,1,FAIL
+5,None,aggressive,wendy,word__wendy,-0.009167,2,FAIL
+5,None,aggressive,wendy,word__the wendy,-0.004329,3,FAIL
+5,None,aggressive,wendy,word__wendy app,-0.004329,4,FAIL
+5,None,aggressive,wendy,char__wendy,0.000971,5,FAIL
+5,None,aggressive,frosty,word__mints frosty,0.023846,1,FAIL
+5,None,aggressive,frosty,word__frosty,-0.00273,2,FAIL
+5,None,aggressive,baconator,word__baconator,0.001809,1,FAIL
+5,None,aggressive,baconator,word__breakfast baconator,0.001809,2,FAIL
+5,None,aggressive,roast,word__nationalroastday,0.127476,1,FAIL
+5,None,aggressive,roast,char__roast,0.055615,2,FAIL
+5,None,aggressive,roast,word__roasting,0.042179,3,FAIL
+5,None,aggressive,roast,word__roast,0.032465,4,FAIL
+5,None,aggressive,roast,word__roast me,0.029948,5,FAIL
+5,balanced,aggressive,wendy,word__me wendy,0.021893,1,FAIL
+5,balanced,aggressive,wendy,word__wendy,-0.009167,2,FAIL
+5,balanced,aggressive,wendy,word__the wendy,-0.004329,3,FAIL
+5,balanced,aggressive,wendy,word__wendy app,-0.004329,4,FAIL
+5,balanced,aggressive,wendy,char__wendy,0.000971,5,FAIL
+5,balanced,aggressive,frosty,word__mints frosty,0.023846,1,FAIL
+5,balanced,aggressive,frosty,word__frosty,-0.00273,2,FAIL
+5,balanced,aggressive,baconator,word__baconator,0.001809,1,FAIL
+5,balanced,aggressive,baconator,word__breakfast baconator,0.001809,2,FAIL
+5,balanced,aggressive,roast,word__nationalroastday,0.127476,1,FAIL
+5,balanced,aggressive,roast,char__roast,0.055615,2,FAIL
+5,balanced,aggressive,roast,word__roasting,0.042179,3,FAIL
+5,balanced,aggressive,roast,word__roast,0.032465,4,FAIL
+5,balanced,aggressive,roast,word__roast me,0.029948,5,FAIL
+6,None,aggressive,wendy,word__wendy is,-0.037551,1,FAIL
+6,None,aggressive,wendy,word__wendy,-0.032097,2,FAIL
+6,None,aggressive,wendy,word__wendy new,-0.025062,3,FAIL
+6,None,aggressive,wendy,word__me wendy,0.023324,4,FAIL
+6,None,aggressive,wendy,word__to wendy,-0.018478,5,FAIL
+6,None,aggressive,frosty,word__frosty,0.025037,1,FAIL
+6,None,aggressive,frosty,word__mints frosty,0.024156,2,FAIL
+6,None,aggressive,baconator,word__baconator with,-0.018478,1,FAIL
+6,None,aggressive,baconator,word__baconator,-0.01212,2,FAIL
+6,None,aggressive,baconator,word__breakfast baconator,-0.005605,3,FAIL
+6,None,aggressive,nuggs,word__nuggs,-0.030969,1,FAIL
+6,None,aggressive,nuggs,char__nuggs,-0.012125,2,FAIL
+6,None,aggressive,roast,word__nationalroastday,0.139354,1,FAIL
+6,None,aggressive,roast,char__roast,0.064233,2,FAIL
+6,None,aggressive,roast,word__roast,0.044427,3,FAIL
+6,None,aggressive,roast,word__roasting,0.043595,4,FAIL
+6,None,aggressive,roast,word__roast me,0.032277,5,FAIL
+6,balanced,aggressive,wendy,word__wendy is,-0.037551,1,FAIL
+6,balanced,aggressive,wendy,word__wendy,-0.032097,2,FAIL
+6,balanced,aggressive,wendy,word__wendy new,-0.025062,3,FAIL
+6,balanced,aggressive,wendy,word__me wendy,0.023324,4,FAIL
+6,balanced,aggressive,wendy,word__to wendy,-0.018478,5,FAIL
+6,balanced,aggressive,frosty,word__frosty,0.025037,1,FAIL
+6,balanced,aggressive,frosty,word__mints frosty,0.024156,2,FAIL
+6,balanced,aggressive,baconator,word__baconator with,-0.018478,1,FAIL
+6,balanced,aggressive,baconator,word__baconator,-0.01212,2,FAIL
+6,balanced,aggressive,baconator,word__breakfast baconator,-0.005605,3,FAIL
+6,balanced,aggressive,nuggs,word__nuggs,-0.030969,1,FAIL
+6,balanced,aggressive,nuggs,char__nuggs,-0.012125,2,FAIL
+6,balanced,aggressive,roast,word__nationalroastday,0.139354,1,FAIL
+6,balanced,aggressive,roast,char__roast,0.064233,2,FAIL
+6,balanced,aggressive,roast,word__roast,0.044427,3,FAIL
+6,balanced,aggressive,roast,word__roasting,0.043595,4,FAIL
+6,balanced,aggressive,roast,word__roast me,0.032277,5,FAIL
+7,None,aggressive,wendy,word__wendy,0.030431,1,FAIL
+7,None,aggressive,wendy,word__me wendy,0.022072,2,FAIL
+7,None,aggressive,wendy,char__wendy,0.015676,3,FAIL
+7,None,aggressive,frosty,word__frosty,-0.034476,1,FAIL
+7,None,aggressive,frosty,word__mints frosty,0.025352,2,FAIL
+7,None,aggressive,baconator,word__baconator,-0.016625,1,FAIL
+7,None,aggressive,roast,word__nationalroastday,0.143436,1,FAIL
+7,None,aggressive,roast,char__roast,0.063735,2,FAIL
+7,None,aggressive,roast,word__roasting,0.042365,3,FAIL
+7,None,aggressive,roast,word__roast,0.041868,4,FAIL
+7,None,aggressive,roast,word__roast me,0.029886,5,FAIL
+7,balanced,aggressive,wendy,word__wendy,0.030431,1,FAIL
+7,balanced,aggressive,wendy,word__me wendy,0.022072,2,FAIL
+7,balanced,aggressive,wendy,char__wendy,0.015676,3,FAIL
+7,balanced,aggressive,frosty,word__frosty,-0.034476,1,FAIL
+7,balanced,aggressive,frosty,word__mints frosty,0.025352,2,FAIL
+7,balanced,aggressive,baconator,word__baconator,-0.016625,1,FAIL
+7,balanced,aggressive,roast,word__nationalroastday,0.143436,1,FAIL
+7,balanced,aggressive,roast,char__roast,0.063735,2,FAIL
+7,balanced,aggressive,roast,word__roasting,0.042365,3,FAIL
+7,balanced,aggressive,roast,word__roast,0.041868,4,FAIL
+7,balanced,aggressive,roast,word__roast me,0.029886,5,FAIL
+8,None,aggressive,wendy,word__me wendy,0.022193,1,FAIL
+8,None,aggressive,wendy,word__the wendy,-0.014655,2,FAIL
+8,None,aggressive,wendy,word__wendy app,-0.014655,3,FAIL
+8,None,aggressive,wendy,word__wendys,0.008954,4,FAIL
+8,None,aggressive,wendy,char__wendy,-0.005229,5,FAIL
+8,None,aggressive,wendys,word__wendys,0.008954,1,FAIL
+8,None,aggressive,frosty,word__frosty,0.038693,1,FAIL
+8,None,aggressive,frosty,word__mints frosty,0.023359,2,FAIL
+8,None,aggressive,baconator,word__baconator,-0.01744,1,FAIL
+8,None,aggressive,roast,word__nationalroastday,0.136532,1,FAIL
+8,None,aggressive,roast,char__roast,0.06393,2,FAIL
+8,None,aggressive,roast,word__roasting,0.043029,3,FAIL
+8,None,aggressive,roast,word__roast,0.041364,4,FAIL
+8,None,aggressive,roast,word__roast me,0.030112,5,FAIL
+8,balanced,aggressive,wendy,word__me wendy,0.022193,1,FAIL
+8,balanced,aggressive,wendy,word__the wendy,-0.014655,2,FAIL
+8,balanced,aggressive,wendy,word__wendy app,-0.014655,3,FAIL
+8,balanced,aggressive,wendy,word__wendys,0.008954,4,FAIL
+8,balanced,aggressive,wendy,char__wendy,-0.005229,5,FAIL
+8,balanced,aggressive,wendys,word__wendys,0.008954,1,FAIL
+8,balanced,aggressive,frosty,word__frosty,0.038693,1,FAIL
+8,balanced,aggressive,frosty,word__mints frosty,0.023359,2,FAIL
+8,balanced,aggressive,baconator,word__baconator,-0.01744,1,FAIL
+8,balanced,aggressive,roast,word__nationalroastday,0.136532,1,FAIL
+8,balanced,aggressive,roast,char__roast,0.06393,2,FAIL
+8,balanced,aggressive,roast,word__roasting,0.043029,3,FAIL
+8,balanced,aggressive,roast,word__roast,0.041364,4,FAIL
+8,balanced,aggressive,roast,word__roast me,0.030112,5,FAIL
+9,None,aggressive,wendy,word__wendy,-0.039942,1,FAIL
+9,None,aggressive,wendy,word__me wendy,0.02329,2,FAIL
+9,None,aggressive,wendy,word__wendy honey,-0.016692,3,FAIL
+9,None,aggressive,wendy,char__wendy,-0.013538,4,FAIL
+9,None,aggressive,wendy,word__wendys,0.00826,5,FAIL
+9,None,aggressive,wendys,word__wendys,0.00826,1,FAIL
+9,None,aggressive,frosty,word__mints frosty,0.023117,1,FAIL
+9,None,aggressive,frosty,word__frosty,0.015668,2,FAIL
+9,None,aggressive,baconator,word__baconator,-0.042038,1,FAIL
+9,None,aggressive,baconator,word__breakfast baconator,0.001856,2,FAIL
+9,None,aggressive,roast,word__nationalroastday,0.126865,1,FAIL
+9,None,aggressive,roast,char__roast,0.052592,2,FAIL
+9,None,aggressive,roast,word__roasting,0.04498,3,FAIL
+9,None,aggressive,roast,word__roast,0.042837,4,FAIL
+9,None,aggressive,roast,word__roast me,0.031546,5,FAIL
+9,balanced,aggressive,wendy,word__wendy,-0.039942,1,FAIL
+9,balanced,aggressive,wendy,word__me wendy,0.02329,2,FAIL
+9,balanced,aggressive,wendy,word__wendy honey,-0.016692,3,FAIL
+9,balanced,aggressive,wendy,char__wendy,-0.013538,4,FAIL
+9,balanced,aggressive,wendy,word__wendys,0.00826,5,FAIL
+9,balanced,aggressive,wendys,word__wendys,0.00826,1,FAIL
+9,balanced,aggressive,frosty,word__mints frosty,0.023117,1,FAIL
+9,balanced,aggressive,frosty,word__frosty,0.015668,2,FAIL
+9,balanced,aggressive,baconator,word__baconator,-0.042038,1,FAIL
+9,balanced,aggressive,baconator,word__breakfast baconator,0.001856,2,FAIL
+9,balanced,aggressive,roast,word__nationalroastday,0.126865,1,FAIL
+9,balanced,aggressive,roast,char__roast,0.052592,2,FAIL
+9,balanced,aggressive,roast,word__roasting,0.04498,3,FAIL
+9,balanced,aggressive,roast,word__roast,0.042837,4,FAIL
+9,balanced,aggressive,roast,word__roast me,0.031546,5,FAIL
+10,None,aggressive,wendy,word__me wendy,0.022588,1,FAIL
+10,None,aggressive,wendy,word__the wendy,-0.011139,2,FAIL
+10,None,aggressive,wendy,word__wendy app,-0.011139,3,FAIL
+10,None,aggressive,wendy,word__wendy,-0.007434,4,FAIL
+10,None,aggressive,wendy,char__wendy,-0.001705,5,FAIL
+10,None,aggressive,frosty,word__mints frosty,0.023229,1,FAIL
+10,None,aggressive,frosty,word__frosty,0.001939,2,FAIL
+10,None,aggressive,baconator,word__baconator,-0.015826,1,FAIL
+10,None,aggressive,roast,word__nationalroastday,0.135428,1,FAIL
+10,None,aggressive,roast,char__roast,0.044962,2,FAIL
+10,None,aggressive,roast,word__roasting,0.044287,3,FAIL
+10,None,aggressive,roast,word__roasted,-0.04389,4,FAIL
+10,None,aggressive,roast,word__roast me,0.03086,5,FAIL
+10,balanced,aggressive,wendy,word__me wendy,0.022588,1,FAIL
+10,balanced,aggressive,wendy,word__the wendy,-0.011139,2,FAIL
+10,balanced,aggressive,wendy,word__wendy app,-0.011139,3,FAIL
+10,balanced,aggressive,wendy,word__wendy,-0.007434,4,FAIL
+10,balanced,aggressive,wendy,char__wendy,-0.001705,5,FAIL
+10,balanced,aggressive,frosty,word__mints frosty,0.023229,1,FAIL
+10,balanced,aggressive,frosty,word__frosty,0.001939,2,FAIL
+10,balanced,aggressive,baconator,word__baconator,-0.015826,1,FAIL
+10,balanced,aggressive,roast,word__nationalroastday,0.135428,1,FAIL
+10,balanced,aggressive,roast,char__roast,0.044962,2,FAIL
+10,balanced,aggressive,roast,word__roasting,0.044287,3,FAIL
+10,balanced,aggressive,roast,word__roasted,-0.04389,4,FAIL
+10,balanced,aggressive,roast,word__roast me,0.03086,5,FAIL
+11,None,aggressive,wendy,word__me wendy,0.022122,1,FAIL
+11,None,aggressive,wendy,word__the wendy,-0.018183,2,FAIL
+11,None,aggressive,wendy,word__wendy,-0.012036,3,FAIL
+11,None,aggressive,wendy,word__wendy app,-0.009023,4,FAIL
+11,None,aggressive,wendy,char__wendy,-0.008224,5,FAIL
+11,None,aggressive,wendys,word__wendys,0.006714,1,FAIL
+11,None,aggressive,frosty,word__frosty,0.026753,1,FAIL
+11,None,aggressive,frosty,word__mints frosty,0.023628,2,FAIL
+11,None,aggressive,baconator,word__baconator,0.00258,1,FAIL
+11,None,aggressive,baconator,word__breakfast baconator,0.00258,2,FAIL
+11,None,aggressive,nuggs,word__nuggs,-0.024197,1,FAIL
+11,None,aggressive,roast,word__nationalroastday,0.136445,1,FAIL
+11,None,aggressive,roast,char__roast,0.061578,2,FAIL
+11,None,aggressive,roast,word__roast,0.042867,3,FAIL
+11,None,aggressive,roast,word__roasting,0.041619,4,FAIL
+11,None,aggressive,roast,word__roast me,0.030928,5,FAIL
+11,balanced,aggressive,wendy,word__me wendy,0.022122,1,FAIL
+11,balanced,aggressive,wendy,word__the wendy,-0.018183,2,FAIL
+11,balanced,aggressive,wendy,word__wendy,-0.012036,3,FAIL
+11,balanced,aggressive,wendy,word__wendy app,-0.009023,4,FAIL
+11,balanced,aggressive,wendy,char__wendy,-0.008224,5,FAIL
+11,balanced,aggressive,wendys,word__wendys,0.006714,1,FAIL
+11,balanced,aggressive,frosty,word__frosty,0.026753,1,FAIL
+11,balanced,aggressive,frosty,word__mints frosty,0.023628,2,FAIL
+11,balanced,aggressive,baconator,word__baconator,0.00258,1,FAIL
+11,balanced,aggressive,baconator,word__breakfast baconator,0.00258,2,FAIL
+11,balanced,aggressive,nuggs,word__nuggs,-0.024197,1,FAIL
+11,balanced,aggressive,roast,word__nationalroastday,0.136445,1,FAIL
+11,balanced,aggressive,roast,char__roast,0.061578,2,FAIL
+11,balanced,aggressive,roast,word__roast,0.042867,3,FAIL
+11,balanced,aggressive,roast,word__roasting,0.041619,4,FAIL
+11,balanced,aggressive,roast,word__roast me,0.030928,5,FAIL
+12,None,aggressive,wendy,word__wendy,-0.03382,1,FAIL
+12,None,aggressive,wendy,word__the wendy,-0.029863,2,FAIL
+12,None,aggressive,wendy,word__me wendy,0.022883,3,FAIL
+12,None,aggressive,wendy,char__wendy,-0.018212,4,FAIL
+12,None,aggressive,wendy,word__is wendy,0.010093,5,FAIL
+12,None,aggressive,wendys,word__wendys,0.008401,1,FAIL
+12,None,aggressive,frosty,word__mints frosty,0.02402,1,FAIL
+12,None,aggressive,frosty,word__frosty,-0.00164,2,FAIL
+12,None,aggressive,baconator,word__baconator,-0.016445,1,FAIL
+12,None,aggressive,roast,word__nationalroastday,0.137904,1,FAIL
+12,None,aggressive,roast,char__roast,0.048674,2,FAIL
+12,None,aggressive,roast,word__roasting,0.032325,3,FAIL
+12,None,aggressive,roast,word__roast me,0.031112,4,FAIL
+12,None,aggressive,roast,word__roast,0.012228,5,FAIL
+12,balanced,aggressive,wendy,word__wendy,-0.03382,1,FAIL
+12,balanced,aggressive,wendy,word__the wendy,-0.029863,2,FAIL
+12,balanced,aggressive,wendy,word__me wendy,0.022883,3,FAIL
+12,balanced,aggressive,wendy,char__wendy,-0.018212,4,FAIL
+12,balanced,aggressive,wendy,word__is wendy,0.010093,5,FAIL
+12,balanced,aggressive,wendys,word__wendys,0.008401,1,FAIL
+12,balanced,aggressive,frosty,word__mints frosty,0.02402,1,FAIL
+12,balanced,aggressive,frosty,word__frosty,-0.00164,2,FAIL
+12,balanced,aggressive,baconator,word__baconator,-0.016445,1,FAIL
+12,balanced,aggressive,roast,word__nationalroastday,0.137904,1,FAIL
+12,balanced,aggressive,roast,char__roast,0.048674,2,FAIL
+12,balanced,aggressive,roast,word__roasting,0.032325,3,FAIL
+12,balanced,aggressive,roast,word__roast me,0.031112,4,FAIL
+12,balanced,aggressive,roast,word__roast,0.012228,5,FAIL
+13,None,aggressive,wendy,word__wendy,-0.032584,1,FAIL
+13,None,aggressive,wendy,word__me wendy,0.02681,2,FAIL
+13,None,aggressive,wendy,char__wendy,-0.016425,3,FAIL
+13,None,aggressive,wendy,word__the wendy,-0.003343,4,FAIL
+13,None,aggressive,wendy,word__wendy app,-0.003343,5,FAIL
+13,None,aggressive,frosty,word__frosty,-0.041116,1,FAIL
+13,None,aggressive,frosty,word__vanilla frosty,-0.03485,2,FAIL
+13,None,aggressive,frosty,word__mints frosty,0.025532,3,FAIL
+13,None,aggressive,baconator,word__baconator,-0.007017,1,FAIL
+13,None,aggressive,baconator,word__breakfast baconator,0.00073,2,FAIL
+13,None,aggressive,roast,word__nationalroastday,0.138622,1,FAIL
+13,None,aggressive,roast,char__roast,0.056821,2,FAIL
+13,None,aggressive,roast,word__roasting,0.04454,3,FAIL
+13,None,aggressive,roast,word__roast me,0.034964,4,FAIL
+13,None,aggressive,roast,word__roast,0.034605,5,FAIL
+13,balanced,aggressive,wendy,word__wendy,-0.032584,1,FAIL
+13,balanced,aggressive,wendy,word__me wendy,0.02681,2,FAIL
+13,balanced,aggressive,wendy,char__wendy,-0.016425,3,FAIL
+13,balanced,aggressive,wendy,word__the wendy,-0.003343,4,FAIL
+13,balanced,aggressive,wendy,word__wendy app,-0.003343,5,FAIL
+13,balanced,aggressive,frosty,word__frosty,-0.041116,1,FAIL
+13,balanced,aggressive,frosty,word__vanilla frosty,-0.03485,2,FAIL
+13,balanced,aggressive,frosty,word__mints frosty,0.025532,3,FAIL
+13,balanced,aggressive,baconator,word__baconator,-0.007017,1,FAIL
+13,balanced,aggressive,baconator,word__breakfast baconator,0.00073,2,FAIL
+13,balanced,aggressive,roast,word__nationalroastday,0.138622,1,FAIL
+13,balanced,aggressive,roast,char__roast,0.056821,2,FAIL
+13,balanced,aggressive,roast,word__roasting,0.04454,3,FAIL
+13,balanced,aggressive,roast,word__roast me,0.034964,4,FAIL
+13,balanced,aggressive,roast,word__roast,0.034605,5,FAIL
+14,None,aggressive,wendy,word__me wendy,0.02181,1,FAIL
+14,None,aggressive,wendy,word__wendy,0.009677,2,FAIL
+14,None,aggressive,wendy,word__wendys,0.007788,3,FAIL
+14,None,aggressive,wendy,char__wendy,0.006846,4,FAIL
+14,None,aggressive,wendy,word__is wendy,0.006336,5,FAIL
+14,None,aggressive,wendys,word__wendys,0.007788,1,FAIL
+14,None,aggressive,frosty,word__frosty,0.025863,1,FAIL
+14,None,aggressive,frosty,word__mints frosty,0.024241,2,FAIL
+14,None,aggressive,baconator,word__baconator,-0.03385,1,FAIL
+14,None,aggressive,baconator,word__breakfast baconator,0.001269,2,FAIL
+14,None,aggressive,roast,word__nationalroastday,0.135544,1,FAIL
+14,None,aggressive,roast,char__roast,0.056776,2,FAIL
+14,None,aggressive,roast,word__roasting,0.044091,3,FAIL
+14,None,aggressive,roast,word__roast,0.02992,4,FAIL
+14,None,aggressive,roast,word__roast me,0.029687,5,FAIL
+14,balanced,aggressive,wendy,word__me wendy,0.02181,1,FAIL
+14,balanced,aggressive,wendy,word__wendy,0.009677,2,FAIL
+14,balanced,aggressive,wendy,word__wendys,0.007788,3,FAIL
+14,balanced,aggressive,wendy,char__wendy,0.006846,4,FAIL
+14,balanced,aggressive,wendy,word__is wendy,0.006336,5,FAIL
+14,balanced,aggressive,wendys,word__wendys,0.007788,1,FAIL
+14,balanced,aggressive,frosty,word__frosty,0.025863,1,FAIL
+14,balanced,aggressive,frosty,word__mints frosty,0.024241,2,FAIL
+14,balanced,aggressive,baconator,word__baconator,-0.03385,1,FAIL
+14,balanced,aggressive,baconator,word__breakfast baconator,0.001269,2,FAIL
+14,balanced,aggressive,roast,word__nationalroastday,0.135544,1,FAIL
+14,balanced,aggressive,roast,char__roast,0.056776,2,FAIL
+14,balanced,aggressive,roast,word__roasting,0.044091,3,FAIL
+14,balanced,aggressive,roast,word__roast,0.02992,4,FAIL
+14,balanced,aggressive,roast,word__roast me,0.029687,5,FAIL
+15,None,aggressive,wendy,word__me wendy,0.025256,1,FAIL
+15,None,aggressive,wendy,word__wendy honey,-0.016373,2,FAIL
+15,None,aggressive,wendy,word__wendy,0.008686,3,FAIL
+15,None,aggressive,wendy,word__the wendy,-0.003534,4,FAIL
+15,None,aggressive,wendy,word__wendy app,-0.003534,5,FAIL
+15,None,aggressive,frosty,word__mints frosty,0.023727,1,FAIL
+15,None,aggressive,frosty,word__frosty,0.018917,2,FAIL
+15,None,aggressive,roast,word__nationalroastday,0.12795,1,FAIL
+15,None,aggressive,roast,char__roast,0.049238,2,FAIL
+15,None,aggressive,roast,word__roast me,0.033534,3,FAIL
+15,None,aggressive,roast,word__roasting,0.033067,4,FAIL
+15,None,aggressive,roast,word__roast,0.029545,5,FAIL
+15,balanced,aggressive,wendy,word__me wendy,0.025256,1,FAIL
+15,balanced,aggressive,wendy,word__wendy honey,-0.016373,2,FAIL
+15,balanced,aggressive,wendy,word__wendy,0.008686,3,FAIL
+15,balanced,aggressive,wendy,word__the wendy,-0.003534,4,FAIL
+15,balanced,aggressive,wendy,word__wendy app,-0.003534,5,FAIL
+15,balanced,aggressive,frosty,word__mints frosty,0.023727,1,FAIL
+15,balanced,aggressive,frosty,word__frosty,0.018917,2,FAIL
+15,balanced,aggressive,roast,word__nationalroastday,0.12795,1,FAIL
+15,balanced,aggressive,roast,char__roast,0.049238,2,FAIL
+15,balanced,aggressive,roast,word__roast me,0.033534,3,FAIL
+15,balanced,aggressive,roast,word__roasting,0.033067,4,FAIL
+15,balanced,aggressive,roast,word__roast,0.029545,5,FAIL
+16,None,aggressive,wendy,word__me wendy,0.022679,1,FAIL
+16,None,aggressive,wendy,word__wendy,-0.010154,2,FAIL
+16,None,aggressive,wendy,char__wendy,-0.009982,3,FAIL
+16,None,aggressive,wendy,word__wendys,0.002481,4,FAIL
+16,None,aggressive,wendy,word__is wendy,0.001393,5,FAIL
+16,None,aggressive,wendys,word__wendys,0.002481,1,FAIL
+16,None,aggressive,frosty,word__frosty,0.029651,1,FAIL
+16,None,aggressive,frosty,word__mints frosty,0.02365,2,FAIL
+16,None,aggressive,roast,word__nationalroastday,0.13535,1,FAIL
+16,None,aggressive,roast,char__roast,0.049795,2,FAIL
+16,None,aggressive,roast,word__roasting,0.044866,3,FAIL
+16,None,aggressive,roast,word__roast me,0.031421,4,FAIL
+16,None,aggressive,roast,word__roasted,-0.021115,5,FAIL
+16,balanced,aggressive,wendy,word__me wendy,0.022679,1,FAIL
+16,balanced,aggressive,wendy,word__wendy,-0.010154,2,FAIL
+16,balanced,aggressive,wendy,char__wendy,-0.009982,3,FAIL
+16,balanced,aggressive,wendy,word__wendys,0.002481,4,FAIL
+16,balanced,aggressive,wendy,word__is wendy,0.001393,5,FAIL
+16,balanced,aggressive,wendys,word__wendys,0.002481,1,FAIL
+16,balanced,aggressive,frosty,word__frosty,0.029651,1,FAIL
+16,balanced,aggressive,frosty,word__mints frosty,0.02365,2,FAIL
+16,balanced,aggressive,roast,word__nationalroastday,0.13535,1,FAIL
+16,balanced,aggressive,roast,char__roast,0.049795,2,FAIL
+16,balanced,aggressive,roast,word__roasting,0.044866,3,FAIL
+16,balanced,aggressive,roast,word__roast me,0.031421,4,FAIL
+16,balanced,aggressive,roast,word__roasted,-0.021115,5,FAIL
+17,None,aggressive,wendy,word__me wendy,0.02463,1,FAIL
+17,None,aggressive,wendy,word__wendy new,-0.023773,2,FAIL
+17,None,aggressive,wendy,word__wendy,-0.011591,3,FAIL
+17,None,aggressive,wendy,char__wendy,0.002869,4,FAIL
+17,None,aggressive,wendy,word__the wendy,0.000858,5,FAIL
+17,None,aggressive,frosty,word__frosty,0.037783,1,FAIL
+17,None,aggressive,frosty,word__mints frosty,0.023591,2,FAIL
+17,None,aggressive,roast,word__nationalroastday,0.139807,1,FAIL
+17,None,aggressive,roast,char__roast,0.052652,2,FAIL
+17,None,aggressive,roast,word__roasting,0.044111,3,FAIL
+17,None,aggressive,roast,word__roast me,0.032512,4,FAIL
+17,None,aggressive,roast,word__roast,0.018145,5,FAIL
+17,balanced,aggressive,wendy,word__me wendy,0.02463,1,FAIL
+17,balanced,aggressive,wendy,word__wendy new,-0.023773,2,FAIL
+17,balanced,aggressive,wendy,word__wendy,-0.011591,3,FAIL
+17,balanced,aggressive,wendy,char__wendy,0.002869,4,FAIL
+17,balanced,aggressive,wendy,word__the wendy,0.000858,5,FAIL
+17,balanced,aggressive,frosty,word__frosty,0.037783,1,FAIL
+17,balanced,aggressive,frosty,word__mints frosty,0.023591,2,FAIL
+17,balanced,aggressive,roast,word__nationalroastday,0.139807,1,FAIL
+17,balanced,aggressive,roast,char__roast,0.052652,2,FAIL
+17,balanced,aggressive,roast,word__roasting,0.044111,3,FAIL
+17,balanced,aggressive,roast,word__roast me,0.032512,4,FAIL
+17,balanced,aggressive,roast,word__roast,0.018145,5,FAIL
+18,None,aggressive,wendy,word__the wendy,-0.030053,1,FAIL
+18,None,aggressive,wendy,word__wendy app,-0.030053,2,FAIL
+18,None,aggressive,wendy,word__me wendy,0.024471,3,FAIL
+18,None,aggressive,wendy,word__wendy,-0.02431,4,FAIL
+18,None,aggressive,wendy,char__wendy,-0.005992,5,FAIL
+18,None,aggressive,frosty,word__mints frosty,0.024476,1,FAIL
+18,None,aggressive,frosty,word__frosty,0.014403,2,FAIL
+18,None,aggressive,baconator,word__baconator,0.003024,1,FAIL
+18,None,aggressive,baconator,word__breakfast baconator,0.003024,2,FAIL
+18,None,aggressive,nuggs,word__nuggs,-0.045019,1,FAIL
+18,None,aggressive,nuggs,word__spicy nuggs,-0.031373,2,FAIL
+18,None,aggressive,nuggs,char__nuggs,-0.018681,3,FAIL
+18,None,aggressive,roast,word__nationalroastday,0.131631,1,FAIL
+18,None,aggressive,roast,char__roast,0.054202,2,FAIL
+18,None,aggressive,roast,word__roast,0.035715,3,FAIL
+18,None,aggressive,roast,word__roasting,0.034591,4,FAIL
+18,None,aggressive,roast,word__roast me,0.032395,5,FAIL
+18,balanced,aggressive,wendy,word__the wendy,-0.030053,1,FAIL
+18,balanced,aggressive,wendy,word__wendy app,-0.030053,2,FAIL
+18,balanced,aggressive,wendy,word__me wendy,0.024471,3,FAIL
+18,balanced,aggressive,wendy,word__wendy,-0.02431,4,FAIL
+18,balanced,aggressive,wendy,char__wendy,-0.005992,5,FAIL
+18,balanced,aggressive,frosty,word__mints frosty,0.024476,1,FAIL
+18,balanced,aggressive,frosty,word__frosty,0.014403,2,FAIL
+18,balanced,aggressive,baconator,word__baconator,0.003024,1,FAIL
+18,balanced,aggressive,baconator,word__breakfast baconator,0.003024,2,FAIL
+18,balanced,aggressive,nuggs,word__nuggs,-0.045019,1,FAIL
+18,balanced,aggressive,nuggs,word__spicy nuggs,-0.031373,2,FAIL
+18,balanced,aggressive,nuggs,char__nuggs,-0.018681,3,FAIL
+18,balanced,aggressive,roast,word__nationalroastday,0.131631,1,FAIL
+18,balanced,aggressive,roast,char__roast,0.054202,2,FAIL
+18,balanced,aggressive,roast,word__roast,0.035715,3,FAIL
+18,balanced,aggressive,roast,word__roasting,0.034591,4,FAIL
+18,balanced,aggressive,roast,word__roast me,0.032395,5,FAIL
+19,None,aggressive,wendy,word__me wendy,0.021342,1,FAIL
+19,None,aggressive,wendy,word__is wendy,0.009426,2,FAIL
+19,None,aggressive,wendy,word__wendys,0.00866,3,FAIL
+19,None,aggressive,wendy,char__wendy,0.004743,4,FAIL
+19,None,aggressive,wendy,word__wendy,-0.004715,5,FAIL
+19,None,aggressive,wendys,word__wendys,0.00866,1,FAIL
+19,None,aggressive,frosty,word__frosty,-0.025118,1,FAIL
+19,None,aggressive,frosty,word__mints frosty,0.023704,2,FAIL
+19,None,aggressive,baconator,word__baconator,-0.006543,1,FAIL
+19,None,aggressive,baconator,word__breakfast baconator,0.001316,2,FAIL
+19,None,aggressive,roast,word__nationalroastday,0.13531,1,FAIL
+19,None,aggressive,roast,char__roast,0.064575,2,FAIL
+19,None,aggressive,roast,word__roast,0.040436,3,FAIL
+19,None,aggressive,roast,word__roasting,0.039272,4,FAIL
+19,None,aggressive,roast,word__roast me,0.030043,5,FAIL
+19,balanced,aggressive,wendy,word__me wendy,0.021342,1,FAIL
+19,balanced,aggressive,wendy,word__is wendy,0.009426,2,FAIL
+19,balanced,aggressive,wendy,word__wendys,0.00866,3,FAIL
+19,balanced,aggressive,wendy,char__wendy,0.004743,4,FAIL
+19,balanced,aggressive,wendy,word__wendy,-0.004715,5,FAIL
+19,balanced,aggressive,wendys,word__wendys,0.00866,1,FAIL
+19,balanced,aggressive,frosty,word__frosty,-0.025118,1,FAIL
+19,balanced,aggressive,frosty,word__mints frosty,0.023704,2,FAIL
+19,balanced,aggressive,baconator,word__baconator,-0.006543,1,FAIL
+19,balanced,aggressive,baconator,word__breakfast baconator,0.001316,2,FAIL
+19,balanced,aggressive,roast,word__nationalroastday,0.13531,1,FAIL
+19,balanced,aggressive,roast,char__roast,0.064575,2,FAIL
+19,balanced,aggressive,roast,word__roast,0.040436,3,FAIL
+19,balanced,aggressive,roast,word__roasting,0.039272,4,FAIL
+19,balanced,aggressive,roast,word__roast me,0.030043,5,FAIL
+20,None,aggressive,wendy,word__wendysspicynuggs,-0.04192,1,FAIL
+20,None,aggressive,wendy,word__wendy,-0.039201,2,FAIL
+20,None,aggressive,wendy,word__verified wendysspicynuggs,-0.029221,3,FAIL
+20,None,aggressive,wendy,word__me wendy,0.022716,4,FAIL
+20,None,aggressive,wendy,word__wendy spicy,-0.022531,5,FAIL
+20,None,aggressive,wendys,word__wendysspicynuggs,-0.04192,1,FAIL
+20,None,aggressive,wendys,word__verified wendysspicynuggs,-0.029221,2,FAIL
+20,None,aggressive,wendys,word__wendys,0.010094,3,FAIL
+20,None,aggressive,frosty,word__mints frosty,0.024232,1,FAIL
+20,None,aggressive,frosty,word__frosty,0.003804,2,FAIL
+20,None,aggressive,nuggs,word__nuggs,-0.046762,1,FAIL
+20,None,aggressive,nuggs,word__spicy nuggs,-0.046762,2,FAIL
+20,None,aggressive,nuggs,word__wendysspicynuggs,-0.04192,3,FAIL
+20,None,aggressive,nuggs,word__verified wendysspicynuggs,-0.029221,4,FAIL
+20,None,aggressive,nuggs,char__nuggs,-0.023762,5,FAIL
+20,None,aggressive,roast,word__nationalroastday,0.129462,1,FAIL
+20,None,aggressive,roast,char__roast,0.046867,2,FAIL
+20,None,aggressive,roast,word__roasting,0.034327,3,FAIL
+20,None,aggressive,roast,word__roast me,0.030254,4,FAIL
+20,None,aggressive,roast,word__roast,0.016457,5,FAIL
+20,balanced,aggressive,wendy,word__wendysspicynuggs,-0.04192,1,FAIL
+20,balanced,aggressive,wendy,word__wendy,-0.039201,2,FAIL
+20,balanced,aggressive,wendy,word__verified wendysspicynuggs,-0.029221,3,FAIL
+20,balanced,aggressive,wendy,word__me wendy,0.022716,4,FAIL
+20,balanced,aggressive,wendy,word__wendy spicy,-0.022531,5,FAIL
+20,balanced,aggressive,wendys,word__wendysspicynuggs,-0.04192,1,FAIL
+20,balanced,aggressive,wendys,word__verified wendysspicynuggs,-0.029221,2,FAIL
+20,balanced,aggressive,wendys,word__wendys,0.010094,3,FAIL
+20,balanced,aggressive,frosty,word__mints frosty,0.024232,1,FAIL
+20,balanced,aggressive,frosty,word__frosty,0.003804,2,FAIL
+20,balanced,aggressive,nuggs,word__nuggs,-0.046762,1,FAIL
+20,balanced,aggressive,nuggs,word__spicy nuggs,-0.046762,2,FAIL
+20,balanced,aggressive,nuggs,word__wendysspicynuggs,-0.04192,3,FAIL
+20,balanced,aggressive,nuggs,word__verified wendysspicynuggs,-0.029221,4,FAIL
+20,balanced,aggressive,nuggs,char__nuggs,-0.023762,5,FAIL
+20,balanced,aggressive,roast,word__nationalroastday,0.129462,1,FAIL
+20,balanced,aggressive,roast,char__roast,0.046867,2,FAIL
+20,balanced,aggressive,roast,word__roasting,0.034327,3,FAIL
+20,balanced,aggressive,roast,word__roast me,0.030254,4,FAIL
+20,balanced,aggressive,roast,word__roast,0.016457,5,FAIL
+21,None,aggressive,wendy,word__wendysspicynuggs,-0.031329,1,FAIL
+21,None,aggressive,wendy,word__me wendy,0.023906,2,FAIL
+21,None,aggressive,wendy,word__wendy,0.009269,3,FAIL
+21,None,aggressive,wendy,word__wendys,-0.00628,4,FAIL
+21,None,aggressive,wendy,word__the wendy,0.005222,5,FAIL
+21,None,aggressive,wendys,word__wendysspicynuggs,-0.031329,1,FAIL
+21,None,aggressive,wendys,word__wendys,-0.00628,2,FAIL
+21,None,aggressive,frosty,word__mints frosty,0.024238,1,FAIL
+21,None,aggressive,frosty,word__frosty,0.000287,2,FAIL
+21,None,aggressive,nuggs,word__nuggs,-0.033913,1,FAIL
+21,None,aggressive,nuggs,word__wendysspicynuggs,-0.031329,2,FAIL
+21,None,aggressive,nuggs,char__nuggs,-0.017969,3,FAIL
+21,None,aggressive,roast,word__nationalroastday,0.130676,1,FAIL
+21,None,aggressive,roast,word__roasting,0.042659,2,FAIL
+21,None,aggressive,roast,char__roast,0.042642,3,FAIL
+21,None,aggressive,roast,word__roast me,0.03194,4,FAIL
+21,None,aggressive,roast,word__roasted,-0.02626,5,FAIL
+21,balanced,aggressive,wendy,word__wendysspicynuggs,-0.031329,1,FAIL
+21,balanced,aggressive,wendy,word__me wendy,0.023906,2,FAIL
+21,balanced,aggressive,wendy,word__wendy,0.009269,3,FAIL
+21,balanced,aggressive,wendy,word__wendys,-0.00628,4,FAIL
+21,balanced,aggressive,wendy,word__the wendy,0.005222,5,FAIL
+21,balanced,aggressive,wendys,word__wendysspicynuggs,-0.031329,1,FAIL
+21,balanced,aggressive,wendys,word__wendys,-0.00628,2,FAIL
+21,balanced,aggressive,frosty,word__mints frosty,0.024238,1,FAIL
+21,balanced,aggressive,frosty,word__frosty,0.000287,2,FAIL
+21,balanced,aggressive,nuggs,word__nuggs,-0.033913,1,FAIL
+21,balanced,aggressive,nuggs,word__wendysspicynuggs,-0.031329,2,FAIL
+21,balanced,aggressive,nuggs,char__nuggs,-0.017969,3,FAIL
+21,balanced,aggressive,roast,word__nationalroastday,0.130676,1,FAIL
+21,balanced,aggressive,roast,word__roasting,0.042659,2,FAIL
+21,balanced,aggressive,roast,char__roast,0.042642,3,FAIL
+21,balanced,aggressive,roast,word__roast me,0.03194,4,FAIL
+21,balanced,aggressive,roast,word__roasted,-0.02626,5,FAIL
+22,None,aggressive,wendy,word__to wendy,-0.036018,1,FAIL
+22,None,aggressive,wendy,word__me wendy,0.025178,2,FAIL
+22,None,aggressive,wendy,word__the wendy,-0.02407,3,FAIL
+22,None,aggressive,wendy,char__wendy,-0.013732,4,FAIL
+22,None,aggressive,wendy,word__wendy,-0.009883,5,FAIL
+22,None,aggressive,frosty,word__frosty,-0.03312,1,FAIL
+22,None,aggressive,frosty,word__mints frosty,0.024986,2,FAIL
+22,None,aggressive,baconator,word__baconator,0.002081,1,FAIL
+22,None,aggressive,baconator,word__breakfast baconator,0.002081,2,FAIL
+22,None,aggressive,roast,word__nationalroastday,0.138839,1,FAIL
+22,None,aggressive,roast,char__roast,0.058067,2,FAIL
+22,None,aggressive,roast,word__roast,0.044167,3,FAIL
+22,None,aggressive,roast,word__roasting,0.044113,4,FAIL
+22,None,aggressive,roast,word__roast me,0.033008,5,FAIL
+22,balanced,aggressive,wendy,word__to wendy,-0.036018,1,FAIL
+22,balanced,aggressive,wendy,word__me wendy,0.025178,2,FAIL
+22,balanced,aggressive,wendy,word__the wendy,-0.02407,3,FAIL
+22,balanced,aggressive,wendy,char__wendy,-0.013732,4,FAIL
+22,balanced,aggressive,wendy,word__wendy,-0.009883,5,FAIL
+22,balanced,aggressive,frosty,word__frosty,-0.03312,1,FAIL
+22,balanced,aggressive,frosty,word__mints frosty,0.024986,2,FAIL
+22,balanced,aggressive,baconator,word__baconator,0.002081,1,FAIL
+22,balanced,aggressive,baconator,word__breakfast baconator,0.002081,2,FAIL
+22,balanced,aggressive,roast,word__nationalroastday,0.138839,1,FAIL
+22,balanced,aggressive,roast,char__roast,0.058067,2,FAIL
+22,balanced,aggressive,roast,word__roast,0.044167,3,FAIL
+22,balanced,aggressive,roast,word__roasting,0.044113,4,FAIL
+22,balanced,aggressive,roast,word__roast me,0.033008,5,FAIL
+23,None,aggressive,wendy,word__me wendy,0.023074,1,FAIL
+23,None,aggressive,wendy,word__the wendy,-0.015147,2,FAIL
+23,None,aggressive,wendy,word__is wendy,-0.011487,3,FAIL
+23,None,aggressive,wendy,word__wendy,0.007433,4,FAIL
+23,None,aggressive,wendy,char__wendy,0.002507,5,FAIL
+23,None,aggressive,frosty,word__frosty,0.038092,1,FAIL
+23,None,aggressive,frosty,word__mints frosty,0.023445,2,FAIL
+23,None,aggressive,baconator,word__baconator,-0.016036,1,FAIL
+23,None,aggressive,roast,word__nationalroastday,0.128745,1,FAIL
+23,None,aggressive,roast,char__roast,0.045142,2,FAIL
+23,None,aggressive,roast,word__roasting,0.042475,3,FAIL
+23,None,aggressive,roast,word__roast me,0.031182,4,FAIL
+23,None,aggressive,roast,word__roast,-0.007784,5,FAIL
+23,balanced,aggressive,wendy,word__me wendy,0.023074,1,FAIL
+23,balanced,aggressive,wendy,word__the wendy,-0.015147,2,FAIL
+23,balanced,aggressive,wendy,word__is wendy,-0.011487,3,FAIL
+23,balanced,aggressive,wendy,word__wendy,0.007433,4,FAIL
+23,balanced,aggressive,wendy,char__wendy,0.002507,5,FAIL
+23,balanced,aggressive,frosty,word__frosty,0.038092,1,FAIL
+23,balanced,aggressive,frosty,word__mints frosty,0.023445,2,FAIL
+23,balanced,aggressive,baconator,word__baconator,-0.016036,1,FAIL
+23,balanced,aggressive,roast,word__nationalroastday,0.128745,1,FAIL
+23,balanced,aggressive,roast,char__roast,0.045142,2,FAIL
+23,balanced,aggressive,roast,word__roasting,0.042475,3,FAIL
+23,balanced,aggressive,roast,word__roast me,0.031182,4,FAIL
+23,balanced,aggressive,roast,word__roast,-0.007784,5,FAIL
+24,None,aggressive,wendy,word__wendy,-0.02332,1,FAIL
+24,None,aggressive,wendy,word__me wendy,0.022304,2,FAIL
+24,None,aggressive,wendy,word__to wendy,-0.01807,3,FAIL
+24,None,aggressive,wendy,word__wendy and,-0.01807,4,FAIL
+24,None,aggressive,wendy,word__the wendy,-0.016172,5,FAIL
+24,None,aggressive,frosty,word__mints frosty,0.025194,1,FAIL
+24,None,aggressive,frosty,word__frosty,0.017812,2,FAIL
+24,None,aggressive,baconator,word__baconator,-0.021693,1,FAIL
+24,None,aggressive,baconator,word__baconator with,-0.01807,2,FAIL
+24,None,aggressive,baconator,word__breakfast baconator,-0.005963,3,FAIL
+24,None,aggressive,roast,word__nationalroastday,0.131258,1,FAIL
+24,None,aggressive,roast,char__roast,0.04653,2,FAIL
+24,None,aggressive,roast,word__roasting,0.040212,3,FAIL
+24,None,aggressive,roast,word__roasted,-0.032354,4,FAIL
+24,None,aggressive,roast,word__roast me,0.031166,5,FAIL
+24,balanced,aggressive,wendy,word__wendy,-0.02332,1,FAIL
+24,balanced,aggressive,wendy,word__me wendy,0.022304,2,FAIL
+24,balanced,aggressive,wendy,word__to wendy,-0.01807,3,FAIL
+24,balanced,aggressive,wendy,word__wendy and,-0.01807,4,FAIL
+24,balanced,aggressive,wendy,word__the wendy,-0.016172,5,FAIL
+24,balanced,aggressive,frosty,word__mints frosty,0.025194,1,FAIL
+24,balanced,aggressive,frosty,word__frosty,0.017812,2,FAIL
+24,balanced,aggressive,baconator,word__baconator,-0.021693,1,FAIL
+24,balanced,aggressive,baconator,word__baconator with,-0.01807,2,FAIL
+24,balanced,aggressive,baconator,word__breakfast baconator,-0.005963,3,FAIL
+24,balanced,aggressive,roast,word__nationalroastday,0.131258,1,FAIL
+24,balanced,aggressive,roast,char__roast,0.04653,2,FAIL
+24,balanced,aggressive,roast,word__roasting,0.040212,3,FAIL
+24,balanced,aggressive,roast,word__roasted,-0.032354,4,FAIL
+24,balanced,aggressive,roast,word__roast me,0.031166,5,FAIL
+25,None,aggressive,wendy,word__me wendy,0.024331,1,FAIL
+25,None,aggressive,wendy,word__to wendy,-0.018278,2,FAIL
+25,None,aggressive,wendy,word__wendy and,-0.018278,3,FAIL
+25,None,aggressive,wendy,word__wendy,0.015808,4,FAIL
+25,None,aggressive,wendy,char__wendy,0.006065,5,FAIL
+25,None,aggressive,frosty,word__mints frosty,0.024738,1,FAIL
+25,None,aggressive,frosty,word__frosty,0.010083,2,FAIL
+25,None,aggressive,baconator,word__baconator with,-0.018278,1,FAIL
+25,None,aggressive,baconator,word__baconator,-0.011216,2,FAIL
+25,None,aggressive,baconator,word__breakfast baconator,-0.004882,3,FAIL
+25,None,aggressive,nuggs,word__nuggs,-0.035519,1,FAIL
+25,None,aggressive,nuggs,char__nuggs,-0.013169,2,FAIL
+25,None,aggressive,roast,word__nationalroastday,0.1283,1,FAIL
+25,None,aggressive,roast,char__roast,0.052142,2,FAIL
+25,None,aggressive,roast,word__roasting,0.034657,3,FAIL
+25,None,aggressive,roast,word__roast me,0.032353,4,FAIL
+25,None,aggressive,roast,word__roast,0.01893,5,FAIL
+25,balanced,aggressive,wendy,word__me wendy,0.024331,1,FAIL
+25,balanced,aggressive,wendy,word__to wendy,-0.018278,2,FAIL
+25,balanced,aggressive,wendy,word__wendy and,-0.018278,3,FAIL
+25,balanced,aggressive,wendy,word__wendy,0.015808,4,FAIL
+25,balanced,aggressive,wendy,char__wendy,0.006065,5,FAIL
+25,balanced,aggressive,frosty,word__mints frosty,0.024738,1,FAIL
+25,balanced,aggressive,frosty,word__frosty,0.010083,2,FAIL
+25,balanced,aggressive,baconator,word__baconator with,-0.018278,1,FAIL
+25,balanced,aggressive,baconator,word__baconator,-0.011216,2,FAIL
+25,balanced,aggressive,baconator,word__breakfast baconator,-0.004882,3,FAIL
+25,balanced,aggressive,nuggs,word__nuggs,-0.035519,1,FAIL
+25,balanced,aggressive,nuggs,char__nuggs,-0.013169,2,FAIL
+25,balanced,aggressive,roast,word__nationalroastday,0.1283,1,FAIL
+25,balanced,aggressive,roast,char__roast,0.052142,2,FAIL
+25,balanced,aggressive,roast,word__roasting,0.034657,3,FAIL
+25,balanced,aggressive,roast,word__roast me,0.032353,4,FAIL
+25,balanced,aggressive,roast,word__roast,0.01893,5,FAIL
+26,None,aggressive,wendy,word__wendy,-0.050171,1,FAIL
+26,None,aggressive,wendy,word__the wendy,-0.03049,2,FAIL
+26,None,aggressive,wendy,word__me wendy,0.024219,3,FAIL
+26,None,aggressive,wendy,char__wendy,-0.023088,4,FAIL
+26,None,aggressive,wendy,word__wendys,0.009109,5,FAIL
+26,None,aggressive,wendys,word__wendys,0.009109,1,FAIL
+26,None,aggressive,frosty,word__mints frosty,0.024215,1,FAIL
+26,None,aggressive,frosty,word__frosty,0.00948,2,FAIL
+26,None,aggressive,roast,word__nationalroastday,0.12537,1,FAIL
+26,None,aggressive,roast,char__roast,0.049253,2,FAIL
+26,None,aggressive,roast,word__roasting,0.033076,3,FAIL
+26,None,aggressive,roast,word__roast me,0.032587,4,FAIL
+26,None,aggressive,roast,word__roast,0.021366,5,FAIL
+26,balanced,aggressive,wendy,word__wendy,-0.050171,1,FAIL
+26,balanced,aggressive,wendy,word__the wendy,-0.03049,2,FAIL
+26,balanced,aggressive,wendy,word__me wendy,0.024219,3,FAIL
+26,balanced,aggressive,wendy,char__wendy,-0.023088,4,FAIL
+26,balanced,aggressive,wendy,word__wendys,0.009109,5,FAIL
+26,balanced,aggressive,wendys,word__wendys,0.009109,1,FAIL
+26,balanced,aggressive,frosty,word__mints frosty,0.024215,1,FAIL
+26,balanced,aggressive,frosty,word__frosty,0.00948,2,FAIL
+26,balanced,aggressive,roast,word__nationalroastday,0.12537,1,FAIL
+26,balanced,aggressive,roast,char__roast,0.049253,2,FAIL
+26,balanced,aggressive,roast,word__roasting,0.033076,3,FAIL
+26,balanced,aggressive,roast,word__roast me,0.032587,4,FAIL
+26,balanced,aggressive,roast,word__roast,0.021366,5,FAIL
+27,None,aggressive,wendy,word__me wendy,0.024551,1,FAIL
+27,None,aggressive,wendy,word__to wendy,-0.018234,2,FAIL
+27,None,aggressive,wendy,word__wendy and,-0.018234,3,FAIL
+27,None,aggressive,wendy,word__wendy,-0.015768,4,FAIL
+27,None,aggressive,wendy,word__is wendy,-0.006874,5,FAIL
+27,None,aggressive,frosty,word__frosty,0.028103,1,FAIL
+27,None,aggressive,frosty,word__mints frosty,0.024693,2,FAIL
+27,None,aggressive,baconator,word__baconator with,-0.018234,1,FAIL
+27,None,aggressive,baconator,word__baconator,-0.011931,2,FAIL
+27,None,aggressive,baconator,word__breakfast baconator,-0.005352,3,FAIL
+27,None,aggressive,roast,word__nationalroastday,0.139117,1,FAIL
+27,None,aggressive,roast,char__roast,0.056485,2,FAIL
+27,None,aggressive,roast,word__roasting,0.045622,3,FAIL
+27,None,aggressive,roast,word__roast me,0.033054,4,FAIL
+27,None,aggressive,roast,word__roast,0.018076,5,FAIL
+27,balanced,aggressive,wendy,word__me wendy,0.024551,1,FAIL
+27,balanced,aggressive,wendy,word__to wendy,-0.018234,2,FAIL
+27,balanced,aggressive,wendy,word__wendy and,-0.018234,3,FAIL
+27,balanced,aggressive,wendy,word__wendy,-0.015768,4,FAIL
+27,balanced,aggressive,wendy,word__is wendy,-0.006874,5,FAIL
+27,balanced,aggressive,frosty,word__frosty,0.028103,1,FAIL
+27,balanced,aggressive,frosty,word__mints frosty,0.024693,2,FAIL
+27,balanced,aggressive,baconator,word__baconator with,-0.018234,1,FAIL
+27,balanced,aggressive,baconator,word__baconator,-0.011931,2,FAIL
+27,balanced,aggressive,baconator,word__breakfast baconator,-0.005352,3,FAIL
+27,balanced,aggressive,roast,word__nationalroastday,0.139117,1,FAIL
+27,balanced,aggressive,roast,char__roast,0.056485,2,FAIL
+27,balanced,aggressive,roast,word__roasting,0.045622,3,FAIL
+27,balanced,aggressive,roast,word__roast me,0.033054,4,FAIL
+27,balanced,aggressive,roast,word__roast,0.018076,5,FAIL
+28,None,aggressive,wendy,word__wendy,-0.05408,1,FAIL
+28,None,aggressive,wendy,word__at wendy,-0.030008,2,FAIL
+28,None,aggressive,wendy,word__me wendy,0.024669,3,FAIL
+28,None,aggressive,wendy,char__wendy,-0.023549,4,FAIL
+28,None,aggressive,wendy,word__the wendy,-0.021949,5,FAIL
+28,None,aggressive,frosty,word__frosty,0.03958,1,FAIL
+28,None,aggressive,frosty,word__mints frosty,0.023764,2,FAIL
+28,None,aggressive,baconator,word__baconator with,-0.018281,1,FAIL
+28,None,aggressive,baconator,word__baconator,-0.011497,2,FAIL
+28,None,aggressive,baconator,word__breakfast baconator,-0.005197,3,FAIL
+28,None,aggressive,roast,word__nationalroastday,0.130076,1,FAIL
+28,None,aggressive,roast,char__roast,0.042019,2,FAIL
+28,None,aggressive,roast,word__roasting,0.034271,3,FAIL
+28,None,aggressive,roast,word__roasted,-0.033762,4,FAIL
+28,None,aggressive,roast,word__roast me,0.032842,5,FAIL
+28,balanced,aggressive,wendy,word__wendy,-0.05408,1,FAIL
+28,balanced,aggressive,wendy,word__at wendy,-0.030008,2,FAIL
+28,balanced,aggressive,wendy,word__me wendy,0.024669,3,FAIL
+28,balanced,aggressive,wendy,char__wendy,-0.023549,4,FAIL
+28,balanced,aggressive,wendy,word__the wendy,-0.021949,5,FAIL
+28,balanced,aggressive,frosty,word__frosty,0.03958,1,FAIL
+28,balanced,aggressive,frosty,word__mints frosty,0.023764,2,FAIL
+28,balanced,aggressive,baconator,word__baconator with,-0.018281,1,FAIL
+28,balanced,aggressive,baconator,word__baconator,-0.011497,2,FAIL
+28,balanced,aggressive,baconator,word__breakfast baconator,-0.005197,3,FAIL
+28,balanced,aggressive,roast,word__nationalroastday,0.130076,1,FAIL
+28,balanced,aggressive,roast,char__roast,0.042019,2,FAIL
+28,balanced,aggressive,roast,word__roasting,0.034271,3,FAIL
+28,balanced,aggressive,roast,word__roasted,-0.033762,4,FAIL
+28,balanced,aggressive,roast,word__roast me,0.032842,5,FAIL
+29,None,aggressive,wendy,word__the wendy,-0.025324,1,FAIL
+29,None,aggressive,wendy,word__wendy app,-0.025324,2,FAIL
+29,None,aggressive,wendy,word__me wendy,0.021811,3,FAIL
+29,None,aggressive,wendy,word__wendy,-0.008861,4,FAIL
+29,None,aggressive,wendy,char__wendy,-0.002167,5,FAIL
+29,None,aggressive,frosty,word__mints frosty,0.024013,1,FAIL
+29,None,aggressive,frosty,word__frosty,-0.008629,2,FAIL
+29,None,aggressive,baconator,word__baconator,0.002152,1,FAIL
+29,None,aggressive,baconator,word__breakfast baconator,0.002152,2,FAIL
+29,None,aggressive,nuggs,word__nuggs,-0.022588,1,FAIL
+29,None,aggressive,roast,word__nationalroastday,0.133057,1,FAIL
+29,None,aggressive,roast,char__roast,0.051019,2,FAIL
+29,None,aggressive,roast,word__roasting,0.040793,3,FAIL
+29,None,aggressive,roast,word__roasted,-0.029924,4,FAIL
+29,None,aggressive,roast,word__roast me,0.029798,5,FAIL
+29,balanced,aggressive,wendy,word__the wendy,-0.025324,1,FAIL
+29,balanced,aggressive,wendy,word__wendy app,-0.025324,2,FAIL
+29,balanced,aggressive,wendy,word__me wendy,0.021811,3,FAIL
+29,balanced,aggressive,wendy,word__wendy,-0.008861,4,FAIL
+29,balanced,aggressive,wendy,char__wendy,-0.002167,5,FAIL
+29,balanced,aggressive,frosty,word__mints frosty,0.024013,1,FAIL
+29,balanced,aggressive,frosty,word__frosty,-0.008629,2,FAIL
+29,balanced,aggressive,baconator,word__baconator,0.002152,1,FAIL
+29,balanced,aggressive,baconator,word__breakfast baconator,0.002152,2,FAIL
+29,balanced,aggressive,nuggs,word__nuggs,-0.022588,1,FAIL
+29,balanced,aggressive,roast,word__nationalroastday,0.133057,1,FAIL
+29,balanced,aggressive,roast,char__roast,0.051019,2,FAIL
+29,balanced,aggressive,roast,word__roasting,0.040793,3,FAIL
+29,balanced,aggressive,roast,word__roasted,-0.029924,4,FAIL
+29,balanced,aggressive,roast,word__roast me,0.029798,5,FAIL

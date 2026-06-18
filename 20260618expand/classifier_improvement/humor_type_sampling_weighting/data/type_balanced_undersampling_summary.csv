@@ -1,0 +1,11 @@
+class_weight,metric,mean,std,n_seeds
+None,macro_f1,0.3638,0.0374,30
+None,weighted_f1,0.3638,0.0374,30
+None,accuracy,0.3684,0.038,30
+None,aggressive_f1,0.3472,0.0741,30
+None,self_defeating_f1,0.3615,0.0507,30
+balanced,macro_f1,0.3701,0.0331,30
+balanced,weighted_f1,0.3701,0.0331,30
+balanced,accuracy,0.3735,0.0339,30
+balanced,aggressive_f1,0.3488,0.0629,30
+balanced,self_defeating_f1,0.3648,0.0493,30
