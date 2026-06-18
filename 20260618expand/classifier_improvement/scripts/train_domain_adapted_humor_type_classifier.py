@@ -42,7 +42,7 @@ CI = ROOT / "20260618expand" / "classifier_improvement"
 
 TEMPLATE = CI / "data" / "human_labeling_template" / "fortune100_human_labeling_template.csv"
 OUT_METRICS = CI / "results" / "type_classifier_metrics.csv"
-OUT_CM = CI / "results" / "confusion_matrices" / "type_confusion_matrix.csv"
+OUT_CM = CI / "results" / "confusion_matrices" / "type_in_sample_confusion_matrix.csv"
 
 CLASSES = ["aggressive", "affiliative", "self_enhancing", "self_defeating"]
 # Numeric coding (human input): 1=AGGRESSIVE, 2=AFFILIATIVE, 3=SELF-ENHANCING, 4=SELF-DEFEATING

@@ -8,9 +8,11 @@ The Wendy's-trained classifier produced aggressive humor at 10.5% of Fortune Top
 
 ## Current Stage
 
-**Scaffold complete. Human labeling pending.**
+**Batch1 training complete. Type classifier does not yet pass. Batch2 labels required.**
 
-NOT yet: final H1/H2/H3 re-estimation using domain-adapted labels.
+- Presence classifier: provisionally passes random 5-fold CV AUC threshold (AUC=0.7674). Not deployment-ready.
+- Type classifier: does not pass provisional threshold (macro-F1=0.3347 < 0.3448 baseline). Not usable.
+- NOT yet: full corpus application, H1/H2/H3 re-estimation.
 
 ## Diagnostics Row Count Note
 
@@ -58,13 +60,53 @@ Training data: Fortune Top 100 human labels (3,000 stratified candidate posts; b
 | random_fortune_sample | 358 | Base rate coverage |
 | **Total** | **1,500** | |
 
-## Next Steps (Human Labeling Required)
+## Batch1 Classifier Training Interpretation Notes
 
-1. Fill labels in: `data/human_labeling_template/fortune100_human_labeling_template.csv`
-2. `train_domain_adapted_humor_presence_classifier.py`
-3. `train_domain_adapted_humor_type_classifier.py`
-4. `apply_domain_adapted_classifier.py` (after validation)
-5. Re-run H1/H2/H3 with domain-adapted labels
+**These notes are mandatory reading before citing any batch1 classifier output.**
+
+### Presence Classifier (batch1)
+- Provisionally passes the random stratified 5-fold CV AUC threshold (AUC=0.7674 ≥ 0.75).
+- This is a provisional threshold only. The classifier is not final deployment-ready.
+- Firm-held-out F1=0.5333 is weaker than random CV F1=0.657. Cross-firm generalization claims must be limited.
+- Brand linguistic leakage is possible in random 5-fold CV (same-brand tweets in both train and validation folds).
+
+### Type Classifier (batch1)
+- Does not pass the provisional validation threshold (macro-F1=0.3347 < 0.3448 Wendy's baseline).
+- Aggressive humor classification is not reliable: CV precision=0.1154, recall=0.0682.
+- Aggressive humor classification must NOT be used as H2/H3 main analysis evidence.
+- Self-defeating class also unreliable (n=24, CV recall=0.0833).
+- Batch2 labels are required before type or aggressive classification can be considered usable.
+
+### Confusion Matrices
+- `results/confusion_matrices/presence_in_sample_confusion_matrix.csv` — in-sample final-model diagnostic only.
+  Fit on all 1,482 labeled rows, predicted on the same rows. In-sample F1=0.9012 vs CV F1=0.657.
+  **Do not cite as validation performance.**
+- `results/confusion_matrices/type_in_sample_confusion_matrix.csv` — in-sample final-model diagnostic only.
+  Fit on all 648 humor rows, predicted on the same rows. In-sample aggressive precision≈0.98 vs CV precision=0.1154.
+  **Do not cite as validation performance.**
+
+### Threshold Sensitivity
+- `results/threshold_sensitivity_in_sample_diagnostic.csv` — in-sample calibration diagnostic only.
+  Computed by fitting on the full labeled set and sweeping thresholds on the same data.
+  F1=0.9012 (threshold=0.5) and F1=0.9812 (abstention) are in-sample artifacts, not held-out validation evidence.
+  **Do not cite as classifier generalization performance.**
+
+### What Is and Is Not Permitted
+
+| Permitted claim | Not permitted claim |
+|---|---|
+| "Presence classifier provisionally passes CV AUC threshold" | "Classifier is ready for full deployment" |
+| "Type classifier does not yet pass" | "Type classifier is validated" |
+| "Batch2 labels are required" | "H1/H2/H3 can now be tested with final labels" |
+| "Aggressive humor presence is uncertain" | "Aggressive humor classification is reliable" |
+
+## Next Steps
+
+1. Receive batch2 labels from 3 coders (500 rows each)
+2. Re-train with combined batch1+batch2 (up to 3,000 posts)
+3. Re-evaluate: target macro-F1 > 0.3448, aggressive precision ≥ 0.60
+4. If thresholds pass: run `apply_domain_adapted_classifier.py` on 65,245 posts
+5. Re-estimate H1/H2/H3 with domain-adapted labels (only after step 3 passes)
 
 ## Critical Warning: Wendy's Classifier Role
 

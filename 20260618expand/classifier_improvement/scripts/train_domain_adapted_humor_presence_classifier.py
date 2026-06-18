@@ -46,8 +46,8 @@ CI = ROOT / "20260618expand" / "classifier_improvement"
 
 TEMPLATE = CI / "data" / "human_labeling_template" / "fortune100_human_labeling_template.csv"
 OUT_METRICS = CI / "results" / "presence_classifier_metrics.csv"
-OUT_CM = CI / "results" / "confusion_matrices" / "presence_confusion_matrix.csv"
-OUT_THRESHOLD = CI / "results" / "threshold_sensitivity.csv"
+OUT_CM = CI / "results" / "confusion_matrices" / "presence_in_sample_confusion_matrix.csv"
+OUT_THRESHOLD = CI / "results" / "threshold_sensitivity_in_sample_diagnostic.csv"
 OUT_DIAG = CI / "data" / "diagnostics" / "presence_classifier_diagnostics.csv"
 OUT_REPORT = CI / "reports" / "validation_report.md"
 
