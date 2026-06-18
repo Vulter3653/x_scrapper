@@ -9,7 +9,7 @@
 
 These formulations are supported by the current output:
 
-- "In the exploratory H1 regression, humor-classified posts (t50 threshold) are positively associated with log total engagement (β=0.225, HC1-SE=0.013, p<0.001) after firm and month fixed effects."
+- "In the exploratory H1 regression, humor-classified posts (t50 threshold) are positively associated with log total engagement (β=0.225, SE=0.012, p<0.001) after firm and month fixed effects."
 - "The positive association is consistent across t40, t60, and continuous probability predictor robustness checks."
 - "All 7 robustness specifications are statistically significant at the 5% level."
 - "These results are exploratory and based on a provisional batch1-only classifier (OOF AUC=0.7811)."

@@ -51,8 +51,8 @@ def main():
         except ValueError:
             errors.append("FAIL: coef is not a valid float")
         try:
-            p = float(r.get("p_hc1", "1"))
-            warn(p < 0.05, f"p_hc1 < 0.05 (got {p:.4f})")
+            p = float(r.get("p_value", "1"))
+            warn(p < 0.05, f"p_value < 0.05 (got {p:.4f})")
         except ValueError:
             pass
 

@@ -11,7 +11,7 @@ Main specification:
   Controls:   text_length, hashtag_count, mention_count
   FE:         firm fixed effects + month fixed effects
   Method:     OLS with iterative two-way FE demeaning (Gauss-Seidel)
-  SE:         HC1 heteroskedasticity-robust
+  SE:         Standard OLS
 
 Robustness specifications:
   - Predictor: t40 / t60 / continuous probability
@@ -93,8 +93,8 @@ def demean_twoway(arr: np.ndarray, g1: np.ndarray, g2: np.ndarray,
     return out
 
 
-def ols_fit(X: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """OLS with HC1 robust SE. Returns (coef, se_ols, se_hc1)."""
+def ols_fit(X: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """OLS. Returns (coef, se_ols)."""
     n, k = X.shape
     XtX = X.T @ X
     try:
@@ -105,17 +105,8 @@ def ols_fit(X: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.nd
     resid = y - X @ coef
     df_resid = n - k
     mse = (resid @ resid) / df_resid
-
-    # OLS SE
     se_ols = np.sqrt(np.maximum(np.diag(XtX_inv) * mse, 0))
-
-    # HC1 robust SE (White's with n/(n-k) correction)
-    e2 = resid ** 2
-    meat = (X * e2[:, None]).T @ X
-    hc1 = (n / df_resid) * (XtX_inv @ meat @ XtX_inv)
-    se_hc1 = np.sqrt(np.maximum(np.diag(hc1), 0))
-
-    return coef, se_ols, se_hc1
+    return coef, se_ols
 
 
 def r_squared(y: np.ndarray, y_hat: np.ndarray) -> float:
@@ -138,51 +129,42 @@ def run_spec(y_raw: np.ndarray, predictors: dict[str, np.ndarray],
         for j in range(X_raw.shape[1])
     ])
 
-    coef, se_ols, se_hc1 = ols_fit(X_dm, y_dm)
+    coef, se_ols = ols_fit(X_dm, y_dm)
     y_hat = X_dm @ coef
 
     # p-values using normal approximation (large-n)
-    t_ols  = coef / np.where(se_ols  > 0, se_ols,  1e-12)
-    t_hc1  = coef / np.where(se_hc1 > 0, se_hc1, 1e-12)
+    t_stat = coef / np.where(se_ols > 0, se_ols, 1e-12)
 
     try:
         from scipy.stats import norm as scipy_norm
-        p_ols  = 2 * (1 - scipy_norm.cdf(np.abs(t_ols)))
-        p_hc1  = 2 * (1 - scipy_norm.cdf(np.abs(t_hc1)))
+        p_val = 2 * (1 - scipy_norm.cdf(np.abs(t_stat)))
     except ImportError:
-        # Normal approximation via erfcc
         def normal_sf(z):
             return 0.5 * (1 - np.array([float(np.tanh(x * (1 - x * x / 3) / np.sqrt(2 / np.pi)))
                                          for x in np.atleast_1d(z)]))
-        p_ols  = 2 * normal_sf(np.abs(t_ols))
-        p_hc1  = 2 * normal_sf(np.abs(t_hc1))
+        p_val = 2 * normal_sf(np.abs(t_stat))
 
     idx = pred_names.index(main_pred)
     n   = len(y_raw)
     r2  = r_squared(y_dm, y_hat)
 
     return {
-        "spec_label":          spec_label,
-        "dv":                  dv_label,
-        "main_predictor":      main_pred,
-        "coef":                round(float(coef[idx]), 6),
-        "se_ols":              round(float(se_ols[idx]), 6),
-        "se_hc1":              round(float(se_hc1[idx]), 6),
-        "t_ols":               round(float(t_ols[idx]), 4),
-        "t_hc1":               round(float(t_hc1[idx]), 4),
-        "p_ols":               round(float(p_ols[idx]), 6),
-        "p_hc1":               round(float(p_hc1[idx]), 6),
-        "sig_hc1_10pct":       "yes" if abs(t_hc1[idx]) > 1.645 else "no",
-        "sig_hc1_5pct":        "yes" if abs(t_hc1[idx]) > 1.960 else "no",
-        "sig_hc1_1pct":        "yes" if abs(t_hc1[idx]) > 2.576 else "no",
-        "n_obs":               n,
-        "r_sq_within":         round(r2, 6),
-        "all_coefs":           dict(zip(pred_names, [round(float(c), 6) for c in coef])),
-        "all_se_hc1":          dict(zip(pred_names, [round(float(s), 6) for s in se_hc1])),
-        "fe":                  "firm + month",
-        "regression_status":   REGRESSION_STATUS,
-        "classifier_model":    CLASSIFIER_MODEL,
-        "classifier_status":   CLASSIFIER_STATUS,
+        "spec_label":        spec_label,
+        "dv":                dv_label,
+        "main_predictor":    main_pred,
+        "coef":              round(float(coef[idx]), 6),
+        "se":                round(float(se_ols[idx]), 6),
+        "t_stat":            round(float(t_stat[idx]), 4),
+        "p_value":           round(float(p_val[idx]), 6),
+        "sig_10pct":         "yes" if abs(t_stat[idx]) > 1.645 else "no",
+        "sig_5pct":          "yes" if abs(t_stat[idx]) > 1.960 else "no",
+        "sig_1pct":          "yes" if abs(t_stat[idx]) > 2.576 else "no",
+        "n_obs":             n,
+        "r_sq_within":       round(r2, 6),
+        "fe":                "firm + month",
+        "regression_status": REGRESSION_STATUS,
+        "classifier_model":  CLASSIFIER_MODEL,
+        "classifier_status": CLASSIFIER_STATUS,
     }
 
 
@@ -287,9 +269,9 @@ def main() -> None:
     main_preds = {**{"h1_humor_presence_t50": t50}, **controls}
     main_res   = run_spec(log_eng, main_preds, "h1_humor_presence_t50",
                           firm_idx, month_idx, "log_total_engagement", "main_t50")
-    print(f"    coef_t50={main_res['coef']}  se_hc1={main_res['se_hc1']}  "
-          f"t_hc1={main_res['t_hc1']}  p_hc1={main_res['p_hc1']:.4f}  "
-          f"sig_5pct={main_res['sig_hc1_5pct']}")
+    print(f"    coef_t50={main_res['coef']}  se={main_res['se']}  "
+          f"t={main_res['t_stat']}  p={main_res['p_value']:.4f}  "
+          f"sig_5pct={main_res['sig_5pct']}")
 
     # ============================
     # ROBUSTNESS SPECIFICATIONS
@@ -307,8 +289,8 @@ def main() -> None:
         res   = run_spec(log_eng, preds, pred_name, firm_idx, month_idx,
                          "log_total_engagement", label)
         robust_results.append(res)
-        print(f"    coef={res['coef']}  t_hc1={res['t_hc1']}  "
-              f"sig_5pct={res['sig_hc1_5pct']}")
+        print(f"    coef={res['coef']}  t={res['t_stat']}  "
+              f"sig_5pct={res['sig_5pct']}")
 
     # DV variants: winsorization
     for pct_lo, pct_hi, label in [
@@ -321,8 +303,8 @@ def main() -> None:
         res   = run_spec(dv_w, preds, "h1_humor_presence_t50", firm_idx, month_idx,
                          f"log_eng_winsorized_{int(pct_hi*100)}pct", label)
         robust_results.append(res)
-        print(f"    coef={res['coef']}  t_hc1={res['t_hc1']}  "
-              f"sig_5pct={res['sig_hc1_5pct']}")
+        print(f"    coef={res['coef']}  t={res['t_stat']}  "
+              f"sig_5pct={res['sig_5pct']}")
 
     # DV variants: trimming (delete extreme observations)
     for pct_trim, label in [(0.99, "robust_dv_trim99"), (0.95, "robust_dv_trim95")]:
@@ -337,17 +319,16 @@ def main() -> None:
                        firm_idx[mask], month_idx[mask],
                        f"log_eng_trimmed_{int(pct_trim*100)}pct", label)
         robust_results.append(res)
-        print(f"    n={n_trim}  coef={res['coef']}  t_hc1={res['t_hc1']}  "
-              f"sig_5pct={res['sig_hc1_5pct']}")
+        print(f"    n={n_trim}  coef={res['coef']}  t={res['t_stat']}  "
+              f"sig_5pct={res['sig_5pct']}")
 
     # ============================
     # WRITE OUTPUTS
     # ============================
     main_keys = [
         "spec_label", "dv", "main_predictor",
-        "coef", "se_ols", "se_hc1", "t_ols", "t_hc1",
-        "p_ols", "p_hc1",
-        "sig_hc1_10pct", "sig_hc1_5pct", "sig_hc1_1pct",
+        "coef", "se", "t_stat", "p_value",
+        "sig_10pct", "sig_5pct", "sig_1pct",
         "n_obs", "r_sq_within", "fe",
         "regression_status", "classifier_model", "classifier_status",
     ]
@@ -373,10 +354,10 @@ def main() -> None:
             "dv":             r["dv"],
             "main_predictor": r["main_predictor"],
             "coef":           r["coef"],
-            "se_hc1":         r["se_hc1"],
-            "t_hc1":          r["t_hc1"],
-            "p_hc1":          r["p_hc1"],
-            "sig_hc1_5pct":   r["sig_hc1_5pct"],
+            "se":             r["se"],
+            "t_stat":         r["t_stat"],
+            "p_value":        r["p_value"],
+            "sig_5pct":       r["sig_5pct"],
             "n_obs":          r["n_obs"],
             "r_sq_within":    r["r_sq_within"],
         })
@@ -391,9 +372,9 @@ def main() -> None:
     print(f"  Spec: {main_res['spec_label']}")
     print(f"  DV: {main_res['dv']}")
     print(f"  Predictor: {main_res['main_predictor']}")
-    print(f"  coef = {main_res['coef']}  SE(HC1) = {main_res['se_hc1']}")
-    print(f"  t(HC1) = {main_res['t_hc1']}  p(HC1) = {main_res['p_hc1']:.4f}")
-    print(f"  Significant at 5%: {main_res['sig_hc1_5pct']}")
+    print(f"  coef = {main_res['coef']}  SE = {main_res['se']}")
+    print(f"  t = {main_res['t_stat']}  p = {main_res['p_value']:.4f}")
+    print(f"  Significant at 5%: {main_res['sig_5pct']}")
     print(f"  N obs = {main_res['n_obs']}  R²_within = {main_res['r_sq_within']}")
     print(f"  Status: {REGRESSION_STATUS} — NOT confirmatory evidence")
     print("=== run_h1_exploratory_regression COMPLETE ===")
