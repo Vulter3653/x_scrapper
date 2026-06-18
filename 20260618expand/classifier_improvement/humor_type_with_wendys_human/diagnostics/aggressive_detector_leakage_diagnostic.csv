@@ -1,0 +1,35 @@
+diagnostic_token,feature,weight,rank_abs_weight,leakage_flag
+wendy,word__me wendy,0.060641,1,FAIL
+wendy,word__wendys,0.038031,2,FAIL
+wendy,word__wendy,-0.03188,3,FAIL
+wendy,word__is wendy,0.024072,4,FAIL
+wendy,word__the wendy,-0.023073,5,FAIL
+wendy,word__wendysspicynuggs,-0.022669,6,FAIL
+wendy,word__to wendy,-0.021594,7,FAIL
+wendy,word__wendy is,-0.021235,8,FAIL
+wendy,word__wendy url,-0.020485,9,FAIL
+wendy,char__wendy,-0.020455,10,FAIL
+wendys,word__wendys,0.038031,1,FAIL
+wendys,word__wendysspicynuggs,-0.022669,2,FAIL
+wendys,word__verified wendysspicynuggs,-0.015744,3,FAIL
+frosty,word__mints frosty,0.070452,1,FAIL
+frosty,word__vanilla frosty,-0.021105,2,FAIL
+frosty,word__frosty,0.020722,3,FAIL
+baconator,word__breakfast baconator,0.020797,1,FAIL
+baconator,word__baconator with,-0.010523,2,FAIL
+baconator,word__baconator,-0.006119,3,FAIL
+nuggs,word__nuggs,-0.041476,1,FAIL
+nuggs,char__nuggs,-0.026237,2,FAIL
+nuggs,word__spicy nuggs,-0.025578,3,FAIL
+nuggs,word__wendysspicynuggs,-0.022669,4,FAIL
+nuggs,word__verified wendysspicynuggs,-0.015744,5,FAIL
+roast,word__nationalroastday,0.329476,1,FAIL
+roast,char__roast,0.163052,2,FAIL
+roast,word__roasting,0.115193,3,FAIL
+roast,word__roast me,0.08012,4,FAIL
+roast,word__roast,0.05677,5,FAIL
+roast,word__roasted,-0.035672,6,FAIL
+roast,word__to roast,0.030501,7,FAIL
+roast,word__roasts,0.025937,8,FAIL
+roast,word__nationalroastday is,0.024057,9,FAIL
+roast,word__roast marshmallows,-0.008635,10,FAIL

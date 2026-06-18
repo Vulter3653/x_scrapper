@@ -1,0 +1,3 @@
+model_id,eval_scope,eval_mode,n_rows,aggressive_count,other_count,pr_auc,roc_auc,f1,precision,recall
+aggressive_detector_a_batch1_only,train_batch1_test_wendys,source_heldout,278,95,183,0.426,0.5917,0.2917,0.4286,0.2211
+aggressive_detector_b_wendys_only,train_wendys_test_batch1,source_heldout,648,44,604,0.1628,0.6629,0.181,0.1117,0.4773

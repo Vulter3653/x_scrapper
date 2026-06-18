@@ -1,0 +1,16 @@
+dataset,humor_type,count
+batch1_fortune100,aggressive,44
+batch1_fortune100,affiliative,321
+batch1_fortune100,self-enhancing,259
+batch1_fortune100,self-defeating,24
+batch1_fortune100,TOTAL,648
+wendys_human_type,aggressive,95
+wendys_human_type,affiliative,106
+wendys_human_type,self-enhancing,62
+wendys_human_type,self-defeating,15
+wendys_human_type,TOTAL,278
+combined,aggressive,139
+combined,affiliative,427
+combined,self-enhancing,321
+combined,self-defeating,39
+combined,TOTAL,926

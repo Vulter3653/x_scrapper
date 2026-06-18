@@ -1,0 +1,3 @@
+model_id,eval_scope,eval_mode,n_rows,aggressive_count,other_count,pr_auc,roc_auc,f1,precision,recall
+aggressive_detector_a_batch1_only,all_training_rows,oof_stratified_5fold_cv,648,44,604,0.2002,0.7836,0.1892,0.2333,0.1591
+aggressive_detector_b_batch1_plus_wendys_human,all_training_rows,oof_stratified_5fold_cv,926,139,787,0.4356,0.8151,0.4474,0.4121,0.4892

@@ -1,0 +1,15 @@
+model_id,threshold,precision,recall,f1,meets_primary,meets_secondary
+aggressive_detector_a_batch1_only,0.2,0.0679,1.0,0.1272,no,no
+aggressive_detector_a_batch1_only,0.3,0.0679,1.0,0.1272,no,no
+aggressive_detector_a_batch1_only,0.4,0.0973,0.9091,0.1758,no,no
+aggressive_detector_a_batch1_only,0.5,0.2333,0.1591,0.1892,no,no
+aggressive_detector_a_batch1_only,0.6,0.0,0.0,0.0,no,no
+aggressive_detector_a_batch1_only,0.7,0.0,0.0,0.0,no,no
+aggressive_detector_a_batch1_only,0.8,0.0,0.0,0.0,no,no
+aggressive_detector_b_batch1_plus_wendys_human,0.2,0.1501,1.0,0.261,no,no
+aggressive_detector_b_batch1_plus_wendys_human,0.3,0.1501,1.0,0.261,no,no
+aggressive_detector_b_batch1_plus_wendys_human,0.4,0.1905,0.9784,0.3189,no,no
+aggressive_detector_b_batch1_plus_wendys_human,0.5,0.4121,0.4892,0.4474,no,no
+aggressive_detector_b_batch1_plus_wendys_human,0.6,1.0,0.036,0.0694,no,no
+aggressive_detector_b_batch1_plus_wendys_human,0.7,0.0,0.0,0.0,no,no
+aggressive_detector_b_batch1_plus_wendys_human,0.8,0.0,0.0,0.0,no,no

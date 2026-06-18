@@ -1,0 +1,5 @@
+source_file,raw_rows,label_columns,usable_for_training,note
+20260615wendy's/data/wendys_h2_four_type_humor_dataset.csv,278,final_humor_type,yes,human-coded type source candidate; deduped before final use
+20260615wendy's/data/wendys_full_sample_four_type_humor_classifier_dataset.csv,278,label,yes,human-coded type source candidate; deduped before final use
+20260615wendy's/data/wendys_h2_coder1_priority_dataset.csv,597,final_humor_type,yes,human-coded type source candidate; deduped before final use
+slide/model_prediction_type_distribution,564,model_predicted_type,no,model prediction only rows excluded from supervised training

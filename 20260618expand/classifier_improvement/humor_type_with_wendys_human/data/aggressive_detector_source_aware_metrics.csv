@@ -1,0 +1,4 @@
+model_id,eval_scope,eval_mode,n_rows,aggressive_count,other_count,pr_auc,roc_auc,f1,precision,recall
+aggressive_detector_a_batch1_only,batch1_fortune100,oof_source_subset,648,44,604,0.2002,0.7836,0.1892,0.2333,0.1591
+aggressive_detector_b_batch1_plus_wendys_human,batch1_fortune100,oof_source_subset,648,44,604,0.2405,0.8099,0.3704,0.3125,0.4545
+aggressive_detector_b_batch1_plus_wendys_human,wendys_human_type,oof_source_subset,278,95,183,0.541,0.6865,0.4898,0.4752,0.5053

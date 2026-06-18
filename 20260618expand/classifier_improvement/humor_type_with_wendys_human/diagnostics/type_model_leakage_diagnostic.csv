@@ -1,0 +1,97 @@
+model_id,class_label,diagnostic_token,feature,weight,rank_abs_weight,leakage_flag
+type_model_b_batch1_plus_wendys_human,aggressive,wendy,word__me wendy,0.060641,1,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,wendy,word__wendys,0.038031,2,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,wendy,word__wendy,-0.03188,3,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,wendy,word__is wendy,0.024072,4,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,wendy,word__the wendy,-0.023073,5,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,wendys,word__wendys,0.038031,1,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,wendys,word__wendysspicynuggs,-0.022669,2,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,wendys,word__verified wendysspicynuggs,-0.015744,3,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,frosty,word__mints frosty,0.070452,1,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,frosty,word__vanilla frosty,-0.021105,2,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,frosty,word__frosty,0.020722,3,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,baconator,word__breakfast baconator,0.020797,1,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,baconator,word__baconator with,-0.010523,2,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,baconator,word__baconator,-0.006119,3,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,nuggs,word__nuggs,-0.041476,1,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,nuggs,char__nuggs,-0.026237,2,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,nuggs,word__spicy nuggs,-0.025578,3,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,nuggs,word__wendysspicynuggs,-0.022669,4,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,nuggs,word__verified wendysspicynuggs,-0.015744,5,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,roast,word__nationalroastday,0.329476,1,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,roast,char__roast,0.163052,2,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,roast,word__roasting,0.115193,3,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,roast,word__roast me,0.08012,4,FAIL
+type_model_b_batch1_plus_wendys_human,aggressive,roast,word__roast,0.05677,5,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendy,word__wendy,-0.066973,1,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendy,word__the wendy,0.065326,2,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendy,word__is wendy,-0.063461,3,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendy,word__wendysspicynuggs,-0.03543,4,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendy,word__wendy app,0.028658,5,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendys,word__wendysspicynuggs,-0.03543,1,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendys,word__verified wendysspicynuggs,-0.024681,2,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,wendys,word__wendys,-0.015138,3,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,frosty,word__frosty,-0.067273,1,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,frosty,word__vanilla frosty,-0.029718,2,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,frosty,word__mints frosty,-0.021066,3,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,baconator,word__baconator,0.034752,1,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,baconator,word__breakfast baconator,-0.00075,2,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,baconator,word__baconator with,-6.5e-05,3,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,nuggs,word__wendysspicynuggs,-0.03543,1,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,nuggs,word__verified wendysspicynuggs,-0.024681,2,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,nuggs,word__spicy nuggs,-0.021098,3,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,nuggs,char__nuggs,-0.013912,4,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,nuggs,word__nuggs,-0.009752,5,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,roast,word__nationalroastday,-0.09288,1,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,roast,char__roast,-0.048231,2,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,roast,word__roasting,-0.027702,3,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,roast,word__roast me,-0.027314,4,FAIL
+type_model_b_batch1_plus_wendys_human,affiliative,roast,word__roasted,-0.01982,5,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendy,word__the wendy,-0.071279,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendy,word__wendysspicynuggs,0.056451,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendy,word__wendy app,-0.050101,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendy,word__to wendy,0.044808,4,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendy,word__verified wendysspicynuggs,0.038775,5,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendys,word__wendysspicynuggs,0.056451,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendys,word__verified wendysspicynuggs,0.038775,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,wendys,word__wendys,-0.001863,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,frosty,word__frosty,0.045261,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,frosty,word__mints frosty,-0.017862,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,frosty,word__vanilla frosty,0.007876,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,baconator,word__baconator,-0.023026,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,baconator,word__baconator with,0.008873,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,baconator,word__breakfast baconator,-0.006727,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,nuggs,word__wendysspicynuggs,0.056451,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,nuggs,word__nuggs,0.044295,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,nuggs,word__spicy nuggs,0.043209,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,nuggs,word__verified wendysspicynuggs,0.038775,4,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,nuggs,char__nuggs,0.036426,5,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,roast,word__nationalroastday,-0.113537,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,roast,word__roasted,0.048271,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,roast,char__roast,-0.045451,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,roast,word__roasting,-0.036106,4,FAIL
+type_model_b_batch1_plus_wendys_human,self-enhancing,roast,word__to roast,-0.021538,5,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendy,word__wendy,0.309622,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendy,char__wendy,0.149837,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendy,word__up wendy,0.097553,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendy,word__is wendy,0.093459,4,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendy,word__wendy app,0.091683,5,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendys,word__wendysspicynuggs,-0.019488,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendys,word__wendys,-0.018105,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,wendys,word__verified wendysspicynuggs,-0.01296,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,frosty,word__vanilla frosty,0.161949,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,frosty,word__frosty,0.066593,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,frosty,word__mints frosty,-0.012121,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,baconator,word__baconator,-0.036167,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,baconator,word__breakfast baconator,-0.01715,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,baconator,word__baconator with,-0.008649,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,nuggs,word__nuggs,-0.034824,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,nuggs,char__nuggs,-0.022142,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,nuggs,word__spicy nuggs,-0.021928,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,nuggs,word__wendysspicynuggs,-0.019488,4,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,nuggs,word__verified wendysspicynuggs,-0.01296,5,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,roast,word__nationalroastday,-0.06958,1,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,roast,char__roast,-0.058961,2,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,roast,word__roast,-0.043397,3,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,roast,word__roasted,-0.024722,4,FAIL
+type_model_b_batch1_plus_wendys_human,self-defeating,roast,word__roasting,-0.021426,5,FAIL

@@ -1,0 +1,17 @@
+model_id,eval_scope,class_label,support,precision,recall,f1
+type_model_a_batch1_only,all_training_rows,aggressive,44,0.24,0.1364,0.1739
+type_model_a_batch1_only,all_training_rows,affiliative,321,0.6378,0.6417,0.6398
+type_model_a_batch1_only,all_training_rows,self-enhancing,259,0.4932,0.5637,0.5261
+type_model_a_batch1_only,all_training_rows,self-defeating,24,0.75,0.125,0.2143
+type_model_b_batch1_plus_wendys_human,all_training_rows,aggressive,139,0.4104,0.5108,0.4551
+type_model_b_batch1_plus_wendys_human,all_training_rows,affiliative,427,0.5928,0.6136,0.603
+type_model_b_batch1_plus_wendys_human,all_training_rows,self-enhancing,321,0.5018,0.4424,0.4702
+type_model_b_batch1_plus_wendys_human,all_training_rows,self-defeating,39,0.1786,0.1282,0.1493
+type_model_a_batch1_only,train_batch1_test_wendys,aggressive,95,0.4231,0.2316,0.2993
+type_model_a_batch1_only,train_batch1_test_wendys,affiliative,106,0.4713,0.3868,0.4249
+type_model_a_batch1_only,train_batch1_test_wendys,self-enhancing,62,0.2727,0.5806,0.3711
+type_model_a_batch1_only,train_batch1_test_wendys,self-defeating,15,0.1429,0.0667,0.0909
+type_model_b_wendys_only,train_wendys_test_batch1,aggressive,44,0.1031,0.4545,0.1681
+type_model_b_wendys_only,train_wendys_test_batch1,affiliative,321,0.5316,0.7072,0.607
+type_model_b_wendys_only,train_wendys_test_batch1,self-enhancing,259,0.3913,0.0347,0.0638
+type_model_b_wendys_only,train_wendys_test_batch1,self-defeating,24,0.0,0.0,0.0

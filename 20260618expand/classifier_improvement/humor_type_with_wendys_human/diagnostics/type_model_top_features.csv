@@ -1,0 +1,101 @@
+model_id,class_label,rank,feature,weight
+type_model_b_batch1_plus_wendys_human,aggressive,1,word__nationalroastday,0.329476
+type_model_b_batch1_plus_wendys_human,aggressive,2,word__should,0.251824
+type_model_b_batch1_plus_wendys_human,aggressive,3,char__nal,0.178921
+type_model_b_batch1_plus_wendys_human,aggressive,4,char__onal,0.173239
+type_model_b_batch1_plus_wendys_human,aggressive,5,char__oast,0.17124
+type_model_b_batch1_plus_wendys_human,aggressive,6,char__oas,0.17124
+type_model_b_batch1_plus_wendys_human,aggressive,7,word__drop,0.170775
+type_model_b_batch1_plus_wendys_human,aggressive,8,char__uld,0.168098
+type_model_b_batch1_plus_wendys_human,aggressive,9,char__ould,0.168098
+type_model_b_batch1_plus_wendys_human,aggressive,10,char__oul,0.16571
+type_model_b_batch1_plus_wendys_human,aggressive,11,word__if,0.164862
+type_model_b_batch1_plus_wendys_human,aggressive,12,char__roas,0.163052
+type_model_b_batch1_plus_wendys_human,aggressive,13,char__roast,0.163052
+type_model_b_batch1_plus_wendys_human,aggressive,14,word__where the,0.158473
+type_model_b_batch1_plus_wendys_human,aggressive,15,word__mid,0.15789
+type_model_b_batch1_plus_wendys_human,aggressive,16,word__egg,0.157204
+type_model_b_batch1_plus_wendys_human,aggressive,17,char__ona,0.156644
+type_model_b_batch1_plus_wendys_human,aggressive,18,char__alr,0.156542
+type_model_b_batch1_plus_wendys_human,aggressive,19,char__hou,0.153344
+type_model_b_batch1_plus_wendys_human,aggressive,20,word__ban,0.153063
+type_model_b_batch1_plus_wendys_human,aggressive,21,word__hair,0.152743
+type_model_b_batch1_plus_wendys_human,aggressive,22,word__me,0.15124
+type_model_b_batch1_plus_wendys_human,aggressive,23,word__not,0.150852
+type_model_b_batch1_plus_wendys_human,aggressive,24,word__but,0.146192
+type_model_b_batch1_plus_wendys_human,aggressive,25,word__that,0.145562
+type_model_b_batch1_plus_wendys_human,affiliative,1,word__we,0.276112
+type_model_b_batch1_plus_wendys_human,affiliative,2,word__mention,0.15512
+type_model_b_batch1_plus_wendys_human,affiliative,3,word__year,0.149416
+type_model_b_batch1_plus_wendys_human,affiliative,4,word__thank,0.14176
+type_model_b_batch1_plus_wendys_human,affiliative,5,char__ we,0.137617
+type_model_b_batch1_plus_wendys_human,affiliative,6,word__we re,0.12974
+type_model_b_batch1_plus_wendys_human,affiliative,7,word__to,0.127933
+type_model_b_batch1_plus_wendys_human,affiliative,8,word__in,0.126945
+type_model_b_batch1_plus_wendys_human,affiliative,9,word__happy,0.124395
+type_model_b_batch1_plus_wendys_human,affiliative,10,word__thank you,0.119263
+type_model_b_batch1_plus_wendys_human,affiliative,11,word__thanks,0.116198
+type_model_b_batch1_plus_wendys_human,affiliative,12,char__ank,0.115833
+type_model_b_batch1_plus_wendys_human,affiliative,13,word__for,0.115763
+type_model_b_batch1_plus_wendys_human,affiliative,14,word__every,0.11184
+type_model_b_batch1_plus_wendys_human,affiliative,15,word__to the,0.111062
+type_model_b_batch1_plus_wendys_human,affiliative,16,word__us,0.110388
+type_model_b_batch1_plus_wendys_human,affiliative,17,word__day,0.109243
+type_model_b_batch1_plus_wendys_human,affiliative,18,char__hank,0.10843
+type_model_b_batch1_plus_wendys_human,affiliative,19,char__thank,0.10843
+type_model_b_batch1_plus_wendys_human,affiliative,20,word__their,0.105729
+type_model_b_batch1_plus_wendys_human,affiliative,21,word__to mention,0.105374
+type_model_b_batch1_plus_wendys_human,affiliative,22,word__let,0.102692
+type_model_b_batch1_plus_wendys_human,affiliative,23,char__rat,0.099751
+type_model_b_batch1_plus_wendys_human,affiliative,24,word__re,0.099346
+type_model_b_batch1_plus_wendys_human,affiliative,25,word__of the,0.09742
+type_model_b_batch1_plus_wendys_human,self-enhancing,1,word__is,0.169947
+type_model_b_batch1_plus_wendys_human,self-enhancing,2,word__better,0.168747
+type_model_b_batch1_plus_wendys_human,self-enhancing,3,word__url,0.132255
+type_model_b_batch1_plus_wendys_human,self-enhancing,4,word__as,0.123991
+type_model_b_batch1_plus_wendys_human,self-enhancing,5,word__perfect,0.121056
+type_model_b_batch1_plus_wendys_human,self-enhancing,6,word__and,0.119964
+type_model_b_batch1_plus_wendys_human,self-enhancing,7,word__most,0.119382
+type_model_b_batch1_plus_wendys_human,self-enhancing,8,word__tesla,0.116881
+type_model_b_batch1_plus_wendys_human,self-enhancing,9,word__from,0.111547
+type_model_b_batch1_plus_wendys_human,self-enhancing,10,word__spicy,0.110195
+type_model_b_batch1_plus_wendys_human,self-enhancing,11,char__ect,0.108964
+type_model_b_batch1_plus_wendys_human,self-enhancing,12,word__breakfast,0.103125
+type_model_b_batch1_plus_wendys_human,self-enhancing,13,word__where,0.10218
+type_model_b_batch1_plus_wendys_human,self-enhancing,14,word__fan,0.097464
+type_model_b_batch1_plus_wendys_human,self-enhancing,15,word__2026,0.096331
+type_model_b_batch1_plus_wendys_human,self-enhancing,16,word__one,0.095027
+type_model_b_batch1_plus_wendys_human,self-enhancing,17,word__less,0.091971
+type_model_b_batch1_plus_wendys_human,self-enhancing,18,word__delicious,0.091838
+type_model_b_batch1_plus_wendys_human,self-enhancing,19,char__ an,0.089879
+type_model_b_batch1_plus_wendys_human,self-enhancing,20,word__home,0.089091
+type_model_b_batch1_plus_wendys_human,self-enhancing,21,char__ ne,0.088128
+type_model_b_batch1_plus_wendys_human,self-enhancing,22,word__before,0.083026
+type_model_b_batch1_plus_wendys_human,self-enhancing,23,word__meet the,0.08207
+type_model_b_batch1_plus_wendys_human,self-enhancing,24,char__pic,0.081477
+type_model_b_batch1_plus_wendys_human,self-enhancing,25,char__duc,0.080916
+type_model_b_batch1_plus_wendys_human,self-defeating,1,word__store,0.564812
+type_model_b_batch1_plus_wendys_human,self-defeating,2,word__my,0.450771
+type_model_b_batch1_plus_wendys_human,self-defeating,3,word__no,0.39155
+type_model_b_batch1_plus_wendys_human,self-defeating,4,word__not,0.370828
+type_model_b_batch1_plus_wendys_human,self-defeating,5,word__no one,0.334097
+type_model_b_batch1_plus_wendys_human,self-defeating,6,word__just store,0.326221
+type_model_b_batch1_plus_wendys_human,self-defeating,7,char__ no,0.321003
+type_model_b_batch1_plus_wendys_human,self-defeating,8,word__wendy,0.309622
+type_model_b_batch1_plus_wendys_human,self-defeating,9,char__ i ,0.293541
+type_model_b_batch1_plus_wendys_human,self-defeating,10,word__who,0.291838
+type_model_b_batch1_plus_wendys_human,self-defeating,11,word__does,0.279504
+type_model_b_batch1_plus_wendys_human,self-defeating,12,word__weeks,0.271485
+type_model_b_batch1_plus_wendys_human,self-defeating,13,word__think about,0.26889
+type_model_b_batch1_plus_wendys_human,self-defeating,14,word__oh no,0.26269
+type_model_b_batch1_plus_wendys_human,self-defeating,15,word__think,0.259321
+type_model_b_batch1_plus_wendys_human,self-defeating,16,word__waiting,0.25667
+type_model_b_batch1_plus_wendys_human,self-defeating,17,word__contact,0.25641
+type_model_b_batch1_plus_wendys_human,self-defeating,18,word__pls,0.256024
+type_model_b_batch1_plus_wendys_human,self-defeating,19,word__one,0.251798
+type_model_b_batch1_plus_wendys_human,self-defeating,20,char__tore ,0.240454
+type_model_b_batch1_plus_wendys_human,self-defeating,21,char__store,0.237861
+type_model_b_batch1_plus_wendys_human,self-defeating,22,word__of mention,0.236629
+type_model_b_batch1_plus_wendys_human,self-defeating,23,char__ my ,0.236417
+type_model_b_batch1_plus_wendys_human,self-defeating,24,word__to hit,0.235789
+type_model_b_batch1_plus_wendys_human,self-defeating,25,char__tore,0.233381
