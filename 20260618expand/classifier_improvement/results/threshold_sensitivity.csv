@@ -1,0 +1,5 @@
+threshold,humor_count,non_humor_count,uncertain_count,f1
+0.4,923,559,0,0.8186
+0.5,688,794,0,0.9012
+0.6,456,1026,0,0.8043
+0.4-0.6 abstention,456,559,467,0.9812

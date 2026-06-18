@@ -1,0 +1,5 @@
+model,eval_mode,accuracy,precision,recall,f1,auc,n_labeled,humor_count,non_humor_count,provisional_auc_threshold,meets_provisional_auc
+logreg,random_5fold_cv,0.6964,0.6488,0.6665,0.657,0.7674,1482,648,834,0.75,yes
+logreg,firm_held_out,0.7491,,,0.5333,,1482,,,,
+linearsvc_calibrated,random_5fold_cv,0.6775,0.6536,0.5616,0.6033,0.7492,1482,648,834,0.75,no (provisional)
+linearsvc_calibrated,firm_held_out,0.7364,,,0.5133,,1482,,,,
