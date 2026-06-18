@@ -1,0 +1,11 @@
+metric,value
+total_input_posts,65245
+classified_ok,65245
+classification_failed_empty_text,0
+cv_binary_accuracy,0.6600
+cv_binary_f1,0.6937
+cv_binary_auc,0.7095
+cv_4type_accuracy,0.4282
+cv_4type_macro_f1,0.3448
+wendys_training_n_binary,597
+wendys_training_n_4type,278

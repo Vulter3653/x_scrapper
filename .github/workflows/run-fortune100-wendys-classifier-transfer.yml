@@ -1,0 +1,72 @@
+name: Fortune 100 Wendy's Classifier Transfer
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_mode:
+        description: "smoke = first 500 posts only; full = all 65245 posts"
+        required: true
+        default: "smoke"
+        type: choice
+        options:
+          - smoke
+          - full
+      max_posts:
+        description: "Max posts for smoke test (ignored in full mode)"
+        required: false
+        default: "500"
+      commit_results:
+        description: "Commit outputs back to branch"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  classify-and-regress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install scikit-learn==1.9.0 numpy==2.4.6 scipy==1.17.1
+
+      - name: Apply Wendy's classifier to Fortune 100 posts
+        run: |
+          python 20260618expand/model_transfer/scripts/apply_wendys_classifier_to_fortune100.py
+        env:
+          RUN_MODE: ${{ inputs.run_mode }}
+          MAX_POSTS: ${{ inputs.max_posts }}
+
+      - name: Build hypothesis datasets
+        run: |
+          python 20260618expand/model_transfer/scripts/build_hypothesis_datasets_from_new_classification.py
+
+      - name: Run H1/H2/H3 regressions
+        run: |
+          python 20260618expand/model_transfer/scripts/run_h1_h2_h3_models.py
+
+      - name: Validate outputs
+        run: |
+          python 20260618expand/model_transfer/scripts/validate_model_transfer_outputs.py
+
+      - name: Commit results (if requested)
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add 20260618expand/model_transfer/
+          git diff --cached --quiet || git commit -m "analysis: fortune100 wendys classifier transfer results [ci skip]"
+          git push
