@@ -1,0 +1,255 @@
+source_file,file_type,raw_rows,detected_label_columns,detected_text_columns,detected_id_columns,detected_date_columns,usable_for_h1_presence,reason_if_not_usable
+20260615wendy's/data/wendys_fast_weak_supervised_humor_dataset.csv,csv,978,,text;clean_text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_final_humor_presence_dataset.csv,csv,597,final_humor_binary,text;text_preprocessed,id;tweet_url,,yes,
+20260615wendy's/data/wendys_full_sample_four_type_humor_classifier_dataset.csv,csv,278,,text,id,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h1_h2_h3_r_replication_dataset.csv,csv,978,,,,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h1_literature_post_format_dataset.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h1_log_humor_input.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h1_simple_ols_ttest_dataset.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h1_three_post_format_combinations_dataset.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h1_time_fe_combinations_dataset.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h1_time_fe_only_dataset.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h2_coder1_priority_dataset.csv,csv,597,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h2_dataset.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h2_four_type_humor_dataset.csv,csv,278,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_h2_full_sample_four_type_prediction_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h2_model_based_type_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h2_step1_aggressive_vs_other_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h2_step2_time_fe_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h2_step3_post_format_controls_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_aggressive_vs_other_intensity_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_joint_aggressive_other_decomposition_dataset.csv,csv,960,,,id,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_main_quadratic_ols_dataset.csv,csv,960,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_moderation_centered_interaction_dataset.csv,csv,960,,,,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_pre_filtered_quarter_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_pre_quadratic_ols_dataset.csv,csv,960,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_step1_quadratic_intensity_dataset.csv,csv,960,,,id,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_step2_proportion_time_variables_dataset.csv,csv,960,,,id,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_step3_proportion_post_format_dataset.csv,csv,960,,,id,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_h3_supplemental_other_humor_proportion_dataset.csv,csv,960,,,id,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_human_tfidf_logreg_humor_dataset.csv,csv,978,,text;clean_text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_humor_frequency_proportion_post_level_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_model_based_humor_type_dataset.csv,csv,278,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/data/wendys_partial_human_coded_humor_labels.csv,csv,69,humor,text,global_post_id,date,yes,
+20260615wendy's/data/wendys_posts_raw.json,json,978,,text,id;tweet_url,created_at,no,no explicit H1 presence label column
+20260615wendy's/data/wendys_simple_humor_intensity_post_level_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_blind_human_humor_coding_key.csv,csv,120,,,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_blind_human_humor_coding_sheet.csv,csv,120,human_humor_label,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_existing_sample_size_checks.csv,csv,19,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_existing_variable_inventory.csv,csv,226,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_fast_weak_supervised_diagnostics.csv,csv,29,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_fast_weak_supervised_h1_ols_results.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_fast_weak_supervised_human_review_sample.csv,csv,120,human_humor_label,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_fast_weak_supervised_humor_scores.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_final_humor_presence_confusion_matrix.csv,csv,2,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_final_humor_presence_diagnostics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_final_humor_presence_feature_weights.csv,csv,100,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_final_humor_presence_full_predictions.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_final_humor_presence_oof_error_audit.csv,csv,597,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_final_humor_presence_validation_results.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_final_humor_type_coder1_priority_audit.csv,csv,310,final_humor_binary,,id,,yes,
+20260615wendy's/result/wendys_full_sample_four_type_humor_classification_report.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_full_sample_four_type_humor_confusion_matrix.csv,csv,4,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_full_sample_four_type_humor_diagnostics.csv,csv,26,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_full_sample_four_type_humor_distribution.csv,csv,5,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_full_sample_four_type_humor_feature_weights.csv,csv,140,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_full_sample_four_type_humor_oof_error_audit.csv,csv,278,,text,id,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_full_sample_four_type_humor_predictions.csv,csv,978,final_humor_binary,text,id,,yes,
+20260615wendy's/result/wendys_full_sample_four_type_humor_validation_results.csv,csv,20,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_existing_variable_candidates.csv,csv,32,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_favorite_retweet_analysis_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_favorite_retweet_diagnostics.csv,csv,29,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_favorite_retweet_ols_results.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_h2_h3_ols_with_se_validation_checks.csv,csv,30,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_h2_h3_r_replication_data_dictionary.csv,csv,36,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_h2_h3_r_replication_expected_coefficients.csv,csv,15,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_human_coded_simple_ols_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_literature_post_format_diagnostics.csv,csv,85,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_literature_post_format_fullsample_binary_results.csv,csv,35,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_literature_post_format_fullsample_probability_results.csv,csv,35,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_literature_post_format_human_validation_results.csv,csv,35,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_multicollinearity_condition_number.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_multicollinearity_pairwise_correlations.csv,csv,55,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_multicollinearity_variable_summary.csv,csv,28,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_multicollinearity_vif.csv,csv,66,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_ols_with_se_for_report.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_simple_ols_analysis_dataset.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_simple_ols_diagnostics.csv,csv,19,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_simple_ols_results.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_simple_ols_results_final_humor.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_simple_ols_ttest_diagnostics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_three_post_format_diagnostics.csv,csv,107,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_three_post_format_fullsample_binary_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_three_post_format_fullsample_probability_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_three_post_format_human_validation_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_combinations_diagnostics.csv,csv,50,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_combinations_fullsample_binary_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_combinations_primary_human_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_combinations_probability_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_diagnostics.csv,csv,29,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_fullsample_binary_primary_dv_detail.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_fullsample_binary_results.csv,csv,28,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_human_vs_fullsample_comparison.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_primary_human_results.csv,csv,28,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_probability_primary_dv_detail.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_time_fe_probability_results.csv,csv,28,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_ttest_primary_human_label.csv,csv,14,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h1_ttest_supplemental_model_prediction.csv,csv,14,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_coder1_priority_diagnostics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_coder1_priority_ols_full_labeled.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_coder1_priority_ols_humor_only.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_coder1_priority_ttest_aggressive_vs_other.csv,csv,14,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_diagnostics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_existing_variable_candidates.csv,csv,25,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_four_type_diagnostics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_four_type_distribution.csv,csv,4,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_four_type_mean_comparison.csv,csv,16,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_four_type_ols_affiliative_base.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_four_type_ols_pairwise_contrasts.csv,csv,24,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_four_type_pairwise_ttests.csv,csv,24,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_four_type_pooled_h2_recheck.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_full_sample_four_type_diagnostics.csv,csv,20,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_full_sample_four_type_distribution.csv,csv,5,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_full_sample_four_type_full_ols.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_full_sample_four_type_pairwise_ttests.csv,csv,24,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_full_sample_four_type_pooled_ols.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_full_sample_four_type_pooled_ttest.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_full_sample_four_type_probability_robustness.csv,csv,16,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_model_based_type_diagnostics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_model_based_type_ols_full_predicted.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_model_based_type_ols_humor_only.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_model_based_type_probability_robustness.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_model_based_type_ttest_aggressive_vs_other.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_ols_full_labeled.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_ols_humor_only.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_ols_with_se_for_report.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step1_diagnostics.csv,csv,34,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step1_human_validation_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step1_model_based_direct_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step2_time_fe_diagnostics.csv,csv,27,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step2_time_fe_human_validation_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step2_time_fe_model_based_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step3_post_format_diagnostics.csv,csv,46,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step3_post_format_human_validation_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_step3_post_format_model_based_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h2_ttest_aggressive_vs_other.csv,csv,14,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_aggressive_vs_other_bin_descriptives.csv,csv,12,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_aggressive_vs_other_diagnostics.csv,csv,33,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_aggressive_vs_other_predictor_distribution.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_aggressive_vs_other_quarter_audit.csv,csv,28,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_existing_variable_candidates.csv,csv,19,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_joint_aggressive_other_decomposition_diagnostics.csv,csv,37,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_joint_aggressive_other_decomposition_results.csv,csv,21,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_centered_results.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_diagnostics.csv,csv,35,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_frequency_robustness.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_other_humor_robustness.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_period_level_results.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_primary_results.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_share_robustness.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_main_quadratic_ols_turning_points.csv,csv,32,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_moderation_centered_interaction_results.csv,csv,3,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_ols_with_se_for_report.csv,csv,15,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_filtered_quarter_bin_descriptives.csv,csv,9,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_filtered_quarter_diagnostics.csv,csv,35,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_filtered_quarter_period_audit.csv,csv,25,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_quadratic_ols_centered_results.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_quadratic_ols_diagnostics.csv,csv,26,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_quadratic_ols_frequency_robustness.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_quadratic_ols_nonloo_robustness.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_quadratic_ols_period_level_results.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_quadratic_ols_primary_results.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_pre_quadratic_ols_turning_points.csv,csv,24,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step1_aggressive_humor_quadratic_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step1_general_humor_quadratic_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step1_quadratic_diagnostics.csv,csv,36,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step2_aggressive_humor_time_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step2_general_humor_time_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step2_time_diagnostics.csv,csv,44,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step3_aggressive_humor_post_format_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step3_general_humor_post_format_results.csv,csv,56,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_step3_post_format_diagnostics.csv,csv,60,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_supplemental_other_humor_proportion_diagnostics.csv,csv,37,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_h3_supplemental_other_humor_proportion_results.csv,csv,63,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human168_tfidf_logreg_diagnostics.csv,csv,18,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human168_tfidf_logreg_error_audit.csv,csv,167,human_humor_binary;human_humor_label,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_human168_tfidf_logreg_full_predictions.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human168_tfidf_logreg_h1_ols_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human168_tfidf_logreg_validation_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_coding_disagreement_audit.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_coding_label_distribution.csv,csv,4,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_coding_source_distribution.csv,csv,3,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_coding_type_distribution.csv,csv,19,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_coding_type_value_audit.csv,csv,22,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_tfidf_logreg_diagnostics.csv,csv,30,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_tfidf_logreg_error_audit.csv,csv,68,human_humor_binary;humor,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_human_tfidf_logreg_full_predictions.csv,csv,978,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_tfidf_logreg_h1_ols_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_human_tfidf_logreg_validation_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_humor_frequency_proportion_diagnostics.csv,csv,39,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_humor_frequency_proportion_monthly.csv,csv,80,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_humor_frequency_proportion_quarterly.csv,csv,28,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_humor_presence_scores.csv,csv,978,,text,id;tweet_url,created_at,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_humor_presence_scores.jsonl,jsonl,0,,,,,no,read_error: Unterminated string starting at: line 1 column 151 (char 150)
+20260615wendy's/result/wendys_humor_review_sheet.csv,csv,978,human_humor_label;human_humor_binary;final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_humor_ttest_v2_results.csv,csv,14,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_model_based_humor_4type_confusion_matrix.csv,csv,4,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_model_based_humor_4type_validation_results.csv,csv,5,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_model_based_humor_type_confusion_matrix.csv,csv,2,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_model_based_humor_type_diagnostics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_model_based_humor_type_feature_weights.csv,csv,100,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_model_based_humor_type_full_predictions.csv,csv,978,final_humor_binary,text,id;tweet_url,,yes,
+20260615wendy's/result/wendys_model_based_humor_type_oof_error_audit.csv,csv,278,,text,id;tweet_url,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_model_based_humor_type_validation_results.csv,csv,18,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_report_ready_star_validation_checks.csv,csv,31,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_results_5_1_5_2_validation_checks.csv,csv,29,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_results_5_1_descriptive_statistics.csv,csv,7,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_results_5_2_vif_diagnostics.csv,csv,16,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_simple_humor_intensity_bin_descriptives.csv,csv,6,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_simple_humor_intensity_diagnostics.csv,csv,30,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_simple_humor_intensity_monthly_audit.csv,csv,80,,,,,no,no explicit H1 presence label column
+20260615wendy's/result/wendys_simple_humor_intensity_quarterly_audit.csv,csv,28,,,,,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder1_labeling_template.csv,csv,500,유머_존재여부,본문,트윗_ID;트윗_URL,작성일시,no,"model prediction or aggregate output, not direct human/final label source"
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder1_labeling_template_batch2.csv,csv,500,유머_존재여부,본문,트윗_ID;트윗_URL,작성일시,no,"model prediction or aggregate output, not direct human/final label source"
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder2_labeling_template.csv,csv,500,유머_존재여부,본문,트윗_ID;트윗_URL,작성일시,no,"model prediction or aggregate output, not direct human/final label source"
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder2_labeling_template_batch2.csv,csv,500,유머_존재여부,본문,트윗_ID;트윗_URL,작성일시,no,"model prediction or aggregate output, not direct human/final label source"
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder3_labeling_template.csv,csv,500,유머_존재여부,본문,트윗_ID;트윗_URL,작성일시,no,"model prediction or aggregate output, not direct human/final label source"
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder3_labeling_template_batch2.csv,csv,500,유머_존재여부,본문,트윗_ID;트윗_URL,작성일시,no,"model prediction or aggregate output, not direct human/final label source"
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder_assignment_summary_by_coder.csv,csv,4,,,,,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder_assignment_summary_by_coder_batch2.csv,csv,4,,,,,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder_assignment_summary_by_stratum.csv,csv,9,,,,,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/data/human_labeling_template/coder_splits/coder_assignment_summary_by_stratum_batch2.csv,csv,8,,,,,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/data/human_labeling_template/fortune100_human_labeling_template.csv,csv,1500,,text,tweet_id;tweet_url,created_at,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/h1_presence_only/expanded_h1_presence_model_comparison/diagnostics/wendys_leakage_feature_diagnostic.csv,csv,16,,,,,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/h1_presence_only/expanded_h1_presence_model_comparison/results/wendys_held_out_confusion_matrix.csv,csv,4,,,,,no,no explicit H1 presence label column
+20260618expand/classifier_improvement/h1_presence_only/expanded_h1_presence_model_comparison/results/wendys_held_out_metrics.csv,csv,1,,,,,no,no explicit H1 presence label column
+20260618expand/model_transfer/data/classified/fortune100_wendys_model_humor_classification.csv,csv,65245,,text,tweet_id;tweet_url,created_at,no,no explicit H1 presence label column
+20260618expand/model_transfer/data/diagnostics/humor_presence_frequency.csv,csv,2,,,,,no,no explicit H1 presence label column
+data/audit/humor/human_labels/wendys_human_label_raw_link_audit.json,json,0,,,,,no,no explicit H1 presence label column
+data/audit/humor_presence_local_smoke_ambiguous_diagnosis.csv,csv,7,,,,,no,no explicit H1 presence label column
+data/audit/humor_presence_local_smoke_audit_summary.csv,csv,24,,,,,no,no explicit H1 presence label column
+data/audit/humor_presence_local_smoke_probability_bins.csv,csv,10,,,,,no,no explicit H1 presence label column
+data/audit/humor_presence_local_smoke_review_sample.csv,csv,62,,text,global_post_id;tweet_id,created_at,no,no explicit H1 presence label column
+data/audit/humor_presence_local_smoke_v1_v2_comparison.csv,csv,2,,,,,no,no explicit H1 presence label column
+data/audit/humor_presence_local_smoke_v2_audit_summary.csv,csv,24,,,,,no,no explicit H1 presence label column
+data/audit/humor_presence_local_smoke_v2_review_sample.csv,csv,74,,text,global_post_id;tweet_id,created_at,no,no explicit H1 presence label column
+data/audit/humor_presence_local_threshold_sensitivity.csv,csv,4,,,,,no,no explicit H1 presence label column
+data/audit/humor_presence_training_seed_audit.csv,csv,8,,,,,no,no explicit H1 presence label column
+data/derived/humor/human_labels/wendys_human_label_h1_ols_results.csv,csv,7,,,,,no,no explicit H1 presence label column
+data/derived/humor/human_labels/wendys_human_label_raw_linked.csv,csv,69,human_humor_label_raw;human_humor_binary,human_text;raw_text,global_post_id;tweet_id;tweet_url,created_at_human;created_at_raw,yes,
+data/derived/humor/human_labels/wendys_humor_ttest_results.csv,csv,14,,,,,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_local_smoke_evaluation.json,json,0,,,,,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_local_smoke_results.csv,csv,100,,text,global_post_id;tweet_id,,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_local_smoke_review_sample.csv,csv,100,,text,global_post_id;tweet_id,,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_local_smoke_sample.csv,csv,100,,text,global_post_id;tweet_id;tweet_url,created_at,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_local_smoke_v2_results.csv,csv,100,,text,global_post_id;tweet_id,,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_pilot_results_smoke50.csv,csv,50,,text,global_post_id;tweet_id,,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_pilot_results_smoke50_test.csv,csv,5,,text,global_post_id;tweet_id,,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_pilot_sample.csv,csv,800,,text,global_post_id;tweet_id;tweet_url,created_at,no,no explicit H1 presence label column
+data/derived/humor/humor_presence_pilot_sample_smoke50.csv,csv,50,,text,global_post_id;tweet_id;tweet_url,created_at,no,no explicit H1 presence label column
+data/manual_labels/wendys_human_humor_labels.csv,csv,69,humor,text,global_post_id,date,yes,
+data/wendys/hsq_humor_classification.json,json,978,,text,id;tweet_url,created_at,no,no explicit H1 presence label column
+data/wendys/lda_topics.json,json,0,,,,,no,no explicit H1 presence label column
+data/wendys/posts.json,json,978,,text,id;tweet_url,created_at,no,no explicit H1 presence label column
+data/wendys/scrape_state.json,json,0,,,,,no,no explicit H1 presence label column
+data/wendys/zero_shot_sentiment.json,json,978,,text,id;tweet_url,created_at,no,no explicit H1 presence label column

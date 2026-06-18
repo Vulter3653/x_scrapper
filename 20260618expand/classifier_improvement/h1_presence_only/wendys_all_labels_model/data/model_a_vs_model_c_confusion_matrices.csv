@@ -1,0 +1,13 @@
+model_id,eval_scope,actual_label,predicted_label,count
+model_a_batch1_only,all_training_rows,non_humor,non_humor,602
+model_a_batch1_only,all_training_rows,non_humor,humor,232
+model_a_batch1_only,all_training_rows,humor,non_humor,198
+model_a_batch1_only,all_training_rows,humor,humor,450
+model_c_batch1_plus_all_wendys,all_training_rows,non_humor,non_humor,805
+model_c_batch1_plus_all_wendys,all_training_rows,non_humor,humor,348
+model_c_batch1_plus_all_wendys,all_training_rows,humor,non_humor,302
+model_c_batch1_plus_all_wendys,all_training_rows,humor,humor,692
+model_a_batch1_only,wendys_all_human_heldout,non_humor,non_humor,63
+model_a_batch1_only,wendys_all_human_heldout,non_humor,humor,256
+model_a_batch1_only,wendys_all_human_heldout,humor,non_humor,22
+model_a_batch1_only,wendys_all_human_heldout,humor,humor,324

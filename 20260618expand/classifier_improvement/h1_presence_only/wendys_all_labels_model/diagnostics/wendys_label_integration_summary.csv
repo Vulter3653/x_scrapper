@@ -1,0 +1,11 @@
+metric,value
+raw_wendys_label_rows,13119
+raw_usable_binary_or_excludable_rows,13119
+valid_wendys_h1_rows,665
+valid_humor_rows,346
+valid_non_humor_rows,319
+excluded_uncertain_or_missing_label_rows,4053
+excluded_missing_text_rows,0
+excluded_conflict_rows,0
+duplicate_rows_removed,8401
+final_wendys_rows_used,665

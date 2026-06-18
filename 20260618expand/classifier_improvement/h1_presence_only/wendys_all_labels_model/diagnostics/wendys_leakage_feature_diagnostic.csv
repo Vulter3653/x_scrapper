@@ -1,0 +1,43 @@
+diagnostic_token,feature,weight,rank_abs_weight,leakage_flag,note
+wendy,word__wendy,0.162556,1,WARN,Wendy-specific feature present; inspect before deployment
+wendy,char__wendy,0.079014,2,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__is wendy,0.068559,3,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendy is,0.056578,4,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__at wendy,0.047251,5,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendysspicynuggs,0.041763,6,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__to wendy,0.04171,7,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendy url,0.032146,8,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendy on,-0.028107,9,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__eat wendy,-0.027885,10,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendysctocontest,-0.027721,11,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__me wendy,0.027667,12,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendysctocontest url,-0.020088,13,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__participating wendy,-0.017498,14,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__the wendy,0.015384,15,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendy drive,-0.014101,16,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendy new,0.012315,17,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendy app,0.010595,18,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendys,0.009761,19,WARN,Wendy-specific feature present; inspect before deployment
+wendy,word__wendy and,0.003401,20,WARN,Wendy-specific feature present; inspect before deployment
+wendys,word__wendysspicynuggs,0.041763,1,WARN,Wendy-specific feature present; inspect before deployment
+wendys,word__wendysctocontest,-0.027721,2,WARN,Wendy-specific feature present; inspect before deployment
+wendys,word__wendysctocontest url,-0.020088,3,WARN,Wendy-specific feature present; inspect before deployment
+wendys,word__wendys,0.009761,4,WARN,Wendy-specific feature present; inspect before deployment
+wendy's,,,,PASS,no matching feature
+wendy’s,,,,PASS,no matching feature
+@wendys,,,,PASS,no matching feature
+frosty,word__frosty,-0.085381,1,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__caramel frosty,-0.06165,2,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__frosty key,-0.047711,3,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__strawberry frosty,-0.040765,4,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__frosty classic,-0.028107,5,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__small frosty,-0.028107,6,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__and frosty,0.006861,7,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__frosty is,0.004353,8,WARN,Wendy-specific feature present; inspect before deployment
+frosty,word__frosty and,-0.002689,9,WARN,Wendy-specific feature present; inspect before deployment
+baconator,word__baconator,0.037522,1,WARN,Wendy-specific feature present; inspect before deployment
+baconator,word__breakfast baconator,0.03738,2,WARN,Wendy-specific feature present; inspect before deployment
+baconator,word__grab baconator,-0.036214,3,WARN,Wendy-specific feature present; inspect before deployment
+nuggs,word__wendysspicynuggs,0.041763,1,WARN,Wendy-specific feature present; inspect before deployment
+nuggs,word__nuggs,0.037566,2,WARN,Wendy-specific feature present; inspect before deployment
+nuggs,word__spicy nuggs,0.037247,3,WARN,Wendy-specific feature present; inspect before deployment

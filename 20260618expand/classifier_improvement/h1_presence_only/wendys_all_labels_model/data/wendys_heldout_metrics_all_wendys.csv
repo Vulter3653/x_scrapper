@@ -1,0 +1,2 @@
+model_id,architecture,eval_scope,eval_mode,n_rows,humor_count,non_humor_count,auc,f1,precision,recall,accuracy,candidate_status,leakage_flag
+model_a_batch1_only,word_char_comb__lr_liblin_C01,wendys_all_human_heldout,train_batch1_test_all_wendys,665,346,319,0.6781,0.6998,0.5586,0.9364,0.582,retain_model_a_candidate,WARN

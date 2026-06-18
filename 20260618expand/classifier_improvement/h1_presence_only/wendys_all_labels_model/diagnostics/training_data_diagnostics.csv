@@ -1,0 +1,9 @@
+metric,value
+model_a_rows,1482
+model_c_rows,2147
+wendys_all_human_rows,665
+raw_wendys_label_rows,13119
+excluded_uncertain_or_missing_label_rows,4053
+excluded_conflict_rows,0
+candidate_status,retain_model_a_candidate
+leakage_flag,WARN

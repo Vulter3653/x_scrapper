@@ -1,0 +1,101 @@
+model_id,direction,rank,feature,weight
+model_c_batch1_plus_all_wendys,positive_humor,1,word__it,0.392802
+model_c_batch1_plus_all_wendys,positive_humor,2,word__you,0.368708
+model_c_batch1_plus_all_wendys,positive_humor,3,word__your,0.327321
+model_c_batch1_plus_all_wendys,positive_humor,4,char__ you,0.295097
+model_c_batch1_plus_all_wendys,positive_humor,5,char__you,0.291135
+model_c_batch1_plus_all_wendys,positive_humor,6,char__ yo,0.273976
+model_c_batch1_plus_all_wendys,positive_humor,7,word__just,0.261132
+model_c_batch1_plus_all_wendys,positive_humor,8,word__love,0.230113
+model_c_batch1_plus_all_wendys,positive_humor,9,word__up,0.196271
+model_c_batch1_plus_all_wendys,positive_humor,10,char__ ha,0.191799
+model_c_batch1_plus_all_wendys,positive_humor,11,char__ wa,0.190249
+model_c_batch1_plus_all_wendys,positive_humor,12,word__what,0.183221
+model_c_batch1_plus_all_wendys,positive_humor,13,char__ th,0.178143
+model_c_batch1_plus_all_wendys,positive_humor,14,char__ it,0.174902
+model_c_batch1_plus_all_wendys,positive_humor,15,word__no,0.17388
+model_c_batch1_plus_all_wendys,positive_humor,16,char__your ,0.172872
+model_c_batch1_plus_all_wendys,positive_humor,17,char__ your,0.17257
+model_c_batch1_plus_all_wendys,positive_humor,18,char__ fri,0.170243
+model_c_batch1_plus_all_wendys,positive_humor,19,word__day,0.16926
+model_c_batch1_plus_all_wendys,positive_humor,20,char__fri,0.167502
+model_c_batch1_plus_all_wendys,positive_humor,21,word__my,0.166062
+model_c_batch1_plus_all_wendys,positive_humor,22,word__world,0.164648
+model_c_batch1_plus_all_wendys,positive_humor,23,char__ do,0.164634
+model_c_batch1_plus_all_wendys,positive_humor,24,char__your,0.164387
+model_c_batch1_plus_all_wendys,positive_humor,25,char__ the,0.162897
+model_c_batch1_plus_all_wendys,positive_humor,26,word__go,0.162895
+model_c_batch1_plus_all_wendys,positive_humor,27,word__wendy,0.162556
+model_c_batch1_plus_all_wendys,positive_humor,28,char__rie,0.162084
+model_c_batch1_plus_all_wendys,positive_humor,29,char__ay ,0.157559
+model_c_batch1_plus_all_wendys,positive_humor,30,char__ wh,0.155957
+model_c_batch1_plus_all_wendys,positive_humor,31,char__...,0.153664
+model_c_batch1_plus_all_wendys,positive_humor,32,char__the,0.151837
+model_c_batch1_plus_all_wendys,positive_humor,33,word__say,0.150632
+model_c_batch1_plus_all_wendys,positive_humor,34,word__perfect,0.146841
+model_c_batch1_plus_all_wendys,positive_humor,35,word__than,0.141834
+model_c_batch1_plus_all_wendys,positive_humor,36,word__even,0.141271
+model_c_batch1_plus_all_wendys,positive_humor,37,word__happy,0.140602
+model_c_batch1_plus_all_wendys,positive_humor,38,char__day,0.139789
+model_c_batch1_plus_all_wendys,positive_humor,39,char__you ,0.139582
+model_c_batch1_plus_all_wendys,positive_humor,40,char__ou ,0.139582
+model_c_batch1_plus_all_wendys,positive_humor,41,char__ ju,0.139201
+model_c_batch1_plus_all_wendys,positive_humor,42,word__like,0.138658
+model_c_batch1_plus_all_wendys,positive_humor,43,word__this,0.137977
+model_c_batch1_plus_all_wendys,positive_humor,44,char__ frie,0.137883
+model_c_batch1_plus_all_wendys,positive_humor,45,word__be the,0.13752
+model_c_batch1_plus_all_wendys,positive_humor,46,word__not,0.13743
+model_c_batch1_plus_all_wendys,positive_humor,47,char__ no,0.137175
+model_c_batch1_plus_all_wendys,positive_humor,48,char__ go,0.136789
+model_c_batch1_plus_all_wendys,positive_humor,49,char__ you ,0.135938
+model_c_batch1_plus_all_wendys,positive_humor,50,char__hat,0.135683
+model_c_batch1_plus_all_wendys,negative_non_humor,1,word__url,-0.778902
+model_c_batch1_plus_all_wendys,negative_non_humor,2,word__url url,-0.335341
+model_c_batch1_plus_all_wendys,negative_non_humor,3,word__our,-0.276185
+model_c_batch1_plus_all_wendys,negative_non_humor,4,char__ <u,-0.256806
+model_c_batch1_plus_all_wendys,negative_non_humor,5,char__ <ur,-0.256806
+model_c_batch1_plus_all_wendys,negative_non_humor,6,char__ <url,-0.256806
+model_c_batch1_plus_all_wendys,negative_non_humor,7,char__url,-0.256315
+model_c_batch1_plus_all_wendys,negative_non_humor,8,char__url>,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,9,char__<url,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,10,char__<ur,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,11,char__<url>,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,12,char__rl>,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,13,char__rl> ,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,14,char__url> ,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,15,char__l> ,-0.255701
+model_c_batch1_plus_all_wendys,negative_non_humor,16,word__and,-0.233402
+model_c_batch1_plus_all_wendys,negative_non_humor,17,word__learn,-0.231363
+model_c_batch1_plus_all_wendys,negative_non_humor,18,word__vote,-0.208578
+model_c_batch1_plus_all_wendys,negative_non_humor,19,word__help,-0.20547
+model_c_batch1_plus_all_wendys,negative_non_humor,20,char__ re,-0.193694
+model_c_batch1_plus_all_wendys,negative_non_humor,21,char__al ,-0.192263
+model_c_batch1_plus_all_wendys,negative_non_humor,22,word__of,-0.189848
+model_c_batch1_plus_all_wendys,negative_non_humor,23,char__lea,-0.179217
+model_c_batch1_plus_all_wendys,negative_non_humor,24,word__financial,-0.175532
+model_c_batch1_plus_all_wendys,negative_non_humor,25,word__mention,-0.173102
+model_c_batch1_plus_all_wendys,negative_non_humor,26,word__health,-0.165306
+model_c_batch1_plus_all_wendys,negative_non_humor,27,word__mention mention,-0.161529
+model_c_batch1_plus_all_wendys,negative_non_humor,28,char__ase,-0.158632
+model_c_batch1_plus_all_wendys,negative_non_humor,29,char__res,-0.158153
+model_c_batch1_plus_all_wendys,negative_non_humor,30,char__act,-0.15792
+model_c_batch1_plus_all_wendys,negative_non_humor,31,char__ent,-0.157363
+model_c_batch1_plus_all_wendys,negative_non_humor,32,word__send,-0.1556
+model_c_batch1_plus_all_wendys,negative_non_humor,33,char__der,-0.154484
+model_c_batch1_plus_all_wendys,negative_non_humor,34,char__com,-0.151584
+model_c_batch1_plus_all_wendys,negative_non_humor,35,char__ pr,-0.151579
+model_c_batch1_plus_all_wendys,negative_non_humor,36,word__here url,-0.149764
+model_c_batch1_plus_all_wendys,negative_non_humor,37,char__ion,-0.148965
+model_c_batch1_plus_all_wendys,negative_non_humor,38,char__pro,-0.14532
+model_c_batch1_plus_all_wendys,negative_non_humor,39,word__thanks for,-0.145254
+model_c_batch1_plus_all_wendys,negative_non_humor,40,word__order,-0.145201
+model_c_batch1_plus_all_wendys,negative_non_humor,41,char__ res,-0.14475
+model_c_batch1_plus_all_wendys,negative_non_humor,42,word__ai,-0.144007
+model_c_batch1_plus_all_wendys,negative_non_humor,43,char__ in,-0.140309
+model_c_batch1_plus_all_wendys,negative_non_humor,44,word__more about,-0.136826
+model_c_batch1_plus_all_wendys,negative_non_humor,45,word__tomorrow,-0.135665
+model_c_batch1_plus_all_wendys,negative_non_humor,46,char__nce,-0.134707
+model_c_batch1_plus_all_wendys,negative_non_humor,47,word__research,-0.132632
+model_c_batch1_plus_all_wendys,negative_non_humor,48,word__details,-0.130684
+model_c_batch1_plus_all_wendys,negative_non_humor,49,word__learn more,-0.130429
+model_c_batch1_plus_all_wendys,negative_non_humor,50,char__ease,-0.130018
