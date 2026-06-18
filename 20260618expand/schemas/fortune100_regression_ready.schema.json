@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fortune 100 H1 H2 H3 regression-ready datasets",
+  "type": "object",
+  "properties": {
+    "tweet_id": {"type": "string"},
+    "fortune_rank": {"type": ["integer", "string"]},
+    "company_name": {"type": "string"},
+    "source_x_handle": {"type": "string"},
+    "period": {"type": "string"},
+    "log_total_engagement": {"type": ["number", "string"]},
+    "total_engagement": {"type": ["integer", "string"]},
+    "humor_presence": {"type": ["integer", "string"]},
+    "aggressive_humor": {"type": ["integer", "string"]},
+    "affiliative_humor": {"type": ["integer", "string"]},
+    "self_enhancing_humor": {"type": ["integer", "string"]},
+    "self_defeating_humor": {"type": ["integer", "string"]},
+    "non_humorous": {"type": ["integer", "string"]},
+    "text_length": {"type": ["integer", "string"]},
+    "hashtag_count": {"type": ["integer", "string"]},
+    "mention_count": {"type": ["integer", "string"]},
+    "h1_sample_inclusion_flag": {"type": ["integer", "string"]},
+    "h2_sample_inclusion_flag": {"type": ["integer", "string"]},
+    "h3_sample_inclusion_flag": {"type": ["integer", "string"]},
+    "missingness_flag": {"type": "string"},
+    "classification_source": {"type": "string"}
+  }
+}

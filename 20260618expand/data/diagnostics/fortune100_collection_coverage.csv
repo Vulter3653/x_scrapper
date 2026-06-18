@@ -1,0 +1,101 @@
+fortune_rank,company_name,normalized_company_name,raw_folder,posts_csv_exists,posts_csv_non_empty,post_count,collection_status,collection_error_type,collection_error_message,attempted,official_x_handle,final_manual_account_status,final_manual_scrape_eligible
+1,Amazon,amazon,data/raw/fortune_x_2025_ranked/001_amazon,true,true,1086,success,,,true,@amazon,confirmed_candidate_official,true
+2,Walmart,walmart,data/raw/fortune_x_2025_ranked/002_walmart,true,true,842,success,,,true,@walmart,confirmed_candidate_official,true
+3,UnitedHealth Group,unitedhealth_group,data/raw/fortune_x_2025_ranked/003_unitedhealth_group,true,true,155,success,,,true,@UnitedHealthGrp,candidate_rejected_alternate_found,true
+4,Apple,apple,data/raw/fortune_x_2025_ranked/004_apple,true,false,0,no_observable_posts,manual_no_observable_posts,manual review confirmed zero observable public posts,true,@apple,confirmed_candidate_official,true
+5,Alphabet,alphabet,data/raw/fortune_x_2025_ranked/005_alphabet,true,true,477,success,,,true,@Alphabetlnc,candidate_rejected_alternate_found,true
+6,CVS Health,cvs_health,data/raw/fortune_x_2025_ranked/006_cvs_health,true,true,574,success,,,true,@cvshealth,confirmed_candidate_official,true
+7,Berkshire Hathaway,berkshire_hathaway,data/raw/fortune_x_2025_ranked/007_berkshire_hathaway,true,false,0,no_observable_posts,no_observable_posts,profile loaded but no observable posts were collected,true,@berkshire,candidate_rejected_alternate_found,true
+8,McKesson,mckesson,data/raw/fortune_x_2025_ranked/008_mckesson,true,true,840,success,,,true,@mckesson,confirmed_candidate_official,true
+9,Exxon Mobil,exxon_mobil,data/raw/fortune_x_2025_ranked/009_exxon_mobil,true,true,582,success,,,true,@exxonmobil,confirmed_candidate_official,true
+10,Cencora,cencora,data/raw/fortune_x_2025_ranked/010_cencora,true,true,479,success,,,true,@CencoraGlobal,candidate_rejected_alternate_found,true
+11,Microsoft,microsoft,data/raw/fortune_x_2025_ranked/011_microsoft,true,true,666,success,,,true,@microsoft,confirmed_candidate_official,true
+12,JPMorgan Chase,jpmorgan_chase,data/raw/fortune_x_2025_ranked/012_jpmorgan_chase,true,true,835,success,,,true,@jpmorgan,candidate_rejected_alternate_found,true
+13,Costco Wholesale,costco_wholesale,data/raw/fortune_x_2025_ranked/013_costco_wholesale,true,false,0,no_observable_posts,no_observable_posts,profile loaded but no observable posts were collected,true,@Costco,candidate_rejected_alternate_found,true
+14,Cigna Group,cigna_group,data/raw/fortune_x_2025_ranked/014_cigna_group,true,true,586,success,,,true,@TheCignaGroup,candidate_rejected_alternate_found,true
+15,Cardinal Health,cardinal_health,data/raw/fortune_x_2025_ranked/015_cardinal_health,true,true,520,success,,,true,@cardinalhealth,confirmed_candidate_official,true
+16,Nvidia,nvidia,data/raw/fortune_x_2025_ranked/016_nvidia,true,true,1129,success,,,true,@nvidia,confirmed_candidate_official,true
+17,Meta Platforms,meta_platforms,data/raw/fortune_x_2025_ranked/017_meta_platforms,true,true,151,success,,,true,@Meta,candidate_rejected_alternate_found,true
+18,Elevance Health,elevance_health,data/raw/fortune_x_2025_ranked/018_elevance_health,true,true,612,success,,,true,@elevancehealth,confirmed_candidate_official,true
+19,Centene,centene,data/raw/fortune_x_2025_ranked/019_centene,true,true,465,success,,,true,@centene,confirmed_candidate_official,true
+20,Bank of America,bank_of_america,data/raw/fortune_x_2025_ranked/020_bank_of_america,true,true,838,success,,,true,@bankofamerica,confirmed_candidate_official,true
+21,Chevron,chevron,data/raw/fortune_x_2025_ranked/021_chevron,true,true,805,success,,,true,@chevron,confirmed_candidate_official,true
+22,Ford Motor,ford_motor,data/raw/fortune_x_2025_ranked/022_ford_motor,true,true,1146,success,,,true,@Ford,candidate_rejected_alternate_found,true
+23,General Motors,general_motors,data/raw/fortune_x_2025_ranked/023_general_motors,true,true,694,success,,,true,@GM,candidate_rejected_alternate_found,true
+24,Citigroup,citigroup,data/raw/fortune_x_2025_ranked/024_citigroup,true,true,400,success,,,true,@Citi,candidate_rejected_alternate_found,true
+25,Home Depot,home_depot,data/raw/fortune_x_2025_ranked/025_home_depot,true,true,1392,partial_success,collector_failed,"xception occurred:  Traceback (most recent call last):   File ""/home/runner/work/x_scrapper/x_scrapper/scrape_x.py"", line 20, in <module>     asyncio.run(scrape_profile())   File ""/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py"", line 190, in run     return runner.run(main)            ^^^^^^^^^^^^^^^^   File ""/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py"", line 118, in run     return self._loop.run_until_complete(task)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File ""/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete     return future.result()            ^^^^^^^^^^^^^^^   File ""/home/runner/work/x_scrapper/x_scrapper/src/x_scrapper/collection/x_scraper.py"", line 314, in scrape_profile     raise RuntimeError( RuntimeError: X profile did not render tweets. url=https://x.com/homedepot, title=The Home Depot (@HomeDepot) / X. 쿠키가 만료됐거나 GitHub Actions 접속이 X에서 차단됐을 수 있습니다. ",true,@homedepot,confirmed_candidate_official,true
+26,Fannie Mae,fannie_mae,data/raw/fortune_x_2025_ranked/026_fannie_mae,true,true,600,success,,,true,@fanniemae,confirmed_candidate_official,true
+27,Kroger,kroger,data/raw/fortune_x_2025_ranked/027_kroger,true,true,890,success,,,true,@kroger,confirmed_candidate_official,true
+28,Verizon Communications,verizon_communications,data/raw/fortune_x_2025_ranked/028_verizon_communications,true,true,43,success,,,true,@Verizon,candidate_rejected_alternate_found,true
+29,Phillips 66,phillips_66,data/raw/fortune_x_2025_ranked/029_phillips_66,true,true,684,partial_success,collector_failed,"exception occurred:  Traceback (most recent call last):   File ""/home/runner/work/x_scrapper/x_scrapper/scrape_x.py"", line 20, in <module>     asyncio.run(scrape_profile())   File ""/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py"", line 190, in run     return runner.run(main)            ^^^^^^^^^^^^^^^^   File ""/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/runners.py"", line 118, in run     return self._loop.run_until_complete(task)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File ""/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete     return future.result()            ^^^^^^^^^^^^^^^   File ""/home/runner/work/x_scrapper/x_scrapper/src/x_scrapper/collection/x_scraper.py"", line 314, in scrape_profile     raise RuntimeError( RuntimeError: X profile did not render tweets. url=https://x.com/phillips66, title=Phillips 66 (@Phillips66) / X. 쿠키가 만료됐거나 GitHub Actions 접속이 X에서 차단됐을 수 있습니다. ",true,@phillips66,confirmed_candidate_official,true
+30,Marathon Petroleum,marathon_petroleum,data/raw/fortune_x_2025_ranked/030_marathon_petroleum,true,true,377,success,,,true,@MarathonPetroCo,candidate_rejected_alternate_found,true
+31,StoneX Group,stonex_group,data/raw/fortune_x_2025_ranked/031_stonex_group,true,true,848,success,,,true,@StoneX_Official,candidate_rejected_alternate_found,true
+32,State Farm Insurance,state_farm_insurance,data/raw/fortune_x_2025_ranked/032_state_farm_insurance,true,true,147,success,,,true,@StateFarm,candidate_rejected_alternate_found,true
+33,Freddie Mac,freddie_mac,data/raw/fortune_x_2025_ranked/033_freddie_mac,true,true,216,success,,,true,@FreddieMac,candidate_rejected_alternate_found,true
+34,Humana,humana,data/raw/fortune_x_2025_ranked/034_humana,true,true,758,success,,,true,@humana,confirmed_candidate_official,true
+35,AT&T,at_t,data/raw/fortune_x_2025_ranked/035_at_t,true,true,934,success,,,true,@ATT,candidate_rejected_alternate_found,true
+36,Goldman Sachs Group,goldman_sachs_group,data/raw/fortune_x_2025_ranked/036_goldman_sachs_group,true,true,1012,success,,,true,@GoldmanSachs,candidate_rejected_alternate_found,true
+37,Comcast,comcast,data/raw/fortune_x_2025_ranked/037_comcast,true,true,1096,success,,,true,@comcast,confirmed_candidate_official,true
+38,Wells Fargo,wells_fargo,data/raw/fortune_x_2025_ranked/038_wells_fargo,true,true,256,success,,,true,@wellsfargo,confirmed_candidate_official,true
+39,Morgan Stanley,morgan_stanley,data/raw/fortune_x_2025_ranked/039_morgan_stanley,true,true,846,success,,,true,@morganstanley,confirmed_candidate_official,true
+40,Valero Energy,valero_energy,data/raw/fortune_x_2025_ranked/040_valero_energy,true,true,186,success,,,true,@valeroenergy,confirmed_candidate_official,true
+41,Dell Technologies,dell_technologies,data/raw/fortune_x_2025_ranked/041_dell_technologies,true,true,726,success,,,true,@Dell,candidate_rejected_alternate_found,true
+42,Target,target,data/raw/fortune_x_2025_ranked/042_target,true,true,595,success,,,true,@target,confirmed_candidate_official,true
+43,Tesla,tesla,data/raw/fortune_x_2025_ranked/043_tesla,true,true,711,success,,,true,@tesla,confirmed_candidate_official,true
+44,Walt Disney,walt_disney,data/raw/fortune_x_2025_ranked/044_walt_disney,true,true,1353,success,,,true,@Disney,candidate_rejected_alternate_found,true
+45,Johnson & Johnson,johnson_johnson,data/raw/fortune_x_2025_ranked/045_johnson_johnson,true,true,766,success,,,true,@JNJNews,candidate_rejected_alternate_found,true
+46,PepsiCo,pepsico,data/raw/fortune_x_2025_ranked/046_pepsico,true,true,817,success,,,true,@pepsico,confirmed_candidate_official,true
+47,Boeing,boeing,data/raw/fortune_x_2025_ranked/047_boeing,true,true,969,success,,,true,@boeing,confirmed_candidate_official,true
+48,UPS,ups,data/raw/fortune_x_2025_ranked/048_ups,true,true,200,success,,,true,@ups,confirmed_candidate_official,true
+49,RTX,rtx,data/raw/fortune_x_2025_ranked/049_rtx,true,true,866,success,,,true,@RTX_News,candidate_rejected_alternate_found,true
+50,FedEx,fedex,data/raw/fortune_x_2025_ranked/050_fedex,true,true,882,success,,,true,@fedex,confirmed_candidate_official,true
+51,Progressive,progressive,data/raw/fortune_x_2025_ranked/051_progressive,true,true,170,success,,,true,@progressive,confirmed_candidate_official,true
+52,Lowe's,lowe_s,data/raw/fortune_x_2025_ranked/052_lowe_s,true,true,908,success,,,true,@lowes,confirmed_candidate_official,true
+53,Energy Transfer,energy_transfer,data/raw/fortune_x_2025_ranked/053_energy_transfer,true,true,697,success,,,true,@energytransfer,confirmed_candidate_official,true
+54,Procter & Gamble,procter_gamble,data/raw/fortune_x_2025_ranked/054_procter_gamble,true,true,268,success,,,true,@ProcterGamble,candidate_rejected_alternate_found,true
+55,Sysco,sysco,data/raw/fortune_x_2025_ranked/055_sysco,true,true,863,success,,,true,@sysco,confirmed_candidate_official,true
+56,American Express,american_express,data/raw/fortune_x_2025_ranked/056_american_express,true,true,833,success,,,true,@americanexpress,confirmed_candidate_official,true
+57,Albertsons,albertsons,data/raw/fortune_x_2025_ranked/057_albertsons,true,true,765,success,,,true,@albertsons,confirmed_candidate_official,true
+58,Archer Daniels Midland,archer_daniels_midland,data/raw/fortune_x_2025_ranked/058_archer_daniels_midland,true,true,795,success,,,true,@ADMupdates,candidate_rejected_alternate_found,true
+59,MetLife,metlife,data/raw/fortune_x_2025_ranked/059_metlife,true,true,781,success,,,true,@metlife,confirmed_candidate_official,true
+60,HCA Healthcare,hca_healthcare,data/raw/fortune_x_2025_ranked/060_hca_healthcare,true,true,584,success,,,true,@hcahealthcare,confirmed_candidate_official,true
+61,Lockheed Martin,lockheed_martin,data/raw/fortune_x_2025_ranked/061_lockheed_martin,true,true,861,success,,,true,@lockheedmartin,confirmed_candidate_official,true
+62,New York Life Insurance,new_york_life_insurance,data/raw/fortune_x_2025_ranked/062_new_york_life_insurance,true,true,456,success,,,true,@NewYorkLife,candidate_rejected_alternate_found,true
+63,Capital One Financial,capital_one_financial,data/raw/fortune_x_2025_ranked/063_capital_one_financial,true,true,628,success,,,true,@CapitalOne,candidate_rejected_alternate_found,true
+64,Allstate,allstate,data/raw/fortune_x_2025_ranked/064_allstate,true,true,569,success,,,true,@allstate,confirmed_candidate_official,true
+65,Caterpillar,caterpillar,data/raw/fortune_x_2025_ranked/065_caterpillar,true,true,891,success,,,true,@CaterpillarInc,candidate_rejected_alternate_found,true
+66,IBM,ibm,data/raw/fortune_x_2025_ranked/066_ibm,true,true,541,success,,,true,@ibm,confirmed_candidate_official,true
+67,Eli Lilly,eli_lilly,data/raw/fortune_x_2025_ranked/067_eli_lilly,true,true,564,success,,,true,@EliLillyandCo,candidate_rejected_alternate_found,true
+68,Merck,merck,data/raw/fortune_x_2025_ranked/068_merck,true,true,507,success,,,true,@merck,confirmed_candidate_official,true
+69,Nationwide,nationwide,data/raw/fortune_x_2025_ranked/069_nationwide,true,true,1149,success,,,true,@nationwide,confirmed_candidate_official,true
+70,Broadcom,broadcom,data/raw/fortune_x_2025_ranked/070_broadcom,true,true,184,success,,,true,@broadcom,confirmed_candidate_official,true
+71,Delta Air Lines,delta_air_lines,data/raw/fortune_x_2025_ranked/071_delta_air_lines,true,true,717,success,,,true,@Delta,candidate_rejected_alternate_found,true
+72,Publix Super Markets,publix_super_markets,data/raw/fortune_x_2025_ranked/072_publix_super_markets,true,true,851,success,,,true,@Publix,candidate_rejected_alternate_found,true
+73,Pfizer,pfizer,data/raw/fortune_x_2025_ranked/073_pfizer,true,true,384,success,,,true,@pfizer,confirmed_candidate_official,true
+74,TD Synnex,td_synnex,data/raw/fortune_x_2025_ranked/074_td_synnex,true,true,488,success,,,true,@tdsynnex,confirmed_candidate_official,true
+75,ConocoPhillips,conocophillips,data/raw/fortune_x_2025_ranked/075_conocophillips,true,true,942,success,,,true,@conocophillips,confirmed_candidate_official,true
+76,Galaxy Digital,galaxy_digital,data/raw/fortune_x_2025_ranked/076_galaxy_digital,true,true,137,success,,,true,@galaxydigital,confirmed_candidate_official,true
+77,AbbVie,abbvie,data/raw/fortune_x_2025_ranked/077_abbvie,true,true,839,success,,,true,@abbvie,confirmed_candidate_official,true
+78,Prudential Financial,prudential_financial,data/raw/fortune_x_2025_ranked/078_prudential_financial,true,true,874,success,,,true,@Prudential,candidate_rejected_alternate_found,true
+79,TJX,tjx,data/raw/fortune_x_2025_ranked/079_tjx,true,true,909,success,,,true,@tjmaxx,candidate_rejected_alternate_found,true
+80,Performance Food Group,performance_food_group,data/raw/fortune_x_2025_ranked/080_performance_food_group,true,true,3,success,,,true,@PFGCareers,candidate_rejected_alternate_found,true
+81,United Airlines Holdings,united_airlines_holdings,data/raw/fortune_x_2025_ranked/081_united_airlines_holdings,true,true,292,success,,,true,@united,candidate_rejected_alternate_found,true
+82,Oracle,oracle,data/raw/fortune_x_2025_ranked/082_oracle,true,true,909,success,,,true,@oracle,confirmed_candidate_official,true
+83,Cisco Systems,cisco_systems,data/raw/fortune_x_2025_ranked/083_cisco_systems,true,true,1007,success,,,true,@Cisco,candidate_rejected_alternate_found,true
+84,HP,hp,data/raw/fortune_x_2025_ranked/084_hp,true,true,405,success,,,true,@hp,confirmed_candidate_official,true
+85,Charter Communications,charter_communications,data/raw/fortune_x_2025_ranked/085_charter_communications,true,true,657,success,,,true,@CharterNewsroom,candidate_rejected_alternate_found,true
+86,American Airlines Group,american_airlines_group,data/raw/fortune_x_2025_ranked/086_american_airlines_group,true,true,188,success,,,true,@AmericanAir,candidate_rejected_alternate_found,true
+87,Tyson Foods,tyson_foods,data/raw/fortune_x_2025_ranked/087_tyson_foods,true,true,1081,success,,,true,@tysonfoods,confirmed_candidate_official,true
+88,Intel,intel,data/raw/fortune_x_2025_ranked/088_intel,true,true,288,success,,,true,@intel,confirmed_candidate_official,true
+89,Enterprise Products Partners,enterprise_products_partners,data/raw/fortune_x_2025_ranked/089_enterprise_products_partners,true,true,761,success,,,true,@EProd_Careers,candidate_rejected_alternate_found,true
+90,Ingram Micro Holding,ingram_micro_holding,data/raw/fortune_x_2025_ranked/090_ingram_micro_holding,true,true,931,success,,,true,@IngramMicroInc,candidate_rejected_alternate_found,true
+91,General Dynamics,general_dynamics,data/raw/fortune_x_2025_ranked/091_general_dynamics,true,true,1493,success,,,true,@generaldynamics,confirmed_candidate_official,true
+92,Uber Technologies,uber_technologies,data/raw/fortune_x_2025_ranked/092_uber_technologies,true,true,954,success,,,true,@Uber,candidate_rejected_alternate_found,true
+93,USAA,usaa,data/raw/fortune_x_2025_ranked/093_usaa,true,true,899,success,,,true,@usaa,confirmed_candidate_official,true
+94,TIAA,tiaa,data/raw/fortune_x_2025_ranked/094_tiaa,true,true,217,success,,,true,@tiaa,confirmed_candidate_official,true
+95,Liberty Mutual Insurance Group,liberty_mutual_insurance_group,data/raw/fortune_x_2025_ranked/095_liberty_mutual_insurance_group,true,true,1018,success,,,true,@LibertyMutual,candidate_rejected_alternate_found,true
+96,Travelers,travelers,data/raw/fortune_x_2025_ranked/096_travelers,true,true,835,success,,,true,@travelers,confirmed_candidate_official,true
+97,Bristol-Myers Squibb,bristol_myers_squibb,data/raw/fortune_x_2025_ranked/097_bristol_myers_squibb,true,true,930,success,,,true,@bmsnews,candidate_rejected_alternate_found,true
+98,Coca-Cola,coca_cola,data/raw/fortune_x_2025_ranked/098_coca_cola,true,true,158,success,,,true,@cocacola,confirmed_candidate_official,true
+99,Nike,nike,data/raw/fortune_x_2025_ranked/099_nike,true,true,192,success,,,true,@nike,confirmed_candidate_official,true
+100,Massachusetts Mutual Life,massachusetts_mutual_life,data/raw/fortune_x_2025_ranked/100_massachusetts_mutual_life,true,true,859,success,,,true,@massmutual,candidate_rejected_alternate_found,true

@@ -1,0 +1,330 @@
+fortune_rank,company_name,normalized_company_name,source_x_handle,source_x_url,account_role,account_index,tweet_id,tweet_url,created_at,text,reply_count,repost_count,retweet_count,like_count,favorite_count,quote_count,view_count_available,total_engagement,log_total_engagement,text_length,hashtag_count,mention_count,collection_method,max_posts_cap,source_folder
+5,Alphabet,alphabet,@google,https://x.com/google,secondary,2,2054270454467121187,https://x.com/google/status/2054270454467121187,Tue May 12 18:40:17 +0000 2026,"Introducing Googlebook, the first laptop designed for Gemini Intelligence. It’s crafted for heavyweight performance, built with Gemini at the core and perfectly synced with your Android phone. Coming this fall. 💻✨
+
+#TheAndroidShow https://t.co/rn4pztApmp",521,1109,1109,9084,9084,636,true,11350,9.337061124755,254,1,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/005_alphabet/accounts/02_secondary_google
+11,Microsoft,microsoft,@microsoft,https://x.com/microsoft,primary,1,2062228974273716457,https://x.com/microsoft/status/2062228974273716457,Wed Jun 03 17:44:36 +0000 2026,"The agentic AI era is here.
+
+From Taipei, Jensen Huang joined @satyanadella at #MSBuild to show how NVIDIA and @Microsoft are building it together, from Windows devices to AI factories at scale. 
+
+▶️ Watch the conversation: https://t.co/6mYc7uIoCI",54,103,103,612,612,20,true,789,6.672032945461,247,1,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/011_microsoft/accounts/01_primary_microsoft
+11,Microsoft,microsoft,@microsoft,https://x.com/microsoft,primary,1,2061885990705271191,https://x.com/microsoft/status/2061885990705271191,Tue Jun 02 19:01:42 +0000 2026,"At #MSBuild, @Microsoft and NVIDIA unveiled an end-to-end stack for developers scaling agentic AI, from Windows devices to cloud to local. 
+
+One unified stack. Every layer accelerated.
+
+Highlights include:
+
+💻 RTX Spark: Windows PCs purpose-built for personal agents 
+
+💡 NVIDIA open models on Microsoft Foundry, with Anthropic’s Claude models running natively on NVIDIA GB300 Blackwell Ultra systems on Azure
+
+🚀 NVIDIA-accelerated Microsoft Fabric Data Warehouse with up to 6x faster SQL execution
+
+🦞 NVIDIA OpenShell in GitHub Copilot: secure-by-design agent runtime
+
+📣 Fairwater Wisconsin AI factory is live and validated for the NVIDIA Vera Rubin platform
+
+🔗 Read the full blog: https://t.co/n2buTyByjD",44,111,111,629,629,13,true,797,6.68210859745,704,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/011_microsoft/accounts/01_primary_microsoft
+11,Microsoft,microsoft,@microsoft,https://x.com/microsoft,primary,1,2044767391293509761,https://x.com/microsoft/status/2044767391293509761,Thu Apr 16 13:18:30 +0000 2026,"Our Fairwater datacenter in Wisconsin is going live, ahead of schedule.
+
+As the world’s most powerful AI datacenter, it will bring together hundreds of thousands of GB200s into a single seamless cluster.
+
+Congrats to all the teams who made this possible!",332,442,442,3914,3914,78,true,4766,8.469472455205,254,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/011_microsoft/accounts/01_primary_microsoft
+11,Microsoft,microsoft,@microsoft,https://x.com/microsoft,primary,1,2032515189086761005,https://x.com/microsoft/status/2032515189086761005,Fri Mar 13 17:52:38 +0000 2026,"We’re the first cloud to bring up an NVIDIA Vera Rubin NVL72 system for validation, another big step in building the next generation of AI infrastructure with NVIDIA. https://t.co/apPyKh0HRK",466,716,716,6410,6410,156,true,7748,8.955319081764,190,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/011_microsoft/accounts/01_primary_microsoft
+11,Microsoft,microsoft,@microsoft,https://x.com/microsoft,primary,1,1988653837461369307,https://x.com/microsoft/status/1988653837461369307,Wed Nov 12 17:03:16 +0000 2025,"Today we announced our new Fairwater datacenter in Atlanta, connected with our first Fairwater site in Wisconsin and our broader Azure footprint to create the world’s first AI superfactory.
+
+Fairwater exemplifies our vision for a fungible fleet: infra that can serve any workload, anywhere, on fit-for-purpose accelerators and network paths, with maximum performance and efficiency.
+
+AI workloads have evolved beyond large-scale pre-training. Today, they encompass fine-tuning, reinforcement learning (RL), synthetic data generation, evaluation pipelines, and more. Fairwater is built to support this full lifecycle:
+
+Max density: Fairwater’s two-story design and liquid cooling system lets us place racks in three dimensions and pack them with GPUs as densely as possible, minimizing cable runs and improving latency and effective bandwidth.
+
+Fleet: Each Fairwater DC can integrate hundreds of thousands of the latest NVIDIA GPUs into a single coherent cluster. This provides flexible infra that can support the full spectrum of workloads, and ensure no GPU is left unnecessarily idle.
+
+And that’s on top of the more than 100,000 GB300s coming online this quarter alone for inference across the rest of our fleet. For us, it’s all about turning every gigawatt into the maximum number of useful tokens. Not every GW is created equal!
+
+Planet-scale: Every Fairwater DC will connect through our continent-spanning AI WAN to prior generations of AI supercomputers, forming a truly fungible pool of compute. This enables developers to scale beyond the capacity of a single site and dynamically land workloads on the right infra for their needs.
+
+Together, these innovations let us bring together different generations of silicon and AI systems across DCs and geos into a single elastic system that scales seamlessly across training and inference workloads
+
+And this elastic AI capacity is all available alongside all the other cloud services (compute, storage, databases, app services) that AI agents and workloads need.
+
+This is what we mean when we talk about building a fungible fleet – a single, unified platform that pushes the limits of performance per watt and per dollar.
+
+Read more: https://t.co/PsMoTN3UPQ",269,466,466,2878,2878,108,true,3721,8.222016437202,2211,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/011_microsoft/accounts/01_primary_microsoft
+11,Microsoft,microsoft,@microsoft,https://x.com/microsoft,primary,1,1968677244861379012,https://x.com/microsoft/status/1968677244861379012,Thu Sep 18 14:03:26 +0000 2025,"If intelligence is the log of compute… it starts with a lot of compute! And that’s why we’re scaling our GPU fleet faster than anyone else.
+
+Just last year, we added over 2 gigawatts of new capacity – roughly the output of 2 nuclear power plants.
+
+And today we’re going further, announcing the world's most powerful AI datacenter, located in southeastern Wisconsin.
+
+Fairwater is a seamless cluster of hundreds of thousands of NVIDIA GB200s, connected by enough fiber to circle the Earth 4.5 times.
+
+It will deliver 10x the performance of the world’s fastest supercomputer today, enabling AI training and inference workloads at a level never before seen.
+
+For AI training workloads, you need compute at exponential scale. That’s why we designed the datacenter, GPU fleet, and network together as one integrated system. This ensures a single job can run from day 1 at exponential scale across thousands of GPUs.
+
+Fairwater uses a liquid-cooled closed-loop system for cooling GPUs that requires zero water for operations after construction.
+
+And we’re matching all of the energy that is consumed with renewable sources.
+
+And of course, it is just one of several similar sites we’re lighting up across our 70+ regions. We have multiple identical Fairwater datacenters under construction in other locations across the US, in addition to our AI infrastructure already deployed in over 100 datacenters around the world, powering model training, test-time compute, RL tuning, and real-time inference at global scale.
+
+Too often during times like this, people go with the current and only later wonder, how did we get here?
+
+With Fairwater, we're charting a new path: doing the hard engineering work, bringing compute, network, and storage into one highly scaled cluster, and designing closed-loop energy systems to meet real-world computing needs.
+
+And partnering with local communities to ensure it's thoughtfully done in a way that is sustainable, creates new jobs, and expands opportunity.
+
+We are thrilled to see this take hold in Wisconsin, and we are just getting started.",613,1010,1010,7873,7873,343,true,9839,9.194210990046,2071,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/011_microsoft/accounts/01_primary_microsoft
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2062228974273716457,https://x.com/nvidia/status/2062228974273716457,Wed Jun 03 17:44:36 +0000 2026,"The agentic AI era is here.
+
+From Taipei, Jensen Huang joined @satyanadella at #MSBuild to show how NVIDIA and @Microsoft are building it together, from Windows devices to AI factories at scale. 
+
+▶️ Watch the conversation: https://t.co/6mYc7uIoCI",54,102,102,612,612,20,true,788,6.670766320846,247,1,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2061885990705271191,https://x.com/nvidia/status/2061885990705271191,Tue Jun 02 19:01:42 +0000 2026,"At #MSBuild, @Microsoft and NVIDIA unveiled an end-to-end stack for developers scaling agentic AI, from Windows devices to cloud to local. 
+
+One unified stack. Every layer accelerated.
+
+Highlights include:
+
+💻 RTX Spark: Windows PCs purpose-built for personal agents 
+
+💡 NVIDIA open models on Microsoft Foundry, with Anthropic’s Claude models running natively on NVIDIA GB300 Blackwell Ultra systems on Azure
+
+🚀 NVIDIA-accelerated Microsoft Fabric Data Warehouse with up to 6x faster SQL execution
+
+🦞 NVIDIA OpenShell in GitHub Copilot: secure-by-design agent runtime
+
+📣 Fairwater Wisconsin AI factory is live and validated for the NVIDIA Vera Rubin platform
+
+🔗 Read the full blog: https://t.co/n2buTyByjD",44,110,110,628,628,13,true,795,6.679599185844,704,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2061303899039109188,https://x.com/nvidia/status/2061303899039109188,Mon Jun 01 04:28:41 +0000 2026,"Welcome to the NVIDIA RTX Spark channel. 
+
+A new superchip for the age of personal AI.
+
+Don't worry, your favorite NVIDIA local AI content continues on right here, just with a new headliner.
+
+Let's get started...",213,377,377,7604,7604,83,true,8277,9.021356672309,212,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2061292804261695576,https://x.com/nvidia/status/2061292804261695576,Mon Jun 01 03:44:36 +0000 2026,Vera Rubin is in full production. #NVIDIAGTC https://t.co/sKkkxm3AsF,24,119,119,1067,1067,26,true,1236,7.120444372392,68,1,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2044767391293509761,https://x.com/nvidia/status/2044767391293509761,Thu Apr 16 13:18:30 +0000 2026,"Our Fairwater datacenter in Wisconsin is going live, ahead of schedule.
+
+As the world’s most powerful AI datacenter, it will bring together hundreds of thousands of GB200s into a single seamless cluster.
+
+Congrats to all the teams who made this possible!",330,435,435,3906,3906,78,true,4749,8.465899897029,254,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2032515189086761005,https://x.com/nvidia/status/2032515189086761005,Fri Mar 13 17:52:38 +0000 2026,"We’re the first cloud to bring up an NVIDIA Vera Rubin NVL72 system for validation, another big step in building the next generation of AI infrastructure with NVIDIA. https://t.co/apPyKh0HRK",466,714,714,6403,6403,156,true,7739,8.954156966584,190,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2029316021450842580,https://x.com/nvidia/status/2029316021450842580,Wed Mar 04 22:00:17 +0000 2026,⚠️ WARNING: THIS PRODUCT MAY CONTAIN SHELLFISH 🦞 https://t.co/zJ6n2auo6B,36,49,49,264,264,12,true,361,5.891644211826,72,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2014473593170903422,https://x.com/nvidia/status/2014473593170903422,Thu Jan 22 23:01:46 +0000 2026,"Don't miss this executive fireside chat between NVIDIA founder and CEO, Jensen Huang and @Cisco Chair and CEO, Chuck Robbins on February 3rd, where they'll explore open models, next-generation accelerated computing, and the rise of full-stack AI factories designed to manufacture intelligence at planetary scale.",21,52,52,184,184,2,true,259,5.560681631016,312,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2014052376592765375,https://x.com/nvidia/status/2014052376592765375,Wed Jan 21 19:08:00 +0000 2026,"#AI isn’t just models or machines—it’s a new industrial stack.
+
+Join @nvidia Founder & CEO Jensen Huang and Cisco Chair & CEO @ChuckRobbins for a candid conversation on open models, next-gen accelerated #computing, and the rise of full-stack AI factories built to manufacture intelligence at scale ➡️ https://t.co/I8BulMd6UM
+#CiscoAISummit",10,16,16,51,51,4,true,81,4.406719247264,339,3,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,2011195304536592714,https://x.com/nvidia/status/2011195304536592714,Tue Jan 13 21:55:01 +0000 2026,"🤝 The future of drug discovery is being built together
+At #JPM2026, Dave Ricks, CEO of @EliLillyandCo and Jensen Huang, CEO and founder of NVIDIA, shared how their new co-innovation lab will bring world-class scientists and AI experts together to transform medicine.
+
+Read more ➡️ https://t.co/NAiWshjSNx",21,40,40,220,220,9,true,290,5.673323267171,304,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,1988653837461369307,https://x.com/nvidia/status/1988653837461369307,Wed Nov 12 17:03:16 +0000 2025,"Today we announced our new Fairwater datacenter in Atlanta, connected with our first Fairwater site in Wisconsin and our broader Azure footprint to create the world’s first AI superfactory.
+
+Fairwater exemplifies our vision for a fungible fleet: infra that can serve any workload, anywhere, on fit-for-purpose accelerators and network paths, with maximum performance and efficiency.
+
+AI workloads have evolved beyond large-scale pre-training. Today, they encompass fine-tuning, reinforcement learning (RL), synthetic data generation, evaluation pipelines, and more. Fairwater is built to support this full lifecycle:
+
+Max density: Fairwater’s two-story design and liquid cooling system lets us place racks in three dimensions and pack them with GPUs as densely as possible, minimizing cable runs and improving latency and effective bandwidth.
+
+Fleet: Each Fairwater DC can integrate hundreds of thousands of the latest NVIDIA GPUs into a single coherent cluster. This provides flexible infra that can support the full spectrum of workloads, and ensure no GPU is left unnecessarily idle.
+
+And that’s on top of the more than 100,000 GB300s coming online this quarter alone for inference across the rest of our fleet. For us, it’s all about turning every gigawatt into the maximum number of useful tokens. Not every GW is created equal!
+
+Planet-scale: Every Fairwater DC will connect through our continent-spanning AI WAN to prior generations of AI supercomputers, forming a truly fungible pool of compute. This enables developers to scale beyond the capacity of a single site and dynamically land workloads on the right infra for their needs.
+
+Together, these innovations let us bring together different generations of silicon and AI systems across DCs and geos into a single elastic system that scales seamlessly across training and inference workloads
+
+And this elastic AI capacity is all available alongside all the other cloud services (compute, storage, databases, app services) that AI agents and workloads need.
+
+This is what we mean when we talk about building a fungible fleet – a single, unified platform that pushes the limits of performance per watt and per dollar.
+
+Read more: https://t.co/PsMoTN3UPQ",269,466,466,2877,2877,108,true,3720,8.221747728347,2211,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,1968677244861379012,https://x.com/nvidia/status/1968677244861379012,Thu Sep 18 14:03:26 +0000 2025,"If intelligence is the log of compute… it starts with a lot of compute! And that’s why we’re scaling our GPU fleet faster than anyone else.
+
+Just last year, we added over 2 gigawatts of new capacity – roughly the output of 2 nuclear power plants.
+
+And today we’re going further, announcing the world's most powerful AI datacenter, located in southeastern Wisconsin.
+
+Fairwater is a seamless cluster of hundreds of thousands of NVIDIA GB200s, connected by enough fiber to circle the Earth 4.5 times.
+
+It will deliver 10x the performance of the world’s fastest supercomputer today, enabling AI training and inference workloads at a level never before seen.
+
+For AI training workloads, you need compute at exponential scale. That’s why we designed the datacenter, GPU fleet, and network together as one integrated system. This ensures a single job can run from day 1 at exponential scale across thousands of GPUs.
+
+Fairwater uses a liquid-cooled closed-loop system for cooling GPUs that requires zero water for operations after construction.
+
+And we’re matching all of the energy that is consumed with renewable sources.
+
+And of course, it is just one of several similar sites we’re lighting up across our 70+ regions. We have multiple identical Fairwater datacenters under construction in other locations across the US, in addition to our AI infrastructure already deployed in over 100 datacenters around the world, powering model training, test-time compute, RL tuning, and real-time inference at global scale.
+
+Too often during times like this, people go with the current and only later wonder, how did we get here?
+
+With Fairwater, we're charting a new path: doing the hard engineering work, bringing compute, network, and storage into one highly scaled cluster, and designing closed-loop energy systems to meet real-world computing needs.
+
+And partnering with local communities to ensure it's thoughtfully done in a way that is sustainable, creates new jobs, and expands opportunity.
+
+We are thrilled to see this take hold in Wisconsin, and we are just getting started.",613,1006,1006,7866,7866,343,true,9828,9.193092478567,2071,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+16,Nvidia,nvidia,@nvidia,https://x.com/nvidia,primary,1,1957525706390257891,https://x.com/nvidia/status/1957525706390257891,Mon Aug 18 19:31:12 +0000 2025,"🎉Big news: NVIDIA Blackwell RTX is coming to #GeForceNOW 💚
+
+What this means…
+        ✅ GeForce RTX 5080-class GPUs are joining the Ultimate fleet
+        ✅ New Install-to-Play multiplies your cloud library with access to over 2500 more Steam games
+        ✅ More frames on more devices... 90 FPS on Steam Deck, racing wheels & more!
+        
+➙  https://t.co/t3gW8mBj8q   #BlackwellonGFN",166,154,154,933,933,41,true,1294,7.166265974134,386,2,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia
+20,Bank of America,bank_of_america,@bankofamerica,https://x.com/bankofamerica,primary,1,1624755400112316416,https://x.com/bankofamerica/status/1624755400112316416,Sun Feb 12 13:00:48 +0000 2023,"Half of us will be diagnosed with cancer in our lifetime. Today, #WorkingWithCancer comes to #SBLVII. Join our partners and all those who continue to lend support to abolish the stigma and insecurity for people with cancer in the workplace. https://t.co/05DLYGyazf https://t.co/RWACSLUuyU",18,21,21,46,46,10,true,95,4.564348191468,288,2,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/020_bank_of_america/accounts/01_primary_bankofamerica
+26,Fannie Mae,fannie_mae,@fanniemae,https://x.com/fanniemae,primary,1,1980642756218568939,https://x.com/fanniemae/status/1980642756218568939,Tue Oct 21 14:30:06 +0000 2025,U.S. Federal Housing Announces Director Pulte Will Donate 100% of His Salary to Wounded Veterans https://t.co/UaSgj2rRHP https://t.co/BaoTj0RcoW,130,463,463,1798,1798,65,true,2456,7.806696372521,144,0,0,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/026_fannie_mae
+27,Kroger,kroger,@kroger,https://x.com/kroger,primary,1,1503385646433452032,https://x.com/kroger/status/1503385646433452032,Mon Mar 14 15:00:44 +0000 2022,"It’s time to battle for the best brand on Twitter. #BestOfTweets Brand Bracket tips off now! 
+
+First matchup: the power of flight vs. the gift of food
+✈️ @Delta's travel tips
+VS
+🛒 @kroger's fresh takes 
+
+Vote now!",26,16,16,83,83,13,false,138,4.934473933131,213,1,2,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/027_kroger
+27,Kroger,kroger,@kroger,https://x.com/kroger,primary,1,1461011160635949061,https://x.com/kroger/status/1461011160635949061,Wed Nov 17 16:39:39 +0000 2021,going to see a french film at the cinema https://t.co/FPlTLFc8Sq,17,45,45,946,946,22,false,1030,6.938284484017,64,0,0,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/027_kroger
+29,Phillips 66,phillips_66,@Phillips66co,https://x.com/Phillips66co,secondary,2,1356301384069640195,https://x.com/Phillips66co/status/1356301384069640195,Mon Feb 01 18:00:23 +0000 2021,"Diversity Woman Magazine announces its First Annual 'Elite 100' issue, celebrating Black Women changing the face of Corporate America &amp; leading complex transformations, managing remote teams,  and sustaining profitable bottom lines. #Elite100BlackWomen https://t.co/AhpGucrkVn",1,13,13,41,41,36,false,91,4.521788577049,280,1,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/029_phillips_66/accounts/02_secondary_phillips66co
+33,Freddie Mac,freddie_mac,@FreddieMac,https://x.com/FreddieMac,primary,1,1980642756218568939,https://x.com/FreddieMac/status/1980642756218568939,Tue Oct 21 14:30:06 +0000 2025,U.S. Federal Housing Announces Director Pulte Will Donate 100% of His Salary to Wounded Veterans https://t.co/UaSgj2rRHP https://t.co/BaoTj0RcoW,130,463,463,1797,1797,65,true,2455,7.806289289267,144,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/033_freddie_mac/accounts/01_primary_freddiemac
+35,AT&T,at_t,@ATT,https://x.com/ATT,primary,1,2037259447337418911,https://x.com/ATT/status/2037259447337418911,Thu Mar 26 20:04:37 +0000 2026,"Jake Oettinger of the @DallasStars surprises an @AmericanAir flight! 
+
+This week, one lucky flight from DFW to Chicago got the ultimate surprise. Every seat was stocked with a goodie bag from us & AA.
+
+This was all to celebrate our free, high-speed Wi Fi sponsored by AT&T, available for AAdvantage® members. Send this to a friend who would have loved to be on this flight! #JakeOettinger #DallasStars",12,34,34,389,389,8,true,443,6.095824562432,401,2,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/035_at_t/accounts/01_primary_att
+37,Comcast,comcast,@comcast,https://x.com/comcast,primary,1,1957525706390257891,https://x.com/comcast/status/1957525706390257891,Mon Aug 18 19:31:12 +0000 2025,"🎉Big news: NVIDIA Blackwell RTX is coming to #GeForceNOW 💚
+
+What this means…
+        ✅ GeForce RTX 5080-class GPUs are joining the Ultimate fleet
+        ✅ New Install-to-Play multiplies your cloud library with access to over 2500 more Steam games
+        ✅ More frames on more devices... 90 FPS on Steam Deck, racing wheels & more!
+        
+➙  https://t.co/t3gW8mBj8q   #BlackwellonGFN",166,155,155,933,933,41,true,1295,7.167037876912,386,2,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/037_comcast/accounts/01_primary_comcast
+41,Dell Technologies,dell_technologies,@Dell,https://x.com/Dell,primary,1,2061425765795717236,https://x.com/Dell/status/2061425765795717236,Mon Jun 01 12:32:56 +0000 2026,"Light on your bag. Big on what gets done. ✨The new Dell XPS 13 is our thinnest and lightest XPS laptop yet, with a refined design and smooth performance for work wherever the day leads. See how the new Dell XPS 13 fits into life on the move:",10,21,21,101,101,4,true,136,4.919980925828,241,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/041_dell_technologies/accounts/01_primary_dell
+41,Dell Technologies,dell_technologies,@Dell,https://x.com/Dell,primary,1,2061303899039109188,https://x.com/Dell/status/2061303899039109188,Mon Jun 01 04:28:41 +0000 2026,"Welcome to the NVIDIA RTX Spark channel. 
+
+A new superchip for the age of personal AI.
+
+Don't worry, your favorite NVIDIA local AI content continues on right here, just with a new headliner.
+
+Let's get started...",213,377,377,7608,7608,83,true,8281,9.021839764106,212,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/041_dell_technologies/accounts/01_primary_dell
+41,Dell Technologies,dell_technologies,@Dell,https://x.com/Dell,primary,1,2061292804261695576,https://x.com/Dell/status/2061292804261695576,Mon Jun 01 03:44:36 +0000 2026,Vera Rubin is in full production. #NVIDIAGTC https://t.co/sKkkxm3AsF,24,119,119,1071,1071,26,true,1240,7.123672785205,68,1,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/041_dell_technologies/accounts/01_primary_dell
+41,Dell Technologies,dell_technologies,@Dell,https://x.com/Dell,primary,1,2054270454467121187,https://x.com/Dell/status/2054270454467121187,Tue May 12 18:40:17 +0000 2026,"Introducing Googlebook, the first laptop designed for Gemini Intelligence. It’s crafted for heavyweight performance, built with Gemini at the core and perfectly synced with your Android phone. Coming this fall. 💻✨
+
+#TheAndroidShow https://t.co/rn4pztApmp",521,1108,1108,9085,9085,636,true,11350,9.337061124755,254,1,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/041_dell_technologies/accounts/01_primary_dell
+41,Dell Technologies,dell_technologies,@Dell,https://x.com/Dell,primary,1,2029316021450842580,https://x.com/Dell/status/2029316021450842580,Wed Mar 04 22:00:17 +0000 2026,⚠️ WARNING: THIS PRODUCT MAY CONTAIN SHELLFISH 🦞 https://t.co/zJ6n2auo6B,36,49,49,264,264,12,true,361,5.891644211826,72,0,0,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/041_dell_technologies
+42,Target,target,@target,https://x.com/target,primary,1,1461011160635949061,https://x.com/target/status/1461011160635949061,Wed Nov 17 16:39:39 +0000 2021,going to see a french film at the cinema https://t.co/FPlTLFc8Sq,17,45,45,946,946,22,false,1030,6.938284484017,64,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/042_target/accounts/01_primary_target
+43,Tesla,tesla,@tesla,https://x.com/tesla,primary,1,2041501301318766866,https://x.com/tesla/status/2041501301318766866,Tue Apr 07 13:00:14 +0000 2026,"Intel is proud to join the Terafab project with @SpaceX, @xAI, and @Tesla to help refactor silicon fab technology.
+
+Our ability to design, fabricate, and package ultra-high-performance chips at scale will help accelerate Terafab’s aim to produce 1 TW/year of compute to power future advances in AI and robotics.
+
+It was fun hosting @elonmusk at Intel this past weekend!",1507,2951,2951,21022,21022,903,true,26383,10.180513044799,369,0,4,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/043_tesla/accounts/01_primary_tesla
+45,Johnson & Johnson,johnson_johnson,@JNJNews,https://x.com/JNJNews,primary,1,1370056923593195526,https://x.com/JNJNews/status/1370056923593195526,Thu Mar 11 16:59:59 +0000 2021,"#JNJ is honored to collaborate with @Merck and the Biden Administration to ramp up production and manufacturing of the Johnson &amp; Johnson COVID-19 Vaccine. 
+ 
+Vaccine is authorized for emergency use and not approved or licensed by the U.S. FDA. Read more: https://t.co/Xnh5QXScdQ https://t.co/EhjBDXawWw",3,40,40,174,174,4,false,221,5.402677381872,306,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews
+45,Johnson & Johnson,johnson_johnson,@JNJNews,https://x.com/JNJNews,primary,1,1369800525261201414,https://x.com/JNJNews/status/1369800525261201414,Thu Mar 11 00:01:09 +0000 2021,"Read about our @Merck partnership &amp; @POTUS' news that the U.S. will purchase 100 million more doses of the Johnson &amp; Johnson COVID-19 Vaccine: https://t.co/K4XpV5zePf 
+
+Vaccine is authorized for emergency use &amp; not approved or licensed by the U.S. FDA. https://t.co/Xnh5QXScdQ https://t.co/MwFqU8feTp",5,61,61,229,229,2,false,297,5.697093486505,312,0,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews
+45,Johnson & Johnson,johnson_johnson,@JNJNews,https://x.com/JNJNews,primary,1,1369763976599506944,https://x.com/JNJNews/status/1369763976599506944,Wed Mar 10 21:35:55 +0000 2021,What does an unprecedented collaboration between @JNJNews and us look like? Check out this behind-the-scenes look at one of our manufacturing facilities to learn how it works. https://t.co/O0KYpGIhlQ,4,44,44,117,117,3,false,168,5.129898714923,199,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews
+45,Johnson & Johnson,johnson_johnson,@JNJNews,https://x.com/JNJNews,primary,1,1369752041648689154,https://x.com/JNJNews/status/1369752041648689154,Wed Mar 10 20:48:30 +0000 2021,P R O U D. That’s how our manufacturing team working to accelerate and expand production of @JNJNews #COVID19 vaccine feels about being part of this historic effort. https://t.co/KRaBezV4DG,4,64,64,218,218,12,false,298,5.700443573391,189,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews
+45,Johnson & Johnson,johnson_johnson,@JNJNews,https://x.com/JNJNews,primary,1,1366864490424369162,https://x.com/JNJNews/status/1366864490424369162,Tue Mar 02 21:34:24 +0000 2021,Today we announced agreements with @BARDA and @JNJNews that will enable us to deploy our manufacturing capacity to supply much needed vaccines and medicines for the #COVID19 pandemic. $MRK https://t.co/B5S9kcN6AB https://t.co/eHUMPlcehj,32,94,94,347,347,23,false,496,6.208590026097,236,1,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews
+45,Johnson & Johnson,johnson_johnson,@JNJNews,https://x.com/JNJNews,primary,1,1366863383094562818,https://x.com/JNJNews/status/1366863383094562818,Tue Mar 02 21:30:00 +0000 2021,"Today, President Biden announced a breakthrough collaboration between Johnson &amp; Johnson, Merck, and the federal government to ramp up vaccine production. Because of these efforts, we will have enough vaccines for every American by the end of May–two months earlier than expected.",1827,4177,4177,36292,36292,1112,false,43408,10.678422071862,283,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/045_johnson_johnson/accounts/01_primary_jnjnews
+49,RTX,rtx,@RTX_News,https://x.com/RTX_News,primary,1,1716469904684040325,https://x.com/RTX_News/status/1716469904684040325,Mon Oct 23 15:01:30 +0000 2023,"New week, new plane.  
+
+Our first @Airbus A321neo is here! https://t.co/XN0HmaVzOu",90,162,162,1355,1355,14,true,1621,7.391415234675,82,0,1,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/049_rtx
+52,Lowe's,lowe_s,@lowes,https://x.com/lowes,primary,1,1385201721106784268,https://x.com/lowes/status/1385201721106784268,Thu Apr 22 12:00:00 +0000 2021,"It’s time to celebrate action. Individuals, families, businesses – making every energy choice count for you and the climate. 🌎 #EnergyChoicesCount https://t.co/IYdzPyx7H6",12,60,60,99,99,37,false,208,5.342334251965,170,1,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/052_lowe_s/accounts/01_primary_lowes
+56,American Express,american_express,@americanexpress,https://x.com/americanexpress,primary,1,1546531793666560002,https://x.com/americanexpress/status/1546531793666560002,Mon Jul 11 16:28:07 +0000 2022,"We're taking a look back at the Queen of the Skies in honor of our new Delta SkyMiles Reserve Card design, made with 25% metal from a retired Delta Boeing 747 ✈️",78,35,35,299,299,5,false,417,6.035481432525,161,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/056_american_express/accounts/01_primary_americanexpress
+56,American Express,american_express,@americanexpress,https://x.com/americanexpress,primary,1,1537457521358684162,https://x.com/americanexpress/status/1537457521358684162,Thu Jun 16 15:30:12 +0000 2022,"Take a piece of aviation history with you wherever you go. We've partnered with @Delta to launch the limited edition Boeing 747 Delta SkyMiles Reserve and Reserve Business Credit Cards, the first-ever credit card designs made with 25% airplane metal. https://t.co/W5tdDGY62U https://t.co/VAen7YiEDe",27,50,50,261,261,40,false,378,5.937536205082,298,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/056_american_express/accounts/01_primary_americanexpress
+59,MetLife,metlife,@metlife,https://x.com/metlife,primary,1,1385201721106784268,https://x.com/metlife/status/1385201721106784268,Thu Apr 22 12:00:00 +0000 2021,"It’s time to celebrate action. Individuals, families, businesses – making every energy choice count for you and the climate. 🌎 #EnergyChoicesCount https://t.co/IYdzPyx7H6",12,60,60,99,99,37,false,208,5.342334251965,170,1,0,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/059_metlife
+59,MetLife,metlife,@metlife,https://x.com/metlife,primary,1,1356301384069640195,https://x.com/metlife/status/1356301384069640195,Mon Feb 01 18:00:23 +0000 2021,"Diversity Woman Magazine announces its First Annual 'Elite 100' issue, celebrating Black Women changing the face of Corporate America &amp; leading complex transformations, managing remote teams,  and sustaining profitable bottom lines. #Elite100BlackWomen https://t.co/AhpGucrkVn",1,13,13,41,41,36,false,91,4.521788577049,280,1,0,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/059_metlife
+64,Allstate,allstate,@allstate,https://x.com/allstate,primary,1,1354433675228827651,https://x.com/allstate/status/1354433675228827651,Wed Jan 27 14:18:46 +0000 2021,"The OneTen board of directors is thrilled to announce our new CEO, Maurice Jones!   
+
+Maurice’s breadth of leadership experience is equally matched by his passion for driving positive social change and economic justice. https://t.co/M2vsrqHHT6",1,7,7,40,40,16,false,64,4.174387269896,243,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/064_allstate/accounts/01_primary_allstate
+67,Eli Lilly,eli_lilly,@EliLillyandCo,https://x.com/EliLillyandCo,primary,1,2011195304536592714,https://x.com/EliLillyandCo/status/2011195304536592714,Tue Jan 13 21:55:01 +0000 2026,"🤝 The future of drug discovery is being built together
+At #JPM2026, Dave Ricks, CEO of @EliLillyandCo and Jensen Huang, CEO and founder of NVIDIA, shared how their new co-innovation lab will bring world-class scientists and AI experts together to transform medicine.
+
+Read more ➡️ https://t.co/NAiWshjSNx",21,40,40,220,220,9,true,290,5.673323267171,304,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/067_eli_lilly/accounts/01_primary_elilillyandco
+67,Eli Lilly,eli_lilly,@EliLillyandCo,https://x.com/EliLillyandCo,primary,1,1354433675228827651,https://x.com/EliLillyandCo/status/1354433675228827651,Wed Jan 27 14:18:46 +0000 2021,"The OneTen board of directors is thrilled to announce our new CEO, Maurice Jones!   
+
+Maurice’s breadth of leadership experience is equally matched by his passion for driving positive social change and economic justice. https://t.co/M2vsrqHHT6",1,7,7,40,40,16,false,64,4.174387269896,243,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/067_eli_lilly/accounts/01_primary_elilillyandco
+68,Merck,merck,@merck,https://x.com/merck,primary,1,1370056923593195526,https://x.com/merck/status/1370056923593195526,Thu Mar 11 16:59:59 +0000 2021,"#JNJ is honored to collaborate with @Merck and the Biden Administration to ramp up production and manufacturing of the Johnson &amp; Johnson COVID-19 Vaccine. 
+ 
+Vaccine is authorized for emergency use and not approved or licensed by the U.S. FDA. Read more: https://t.co/Xnh5QXScdQ https://t.co/EhjBDXawWw",3,40,40,174,174,4,false,221,5.402677381872,306,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/068_merck/accounts/01_primary_merck
+68,Merck,merck,@merck,https://x.com/merck,primary,1,1369800525261201414,https://x.com/merck/status/1369800525261201414,Thu Mar 11 00:01:09 +0000 2021,"Read about our @Merck partnership &amp; @POTUS' news that the U.S. will purchase 100 million more doses of the Johnson &amp; Johnson COVID-19 Vaccine: https://t.co/K4XpV5zePf 
+
+Vaccine is authorized for emergency use &amp; not approved or licensed by the U.S. FDA. https://t.co/Xnh5QXScdQ https://t.co/MwFqU8feTp",5,61,61,229,229,2,false,297,5.697093486505,312,0,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/068_merck/accounts/01_primary_merck
+68,Merck,merck,@merck,https://x.com/merck,primary,1,1369763976599506944,https://x.com/merck/status/1369763976599506944,Wed Mar 10 21:35:55 +0000 2021,What does an unprecedented collaboration between @JNJNews and us look like? Check out this behind-the-scenes look at one of our manufacturing facilities to learn how it works. https://t.co/O0KYpGIhlQ,4,44,44,117,117,3,false,168,5.129898714923,199,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/068_merck/accounts/01_primary_merck
+68,Merck,merck,@merck,https://x.com/merck,primary,1,1369752041648689154,https://x.com/merck/status/1369752041648689154,Wed Mar 10 20:48:30 +0000 2021,P R O U D. That’s how our manufacturing team working to accelerate and expand production of @JNJNews #COVID19 vaccine feels about being part of this historic effort. https://t.co/KRaBezV4DG,4,64,64,218,218,12,false,298,5.700443573391,189,1,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/068_merck/accounts/01_primary_merck
+68,Merck,merck,@merck,https://x.com/merck,primary,1,1366864490424369162,https://x.com/merck/status/1366864490424369162,Tue Mar 02 21:34:24 +0000 2021,Today we announced agreements with @BARDA and @JNJNews that will enable us to deploy our manufacturing capacity to supply much needed vaccines and medicines for the #COVID19 pandemic. $MRK https://t.co/B5S9kcN6AB https://t.co/eHUMPlcehj,32,94,94,347,347,23,false,496,6.208590026097,236,1,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/068_merck/accounts/01_primary_merck
+68,Merck,merck,@merck,https://x.com/merck,primary,1,1366863383094562818,https://x.com/merck/status/1366863383094562818,Tue Mar 02 21:30:00 +0000 2021,"Today, President Biden announced a breakthrough collaboration between Johnson &amp; Johnson, Merck, and the federal government to ramp up vaccine production. Because of these efforts, we will have enough vaccines for every American by the end of May–two months earlier than expected.",1827,4178,4178,36291,36291,1112,false,43408,10.678422071862,283,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/068_merck/accounts/01_primary_merck
+68,Merck,merck,@merck,https://x.com/merck,primary,1,1354433675228827651,https://x.com/merck/status/1354433675228827651,Wed Jan 27 14:18:46 +0000 2021,"The OneTen board of directors is thrilled to announce our new CEO, Maurice Jones!   
+
+Maurice’s breadth of leadership experience is equally matched by his passion for driving positive social change and economic justice. https://t.co/M2vsrqHHT6",1,7,7,40,40,16,false,64,4.174387269896,243,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/068_merck/accounts/01_primary_merck
+70,Broadcom,broadcom,@broadcom,https://x.com/broadcom,primary,1,1972682956746461569,https://x.com/broadcom/status/1972682956746461569,Mon Sep 29 15:20:42 +0000 2025,Spectrum Demonstrates WiFi Speeds of the Future With New Wireless Frequencies at SCTE TechExpo25: https://t.co/eocCfF64Ko https://t.co/RX77lVNmXg,1,3,3,7,7,0,true,11,2.484906649788,145,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/070_broadcom/accounts/01_primary_broadcom
+71,Delta Air Lines,delta_air_lines,@Delta,https://x.com/Delta,primary,1,1935012199870648848,https://x.com/Delta/status/1935012199870648848,Tue Jun 17 16:30:33 +0000 2025,Delta math: getting an Uber instead of paying for parking because you can earn miles on rides and eats with your linked SkyMiles and @Uber accounts. https://t.co/8vS0TzYSoP,188,84,84,285,285,18,true,575,6.356107660696,172,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/071_delta_air_lines/accounts/01_primary_delta
+71,Delta Air Lines,delta_air_lines,@Delta,https://x.com/Delta,primary,1,1915415667978752326,https://x.com/Delta/status/1915415667978752326,Thu Apr 24 14:40:56 +0000 2025,"Consider this our hard launch ✈️❤️🚗 Starting today, earn miles on eligible @Uber rides and @UberEats orders when you link your SkyMiles and Uber accounts: https://t.co/iRKNb5RopY 
+
+Terms Apply. https://t.co/lwmpewfdYU",79,67,67,276,276,26,true,448,6.107022887742,217,0,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/071_delta_air_lines/accounts/01_primary_delta
+71,Delta Air Lines,delta_air_lines,@Delta,https://x.com/Delta,primary,1,1839658579072073978,https://x.com/Delta/status/1839658579072073978,Fri Sep 27 13:29:19 +0000 2024,"⚡️ NYC are you ready?! Join us for a sneak peek into the future of flight! ✈️  Joby’s electric air taxi is coming to Grand Central, October 2-5, with our Airline Partner @Delta and our Mobility Partner @Uber. Explore the aircraft, try our VR flight simulator and imagine your city ride 🏙!
+
+📅 Dates: October 2-5
+📍 Location: Vanderbilt Hall, Grand Central
+
+👉🏼Learn more here: https://t.co/Xdy7pqQx5o
+
+#JobyAviation #FutureOfFlight #Electricairtaxi #NYCEvents #JobyinNYC",23,78,78,322,322,13,true,436,6.079933195096,467,5,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/071_delta_air_lines/accounts/01_primary_delta
+71,Delta Air Lines,delta_air_lines,@Delta,https://x.com/Delta,primary,1,1546531793666560002,https://x.com/Delta/status/1546531793666560002,Mon Jul 11 16:28:07 +0000 2022,"We're taking a look back at the Queen of the Skies in honor of our new Delta SkyMiles Reserve Card design, made with 25% metal from a retired Delta Boeing 747 ✈️",78,35,35,299,299,5,false,417,6.035481432525,161,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/071_delta_air_lines/accounts/01_primary_delta
+71,Delta Air Lines,delta_air_lines,@Delta,https://x.com/Delta,primary,1,1537457521358684162,https://x.com/Delta/status/1537457521358684162,Thu Jun 16 15:30:12 +0000 2022,"Take a piece of aviation history with you wherever you go. We've partnered with @Delta to launch the limited edition Boeing 747 Delta SkyMiles Reserve and Reserve Business Credit Cards, the first-ever credit card designs made with 25% airplane metal. https://t.co/W5tdDGY62U https://t.co/VAen7YiEDe",27,50,50,261,261,40,false,378,5.937536205082,298,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/071_delta_air_lines/accounts/01_primary_delta
+71,Delta Air Lines,delta_air_lines,@Delta,https://x.com/Delta,primary,1,1503385646433452032,https://x.com/Delta/status/1503385646433452032,Mon Mar 14 15:00:44 +0000 2022,"It’s time to battle for the best brand on Twitter. #BestOfTweets Brand Bracket tips off now! 
+
+First matchup: the power of flight vs. the gift of food
+✈️ @Delta's travel tips
+VS
+🛒 @kroger's fresh takes 
+
+Vote now!",26,16,16,83,83,13,false,138,4.934473933131,213,1,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/071_delta_air_lines/accounts/01_primary_delta
+73,Pfizer,pfizer,@pfizer,https://x.com/pfizer,primary,1,1658099339187634177,https://x.com/pfizer/status/1658099339187634177,Mon May 15 13:17:43 +0000 2023,"Today marks the start of a new program where global pharmaceutical companies are coming together to collaborate... but why?
+
+Let’s take a closer look ⬇️
+
+@AstraZeneca | @bmsnews |@GSK | @JNJNews | @pfizer | @sanofi https://t.co/tyl3GcL09x",7,3,3,4,4,4,true,18,2.944438979166,238,0,6,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/073_pfizer
+73,Pfizer,pfizer,@pfizer,https://x.com/pfizer,primary,1,1624755400112316416,https://x.com/pfizer/status/1624755400112316416,Sun Feb 12 13:00:48 +0000 2023,"Half of us will be diagnosed with cancer in our lifetime. Today, #WorkingWithCancer comes to #SBLVII. Join our partners and all those who continue to lend support to abolish the stigma and insecurity for people with cancer in the workplace. https://t.co/05DLYGyazf https://t.co/RWACSLUuyU",18,21,21,46,46,10,true,95,4.564348191468,288,2,0,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/073_pfizer
+81,United Airlines Holdings,united_airlines_holdings,@united,https://x.com/united,primary,1,1716469904684040325,https://x.com/united/status/1716469904684040325,Mon Oct 23 15:01:30 +0000 2023,"New week, new plane.  
+
+Our first @Airbus A321neo is here! https://t.co/XN0HmaVzOu",90,162,162,1355,1355,14,true,1621,7.391415234675,82,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/081_united_airlines_holdings/accounts/01_primary_united
+83,Cisco Systems,cisco_systems,@Cisco,https://x.com/Cisco,primary,1,2014473593170903422,https://x.com/Cisco/status/2014473593170903422,Thu Jan 22 23:01:46 +0000 2026,"Don't miss this executive fireside chat between NVIDIA founder and CEO, Jensen Huang and @Cisco Chair and CEO, Chuck Robbins on February 3rd, where they'll explore open models, next-generation accelerated computing, and the rise of full-stack AI factories designed to manufacture intelligence at planetary scale.",21,52,52,184,184,2,true,259,5.560681631016,312,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/083_cisco_systems/accounts/01_primary_cisco
+83,Cisco Systems,cisco_systems,@Cisco,https://x.com/Cisco,primary,1,2014052376592765375,https://x.com/Cisco/status/2014052376592765375,Wed Jan 21 19:08:00 +0000 2026,"#AI isn’t just models or machines—it’s a new industrial stack.
+
+Join @nvidia Founder & CEO Jensen Huang and Cisco Chair & CEO @ChuckRobbins for a candid conversation on open models, next-gen accelerated #computing, and the rise of full-stack AI factories built to manufacture intelligence at scale ➡️ https://t.co/I8BulMd6UM
+#CiscoAISummit",10,16,16,51,51,4,true,81,4.406719247264,339,3,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/083_cisco_systems/accounts/01_primary_cisco
+85,Charter Communications,charter_communications,@CharterNewsroom,https://x.com/CharterNewsroom,primary,1,1972682956746461569,https://x.com/CharterNewsroom/status/1972682956746461569,Mon Sep 29 15:20:42 +0000 2025,Spectrum Demonstrates WiFi Speeds of the Future With New Wireless Frequencies at SCTE TechExpo25: https://t.co/eocCfF64Ko https://t.co/RX77lVNmXg,1,3,3,7,7,0,true,11,2.484906649788,145,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/085_charter_communications/accounts/01_primary_charternewsroom
+86,American Airlines Group,american_airlines_group,@AmericanAir,https://x.com/AmericanAir,primary,1,2037259447337418911,https://x.com/AmericanAir/status/2037259447337418911,Thu Mar 26 20:04:37 +0000 2026,"Jake Oettinger of the @DallasStars surprises an @AmericanAir flight! 
+
+This week, one lucky flight from DFW to Chicago got the ultimate surprise. Every seat was stocked with a goodie bag from us & AA.
+
+This was all to celebrate our free, high-speed Wi Fi sponsored by AT&T, available for AAdvantage® members. Send this to a friend who would have loved to be on this flight! #JakeOettinger #DallasStars",12,34,34,389,389,8,true,443,6.095824562432,401,2,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/086_american_airlines_group/accounts/01_primary_americanair
+88,Intel,intel,@intel,https://x.com/intel,primary,1,2061425765795717236,https://x.com/intel/status/2061425765795717236,Mon Jun 01 12:32:56 +0000 2026,"Light on your bag. Big on what gets done. ✨The new Dell XPS 13 is our thinnest and lightest XPS laptop yet, with a refined design and smooth performance for work wherever the day leads. See how the new Dell XPS 13 fits into life on the move:",10,21,21,101,101,4,true,136,4.919980925828,241,0,0,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/088_intel/accounts/01_primary_intel
+88,Intel,intel,@intel,https://x.com/intel,primary,1,2041501301318766866,https://x.com/intel/status/2041501301318766866,Tue Apr 07 13:00:14 +0000 2026,"Intel is proud to join the Terafab project with @SpaceX, @xAI, and @Tesla to help refactor silicon fab technology.
+
+Our ability to design, fabricate, and package ultra-high-performance chips at scale will help accelerate Terafab’s aim to produce 1 TW/year of compute to power future advances in AI and robotics.
+
+It was fun hosting @elonmusk at Intel this past weekend!",1507,2951,2951,21008,21008,903,true,26369,10.179982279347,369,0,4,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/088_intel/accounts/01_primary_intel
+92,Uber Technologies,uber_technologies,@Uber,https://x.com/Uber,primary,1,1935012199870648848,https://x.com/Uber/status/1935012199870648848,Tue Jun 17 16:30:33 +0000 2025,Delta math: getting an Uber instead of paying for parking because you can earn miles on rides and eats with your linked SkyMiles and @Uber accounts. https://t.co/8vS0TzYSoP,188,83,83,285,285,18,true,574,6.354370040797,172,0,1,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/092_uber_technologies/accounts/01_primary_uber
+92,Uber Technologies,uber_technologies,@Uber,https://x.com/Uber,primary,1,1915415667978752326,https://x.com/Uber/status/1915415667978752326,Thu Apr 24 14:40:56 +0000 2025,"Consider this our hard launch ✈️❤️🚗 Starting today, earn miles on eligible @Uber rides and @UberEats orders when you link your SkyMiles and Uber accounts: https://t.co/iRKNb5RopY 
+
+Terms Apply. https://t.co/lwmpewfdYU",79,65,65,276,276,26,true,446,6.102558594614,217,0,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/092_uber_technologies/accounts/01_primary_uber
+92,Uber Technologies,uber_technologies,@Uber,https://x.com/Uber,primary,1,1839658579072073978,https://x.com/Uber/status/1839658579072073978,Fri Sep 27 13:29:19 +0000 2024,"⚡️ NYC are you ready?! Join us for a sneak peek into the future of flight! ✈️  Joby’s electric air taxi is coming to Grand Central, October 2-5, with our Airline Partner @Delta and our Mobility Partner @Uber. Explore the aircraft, try our VR flight simulator and imagine your city ride 🏙!
+
+📅 Dates: October 2-5
+📍 Location: Vanderbilt Hall, Grand Central
+
+👉🏼Learn more here: https://t.co/Xdy7pqQx5o
+
+#JobyAviation #FutureOfFlight #Electricairtaxi #NYCEvents #JobyinNYC",23,78,78,322,322,13,true,436,6.079933195096,467,5,2,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/092_uber_technologies/accounts/01_primary_uber
+97,Bristol-Myers Squibb,bristol_myers_squibb,@bmsnews,https://x.com/bmsnews,primary,1,1658099339187634177,https://x.com/bmsnews/status/1658099339187634177,Mon May 15 13:17:43 +0000 2023,"Today marks the start of a new program where global pharmaceutical companies are coming together to collaborate... but why?
+
+Let’s take a closer look ⬇️
+
+@AstraZeneca | @bmsnews |@GSK | @JNJNews | @pfizer | @sanofi https://t.co/tyl3GcL09x",7,3,3,4,4,4,true,18,2.944438979166,238,0,6,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/097_bristol_myers_squibb/accounts/01_primary_bmsnews
