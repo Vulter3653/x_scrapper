@@ -23,13 +23,21 @@ SE: non-robust standard OLS SE.
 
 R² (within) = 0.0205
 
+## Analysis Status
+
+**Exploratory model-transfer analysis. Do not use as main hypothesis evidence.**
+
 ## H1 Interpretation
 
 H1 predicts β1 > 0 (humor_presence positively associated with engagement).
 
 β1 = -0.0520  SE = 0.0106  p = 0.0000 ***
 
-**H1 not supported** at p<.10.
+Under the Wendy's-trained classifier transfer specification, humor-labeled posts are associated with lower engagement (β<0, p<.001). H1 is not supported under this specification.
+
+The appropriate framing is:
+
+> As an exploratory model-transfer analysis, the Wendy's-trained classifier transfer shows humor-labeled Fortune Top 100 posts associated with lower engagement. This result reflects classifier-transfer sensitivity rather than a definitive finding. It should not be interpreted as "humor reduces engagement in Fortune Top 100 firms."
 
 ## Fixed Effects
 
@@ -42,3 +50,4 @@ H1 predicts β1 > 0 (humor_presence positively associated with engagement).
 
 This analysis applies the Wendy's-trained TF-IDF LogReg classifier to Fortune Top 100 posts.
 Results reflect model-transfer classification, not human-validated Fortune-wide labels.
+This is a robustness/sensitivity check, not the main empirical test of H1.

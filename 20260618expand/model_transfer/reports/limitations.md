@@ -1,5 +1,14 @@
 # Limitations and Claim Boundaries
 
+## Analysis Status
+
+**This is an exploratory model-transfer analysis.** Results must not be used as the main Fortune Top 100 hypothesis evidence. The correct evidence hierarchy is:
+
+```
+Main evidence:     full_chain_master classification (existing) → 20260618expand/
+Supplemental:      Wendy's-classifier transfer (this subpackage) → model_transfer/
+```
+
 ## Claim Boundary
 
 - This applies the Wendy's-trained classifier to Fortune Top 100 posts.

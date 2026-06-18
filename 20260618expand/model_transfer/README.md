@@ -17,20 +17,34 @@ Training data: `20260615wendy's/result/wendys_humor_review_sheet.csv`
 
 No saved model artifact. Model retrained from Wendy's labels at runtime.
 
-## Results Summary
+## Analysis Status
 
-| Hypothesis | Result | Note |
+**This is an exploratory model-transfer analysis. These results should NOT be used as the main hypothesis evidence for Fortune Top 100.**
+
+The Wendy's-trained classifier was applied to Fortune Top 100 posts as a robustness/sensitivity check. Due to domain mismatch (Wendy's fast-food brand voice vs. diverse Fortune Top 100 industries), aggressive humor classification is substantially over-estimated (10.5% vs. 0.15% in the original full_chain_master). All results reflect classifier-transfer sensitivity, not definitive hypothesis testing.
+
+## Results Summary (Exploratory Model-Transfer)
+
+| Hypothesis | Under-transfer result | Appropriate framing |
 |---|---|---|
-| H1: humor → engagement | β=-0.052*** (p<.001) | NOT supported; negative direction |
-| H2: aggressive > other humor | aggressive β=-0.100, lower than affiliative | NOT supported; aggressive has lowest coefficient |
-| H3: inverted-U aggressive intensity | β1=-1.65***, β2=2.53*** (U-shape) | NOT supported; shape is U, not inverted-U |
+| H1: humor → engagement | β=-0.052*** | Wendy's-classifier transfer shows humor-labeled posts associated with lower engagement; H1 not supported under this specification |
+| H2: aggressive > other humor | aggressive β=-0.100, lower than affiliative*** | Aggressive over-classified at 10.5%; H2 not supported under this specification |
+| H3: inverted-U aggressive intensity | β1<0, β2>0 (U-shape, not inverted-U) | U-shape exploratory association observed; H3 not supported under this specification |
 
-## Classifier Transfer Caveat
+These results should be reported as:
 
-The model was trained on Wendy's fast-food brand voice. Fortune Top 100 posts span
-diverse industries. Aggressive humor rate under the transferred model is 10.5% vs
-0.15% in the original full_chain_master — likely due to domain mismatch.
-All results should be treated as exploratory model-transfer evidence.
+> As an exploratory model-transfer analysis, we applied the Wendy's-trained humor classifier to the Fortune Top 100 post sample. The transferred classifier produced substantially different aggressive-humor prevalence from the full-chain classification (10.5% vs. 0.15%), suggesting domain-transfer measurement risk. Under this transferred-classifier specification, H1, H2, and H3 were not supported. These results should be interpreted as evidence of classifier-transfer sensitivity rather than definitive hypothesis evidence.
+
+## Classifier Transfer Warning
+
+| Metric | Value |
+|---|---|
+| Binary AUC (on Wendy's labeled data) | 0.7095 |
+| Four-type macro-F1 (on Wendy's labeled data) | 0.3448 |
+| Aggressive humor rate (full_chain_master) | 0.15% (95 posts) |
+| Aggressive humor rate (this transfer) | 10.5% (6,857 posts) |
+
+The four-type macro-F1 of 0.34 is low. Wendy's aggressive humor patterns (competitive fast-food roasting language) likely match assertive but non-humorous Fortune 100 brand language. Over-classification of aggressive humor contaminates H2 and H3 results.
 
 ## Execution (smoke test)
 

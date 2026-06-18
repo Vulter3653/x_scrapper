@@ -38,6 +38,10 @@ R² (within) = 0.0207
 | aggressive_vs_self_defeating | -0.058473 | 0.08462 | -0.691 | 0.4896 |  | aggressive ≤ other |
 
 
+## Analysis Status
+
+**Exploratory model-transfer analysis. Do not use as main hypothesis evidence.**
+
 ## H2 Interpretation
 
 H2 predicts aggressive humor has larger engagement effect than other humor types.
@@ -47,14 +51,22 @@ affiliative β = -0.0331
 self-enhancing β = -0.0642
 self-defeating β = -0.0419
 
-## Aggressive Humor Sparsity Warning
+Under the Wendy's-trained classifier transfer, all humor types have lower engagement than non-humorous posts, and aggressive has the lowest coefficient. H2 is not supported under this specification.
 
-The Wendy's-trained classifier may yield a different number of aggressive humor posts
-for Fortune Top 100 than the original full_chain_master. If aggressive humor posts are
-fewer than 200, H2 contrast interpretations should be treated with caution.
+The appropriate framing is:
+
+> Under the Wendy's-classifier transfer specification, aggressive humor posts showed lower engagement than both non-humorous and affiliative posts. These results reflect classifier-transfer sensitivity and should not be interpreted as definitive H2 evidence.
+
+## Domain-Transfer Over-Classification Warning
+
+The Wendy's-trained classifier produced 6,857 aggressive humor posts (10.5% of the Fortune Top 100 sample), compared to 95 posts (0.15%) in the original full_chain_master. This 72x discrepancy strongly suggests that the model is over-classifying Fortune 100 assertive or competitive brand language as aggressive humor. H2 contrast results under this classification should not be used as the primary test of aggressive humor effectiveness.
+
+Do not write: "aggressive humor reduces engagement in Fortune Top 100 firms."
+Do write: "Under Wendy's-classifier transfer, posts classified as aggressive humor showed lower engagement; domain-transfer measurement risk is high."
 
 ## Claim Boundary
 
 Model-transfer classification from Wendy's TF-IDF LogReg. Not human-validated for Fortune Top 100.
+This is a robustness/sensitivity check, not the main empirical test of H2.
 Engagement is an engagement-based brand equity proxy.
 Observational evidence only.

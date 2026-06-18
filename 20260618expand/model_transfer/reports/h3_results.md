@@ -2,11 +2,11 @@
 
 ## Status
 
-**confirmatory_candidate**
+**exploratory_domain_transfer** (overrides algorithm-assigned confirmatory_candidate)
 
 Non-zero aggressive intensity firm-month rows: 2066 / 3532
 
-H3 has sufficient variation for confirmatory analysis.
+Although the algorithm-assigned status was confirmatory_candidate based on row counts, this status is overridden to exploratory_domain_transfer. The 2,066 non-zero rows are derived from the Wendy's-trained classifier which over-classifies Fortune 100 posts as aggressive humor at 10.5% vs. 0.15% in the original full_chain_master. The apparent variation in aggressive_humor_usage_intensity reflects domain-transfer measurement error, not genuine variation in aggressive humor strategy. H3 should not be treated as confirmatory under this classification.
 
 ## Model
 
@@ -55,4 +55,7 @@ Current: β1=negative  β2=positive
 ## Claim Boundary
 
 H3 aggressive_humor_usage_intensity is a usage rate (firm-period), not message-level semantic intensity.
-This is exploratory evidence due to extreme sparsity in the current dataset.
+This is exploratory_domain_transfer evidence. The U-shaped association (β1<0, β2>0) should not be reported as a confirmed H3 result. The shape does not match the predicted inverted-U and the classification basis (Wendy's transfer) has documented domain mismatch.
+
+Do not write: "H3 shows a U-shaped pattern was confirmed."
+Do write: "Under Wendy's-classifier transfer, a U-shaped exploratory association was observed, which does not match the predicted inverted-U shape; domain-transfer measurement risk limits interpretation."
