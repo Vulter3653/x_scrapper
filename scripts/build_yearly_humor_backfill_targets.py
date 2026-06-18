@@ -196,20 +196,32 @@ def build_profiles(targets: list[dict]) -> list[dict]:
 def build_year_rows(profiles: list[dict], year: int, target_scope: str) -> list[dict]:
     rows = []
     for p in profiles:
-        ref_year = p["_ref_year"]
-        if ref_year is not None and ref_year <= year:
-            active = "true"
-            status = p["audit_status"] if p["audit_status"].startswith("ok") else p["audit_status"]
-        elif ref_year is not None and ref_year > year:
-            active = "false"
-            status = "skipped_not_active_in_year"
-        else:
-            if target_scope == "all":
-                active = "unknown"
-                status = "no_date_found"
+        acct_yr = int(p["account_created_year"]) if p["account_created_year"] else None
+        obs_yr = int(p["earliest_observed_post_year"]) if p["earliest_observed_post_year"] else None
+
+        if acct_yr is not None:
+            # account_created_year is authoritative: company did not exist on X before this year
+            if acct_yr <= year:
+                active = "true"
+                status = "ok"
             else:
                 active = "false"
-                status = "skipped_no_date"
+                status = "skipped_not_active_in_year"
+        elif obs_yr is not None and obs_yr <= year:
+            # Confirmed presence on or before this year from observed data
+            active = "true"
+            status = "ok_observed_only"
+        else:
+            # obs_yr > year or no date at all.
+            # earliest_observed > Y does NOT prove the company was absent before Y —
+            # it only means we have not yet collected pre-Y data (the purpose of this backfill).
+            # Include in "all" mode so the runner attempts collection.
+            if target_scope == "all":
+                active = "unknown"
+                status = "no_confirmed_pre_year_data" if obs_yr else "no_date_found"
+            else:
+                active = "false"
+                status = "skipped_no_confirmed_data"
         rows.append({
             "fortune_rank": p["fortune_rank"],
             "company_name": p["company_name"],
