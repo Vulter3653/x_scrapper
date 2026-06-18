@@ -1,0 +1,4 @@
+model_name,model_id,eval_scope,eval_mode,n_rows,humor_count,non_humor_count,auc,f1,precision,recall
+batch1_only,word_char_comb__lr_liblin_C01,batch1_fortune100,oof_stratified_5fold_cv,1482,648,834,0.7808,0.6767,0.6598,0.6944
+batch1_plus_wendys_human,word_char_comb__lr_liblin_C01,batch1_fortune100,oof_stratified_5fold_cv,1482,648,834,0.7831,0.6818,0.6681,0.696
+batch1_plus_wendys_human,word_char_comb__lr_liblin_C01,wendys_human,oof_stratified_5fold_cv,68,37,31,0.7602,0.701,0.5667,0.9189

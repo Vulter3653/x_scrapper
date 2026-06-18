@@ -1,0 +1,3 @@
+model_name,model_id,training_scope,valid_rows,humor_count,non_humor_count,batch1_rows,wendys_rows
+batch1_only,word_char_comb__lr_liblin_C01,batch1 only,1482,648,834,1482,0
+batch1_plus_wendys_human,word_char_comb__lr_liblin_C01,batch1 + Wendy's human labels,1550,685,865,1482,68

@@ -1,0 +1,5 @@
+model_name,eval_scope,actual_label,predicted_label,count
+batch1_only,wendys_held_out,non_humor,non_humor,3
+batch1_only,wendys_held_out,non_humor,humor,28
+batch1_only,wendys_held_out,humor,non_humor,3
+batch1_only,wendys_held_out,humor,humor,34

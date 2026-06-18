@@ -1,0 +1,9 @@
+model_name,eval_scope,actual_label,predicted_label,count
+batch1_only,all_training_rows,non_humor,non_humor,602
+batch1_only,all_training_rows,non_humor,humor,232
+batch1_only,all_training_rows,humor,non_humor,198
+batch1_only,all_training_rows,humor,humor,450
+batch1_plus_wendys_human,all_training_rows,non_humor,non_humor,615
+batch1_plus_wendys_human,all_training_rows,non_humor,humor,250
+batch1_plus_wendys_human,all_training_rows,humor,non_humor,200
+batch1_plus_wendys_human,all_training_rows,humor,humor,485

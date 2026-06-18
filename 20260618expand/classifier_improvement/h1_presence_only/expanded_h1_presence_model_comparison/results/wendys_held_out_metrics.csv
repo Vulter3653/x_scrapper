@@ -1,0 +1,2 @@
+model_name,model_id,eval_scope,eval_mode,n_rows,humor_count,non_humor_count,auc,f1,precision,recall
+batch1_only,word_char_comb__lr_liblin_C01,wendys_held_out,wendys_held_out,68,37,31,0.7001,0.6869,0.5484,0.9189

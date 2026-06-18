@@ -1,0 +1,17 @@
+model_name,diagnostic_token,feature,weight,note
+batch1_only,wendy,,,no matching feature
+batch1_only,wendys,,,no matching feature
+batch1_only,wendy's,,,no matching feature
+batch1_only,frosty,,,no matching feature
+batch1_only,baconator,,,no matching feature
+batch1_only,nuggs,,,no matching feature
+batch1_only,@wendys,,,no matching feature
+batch1_plus_wendys_human,wendy,word__wendy,0.022068,source-specific token diagnostic
+batch1_plus_wendys_human,wendy,word__wendy app,-0.018537,source-specific token diagnostic
+batch1_plus_wendys_human,wendy,word__the wendy,-0.016408,source-specific token diagnostic
+batch1_plus_wendys_human,wendys,,,no matching feature
+batch1_plus_wendys_human,wendy's,,,no matching feature
+batch1_plus_wendys_human,frosty,,,no matching feature
+batch1_plus_wendys_human,baconator,,,no matching feature
+batch1_plus_wendys_human,nuggs,,,no matching feature
+batch1_plus_wendys_human,@wendys,,,no matching feature
