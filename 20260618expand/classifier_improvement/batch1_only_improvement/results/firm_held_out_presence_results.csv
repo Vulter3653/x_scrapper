@@ -1,0 +1,99 @@
+model_id,eval_mode,oof_auc_ref,company_name,n_posts,n_humor_actual,f1,precision,recall
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,MEAN_ACROSS_FIRMS,1482,648,0.477,0.4998,0.5024
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,AT&T,24,15,0.7429,0.65,0.8667
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,AbbVie,20,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Albertsons,23,14,0.7879,0.6842,0.9286
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Allstate,9,5,0.6667,0.5714,0.8
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Alphabet,13,2,0.4444,0.2857,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Amazon,30,12,0.6897,0.5882,0.8333
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,American Airlines Group,7,6,0.8,1.0,0.6667
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,American Express,14,6,0.8,0.6667,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Archer Daniels Midland,20,7,0.5,0.6,0.4286
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Bank of America,23,11,0.64,0.5714,0.7273
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Boeing,14,5,0.5714,1.0,0.4
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Bristol-Myers Squibb,15,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Broadcom,2,1,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,CVS Health,6,1,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Capital One Financial,8,2,0.4444,0.2857,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Cardinal Health,5,1,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Caterpillar,14,6,0.9231,0.8571,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Cencora,10,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Centene,11,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Charter Communications,6,2,1.0,1.0,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Chevron,17,3,0.2857,0.25,0.3333
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Cigna Group,13,4,0.4,1.0,0.25
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Cisco Systems,17,7,0.5455,0.75,0.4286
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Citigroup,5,3,0.4,0.5,0.3333
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Coca-Cola,6,6,0.8,1.0,0.6667
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Comcast,27,16,0.5926,0.7273,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,ConocoPhillips,13,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Dell Technologies,10,8,0.9412,0.8889,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Delta Air Lines,19,10,0.7826,0.6923,0.9
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Elevance Health,16,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Eli Lilly,11,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Energy Transfer,19,7,0.6667,0.8,0.5714
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Enterprise Products Partners,51,25,0.4255,0.4545,0.4
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Exxon Mobil,14,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Fannie Mae,5,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,FedEx,13,7,0.6667,0.625,0.7143
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Ford Motor,27,20,0.6667,0.6842,0.65
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Freddie Mac,5,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Galaxy Digital,2,1,0.6667,0.5,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,General Dynamics,29,9,0.381,0.3333,0.4444
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,General Motors,10,6,0.6667,1.0,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Goldman Sachs Group,16,1,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,HCA Healthcare,13,3,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,HP,10,5,0.4,0.4,0.4
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Home Depot,52,14,0.4878,0.3704,0.7143
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Humana,21,8,0.5,0.75,0.375
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,IBM,12,9,0.7143,1.0,0.5556
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Ingram Micro Holding,23,12,0.5714,0.6667,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Intel,6,4,0.8571,1.0,0.75
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,JPMorgan Chase,18,3,0.6667,0.6667,0.6667
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Johnson & Johnson,17,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Kroger,27,21,0.8936,0.8077,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Liberty Mutual Insurance Group,14,7,0.6667,0.5455,0.8571
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Lockheed Martin,21,9,0.5263,0.5,0.5556
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Lowe's,13,10,0.7619,0.7273,0.8
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Marathon Petroleum,8,4,0.5714,0.6667,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Massachusetts Mutual Life,19,7,0.75,0.6667,0.8571
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,McKesson,10,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Merck,7,1,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,MetLife,16,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Meta Platforms,4,1,0.6667,0.5,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Microsoft,21,12,0.72,0.6923,0.75
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Morgan Stanley,22,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Nationwide,28,18,0.7805,0.6957,0.8889
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,New York Life Insurance,11,3,0.5714,0.5,0.6667
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Nike,14,8,0.7,0.5833,0.875
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Nvidia,18,5,0.2222,0.25,0.2
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Oracle,9,3,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,PepsiCo,16,6,0.8,1.0,0.6667
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Performance Food Group,1,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Pfizer,5,2,0.5,0.5,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Phillips 66,11,4,0.5714,0.6667,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Procter & Gamble,4,2,0.6667,1.0,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Progressive,8,8,0.8571,1.0,0.75
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Prudential Financial,19,7,0.5,0.6,0.4286
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Publix Super Markets,24,19,0.9,0.8571,0.9474
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,RTX,7,2,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,State Farm Insurance,3,3,1.0,1.0,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,StoneX Group,19,3,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Sysco,17,7,0.5714,0.5714,0.5714
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,TD Synnex,11,7,0.7692,0.8333,0.7143
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,TIAA,5,1,1.0,1.0,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,TJX,24,3,0.2609,0.15,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Target,28,20,0.8511,0.7407,1.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Tesla,48,31,0.7059,0.6486,0.7742
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Travelers,16,6,0.7273,0.8,0.6667
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Tyson Foods,21,10,0.7059,0.8571,0.6
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,UPS,3,2,0.6667,1.0,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,USAA,20,10,0.4762,0.4545,0.5
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Uber Technologies,22,15,0.7273,0.6667,0.8
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,United Airlines Holdings,13,11,0.8,0.8889,0.7273
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,UnitedHealth Group,1,1,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Valero Energy,2,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Verizon Communications,2,0,0.0,0.0,0.0
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Walmart,22,18,0.9189,0.8947,0.9444
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Walt Disney,51,34,0.8,0.7317,0.8824
+word_char_comb__lr_liblin_C01,firm_held_out_all_firms,0.7811,Wells Fargo,6,4,0.5714,0.6667,0.5

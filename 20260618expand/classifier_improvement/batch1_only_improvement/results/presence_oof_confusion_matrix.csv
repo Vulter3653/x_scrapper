@@ -1,0 +1,5 @@
+eval_mode,oof_stratified_5fold_cv
+best_model_id,word_char_comb__lr_liblin_C01
+actual\predicted,humor,non_humor
+humor,452,196
+non_humor,231,603

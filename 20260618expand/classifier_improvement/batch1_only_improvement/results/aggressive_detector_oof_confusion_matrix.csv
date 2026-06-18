@@ -1,0 +1,7 @@
+eval_mode,oof_stratified_5fold_cv
+best_model_id,char_35_5k__cnb
+n_aggressive_actual,44
+n_non_aggressive_actual,604
+actual\predicted,aggressive,non_aggressive_humor
+aggressive,16,28
+non_aggressive_humor,51,553

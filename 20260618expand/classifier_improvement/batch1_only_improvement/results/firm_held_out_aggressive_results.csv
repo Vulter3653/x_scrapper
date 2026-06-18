@@ -1,0 +1,90 @@
+model_id,eval_mode,oof_pr_auc_ref,company_name,n_humor_posts,n_aggressive_actual,has_aggressive,precision,recall,f1,meets_provisional_fh
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,MEAN_FIRMS_WITH_AGGRESSIVE,648,44,24/88 firms,0.3264,0.382,0.3417,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,AT&T,15,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Albertsons,14,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Allstate,5,1,yes,1.0,1.0,1.0,yes
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Alphabet,2,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Amazon,12,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,American Airlines Group,6,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,American Express,6,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Archer Daniels Midland,7,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Bank of America,11,3,yes,0.6667,0.6667,0.6667,yes
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Boeing,5,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Bristol-Myers Squibb,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Broadcom,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,CVS Health,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Capital One Financial,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Cardinal Health,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Caterpillar,6,1,yes,1.0,1.0,1.0,yes
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Cencora,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Centene,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Charter Communications,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Chevron,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Cigna Group,4,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Cisco Systems,7,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Citigroup,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Coca-Cola,6,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Comcast,16,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Dell Technologies,8,1,yes,0.5,1.0,0.6667,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Delta Air Lines,10,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Energy Transfer,7,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Enterprise Products Partners,25,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Exxon Mobil,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,FedEx,7,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Ford Motor,20,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Galaxy Digital,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,General Dynamics,9,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,General Motors,6,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Goldman Sachs Group,1,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,HCA Healthcare,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,HP,5,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Home Depot,14,3,yes,1.0,0.6667,0.8,yes
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Humana,8,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,IBM,9,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Ingram Micro Holding,12,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Intel,4,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,JPMorgan Chase,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Johnson & Johnson,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Kroger,21,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Liberty Mutual Insurance Group,7,1,yes,0.5,1.0,0.6667,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Lockheed Martin,9,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Lowe's,10,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Marathon Petroleum,4,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Massachusetts Mutual Life,7,2,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,McKesson,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Merck,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,MetLife,2,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Meta Platforms,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Microsoft,12,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Morgan Stanley,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Nationwide,18,2,yes,0.3333,0.5,0.4,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,New York Life Insurance,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Nike,8,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Nvidia,5,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Oracle,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,PepsiCo,6,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Pfizer,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Phillips 66,4,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Procter & Gamble,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Progressive,8,3,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Prudential Financial,7,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Publix Super Markets,19,3,yes,0.6667,0.6667,0.6667,yes
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,RTX,2,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,State Farm Insurance,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,StoneX Group,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Sysco,7,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,TD Synnex,7,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,TIAA,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,TJX,3,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Target,20,6,yes,0.6667,0.6667,0.6667,yes
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Tesla,31,5,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Travelers,6,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Tyson Foods,10,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,UPS,2,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,USAA,10,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Uber Technologies,15,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,United Airlines Holdings,11,2,yes,1.0,1.0,1.0,yes
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,UnitedHealth Group,1,0,no,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Walmart,18,1,yes,0.0,0.0,0.0,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Walt Disney,34,1,yes,0.5,1.0,0.6667,no
+char_35_5k__cnb,firm_held_out_all_firms,0.2159,Wells Fargo,4,0,no,0.0,0.0,0.0,no
