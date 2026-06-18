@@ -12,6 +12,10 @@ The Wendy's-trained classifier produced aggressive humor at 10.5% of Fortune Top
 
 NOT yet: final H1/H2/H3 re-estimation using domain-adapted labels.
 
+## Diagnostics Row Count Note
+
+`full_chain_source_rows` counts rows in the full_chain_master source file. It is not a post-master match count and may exceed the deduplicated Fortune post master row count. Actual post-master matching is reported separately as `full_chain_post_master_matched_tweet_ids` and must not exceed `input_post_master_rows`.
+
 ## Architecture
 
 Same two-stage structure as Wendy's classifier:

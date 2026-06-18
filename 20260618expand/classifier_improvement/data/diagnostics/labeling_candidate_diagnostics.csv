@@ -2,7 +2,11 @@ metric,value
 total_candidates,1500
 target_sample_size,1500
 input_post_master_rows,65245
-full_chain_matched_rows,67860
+full_chain_source_rows,68020
+full_chain_unique_tweet_ids,67860
+full_chain_post_master_matched_tweet_ids,65245
+full_chain_post_master_unmatched_tweet_ids,0
+full_chain_post_master_match_rate,1.0
 stratum_classifier_disagreement,200
 stratum_firm_balanced_sample,97
 stratum_full_chain_aggressive,95

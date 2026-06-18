@@ -153,6 +153,84 @@ def main() -> int:
         if "commit_results" not in wf_text:
             failures.append("workflow must include commit_results input with default false")
 
+    # 12. Diagnostics: full_chain naming correctness
+    diag = CI / "data" / "diagnostics" / "labeling_candidate_diagnostics.csv"
+    if diag.exists():
+        with diag.open("r", encoding="utf-8", newline="") as fh:
+            diag_rows = {r["metric"]: r["value"] for r in csv.DictReader(fh)}
+
+        # Must NOT contain the old misleading metric name
+        if "full_chain_matched_rows" in diag_rows:
+            failures.append(
+                "diagnostics contains deprecated 'full_chain_matched_rows'. "
+                "Rename to 'full_chain_source_rows' and add match metrics."
+            )
+
+        # Must contain the new accurate metrics
+        for required_metric in [
+            "full_chain_source_rows",
+            "full_chain_unique_tweet_ids",
+            "full_chain_post_master_matched_tweet_ids",
+            "full_chain_post_master_unmatched_tweet_ids",
+            "full_chain_post_master_match_rate",
+        ]:
+            if required_metric not in diag_rows:
+                failures.append(f"diagnostics missing required metric: {required_metric}")
+
+        # matched <= input_post_master_rows (must not exceed)
+        if (
+            "full_chain_post_master_matched_tweet_ids" in diag_rows
+            and "input_post_master_rows" in diag_rows
+        ):
+            matched = int(float(diag_rows["full_chain_post_master_matched_tweet_ids"]))
+            master_total = int(float(diag_rows["input_post_master_rows"]))
+            if matched > master_total:
+                failures.append(
+                    f"full_chain_post_master_matched_tweet_ids ({matched}) "
+                    f"exceeds input_post_master_rows ({master_total})"
+                )
+
+        # match_rate in [0, 1]
+        if "full_chain_post_master_match_rate" in diag_rows:
+            try:
+                rate = float(diag_rows["full_chain_post_master_match_rate"])
+                if not (0.0 <= rate <= 1.0):
+                    failures.append(
+                        f"full_chain_post_master_match_rate={rate} out of [0, 1]"
+                    )
+            except ValueError:
+                failures.append("full_chain_post_master_match_rate is not a valid float")
+    else:
+        failures.append("missing diagnostics file: data/diagnostics/labeling_candidate_diagnostics.csv")
+
+    # 13. Documentation mentions source-rows-not-matched clarification
+    # Looks for: full_chain_source_rows mentioned alongside a not-a-match-count explanation
+    source_rows_clarification_found = False
+    for doc_path in [
+        CI / "README.md",
+        CI / "MANIFEST.md",
+        CI / "reports" / "classifier_improvement_plan.md",
+        CI / "reports" / "validation_report.md",
+    ]:
+        if doc_path.exists():
+            doc_text = doc_path.read_text(encoding="utf-8")
+            doc_lower = doc_text.lower()
+            has_field = "full_chain_source_rows" in doc_lower
+            has_clarification = (
+                "not a post-master" in doc_lower
+                or "not post-master" in doc_lower
+                or "not matched" in doc_lower
+                or "source rows, not post-master" in doc_lower
+            )
+            if has_field and has_clarification:
+                source_rows_clarification_found = True
+                break
+    if not source_rows_clarification_found:
+        failures.append(
+            "At least one doc (README/MANIFEST/plan/validation_report) must contain "
+            "'full_chain_source_rows' and clarify it is not a post-master match count"
+        )
+
     if failures:
         print("VALIDATION FAIL")
         for f in failures:

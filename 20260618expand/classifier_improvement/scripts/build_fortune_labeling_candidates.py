@@ -58,11 +58,16 @@ def load_transfer() -> dict[str, dict]:
         return {r["tweet_id"]: r for r in csv.DictReader(f)}
 
 
-def load_full_chain() -> dict[str, dict]:
+def load_full_chain() -> tuple[dict[str, dict], int]:
+    """Returns (tweet_id -> row dict, source_row_count_before_dedup)."""
     if not FULL_CHAIN.exists():
-        return {}
+        return {}, 0
+    rows = []
     with open(FULL_CHAIN, newline="", encoding="utf-8-sig") as f:
-        return {r.get("tweet_id", ""): r for r in csv.DictReader(f) if r.get("tweet_id")}
+        rows = list(csv.DictReader(f))
+    source_count = len(rows)
+    deduped = {r.get("tweet_id", ""): r for r in rows if r.get("tweet_id")}
+    return deduped, source_count
 
 
 def build_merged(master: dict, transfer: dict, full_chain: dict) -> list[dict]:
@@ -201,7 +206,7 @@ def main() -> None:
     print("Loading data...")
     master = load_master()
     transfer = load_transfer()
-    full_chain = load_full_chain()
+    full_chain, full_chain_source_rows = load_full_chain()
     print(f"  master: {len(master)}  transfer: {len(transfer)}  full_chain: {len(full_chain)}")
 
     merged = build_merged(master, transfer, full_chain)
@@ -233,6 +238,13 @@ def main() -> None:
         w.writerows(candidates)
     print(f"\nCandidates → {OUT_CANDIDATES}")
 
+    # Compute match metrics: full_chain vs. post_master
+    master_ids = set(master.keys())
+    full_chain_ids = set(full_chain.keys())
+    fc_matched = len(master_ids & full_chain_ids)
+    fc_unmatched = len(master_ids - full_chain_ids)
+    fc_match_rate = fc_matched / len(master_ids) if master_ids else 0.0
+
     # Diagnostics
     OUT_DIAG.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_DIAG, "w", newline="", encoding="utf-8") as f:
@@ -241,7 +253,13 @@ def main() -> None:
         w.writerow({"metric": "total_candidates", "value": len(candidates)})
         w.writerow({"metric": "target_sample_size", "value": args.sample_size})
         w.writerow({"metric": "input_post_master_rows", "value": len(master)})
-        w.writerow({"metric": "full_chain_matched_rows", "value": len(full_chain)})
+        # full_chain_source_rows: rows in the full_chain_master source file
+        # This is NOT a post-master match count and may exceed post_master row count
+        w.writerow({"metric": "full_chain_source_rows", "value": full_chain_source_rows})
+        w.writerow({"metric": "full_chain_unique_tweet_ids", "value": len(full_chain_ids)})
+        w.writerow({"metric": "full_chain_post_master_matched_tweet_ids", "value": fc_matched})
+        w.writerow({"metric": "full_chain_post_master_unmatched_tweet_ids", "value": fc_unmatched})
+        w.writerow({"metric": "full_chain_post_master_match_rate", "value": round(fc_match_rate, 6)})
         for s, n in sorted(strata_dist.items()):
             w.writerow({"metric": f"stratum_{s}", "value": n})
         agg_n = strata_dist.get("wendys_transfer_aggressive", 0) + strata_dist.get("full_chain_aggressive", 0)
