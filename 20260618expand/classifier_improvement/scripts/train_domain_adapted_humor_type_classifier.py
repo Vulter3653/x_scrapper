@@ -45,7 +45,14 @@ OUT_METRICS = CI / "results" / "type_classifier_metrics.csv"
 OUT_CM = CI / "results" / "confusion_matrices" / "type_confusion_matrix.csv"
 
 CLASSES = ["aggressive", "affiliative", "self_enhancing", "self_defeating"]
-VALID_TYPES = set(CLASSES)
+# Numeric coding (human input): 1=AGGRESSIVE, 2=AFFILIATIVE, 3=SELF-ENHANCING, 4=SELF-DEFEATING
+TYPE_CODE_TO_LABEL = {
+    "1": "aggressive",
+    "2": "affiliative",
+    "3": "self_enhancing",
+    "4": "self_defeating",
+}
+VALID_TYPES = set(TYPE_CODE_TO_LABEL.keys())
 RANDOM_STATE = 42
 
 # Provisional acceptance criteria (NOT hard gates — documented minimums)
@@ -160,9 +167,9 @@ def main() -> None:
     with open(TEMPLATE, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
 
-    # Only train on humor posts with valid type label
+    # Only train on humor posts (presence=1) with valid type label (1/2/3/4)
     typed = [r for r in rows
-             if r.get("human_humor_presence", "").strip() == "humor"
+             if r.get("human_humor_presence", "").strip() == "1"
              and r.get("human_humor_type", "").strip() in VALID_TYPES]
     print(f"  Humor posts with valid type label: {len(typed)}")
 
@@ -174,11 +181,13 @@ def main() -> None:
         typed = typed[:min(100, len(typed))]
         print(f"  Smoke mode: {len(typed)} rows")
 
-    dist = Counter(r["human_humor_type"] for r in typed)
+    dist = Counter(
+        TYPE_CODE_TO_LABEL[r["human_humor_type"].strip()] for r in typed
+    )
     print(f"  Type distribution: {dict(dist)}")
 
     texts = [preprocess(r["text"]) for r in typed]
-    labels = [r["human_humor_type"] for r in typed]
+    labels = [TYPE_CODE_TO_LABEL[r["human_humor_type"].strip()] for r in typed]
     firms = [r.get("company_name", "") for r in typed]
 
     all_results = []

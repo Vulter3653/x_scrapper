@@ -16,14 +16,32 @@ NOT yet: final H1/H2/H3 re-estimation using domain-adapted labels.
 
 `full_chain_source_rows` counts rows in the full_chain_master source file. It is not a post-master match count and may exceed the deduplicated Fortune post master row count. Actual post-master matching is reported separately as `full_chain_post_master_matched_tweet_ids` and must not exceed `input_post_master_rows`.
 
+## Human Labeling Coding Scheme (Numeric)
+
+Coders enter numbers — training scripts map these to model-internal string labels.
+
+| Column | Input Code | Meaning |
+|---|---|---|
+| 유머_존재여부 | `1` | 유머 (humor) |
+| 유머_존재여부 | `0` | 비유머 (non_humor) |
+| 유머_존재여부 | `2` | 애매함 / 판단불가 (uncertain — excluded from training) |
+| 유머_유형 | `1` | AGGRESSIVE |
+| 유머_유형 | `2` | AFFILIATIVE |
+| 유머_유형 | `3` | SELF-ENHANCING |
+| 유머_유형 | `4` | SELF-DEFEATING |
+
+유머_유형은 유머_존재여부 = 1인 경우에만 입력. 0 또는 2이면 공란.
+
+See `data/human_labeling_template/coder_splits/LABELING_GUIDE.md` for full instructions.
+
 ## Architecture
 
 Same two-stage structure as Wendy's classifier:
 
-1. **Presence**: humor / non_humor / uncertain (abstention 0.40–0.60)
-2. **Type**: aggressive / affiliative / self_enhancing / self_defeating / uncertain (abstain if max_prob < 0.50)
+1. **Presence** (model output): humor / non_humor / uncertain (abstention 0.40–0.60)
+2. **Type** (model output): aggressive / affiliative / self_enhancing / self_defeating / uncertain (abstain if max_prob < 0.50)
 
-Training data: Fortune Top 100 human labels (1,500 stratified candidate posts).
+Training data: Fortune Top 100 human labels (3,000 stratified candidate posts; batch1 1,500 + batch2 1,500).
 
 ## Labeling Candidate Design
 

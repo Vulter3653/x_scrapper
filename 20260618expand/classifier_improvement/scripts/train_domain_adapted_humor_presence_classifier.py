@@ -51,7 +51,9 @@ OUT_THRESHOLD = CI / "results" / "threshold_sensitivity.csv"
 OUT_DIAG = CI / "data" / "diagnostics" / "presence_classifier_diagnostics.csv"
 OUT_REPORT = CI / "reports" / "validation_report.md"
 
-VALID_PRESENCE = {"humor", "non_humor"}
+# Numeric coding (human input): 0=non_humor, 1=humor, 2=uncertain (excluded from training)
+VALID_PRESENCE = {"0", "1"}
+PRESENCE_CODE_TO_LABEL = {"0": "non_humor", "1": "humor"}
 RANDOM_STATE = 42
 
 # Provisional acceptance thresholds — NOT pass/fail gates; documented minimums
@@ -237,11 +239,14 @@ def main() -> None:
         labeled = labeled[:200]
         print(f"  Smoke mode: using first {len(labeled)} rows")
 
-    label_dist = Counter(r["human_humor_presence"] for r in labeled)
+    label_dist = Counter(
+        PRESENCE_CODE_TO_LABEL[r["human_humor_presence"].strip()]
+        for r in labeled
+    )
     print(f"  Label distribution: {dict(label_dist)}")
 
     texts = [preprocess(r["text"]) for r in labeled]
-    labels = [1 if r["human_humor_presence"] == "humor" else 0 for r in labeled]
+    labels = [1 if r["human_humor_presence"].strip() == "1" else 0 for r in labeled]
     firms = [r["company_name"] for r in labeled]
 
     all_results = []
