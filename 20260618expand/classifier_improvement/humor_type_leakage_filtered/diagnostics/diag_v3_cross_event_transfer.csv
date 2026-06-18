@@ -1,0 +1,5 @@
+experiment,eval_scope,variant,n_train,n_test,n_train_aggressive,n_test_aggressive,n_test_affiliative,pr_auc_mean,f1_mean,precision_mean,recall_mean,n_seeds,extra_note
+cross_event_transfer,train_non_event__test_event,variant_A_original_text,909,17,126,13,4,0.8913,0.1429,1.0,0.0769,10,tests if aggressive language in non-event posts transfers to event context
+cross_event_transfer,train_non_event__test_event,variant_C_token_deleted,909,17,126,13,4,0.8759,0.1429,1.0,0.0769,10,same but event posts have token deleted; tests pure language transfer
+cross_event_transfer,train_all__test_event_only_subset,variant_A_original_text,926,17,139,13,4,1.0,0.8966,,,10,event posts included in training — inflated estimate; compare with train_non_event version
+cross_event_transfer,train_all__test_event_only_subset,variant_C_token_deleted,926,17,139,13,4,1.0,1.0,,,10,event posts included in training — inflated estimate; compare with train_non_event version

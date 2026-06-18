@@ -1,0 +1,4 @@
+experiment,variant,n_rows,n_aggressive,n_event_rows,pr_auc_mean,pr_auc_std,roc_auc_mean,f1_mean,precision_mean,recall_mean,n_folds_used,diagnostic_note
+full_cv_variant_comparison,variant_A_original_text,926,139,17,0.4497,0.0765,0.8124,0.3615,0.4506,0.3064,50,Baseline: raw text including #NationalRoastDay token
+full_cv_variant_comparison,variant_C_token_deleted,926,139,17,0.3795,0.062,0.7947,0.3001,0.3843,0.2502,50,Deletion masking: #NationalRoastDay removed; tests sensitivity to token presence
+full_cv_variant_comparison,variant_D_event_dummy,926,139,17,0.4591,0.0818,0.8138,0.3274,0.4856,0.2531,50,Event-aware: token deleted from text + binary has_national_roast_day column added; separates text-level signal from event-level signal

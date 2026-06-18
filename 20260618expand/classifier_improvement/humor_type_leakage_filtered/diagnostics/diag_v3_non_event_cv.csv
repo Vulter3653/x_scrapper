@@ -1,0 +1,2 @@
+experiment,variant,n_rows,n_aggressive,n_event_rows,pr_auc_mean,pr_auc_std,roc_auc_mean,f1_mean,precision_mean,recall_mean,n_folds_used,diagnostic_note
+non_event_only_cv,variant_E_non_event_only,909,126,0,0.3898,0.0701,0.8032,0.2916,0.4068,0.2326,50,CV trained and tested only on non-event posts; measures Fortune100-generalizable signal

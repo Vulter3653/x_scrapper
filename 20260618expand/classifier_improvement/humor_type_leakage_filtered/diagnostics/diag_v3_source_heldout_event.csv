@@ -1,0 +1,11 @@
+experiment,eval_scope,variant,n_train,n_test,n_train_aggressive,n_test_aggressive,pr_auc,f1,precision,recall,note
+source_heldout_event_stratified,train_batch1_test_wendys_all,variant_A_original_text,648,278,44,95,0.4298,0.0404,0.5,0.0211,can batch1-trained model find aggressive in all Wendy's posts?
+source_heldout_event_stratified,train_batch1_test_wendys_non_event,variant_A_original_text,648,261,44,82,0.3908,0.0465,0.5,0.0244,can batch1-trained model find aggressive in Wendy's non-event posts?
+source_heldout_event_stratified,train_batch1_test_wendys_event_only,variant_A_original_text,648,17,44,13,0.9945,0.0,0.0,0.0,can batch1-trained model find aggressive in NationalRoastDay event posts?
+source_heldout_event_stratified,train_wendys_test_batch1,variant_A_original_text,278,648,95,44,0.1432,0.2098,0.1515,0.3409,can Wendy's-trained model find aggressive in Fortune100 posts?
+source_heldout_event_stratified,train_wendys_non_event_test_batch1,variant_A_original_text,261,648,82,44,0.173,0.2314,0.1818,0.3182,can Wendy's NON-event-trained model find aggressive in Fortune100 posts?
+source_heldout_event_stratified,train_batch1_test_wendys_all,variant_C_token_deleted,648,278,44,95,0.4175,0.0404,0.5,0.0211,can batch1-trained model find aggressive in all Wendy's posts?
+source_heldout_event_stratified,train_batch1_test_wendys_non_event,variant_C_token_deleted,648,261,44,82,0.3908,0.0465,0.5,0.0244,can batch1-trained model find aggressive in Wendy's non-event posts?
+source_heldout_event_stratified,train_batch1_test_wendys_event_only,variant_C_token_deleted,648,17,44,13,0.9723,0.0,0.0,0.0,can batch1-trained model find aggressive in NationalRoastDay event posts?
+source_heldout_event_stratified,train_wendys_test_batch1,variant_C_token_deleted,278,648,95,44,0.1421,0.2222,0.156,0.3864,can Wendy's-trained model find aggressive in Fortune100 posts?
+source_heldout_event_stratified,train_wendys_non_event_test_batch1,variant_C_token_deleted,261,648,82,44,0.173,0.2314,0.1818,0.3182,can Wendy's NON-event-trained model find aggressive in Fortune100 posts?

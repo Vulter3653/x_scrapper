@@ -1,0 +1,61 @@
+experiment,variant,rank,feature,weight,event_mean_tfidf,non_event_mean_tfidf,event_vs_non_event_ratio,leakage_flag
+feature_importance,variant_A_original_text,1,word__nationalroastday,0.2368,0.136979,0.0,event_only,FAIL
+feature_importance,variant_A_original_text,2,word__and,-0.233517,0.005556,0.019344,0.3x,PASS
+feature_importance,variant_A_original_text,3,word__our,-0.192795,0.0,0.010648,0.0x,PASS
+feature_importance,variant_A_original_text,4,word__to,-0.180744,0.035136,0.023572,1.5x,PASS
+feature_importance,variant_A_original_text,5,word__we,-0.179783,0.01307,0.014681,0.9x,PASS
+feature_importance,variant_A_original_text,6,word__should,0.176926,0.0,0.002354,0.0x,PASS
+feature_importance,variant_A_original_text,7,word__where the,0.15523,0.0,0.001485,0.0x,PASS
+feature_importance,variant_A_original_text,8,word__for,-0.145647,0.022836,0.015801,1.4x,PASS
+feature_importance,variant_A_original_text,9,char__oas,0.144157,0.075685,0.001614,46.9x,PASS
+feature_importance,variant_A_original_text,10,char__oast,0.144157,0.075685,0.001614,46.9x,PASS
+feature_importance,variant_A_original_text,11,word__beef,0.139775,0.0,0.001791,0.0x,PASS
+feature_importance,variant_A_original_text,12,char__nd ,-0.13937,0.003786,0.011991,0.3x,PASS
+feature_importance,variant_A_original_text,13,word__in,-0.138868,0.012073,0.017322,0.7x,PASS
+feature_importance,variant_A_original_text,14,word__the beef,0.13877,0.0,0.001357,0.0x,PASS
+feature_importance,variant_A_original_text,15,char__roast,0.138204,0.078653,0.001034,76.0x,PASS
+feature_importance,variant_A_original_text,16,char__roas,0.138204,0.078653,0.001034,76.0x,PASS
+feature_importance,variant_A_original_text,17,word__https,-0.136767,0.003027,0.025932,0.1x,PASS
+feature_importance,variant_A_original_text,18,word__co,-0.136508,0.003031,0.025948,0.1x,PASS
+feature_importance,variant_A_original_text,19,word__https co,-0.135871,0.003031,0.02592,0.1x,PASS
+feature_importance,variant_A_original_text,20,char__ and ,-0.135021,0.003108,0.009992,0.3x,PASS
+feature_importance,variant_A_original_text,21,char__ould,0.134023,0.00418,0.003421,1.2x,PASS
+feature_importance,variant_A_original_text,22,char__uld,0.134023,0.00418,0.003421,1.2x,PASS
+feature_importance,variant_A_original_text,23,char__oul,0.13225,0.004161,0.003455,1.2x,PASS
+feature_importance,variant_A_original_text,24,char__and ,-0.131945,0.002986,0.010682,0.3x,PASS
+feature_importance,variant_A_original_text,25,char__onal,0.130358,0.057727,0.002407,24.0x,PASS
+feature_importance,variant_A_original_text,26,char__nal,0.129313,0.054926,0.003427,16.0x,PASS
+feature_importance,variant_A_original_text,27,char__ and,-0.129159,0.003099,0.010069,0.3x,PASS
+feature_importance,variant_A_original_text,28,char__alr,0.128845,0.064443,0.000618,104.2x,PASS
+feature_importance,variant_A_original_text,29,char__#na,0.125365,0.063428,0.000905,70.1x,PASS
+feature_importance,variant_A_original_text,30,char__ #na,0.125365,0.063428,0.000905,70.1x,PASS
+feature_importance,variant_C_token_deleted,1,word__and,-0.236549,0.005667,0.019344,0.3x,PASS
+feature_importance,variant_C_token_deleted,2,word__our,-0.194551,0.0,0.010647,0.0x,PASS
+feature_importance,variant_C_token_deleted,3,word__we,-0.181431,0.013734,0.014681,0.9x,PASS
+feature_importance,variant_C_token_deleted,4,word__should,0.175151,0.0,0.002354,0.0x,PASS
+feature_importance,variant_C_token_deleted,5,word__to,-0.174148,0.036551,0.023572,1.6x,PASS
+feature_importance,variant_C_token_deleted,6,word__where the,0.153909,0.0,0.001485,0.0x,PASS
+feature_importance,variant_C_token_deleted,7,word__for,-0.142442,0.023884,0.015801,1.5x,PASS
+feature_importance,variant_C_token_deleted,8,word__https,-0.141756,0.003158,0.025932,0.1x,PASS
+feature_importance,variant_C_token_deleted,9,word__co,-0.141494,0.003162,0.025948,0.1x,PASS
+feature_importance,variant_C_token_deleted,10,char__nd ,-0.141083,0.0041,0.011985,0.3x,PASS
+feature_importance,variant_C_token_deleted,11,word__https co,-0.140855,0.003162,0.02592,0.1x,PASS
+feature_importance,variant_C_token_deleted,12,word__in,-0.139035,0.012399,0.017322,0.7x,PASS
+feature_importance,variant_C_token_deleted,13,word__beef,0.138457,0.0,0.001791,0.0x,PASS
+feature_importance,variant_C_token_deleted,14,word__the beef,0.137609,0.0,0.001357,0.0x,PASS
+feature_importance,variant_C_token_deleted,15,char__ and ,-0.136177,0.003374,0.009989,0.3x,PASS
+feature_importance,variant_C_token_deleted,16,char__uld,0.135711,0.004979,0.00342,1.5x,PASS
+feature_importance,variant_C_token_deleted,17,char__ould,0.135711,0.004979,0.00342,1.5x,PASS
+feature_importance,variant_C_token_deleted,18,char__oul,0.13392,0.004956,0.003454,1.4x,PASS
+feature_importance,variant_C_token_deleted,19,char__and ,-0.133394,0.003242,0.010679,0.3x,PASS
+feature_importance,variant_C_token_deleted,20,char__ and,-0.130394,0.003364,0.010066,0.3x,PASS
+feature_importance,variant_C_token_deleted,21,word__drop,0.12074,0.008261,0.001372,6.0x,PASS
+feature_importance,variant_C_token_deleted,22,word__me,0.117958,0.020883,0.003131,6.7x,PASS
+feature_importance,variant_C_token_deleted,23,char__hou,0.115982,0.0,0.003433,0.0x,PASS
+feature_importance,variant_C_token_deleted,24,word__rt,-0.114324,0.0,0.006352,0.0x,PASS
+feature_importance,variant_C_token_deleted,25,char__ an,-0.112949,0.005122,0.012044,0.4x,PASS
+feature_importance,variant_C_token_deleted,26,word__if,0.112756,0.015947,0.005857,2.7x,PASS
+feature_importance,variant_C_token_deleted,27,char__ion,-0.112331,0.0,0.007663,0.0x,PASS
+feature_importance,variant_C_token_deleted,28,word__of,-0.108158,0.01739,0.015237,1.1x,PASS
+feature_importance,variant_C_token_deleted,29,char__ shou,0.105835,0.0,0.001924,0.0x,PASS
+feature_importance,variant_C_token_deleted,30,char__shou,0.105835,0.0,0.001924,0.0x,PASS

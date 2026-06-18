@@ -1,0 +1,3 @@
+experiment,variant,n_rows,n_aggressive,n_unique_companies,n_folds,n_valid_folds,pr_auc_mean,f1_mean,precision_mean,recall_mean,note
+company_groupkfold_batch1,variant_A_original_text,648,44,88,5,5,0.235,0.0364,0.2,0.02,GroupKFold by company_name within batch1_fortune100 only; batch1 has 0 event posts so token deletion makes no difference
+company_groupkfold_batch1,variant_C_token_deleted,648,44,88,5,5,0.235,0.0364,0.2,0.02,GroupKFold by company_name within batch1_fortune100 only; batch1 has 0 event posts so token deletion makes no difference

@@ -1,0 +1,4 @@
+group,n_rows,n_aggressive,n_affiliative,n_self_enhancing,n_self_defeating,pct_aggressive,n_batch1,n_wendys,event_is_exclusive_to_wendys,note
+event_posts,17,13,4,0,0,0.7647,0,17,YES,"#NationalRoastDay posts are 100% wendys_human_type — any model learning this token is learning source identity, not humor pattern"
+non_event_posts,909,126,423,321,39,0.1386,648,261,NO,
+all_rows,926,139,427,321,39,0.1501,648,278,NO,
