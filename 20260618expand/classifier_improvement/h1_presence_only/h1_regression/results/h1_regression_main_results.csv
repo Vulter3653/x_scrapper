@@ -1,0 +1,2 @@
+spec_label,dv,main_predictor,coef,se_ols,se_hc1,t_ols,t_hc1,p_ols,p_hc1,sig_hc1_10pct,sig_hc1_5pct,sig_hc1_1pct,n_obs,r_sq_within,fe,regression_status,classifier_model,classifier_status
+main_t50,log_total_engagement,h1_humor_presence_t50,0.22534,0.011716,0.013267,19.2328,16.9853,0.0,0.0,yes,yes,yes,65245,0.02317,firm + month,exploratory,word_char_comb__lr_liblin_C01,"provisional (batch1-only, OOF AUC=0.7811)"
