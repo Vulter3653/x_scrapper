@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fortune 100 firm-period panel",
+  "type": "object",
+  "required": [
+    "fortune_rank",
+    "company_name",
+    "period",
+    "post_count",
+    "humor_usage_rate",
+    "aggressive_humor_usage_intensity",
+    "aggressive_humor_usage_intensity_sq"
+  ],
+  "properties": {
+    "fortune_rank": {"type": ["integer", "string"]},
+    "company_name": {"type": "string"},
+    "period": {"type": "string"},
+    "period_level": {"type": "string"},
+    "post_count": {"type": ["integer", "string"]},
+    "humor_post_count": {"type": ["integer", "string"]},
+    "humor_usage_rate": {"type": ["number", "string"]},
+    "aggressive_humor_post_count": {"type": ["integer", "string"]},
+    "aggressive_humor_usage_rate": {"type": ["number", "string"]},
+    "mean_total_engagement": {"type": ["number", "string"]},
+    "median_total_engagement": {"type": ["number", "string"]},
+    "mean_log_total_engagement": {"type": ["number", "string"]},
+    "sum_total_engagement": {"type": ["number", "string"]},
+    "mean_text_length": {"type": ["number", "string"]},
+    "mean_hashtag_count": {"type": ["number", "string"]},
+    "mean_mention_count": {"type": ["number", "string"]},
+    "aggressive_humor_usage_intensity": {"type": ["number", "string"]},
+    "aggressive_humor_usage_intensity_sq": {"type": ["number", "string"]}
+  }
+}

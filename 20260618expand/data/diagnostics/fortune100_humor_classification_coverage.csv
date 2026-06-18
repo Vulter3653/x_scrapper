@@ -1,0 +1,101 @@
+company_name,source_x_handle,post_count,classified_count,classification_missing_count,classification_available_rate,humor_count,non_humor_count,ambiguous_or_missing_presence_count
+Amazon,@amazon,1086,1086,0,1.0,167,413,506
+Walmart,@walmart,842,842,0,1.0,49,447,346
+UnitedHealth Group,@UnitedHealthGrp,155,155,0,1.0,22,72,61
+Alphabet,@Alphabetlnc,2,2,0,1.0,0,1,1
+Alphabet,@google,474,474,0,1.0,131,104,239
+CVS Health,@cvshealth,574,574,0,1.0,100,184,290
+McKesson,@mckesson,840,840,0,1.0,90,342,408
+Exxon Mobil,@exxonmobil,582,582,0,1.0,116,195,271
+Cencora,@CencoraGlobal,479,479,0,1.0,128,128,223
+Microsoft,@microsoft,666,666,0,1.0,116,218,332
+JPMorgan Chase,@jpmorgan,835,835,0,1.0,136,269,430
+Cigna Group,@Cigna,527,527,0,1.0,87,149,291
+Cigna Group,@TheCignaGroup,59,59,0,1.0,9,14,36
+Cardinal Health,@cardinalhealth,520,520,0,1.0,77,216,227
+Nvidia,@nvidia,1117,1117,0,1.0,153,415,549
+Meta Platforms,@Meta,151,151,0,1.0,19,58,74
+Elevance Health,@elevancehealth,612,612,0,1.0,98,205,309
+Centene,@centene,465,465,0,1.0,97,144,224
+Bank of America,@bankofamerica,838,838,0,1.0,167,243,428
+Chevron,@chevron,805,805,0,1.0,71,400,334
+Ford Motor,@Ford,1146,1146,0,1.0,164,351,631
+General Motors,@GM,694,694,0,1.0,107,223,364
+Citigroup,@Citi,400,400,0,1.0,49,215,136
+Home Depot,@HDCares,821,821,0,1.0,11,677,133
+Home Depot,@homedepot,571,571,0,1.0,74,217,280
+Fannie Mae,@fanniemae,600,600,0,1.0,69,187,344
+Kroger,@kroger,888,888,0,1.0,120,329,439
+Verizon Communications,@Verizon,43,43,0,1.0,9,15,19
+Phillips 66,@Phillips66co,684,684,0,1.0,90,287,307
+Marathon Petroleum,@MarathonPetroCo,377,377,0,1.0,44,158,175
+StoneX Group,@StoneX_Official,848,848,0,1.0,128,290,430
+State Farm Insurance,@StateFarm,147,147,0,1.0,15,59,73
+Freddie Mac,@FreddieMac,215,215,0,1.0,31,100,84
+Humana,@humana,758,758,0,1.0,124,278,356
+AT&T,@ATT,933,933,0,1.0,155,306,472
+Goldman Sachs Group,@GoldmanSachs,1012,1012,0,1.0,108,408,496
+Comcast,@comcast,1096,1096,0,1.0,202,296,598
+Wells Fargo,@wellsfargo,256,256,0,1.0,34,78,144
+Morgan Stanley,@morganstanley,846,846,0,1.0,121,355,370
+Valero Energy,@valeroenergy,186,186,0,1.0,16,63,107
+Dell Technologies,@Dell,724,724,0,1.0,96,268,360
+Target,@target,595,595,0,1.0,45,287,263
+Tesla,@tesla,711,711,0,1.0,83,297,331
+Walt Disney,@Disney,1353,1353,0,1.0,222,342,789
+Johnson & Johnson,@JNJNews,760,760,0,1.0,132,282,346
+PepsiCo,@pepsico,817,817,0,1.0,156,233,428
+Boeing,@boeing,969,969,0,1.0,213,281,475
+UPS,@ups,200,200,0,1.0,20,92,88
+RTX,@RTX_News,865,865,0,1.0,120,331,414
+FedEx,@fedex,882,882,0,1.0,172,304,406
+Progressive,@progressive,170,170,0,1.0,23,56,91
+Lowe's,@lowes,908,908,0,1.0,138,295,475
+Energy Transfer,@energytransfer,697,697,0,1.0,132,232,333
+Procter & Gamble,@ProcterGamble,268,268,0,1.0,34,84,150
+Sysco,@sysco,863,863,0,1.0,180,252,431
+American Express,@americanexpress,831,831,0,1.0,136,224,471
+Albertsons,@albertsons,765,765,0,1.0,101,296,368
+Archer Daniels Midland,@ADMupdates,795,795,0,1.0,169,215,411
+MetLife,@metlife,779,779,0,1.0,144,259,376
+HCA Healthcare,@hcahealthcare,584,584,0,1.0,64,249,271
+Lockheed Martin,@lockheedmartin,861,861,0,1.0,179,247,435
+New York Life Insurance,@NewYorkLife,456,456,0,1.0,63,168,225
+Capital One Financial,@CapitalOne,628,628,0,1.0,139,160,329
+Allstate,@allstate,568,568,0,1.0,83,176,309
+Caterpillar,@CaterpillarInc,891,891,0,1.0,134,331,426
+IBM,@ibm,541,541,0,1.0,83,205,253
+Eli Lilly,@EliLillyandCo,563,563,0,1.0,72,248,243
+Merck,@merck,507,507,0,1.0,33,269,205
+Nationwide,@nationwide,1149,1149,0,1.0,100,471,578
+Broadcom,@broadcom,183,183,0,1.0,27,67,89
+Delta Air Lines,@Delta,716,716,0,1.0,110,224,382
+Publix Super Markets,@Publix,851,851,0,1.0,52,398,401
+Pfizer,@pfizer,382,382,0,1.0,63,132,187
+TD Synnex,@tdsynnex,488,488,0,1.0,82,170,236
+ConocoPhillips,@conocophillips,942,942,0,1.0,126,360,456
+Galaxy Digital,@galaxydigital,137,137,0,1.0,12,55,70
+AbbVie,@abbvie,839,839,0,1.0,65,460,314
+Prudential Financial,@Prudential,874,874,0,1.0,160,251,463
+TJX,@tjmaxx,909,909,0,1.0,24,660,225
+Performance Food Group,@PFGCareers,3,3,0,1.0,0,1,2
+United Airlines Holdings,@united,292,292,0,1.0,54,112,126
+Oracle,@oracle,909,909,0,1.0,130,361,418
+Cisco Systems,@Cisco,1007,1007,0,1.0,77,526,404
+HP,@hp,405,405,0,1.0,88,100,217
+Charter Communications,@CharterNewsroom,657,657,0,1.0,86,369,202
+American Airlines Group,@AmericanAir,188,188,0,1.0,43,43,102
+Tyson Foods,@tysonfoods,1081,1081,0,1.0,179,328,574
+Intel,@intel,287,287,0,1.0,63,71,153
+Enterprise Products Partners,@EProd_Careers,761,761,0,1.0,2,473,286
+Ingram Micro Holding,@IngramMicroInc,931,931,0,1.0,151,282,498
+General Dynamics,@generaldynamics,1493,1493,0,1.0,214,514,765
+Uber Technologies,@Uber,952,952,0,1.0,158,333,461
+USAA,@usaa,899,899,0,1.0,194,223,482
+TIAA,@tiaa,217,217,0,1.0,45,63,109
+Liberty Mutual Insurance Group,@LibertyMutual,1018,1018,0,1.0,100,379,539
+Travelers,@travelers,835,835,0,1.0,121,286,428
+Bristol-Myers Squibb,@bmsnews,930,930,0,1.0,95,418,417
+Coca-Cola,@cocacola,158,158,0,1.0,8,60,90
+Nike,@nike,192,192,0,1.0,23,85,84
+Massachusetts Mutual Life,@massmutual,859,859,0,1.0,153,247,459
