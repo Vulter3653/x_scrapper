@@ -17,28 +17,26 @@ TOTAL_ROWS = 1500
 def main() -> int:
     failures: list[str] = []
 
-    # 1. coder files exist
+    # 1. coder 파일 존재 확인
     for coder in CODERS:
         p = SPLITS_DIR / f"{coder}_labeling_template.csv"
         if not p.exists():
-            failures.append(f"missing: {p.name}")
+            failures.append(f"파일 없음: {p.name}")
 
-    # 2. LABELING_GUIDE.md exists
+    # 2. LABELING_GUIDE.md 존재 및 내용 확인
     guide = SPLITS_DIR / "LABELING_GUIDE.md"
     if not guide.exists():
-        failures.append("missing: LABELING_GUIDE.md")
+        failures.append("파일 없음: LABELING_GUIDE.md")
     else:
         guide_text = guide.read_text(encoding="utf-8")
-        if "Corporate assertive" not in guide_text and "corporate assertive" not in guide_text.lower():
-            failures.append("LABELING_GUIDE.md must contain corporate assertiveness warning")
+        if "기업 자신감" not in guide_text and "corporate assertive" not in guide_text.lower():
+            failures.append("LABELING_GUIDE.md에 기업 자신감 표현 vs 공격적 유머 구분 안내가 없음")
         for val in ["humor", "non_humor", "uncertain", "aggressive", "affiliative",
                     "self_enhancing", "self_defeating", "non_humorous"]:
             if val not in guide_text:
-                failures.append(f"LABELING_GUIDE.md missing allowed value: {val}")
+                failures.append(f"LABELING_GUIDE.md에 허용값 누락: {val}")
 
-    # 3. Load all coder files and check structure
-    all_cids: set[str] = set()
-    all_tids: set[str] = set()
+    # 3. 각 coder 파일 구조 검증
     cid_sets: dict[str, set[str]] = {}
     tid_sets: dict[str, set[str]] = {}
 
@@ -47,97 +45,87 @@ def main() -> int:
         if not p.exists():
             continue
 
-        with p.open("r", encoding="utf-8", newline="") as f:
+        with p.open("r", encoding="utf-8-sig", newline="") as f:
             reader = csv.DictReader(f)
             fieldnames = list(reader.fieldnames or [])
             rows = list(reader)
 
-        # row count
+        # 행수 확인
         if len(rows) != ROWS_PER_CODER:
-            failures.append(f"{coder}: expected {ROWS_PER_CODER} rows, got {len(rows)}")
+            failures.append(f"{coder}: {ROWS_PER_CODER}행 필요, {len(rows)}행 있음")
 
-        # column order: text -> human_humor_presence -> human_humor_type
-        if "text" not in fieldnames:
-            failures.append(f"{coder}: missing 'text' column")
-        if "human_humor_presence" not in fieldnames:
-            failures.append(f"{coder}: missing 'human_humor_presence' column")
-        if "human_humor_type" not in fieldnames:
-            failures.append(f"{coder}: missing 'human_humor_type' column")
+        # 필수 컬럼 존재 확인
+        for col in ["본문", "유머_존재여부", "유머_유형", "배정_코더", "검토_상태"]:
+            if col not in fieldnames:
+                failures.append(f"{coder}: 필수 컬럼 없음 — '{col}'")
 
-        if "text" in fieldnames and "human_humor_presence" in fieldnames:
-            idx_text = fieldnames.index("text")
-            idx_hhp = fieldnames.index("human_humor_presence")
+        # 컬럼 순서: 본문 → 유머_존재여부 → 유머_유형
+        if "본문" in fieldnames and "유머_존재여부" in fieldnames:
+            idx_text = fieldnames.index("본문")
+            idx_hhp = fieldnames.index("유머_존재여부")
             if idx_hhp != idx_text + 1:
                 failures.append(
-                    f"{coder}: human_humor_presence must immediately follow text "
-                    f"(text@{idx_text}, human_humor_presence@{idx_hhp})"
+                    f"{coder}: '유머_존재여부'는 '본문' 바로 다음 컬럼이어야 함 "
+                    f"(본문@{idx_text}, 유머_존재여부@{idx_hhp})"
                 )
 
-        if "human_humor_presence" in fieldnames and "human_humor_type" in fieldnames:
-            idx_hhp = fieldnames.index("human_humor_presence")
-            idx_hht = fieldnames.index("human_humor_type")
+        if "유머_존재여부" in fieldnames and "유머_유형" in fieldnames:
+            idx_hhp = fieldnames.index("유머_존재여부")
+            idx_hht = fieldnames.index("유머_유형")
             if idx_hht != idx_hhp + 1:
                 failures.append(
-                    f"{coder}: human_humor_type must immediately follow human_humor_presence "
-                    f"(human_humor_presence@{idx_hhp}, human_humor_type@{idx_hht})"
+                    f"{coder}: '유머_유형'은 '유머_존재여부' 바로 다음 컬럼이어야 함 "
+                    f"(유머_존재여부@{idx_hhp}, 유머_유형@{idx_hht})"
                 )
 
-        # assigned_coder matches filename
-        wrong_coder = [r for r in rows if r.get("assigned_coder", "") != coder]
+        # 배정_코더 값이 파일명과 일치
+        wrong_coder = [r for r in rows if r.get("배정_코더", "") != coder]
         if wrong_coder:
-            failures.append(
-                f"{coder}: {len(wrong_coder)} rows have wrong assigned_coder value"
-            )
+            failures.append(f"{coder}: {len(wrong_coder)}행의 배정_코더 값이 파일명과 다름")
 
-        # review_status default = pending
-        non_pending = [r for r in rows if r.get("review_status", "") != "pending"]
+        # 검토_상태 기본값 = pending
+        non_pending = [r for r in rows if r.get("검토_상태", "") != "pending"]
         if non_pending:
-            failures.append(
-                f"{coder}: {len(non_pending)} rows have review_status != 'pending'"
-            )
+            failures.append(f"{coder}: {len(non_pending)}행의 검토_상태가 'pending'이 아님")
 
-        # human_humor_presence and human_humor_type are blank
-        non_blank_presence = [r for r in rows if r.get("human_humor_presence", "").strip()]
-        non_blank_type = [r for r in rows if r.get("human_humor_type", "").strip()]
+        # 유머_존재여부, 유머_유형은 빈칸
+        non_blank_presence = [r for r in rows if r.get("유머_존재여부", "").strip()]
+        non_blank_type = [r for r in rows if r.get("유머_유형", "").strip()]
         if non_blank_presence:
-            failures.append(f"{coder}: {len(non_blank_presence)} rows have non-blank human_humor_presence")
+            failures.append(f"{coder}: {len(non_blank_presence)}행의 유머_존재여부가 빈칸이 아님")
         if non_blank_type:
-            failures.append(f"{coder}: {len(non_blank_type)} rows have non-blank human_humor_type")
+            failures.append(f"{coder}: {len(non_blank_type)}행의 유머_유형이 빈칸이 아님")
 
-        cid_set = {r["candidate_id"] for r in rows}
-        tid_set = {r["tweet_id"] for r in rows}
-        cid_sets[coder] = cid_set
-        tid_sets[coder] = tid_set
+        # 파일 내 후보_ID 중복 확인
+        if "후보_ID" in fieldnames:
+            all_file_cids = [r["후보_ID"] for r in rows]
+            if len(set(all_file_cids)) != len(all_file_cids):
+                failures.append(f"{coder}: 파일 내 후보_ID 중복 있음")
+            cid_sets[coder] = set(all_file_cids)
+        if "트윗_ID" in fieldnames:
+            tid_sets[coder] = {r["트윗_ID"] for r in rows}
 
-        # unique candidate_id within file
-        all_file_cids = [r["candidate_id"] for r in rows]
-        if len(set(all_file_cids)) != len(all_file_cids):
-            failures.append(f"{coder}: duplicate candidate_ids within file")
-
-    # 4. Cross-coder overlap
-    coders_with_data = [c for c in CODERS if c in cid_sets]
-    for i, c1 in enumerate(coders_with_data):
-        for c2 in coders_with_data[i+1:]:
+    # 4. 코더 간 중복 확인
+    coders_with_cids = [c for c in CODERS if c in cid_sets]
+    for i, c1 in enumerate(coders_with_cids):
+        for c2 in coders_with_cids[i+1:]:
             cid_overlap = cid_sets[c1] & cid_sets[c2]
             if cid_overlap:
-                failures.append(
-                    f"candidate_id overlap between {c1} and {c2}: {len(cid_overlap)} ids"
-                )
-            tid_overlap = tid_sets[c1] & tid_sets[c2]
-            if tid_overlap:
-                failures.append(
-                    f"tweet_id overlap between {c1} and {c2}: {len(tid_overlap)} ids"
-                )
+                failures.append(f"후보_ID 중복: {c1}과 {c2} 사이 {len(cid_overlap)}개")
+            if c1 in tid_sets and c2 in tid_sets:
+                tid_overlap = tid_sets[c1] & tid_sets[c2]
+                if tid_overlap:
+                    failures.append(f"트윗_ID 중복: {c1}과 {c2} 사이 {len(tid_overlap)}개")
 
-    # 5. Total rows = 1,500
+    # 5. 전체 배정 행수 = 1,500
     total = sum(len(v) for v in cid_sets.values())
-    if total != TOTAL_ROWS and len(coders_with_data) == len(CODERS):
-        failures.append(f"total assigned rows = {total}, expected {TOTAL_ROWS}")
+    if len(coders_with_cids) == len(CODERS) and total != TOTAL_ROWS:
+        failures.append(f"전체 배정 행수 = {total}, 필요: {TOTAL_ROWS}")
 
-    # 6. At least one summary file exists
+    # 6. 요약 파일 존재 확인
     summary_files = list(SPLITS_DIR.glob("coder_assignment_summary*.csv"))
     if not summary_files:
-        failures.append("missing: coder_assignment_summary*.csv (at least one required)")
+        failures.append("요약 파일 없음: coder_assignment_summary*.csv (최소 1개 필요)")
 
     if failures:
         print("VALIDATION FAIL")

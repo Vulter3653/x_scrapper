@@ -1,5 +1,5 @@
-assigned_coder,n_rows,n_unique_candidate_id,n_unique_tweet_id,note
+﻿배정_코더,행수,고유_후보ID수,고유_트윗ID수,비고
 coder1,500,500,500,
 coder2,500,500,500,
 coder3,500,500,500,
-TOTAL,1500,1500,1500,overlap_candidate_id=0 overlap_tweet_id=0
+합계,1500,1500,1500,후보ID_중복=0 트윗ID_중복=0

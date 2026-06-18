@@ -1,109 +1,117 @@
-# Labeling Guide — Fortune Top 100 Human Humor Coding
+# 라벨링 가이드 — Fortune Top 100 유머 인간 코딩
 
-This file provides coding instructions for annotators using the coder split
-labeling templates (coder1_labeling_template.csv, coder2_labeling_template.csv,
-coder3_labeling_template.csv).
-
----
-
-## How to Use the Template
-
-1. Open your assigned CSV file.
-2. Read the `text` column for each row.
-3. Fill in ONLY the following two columns:
-   - `human_humor_presence`
-   - `human_humor_type`
-4. Leave all other columns unchanged.
-5. Do not add, remove, or rename columns.
+이 파일은 코더 배정 템플릿(`coder1_labeling_template.csv`, `coder2_labeling_template.csv`,
+`coder3_labeling_template.csv`)을 사용하는 코더를 위한 코딩 지침입니다.
 
 ---
 
-## human_humor_presence
+## 템플릿 사용 방법
 
-**Allowed values:**
+1. 배정된 CSV 파일을 열어 주세요.
+2. 각 행의 `본문` 열을 읽어 주세요.
+3. 다음 두 열에만 입력하세요.
+   - `유머_존재여부`
+   - `유머_유형`
+4. 나머지 열은 절대 수정하지 마세요.
+5. 열을 추가, 삭제, 이름 변경하지 마세요.
 
-| Value | Meaning |
+---
+
+## 유머_존재여부
+
+**허용 값:**
+
+| 값 | 의미 |
 |---|---|
-| `humor` | Post contains intentional humorous expression |
-| `non_humor` | Post is informational, promotional, announcement, CSR, etc. — no humor |
-| `uncertain` | Humor presence is genuinely ambiguous; cannot be determined with confidence |
+| `humor` | 게시글에 의도적 유머 표현이 있음 |
+| `non_humor` | 정보 전달, 홍보, 공지, 캠페인 안내 등 유머 표현이 없음 |
+| `uncertain` | 유머 여부 판단이 애매함; 확신하기 어려움 |
 
-**Decision rule:**
+**판단 기준:**
 
-Ask: "Is this post intentionally trying to be funny?"
+> "이 게시글은 의도적으로 웃기려 하는가?"
 
-- Yes → `humor`
-- No → `non_humor`
-- Cannot tell → `uncertain`
+- 예 → `humor`
+- 아니오 → `non_humor`
+- 판단 불가 → `uncertain`
 
 ---
 
-## human_humor_type
+## 유머_유형
 
-**Allowed values:**
+**허용 값:**
 
-| Value | When to use |
+| 값 | 사용 조건 |
 |---|---|
-| `aggressive` | Humor that disparages, teases, mocks, or attacks a target |
-| `affiliative` | Humor that builds warmth, connection, positive in-group feeling |
-| `self_enhancing` | Humor about absurd situations; brand laughs at the situation |
-| `self_defeating` | Brand laughs at its own expense; self-deprecating |
-| `non_humorous` | Use when human_humor_presence = non_humor |
-| `uncertain` | Use when human_humor_presence = uncertain, or type is ambiguous |
+| `aggressive` | 특정 대상을 깎아내리거나, 조롱하거나, 공격적으로 놀리는 유머 |
+| `affiliative` | 따뜻함, 유대감, 공동체 의식을 형성하는 유머 |
+| `self_enhancing` | 상황의 우스꽝스러움을 즐기는 유머; 브랜드 자신이 상황을 웃음으로 승화 |
+| `self_defeating` | 브랜드가 자기 자신을 희화화하는 자조적 유머 |
+| `non_humorous` | `유머_존재여부` = `non_humor`일 때 사용 |
+| `uncertain` | `유머_존재여부` = `uncertain`일 때 또는 유형 판단이 애매할 때 사용 |
 
-**Entry rule based on human_humor_presence:**
+**`유머_존재여부` 값에 따른 입력 규칙:**
 
 ```
-human_humor_presence = humor
-  → enter one of: aggressive / affiliative / self_enhancing / self_defeating
+유머_존재여부 = humor
+  → aggressive / affiliative / self_enhancing / self_defeating 중 하나 입력
 
-human_humor_presence = non_humor
-  → enter: non_humorous
+유머_존재여부 = non_humor
+  → non_humorous 입력
 
-human_humor_presence = uncertain
-  → enter: uncertain
+유머_존재여부 = uncertain
+  → uncertain 입력
 ```
 
 ---
 
-## Critical Distinction: Corporate Assertiveness vs. Aggressive Humor
+## 핵심 구분: 기업 자신감 표현 vs. 공격적 유머
 
-This is the most important coding distinction for Fortune Top 100 posts.
+이것이 Fortune Top 100 코딩에서 가장 중요한 구분입니다.
 
-**Corporate assertive language should not be coded as aggressive humor unless it
-contains a clear humor cue AND target-directed teasing, sarcasm, roast-like
-language, playful attack, or disparagement.**
+**기업의 자신감 있는 언어는, 명확한 유머 단서와 특정 대상을 향한 조롱·비꼬기·로스트식 언어·놀림·비하가 동시에 있지 않는 한, `aggressive`로 코딩해서는 안 됩니다.**
 
-| Feature | Corporate Assertiveness | Aggressive Humor |
+| 특징 | 기업 자신감 표현 | 공격적 유머 |
 |---|---|---|
-| Tone | Confident, direct | Joking, roast-like, sarcastic |
-| Target | None (about self or product) | Specific target (competitor, institution) |
-| Humor cue | None | Explicit joke or comedic frame |
-| Example | "We're the market leader." | "Sorry, [Rival], but we win again 😏" |
+| 어조 | 자신감 있고 단호함 | 농담·로스트·비꼬기 |
+| 대상 | 없음 (자사 제품·서비스 언급) | 명확한 대상 (경쟁사, 기관 등) |
+| 유머 단서 | 없음 | 명시적 농담 구조 또는 희극적 표현 |
+| 예시 | "우리는 시장 1위입니다." | "미안, [경쟁사]야, 이번에도 우리가 이겼네 😏" |
 
-**Default rule:** If there is no clear joke and no target of ridicule, code as
-`non_humor`, not `aggressive`.
-
----
-
-## Uncertain Cases
-
-Use `uncertain` when:
-- The humor intent requires cultural context you do not have
-- The post is mildly playful but could be either personality or humor
-- You genuinely cannot decide after reading the full text
-
-Do NOT force a label when uncertain.
+**기본 규칙:** 명확한 농담이 없고 비웃음의 대상이 없다면 `aggressive`가 아닌 `non_humor`로 코딩하세요.
 
 ---
 
-## Reference Columns (Do Not Edit)
+## 판단 불가 케이스
 
-The following columns are pre-filled for reference. Do not modify them:
+다음 상황에서는 `uncertain`을 사용하세요.
 
-- `wendys_transfer_humor_presence` / `wendys_transfer_humor_type` — Wendy's classifier output
-- `full_chain_humor_presence` / `full_chain_humor_type` — full-chain classifier output
-- `classifier_disagreement_flag` — 1 if the two classifiers disagree
-- `uncertainty_score` — classifier uncertainty (higher = more uncertain)
-- `assigned_coder` — your coder assignment (do not change)
-- `review_status` — leave as `pending` until your review is complete, then change to `complete`
+- 문화적 맥락이 필요한 유머 의도
+- 가볍게 장난스럽지만 브랜드 개성인지 유머인지 모호한 경우
+- 전체 본문을 읽은 뒤에도 판단이 어려운 경우
+
+불확실할 때는 억지로 라벨을 붙이지 마세요.
+
+---
+
+## 참고 열 (수정 금지)
+
+다음 열은 참고용으로 미리 채워져 있습니다. 수정하지 마세요.
+
+- `웬디스_유머_존재여부` / `웬디스_유머_유형` — Wendy's 분류기 출력값
+- `풀체인_유머_존재여부` / `풀체인_유머_유형` — full-chain 분류기 출력값
+- `분류기_불일치` — 두 분류기가 다른 결과를 낸 경우 1
+- `불확실성_점수` — 분류기 불확실성 (높을수록 판단이 어려운 게시글)
+- `배정_코더` — 내 코더 배정 식별자 (수정 금지)
+- `검토_상태` — 검토 완료 전: `pending` 유지. 완료 후: `complete`로 변경
+
+---
+
+## 입력값 요약표
+
+| 열 이름 | 허용 값 |
+|---|---|
+| 유머_존재여부 | `humor` / `non_humor` / `uncertain` |
+| 유머_유형 | `aggressive` / `affiliative` / `self_enhancing` / `self_defeating` / `non_humorous` / `uncertain` |
+
+※ 입력값은 반드시 위 목록 중 하나를 **영문 소문자**로 입력하세요.
