@@ -1,0 +1,10 @@
+sampling_stratum,coder1,coder2,coder3,total
+classifier_disagreement,58,62,80,200
+firm_balanced_sample,37,31,29,97
+full_chain_aggressive,38,28,29,95
+high_engagement_posts,45,55,50,150
+humor_presence_uncertain,70,71,59,200
+low_engagement_posts,38,28,34,100
+random_fortune_sample,120,118,120,358
+type_uncertain,30,39,31,100
+wendys_transfer_aggressive,64,68,68,200
