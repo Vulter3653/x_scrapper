@@ -1,0 +1,4 @@
+contrast,difference,se,t_stat,p_value,significance,direction
+aggressive_vs_affiliative,-0.06727,0.017885,-3.7612,0.0002,***,aggressive ≤ other
+aggressive_vs_self_enhancing,-0.036225,0.031895,-1.1357,0.2561,,aggressive ≤ other
+aggressive_vs_self_defeating,-0.058473,0.08462,-0.691,0.4896,,aggressive ≤ other
