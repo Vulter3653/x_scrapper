@@ -30,10 +30,15 @@ Current scope (this directory):
 
 ## Current Stage
 
-This directory covers **Stage: classifier performance review**.
+**Stage 1 (complete):** Classifier performance review — see `h1_presence_classifier_performance_memo.md`.
 
-The next stage — full corpus application and H1 regression — is documented in
-`h1_next_step_decision.md` but is NOT executed here.
+**Stage 2 (complete):** Full corpus H1 presence classification — see `full_corpus_classification/`.
+- The batch1-only presence classifier was applied to all 65,245 Fortune 100 posts.
+- Output is provisional / exploratory only.
+- H1 regression has NOT been run.
+- Classification output is the input for a future exploratory H1 regression.
+
+**Stage 3 (pending):** H1 exploratory regression — NOT yet executed.
 
 ## Source Results
 
@@ -51,3 +56,17 @@ Source files are not modified. This directory contains interpretation documents 
 | `h1_presence_classifier_performance_memo.md` | Data, model, metrics, interpretation boundary |
 | `h1_claim_boundaries.md` | Permitted and prohibited claims |
 | `h1_next_step_decision.md` | Decision options for next stage |
+
+## full_corpus_classification/
+
+| File | Content |
+|---|---|
+| `scripts/apply_h1_presence_only_classifier.py` | Fits model on batch1 labels, classifies 65,245 posts |
+| `scripts/validate_h1_full_corpus_classification.py` | Validates all outputs |
+| `data/fortune100_h1_presence_classified_posts.csv` | 65,245 posts with h1_humor_presence_probability + t40/t50/t60 labels |
+| `data/fortune100_h1_presence_classification_summary.csv` | Corpus-level summary stats |
+| `data/fortune100_h1_presence_by_firm_summary.csv` | Firm-level humor rate summary (97 firms) |
+| `reports/h1_full_corpus_classification_memo.md` | Classification memo and threshold guidance |
+| `reports/h1_full_corpus_classification_claim_boundaries.md` | Permitted / prohibited claims |
+
+**H2/H3 remain BLOCKED. H1 regression is not yet executed.**

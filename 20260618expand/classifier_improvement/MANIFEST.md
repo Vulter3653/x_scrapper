@@ -8,7 +8,8 @@
 | `scripts/build_human_labeling_template.py` | COMPLETE — run | No | Output: data/human_labeling_template/ |
 | `scripts/train_domain_adapted_humor_presence_classifier.py` | COMPLETE — batch1 trained | Yes (presence) | AUC + F1 eval; confusion matrix is in-sample |
 | `scripts/train_domain_adapted_humor_type_classifier.py` | COMPLETE — batch1 trained | Yes (type) | macro-F1, aggressive precision; does not yet pass |
-| `scripts/apply_domain_adapted_classifier.py` | BLOCKED — type classifier not validated | Yes | Apply to 65,245 posts |
+| `scripts/apply_domain_adapted_classifier.py` | BLOCKED — type/aggressive not validated | Yes | Full 2-stage type application; blocked pending validated type classifier |
+| `h1_presence_only/full_corpus_classification/scripts/apply_h1_presence_only_classifier.py` | COMPLETE — presence-only provisional | Yes | Applied to 65,245 posts; H1 presence labels only; H1 regression not yet run |
 | `scripts/validate_classifier_improvement_outputs.py` | COMPLETE | No | Run to check scaffold |
 
 ## Data
@@ -57,7 +58,9 @@
 Stage 1: Generate candidates      ✓ DONE
 Stage 2: Human labeling           ✓ DONE (batch1: 1,500 posts, 3 coders)
 Stage 3: Train classifiers        ✓ DONE (batch1) — presence PROVISIONAL PASS; type FAIL
-Stage 4: Evaluate classifiers     ⚠ PARTIAL — presence CV AUC=0.7674; type macro-F1=0.3347 (below threshold)
-Stage 5: Apply to corpus          ⬜ BLOCKED — type classifier not validated
-Stage 6: H1/H2/H3 re-estimation  ⬜ BLOCKED — requires validated type classifier
+Stage 4: Evaluate classifiers     ⚠ PARTIAL — presence OOF AUC=0.7811 (improved); type FAIL; agg FAIL
+Stage 5a: Presence-only corpus    ✓ DONE (provisional) — 65,245 posts classified; H1 labels at t40/t50/t60
+Stage 5b: Type/aggressive corpus  ⬜ BLOCKED — type classifier not validated; aggressive detector not usable
+Stage 6a: H1 exploratory reg.     ⬜ PENDING — classification output ready; regression not yet run
+Stage 6b: H2/H3 re-estimation     ⬜ BLOCKED — requires validated type/aggressive classifier
 ```

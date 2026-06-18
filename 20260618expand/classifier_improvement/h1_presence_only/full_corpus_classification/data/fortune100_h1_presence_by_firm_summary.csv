@@ -1,0 +1,98 @@
+company_name,source_x_handle,total_posts,classified_posts,missing_text_posts,mean_humor_probability,humor_rate_t40,humor_rate_t50,humor_rate_t60,n_humor_t50,n_non_humor_t50
+AT&T,@ATT,933,933,0,0.529,0.9871,0.7438,0.0697,694,239
+AbbVie,@abbvie,839,839,0,0.4031,0.4684,0.0298,0.0,25,814
+Albertsons,@albertsons,765,765,0,0.5544,0.9935,0.8301,0.2301,635,130
+Allstate,@allstate,568,568,0,0.5041,0.9701,0.5317,0.0546,302,266
+Alphabet,@google,476,476,0,0.4869,0.9475,0.3908,0.0105,186,290
+Amazon,@amazon,1086,1086,0,0.5002,0.9558,0.4954,0.0571,538,548
+American Airlines Group,@AmericanAir,188,188,0,0.499,0.9628,0.4574,0.0745,86,102
+American Express,@americanexpress,831,831,0,0.4859,0.9061,0.4356,0.0349,362,469
+Archer Daniels Midland,@ADMupdates,795,795,0,0.4525,0.8365,0.1786,0.0088,142,653
+Bank of America,@bankofamerica,838,838,0,0.5078,0.9379,0.5656,0.0776,474,364
+Boeing,@boeing,969,969,0,0.4603,0.84,0.258,0.0083,250,719
+Bristol-Myers Squibb,@bmsnews,930,930,0,0.4126,0.5312,0.0591,0.0011,55,875
+Broadcom,@broadcom,183,183,0,0.4288,0.7432,0.0656,0.0055,12,171
+CVS Health,@cvshealth,574,574,0,0.4221,0.5976,0.1167,0.0087,67,507
+Capital One Financial,@CapitalOne,628,628,0,0.5271,0.9904,0.6847,0.0669,430,198
+Cardinal Health,@cardinalhealth,520,520,0,0.4292,0.7038,0.0942,0.0,49,471
+Caterpillar,@CaterpillarInc,891,891,0,0.4805,0.881,0.4164,0.0202,371,520
+Cencora,@CencoraGlobal,479,479,0,0.4069,0.499,0.0438,0.0,21,458
+Centene,@centene,465,465,0,0.4053,0.5312,0.0172,0.0,8,457
+Charter Communications,@CharterNewsroom,657,657,0,0.4341,0.7215,0.1324,0.0091,87,570
+Chevron,@chevron,805,805,0,0.4371,0.7441,0.1155,0.0037,93,712
+Cigna Group,@TheCignaGroup,586,586,0,0.4306,0.6621,0.1246,0.0051,73,513
+Cisco Systems,@Cisco,1007,1007,0,0.4559,0.851,0.2185,0.006,220,787
+Citigroup,@Citi,400,400,0,0.424,0.655,0.105,0.0,42,358
+Coca-Cola,@cocacola,158,158,0,0.5615,1.0,0.8987,0.2468,142,16
+Comcast,@comcast,1096,1096,0,0.4846,0.8896,0.4215,0.0438,462,634
+ConocoPhillips,@conocophillips,942,942,0,0.441,0.7665,0.1359,0.0053,128,814
+Dell Technologies,@Dell,724,724,0,0.5228,0.9696,0.6202,0.1464,449,275
+Delta Air Lines,@Delta,716,716,0,0.5474,0.9888,0.7696,0.2346,551,165
+Elevance Health,@elevancehealth,612,612,0,0.4137,0.5931,0.0572,0.0,35,577
+Eli Lilly,@EliLillyandCo,563,563,0,0.414,0.5364,0.0799,0.0,45,518
+Energy Transfer,@energytransfer,697,697,0,0.4584,0.8608,0.231,0.0057,161,536
+Enterprise Products Partners,@EProd_Careers,761,761,0,0.516,1.0,0.6045,0.0828,460,301
+Exxon Mobil,@exxonmobil,582,582,0,0.4424,0.7715,0.1443,0.0086,84,498
+Fannie Mae,@fanniemae,600,600,0,0.4281,0.67,0.105,0.0033,63,537
+FedEx,@fedex,882,882,0,0.5218,0.9762,0.7041,0.0703,621,261
+Ford Motor,@Ford,1146,1146,0,0.5329,0.9965,0.76,0.089,871,275
+Freddie Mac,@FreddieMac,215,215,0,0.4103,0.6186,0.0186,0.0,4,211
+Galaxy Digital,@galaxydigital,137,137,0,0.5068,0.9854,0.5109,0.0438,70,67
+General Dynamics,@generaldynamics,1493,1493,0,0.4698,0.9062,0.2693,0.0033,402,1091
+General Motors,@GM,694,694,0,0.4705,0.8862,0.304,0.013,211,483
+Goldman Sachs Group,@GoldmanSachs,1012,1012,0,0.4327,0.748,0.081,0.004,82,930
+HCA Healthcare,@hcahealthcare,584,584,0,0.4193,0.6147,0.0668,0.0,39,545
+HP,@hp,405,405,0,0.4855,0.9481,0.3679,0.0148,149,256
+Home Depot,@homedepot,1392,1392,0,0.4508,0.6494,0.3463,0.0417,482,910
+Humana,@humana,758,758,0,0.4293,0.6372,0.1544,0.0092,117,641
+IBM,@ibm,541,541,0,0.4793,0.9113,0.3401,0.0444,184,357
+Ingram Micro Holding,@IngramMicroInc,931,931,0,0.5071,0.9753,0.5456,0.0516,508,423
+Intel,@intel,287,287,0,0.4682,0.8746,0.2892,0.0279,83,204
+JPMorgan Chase,@jpmorgan,835,835,0,0.4497,0.8204,0.1772,0.0132,148,687
+Johnson & Johnson,@JNJNews,760,760,0,0.4284,0.6974,0.1026,0.0026,78,682
+Kroger,@kroger,888,888,0,0.5379,0.9764,0.7624,0.161,677,211
+Liberty Mutual Insurance Group,@LibertyMutual,1018,1018,0,0.5404,0.9971,0.8202,0.1179,835,183
+Lockheed Martin,@lockheedmartin,861,861,0,0.4791,0.9535,0.3171,0.0081,273,588
+Lowe's,@lowes,908,908,0,0.5219,0.9747,0.6244,0.13,567,341
+Marathon Petroleum,@MarathonPetroCo,377,377,0,0.4617,0.9045,0.2175,0.0133,82,295
+Massachusetts Mutual Life,@massmutual,859,859,0,0.4852,0.8836,0.4261,0.0442,366,493
+McKesson,@mckesson,840,840,0,0.4056,0.506,0.0607,0.0024,51,789
+Merck,@merck,507,507,0,0.401,0.4418,0.0927,0.0,47,460
+MetLife,@metlife,779,779,0,0.4443,0.7702,0.1682,0.009,131,648
+Meta Platforms,@Meta,151,151,0,0.496,0.9934,0.4901,0.0132,74,77
+Microsoft,@microsoft,666,666,0,0.4859,0.9309,0.4054,0.015,270,396
+Morgan Stanley,@morganstanley,846,846,0,0.4304,0.6513,0.117,0.0083,99,747
+Nationwide,@nationwide,1149,1149,0,0.5268,0.9861,0.7119,0.0722,818,331
+New York Life Insurance,@NewYorkLife,456,456,0,0.5006,0.9671,0.511,0.0482,233,223
+Nike,@nike,192,192,0,0.5437,1.0,0.8385,0.0833,161,31
+Nvidia,@nvidia,1117,1117,0,0.4571,0.8442,0.2184,0.0054,244,873
+Oracle,@oracle,909,909,0,0.4532,0.8009,0.2189,0.0099,199,710
+PepsiCo,@pepsico,817,817,0,0.4888,0.9058,0.4039,0.0796,330,487
+Performance Food Group,@PFGCareers,3,3,0,0.4945,1.0,0.3333,0.0,1,2
+Pfizer,@pfizer,382,382,0,0.4422,0.7513,0.178,0.0052,68,314
+Phillips 66,@Phillips66co,684,684,0,0.4501,0.807,0.2237,0.0058,153,531
+Procter & Gamble,@ProcterGamble,268,268,0,0.463,0.9067,0.2239,0.0112,60,208
+Progressive,@progressive,170,170,0,0.5419,1.0,0.7588,0.1294,129,41
+Prudential Financial,@Prudential,874,874,0,0.4692,0.889,0.2941,0.0206,257,617
+Publix Super Markets,@Publix,851,851,0,0.5592,0.9765,0.7826,0.3408,666,185
+RTX,@RTX_News,865,865,0,0.4394,0.8277,0.0936,0.0012,81,784
+State Farm Insurance,@StateFarm,147,147,0,0.5415,1.0,0.8503,0.102,125,22
+StoneX Group,@StoneX_Official,848,848,0,0.4443,0.8656,0.0873,0.0,74,774
+Sysco,@sysco,863,863,0,0.484,0.9316,0.4021,0.0185,347,516
+TD Synnex,@tdsynnex,488,488,0,0.4846,0.9385,0.3668,0.0287,179,309
+TIAA,@tiaa,217,217,0,0.458,0.8618,0.2304,0.023,50,167
+TJX,@tjmaxx,909,909,0,0.502,0.8955,0.5479,0.0649,498,411
+Target,@target,595,595,0,0.5506,0.9899,0.8303,0.1882,494,101
+Tesla,@tesla,711,711,0,0.539,0.9902,0.7862,0.1336,559,152
+Travelers,@travelers,835,835,0,0.463,0.818,0.3054,0.0204,255,580
+Tyson Foods,@tysonfoods,1081,1081,0,0.4826,0.938,0.3626,0.0268,392,689
+UPS,@ups,200,200,0,0.5181,0.995,0.66,0.06,132,68
+USAA,@usaa,899,899,0,0.4945,0.9722,0.4405,0.0256,396,503
+Uber Technologies,@Uber,952,952,0,0.5286,0.9958,0.7206,0.0872,686,266
+United Airlines Holdings,@united,292,292,0,0.5351,0.9932,0.7329,0.1404,214,78
+UnitedHealth Group,@UnitedHealthGrp,155,155,0,0.4277,0.671,0.0968,0.0,15,140
+Valero Energy,@valeroenergy,186,186,0,0.5092,0.9892,0.586,0.0269,109,77
+Verizon Communications,@Verizon,43,43,0,0.4658,0.9302,0.3256,0.0,14,29
+Walmart,@walmart,842,842,0,0.5449,0.9964,0.7767,0.1639,654,188
+Walt Disney,@Disney,1353,1353,0,0.5433,0.9993,0.8477,0.102,1147,206
+Wells Fargo,@wellsfargo,256,256,0,0.504,0.9531,0.4922,0.0977,126,130
