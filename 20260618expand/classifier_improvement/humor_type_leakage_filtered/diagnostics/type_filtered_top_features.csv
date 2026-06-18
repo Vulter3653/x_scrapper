@@ -1,0 +1,601 @@
+variant,class_label,rank,feature,weight
+original_text,aggressive,1,word__nationalroastday,0.329476
+original_text,aggressive,2,word__should,0.251824
+original_text,aggressive,3,char__nal,0.178921
+original_text,aggressive,4,char__onal,0.173239
+original_text,aggressive,5,char__oast,0.17124
+original_text,aggressive,6,char__oas,0.17124
+original_text,aggressive,7,word__drop,0.170775
+original_text,aggressive,8,char__uld,0.168098
+original_text,aggressive,9,char__ould,0.168098
+original_text,aggressive,10,char__oul,0.16571
+original_text,aggressive,11,word__if,0.164862
+original_text,aggressive,12,char__roas,0.163052
+original_text,aggressive,13,char__roast,0.163052
+original_text,aggressive,14,word__where the,0.158473
+original_text,aggressive,15,word__mid,0.15789
+original_text,aggressive,16,word__egg,0.157204
+original_text,aggressive,17,char__ona,0.156644
+original_text,aggressive,18,char__alr,0.156542
+original_text,aggressive,19,char__hou,0.153344
+original_text,aggressive,20,word__ban,0.153063
+original_text,aggressive,21,word__hair,0.152743
+original_text,aggressive,22,word__me,0.15124
+original_text,aggressive,23,word__not,0.150852
+original_text,aggressive,24,word__but,0.146192
+original_text,aggressive,25,word__that,0.145562
+original_text,affiliative,1,word__we,0.276112
+original_text,affiliative,2,word__mention,0.15512
+original_text,affiliative,3,word__year,0.149416
+original_text,affiliative,4,word__thank,0.14176
+original_text,affiliative,5,char__ we,0.137617
+original_text,affiliative,6,word__we re,0.12974
+original_text,affiliative,7,word__to,0.127933
+original_text,affiliative,8,word__in,0.126945
+original_text,affiliative,9,word__happy,0.124395
+original_text,affiliative,10,word__thank you,0.119263
+original_text,affiliative,11,word__thanks,0.116198
+original_text,affiliative,12,char__ank,0.115833
+original_text,affiliative,13,word__for,0.115763
+original_text,affiliative,14,word__every,0.11184
+original_text,affiliative,15,word__to the,0.111062
+original_text,affiliative,16,word__us,0.110388
+original_text,affiliative,17,word__day,0.109243
+original_text,affiliative,18,char__hank,0.10843
+original_text,affiliative,19,char__thank,0.10843
+original_text,affiliative,20,word__their,0.105729
+original_text,affiliative,21,word__to mention,0.105374
+original_text,affiliative,22,word__let,0.102692
+original_text,affiliative,23,char__rat,0.099751
+original_text,affiliative,24,word__re,0.099346
+original_text,affiliative,25,word__of the,0.09742
+original_text,self-enhancing,1,word__is,0.169947
+original_text,self-enhancing,2,word__better,0.168747
+original_text,self-enhancing,3,word__url,0.132255
+original_text,self-enhancing,4,word__as,0.123991
+original_text,self-enhancing,5,word__perfect,0.121056
+original_text,self-enhancing,6,word__and,0.119964
+original_text,self-enhancing,7,word__most,0.119382
+original_text,self-enhancing,8,word__tesla,0.116881
+original_text,self-enhancing,9,word__from,0.111547
+original_text,self-enhancing,10,word__spicy,0.110195
+original_text,self-enhancing,11,char__ect,0.108964
+original_text,self-enhancing,12,word__breakfast,0.103125
+original_text,self-enhancing,13,word__where,0.10218
+original_text,self-enhancing,14,word__fan,0.097464
+original_text,self-enhancing,15,word__2026,0.096331
+original_text,self-enhancing,16,word__one,0.095027
+original_text,self-enhancing,17,word__less,0.091971
+original_text,self-enhancing,18,word__delicious,0.091838
+original_text,self-enhancing,19,char__ an,0.089879
+original_text,self-enhancing,20,word__home,0.089091
+original_text,self-enhancing,21,char__ ne,0.088128
+original_text,self-enhancing,22,word__before,0.083026
+original_text,self-enhancing,23,word__meet the,0.08207
+original_text,self-enhancing,24,char__pic,0.081477
+original_text,self-enhancing,25,char__duc,0.080916
+original_text,self-defeating,1,word__store,0.564812
+original_text,self-defeating,2,word__my,0.450771
+original_text,self-defeating,3,word__no,0.39155
+original_text,self-defeating,4,word__not,0.370828
+original_text,self-defeating,5,word__no one,0.334097
+original_text,self-defeating,6,word__just store,0.326221
+original_text,self-defeating,7,char__ no,0.321003
+original_text,self-defeating,8,word__wendy,0.309622
+original_text,self-defeating,9,char__ i ,0.293541
+original_text,self-defeating,10,word__who,0.291838
+original_text,self-defeating,11,word__does,0.279504
+original_text,self-defeating,12,word__weeks,0.271485
+original_text,self-defeating,13,word__think about,0.26889
+original_text,self-defeating,14,word__oh no,0.26269
+original_text,self-defeating,15,word__think,0.259321
+original_text,self-defeating,16,word__waiting,0.25667
+original_text,self-defeating,17,word__contact,0.25641
+original_text,self-defeating,18,word__pls,0.256024
+original_text,self-defeating,19,word__one,0.251798
+original_text,self-defeating,20,char__tore ,0.240454
+original_text,self-defeating,21,char__store,0.237861
+original_text,self-defeating,22,word__of mention,0.236629
+original_text,self-defeating,23,char__ my ,0.236417
+original_text,self-defeating,24,word__to hit,0.235789
+original_text,self-defeating,25,char__tore,0.233381
+mask_wendys_brand,aggressive,1,word__nationalroastday,0.329901
+mask_wendys_brand,aggressive,2,word__should,0.252254
+mask_wendys_brand,aggressive,3,char__nal,0.17867
+mask_wendys_brand,aggressive,4,char__onal,0.172855
+mask_wendys_brand,aggressive,5,word__drop,0.170855
+mask_wendys_brand,aggressive,6,char__oast,0.170801
+mask_wendys_brand,aggressive,7,char__oas,0.170801
+mask_wendys_brand,aggressive,8,char__ould,0.16718
+mask_wendys_brand,aggressive,9,char__uld,0.16718
+mask_wendys_brand,aggressive,10,word__if,0.165032
+mask_wendys_brand,aggressive,11,char__oul,0.164823
+mask_wendys_brand,aggressive,12,char__roast,0.162557
+mask_wendys_brand,aggressive,13,char__roas,0.162557
+mask_wendys_brand,aggressive,14,word__where the,0.158229
+mask_wendys_brand,aggressive,15,word__mid,0.158034
+mask_wendys_brand,aggressive,16,word__egg,0.157156
+mask_wendys_brand,aggressive,17,char__ona,0.156462
+mask_wendys_brand,aggressive,18,char__alr,0.156344
+mask_wendys_brand,aggressive,19,word__ban,0.153132
+mask_wendys_brand,aggressive,20,word__hair,0.152856
+mask_wendys_brand,aggressive,21,char__hou,0.152254
+mask_wendys_brand,aggressive,22,word__not,0.151301
+mask_wendys_brand,aggressive,23,word__me,0.150892
+mask_wendys_brand,aggressive,24,word__but,0.146452
+mask_wendys_brand,aggressive,25,word__that,0.146188
+mask_wendys_brand,affiliative,1,word__we,0.273894
+mask_wendys_brand,affiliative,2,word__mention,0.173763
+mask_wendys_brand,affiliative,3,char__ we,0.165743
+mask_wendys_brand,affiliative,4,word__year,0.14872
+mask_wendys_brand,affiliative,5,word__thank,0.141086
+mask_wendys_brand,affiliative,6,word__we re,0.128836
+mask_wendys_brand,affiliative,7,word__to,0.127913
+mask_wendys_brand,affiliative,8,word__in,0.125805
+mask_wendys_brand,affiliative,9,word__happy,0.124041
+mask_wendys_brand,affiliative,10,word__thank you,0.118652
+mask_wendys_brand,affiliative,11,word__thanks,0.115424
+mask_wendys_brand,affiliative,12,char__ank,0.115217
+mask_wendys_brand,affiliative,13,word__for,0.114521
+mask_wendys_brand,affiliative,14,word__every,0.112102
+mask_wendys_brand,affiliative,15,word__to the,0.110622
+mask_wendys_brand,affiliative,16,word__us,0.109396
+mask_wendys_brand,affiliative,17,word__day,0.10865
+mask_wendys_brand,affiliative,18,char__hank,0.107901
+mask_wendys_brand,affiliative,19,char__thank,0.107901
+mask_wendys_brand,affiliative,20,word__their,0.105031
+mask_wendys_brand,affiliative,21,word__to mention,0.104152
+mask_wendys_brand,affiliative,22,word__let,0.102985
+mask_wendys_brand,affiliative,23,char__nti,0.100756
+mask_wendys_brand,affiliative,24,char__rat,0.099211
+mask_wendys_brand,affiliative,25,word__re,0.098637
+mask_wendys_brand,self-enhancing,1,word__better,0.169035
+mask_wendys_brand,self-enhancing,2,word__is,0.168656
+mask_wendys_brand,self-enhancing,3,word__url,0.132755
+mask_wendys_brand,self-enhancing,4,word__as,0.12414
+mask_wendys_brand,self-enhancing,5,word__perfect,0.12085
+mask_wendys_brand,self-enhancing,6,word__and,0.120159
+mask_wendys_brand,self-enhancing,7,word__most,0.119555
+mask_wendys_brand,self-enhancing,8,word__tesla,0.11694
+mask_wendys_brand,self-enhancing,9,word__from,0.11034
+mask_wendys_brand,self-enhancing,10,word__spicy,0.109912
+mask_wendys_brand,self-enhancing,11,char__ect,0.107962
+mask_wendys_brand,self-enhancing,12,word__where,0.102236
+mask_wendys_brand,self-enhancing,13,word__breakfast,0.098006
+mask_wendys_brand,self-enhancing,14,word__fan,0.097966
+mask_wendys_brand,self-enhancing,15,word__2026,0.096294
+mask_wendys_brand,self-enhancing,16,word__one,0.093662
+mask_wendys_brand,self-enhancing,17,word__delicious,0.09251
+mask_wendys_brand,self-enhancing,18,word__less,0.092062
+mask_wendys_brand,self-enhancing,19,char__ an,0.090688
+mask_wendys_brand,self-enhancing,20,word__home,0.08894
+mask_wendys_brand,self-enhancing,21,char__ ne,0.088431
+mask_wendys_brand,self-enhancing,22,word__before,0.083406
+mask_wendys_brand,self-enhancing,23,word__meet the,0.082112
+mask_wendys_brand,self-enhancing,24,word__our,0.081421
+mask_wendys_brand,self-enhancing,25,char__duc,0.081017
+mask_wendys_brand,self-defeating,1,word__store,0.568256
+mask_wendys_brand,self-defeating,2,word__my,0.453033
+mask_wendys_brand,self-defeating,3,word__no,0.391268
+mask_wendys_brand,self-defeating,4,word__not,0.373979
+mask_wendys_brand,self-defeating,5,word__no one,0.331462
+mask_wendys_brand,self-defeating,6,word__just store,0.328282
+mask_wendys_brand,self-defeating,7,char__ no,0.319962
+mask_wendys_brand,self-defeating,8,word__who,0.293253
+mask_wendys_brand,self-defeating,9,char__ i ,0.289387
+mask_wendys_brand,self-defeating,10,word__does,0.281835
+mask_wendys_brand,self-defeating,11,word__weeks,0.273953
+mask_wendys_brand,self-defeating,12,word__think about,0.270404
+mask_wendys_brand,self-defeating,13,word__oh no,0.264504
+mask_wendys_brand,self-defeating,14,word__think,0.260917
+mask_wendys_brand,self-defeating,15,word__waiting,0.259014
+mask_wendys_brand,self-defeating,16,word__contact,0.258163
+mask_wendys_brand,self-defeating,17,word__pls,0.257802
+mask_wendys_brand,self-defeating,18,word__one,0.250739
+mask_wendys_brand,self-defeating,19,char__tore ,0.241841
+mask_wendys_brand,self-defeating,20,char__store,0.239338
+mask_wendys_brand,self-defeating,21,char__ my ,0.237927
+mask_wendys_brand,self-defeating,22,word__of mention,0.236383
+mask_wendys_brand,self-defeating,23,char__tore,0.23485
+mask_wendys_brand,self-defeating,24,word__shouldn,0.232546
+mask_wendys_brand,self-defeating,25,word__to hit,0.230127
+mask_brand_product,aggressive,1,word__nationalroastday,0.330203
+mask_brand_product,aggressive,2,word__should,0.251171
+mask_brand_product,aggressive,3,char__nal,0.178906
+mask_brand_product,aggressive,4,char__onal,0.17277
+mask_brand_product,aggressive,5,word__drop,0.171841
+mask_brand_product,aggressive,6,char__oas,0.171099
+mask_brand_product,aggressive,7,char__oast,0.171099
+mask_brand_product,aggressive,8,char__ould,0.167393
+mask_brand_product,aggressive,9,char__uld,0.167393
+mask_brand_product,aggressive,10,word__if,0.165765
+mask_brand_product,aggressive,11,char__oul,0.164988
+mask_brand_product,aggressive,12,char__roas,0.162773
+mask_brand_product,aggressive,13,char__roast,0.162773
+mask_brand_product,aggressive,14,word__where the,0.159679
+mask_brand_product,aggressive,15,word__mid,0.158719
+mask_brand_product,aggressive,16,word__egg,0.158213
+mask_brand_product,aggressive,17,char__alr,0.156616
+mask_brand_product,aggressive,18,char__ona,0.15626
+mask_brand_product,aggressive,19,word__hair,0.154181
+mask_brand_product,aggressive,20,word__ban,0.153888
+mask_brand_product,aggressive,21,word__not,0.153297
+mask_brand_product,aggressive,22,word__me,0.15187
+mask_brand_product,aggressive,23,char__hou,0.151538
+mask_brand_product,aggressive,24,word__dogs,0.146191
+mask_brand_product,aggressive,25,word__that,0.146126
+mask_brand_product,affiliative,1,word__we,0.274133
+mask_brand_product,affiliative,2,word__mention,0.171617
+mask_brand_product,affiliative,3,char__ we,0.167118
+mask_brand_product,affiliative,4,word__year,0.148192
+mask_brand_product,affiliative,5,word__thank,0.140662
+mask_brand_product,affiliative,6,word__we re,0.128831
+mask_brand_product,affiliative,7,word__to,0.12764
+mask_brand_product,affiliative,8,word__in,0.127109
+mask_brand_product,affiliative,9,word__happy,0.12343
+mask_brand_product,affiliative,10,word__thank you,0.118263
+mask_brand_product,affiliative,11,word__thanks,0.11511
+mask_brand_product,affiliative,12,char__ank,0.11454
+mask_brand_product,affiliative,13,word__for,0.113179
+mask_brand_product,affiliative,14,word__every,0.112166
+mask_brand_product,affiliative,15,word__to the,0.110219
+mask_brand_product,affiliative,16,word__us,0.10905
+mask_brand_product,affiliative,17,word__day,0.107497
+mask_brand_product,affiliative,18,char__thank,0.107266
+mask_brand_product,affiliative,19,char__hank,0.107266
+mask_brand_product,affiliative,20,word__their,0.104728
+mask_brand_product,affiliative,21,word__to mention,0.103915
+mask_brand_product,affiliative,22,word__let,0.103229
+mask_brand_product,affiliative,23,char__nti,0.099008
+mask_brand_product,affiliative,24,word__re,0.098446
+mask_brand_product,affiliative,25,char__rat,0.098177
+mask_brand_product,self-enhancing,1,word__is,0.168699
+mask_brand_product,self-enhancing,2,word__better,0.168654
+mask_brand_product,self-enhancing,3,word__url,0.131703
+mask_brand_product,self-enhancing,4,word__as,0.124491
+mask_brand_product,self-enhancing,5,word__perfect,0.121005
+mask_brand_product,self-enhancing,6,word__and,0.120783
+mask_brand_product,self-enhancing,7,word__most,0.11995
+mask_brand_product,self-enhancing,8,word__tesla,0.117168
+mask_brand_product,self-enhancing,9,word__spicy,0.111936
+mask_brand_product,self-enhancing,10,word__from,0.110211
+mask_brand_product,self-enhancing,11,char__ect,0.108019
+mask_brand_product,self-enhancing,12,word__breakfast,0.104156
+mask_brand_product,self-enhancing,13,word__where,0.102615
+mask_brand_product,self-enhancing,14,word__fan,0.098113
+mask_brand_product,self-enhancing,15,word__2026,0.096402
+mask_brand_product,self-enhancing,16,word__one,0.0941
+mask_brand_product,self-enhancing,17,word__delicious,0.092572
+mask_brand_product,self-enhancing,18,word__less,0.092114
+mask_brand_product,self-enhancing,19,char__ an,0.090096
+mask_brand_product,self-enhancing,20,word__home,0.089016
+mask_brand_product,self-enhancing,21,char__ ne,0.088305
+mask_brand_product,self-enhancing,22,word__before,0.083424
+mask_brand_product,self-enhancing,23,word__meet the,0.082209
+mask_brand_product,self-enhancing,24,char__pic,0.081475
+mask_brand_product,self-enhancing,25,word__our,0.081348
+mask_brand_product,self-defeating,1,word__store,0.567905
+mask_brand_product,self-defeating,2,word__my,0.444151
+mask_brand_product,self-defeating,3,word__no,0.390597
+mask_brand_product,self-defeating,4,word__not,0.373461
+mask_brand_product,self-defeating,5,word__no one,0.336839
+mask_brand_product,self-defeating,6,word__just store,0.328422
+mask_brand_product,self-defeating,7,char__ no,0.322564
+mask_brand_product,self-defeating,8,word__who,0.293508
+mask_brand_product,self-defeating,9,char__ i ,0.285173
+mask_brand_product,self-defeating,10,word__does,0.281581
+mask_brand_product,self-defeating,11,word__think about,0.270433
+mask_brand_product,self-defeating,12,word__oh no,0.264203
+mask_brand_product,self-defeating,13,word__think,0.261568
+mask_brand_product,self-defeating,14,word__weeks,0.260728
+mask_brand_product,self-defeating,15,word__waiting,0.258732
+mask_brand_product,self-defeating,16,word__contact,0.257215
+mask_brand_product,self-defeating,17,word__pls,0.256859
+mask_brand_product,self-defeating,18,word__one,0.254404
+mask_brand_product,self-defeating,19,word__to hit,0.243424
+mask_brand_product,self-defeating,20,char__tore ,0.24141
+mask_brand_product,self-defeating,21,char__store,0.238625
+mask_brand_product,self-defeating,22,word__use,0.238134
+mask_brand_product,self-defeating,23,word__of mention,0.236268
+mask_brand_product,self-defeating,24,char__tore,0.234139
+mask_brand_product,self-defeating,25,word__shouldn,0.232399
+mask_brand_product_competitor,aggressive,1,word__nationalroastday,0.329149
+mask_brand_product_competitor,aggressive,2,word__competitor_token,0.298587
+mask_brand_product_competitor,aggressive,3,word__should,0.251847
+mask_brand_product_competitor,aggressive,4,word__drop,0.17015
+mask_brand_product_competitor,aggressive,5,word__mid,0.161859
+mask_brand_product_competitor,aggressive,6,word__where the,0.160698
+mask_brand_product_competitor,aggressive,7,char__ould,0.160626
+mask_brand_product_competitor,aggressive,8,char__uld,0.160626
+mask_brand_product_competitor,aggressive,9,word__if,0.159739
+mask_brand_product_competitor,aggressive,10,word__egg,0.158935
+mask_brand_product_competitor,aggressive,11,char__oul,0.158238
+mask_brand_product_competitor,aggressive,12,char__nal,0.15643
+mask_brand_product_competitor,aggressive,13,word__hair,0.155476
+mask_brand_product_competitor,aggressive,14,word__ban,0.155297
+mask_brand_product_competitor,aggressive,15,char__alr,0.153854
+mask_brand_product_competitor,aggressive,16,char__hou,0.153283
+mask_brand_product_competitor,aggressive,17,word__not,0.150226
+mask_brand_product_competitor,aggressive,18,word__that,0.148643
+mask_brand_product_competitor,aggressive,19,char__onal,0.147984
+mask_brand_product_competitor,aggressive,20,word__but,0.147949
+mask_brand_product_competitor,aggressive,21,word__dogs,0.147378
+mask_brand_product_competitor,aggressive,22,word__me,0.145563
+mask_brand_product_competitor,aggressive,23,word__his,0.145414
+mask_brand_product_competitor,aggressive,24,word__beef,0.145018
+mask_brand_product_competitor,aggressive,25,word__they,0.141988
+mask_brand_product_competitor,affiliative,1,word__we,0.273883
+mask_brand_product_competitor,affiliative,2,word__mention,0.168698
+mask_brand_product_competitor,affiliative,3,char__ we,0.167222
+mask_brand_product_competitor,affiliative,4,word__year,0.148753
+mask_brand_product_competitor,affiliative,5,word__thank,0.140432
+mask_brand_product_competitor,affiliative,6,word__we re,0.129304
+mask_brand_product_competitor,affiliative,7,word__to,0.127253
+mask_brand_product_competitor,affiliative,8,word__in,0.125885
+mask_brand_product_competitor,affiliative,9,word__happy,0.123159
+mask_brand_product_competitor,affiliative,10,word__thank you,0.118057
+mask_brand_product_competitor,affiliative,11,word__thanks,0.114937
+mask_brand_product_competitor,affiliative,12,char__ank,0.114437
+mask_brand_product_competitor,affiliative,13,word__for,0.11371
+mask_brand_product_competitor,affiliative,14,word__every,0.11185
+mask_brand_product_competitor,affiliative,15,word__to the,0.109899
+mask_brand_product_competitor,affiliative,16,word__us,0.108908
+mask_brand_product_competitor,affiliative,17,word__day,0.108787
+mask_brand_product_competitor,affiliative,18,char__hank,0.107219
+mask_brand_product_competitor,affiliative,19,char__thank,0.107219
+mask_brand_product_competitor,affiliative,20,word__their,0.104497
+mask_brand_product_competitor,affiliative,21,word__let,0.10419
+mask_brand_product_competitor,affiliative,22,word__to mention,0.103713
+mask_brand_product_competitor,affiliative,23,word__re,0.098636
+mask_brand_product_competitor,affiliative,24,char__nti,0.098147
+mask_brand_product_competitor,affiliative,25,char__rat,0.097856
+mask_brand_product_competitor,self-enhancing,1,word__better,0.168758
+mask_brand_product_competitor,self-enhancing,2,word__is,0.168537
+mask_brand_product_competitor,self-enhancing,3,word__url,0.129091
+mask_brand_product_competitor,self-enhancing,4,word__as,0.125472
+mask_brand_product_competitor,self-enhancing,5,word__most,0.121578
+mask_brand_product_competitor,self-enhancing,6,word__and,0.121343
+mask_brand_product_competitor,self-enhancing,7,word__perfect,0.120972
+mask_brand_product_competitor,self-enhancing,8,word__tesla,0.117093
+mask_brand_product_competitor,self-enhancing,9,char__ect,0.1128
+mask_brand_product_competitor,self-enhancing,10,word__spicy,0.112278
+mask_brand_product_competitor,self-enhancing,11,word__from,0.109734
+mask_brand_product_competitor,self-enhancing,12,word__breakfast,0.104435
+mask_brand_product_competitor,self-enhancing,13,word__where,0.102802
+mask_brand_product_competitor,self-enhancing,14,word__fan,0.097875
+mask_brand_product_competitor,self-enhancing,15,word__2026,0.096307
+mask_brand_product_competitor,self-enhancing,16,word__one,0.093767
+mask_brand_product_competitor,self-enhancing,17,word__delicious,0.093495
+mask_brand_product_competitor,self-enhancing,18,word__less,0.092024
+mask_brand_product_competitor,self-enhancing,19,char__ an,0.090729
+mask_brand_product_competitor,self-enhancing,20,char__ ne,0.089059
+mask_brand_product_competitor,self-enhancing,21,word__home,0.088941
+mask_brand_product_competitor,self-enhancing,22,word__before,0.083477
+mask_brand_product_competitor,self-enhancing,23,word__meet the,0.082082
+mask_brand_product_competitor,self-enhancing,24,char__pic,0.081861
+mask_brand_product_competitor,self-enhancing,25,word__url url,0.081745
+mask_brand_product_competitor,self-defeating,1,word__store,0.568727
+mask_brand_product_competitor,self-defeating,2,word__my,0.444304
+mask_brand_product_competitor,self-defeating,3,word__no,0.391152
+mask_brand_product_competitor,self-defeating,4,word__not,0.372849
+mask_brand_product_competitor,self-defeating,5,word__no one,0.337562
+mask_brand_product_competitor,self-defeating,6,word__just store,0.328412
+mask_brand_product_competitor,self-defeating,7,char__ no,0.323108
+mask_brand_product_competitor,self-defeating,8,word__who,0.293365
+mask_brand_product_competitor,self-defeating,9,char__ i ,0.286298
+mask_brand_product_competitor,self-defeating,10,word__does,0.281716
+mask_brand_product_competitor,self-defeating,11,word__think about,0.270159
+mask_brand_product_competitor,self-defeating,12,word__oh no,0.263997
+mask_brand_product_competitor,self-defeating,13,word__weeks,0.261926
+mask_brand_product_competitor,self-defeating,14,word__think,0.261186
+mask_brand_product_competitor,self-defeating,15,word__waiting,0.25858
+mask_brand_product_competitor,self-defeating,16,word__contact,0.257969
+mask_brand_product_competitor,self-defeating,17,word__pls,0.257606
+mask_brand_product_competitor,self-defeating,18,word__one,0.254422
+mask_brand_product_competitor,self-defeating,19,word__to hit,0.245515
+mask_brand_product_competitor,self-defeating,20,char__tore ,0.242355
+mask_brand_product_competitor,self-defeating,21,char__store,0.239846
+mask_brand_product_competitor,self-defeating,22,word__use,0.239565
+mask_brand_product_competitor,self-defeating,23,word__of mention,0.235911
+mask_brand_product_competitor,self-defeating,24,char__tore,0.235343
+mask_brand_product_competitor,self-defeating,25,word__shouldn,0.232158
+mask_campaign_product,aggressive,1,word__nationalroastday,0.330325
+mask_campaign_product,aggressive,2,word__should,0.251556
+mask_campaign_product,aggressive,3,char__nal,0.178784
+mask_campaign_product,aggressive,4,char__onal,0.174346
+mask_campaign_product,aggressive,5,word__drop,0.172435
+mask_campaign_product,aggressive,6,char__oas,0.169034
+mask_campaign_product,aggressive,7,char__oast,0.169034
+mask_campaign_product,aggressive,8,char__uld,0.167963
+mask_campaign_product,aggressive,9,char__ould,0.167963
+mask_campaign_product,aggressive,10,char__oul,0.165706
+mask_campaign_product,aggressive,11,word__if,0.163861
+mask_campaign_product,aggressive,12,char__roast,0.161235
+mask_campaign_product,aggressive,13,char__roas,0.161235
+mask_campaign_product,aggressive,14,word__where the,0.158442
+mask_campaign_product,aggressive,15,char__ona,0.157949
+mask_campaign_product,aggressive,16,word__mid,0.157949
+mask_campaign_product,aggressive,17,word__me,0.15776
+mask_campaign_product,aggressive,18,char__alr,0.155444
+mask_campaign_product,aggressive,19,word__egg,0.154886
+mask_campaign_product,aggressive,20,word__ban,0.153226
+mask_campaign_product,aggressive,21,word__hair,0.153168
+mask_campaign_product,aggressive,22,word__not,0.15127
+mask_campaign_product,aggressive,23,char__hou,0.150824
+mask_campaign_product,aggressive,24,word__his,0.149096
+mask_campaign_product,aggressive,25,word__but,0.146308
+mask_campaign_product,affiliative,1,word__we,0.275817
+mask_campaign_product,affiliative,2,word__mention,0.155425
+mask_campaign_product,affiliative,3,word__year,0.149473
+mask_campaign_product,affiliative,4,word__thank,0.141481
+mask_campaign_product,affiliative,5,char__ we,0.136564
+mask_campaign_product,affiliative,6,word__we re,0.129628
+mask_campaign_product,affiliative,7,word__in,0.128141
+mask_campaign_product,affiliative,8,word__to,0.127154
+mask_campaign_product,affiliative,9,word__happy,0.124124
+mask_campaign_product,affiliative,10,word__thank you,0.119025
+mask_campaign_product,affiliative,11,word__for,0.116491
+mask_campaign_product,affiliative,12,word__thanks,0.116039
+mask_campaign_product,affiliative,13,char__ank,0.115399
+mask_campaign_product,affiliative,14,word__every,0.112051
+mask_campaign_product,affiliative,15,word__us,0.111268
+mask_campaign_product,affiliative,16,word__to the,0.110945
+mask_campaign_product,affiliative,17,word__day,0.108908
+mask_campaign_product,affiliative,18,char__thank,0.108129
+mask_campaign_product,affiliative,19,char__hank,0.108129
+mask_campaign_product,affiliative,20,word__their,0.105691
+mask_campaign_product,affiliative,21,word__to mention,0.105008
+mask_campaign_product,affiliative,22,word__let,0.104709
+mask_campaign_product,affiliative,23,word__re,0.099703
+mask_campaign_product,affiliative,24,char__rat,0.099133
+mask_campaign_product,affiliative,25,word__of the,0.096988
+mask_campaign_product,self-enhancing,1,word__is,0.173391
+mask_campaign_product,self-enhancing,2,word__better,0.169038
+mask_campaign_product,self-enhancing,3,word__url,0.130757
+mask_campaign_product,self-enhancing,4,word__as,0.122935
+mask_campaign_product,self-enhancing,5,word__perfect,0.121076
+mask_campaign_product,self-enhancing,6,word__and,0.118952
+mask_campaign_product,self-enhancing,7,word__most,0.117983
+mask_campaign_product,self-enhancing,8,word__tesla,0.116292
+mask_campaign_product,self-enhancing,9,word__from,0.114017
+mask_campaign_product,self-enhancing,10,word__spicy,0.11112
+mask_campaign_product,self-enhancing,11,char__ect,0.108587
+mask_campaign_product,self-enhancing,12,word__where,0.101741
+mask_campaign_product,self-enhancing,13,word__fan,0.097332
+mask_campaign_product,self-enhancing,14,word__2026,0.096252
+mask_campaign_product,self-enhancing,15,word__one,0.093349
+mask_campaign_product,self-enhancing,16,word__delicious,0.092186
+mask_campaign_product,self-enhancing,17,word__less,0.091994
+mask_campaign_product,self-enhancing,18,char__ an,0.088427
+mask_campaign_product,self-enhancing,19,char__ ne,0.088305
+mask_campaign_product,self-enhancing,20,word__home,0.088082
+mask_campaign_product,self-enhancing,21,word__before,0.083062
+mask_campaign_product,self-enhancing,22,word__meet the,0.082099
+mask_campaign_product,self-enhancing,23,char__ de,0.081369
+mask_campaign_product,self-enhancing,24,char__duc,0.080563
+mask_campaign_product,self-enhancing,25,word__url url,0.080483
+mask_campaign_product,self-defeating,1,word__store,0.568077
+mask_campaign_product,self-defeating,2,word__my,0.455349
+mask_campaign_product,self-defeating,3,word__no,0.401362
+mask_campaign_product,self-defeating,4,word__not,0.377739
+mask_campaign_product,self-defeating,5,word__no one,0.346582
+mask_campaign_product,self-defeating,6,word__just store,0.32876
+mask_campaign_product,self-defeating,7,char__ no,0.308502
+mask_campaign_product,self-defeating,8,word__wendy,0.305396
+mask_campaign_product,self-defeating,9,word__who,0.293212
+mask_campaign_product,self-defeating,10,char__ i ,0.292933
+mask_campaign_product,self-defeating,11,word__does,0.282299
+mask_campaign_product,self-defeating,12,word__weeks,0.273518
+mask_campaign_product,self-defeating,13,word__think about,0.272219
+mask_campaign_product,self-defeating,14,word__oh no,0.264966
+mask_campaign_product,self-defeating,15,word__think,0.263807
+mask_campaign_product,self-defeating,16,word__one,0.262113
+mask_campaign_product,self-defeating,17,word__waiting,0.258472
+mask_campaign_product,self-defeating,18,word__contact,0.256842
+mask_campaign_product,self-defeating,19,word__pls,0.256493
+mask_campaign_product,self-defeating,20,char__tore ,0.241062
+mask_campaign_product,self-defeating,21,char__store,0.238392
+mask_campaign_product,self-defeating,22,word__to hit,0.237386
+mask_campaign_product,self-defeating,23,word__of mention,0.237285
+mask_campaign_product,self-defeating,24,char__tore,0.233925
+mask_campaign_product,self-defeating,25,word__shouldn,0.23309
+mask_all_leakage_groups,aggressive,1,word__nationalroastday,0.329756
+mask_all_leakage_groups,aggressive,2,word__competitor_token,0.302614
+mask_all_leakage_groups,aggressive,3,word__should,0.251659
+mask_all_leakage_groups,aggressive,4,word__drop,0.171584
+mask_all_leakage_groups,aggressive,5,word__mid,0.161603
+mask_all_leakage_groups,aggressive,6,char__ould,0.16109
+mask_all_leakage_groups,aggressive,7,char__uld,0.16109
+mask_all_leakage_groups,aggressive,8,word__where the,0.160399
+mask_all_leakage_groups,aggressive,9,char__oul,0.158846
+mask_all_leakage_groups,aggressive,10,word__if,0.158552
+mask_all_leakage_groups,aggressive,11,char__nal,0.157622
+mask_all_leakage_groups,aggressive,12,word__egg,0.157394
+mask_all_leakage_groups,aggressive,13,word__hair,0.155607
+mask_all_leakage_groups,aggressive,14,word__ban,0.155215
+mask_all_leakage_groups,aggressive,15,char__alr,0.153096
+mask_all_leakage_groups,aggressive,16,char__hou,0.15163
+mask_all_leakage_groups,aggressive,17,word__his,0.151413
+mask_all_leakage_groups,aggressive,18,word__not,0.150882
+mask_all_leakage_groups,aggressive,19,char__onal,0.149363
+mask_all_leakage_groups,aggressive,20,word__that,0.148847
+mask_all_leakage_groups,aggressive,21,word__but,0.148256
+mask_all_leakage_groups,aggressive,22,word__me,0.147304
+mask_all_leakage_groups,aggressive,23,word__dogs,0.146985
+mask_all_leakage_groups,aggressive,24,word__they,0.145386
+mask_all_leakage_groups,aggressive,25,word__beef,0.144666
+mask_all_leakage_groups,affiliative,1,word__we,0.273479
+mask_all_leakage_groups,affiliative,2,word__mention,0.168207
+mask_all_leakage_groups,affiliative,3,char__ we,0.16626
+mask_all_leakage_groups,affiliative,4,word__year,0.148853
+mask_all_leakage_groups,affiliative,5,word__thank,0.140034
+mask_all_leakage_groups,affiliative,6,word__we re,0.129159
+mask_all_leakage_groups,affiliative,7,word__in,0.127466
+mask_all_leakage_groups,affiliative,8,word__to,0.125853
+mask_all_leakage_groups,affiliative,9,word__happy,0.122767
+mask_all_leakage_groups,affiliative,10,word__thank you,0.117711
+mask_all_leakage_groups,affiliative,11,word__for,0.114869
+mask_all_leakage_groups,affiliative,12,word__thanks,0.11464
+mask_all_leakage_groups,affiliative,13,char__ank,0.113871
+mask_all_leakage_groups,affiliative,14,word__every,0.111951
+mask_all_leakage_groups,affiliative,15,word__us,0.109813
+mask_all_leakage_groups,affiliative,16,word__to the,0.109787
+mask_all_leakage_groups,affiliative,17,word__day,0.1084
+mask_all_leakage_groups,affiliative,18,char__hank,0.106796
+mask_all_leakage_groups,affiliative,19,char__thank,0.106796
+mask_all_leakage_groups,affiliative,20,word__let,0.106418
+mask_all_leakage_groups,affiliative,21,word__their,0.104455
+mask_all_leakage_groups,affiliative,22,word__to mention,0.103399
+mask_all_leakage_groups,affiliative,23,word__re,0.098894
+mask_all_leakage_groups,affiliative,24,char__nti,0.097722
+mask_all_leakage_groups,affiliative,25,char__rat,0.09714
+mask_all_leakage_groups,self-enhancing,1,word__is,0.171802
+mask_all_leakage_groups,self-enhancing,2,word__better,0.168936
+mask_all_leakage_groups,self-enhancing,3,word__url,0.128247
+mask_all_leakage_groups,self-enhancing,4,word__as,0.124623
+mask_all_leakage_groups,self-enhancing,5,word__perfect,0.121104
+mask_all_leakage_groups,self-enhancing,6,word__most,0.120285
+mask_all_leakage_groups,self-enhancing,7,word__and,0.120278
+mask_all_leakage_groups,self-enhancing,8,word__tesla,0.116641
+mask_all_leakage_groups,self-enhancing,9,word__spicy,0.113509
+mask_all_leakage_groups,self-enhancing,10,char__ect,0.112415
+mask_all_leakage_groups,self-enhancing,11,word__from,0.11196
+mask_all_leakage_groups,self-enhancing,12,word__where,0.10187
+mask_all_leakage_groups,self-enhancing,13,word__fan,0.097879
+mask_all_leakage_groups,self-enhancing,14,word__2026,0.096363
+mask_all_leakage_groups,self-enhancing,15,word__delicious,0.093478
+mask_all_leakage_groups,self-enhancing,16,word__one,0.092319
+mask_all_leakage_groups,self-enhancing,17,word__less,0.092174
+mask_all_leakage_groups,self-enhancing,18,char__ ne,0.08971
+mask_all_leakage_groups,self-enhancing,19,char__ an,0.089208
+mask_all_leakage_groups,self-enhancing,20,word__home,0.087906
+mask_all_leakage_groups,self-enhancing,21,word__before,0.083695
+mask_all_leakage_groups,self-enhancing,22,word__meet the,0.082206
+mask_all_leakage_groups,self-enhancing,23,word__url url,0.082047
+mask_all_leakage_groups,self-enhancing,24,char__pic,0.081353
+mask_all_leakage_groups,self-enhancing,25,char__ de,0.080091
+mask_all_leakage_groups,self-defeating,1,word__store,0.573823
+mask_all_leakage_groups,self-defeating,2,word__my,0.445833
+mask_all_leakage_groups,self-defeating,3,word__no,0.399731
+mask_all_leakage_groups,self-defeating,4,word__not,0.379302
+mask_all_leakage_groups,self-defeating,5,word__no one,0.348224
+mask_all_leakage_groups,self-defeating,6,word__just store,0.331839
+mask_all_leakage_groups,self-defeating,7,char__ no,0.310898
+mask_all_leakage_groups,self-defeating,8,word__who,0.296522
+mask_all_leakage_groups,self-defeating,9,char__ i ,0.286551
+mask_all_leakage_groups,self-defeating,10,word__does,0.285572
+mask_all_leakage_groups,self-defeating,11,word__think about,0.272355
+mask_all_leakage_groups,self-defeating,12,word__oh no,0.267413
+mask_all_leakage_groups,self-defeating,13,word__think,0.265235
+mask_all_leakage_groups,self-defeating,14,word__one,0.263135
+mask_all_leakage_groups,self-defeating,15,word__weeks,0.262874
+mask_all_leakage_groups,self-defeating,16,word__waiting,0.261291
+mask_all_leakage_groups,self-defeating,17,word__contact,0.259584
+mask_all_leakage_groups,self-defeating,18,word__pls,0.259255
+mask_all_leakage_groups,self-defeating,19,word__to hit,0.245043
+mask_all_leakage_groups,self-defeating,20,char__tore ,0.244019
+mask_all_leakage_groups,self-defeating,21,char__store,0.241482
+mask_all_leakage_groups,self-defeating,22,word__use,0.239112
+mask_all_leakage_groups,self-defeating,23,char__tore,0.236986
+mask_all_leakage_groups,self-defeating,24,word__of mention,0.236846
+mask_all_leakage_groups,self-defeating,25,word__shouldn,0.234296

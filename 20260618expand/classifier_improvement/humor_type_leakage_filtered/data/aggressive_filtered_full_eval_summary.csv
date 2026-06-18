@@ -1,0 +1,7 @@
+variant,n_seeds,eval_distribution,positive_count,negative_count,pr_auc,roc_auc,f1,precision,recall,accuracy,pr_auc_std,roc_auc_std,f1_std,precision_std,recall_std,accuracy_std,leakage_flag
+original_text,30,full_imbalanced_validation_folds,139,787,0.3668,0.7807,0.4404,0.334,0.6468,0.7534,0.0196,0.0105,0.015,0.0106,0.0313,0.0071,FAIL
+mask_wendys_brand,30,full_imbalanced_validation_folds,139,787,0.3609,0.7786,0.436,0.3288,0.6477,0.7485,0.0206,0.0101,0.015,0.0117,0.0313,0.0092,FAIL
+mask_brand_product,30,full_imbalanced_validation_folds,139,787,0.3508,0.7757,0.4329,0.3251,0.6487,0.745,0.0218,0.0104,0.0149,0.0113,0.0306,0.0087,FAIL
+mask_brand_product_competitor,30,full_imbalanced_validation_folds,139,787,0.3747,0.78,0.4368,0.329,0.6504,0.7483,0.023,0.0103,0.0144,0.0113,0.0291,0.0089,FAIL
+mask_campaign_product,30,full_imbalanced_validation_folds,139,787,0.3602,0.7779,0.436,0.3296,0.6448,0.7498,0.0225,0.0107,0.0151,0.0106,0.0351,0.0079,FAIL
+mask_all_leakage_groups,30,full_imbalanced_validation_folds,139,787,0.3669,0.7778,0.4345,0.3265,0.6501,0.746,0.0261,0.0103,0.015,0.0117,0.0339,0.0098,FAIL

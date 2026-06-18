@@ -1,0 +1,7 @@
+variant,pr_auc,f1,precision,recall,threshold_condition_met,leakage_flag,candidate_status
+original_text,0.3668,0.4404,0.334,0.6468,no,FAIL,diagnostic_only_no_candidate
+mask_wendys_brand,0.3609,0.436,0.3288,0.6477,no,FAIL,diagnostic_only_no_candidate
+mask_brand_product,0.3508,0.4329,0.3251,0.6487,no,FAIL,diagnostic_only_no_candidate
+mask_brand_product_competitor,0.3747,0.4368,0.329,0.6504,no,FAIL,diagnostic_only_no_candidate
+mask_campaign_product,0.3602,0.436,0.3296,0.6448,no,FAIL,diagnostic_only_no_candidate
+mask_all_leakage_groups,0.3669,0.4345,0.3265,0.6501,no,FAIL,diagnostic_only_no_candidate

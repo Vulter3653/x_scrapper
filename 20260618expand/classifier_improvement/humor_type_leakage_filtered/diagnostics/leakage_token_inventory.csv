@@ -1,0 +1,43 @@
+token,token_group,total_count,batch1_count,wendys_count,aggressive_count,non_aggressive_count,aggressive_rate_when_present,source_skew_ratio,include_in_mask_group
+wendy,wendys_brand,45,0,45,6,39,0.1333,46.0,yes
+wendys,wendys_brand,20,0,20,4,16,0.2,21.0,yes
+wendy’s,wendys_brand,33,0,33,5,28,0.1515,34.0,yes
+wendy's,wendys_brand,9,0,9,1,8,0.1111,10.0,yes
+@wendys,wendys_brand,17,0,17,3,14,0.1765,18.0,yes
+wendy,brand_product,45,0,45,6,39,0.1333,46.0,yes
+wendys,brand_product,20,0,20,4,16,0.2,21.0,yes
+wendy’s,brand_product,33,0,33,5,28,0.1515,34.0,yes
+wendy's,brand_product,9,0,9,1,8,0.1111,10.0,yes
+@wendys,brand_product,17,0,17,3,14,0.1765,18.0,yes
+frosty,brand_product,13,0,13,3,10,0.2308,14.0,yes
+baconator,brand_product,6,0,6,1,5,0.1667,7.0,yes
+nuggs,brand_product,7,0,7,0,7,0.0,8.0,yes
+nuggets,brand_product,7,0,7,1,6,0.1429,8.0,yes
+spicy nuggets,brand_product,2,0,2,0,2,0.0,3.0,yes
+dave,brand_product,8,0,8,4,4,0.5,9.0,yes
+jr frosty,brand_product,0,0,0,0,0,0,1.0,yes
+frostyccino,brand_product,0,0,0,0,0,0,1.0,yes
+breakfast baconator,brand_product,4,0,4,1,3,0.25,5.0,yes
+burger king,competitor_roast,2,0,2,2,0,1.0,3.0,yes
+mcdonald,competitor_roast,3,0,3,3,0,1.0,4.0,yes
+mcdonalds,competitor_roast,1,1,0,0,1,0.0,0.5,yes
+mcdonald’s,competitor_roast,1,0,1,1,0,1.0,2.0,yes
+mcdonald's,competitor_roast,2,0,2,2,0,1.0,3.0,yes
+bk,competitor_roast,0,0,0,0,0,0,1.0,yes
+clown,competitor_roast,0,0,0,0,0,0,1.0,yes
+roast,competitor_roast,12,6,6,4,8,0.3333,1.0,yes
+roasting,competitor_roast,4,1,3,3,1,0.75,2.0,yes
+diss,competitor_roast,1,0,1,1,0,1.0,2.0,yes
+disrespectful,competitor_roast,1,0,1,1,0,1.0,2.0,yes
+savage,competitor_roast,0,0,0,0,0,0,1.0,yes
+free,campaign_product,43,12,31,5,38,0.1163,2.4615,yes
+app,campaign_product,28,6,22,5,23,0.1786,3.2857,yes
+drive-thru,campaign_product,4,0,4,1,3,0.25,5.0,yes
+drive thru,campaign_product,3,0,3,1,2,0.3333,4.0,yes
+breakfast,campaign_product,25,1,24,2,23,0.08,12.5,yes
+fries,campaign_product,21,0,21,5,16,0.2381,22.0,yes
+chicken sandwich,campaign_product,3,0,3,0,3,0.0,4.0,yes
+nuggets,campaign_product,7,0,7,1,6,0.1429,8.0,yes
+coupon,campaign_product,0,0,0,0,0,0,1.0,yes
+deal,campaign_product,7,5,2,1,6,0.1429,0.5,yes
+offer,campaign_product,6,5,1,1,5,0.1667,0.3333,yes

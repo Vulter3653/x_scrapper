@@ -1,0 +1,7 @@
+variant,n_rows,macro_f1,weighted_f1,accuracy,aggressive_f1,self_defeating_f1,leakage_flag
+original_text,926,0.4194,0.5157,0.5184,0.4551,0.1493,FAIL
+mask_wendys_brand,926,0.4105,0.5081,0.5097,0.4551,0.1333,FAIL
+mask_brand_product,926,0.4188,0.5098,0.5119,0.4522,0.1667,FAIL
+mask_brand_product_competitor,926,0.4151,0.5082,0.5108,0.4254,0.1739,FAIL
+mask_campaign_product,926,0.4075,0.5074,0.5086,0.4373,0.1351,FAIL
+mask_all_leakage_groups,926,0.4135,0.505,0.5065,0.4244,0.1795,FAIL

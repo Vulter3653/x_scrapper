@@ -1,0 +1,13 @@
+variant,source,n_rows,macro_f1,weighted_f1,accuracy
+original_text,batch1_fortune100,648,0.4134,0.5421,0.5463
+original_text,wendys_human_type,278,0.3807,0.4558,0.4532
+mask_wendys_brand,batch1_fortune100,648,0.4121,0.5383,0.5448
+mask_wendys_brand,wendys_human_type,278,0.3597,0.4361,0.4281
+mask_brand_product,batch1_fortune100,648,0.4161,0.5411,0.5494
+mask_brand_product,wendys_human_type,278,0.3678,0.4267,0.4245
+mask_brand_product_competitor,batch1_fortune100,648,0.411,0.5415,0.5509
+mask_brand_product_competitor,wendys_human_type,278,0.3652,0.4175,0.4173
+mask_campaign_product,batch1_fortune100,648,0.4111,0.5422,0.5463
+mask_campaign_product,wendys_human_type,278,0.3479,0.4288,0.4209
+mask_all_leakage_groups,batch1_fortune100,648,0.4074,0.544,0.5525
+mask_all_leakage_groups,wendys_human_type,278,0.3498,0.4051,0.3993

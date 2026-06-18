@@ -1,0 +1,13 @@
+variant,eval_scope,n_rows,pr_auc,roc_auc,f1,precision,recall,accuracy
+original_text,train_batch1_test_wendys,278,0.4318,0.6018,0.0,0.0,0.0,0.6583
+original_text,train_wendys_test_batch1,648,0.1555,0.6858,0.0,0.0,0.0,0.9321
+mask_wendys_brand,train_batch1_test_wendys,278,0.4224,0.5877,0.0,0.0,0.0,0.6583
+mask_wendys_brand,train_wendys_test_batch1,648,0.133,0.6621,0.0,0.0,0.0,0.9321
+mask_brand_product,train_batch1_test_wendys,278,0.4271,0.6021,0.0,0.0,0.0,0.6583
+mask_brand_product,train_wendys_test_batch1,648,0.1354,0.6668,0.0,0.0,0.0,0.9321
+mask_brand_product_competitor,train_batch1_test_wendys,278,0.4371,0.6039,0.0,0.0,0.0,0.6583
+mask_brand_product_competitor,train_wendys_test_batch1,648,0.139,0.6784,0.0,0.0,0.0,0.9321
+mask_campaign_product,train_batch1_test_wendys,278,0.4544,0.6197,0.0,0.0,0.0,0.6583
+mask_campaign_product,train_wendys_test_batch1,648,0.1608,0.6811,0.0,0.0,0.0,0.9321
+mask_all_leakage_groups,train_batch1_test_wendys,278,0.4561,0.6215,0.0,0.0,0.0,0.6583
+mask_all_leakage_groups,train_wendys_test_batch1,648,0.1427,0.6746,0.0,0.0,0.0,0.9321

@@ -1,0 +1,7 @@
+variant,rows,changed_rows,changed_row_rate,avg_tokens_removed_or_masked,batch1_changed_rows,wendys_changed_rows,aggressive_changed_rows
+original_text,926,0,0.0,0.0,0,0,0
+mask_wendys_brand,926,64,0.0691,0.0745,0,64,10
+mask_brand_product,926,94,0.1015,0.122,0,94,19
+mask_brand_product_competitor,926,112,0.121,0.1479,7,105,28
+mask_campaign_product,926,115,0.1242,0.1728,29,86,17
+mask_all_leakage_groups,926,185,0.1998,0.3089,36,149,36

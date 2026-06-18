@@ -1,0 +1,1001 @@
+variant,class_label,token,feature,weight,rank_abs_weight,leakage_flag
+original_text,aggressive,wendy,word__me wendy,0.060641,1,FAIL
+original_text,aggressive,wendy,word__wendys,0.038031,2,FAIL
+original_text,aggressive,wendy,word__wendy,-0.03188,3,FAIL
+original_text,aggressive,wendys,word__wendys,0.038031,1,FAIL
+original_text,aggressive,wendys,word__wendysspicynuggs,-0.022669,2,FAIL
+original_text,aggressive,wendys,word__verified wendysspicynuggs,-0.015744,3,FAIL
+original_text,aggressive,wendy,word__me wendy,0.060641,1,FAIL
+original_text,aggressive,wendy,word__wendys,0.038031,2,FAIL
+original_text,aggressive,wendy,word__wendy,-0.03188,3,FAIL
+original_text,aggressive,wendys,word__wendys,0.038031,1,FAIL
+original_text,aggressive,wendys,word__wendysspicynuggs,-0.022669,2,FAIL
+original_text,aggressive,wendys,word__verified wendysspicynuggs,-0.015744,3,FAIL
+original_text,aggressive,frosty,word__mints frosty,0.070452,1,FAIL
+original_text,aggressive,frosty,word__vanilla frosty,-0.021105,2,FAIL
+original_text,aggressive,frosty,word__frosty,0.020722,3,FAIL
+original_text,aggressive,baconator,word__breakfast baconator,0.020797,1,FAIL
+original_text,aggressive,baconator,word__baconator with,-0.010523,2,FAIL
+original_text,aggressive,baconator,word__baconator,-0.006119,3,FAIL
+original_text,aggressive,nuggs,word__nuggs,-0.041476,1,FAIL
+original_text,aggressive,nuggs,char__nuggs,-0.026237,2,FAIL
+original_text,aggressive,nuggs,word__spicy nuggs,-0.025578,3,FAIL
+original_text,aggressive,nuggets,word__nuggets,0.040149,1,FAIL
+original_text,aggressive,nuggets,word__spicy nuggets,-0.014628,2,FAIL
+original_text,aggressive,nuggets,word__4pc nuggets,-0.011122,3,FAIL
+original_text,aggressive,spicy nuggets,word__spicy nuggets,-0.014628,1,FAIL
+original_text,aggressive,dave,word__dave,0.134075,1,FAIL
+original_text,aggressive,dave,word__dave single,0.079149,2,FAIL
+original_text,aggressive,dave,word__free dave,0.050098,3,FAIL
+original_text,aggressive,breakfast baconator,word__breakfast baconator,0.020797,1,FAIL
+original_text,aggressive,burger king,word__burger king,0.105124,1,FAIL
+original_text,aggressive,mcdonald,word__mcdonald,0.107046,1,FAIL
+original_text,aggressive,mcdonald,word__mcdonald announced,0.068638,2,FAIL
+original_text,aggressive,clown,word__clowns,0.07479,1,FAIL
+original_text,aggressive,roast,word__nationalroastday,0.329476,1,FAIL
+original_text,aggressive,roast,char__roast,0.163052,2,FAIL
+original_text,aggressive,roast,word__roasting,0.115193,3,FAIL
+original_text,aggressive,roasting,word__roasting,0.115193,1,FAIL
+original_text,aggressive,free,word__enjoy free,0.067029,1,FAIL
+original_text,aggressive,free,word__free dave,0.050098,2,FAIL
+original_text,aggressive,free,word__free,-0.044304,3,FAIL
+original_text,aggressive,app,word__happy,-0.08972,1,FAIL
+original_text,aggressive,app,word__happening,0.067796,2,FAIL
+original_text,aggressive,app,word__apply,-0.066824,3,FAIL
+original_text,aggressive,drive thru,word__drive thru,0.042737,1,FAIL
+original_text,aggressive,breakfast,word__breakfast,-0.080681,1,FAIL
+original_text,aggressive,breakfast,word__breakfast url,0.045374,2,FAIL
+original_text,aggressive,breakfast,word__breakfast biscuit,-0.025603,3,FAIL
+original_text,aggressive,fries,word__fries in,0.115591,1,FAIL
+original_text,aggressive,fries,word__french fries,0.056277,2,FAIL
+original_text,aggressive,fries,word__fries,0.022181,3,FAIL
+original_text,aggressive,chicken sandwich,word__chicken sandwich,-0.031245,1,FAIL
+original_text,aggressive,nuggets,word__nuggets,0.040149,1,FAIL
+original_text,aggressive,nuggets,word__spicy nuggets,-0.014628,2,FAIL
+original_text,aggressive,nuggets,word__4pc nuggets,-0.011122,3,FAIL
+original_text,aggressive,deal,word__deals,-0.049582,1,FAIL
+original_text,aggressive,deal,word__dealer,0.035993,2,FAIL
+original_text,aggressive,deal,word__the deals,-0.027549,3,FAIL
+original_text,aggressive,offer,word__offer,0.013146,1,FAIL
+original_text,aggressive,offer,word__to offer,-0.010817,2,FAIL
+original_text,aggressive,offer,word__offering,-0.010304,3,FAIL
+original_text,affiliative,wendy,word__wendy,-0.066973,1,FAIL
+original_text,affiliative,wendy,word__the wendy,0.065326,2,FAIL
+original_text,affiliative,wendy,word__is wendy,-0.063461,3,FAIL
+original_text,affiliative,wendys,word__wendysspicynuggs,-0.03543,1,FAIL
+original_text,affiliative,wendys,word__verified wendysspicynuggs,-0.024681,2,FAIL
+original_text,affiliative,wendys,word__wendys,-0.015138,3,FAIL
+original_text,affiliative,wendy,word__wendy,-0.066973,1,FAIL
+original_text,affiliative,wendy,word__the wendy,0.065326,2,FAIL
+original_text,affiliative,wendy,word__is wendy,-0.063461,3,FAIL
+original_text,affiliative,wendys,word__wendysspicynuggs,-0.03543,1,FAIL
+original_text,affiliative,wendys,word__verified wendysspicynuggs,-0.024681,2,FAIL
+original_text,affiliative,wendys,word__wendys,-0.015138,3,FAIL
+original_text,affiliative,frosty,word__frosty,-0.067273,1,FAIL
+original_text,affiliative,frosty,word__vanilla frosty,-0.029718,2,FAIL
+original_text,affiliative,frosty,word__mints frosty,-0.021066,3,FAIL
+original_text,affiliative,baconator,word__baconator,0.034752,1,FAIL
+original_text,affiliative,baconator,word__breakfast baconator,-0.00075,2,FAIL
+original_text,affiliative,baconator,word__baconator with,-6.5e-05,3,FAIL
+original_text,affiliative,nuggs,word__wendysspicynuggs,-0.03543,1,FAIL
+original_text,affiliative,nuggs,word__verified wendysspicynuggs,-0.024681,2,FAIL
+original_text,affiliative,nuggs,word__spicy nuggs,-0.021098,3,FAIL
+original_text,affiliative,nuggets,word__4pc nuggets,0.020425,1,FAIL
+original_text,affiliative,nuggets,word__nuggets,0.014154,2,FAIL
+original_text,affiliative,nuggets,word__spicy nuggets,0.006937,3,FAIL
+original_text,affiliative,spicy nuggets,word__spicy nuggets,0.006937,1,FAIL
+original_text,affiliative,dave,word__dave,-0.047095,1,FAIL
+original_text,affiliative,dave,word__dave single,-0.021868,2,FAIL
+original_text,affiliative,dave,word__free dave,0.002092,3,FAIL
+original_text,affiliative,breakfast baconator,word__breakfast baconator,-0.00075,1,FAIL
+original_text,affiliative,burger king,word__burger king,-0.032843,1,FAIL
+original_text,affiliative,mcdonald,word__mcdonald,-0.035094,1,FAIL
+original_text,affiliative,mcdonald,word__mcdonald announced,-0.022042,2,FAIL
+original_text,affiliative,clown,word__clowns,-0.008663,1,FAIL
+original_text,affiliative,roast,word__nationalroastday,-0.09288,1,FAIL
+original_text,affiliative,roast,char__roast,-0.048231,2,FAIL
+original_text,affiliative,roast,word__roasting,-0.027702,3,FAIL
+original_text,affiliative,roasting,word__roasting,-0.027702,1,FAIL
+original_text,affiliative,free,word__free drink,-0.037757,1,FAIL
+original_text,affiliative,free,word__freedom,0.034957,2,FAIL
+original_text,affiliative,free,word__free medium,-0.028491,3,FAIL
+original_text,affiliative,app,word__happy,0.124395,1,FAIL
+original_text,affiliative,app,char__happ,0.084385,2,FAIL
+original_text,affiliative,app,char__ happ,0.081543,3,FAIL
+original_text,affiliative,drive thru,word__drive thru,0.00758,1,FAIL
+original_text,affiliative,breakfast,word__off breakfast,0.032201,1,FAIL
+original_text,affiliative,breakfast,word__with breakfast,0.030533,2,FAIL
+original_text,affiliative,breakfast,word__breakfast sandwich,-0.030519,3,FAIL
+original_text,affiliative,fries,word__soggy fries,-0.027394,1,FAIL
+original_text,affiliative,fries,word__free fries,0.027336,2,FAIL
+original_text,affiliative,fries,word__fries for,0.027232,3,FAIL
+original_text,affiliative,chicken sandwich,word__chicken sandwich,0.010846,1,FAIL
+original_text,affiliative,nuggets,word__4pc nuggets,0.020425,1,FAIL
+original_text,affiliative,nuggets,word__nuggets,0.014154,2,FAIL
+original_text,affiliative,nuggets,word__spicy nuggets,0.006937,3,FAIL
+original_text,affiliative,deal,char__ deal,-0.012656,1,FAIL
+original_text,affiliative,deal,word__big deal,-0.012573,2,FAIL
+original_text,affiliative,deal,word__the deals,-0.011005,3,FAIL
+original_text,affiliative,offer,char__offer,0.012563,1,FAIL
+original_text,affiliative,offer,word__offering,0.005178,2,FAIL
+original_text,affiliative,offer,word__offer,-0.004069,3,FAIL
+original_text,self-enhancing,wendy,word__the wendy,-0.071279,1,FAIL
+original_text,self-enhancing,wendy,word__wendysspicynuggs,0.056451,2,FAIL
+original_text,self-enhancing,wendy,word__wendy app,-0.050101,3,FAIL
+original_text,self-enhancing,wendys,word__wendysspicynuggs,0.056451,1,FAIL
+original_text,self-enhancing,wendys,word__verified wendysspicynuggs,0.038775,2,FAIL
+original_text,self-enhancing,wendys,word__wendys,-0.001863,3,FAIL
+original_text,self-enhancing,wendy,word__the wendy,-0.071279,1,FAIL
+original_text,self-enhancing,wendy,word__wendysspicynuggs,0.056451,2,FAIL
+original_text,self-enhancing,wendy,word__wendy app,-0.050101,3,FAIL
+original_text,self-enhancing,wendys,word__wendysspicynuggs,0.056451,1,FAIL
+original_text,self-enhancing,wendys,word__verified wendysspicynuggs,0.038775,2,FAIL
+original_text,self-enhancing,wendys,word__wendys,-0.001863,3,FAIL
+original_text,self-enhancing,frosty,word__frosty,0.045261,1,FAIL
+original_text,self-enhancing,frosty,word__mints frosty,-0.017862,2,FAIL
+original_text,self-enhancing,frosty,word__vanilla frosty,0.007876,3,FAIL
+original_text,self-enhancing,baconator,word__baconator,-0.023026,1,FAIL
+original_text,self-enhancing,baconator,word__baconator with,0.008873,2,FAIL
+original_text,self-enhancing,baconator,word__breakfast baconator,-0.006727,3,FAIL
+original_text,self-enhancing,nuggs,word__wendysspicynuggs,0.056451,1,FAIL
+original_text,self-enhancing,nuggs,word__nuggs,0.044295,2,FAIL
+original_text,self-enhancing,nuggs,word__spicy nuggs,0.043209,3,FAIL
+original_text,self-enhancing,nuggets,word__nuggets,-0.032192,1,FAIL
+original_text,self-enhancing,nuggets,word__4pc nuggets,-0.013977,2,FAIL
+original_text,self-enhancing,nuggets,word__spicy nuggets,0.004147,3,FAIL
+original_text,self-enhancing,spicy nuggets,word__spicy nuggets,0.004147,1,FAIL
+original_text,self-enhancing,dave,word__free dave,-0.028842,1,FAIL
+original_text,self-enhancing,dave,word__dave,-0.023072,2,FAIL
+original_text,self-enhancing,dave,word__dave single,-0.018459,3,FAIL
+original_text,self-enhancing,breakfast baconator,word__breakfast baconator,-0.006727,1,FAIL
+original_text,self-enhancing,burger king,word__burger king,-0.030475,1,FAIL
+original_text,self-enhancing,mcdonald,word__mcdonald,-0.026518,1,FAIL
+original_text,self-enhancing,mcdonald,word__mcdonald announced,-0.017702,2,FAIL
+original_text,self-enhancing,clown,word__clowns,-0.030191,1,FAIL
+original_text,self-enhancing,roast,word__nationalroastday,-0.113537,1,FAIL
+original_text,self-enhancing,roast,word__roasted,0.048271,2,FAIL
+original_text,self-enhancing,roast,char__roast,-0.045451,3,FAIL
+original_text,self-enhancing,roasting,word__roasting,-0.036106,1,FAIL
+original_text,self-enhancing,free,word__free drink,0.059429,1,FAIL
+original_text,self-enhancing,free,word__free,0.043933,2,FAIL
+original_text,self-enhancing,free,word__free honey,0.036799,3,FAIL
+original_text,self-enhancing,app,word__happy,-0.072158,1,FAIL
+original_text,self-enhancing,app,char__ happ,-0.053535,2,FAIL
+original_text,self-enhancing,app,char__happ,-0.052993,3,FAIL
+original_text,self-enhancing,drive thru,word__drive thru,-0.05666,1,FAIL
+original_text,self-enhancing,breakfast,word__breakfast,0.103125,1,FAIL
+original_text,self-enhancing,breakfast,word__breakfast sandwich,0.049687,2,FAIL
+original_text,self-enhancing,breakfast,word__breakfast biscuit,0.033653,3,FAIL
+original_text,self-enhancing,fries,word__fries,-0.068791,1,FAIL
+original_text,self-enhancing,fries,word__soggy fries,0.049558,2,FAIL
+original_text,self-enhancing,fries,word__french fries,-0.047029,3,FAIL
+original_text,self-enhancing,chicken sandwich,word__chicken sandwich,0.014287,1,FAIL
+original_text,self-enhancing,nuggets,word__nuggets,-0.032192,1,FAIL
+original_text,self-enhancing,nuggets,word__4pc nuggets,-0.013977,2,FAIL
+original_text,self-enhancing,nuggets,word__spicy nuggets,0.004147,3,FAIL
+original_text,self-enhancing,deal,word__deals,0.04514,1,FAIL
+original_text,self-enhancing,deal,word__the deals,0.034979,2,FAIL
+original_text,self-enhancing,deal,word__big deal,0.019683,3,FAIL
+original_text,self-enhancing,offer,word__to offer,0.006477,1,FAIL
+original_text,self-enhancing,offer,char__offer,-0.006316,2,FAIL
+original_text,self-enhancing,offer,word__offering,0.001743,3,FAIL
+original_text,self-defeating,wendy,word__wendy,0.309622,1,FAIL
+original_text,self-defeating,wendy,char__wendy,0.149837,2,FAIL
+original_text,self-defeating,wendy,word__up wendy,0.097553,3,FAIL
+original_text,self-defeating,wendys,word__wendysspicynuggs,-0.019488,1,FAIL
+original_text,self-defeating,wendys,word__wendys,-0.018105,2,FAIL
+original_text,self-defeating,wendys,word__verified wendysspicynuggs,-0.01296,3,FAIL
+original_text,self-defeating,wendy,word__wendy,0.309622,1,FAIL
+original_text,self-defeating,wendy,char__wendy,0.149837,2,FAIL
+original_text,self-defeating,wendy,word__up wendy,0.097553,3,FAIL
+original_text,self-defeating,wendys,word__wendysspicynuggs,-0.019488,1,FAIL
+original_text,self-defeating,wendys,word__wendys,-0.018105,2,FAIL
+original_text,self-defeating,wendys,word__verified wendysspicynuggs,-0.01296,3,FAIL
+original_text,self-defeating,frosty,word__vanilla frosty,0.161949,1,FAIL
+original_text,self-defeating,frosty,word__frosty,0.066593,2,FAIL
+original_text,self-defeating,frosty,word__mints frosty,-0.012121,3,FAIL
+original_text,self-defeating,baconator,word__baconator,-0.036167,1,FAIL
+original_text,self-defeating,baconator,word__breakfast baconator,-0.01715,2,FAIL
+original_text,self-defeating,baconator,word__baconator with,-0.008649,3,FAIL
+original_text,self-defeating,nuggs,word__nuggs,-0.034824,1,FAIL
+original_text,self-defeating,nuggs,char__nuggs,-0.022142,2,FAIL
+original_text,self-defeating,nuggs,word__spicy nuggs,-0.021928,3,FAIL
+original_text,self-defeating,nuggets,word__nuggets,-0.031316,1,FAIL
+original_text,self-defeating,nuggets,word__spicy nuggets,-0.011402,2,FAIL
+original_text,self-defeating,nuggets,word__4pc nuggets,-0.008692,3,FAIL
+original_text,self-defeating,spicy nuggets,word__spicy nuggets,-0.011402,1,FAIL
+original_text,self-defeating,dave,word__dave,-0.044333,1,FAIL
+original_text,self-defeating,dave,word__dave single,-0.029412,2,FAIL
+original_text,self-defeating,dave,word__free dave,-0.017873,3,FAIL
+original_text,self-defeating,breakfast baconator,word__breakfast baconator,-0.01715,1,FAIL
+original_text,self-defeating,burger king,word__burger king,-0.016947,1,FAIL
+original_text,self-defeating,mcdonald,word__mcdonald,-0.016295,1,FAIL
+original_text,self-defeating,mcdonald,word__mcdonald announced,-0.010076,2,FAIL
+original_text,self-defeating,clown,word__clowns,-0.017148,1,FAIL
+original_text,self-defeating,roast,word__nationalroastday,-0.06958,1,FAIL
+original_text,self-defeating,roast,char__roast,-0.058961,2,FAIL
+original_text,self-defeating,roast,word__roast,-0.043397,3,FAIL
+original_text,self-defeating,roasting,word__roasting,-0.021426,1,FAIL
+original_text,self-defeating,free,word__free pc,0.179994,1,FAIL
+original_text,self-defeating,free,word__for free,0.170462,2,FAIL
+original_text,self-defeating,free,word__free,-0.02888,3,FAIL
+original_text,self-defeating,app,word__wendy app,0.091683,1,FAIL
+original_text,self-defeating,app,word__happy,-0.066486,2,FAIL
+original_text,self-defeating,app,word__apply,-0.054979,3,FAIL
+original_text,self-defeating,drive thru,word__drive thru,0.102187,1,FAIL
+original_text,self-defeating,breakfast,word__breakfast,-0.11698,1,FAIL
+original_text,self-defeating,breakfast,word__breakfast biscuit,-0.02249,2,FAIL
+original_text,self-defeating,breakfast,word__breakfast baconator,-0.01715,3,FAIL
+original_text,self-defeating,fries,word__fries,0.173007,1,FAIL
+original_text,self-defeating,fries,word__the fries,0.139076,2,FAIL
+original_text,self-defeating,fries,word__french fries,0.117478,3,FAIL
+original_text,self-defeating,chicken sandwich,word__chicken sandwich,-0.023442,1,FAIL
+original_text,self-defeating,nuggets,word__nuggets,-0.031316,1,FAIL
+original_text,self-defeating,nuggets,word__spicy nuggets,-0.011402,2,FAIL
+original_text,self-defeating,nuggets,word__4pc nuggets,-0.008692,3,FAIL
+original_text,self-defeating,deal,word__deal,0.061767,1,FAIL
+original_text,self-defeating,deal,word__deals,-0.036139,2,FAIL
+original_text,self-defeating,deal,word__the deals,-0.020689,3,FAIL
+original_text,self-defeating,offer,word__offer,-0.025215,1,FAIL
+original_text,self-defeating,offer,char__offer,-0.017789,2,FAIL
+original_text,self-defeating,offer,word__to offer,-0.008551,3,FAIL
+mask_wendys_brand,aggressive,wendy,word__wendysspicynuggs,-0.022768,1,FAIL
+mask_wendys_brand,aggressive,wendy,word__verified wendysspicynuggs,-0.015784,2,FAIL
+mask_wendys_brand,aggressive,wendys,word__wendysspicynuggs,-0.022768,1,FAIL
+mask_wendys_brand,aggressive,wendys,word__verified wendysspicynuggs,-0.015784,2,FAIL
+mask_wendys_brand,aggressive,wendy,word__wendysspicynuggs,-0.022768,1,FAIL
+mask_wendys_brand,aggressive,wendy,word__verified wendysspicynuggs,-0.015784,2,FAIL
+mask_wendys_brand,aggressive,wendys,word__wendysspicynuggs,-0.022768,1,FAIL
+mask_wendys_brand,aggressive,wendys,word__verified wendysspicynuggs,-0.015784,2,FAIL
+mask_wendys_brand,aggressive,frosty,word__mints frosty,0.07047,1,FAIL
+mask_wendys_brand,aggressive,frosty,word__vanilla frosty,-0.021096,2,FAIL
+mask_wendys_brand,aggressive,frosty,word__frosty,0.020728,3,FAIL
+mask_wendys_brand,aggressive,baconator,word__breakfast baconator,0.020624,1,FAIL
+mask_wendys_brand,aggressive,baconator,word__baconator with,-0.010644,2,FAIL
+mask_wendys_brand,aggressive,baconator,word__baconator,-0.006316,3,FAIL
+mask_wendys_brand,aggressive,nuggs,word__nuggs,-0.041697,1,FAIL
+mask_wendys_brand,aggressive,nuggs,char__nuggs,-0.026263,2,FAIL
+mask_wendys_brand,aggressive,nuggs,word__spicy nuggs,-0.025787,3,FAIL
+mask_wendys_brand,aggressive,nuggets,word__nuggets,0.040172,1,FAIL
+mask_wendys_brand,aggressive,nuggets,word__spicy nuggets,-0.014583,2,FAIL
+mask_wendys_brand,aggressive,nuggets,word__4pc nuggets,-0.011119,3,FAIL
+mask_wendys_brand,aggressive,spicy nuggets,word__spicy nuggets,-0.014583,1,FAIL
+mask_wendys_brand,aggressive,dave,word__dave,0.134083,1,FAIL
+mask_wendys_brand,aggressive,dave,word__dave single,0.079126,2,FAIL
+mask_wendys_brand,aggressive,dave,word__free dave,0.05004,3,FAIL
+mask_wendys_brand,aggressive,breakfast baconator,word__breakfast baconator,0.020624,1,FAIL
+mask_wendys_brand,aggressive,burger king,word__burger king,0.105141,1,FAIL
+mask_wendys_brand,aggressive,mcdonald,word__mcdonald,0.107072,1,FAIL
+mask_wendys_brand,aggressive,mcdonald,word__mcdonald announced,0.068643,2,FAIL
+mask_wendys_brand,aggressive,clown,word__clowns,0.074869,1,FAIL
+mask_wendys_brand,aggressive,roast,word__nationalroastday,0.329901,1,FAIL
+mask_wendys_brand,aggressive,roast,char__roast,0.162557,2,FAIL
+mask_wendys_brand,aggressive,roast,word__roasting,0.115485,3,FAIL
+mask_wendys_brand,aggressive,roasting,word__roasting,0.115485,1,FAIL
+mask_wendys_brand,aggressive,free,word__enjoy free,0.066974,1,FAIL
+mask_wendys_brand,aggressive,free,word__free dave,0.05004,2,FAIL
+mask_wendys_brand,aggressive,free,word__free,-0.04424,3,FAIL
+mask_wendys_brand,aggressive,app,word__happy,-0.089571,1,FAIL
+mask_wendys_brand,aggressive,app,word__happening,0.079822,2,FAIL
+mask_wendys_brand,aggressive,app,word__apply,-0.06676,3,FAIL
+mask_wendys_brand,aggressive,drive thru,word__drive thru,0.042657,1,FAIL
+mask_wendys_brand,aggressive,breakfast,word__breakfast,-0.082521,1,FAIL
+mask_wendys_brand,aggressive,breakfast,word__breakfast url,0.045294,2,FAIL
+mask_wendys_brand,aggressive,breakfast,word__brand_token breakfast,-0.029372,3,FAIL
+mask_wendys_brand,aggressive,fries,word__fries in,0.115771,1,FAIL
+mask_wendys_brand,aggressive,fries,word__french fries,0.056284,2,FAIL
+mask_wendys_brand,aggressive,fries,word__fries,0.022188,3,FAIL
+mask_wendys_brand,aggressive,chicken sandwich,word__chicken sandwich,-0.031349,1,FAIL
+mask_wendys_brand,aggressive,nuggets,word__nuggets,0.040172,1,FAIL
+mask_wendys_brand,aggressive,nuggets,word__spicy nuggets,-0.014583,2,FAIL
+mask_wendys_brand,aggressive,nuggets,word__4pc nuggets,-0.011119,3,FAIL
+mask_wendys_brand,aggressive,deal,word__deals,-0.049537,1,FAIL
+mask_wendys_brand,aggressive,deal,word__dealer,0.036016,2,FAIL
+mask_wendys_brand,aggressive,deal,word__the deals,-0.027508,3,FAIL
+mask_wendys_brand,aggressive,offer,word__offer,0.013241,1,FAIL
+mask_wendys_brand,aggressive,offer,word__to offer,-0.010803,2,FAIL
+mask_wendys_brand,aggressive,offer,word__offering,-0.01029,3,FAIL
+mask_wendys_brand,affiliative,wendy,word__wendysspicynuggs,-0.035525,1,FAIL
+mask_wendys_brand,affiliative,wendy,word__verified wendysspicynuggs,-0.024977,2,FAIL
+mask_wendys_brand,affiliative,wendys,word__wendysspicynuggs,-0.035525,1,FAIL
+mask_wendys_brand,affiliative,wendys,word__verified wendysspicynuggs,-0.024977,2,FAIL
+mask_wendys_brand,affiliative,wendy,word__wendysspicynuggs,-0.035525,1,FAIL
+mask_wendys_brand,affiliative,wendy,word__verified wendysspicynuggs,-0.024977,2,FAIL
+mask_wendys_brand,affiliative,wendys,word__wendysspicynuggs,-0.035525,1,FAIL
+mask_wendys_brand,affiliative,wendys,word__verified wendysspicynuggs,-0.024977,2,FAIL
+mask_wendys_brand,affiliative,frosty,word__frosty,-0.066716,1,FAIL
+mask_wendys_brand,affiliative,frosty,word__vanilla frosty,-0.029809,2,FAIL
+mask_wendys_brand,affiliative,frosty,word__mints frosty,-0.021099,3,FAIL
+mask_wendys_brand,affiliative,baconator,word__baconator,0.034989,1,FAIL
+mask_wendys_brand,affiliative,baconator,word__breakfast baconator,-0.0004,2,FAIL
+mask_wendys_brand,affiliative,baconator,word__baconator with,0.00018,3,FAIL
+mask_wendys_brand,affiliative,nuggs,word__wendysspicynuggs,-0.035525,1,FAIL
+mask_wendys_brand,affiliative,nuggs,word__verified wendysspicynuggs,-0.024977,2,FAIL
+mask_wendys_brand,affiliative,nuggs,word__spicy nuggs,-0.020697,3,FAIL
+mask_wendys_brand,affiliative,nuggets,word__4pc nuggets,0.020382,1,FAIL
+mask_wendys_brand,affiliative,nuggets,word__nuggets,0.014078,2,FAIL
+mask_wendys_brand,affiliative,nuggets,word__spicy nuggets,0.006798,3,FAIL
+mask_wendys_brand,affiliative,spicy nuggets,word__spicy nuggets,0.006798,1,FAIL
+mask_wendys_brand,affiliative,dave,word__dave,-0.047318,1,FAIL
+mask_wendys_brand,affiliative,dave,word__dave single,-0.022007,2,FAIL
+mask_wendys_brand,affiliative,dave,word__free dave,0.002028,3,FAIL
+mask_wendys_brand,affiliative,breakfast baconator,word__breakfast baconator,-0.0004,1,FAIL
+mask_wendys_brand,affiliative,burger king,word__burger king,-0.032905,1,FAIL
+mask_wendys_brand,affiliative,mcdonald,word__mcdonald,-0.035149,1,FAIL
+mask_wendys_brand,affiliative,mcdonald,word__mcdonald announced,-0.022071,2,FAIL
+mask_wendys_brand,affiliative,clown,word__clowns,-0.008793,1,FAIL
+mask_wendys_brand,affiliative,roast,word__nationalroastday,-0.092845,1,FAIL
+mask_wendys_brand,affiliative,roast,char__roast,-0.048134,2,FAIL
+mask_wendys_brand,affiliative,roast,word__roasting,-0.02774,3,FAIL
+mask_wendys_brand,affiliative,roasting,word__roasting,-0.02774,1,FAIL
+mask_wendys_brand,affiliative,free,word__free drink,-0.036495,1,FAIL
+mask_wendys_brand,affiliative,free,word__freedom,0.034905,2,FAIL
+mask_wendys_brand,affiliative,free,word__free medium,-0.028581,3,FAIL
+mask_wendys_brand,affiliative,app,word__happy,0.124041,1,FAIL
+mask_wendys_brand,affiliative,app,char__happ,0.085755,2,FAIL
+mask_wendys_brand,affiliative,app,char__ happ,0.082975,3,FAIL
+mask_wendys_brand,affiliative,drive thru,word__drive thru,0.007943,1,FAIL
+mask_wendys_brand,affiliative,breakfast,word__with breakfast,0.031822,1,FAIL
+mask_wendys_brand,affiliative,breakfast,word__off breakfast,0.031789,2,FAIL
+mask_wendys_brand,affiliative,breakfast,word__breakfast sandwich,-0.030134,3,FAIL
+mask_wendys_brand,affiliative,fries,word__free fries,0.027749,1,FAIL
+mask_wendys_brand,affiliative,fries,word__soggy fries,-0.027281,2,FAIL
+mask_wendys_brand,affiliative,fries,word__fries for,0.027107,3,FAIL
+mask_wendys_brand,affiliative,chicken sandwich,word__chicken sandwich,0.011011,1,FAIL
+mask_wendys_brand,affiliative,nuggets,word__4pc nuggets,0.020382,1,FAIL
+mask_wendys_brand,affiliative,nuggets,word__nuggets,0.014078,2,FAIL
+mask_wendys_brand,affiliative,nuggets,word__spicy nuggets,0.006798,3,FAIL
+mask_wendys_brand,affiliative,deal,char__ deal,-0.012873,1,FAIL
+mask_wendys_brand,affiliative,deal,word__big deal,-0.012583,2,FAIL
+mask_wendys_brand,affiliative,deal,word__the deals,-0.011211,3,FAIL
+mask_wendys_brand,affiliative,offer,char__offer,0.012516,1,FAIL
+mask_wendys_brand,affiliative,offer,word__offering,0.005127,2,FAIL
+mask_wendys_brand,affiliative,offer,word__offer,-0.004034,3,FAIL
+mask_wendys_brand,self-enhancing,wendy,word__wendysspicynuggs,0.056281,1,FAIL
+mask_wendys_brand,self-enhancing,wendy,word__verified wendysspicynuggs,0.038862,2,FAIL
+mask_wendys_brand,self-enhancing,wendys,word__wendysspicynuggs,0.056281,1,FAIL
+mask_wendys_brand,self-enhancing,wendys,word__verified wendysspicynuggs,0.038862,2,FAIL
+mask_wendys_brand,self-enhancing,wendy,word__wendysspicynuggs,0.056281,1,FAIL
+mask_wendys_brand,self-enhancing,wendy,word__verified wendysspicynuggs,0.038862,2,FAIL
+mask_wendys_brand,self-enhancing,wendys,word__wendysspicynuggs,0.056281,1,FAIL
+mask_wendys_brand,self-enhancing,wendys,word__verified wendysspicynuggs,0.038862,2,FAIL
+mask_wendys_brand,self-enhancing,frosty,word__frosty,0.044819,1,FAIL
+mask_wendys_brand,self-enhancing,frosty,word__mints frosty,-0.01786,2,FAIL
+mask_wendys_brand,self-enhancing,frosty,word__vanilla frosty,0.007906,3,FAIL
+mask_wendys_brand,self-enhancing,baconator,word__baconator,-0.023145,1,FAIL
+mask_wendys_brand,self-enhancing,baconator,word__baconator with,0.008756,2,FAIL
+mask_wendys_brand,self-enhancing,baconator,word__breakfast baconator,-0.006875,3,FAIL
+mask_wendys_brand,self-enhancing,nuggs,word__wendysspicynuggs,0.056281,1,FAIL
+mask_wendys_brand,self-enhancing,nuggs,word__nuggs,0.043864,2,FAIL
+mask_wendys_brand,self-enhancing,nuggs,word__spicy nuggs,0.04279,3,FAIL
+mask_wendys_brand,self-enhancing,nuggets,word__nuggets,-0.032092,1,FAIL
+mask_wendys_brand,self-enhancing,nuggets,word__4pc nuggets,-0.013972,2,FAIL
+mask_wendys_brand,self-enhancing,nuggets,word__spicy nuggets,0.004294,3,FAIL
+mask_wendys_brand,self-enhancing,spicy nuggets,word__spicy nuggets,0.004294,1,FAIL
+mask_wendys_brand,self-enhancing,dave,word__free dave,-0.028862,1,FAIL
+mask_wendys_brand,self-enhancing,dave,word__dave,-0.023043,2,FAIL
+mask_wendys_brand,self-enhancing,dave,word__dave single,-0.018466,3,FAIL
+mask_wendys_brand,self-enhancing,breakfast baconator,word__breakfast baconator,-0.006875,1,FAIL
+mask_wendys_brand,self-enhancing,burger king,word__burger king,-0.030456,1,FAIL
+mask_wendys_brand,self-enhancing,mcdonald,word__mcdonald,-0.026513,1,FAIL
+mask_wendys_brand,self-enhancing,mcdonald,word__mcdonald announced,-0.017702,2,FAIL
+mask_wendys_brand,self-enhancing,clown,word__clowns,-0.030165,1,FAIL
+mask_wendys_brand,self-enhancing,roast,word__nationalroastday,-0.113786,1,FAIL
+mask_wendys_brand,self-enhancing,roast,word__roasted,0.048568,2,FAIL
+mask_wendys_brand,self-enhancing,roast,char__roast,-0.045231,3,FAIL
+mask_wendys_brand,self-enhancing,roasting,word__roasting,-0.036128,1,FAIL
+mask_wendys_brand,self-enhancing,free,word__free drink,0.057716,1,FAIL
+mask_wendys_brand,self-enhancing,free,word__free,0.042239,2,FAIL
+mask_wendys_brand,self-enhancing,free,word__free honey,0.036866,3,FAIL
+mask_wendys_brand,self-enhancing,app,word__happy,-0.0721,1,FAIL
+mask_wendys_brand,self-enhancing,app,char__ happ,-0.053224,2,FAIL
+mask_wendys_brand,self-enhancing,app,char__happ,-0.05268,3,FAIL
+mask_wendys_brand,self-enhancing,drive thru,word__drive thru,-0.056887,1,FAIL
+mask_wendys_brand,self-enhancing,breakfast,word__breakfast,0.098006,1,FAIL
+mask_wendys_brand,self-enhancing,breakfast,word__breakfast sandwich,0.049158,2,FAIL
+mask_wendys_brand,self-enhancing,breakfast,word__brand_token breakfast,0.045492,3,FAIL
+mask_wendys_brand,self-enhancing,fries,word__fries,-0.068974,1,FAIL
+mask_wendys_brand,self-enhancing,fries,word__soggy fries,0.049497,2,FAIL
+mask_wendys_brand,self-enhancing,fries,word__french fries,-0.047,3,FAIL
+mask_wendys_brand,self-enhancing,chicken sandwich,word__chicken sandwich,0.01419,1,FAIL
+mask_wendys_brand,self-enhancing,nuggets,word__nuggets,-0.032092,1,FAIL
+mask_wendys_brand,self-enhancing,nuggets,word__4pc nuggets,-0.013972,2,FAIL
+mask_wendys_brand,self-enhancing,nuggets,word__spicy nuggets,0.004294,3,FAIL
+mask_wendys_brand,self-enhancing,deal,word__deals,0.045212,1,FAIL
+mask_wendys_brand,self-enhancing,deal,word__the deals,0.035093,2,FAIL
+mask_wendys_brand,self-enhancing,deal,word__big deal,0.019662,3,FAIL
+mask_wendys_brand,self-enhancing,offer,word__to offer,0.006505,1,FAIL
+mask_wendys_brand,self-enhancing,offer,char__offer,-0.00632,2,FAIL
+mask_wendys_brand,self-enhancing,offer,word__offering,0.001765,3,FAIL
+mask_wendys_brand,self-defeating,wendy,word__wendysspicynuggs,-0.0188,1,FAIL
+mask_wendys_brand,self-defeating,wendy,word__verified wendysspicynuggs,-0.012138,2,FAIL
+mask_wendys_brand,self-defeating,wendys,word__wendysspicynuggs,-0.0188,1,FAIL
+mask_wendys_brand,self-defeating,wendys,word__verified wendysspicynuggs,-0.012138,2,FAIL
+mask_wendys_brand,self-defeating,wendy,word__wendysspicynuggs,-0.0188,1,FAIL
+mask_wendys_brand,self-defeating,wendy,word__verified wendysspicynuggs,-0.012138,2,FAIL
+mask_wendys_brand,self-defeating,wendys,word__wendysspicynuggs,-0.0188,1,FAIL
+mask_wendys_brand,self-defeating,wendys,word__verified wendysspicynuggs,-0.012138,2,FAIL
+mask_wendys_brand,self-defeating,frosty,word__vanilla frosty,0.163004,1,FAIL
+mask_wendys_brand,self-defeating,frosty,word__frosty,0.067052,2,FAIL
+mask_wendys_brand,self-defeating,frosty,word__mints frosty,-0.012053,3,FAIL
+mask_wendys_brand,self-defeating,baconator,word__baconator,-0.03635,1,FAIL
+mask_wendys_brand,self-defeating,baconator,word__breakfast baconator,-0.017458,2,FAIL
+mask_wendys_brand,self-defeating,baconator,word__baconator with,-0.008889,3,FAIL
+mask_wendys_brand,self-defeating,nuggs,word__nuggs,-0.034785,1,FAIL
+mask_wendys_brand,self-defeating,nuggs,word__spicy nuggs,-0.021858,2,FAIL
+mask_wendys_brand,self-defeating,nuggs,char__nuggs,-0.021845,3,FAIL
+mask_wendys_brand,self-defeating,nuggets,word__nuggets,-0.031255,1,FAIL
+mask_wendys_brand,self-defeating,nuggets,word__spicy nuggets,-0.011349,2,FAIL
+mask_wendys_brand,self-defeating,nuggets,word__4pc nuggets,-0.008612,3,FAIL
+mask_wendys_brand,self-defeating,spicy nuggets,word__spicy nuggets,-0.011349,1,FAIL
+mask_wendys_brand,self-defeating,dave,word__dave,-0.043739,1,FAIL
+mask_wendys_brand,self-defeating,dave,word__dave single,-0.028982,2,FAIL
+mask_wendys_brand,self-defeating,dave,word__free dave,-0.017602,3,FAIL
+mask_wendys_brand,self-defeating,breakfast baconator,word__breakfast baconator,-0.017458,1,FAIL
+mask_wendys_brand,self-defeating,burger king,word__burger king,-0.016843,1,FAIL
+mask_wendys_brand,self-defeating,mcdonald,word__mcdonald,-0.016152,1,FAIL
+mask_wendys_brand,self-defeating,mcdonald,word__mcdonald announced,-0.009993,2,FAIL
+mask_wendys_brand,self-defeating,clown,word__clowns,-0.016884,1,FAIL
+mask_wendys_brand,self-defeating,roast,word__nationalroastday,-0.069395,1,FAIL
+mask_wendys_brand,self-defeating,roast,char__roast,-0.058692,2,FAIL
+mask_wendys_brand,self-defeating,roast,word__roast,-0.043447,3,FAIL
+mask_wendys_brand,self-defeating,roasting,word__roasting,-0.021455,1,FAIL
+mask_wendys_brand,self-defeating,free,word__free pc,0.180654,1,FAIL
+mask_wendys_brand,self-defeating,free,word__for free,0.171321,2,FAIL
+mask_wendys_brand,self-defeating,free,word__free,-0.028625,3,FAIL
+mask_wendys_brand,self-defeating,app,word__brand_token app,0.085791,1,FAIL
+mask_wendys_brand,self-defeating,app,word__happy,-0.065959,2,FAIL
+mask_wendys_brand,self-defeating,app,word__apply,-0.0546,3,FAIL
+mask_wendys_brand,self-defeating,drive thru,word__drive thru,0.103315,1,FAIL
+mask_wendys_brand,self-defeating,breakfast,word__breakfast,-0.123858,1,FAIL
+mask_wendys_brand,self-defeating,breakfast,word__brand_token breakfast,-0.027236,2,FAIL
+mask_wendys_brand,self-defeating,breakfast,word__breakfast biscuit,-0.02318,3,FAIL
+mask_wendys_brand,self-defeating,fries,word__fries,0.175197,1,FAIL
+mask_wendys_brand,self-defeating,fries,word__the fries,0.140356,2,FAIL
+mask_wendys_brand,self-defeating,fries,word__french fries,0.118545,3,FAIL
+mask_wendys_brand,self-defeating,chicken sandwich,word__chicken sandwich,-0.023732,1,FAIL
+mask_wendys_brand,self-defeating,nuggets,word__nuggets,-0.031255,1,FAIL
+mask_wendys_brand,self-defeating,nuggets,word__spicy nuggets,-0.011349,2,FAIL
+mask_wendys_brand,self-defeating,nuggets,word__4pc nuggets,-0.008612,3,FAIL
+mask_wendys_brand,self-defeating,deal,word__deal,0.062225,1,FAIL
+mask_wendys_brand,self-defeating,deal,word__deals,-0.035756,2,FAIL
+mask_wendys_brand,self-defeating,deal,word__the deals,-0.020554,3,FAIL
+mask_wendys_brand,self-defeating,offer,word__offer,-0.025171,1,FAIL
+mask_wendys_brand,self-defeating,offer,char__offer,-0.017676,2,FAIL
+mask_wendys_brand,self-defeating,offer,word__to offer,-0.008496,3,FAIL
+mask_brand_product,aggressive,wendy,word__wendysspicynuggs,-0.024026,1,FAIL
+mask_brand_product,aggressive,wendy,word__verified wendysspicynuggs,-0.01661,2,FAIL
+mask_brand_product,aggressive,wendys,word__wendysspicynuggs,-0.024026,1,FAIL
+mask_brand_product,aggressive,wendys,word__verified wendysspicynuggs,-0.01661,2,FAIL
+mask_brand_product,aggressive,wendy,word__wendysspicynuggs,-0.024026,1,FAIL
+mask_brand_product,aggressive,wendy,word__verified wendysspicynuggs,-0.01661,2,FAIL
+mask_brand_product,aggressive,wendys,word__wendysspicynuggs,-0.024026,1,FAIL
+mask_brand_product,aggressive,wendys,word__verified wendysspicynuggs,-0.01661,2,FAIL
+mask_brand_product,aggressive,nuggs,word__wendysspicynuggs,-0.024026,1,FAIL
+mask_brand_product,aggressive,nuggs,word__verified wendysspicynuggs,-0.01661,2,FAIL
+mask_brand_product,aggressive,burger king,word__burger king,0.105499,1,FAIL
+mask_brand_product,aggressive,mcdonald,word__mcdonald,0.107543,1,FAIL
+mask_brand_product,aggressive,mcdonald,word__mcdonald announced,0.068903,2,FAIL
+mask_brand_product,aggressive,clown,word__clowns,0.075162,1,FAIL
+mask_brand_product,aggressive,roast,word__nationalroastday,0.330203,1,FAIL
+mask_brand_product,aggressive,roast,char__roast,0.162773,2,FAIL
+mask_brand_product,aggressive,roast,word__roasting,0.115046,3,FAIL
+mask_brand_product,aggressive,roasting,word__roasting,0.115046,1,FAIL
+mask_brand_product,aggressive,free,word__enjoy free,0.068851,1,FAIL
+mask_brand_product,aggressive,free,word__free,-0.044745,2,FAIL
+mask_brand_product,aggressive,free,word__free drink,-0.023851,3,FAIL
+mask_brand_product,aggressive,app,word__happy,-0.089075,1,FAIL
+mask_brand_product,aggressive,app,word__happening,0.076036,2,FAIL
+mask_brand_product,aggressive,app,word__apply,-0.067423,3,FAIL
+mask_brand_product,aggressive,drive thru,word__drive thru,0.042645,1,FAIL
+mask_brand_product,aggressive,breakfast,word__breakfast,-0.100665,1,FAIL
+mask_brand_product,aggressive,breakfast,word__breakfast url,0.045967,2,FAIL
+mask_brand_product,aggressive,breakfast,word__product_token breakfast,-0.029827,3,FAIL
+mask_brand_product,aggressive,fries,word__fries in,0.115618,1,FAIL
+mask_brand_product,aggressive,fries,word__french fries,0.056876,2,FAIL
+mask_brand_product,aggressive,fries,word__fries,0.022553,3,FAIL
+mask_brand_product,aggressive,chicken sandwich,word__chicken sandwich,-0.031314,1,FAIL
+mask_brand_product,aggressive,deal,word__deals,-0.049324,1,FAIL
+mask_brand_product,aggressive,deal,word__dealer,0.036326,2,FAIL
+mask_brand_product,aggressive,deal,word__the deals,-0.027412,3,FAIL
+mask_brand_product,aggressive,offer,word__offer,0.013496,1,FAIL
+mask_brand_product,aggressive,offer,word__to offer,-0.010764,2,FAIL
+mask_brand_product,aggressive,offer,word__offering,-0.010254,3,FAIL
+mask_brand_product,affiliative,wendy,word__wendysspicynuggs,-0.034042,1,FAIL
+mask_brand_product,affiliative,wendy,word__verified wendysspicynuggs,-0.024358,2,FAIL
+mask_brand_product,affiliative,wendys,word__wendysspicynuggs,-0.034042,1,FAIL
+mask_brand_product,affiliative,wendys,word__verified wendysspicynuggs,-0.024358,2,FAIL
+mask_brand_product,affiliative,wendy,word__wendysspicynuggs,-0.034042,1,FAIL
+mask_brand_product,affiliative,wendy,word__verified wendysspicynuggs,-0.024358,2,FAIL
+mask_brand_product,affiliative,wendys,word__wendysspicynuggs,-0.034042,1,FAIL
+mask_brand_product,affiliative,wendys,word__verified wendysspicynuggs,-0.024358,2,FAIL
+mask_brand_product,affiliative,nuggs,word__wendysspicynuggs,-0.034042,1,FAIL
+mask_brand_product,affiliative,nuggs,word__verified wendysspicynuggs,-0.024358,2,FAIL
+mask_brand_product,affiliative,burger king,word__burger king,-0.033029,1,FAIL
+mask_brand_product,affiliative,mcdonald,word__mcdonald,-0.035272,1,FAIL
+mask_brand_product,affiliative,mcdonald,word__mcdonald announced,-0.02214,2,FAIL
+mask_brand_product,affiliative,clown,word__clowns,-0.008935,1,FAIL
+mask_brand_product,affiliative,roast,word__nationalroastday,-0.093009,1,FAIL
+mask_brand_product,affiliative,roast,char__roast,-0.048535,2,FAIL
+mask_brand_product,affiliative,roast,word__roasting,-0.027765,3,FAIL
+mask_brand_product,affiliative,roasting,word__roasting,-0.027765,1,FAIL
+mask_brand_product,affiliative,free,word__free product_token,0.040057,1,FAIL
+mask_brand_product,affiliative,free,word__free drink,-0.0359,2,FAIL
+mask_brand_product,affiliative,free,word__freedom,0.034811,3,FAIL
+mask_brand_product,affiliative,app,word__happy,0.12343,1,FAIL
+mask_brand_product,affiliative,app,char__happ,0.085423,2,FAIL
+mask_brand_product,affiliative,app,char__ happ,0.082693,3,FAIL
+mask_brand_product,affiliative,drive thru,word__drive thru,0.008348,1,FAIL
+mask_brand_product,affiliative,breakfast,word__with breakfast,0.031983,1,FAIL
+mask_brand_product,affiliative,breakfast,word__off breakfast,0.031665,2,FAIL
+mask_brand_product,affiliative,breakfast,word__breakfast sandwich,-0.030075,3,FAIL
+mask_brand_product,affiliative,fries,word__free fries,0.027876,1,FAIL
+mask_brand_product,affiliative,fries,word__soggy fries,-0.027343,2,FAIL
+mask_brand_product,affiliative,fries,word__fries for,0.027004,3,FAIL
+mask_brand_product,affiliative,chicken sandwich,word__chicken sandwich,0.011171,1,FAIL
+mask_brand_product,affiliative,deal,char__ deal,-0.013113,1,FAIL
+mask_brand_product,affiliative,deal,word__big deal,-0.012631,2,FAIL
+mask_brand_product,affiliative,deal,word__the deals,-0.011357,3,FAIL
+mask_brand_product,affiliative,offer,char__offer,0.012468,1,FAIL
+mask_brand_product,affiliative,offer,word__offering,0.005073,2,FAIL
+mask_brand_product,affiliative,offer,word__offer,-0.003973,3,FAIL
+mask_brand_product,self-enhancing,wendy,word__wendysspicynuggs,0.056266,1,FAIL
+mask_brand_product,self-enhancing,wendy,word__verified wendysspicynuggs,0.039303,2,FAIL
+mask_brand_product,self-enhancing,wendys,word__wendysspicynuggs,0.056266,1,FAIL
+mask_brand_product,self-enhancing,wendys,word__verified wendysspicynuggs,0.039303,2,FAIL
+mask_brand_product,self-enhancing,wendy,word__wendysspicynuggs,0.056266,1,FAIL
+mask_brand_product,self-enhancing,wendy,word__verified wendysspicynuggs,0.039303,2,FAIL
+mask_brand_product,self-enhancing,wendys,word__wendysspicynuggs,0.056266,1,FAIL
+mask_brand_product,self-enhancing,wendys,word__verified wendysspicynuggs,0.039303,2,FAIL
+mask_brand_product,self-enhancing,nuggs,word__wendysspicynuggs,0.056266,1,FAIL
+mask_brand_product,self-enhancing,nuggs,word__verified wendysspicynuggs,0.039303,2,FAIL
+mask_brand_product,self-enhancing,burger king,word__burger king,-0.030427,1,FAIL
+mask_brand_product,self-enhancing,mcdonald,word__mcdonald,-0.026511,1,FAIL
+mask_brand_product,self-enhancing,mcdonald,word__mcdonald announced,-0.017698,2,FAIL
+mask_brand_product,self-enhancing,clown,word__clowns,-0.030141,1,FAIL
+mask_brand_product,self-enhancing,roast,word__nationalroastday,-0.113854,1,FAIL
+mask_brand_product,self-enhancing,roast,word__roasted,0.048649,2,FAIL
+mask_brand_product,self-enhancing,roast,char__roast,-0.045204,3,FAIL
+mask_brand_product,self-enhancing,roasting,word__roasting,-0.036148,1,FAIL
+mask_brand_product,self-enhancing,free,word__free drink,0.056721,1,FAIL
+mask_brand_product,self-enhancing,free,word__free product_token,-0.041753,2,FAIL
+mask_brand_product,self-enhancing,free,word__free,0.041334,3,FAIL
+mask_brand_product,self-enhancing,app,word__happy,-0.072056,1,FAIL
+mask_brand_product,self-enhancing,app,char__ happ,-0.05304,2,FAIL
+mask_brand_product,self-enhancing,app,char__happ,-0.052489,3,FAIL
+mask_brand_product,self-enhancing,drive thru,word__drive thru,-0.057075,1,FAIL
+mask_brand_product,self-enhancing,breakfast,word__breakfast,0.104156,1,FAIL
+mask_brand_product,self-enhancing,breakfast,word__breakfast sandwich,0.048719,2,FAIL
+mask_brand_product,self-enhancing,breakfast,word__product_token breakfast,0.044441,3,FAIL
+mask_brand_product,self-enhancing,fries,word__fries,-0.069113,1,FAIL
+mask_brand_product,self-enhancing,fries,word__soggy fries,0.049522,2,FAIL
+mask_brand_product,self-enhancing,fries,word__french fries,-0.046981,3,FAIL
+mask_brand_product,self-enhancing,chicken sandwich,word__chicken sandwich,0.013769,1,FAIL
+mask_brand_product,self-enhancing,deal,word__deals,0.045292,1,FAIL
+mask_brand_product,self-enhancing,deal,word__the deals,0.035136,2,FAIL
+mask_brand_product,self-enhancing,deal,word__big deal,0.019682,3,FAIL
+mask_brand_product,self-enhancing,offer,word__to offer,0.006516,1,FAIL
+mask_brand_product,self-enhancing,offer,char__offer,-0.006248,2,FAIL
+mask_brand_product,self-enhancing,offer,word__offering,0.001771,3,FAIL
+mask_brand_product,self-defeating,wendy,word__wendysspicynuggs,-0.020903,1,FAIL
+mask_brand_product,self-defeating,wendy,word__verified wendysspicynuggs,-0.01408,2,FAIL
+mask_brand_product,self-defeating,wendys,word__wendysspicynuggs,-0.020903,1,FAIL
+mask_brand_product,self-defeating,wendys,word__verified wendysspicynuggs,-0.01408,2,FAIL
+mask_brand_product,self-defeating,wendy,word__wendysspicynuggs,-0.020903,1,FAIL
+mask_brand_product,self-defeating,wendy,word__verified wendysspicynuggs,-0.01408,2,FAIL
+mask_brand_product,self-defeating,wendys,word__wendysspicynuggs,-0.020903,1,FAIL
+mask_brand_product,self-defeating,wendys,word__verified wendysspicynuggs,-0.01408,2,FAIL
+mask_brand_product,self-defeating,nuggs,word__wendysspicynuggs,-0.020903,1,FAIL
+mask_brand_product,self-defeating,nuggs,word__verified wendysspicynuggs,-0.01408,2,FAIL
+mask_brand_product,self-defeating,burger king,word__burger king,-0.016841,1,FAIL
+mask_brand_product,self-defeating,mcdonald,word__mcdonald,-0.016098,1,FAIL
+mask_brand_product,self-defeating,mcdonald,word__mcdonald announced,-0.009981,2,FAIL
+mask_brand_product,self-defeating,clown,word__clowns,-0.016871,1,FAIL
+mask_brand_product,self-defeating,roast,word__nationalroastday,-0.069175,1,FAIL
+mask_brand_product,self-defeating,roast,char__roast,-0.058336,2,FAIL
+mask_brand_product,self-defeating,roast,word__roast,-0.043129,3,FAIL
+mask_brand_product,self-defeating,roasting,word__roasting,-0.021288,1,FAIL
+mask_brand_product,self-defeating,free,word__free pc,0.180998,1,FAIL
+mask_brand_product,self-defeating,free,word__for free,0.171872,2,FAIL
+mask_brand_product,self-defeating,free,word__free product_token,-0.041566,3,FAIL
+mask_brand_product,self-defeating,app,word__product_token app,0.09123,1,FAIL
+mask_brand_product,self-defeating,app,word__happy,-0.065928,2,FAIL
+mask_brand_product,self-defeating,app,word__apply,-0.055952,3,FAIL
+mask_brand_product,self-defeating,drive thru,word__drive thru,0.103063,1,FAIL
+mask_brand_product,self-defeating,breakfast,word__breakfast,-0.112731,1,FAIL
+mask_brand_product,self-defeating,breakfast,word__product_token breakfast,-0.025495,2,FAIL
+mask_brand_product,self-defeating,breakfast,word__breakfast biscuit,-0.022808,3,FAIL
+mask_brand_product,self-defeating,fries,word__fries,0.174551,1,FAIL
+mask_brand_product,self-defeating,fries,word__the fries,0.140687,2,FAIL
+mask_brand_product,self-defeating,fries,word__french fries,0.118159,3,FAIL
+mask_brand_product,self-defeating,chicken sandwich,word__chicken sandwich,-0.023292,1,FAIL
+mask_brand_product,self-defeating,deal,word__deal,0.062377,1,FAIL
+mask_brand_product,self-defeating,deal,word__deals,-0.035748,2,FAIL
+mask_brand_product,self-defeating,deal,word__the deals,-0.020554,3,FAIL
+mask_brand_product,self-defeating,offer,word__offer,-0.02533,1,FAIL
+mask_brand_product,self-defeating,offer,char__offer,-0.017596,2,FAIL
+mask_brand_product,self-defeating,offer,word__to offer,-0.008474,3,FAIL
+mask_brand_product_competitor,aggressive,wendy,word__wendysspicynuggs,-0.024345,1,FAIL
+mask_brand_product_competitor,aggressive,wendy,word__verified wendysspicynuggs,-0.016741,2,FAIL
+mask_brand_product_competitor,aggressive,wendys,word__wendysspicynuggs,-0.024345,1,FAIL
+mask_brand_product_competitor,aggressive,wendys,word__verified wendysspicynuggs,-0.016741,2,FAIL
+mask_brand_product_competitor,aggressive,wendy,word__wendysspicynuggs,-0.024345,1,FAIL
+mask_brand_product_competitor,aggressive,wendy,word__verified wendysspicynuggs,-0.016741,2,FAIL
+mask_brand_product_competitor,aggressive,wendys,word__wendysspicynuggs,-0.024345,1,FAIL
+mask_brand_product_competitor,aggressive,wendys,word__verified wendysspicynuggs,-0.016741,2,FAIL
+mask_brand_product_competitor,aggressive,nuggs,word__wendysspicynuggs,-0.024345,1,FAIL
+mask_brand_product_competitor,aggressive,nuggs,word__verified wendysspicynuggs,-0.016741,2,FAIL
+mask_brand_product_competitor,aggressive,clown,word__clowns,0.075866,1,FAIL
+mask_brand_product_competitor,aggressive,roast,word__nationalroastday,0.329149,1,FAIL
+mask_brand_product_competitor,aggressive,roast,char__roast,0.128689,2,FAIL
+mask_brand_product_competitor,aggressive,roast,word__roasted,-0.035,3,FAIL
+mask_brand_product_competitor,aggressive,free,word__enjoy free,0.068478,1,FAIL
+mask_brand_product_competitor,aggressive,free,word__free,-0.045097,2,FAIL
+mask_brand_product_competitor,aggressive,free,word__free drink,-0.02389,3,FAIL
+mask_brand_product_competitor,aggressive,app,word__happy,-0.088407,1,FAIL
+mask_brand_product_competitor,aggressive,app,word__happening,0.07634,2,FAIL
+mask_brand_product_competitor,aggressive,app,word__apply,-0.066784,3,FAIL
+mask_brand_product_competitor,aggressive,drive thru,word__drive thru,0.043281,1,FAIL
+mask_brand_product_competitor,aggressive,breakfast,word__breakfast,-0.100396,1,FAIL
+mask_brand_product_competitor,aggressive,breakfast,word__breakfast url,0.046294,2,FAIL
+mask_brand_product_competitor,aggressive,breakfast,word__product_token breakfast,-0.030237,3,FAIL
+mask_brand_product_competitor,aggressive,fries,word__fries in,0.114917,1,FAIL
+mask_brand_product_competitor,aggressive,fries,word__french fries,0.059438,2,FAIL
+mask_brand_product_competitor,aggressive,fries,word__fries,0.021954,3,FAIL
+mask_brand_product_competitor,aggressive,chicken sandwich,word__chicken sandwich,-0.031064,1,FAIL
+mask_brand_product_competitor,aggressive,deal,word__deals,-0.048978,1,FAIL
+mask_brand_product_competitor,aggressive,deal,word__dealer,0.036554,2,FAIL
+mask_brand_product_competitor,aggressive,deal,word__the deals,-0.027289,3,FAIL
+mask_brand_product_competitor,aggressive,offer,word__offer,0.014035,1,FAIL
+mask_brand_product_competitor,aggressive,offer,word__to offer,-0.010663,2,FAIL
+mask_brand_product_competitor,aggressive,offer,word__offering,-0.010195,3,FAIL
+mask_brand_product_competitor,affiliative,wendy,word__wendysspicynuggs,-0.033905,1,FAIL
+mask_brand_product_competitor,affiliative,wendy,word__verified wendysspicynuggs,-0.024297,2,FAIL
+mask_brand_product_competitor,affiliative,wendys,word__wendysspicynuggs,-0.033905,1,FAIL
+mask_brand_product_competitor,affiliative,wendys,word__verified wendysspicynuggs,-0.024297,2,FAIL
+mask_brand_product_competitor,affiliative,wendy,word__wendysspicynuggs,-0.033905,1,FAIL
+mask_brand_product_competitor,affiliative,wendy,word__verified wendysspicynuggs,-0.024297,2,FAIL
+mask_brand_product_competitor,affiliative,wendys,word__wendysspicynuggs,-0.033905,1,FAIL
+mask_brand_product_competitor,affiliative,wendys,word__verified wendysspicynuggs,-0.024297,2,FAIL
+mask_brand_product_competitor,affiliative,nuggs,word__wendysspicynuggs,-0.033905,1,FAIL
+mask_brand_product_competitor,affiliative,nuggs,word__verified wendysspicynuggs,-0.024297,2,FAIL
+mask_brand_product_competitor,affiliative,clown,word__clowns,-0.008987,1,FAIL
+mask_brand_product_competitor,affiliative,roast,word__nationalroastday,-0.09246,1,FAIL
+mask_brand_product_competitor,affiliative,roast,char__roast,-0.04377,2,FAIL
+mask_brand_product_competitor,affiliative,roast,word__roasted,-0.020506,3,FAIL
+mask_brand_product_competitor,affiliative,free,word__free product_token,0.040387,1,FAIL
+mask_brand_product_competitor,affiliative,free,word__free drink,-0.035881,2,FAIL
+mask_brand_product_competitor,affiliative,free,word__freedom,0.034752,3,FAIL
+mask_brand_product_competitor,affiliative,app,word__happy,0.123159,1,FAIL
+mask_brand_product_competitor,affiliative,app,char__happ,0.085339,2,FAIL
+mask_brand_product_competitor,affiliative,app,char__ happ,0.082631,3,FAIL
+mask_brand_product_competitor,affiliative,drive thru,word__drive thru,0.008268,1,FAIL
+mask_brand_product_competitor,affiliative,breakfast,word__with breakfast,0.031973,1,FAIL
+mask_brand_product_competitor,affiliative,breakfast,word__off breakfast,0.031616,2,FAIL
+mask_brand_product_competitor,affiliative,breakfast,word__breakfast sandwich,-0.030104,3,FAIL
+mask_brand_product_competitor,affiliative,fries,word__free fries,0.027867,1,FAIL
+mask_brand_product_competitor,affiliative,fries,word__soggy fries,-0.027352,2,FAIL
+mask_brand_product_competitor,affiliative,fries,word__fries for,0.026979,3,FAIL
+mask_brand_product_competitor,affiliative,chicken sandwich,word__chicken sandwich,0.011093,1,FAIL
+mask_brand_product_competitor,affiliative,deal,char__ deal,-0.013232,1,FAIL
+mask_brand_product_competitor,affiliative,deal,word__big deal,-0.012635,2,FAIL
+mask_brand_product_competitor,affiliative,deal,word__the deals,-0.011396,3,FAIL
+mask_brand_product_competitor,affiliative,offer,char__offer,0.012405,1,FAIL
+mask_brand_product_competitor,affiliative,offer,word__offering,0.005047,2,FAIL
+mask_brand_product_competitor,affiliative,offer,word__offer,-0.004028,3,FAIL
+mask_brand_product_competitor,self-enhancing,wendy,word__wendysspicynuggs,0.056575,1,FAIL
+mask_brand_product_competitor,self-enhancing,wendy,word__verified wendysspicynuggs,0.039449,2,FAIL
+mask_brand_product_competitor,self-enhancing,wendys,word__wendysspicynuggs,0.056575,1,FAIL
+mask_brand_product_competitor,self-enhancing,wendys,word__verified wendysspicynuggs,0.039449,2,FAIL
+mask_brand_product_competitor,self-enhancing,wendy,word__wendysspicynuggs,0.056575,1,FAIL
+mask_brand_product_competitor,self-enhancing,wendy,word__verified wendysspicynuggs,0.039449,2,FAIL
+mask_brand_product_competitor,self-enhancing,wendys,word__wendysspicynuggs,0.056575,1,FAIL
+mask_brand_product_competitor,self-enhancing,wendys,word__verified wendysspicynuggs,0.039449,2,FAIL
+mask_brand_product_competitor,self-enhancing,nuggs,word__wendysspicynuggs,0.056575,1,FAIL
+mask_brand_product_competitor,self-enhancing,nuggs,word__verified wendysspicynuggs,0.039449,2,FAIL
+mask_brand_product_competitor,self-enhancing,clown,word__clowns,-0.030199,1,FAIL
+mask_brand_product_competitor,self-enhancing,roast,word__nationalroastday,-0.113629,1,FAIL
+mask_brand_product_competitor,self-enhancing,roast,word__roasted,0.048381,2,FAIL
+mask_brand_product_competitor,self-enhancing,roast,char__roast,-0.033373,3,FAIL
+mask_brand_product_competitor,self-enhancing,free,word__free drink,0.056818,1,FAIL
+mask_brand_product_competitor,self-enhancing,free,word__free,0.041779,2,FAIL
+mask_brand_product_competitor,self-enhancing,free,word__free product_token,-0.041328,3,FAIL
+mask_brand_product_competitor,self-enhancing,app,word__happy,-0.072258,1,FAIL
+mask_brand_product_competitor,self-enhancing,app,char__ happ,-0.05326,2,FAIL
+mask_brand_product_competitor,self-enhancing,app,char__happ,-0.052726,3,FAIL
+mask_brand_product_competitor,self-enhancing,drive thru,word__drive thru,-0.057084,1,FAIL
+mask_brand_product_competitor,self-enhancing,breakfast,word__breakfast,0.104435,1,FAIL
+mask_brand_product_competitor,self-enhancing,breakfast,word__breakfast sandwich,0.048702,2,FAIL
+mask_brand_product_competitor,self-enhancing,breakfast,word__product_token breakfast,0.044803,3,FAIL
+mask_brand_product_competitor,self-enhancing,fries,word__fries,-0.069825,1,FAIL
+mask_brand_product_competitor,self-enhancing,fries,word__soggy fries,0.049537,2,FAIL
+mask_brand_product_competitor,self-enhancing,fries,word__french fries,-0.048298,3,FAIL
+mask_brand_product_competitor,self-enhancing,chicken sandwich,word__chicken sandwich,0.013753,1,FAIL
+mask_brand_product_competitor,self-enhancing,deal,word__deals,0.045174,1,FAIL
+mask_brand_product_competitor,self-enhancing,deal,word__the deals,0.035076,2,FAIL
+mask_brand_product_competitor,self-enhancing,deal,word__big deal,0.019699,3,FAIL
+mask_brand_product_competitor,self-enhancing,offer,word__to offer,0.006453,1,FAIL
+mask_brand_product_competitor,self-enhancing,offer,char__offer,-0.006284,2,FAIL
+mask_brand_product_competitor,self-enhancing,offer,word__offering,0.001761,3,FAIL
+mask_brand_product_competitor,self-defeating,wendy,word__wendysspicynuggs,-0.020734,1,FAIL
+mask_brand_product_competitor,self-defeating,wendy,word__verified wendysspicynuggs,-0.013996,2,FAIL
+mask_brand_product_competitor,self-defeating,wendys,word__wendysspicynuggs,-0.020734,1,FAIL
+mask_brand_product_competitor,self-defeating,wendys,word__verified wendysspicynuggs,-0.013996,2,FAIL
+mask_brand_product_competitor,self-defeating,wendy,word__wendysspicynuggs,-0.020734,1,FAIL
+mask_brand_product_competitor,self-defeating,wendy,word__verified wendysspicynuggs,-0.013996,2,FAIL
+mask_brand_product_competitor,self-defeating,wendys,word__wendysspicynuggs,-0.020734,1,FAIL
+mask_brand_product_competitor,self-defeating,wendys,word__verified wendysspicynuggs,-0.013996,2,FAIL
+mask_brand_product_competitor,self-defeating,nuggs,word__wendysspicynuggs,-0.020734,1,FAIL
+mask_brand_product_competitor,self-defeating,nuggs,word__verified wendysspicynuggs,-0.013996,2,FAIL
+mask_brand_product_competitor,self-defeating,clown,word__clowns,-0.016896,1,FAIL
+mask_brand_product_competitor,self-defeating,roast,word__nationalroastday,-0.069432,1,FAIL
+mask_brand_product_competitor,self-defeating,roast,char__roast,-0.039497,2,FAIL
+mask_brand_product_competitor,self-defeating,roast,word__roasted,-0.024753,3,FAIL
+mask_brand_product_competitor,self-defeating,free,word__free pc,0.180924,1,FAIL
+mask_brand_product_competitor,self-defeating,free,word__for free,0.171756,2,FAIL
+mask_brand_product_competitor,self-defeating,free,word__free product_token,-0.04129,3,FAIL
+mask_brand_product_competitor,self-defeating,app,word__product_token app,0.092452,1,FAIL
+mask_brand_product_competitor,self-defeating,app,word__happy,-0.065968,2,FAIL
+mask_brand_product_competitor,self-defeating,app,word__apply,-0.056099,3,FAIL
+mask_brand_product_competitor,self-defeating,drive thru,word__drive thru,0.102982,1,FAIL
+mask_brand_product_competitor,self-defeating,breakfast,word__breakfast,-0.112353,1,FAIL
+mask_brand_product_competitor,self-defeating,breakfast,word__product_token breakfast,-0.025258,2,FAIL
+mask_brand_product_competitor,self-defeating,breakfast,word__breakfast biscuit,-0.022781,3,FAIL
+mask_brand_product_competitor,self-defeating,fries,word__fries,0.173569,1,FAIL
+mask_brand_product_competitor,self-defeating,fries,word__the fries,0.14045,2,FAIL
+mask_brand_product_competitor,self-defeating,fries,word__french fries,0.117027,3,FAIL
+mask_brand_product_competitor,self-defeating,chicken sandwich,word__chicken sandwich,-0.023253,1,FAIL
+mask_brand_product_competitor,self-defeating,deal,word__deal,0.062234,1,FAIL
+mask_brand_product_competitor,self-defeating,deal,word__deals,-0.035818,2,FAIL
+mask_brand_product_competitor,self-defeating,deal,word__the deals,-0.0206,3,FAIL
+mask_brand_product_competitor,self-defeating,offer,word__offer,-0.025333,1,FAIL
+mask_brand_product_competitor,self-defeating,offer,char__offer,-0.017638,2,FAIL
+mask_brand_product_competitor,self-defeating,offer,word__to offer,-0.008493,3,FAIL
+mask_campaign_product,aggressive,wendy,word__me wendy,0.060411,1,FAIL
+mask_campaign_product,aggressive,wendy,word__wendys,0.037969,2,FAIL
+mask_campaign_product,aggressive,wendy,word__wendy,-0.034234,3,FAIL
+mask_campaign_product,aggressive,wendys,word__wendys,0.037969,1,FAIL
+mask_campaign_product,aggressive,wendys,word__wendysspicynuggs,-0.022531,2,FAIL
+mask_campaign_product,aggressive,wendys,word__verified wendysspicynuggs,-0.015644,3,FAIL
+mask_campaign_product,aggressive,wendy,word__me wendy,0.060411,1,FAIL
+mask_campaign_product,aggressive,wendy,word__wendys,0.037969,2,FAIL
+mask_campaign_product,aggressive,wendy,word__wendy,-0.034234,3,FAIL
+mask_campaign_product,aggressive,wendys,word__wendys,0.037969,1,FAIL
+mask_campaign_product,aggressive,wendys,word__wendysspicynuggs,-0.022531,2,FAIL
+mask_campaign_product,aggressive,wendys,word__verified wendysspicynuggs,-0.015644,3,FAIL
+mask_campaign_product,aggressive,frosty,word__mints frosty,0.070712,1,FAIL
+mask_campaign_product,aggressive,frosty,word__frosty,0.022522,2,FAIL
+mask_campaign_product,aggressive,frosty,word__vanilla frosty,-0.021116,3,FAIL
+mask_campaign_product,aggressive,baconator,word__campaign_token baconator,0.019725,1,FAIL
+mask_campaign_product,aggressive,baconator,word__baconator with,-0.01089,2,FAIL
+mask_campaign_product,aggressive,baconator,word__baconator,-0.007237,3,FAIL
+mask_campaign_product,aggressive,nuggs,word__nuggs,-0.041017,1,FAIL
+mask_campaign_product,aggressive,nuggs,word__spicy nuggs,-0.025518,2,FAIL
+mask_campaign_product,aggressive,nuggs,char__nuggs,-0.025354,3,FAIL
+mask_campaign_product,aggressive,dave,word__dave,0.135794,1,FAIL
+mask_campaign_product,aggressive,dave,word__dave single,0.080866,2,FAIL
+mask_campaign_product,aggressive,dave,word__campaign_token dave,0.051982,3,FAIL
+mask_campaign_product,aggressive,burger king,word__burger king,0.104394,1,FAIL
+mask_campaign_product,aggressive,mcdonald,word__mcdonald,0.106998,1,FAIL
+mask_campaign_product,aggressive,mcdonald,word__mcdonald announced,0.06868,2,FAIL
+mask_campaign_product,aggressive,clown,word__clowns,0.074474,1,FAIL
+mask_campaign_product,aggressive,roast,word__nationalroastday,0.330325,1,FAIL
+mask_campaign_product,aggressive,roast,char__roast,0.161235,2,FAIL
+mask_campaign_product,aggressive,roast,word__roasting,0.114668,3,FAIL
+mask_campaign_product,aggressive,roasting,word__roasting,0.114668,1,FAIL
+mask_campaign_product,aggressive,free,word__freedom,-0.018145,1,FAIL
+mask_campaign_product,aggressive,app,word__happy,-0.089678,1,FAIL
+mask_campaign_product,aggressive,app,word__happening,0.067858,2,FAIL
+mask_campaign_product,aggressive,app,word__apply,-0.066632,3,FAIL
+mask_campaign_product,aggressive,deal,word__deals,-0.049769,1,FAIL
+mask_campaign_product,aggressive,deal,word__dealer,0.036174,2,FAIL
+mask_campaign_product,aggressive,deal,word__the deals,-0.027724,3,FAIL
+mask_campaign_product,aggressive,offer,word__offering,-0.010283,1,FAIL
+mask_campaign_product,affiliative,wendy,word__the wendy,0.067142,1,FAIL
+mask_campaign_product,affiliative,wendy,word__wendy,-0.066303,2,FAIL
+mask_campaign_product,affiliative,wendy,word__is wendy,-0.063534,3,FAIL
+mask_campaign_product,affiliative,wendys,word__wendysspicynuggs,-0.035366,1,FAIL
+mask_campaign_product,affiliative,wendys,word__verified wendysspicynuggs,-0.024626,2,FAIL
+mask_campaign_product,affiliative,wendys,word__wendys,-0.015159,3,FAIL
+mask_campaign_product,affiliative,wendy,word__the wendy,0.067142,1,FAIL
+mask_campaign_product,affiliative,wendy,word__wendy,-0.066303,2,FAIL
+mask_campaign_product,affiliative,wendy,word__is wendy,-0.063534,3,FAIL
+mask_campaign_product,affiliative,wendys,word__wendysspicynuggs,-0.035366,1,FAIL
+mask_campaign_product,affiliative,wendys,word__verified wendysspicynuggs,-0.024626,2,FAIL
+mask_campaign_product,affiliative,wendys,word__wendys,-0.015159,3,FAIL
+mask_campaign_product,affiliative,frosty,word__frosty,-0.067281,1,FAIL
+mask_campaign_product,affiliative,frosty,word__vanilla frosty,-0.029804,2,FAIL
+mask_campaign_product,affiliative,frosty,word__mints frosty,-0.021013,3,FAIL
+mask_campaign_product,affiliative,baconator,word__baconator,0.034827,1,FAIL
+mask_campaign_product,affiliative,baconator,word__campaign_token baconator,-0.000514,2,FAIL
+mask_campaign_product,affiliative,baconator,word__baconator with,6e-06,3,FAIL
+mask_campaign_product,affiliative,nuggs,word__wendysspicynuggs,-0.035366,1,FAIL
+mask_campaign_product,affiliative,nuggs,word__verified wendysspicynuggs,-0.024626,2,FAIL
+mask_campaign_product,affiliative,nuggs,word__spicy nuggs,-0.020775,3,FAIL
+mask_campaign_product,affiliative,dave,word__dave,-0.046889,1,FAIL
+mask_campaign_product,affiliative,dave,word__dave single,-0.021576,2,FAIL
+mask_campaign_product,affiliative,dave,word__campaign_token dave,0.002458,3,FAIL
+mask_campaign_product,affiliative,burger king,word__burger king,-0.032464,1,FAIL
+mask_campaign_product,affiliative,mcdonald,word__mcdonald,-0.035147,1,FAIL
+mask_campaign_product,affiliative,mcdonald,word__mcdonald announced,-0.022085,2,FAIL
+mask_campaign_product,affiliative,clown,word__clowns,-0.008773,1,FAIL
+mask_campaign_product,affiliative,roast,word__nationalroastday,-0.09291,1,FAIL
+mask_campaign_product,affiliative,roast,char__roast,-0.04798,2,FAIL
+mask_campaign_product,affiliative,roast,word__roasting,-0.027699,3,FAIL
+mask_campaign_product,affiliative,roasting,word__roasting,-0.027699,1,FAIL
+mask_campaign_product,affiliative,free,word__freedom,0.034882,1,FAIL
+mask_campaign_product,affiliative,app,word__happy,0.124124,1,FAIL
+mask_campaign_product,affiliative,app,char__happ,0.084007,2,FAIL
+mask_campaign_product,affiliative,app,char__ happ,0.081367,3,FAIL
+mask_campaign_product,affiliative,deal,word__the deals,-0.010547,1,FAIL
+mask_campaign_product,affiliative,deal,char__ deal,-0.006372,2,FAIL
+mask_campaign_product,affiliative,deal,word__deals,-0.004442,3,FAIL
+mask_campaign_product,affiliative,offer,word__offering,0.005172,1,FAIL
+mask_campaign_product,self-enhancing,wendy,word__the wendy,-0.073056,1,FAIL
+mask_campaign_product,self-enhancing,wendy,word__wendysspicynuggs,0.056066,2,FAIL
+mask_campaign_product,self-enhancing,wendy,word__to wendy,0.045475,3,FAIL
+mask_campaign_product,self-enhancing,wendys,word__wendysspicynuggs,0.056066,1,FAIL
+mask_campaign_product,self-enhancing,wendys,word__verified wendysspicynuggs,0.038491,2,FAIL
+mask_campaign_product,self-enhancing,wendys,word__wendys,-0.00188,3,FAIL
+mask_campaign_product,self-enhancing,wendy,word__the wendy,-0.073056,1,FAIL
+mask_campaign_product,self-enhancing,wendy,word__wendysspicynuggs,0.056066,2,FAIL
+mask_campaign_product,self-enhancing,wendy,word__to wendy,0.045475,3,FAIL
+mask_campaign_product,self-enhancing,wendys,word__wendysspicynuggs,0.056066,1,FAIL
+mask_campaign_product,self-enhancing,wendys,word__verified wendysspicynuggs,0.038491,2,FAIL
+mask_campaign_product,self-enhancing,wendys,word__wendys,-0.00188,3,FAIL
+mask_campaign_product,self-enhancing,frosty,word__frosty,0.044389,1,FAIL
+mask_campaign_product,self-enhancing,frosty,word__mints frosty,-0.018142,2,FAIL
+mask_campaign_product,self-enhancing,frosty,word__vanilla frosty,0.007906,3,FAIL
+mask_campaign_product,self-enhancing,baconator,word__baconator,-0.021749,1,FAIL
+mask_campaign_product,self-enhancing,baconator,word__baconator with,0.009618,2,FAIL
+mask_campaign_product,self-enhancing,baconator,word__campaign_token baconator,-0.005756,3,FAIL
+mask_campaign_product,self-enhancing,nuggs,word__wendysspicynuggs,0.056066,1,FAIL
+mask_campaign_product,self-enhancing,nuggs,word__nuggs,0.043979,2,FAIL
+mask_campaign_product,self-enhancing,nuggs,word__spicy nuggs,0.042784,3,FAIL
+mask_campaign_product,self-enhancing,dave,word__campaign_token dave,-0.029177,1,FAIL
+mask_campaign_product,self-enhancing,dave,word__dave,-0.023166,2,FAIL
+mask_campaign_product,self-enhancing,dave,word__dave single,-0.018543,3,FAIL
+mask_campaign_product,self-enhancing,burger king,word__burger king,-0.030241,1,FAIL
+mask_campaign_product,self-enhancing,mcdonald,word__mcdonald,-0.026511,1,FAIL
+mask_campaign_product,self-enhancing,mcdonald,word__mcdonald announced,-0.017693,2,FAIL
+mask_campaign_product,self-enhancing,clown,word__clowns,-0.030135,1,FAIL
+mask_campaign_product,self-enhancing,roast,word__nationalroastday,-0.113937,1,FAIL
+mask_campaign_product,self-enhancing,roast,word__roasted,0.04838,2,FAIL
+mask_campaign_product,self-enhancing,roast,char__roast,-0.044525,3,FAIL
+mask_campaign_product,self-enhancing,roasting,word__roasting,-0.036059,1,FAIL
+mask_campaign_product,self-enhancing,free,word__freedom,-0.023773,1,FAIL
+mask_campaign_product,self-enhancing,app,word__happy,-0.072164,1,FAIL
+mask_campaign_product,self-enhancing,app,char__ happ,-0.05366,2,FAIL
+mask_campaign_product,self-enhancing,app,char__happ,-0.052984,3,FAIL
+mask_campaign_product,self-enhancing,deal,word__deals,0.044872,1,FAIL
+mask_campaign_product,self-enhancing,deal,word__the deals,0.034595,2,FAIL
+mask_campaign_product,self-enhancing,deal,char__ deal,0.018989,3,FAIL
+mask_campaign_product,self-enhancing,offer,word__offering,0.001708,1,FAIL
+mask_campaign_product,self-defeating,wendy,word__wendy,0.305396,1,FAIL
+mask_campaign_product,self-defeating,wendy,char__wendy,0.145306,2,FAIL
+mask_campaign_product,self-defeating,wendy,word__up wendy,0.098101,3,FAIL
+mask_campaign_product,self-defeating,wendys,word__wendysspicynuggs,-0.019403,1,FAIL
+mask_campaign_product,self-defeating,wendys,word__wendys,-0.017946,2,FAIL
+mask_campaign_product,self-defeating,wendys,word__verified wendysspicynuggs,-0.012909,3,FAIL
+mask_campaign_product,self-defeating,wendy,word__wendy,0.305396,1,FAIL
+mask_campaign_product,self-defeating,wendy,char__wendy,0.145306,2,FAIL
+mask_campaign_product,self-defeating,wendy,word__up wendy,0.098101,3,FAIL
+mask_campaign_product,self-defeating,wendys,word__wendysspicynuggs,-0.019403,1,FAIL
+mask_campaign_product,self-defeating,wendys,word__wendys,-0.017946,2,FAIL
+mask_campaign_product,self-defeating,wendys,word__verified wendysspicynuggs,-0.012909,3,FAIL
+mask_campaign_product,self-defeating,frosty,word__vanilla frosty,0.163754,1,FAIL
+mask_campaign_product,self-defeating,frosty,word__frosty,0.067081,2,FAIL
+mask_campaign_product,self-defeating,frosty,word__mints frosty,-0.012106,3,FAIL
+mask_campaign_product,self-defeating,baconator,word__baconator,-0.039151,1,FAIL
+mask_campaign_product,self-defeating,baconator,word__campaign_token baconator,-0.020016,2,FAIL
+mask_campaign_product,self-defeating,baconator,word__baconator with,-0.010146,3,FAIL
+mask_campaign_product,self-defeating,nuggs,word__nuggs,-0.035538,1,FAIL
+mask_campaign_product,self-defeating,nuggs,word__spicy nuggs,-0.02239,2,FAIL
+mask_campaign_product,self-defeating,nuggs,char__nuggs,-0.021847,3,FAIL
+mask_campaign_product,self-defeating,dave,word__dave,-0.046198,1,FAIL
+mask_campaign_product,self-defeating,dave,word__dave single,-0.031505,2,FAIL
+mask_campaign_product,self-defeating,dave,word__campaign_token dave,-0.019487,3,FAIL
+mask_campaign_product,self-defeating,burger king,word__burger king,-0.016976,1,FAIL
+mask_campaign_product,self-defeating,mcdonald,word__mcdonald,-0.016171,1,FAIL
+mask_campaign_product,self-defeating,mcdonald,word__mcdonald announced,-0.010025,2,FAIL
+mask_campaign_product,self-defeating,clown,word__clowns,-0.016905,1,FAIL
+mask_campaign_product,self-defeating,roast,word__nationalroastday,-0.069718,1,FAIL
+mask_campaign_product,self-defeating,roast,char__roast,-0.058459,2,FAIL
+mask_campaign_product,self-defeating,roast,word__roast,-0.043748,3,FAIL
+mask_campaign_product,self-defeating,roasting,word__roasting,-0.02128,1,FAIL
+mask_campaign_product,self-defeating,free,word__freedom,-0.011739,1,FAIL
+mask_campaign_product,self-defeating,app,word__happy,-0.065965,1,FAIL
+mask_campaign_product,self-defeating,app,word__apply,-0.054377,2,FAIL
+mask_campaign_product,self-defeating,app,char__app,-0.054108,3,FAIL
+mask_campaign_product,self-defeating,deal,word__deals,-0.036327,1,FAIL
+mask_campaign_product,self-defeating,deal,char__deal,-0.022129,2,FAIL
+mask_campaign_product,self-defeating,deal,word__the deals,-0.020924,3,FAIL
+mask_campaign_product,self-defeating,offer,word__offering,-0.007977,1,FAIL
+mask_all_leakage_groups,aggressive,wendy,word__wendysspicynuggs,-0.024127,1,FAIL
+mask_all_leakage_groups,aggressive,wendy,word__verified wendysspicynuggs,-0.01664,2,FAIL
+mask_all_leakage_groups,aggressive,wendys,word__wendysspicynuggs,-0.024127,1,FAIL
+mask_all_leakage_groups,aggressive,wendys,word__verified wendysspicynuggs,-0.01664,2,FAIL
+mask_all_leakage_groups,aggressive,wendy,word__wendysspicynuggs,-0.024127,1,FAIL
+mask_all_leakage_groups,aggressive,wendy,word__verified wendysspicynuggs,-0.01664,2,FAIL
+mask_all_leakage_groups,aggressive,wendys,word__wendysspicynuggs,-0.024127,1,FAIL
+mask_all_leakage_groups,aggressive,wendys,word__verified wendysspicynuggs,-0.01664,2,FAIL
+mask_all_leakage_groups,aggressive,nuggs,word__wendysspicynuggs,-0.024127,1,FAIL
+mask_all_leakage_groups,aggressive,nuggs,word__verified wendysspicynuggs,-0.01664,2,FAIL
+mask_all_leakage_groups,aggressive,clown,word__clowns,0.075434,1,FAIL
+mask_all_leakage_groups,aggressive,roast,word__nationalroastday,0.329756,1,FAIL
+mask_all_leakage_groups,aggressive,roast,char__roast,0.127992,2,FAIL
+mask_all_leakage_groups,aggressive,roast,word__roasted,-0.035023,3,FAIL
+mask_all_leakage_groups,aggressive,free,word__freedom,-0.017965,1,FAIL
+mask_all_leakage_groups,aggressive,app,word__happy,-0.08852,1,FAIL
+mask_all_leakage_groups,aggressive,app,word__happening,0.077265,2,FAIL
+mask_all_leakage_groups,aggressive,app,word__apply,-0.066744,3,FAIL
+mask_all_leakage_groups,aggressive,deal,word__deals,-0.049213,1,FAIL
+mask_all_leakage_groups,aggressive,deal,word__dealer,0.036538,2,FAIL
+mask_all_leakage_groups,aggressive,deal,word__the deals,-0.027465,3,FAIL
+mask_all_leakage_groups,aggressive,offer,word__offering,-0.010192,1,FAIL
+mask_all_leakage_groups,affiliative,wendy,word__wendysspicynuggs,-0.033977,1,FAIL
+mask_all_leakage_groups,affiliative,wendy,word__verified wendysspicynuggs,-0.024349,2,FAIL
+mask_all_leakage_groups,affiliative,wendys,word__wendysspicynuggs,-0.033977,1,FAIL
+mask_all_leakage_groups,affiliative,wendys,word__verified wendysspicynuggs,-0.024349,2,FAIL
+mask_all_leakage_groups,affiliative,wendy,word__wendysspicynuggs,-0.033977,1,FAIL
+mask_all_leakage_groups,affiliative,wendy,word__verified wendysspicynuggs,-0.024349,2,FAIL
+mask_all_leakage_groups,affiliative,wendys,word__wendysspicynuggs,-0.033977,1,FAIL
+mask_all_leakage_groups,affiliative,wendys,word__verified wendysspicynuggs,-0.024349,2,FAIL
+mask_all_leakage_groups,affiliative,nuggs,word__wendysspicynuggs,-0.033977,1,FAIL
+mask_all_leakage_groups,affiliative,nuggs,word__verified wendysspicynuggs,-0.024349,2,FAIL
+mask_all_leakage_groups,affiliative,clown,word__clowns,-0.00912,1,FAIL
+mask_all_leakage_groups,affiliative,roast,word__nationalroastday,-0.092596,1,FAIL
+mask_all_leakage_groups,affiliative,roast,char__roast,-0.043823,2,FAIL
+mask_all_leakage_groups,affiliative,roast,word__roasted,-0.020673,3,FAIL
+mask_all_leakage_groups,affiliative,free,word__freedom,0.034653,1,FAIL
+mask_all_leakage_groups,affiliative,app,word__happy,0.122767,1,FAIL
+mask_all_leakage_groups,affiliative,app,char__happ,0.084785,2,FAIL
+mask_all_leakage_groups,affiliative,app,char__ happ,0.082227,3,FAIL
+mask_all_leakage_groups,affiliative,deal,word__the deals,-0.010888,1,FAIL
+mask_all_leakage_groups,affiliative,deal,char__ deal,-0.006718,2,FAIL
+mask_all_leakage_groups,affiliative,deal,word__deals,-0.005062,3,FAIL
+mask_all_leakage_groups,affiliative,offer,word__offering,0.005048,1,FAIL
+mask_all_leakage_groups,self-enhancing,wendy,word__wendysspicynuggs,0.056191,1,FAIL
+mask_all_leakage_groups,self-enhancing,wendy,word__verified wendysspicynuggs,0.039252,2,FAIL
+mask_all_leakage_groups,self-enhancing,wendys,word__wendysspicynuggs,0.056191,1,FAIL
+mask_all_leakage_groups,self-enhancing,wendys,word__verified wendysspicynuggs,0.039252,2,FAIL
+mask_all_leakage_groups,self-enhancing,wendy,word__wendysspicynuggs,0.056191,1,FAIL
+mask_all_leakage_groups,self-enhancing,wendy,word__verified wendysspicynuggs,0.039252,2,FAIL
+mask_all_leakage_groups,self-enhancing,wendys,word__wendysspicynuggs,0.056191,1,FAIL
+mask_all_leakage_groups,self-enhancing,wendys,word__verified wendysspicynuggs,0.039252,2,FAIL
+mask_all_leakage_groups,self-enhancing,nuggs,word__wendysspicynuggs,0.056191,1,FAIL
+mask_all_leakage_groups,self-enhancing,nuggs,word__verified wendysspicynuggs,0.039252,2,FAIL
+mask_all_leakage_groups,self-enhancing,clown,word__clowns,-0.030111,1,FAIL
+mask_all_leakage_groups,self-enhancing,roast,word__nationalroastday,-0.113973,1,FAIL
+mask_all_leakage_groups,self-enhancing,roast,word__roasted,0.048497,2,FAIL
+mask_all_leakage_groups,self-enhancing,roast,char__roast,-0.032909,3,FAIL
+mask_all_leakage_groups,self-enhancing,free,word__freedom,-0.023769,1,FAIL
+mask_all_leakage_groups,self-enhancing,app,word__happy,-0.072119,1,FAIL
+mask_all_leakage_groups,self-enhancing,app,char__ happ,-0.053397,2,FAIL
+mask_all_leakage_groups,self-enhancing,app,char__happ,-0.052709,3,FAIL
+mask_all_leakage_groups,self-enhancing,deal,word__deals,0.044931,1,FAIL
+mask_all_leakage_groups,self-enhancing,deal,word__the deals,0.034722,2,FAIL
+mask_all_leakage_groups,self-enhancing,deal,char__ deal,0.018986,3,FAIL
+mask_all_leakage_groups,self-enhancing,offer,word__offering,0.001738,1,FAIL
+mask_all_leakage_groups,self-defeating,wendy,word__wendysspicynuggs,-0.02061,1,FAIL
+mask_all_leakage_groups,self-defeating,wendy,word__verified wendysspicynuggs,-0.013862,2,FAIL
+mask_all_leakage_groups,self-defeating,wendys,word__wendysspicynuggs,-0.02061,1,FAIL
+mask_all_leakage_groups,self-defeating,wendys,word__verified wendysspicynuggs,-0.013862,2,FAIL
+mask_all_leakage_groups,self-defeating,wendy,word__wendysspicynuggs,-0.02061,1,FAIL
+mask_all_leakage_groups,self-defeating,wendy,word__verified wendysspicynuggs,-0.013862,2,FAIL
+mask_all_leakage_groups,self-defeating,wendys,word__wendysspicynuggs,-0.02061,1,FAIL
+mask_all_leakage_groups,self-defeating,wendys,word__verified wendysspicynuggs,-0.013862,2,FAIL
+mask_all_leakage_groups,self-defeating,nuggs,word__wendysspicynuggs,-0.02061,1,FAIL
+mask_all_leakage_groups,self-defeating,nuggs,word__verified wendysspicynuggs,-0.013862,2,FAIL
+mask_all_leakage_groups,self-defeating,clown,word__clowns,-0.016582,1,FAIL
+mask_all_leakage_groups,self-defeating,roast,word__nationalroastday,-0.0693,1,FAIL
+mask_all_leakage_groups,self-defeating,roast,char__roast,-0.0391,2,FAIL
+mask_all_leakage_groups,self-defeating,roast,word__roasted,-0.024448,3,FAIL
+mask_all_leakage_groups,self-defeating,free,word__freedom,-0.011581,1,FAIL
+mask_all_leakage_groups,self-defeating,app,word__happy,-0.065117,1,FAIL
+mask_all_leakage_groups,self-defeating,app,word__apply,-0.055219,2,FAIL
+mask_all_leakage_groups,self-defeating,app,char__app,-0.054053,3,FAIL
+mask_all_leakage_groups,self-defeating,deal,word__deals,-0.03609,1,FAIL
+mask_all_leakage_groups,self-defeating,deal,char__deal,-0.021929,2,FAIL
+mask_all_leakage_groups,self-defeating,deal,word__the deals,-0.020871,3,FAIL
+mask_all_leakage_groups,self-defeating,offer,word__offering,-0.007902,1,FAIL

@@ -1,0 +1,7 @@
+variant,macro_f1,aggressive_f1,self_defeating_f1,leakage_flag,candidate_status
+original_text,0.4194,0.4551,0.1493,FAIL,diagnostic_only_no_candidate
+mask_wendys_brand,0.4105,0.4551,0.1333,FAIL,diagnostic_only_no_candidate
+mask_brand_product,0.4188,0.4522,0.1667,FAIL,diagnostic_only_no_candidate
+mask_brand_product_competitor,0.4151,0.4254,0.1739,FAIL,diagnostic_only_no_candidate
+mask_campaign_product,0.4075,0.4373,0.1351,FAIL,diagnostic_only_no_candidate
+mask_all_leakage_groups,0.4135,0.4244,0.1795,FAIL,diagnostic_only_no_candidate
