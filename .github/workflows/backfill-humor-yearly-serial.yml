@@ -1,0 +1,258 @@
+name: Yearly Humor Backfill Serial Years
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_year:
+        description: 'Start year inclusive (2009–2021)'
+        required: true
+        default: '2009'
+      end_year:
+        description: 'End year inclusive (2009–2021)'
+        required: true
+        default: '2021'
+      target_year:
+        description: 'Single year to process; overrides start_year/end_year when set'
+        required: false
+        default: ''
+      max_posts_per_account:
+        description: 'Max posts per account (0 = all observable)'
+        required: true
+        default: '0'
+      max_scrolls:
+        description: 'Max scrolls per account'
+        required: true
+        default: '3500'
+      max_parallel_companies:
+        description: 'Max companies in parallel per year (recommended: 1–3)'
+        required: true
+        default: '2'
+      target_scope:
+        description: 'all = all active companies; failed_only = recoverable failures only'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'failed_only'
+      retry_round:
+        description: 'Retry round counter (0 = first run)'
+        required: true
+        default: '0'
+      commit_results:
+        description: 'Commit and push staging outputs to main (default: false)'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backfill-humor-yearly-serial
+  cancel-in-progress: false
+
+jobs:
+  validate-inputs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      start_year: ${{ steps.check.outputs.start_year }}
+      end_year: ${{ steps.check.outputs.end_year }}
+      target_year: ${{ steps.check.outputs.target_year }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        shell: bash
+        run: |
+          set -euo pipefail
+          START='${{ inputs.start_year }}'
+          END='${{ inputs.end_year }}'
+          TARGET='${{ inputs.target_year }}'
+          SCOPE='${{ inputs.target_scope }}'
+          COMMIT='${{ inputs.commit_results }}'
+          MP='${{ inputs.max_parallel_companies }}'
+          RR='${{ inputs.retry_round }}'
+
+          test "$COMMIT" = 'false' || test "$COMMIT" = 'true'
+          test "$SCOPE" = 'all' || test "$SCOPE" = 'failed_only'
+          test "$MP" -ge 1 && test "$MP" -le 10
+          test "$RR" -ge 0
+
+          if [ -n "$TARGET" ]; then
+            test "$TARGET" -ge 2009 && test "$TARGET" -le 2021
+            echo "start_year=$TARGET" >> "$GITHUB_OUTPUT"
+            echo "end_year=$TARGET" >> "$GITHUB_OUTPUT"
+            echo "target_year=$TARGET" >> "$GITHUB_OUTPUT"
+          else
+            test "$START" -ge 2009 && test "$START" -le 2021
+            test "$END" -ge 2009 && test "$END" -le 2021
+            test "$START" -le "$END"
+            echo "start_year=$START" >> "$GITHUB_OUTPUT"
+            echo "end_year=$END" >> "$GITHUB_OUTPUT"
+            echo "target_year=" >> "$GITHUB_OUTPUT"
+          fi
+
+          python -m py_compile scripts/build_yearly_humor_backfill_targets.py
+          python -m py_compile scripts/run_yearly_humor_backfill.py
+          python -m py_compile scripts/validate_yearly_humor_backfill_outputs.py
+          python scripts/validate_yearly_humor_backfill_outputs.py --allow-empty
+          echo "Input validation passed"
+
+  prepare-year-targets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: validate-inputs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - shell: bash
+        run: |
+          set -euo pipefail
+          START='${{ needs.validate-inputs.outputs.start_year }}'
+          END='${{ needs.validate-inputs.outputs.end_year }}'
+          TARGET='${{ needs.validate-inputs.outputs.target_year }}'
+          SCOPE='${{ inputs.target_scope }}'
+          if [ -n "$TARGET" ]; then
+            python scripts/build_yearly_humor_backfill_targets.py \
+              --target-year "$TARGET" \
+              --target-scope "$SCOPE"
+          else
+            python scripts/build_yearly_humor_backfill_targets.py \
+              --start-year "$START" \
+              --end-year "$END" \
+              --target-scope "$SCOPE"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yearly-backfill-targets
+          path: data/backfill/yearly_humor/
+
+  collect-year:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    needs: [validate-inputs, prepare-year-targets]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: yearly-backfill-targets
+          path: data/backfill/yearly_humor/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install Python dependencies
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r requirements-scrape.txt
+      - name: Install Playwright Chromium
+        timeout-minutes: 15
+        shell: bash
+        run: python -m playwright install --with-deps chromium
+      - name: Apply runtime patches
+        shell: bash
+        run: python scripts/patch_humor_append_runtime.py
+      - name: Run yearly serial backfill
+        env:
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+          X_CT0: ${{ secrets.X_CT0 }}
+          PAGE_TIMEOUT_MS: '45000'
+        shell: bash
+        run: |
+          set -euo pipefail
+          START='${{ needs.validate-inputs.outputs.start_year }}'
+          END='${{ needs.validate-inputs.outputs.end_year }}'
+          TARGET='${{ needs.validate-inputs.outputs.target_year }}'
+          SCOPE='${{ inputs.target_scope }}'
+          RETRY='${{ inputs.retry_round }}'
+          MP='${{ inputs.max_parallel_companies }}'
+          MX='${{ inputs.max_posts_per_account }}'
+          MS='${{ inputs.max_scrolls }}'
+          if [ -n "$TARGET" ]; then
+            python scripts/run_yearly_humor_backfill.py \
+              --target-year "$TARGET" \
+              --max-posts-per-account "$MX" \
+              --max-scrolls "$MS" \
+              --max-parallel-companies "$MP" \
+              --target-scope "$SCOPE" \
+              --retry-round "$RETRY"
+          else
+            python scripts/run_yearly_humor_backfill.py \
+              --start-year "$START" \
+              --end-year "$END" \
+              --max-posts-per-account "$MX" \
+              --max-scrolls "$MS" \
+              --max-parallel-companies "$MP" \
+              --target-scope "$SCOPE" \
+              --retry-round "$RETRY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: yearly-backfill-outputs
+          path: data/backfill/yearly_humor/
+
+  validate-yearly-outputs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [validate-inputs, collect-year]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: yearly-backfill-outputs
+          path: data/backfill/yearly_humor/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - shell: bash
+        run: |
+          set -euo pipefail
+          START='${{ needs.validate-inputs.outputs.start_year }}'
+          END='${{ needs.validate-inputs.outputs.end_year }}'
+          TARGET='${{ needs.validate-inputs.outputs.target_year }}'
+          if [ -n "$TARGET" ]; then
+            python scripts/validate_yearly_humor_backfill_outputs.py --target-year "$TARGET"
+          else
+            python scripts/validate_yearly_humor_backfill_outputs.py \
+              --start-year "$START" \
+              --end-year "$END"
+          fi
+
+  optional-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [validate-inputs, validate-yearly-outputs]
+    if: ${{ inputs.commit_results == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: yearly-backfill-outputs
+          path: data/backfill/yearly_humor/
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/backfill/yearly_humor/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            TARGET='${{ needs.validate-inputs.outputs.target_year }}'
+            START='${{ needs.validate-inputs.outputs.start_year }}'
+            END='${{ needs.validate-inputs.outputs.end_year }}'
+            RETRY='${{ inputs.retry_round }}'
+            LABEL="${TARGET:-${START}-${END}}"
+            git commit -m "data: yearly humor backfill staging year(s)=${LABEL} retry=${RETRY}"
+            git push
+          fi
