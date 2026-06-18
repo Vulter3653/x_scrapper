@@ -1,0 +1,16 @@
+item,value,evidence_file,notes
+file_matching_597_coded_rows,20260615wendy's/data/wendys_final_humor_presence_dataset.csv,20260615wendy's/data/wendys_final_humor_presence_dataset.csv,wendys_final_humor_presence_dataset.csv is 597 rows; manual final labels
+file_matching_987_total_rows,not_found_in_repo,none,987 not in repo; raw posts=978; 987=pre-dedup count (9 dups removed)
+file_matching_humor_564_nonhumor_414,20260615wendy's/data/wendys_h1_literature_post_format_dataset.csv,wendys_h1_time_fe_only_dataset.csv,pred_humor_final_050 col: model prediction at t50 applied to all 978 rows
+reason_for_987_vs_978_gap,9_duplicate_posts_removed,wendys_posts_raw.json=978; slide=987; diff=9,9 rows likely pre-dedup duplicates removed before final 978-row corpus
+file_matching_four_type_564,not_found,wendys_full_sample_four_type_humor_distribution.csv,pred_full_4type_count: four-type classifier applied to all 978 posts
+file_matching_aggressive_187,not_found,wendys_full_sample_four_type_humor_distribution.csv,pred_full_4type_count aggressive=187
+file_matching_affiliative_251,not_found,wendys_full_sample_four_type_humor_distribution.csv,pred_full_4type_count affiliative=251
+file_matching_self_enhancing_96,not_found,wendys_full_sample_four_type_humor_distribution.csv,pred_full_4type_count self-enhancing=96
+file_matching_self_defeating_30,not_found,wendys_full_sample_four_type_humor_distribution.csv,pred_full_4type_count self-defeating=30
+type_labels_available_for_training,22,20260615wendy's/result/wendys_humor_review_sheet.csv;20260615wendy's/data/wendys_h2_four_type_humor_dataset.csv;data/derived/humor/evaluation/humor_type_ab_test_sample.csv;20260615wendy's/result/wendys_full_sample_four_type_humor_predictions.csv,files with four_type_total > 0
+presence_only_files,37,20260615wendy's/data/wendys_final_humor_presence_dataset.csv;20260615wendy's/data/wendys_h1_literature_post_format_dataset.csv;20260615wendy's/data/wendys_h1_simple_ols_ttest_dataset.csv;20260615wendy's/data/wendys_h1_three_post_format_combinations_dataset.csv,"has presence label, no type, not a raw prediction file"
+model_prediction_files,116,20260615wendy's/data/wendys_fast_weak_supervised_humor_dataset.csv;20260615wendy's/data/wendys_full_sample_four_type_humor_classifier_dataset.csv;20260615wendy's/data/wendys_h1_literature_post_format_dataset.csv;20260615wendy's/data/wendys_h1_log_humor_input.csv,files flagged as model prediction outputs
+manual_label_files,43,20260615wendy's/data/wendys_h2_coder1_priority_dataset.csv;20260615wendy's/data/wendys_human_tfidf_logreg_humor_dataset.csv;20260615wendy's/data/wendys_partial_human_coded_humor_labels.csv;20260615wendy's/result/wendys_blind_human_humor_coding_key.csv,files flagged as human/manual coded
+recommended_type_training_sources,20260615wendy's/data/wendys_h2_coder1_priority_dataset.csv;20260615wendy's/data/wendys_h2_four_type_humor_dataset.csv;20260615wendy's/data/wendys_full_sample_four_type_humor_classifier_dataset.csv,coder1_priority=597rows;four_type_human=278rows;full_classifier=278rows,coder1_priority has final_humor_type; four_type files have human-coded type for 278 humor posts
+recommended_exclusions,result/prediction files with pred_* columns,model-predicted labels should not be used as ground truth for training,"wendys_h1_time_fe_only_dataset.csv 564/414 are model preds, not manual labels"
