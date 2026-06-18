@@ -1,0 +1,15 @@
+metric,value
+total_candidates,1500
+target_sample_size,1500
+input_post_master_rows,65245
+full_chain_matched_rows,67860
+stratum_classifier_disagreement,200
+stratum_firm_balanced_sample,97
+stratum_full_chain_aggressive,95
+stratum_high_engagement_posts,150
+stratum_humor_presence_uncertain,200
+stratum_low_engagement_posts,100
+stratum_random_fortune_sample,358
+stratum_type_uncertain,100
+stratum_wendys_transfer_aggressive,200
+aggressive_oversample_total,295

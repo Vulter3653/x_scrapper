@@ -1,0 +1,82 @@
+name: Fortune 100 Classifier Improvement
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "build_candidates | train_smoke | evaluate | full_apply"
+        required: true
+        default: "build_candidates"
+        type: choice
+        options:
+          - build_candidates
+          - train_smoke
+          - evaluate
+          - full_apply
+      sample_size:
+        description: "Labeling candidate sample size (build_candidates mode)"
+        required: false
+        default: "1500"
+      commit_results:
+        description: "Commit outputs back to branch"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  run-classifier-improvement:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install scikit-learn==1.9.0 numpy==2.4.6 scipy==1.17.1
+
+      - name: Build labeling candidates
+        if: ${{ inputs.mode == 'build_candidates' }}
+        run: |
+          python 20260618expand/classifier_improvement/scripts/build_fortune_labeling_candidates.py \
+            --sample-size ${{ inputs.sample_size }}
+          python 20260618expand/classifier_improvement/scripts/build_human_labeling_template.py
+
+      - name: Smoke train (presence classifier, first 200 labels)
+        if: ${{ inputs.mode == 'train_smoke' }}
+        run: |
+          python 20260618expand/classifier_improvement/scripts/train_domain_adapted_humor_presence_classifier.py --smoke
+          python 20260618expand/classifier_improvement/scripts/train_domain_adapted_humor_type_classifier.py --smoke
+
+      - name: Evaluate classifiers
+        if: ${{ inputs.mode == 'evaluate' }}
+        run: |
+          python 20260618expand/classifier_improvement/scripts/train_domain_adapted_humor_presence_classifier.py
+          python 20260618expand/classifier_improvement/scripts/train_domain_adapted_humor_type_classifier.py
+
+      - name: Apply to full corpus
+        if: ${{ inputs.mode == 'full_apply' }}
+        run: |
+          python 20260618expand/classifier_improvement/scripts/apply_domain_adapted_classifier.py
+
+      - name: Validate outputs
+        run: |
+          python 20260618expand/classifier_improvement/scripts/validate_classifier_improvement_outputs.py
+
+      - name: Commit results (if requested)
+        if: ${{ inputs.commit_results == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add 20260618expand/classifier_improvement/
+          git diff --cached --quiet || git commit -m "analysis: fortune100 classifier improvement results [ci skip]"
+          git push
