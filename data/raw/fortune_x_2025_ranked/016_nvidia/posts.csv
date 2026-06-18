@@ -1,4 +1,51 @@
 fortune_rank,company_name,official_x_handle,tweet_id,created_at,text,tweet_url,reply_count,repost_count,like_count,quote_count,view_count_available,media_present,media_type,collected_at,collection_method,max_posts_cap,source_folder,source_x_handle,source_x_url,account_role,account_index
+16,Nvidia,@nvidia,2067276088724557928,Wed Jun 17 16:00:02 +0000 2026,🔗 https://t.co/CCl2Rcecev,https://x.com/nvidia/status/2067276088724557928,2,2,27,0,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2067276081548202489,Wed Jun 17 16:00:00 +0000 2026,"Registration for #NVIDIAGTC Berlin is now open. ✨
+
+October 20–22, join the global AI community for expert-led sessions, hands-on training, and insights on how AI is transforming every industry.
+
+Hear from NVIDIA CEO Jensen Huang, explore what's next across the AI stack, and connect with the developers, researchers, and leaders shaping what's next.
+
+Register now.",https://x.com/nvidia/status/2067276081548202489,22,21,115,5,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2067044209476223373,Wed Jun 17 00:38:38 +0000 2026,"Thanks @satyanadella 👏
+
+Great work with @Azure on one of the largest MLPerf Training submission to-date on NVIDIA Blackwell: 8,192 GPUs on NVIDIA GB200 NVL72 systems, Llama 3.1 405B training target met in only 7.07 minutes.
+
+More to come!",https://x.com/nvidia/status/2067044209476223373,31,56,453,2,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2067020073408368664,Tue Jun 16 23:02:43 +0000 2026,"New Azure milestone. The fastest time to train yet at the largest reported scale for this leading AI training benchmark.
+
+A great example of what is possible when we bring together full-stack innovation across silicon, systems, networking, and software, along with our deep partnership with @nvidia, to advance the frontier of AI infra. https://t.co/5ADybErndz",https://x.com/nvidia/status/2067020073408368664,98,107,916,15,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2067016774424351031,Tue Jun 16 22:49:36 +0000 2026,@CoherentCorp Read more on how Coherent’s Sherman expansion is helping build the American manufacturing base behind the AI era: https://t.co/UbIqJhav9G,https://x.com/nvidia/status/2067016774424351031,5,7,49,1,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2067016769584177337,Tue Jun 16 22:49:35 +0000 2026,"AI infrastructure runs on more than compute. It runs on light.
+
+Today in Sherman, Texas, Jensen Huang joined @CoherentCorp CEO Jim Anderson and local leaders to mark the expansion of U.S. manufacturing capacity for advanced photonics.
+
+The technology is behind the lasers and optical links that move data across modern AI systems, strengthening the American manufacturing base behind the AI era.",https://x.com/nvidia/status/2067016769584177337,55,143,1074,22,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066986675176415415,Tue Jun 16 20:50:00 +0000 2026,Correction: GB300 NVL72 delivers 1.6x performance on DeepSeekV3 pretraining at 512 GPU scale. (Ref: results 6.0-0022 and 6.0-0101),https://x.com/nvidia/status/2066986675176415415,3,5,48,1,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066948609539768596,Tue Jun 16 18:18:45 +0000 2026,"👏 @IneffableLabs is building a superlearner that learns from experience, requiring enormous computational scale.
+
+They chose NVIDIA Vera Rubin NVL72, one of the largest clusters on @GoogleCloud, to power their mission to reach superintelligence.",https://x.com/nvidia/status/2066948609539768596,28,29,206,3,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066902394655424619,Tue Jun 16 15:15:06 +0000 2026,"Learn how the NVIDIA platform and ecosystem enable AI model builders to launch frontier models faster, minimize training costs, and start generating revenue early. 🔗 https://t.co/tmSTzQDscB",https://x.com/nvidia/status/2066902394655424619,7,7,80,1,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066902392570876031,Tue Jun 16 15:15:06 +0000 2026,"The NVIDIA Blackwell platform just swept MLPerf Training 6.0, delivering fastest performance and largest scale.
+
+Beyond the benchmarks, capabilities like the Reliability, Availability, and Serviceability Engine and NVIDIA Resiliency Extension deliver fewer interruptions and faster recovery to keep massive training jobs on track.",https://x.com/nvidia/status/2066902392570876031,38,57,403,9,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066780427080073543,Tue Jun 16 07:10:27 +0000 2026,"Google Cloud and @IneffableLabs today announced a strategic partnership in which Google will provide the specialised infrastructure for Ineffable's new frontier AI lab. 
+
+Read the full announcement, here → https://t.co/KuhHAwQyE0 #GoogleCloudSummit https://t.co/An8YBj1eR3",https://x.com/nvidia/status/2066780427080073543,1,1,18,6,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066624546858533291,Mon Jun 15 20:51:02 +0000 2026,"RT @NVIDIAAIInfra: 80% faster. Purpose-built for agents.
+
+NVIDIA Vera isn’t a CPU upgrade. It’s a new category.
+Our CEO Jensen Huang said i…",https://x.com/nvidia/status/2066624546858533291,0,133,0,0,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066610005357334581,Mon Jun 15 19:53:15 +0000 2026,Explore NVIDIA’s energy solutions: https://t.co/tBzFhFYgJM,https://x.com/nvidia/status/2066610005357334581,5,9,53,1,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066610003046273161,Mon Jun 15 19:53:15 +0000 2026,"⚡Energy is the foundation of the AI 5-Layer Cake. 
+
+As AI demand accelerates, energy is the key constraint on growth. From power and utilities to surface and subsurface operations — AI, digital twins, and intelligent agents are transforming how energy is produced and managed, unlocking capacity and improving efficiency at scale.",https://x.com/nvidia/status/2066610003046273161,62,66,359,16,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
+16,Nvidia,@nvidia,2066561191896588708,Mon Jun 15 16:39:17 +0000 2026,"80% faster. Purpose-built for agents.
+
+NVIDIA Vera isn’t a CPU upgrade. It’s a new category.
+Our CEO Jensen Huang said it best: “We built Vera for agents to use.”
+
+Learn more: https://t.co/0J4jFya0LP https://t.co/qdHpFJ66OP",https://x.com/nvidia/status/2066561191896588708,41,133,984,18,true,false,,2026-06-18T05:37:37.080139+00:00,incremental browser-based collection of observable public posts,0,/home/runner/work/x_scrapper/x_scrapper/data/raw/fortune_x_2025_ranked/016_nvidia,@nvidia,https://x.com/nvidia,primary,1
 16,Nvidia,@nvidia,2065543514453065752,Fri Jun 12 21:15:24 +0000 2026,@ArtificialAnlys Learn more: https://t.co/Tb22FyRhGQ,https://x.com/nvidia/status/2065543514453065752,2,5,38,2,true,false,,2026-06-13T04:22:36.138189+00:00,capped browser-based collection of observable public posts,0,data/raw/fortune_x_2025_ranked/016_nvidia/accounts/01_primary_nvidia,@nvidia,https://x.com/nvidia,primary,1
 16,Nvidia,@nvidia,2065543509478670375,Fri Jun 12 21:15:23 +0000 2026,"The first agentic AI infrastructure benchmark is here.
 
