@@ -1,0 +1,16 @@
+metric,value
+total_classified_rows,65245
+master_matched_rows,65245
+master_missing_rows,0
+presence_ok,39760
+presence_abstained_uncertain,25485
+h1_sample_rows,39760
+h1_humor_rows,11643
+h1_non_humor_rows,28117
+h2_sample_rows,29642
+h2_aggressive_rows,80
+h3_firm_month_rows,3412
+h3_nonzero_aggressive_rows,68
+training_data_source,batch1+batch2_combined
+n_training_labels,1980
+classifier,tfidf_logreg_domain_adapted

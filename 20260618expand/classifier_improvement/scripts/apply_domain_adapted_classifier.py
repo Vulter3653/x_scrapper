@@ -41,8 +41,16 @@ OUT_CLASSIFIED = CI / "data" / "classified" / "fortune100_domain_adapted_humor_c
 OUT_COMPARISON = CI / "results" / "domain_transfer_comparison.csv"
 
 CLASSES_TYPE = ["aggressive", "affiliative", "self_enhancing", "self_defeating"]
-VALID_PRESENCE = {"humor", "non_humor"}
-VALID_TYPES = set(CLASSES_TYPE)
+# Numeric coding: 0=non_humor, 1=humor, 2=uncertain
+VALID_PRESENCE = {"0", "1"}
+# Numeric type coding: 1=aggressive, 2=affiliative, 3=self_enhancing, 4=self_defeating
+TYPE_CODE_TO_LABEL = {
+    "1": "aggressive",
+    "2": "affiliative",
+    "3": "self_enhancing",
+    "4": "self_defeating",
+}
+VALID_TYPES = set(TYPE_CODE_TO_LABEL.keys())
 RANDOM_STATE = 42
 
 ABSTENTION_LO = 0.40
@@ -66,22 +74,26 @@ def main() -> None:
                         help="Apply to first 500 posts only")
     parser.add_argument("--min-presence-labels", type=int, default=200,
                         help="Minimum human presence labels required to run")
+    parser.add_argument("--template", type=Path, default=None,
+                        help="Path to labeled template CSV (default: batch1 master)")
     args = parser.parse_args()
+
+    template_path = args.template if args.template else TEMPLATE
 
     print("=== apply_domain_adapted_classifier ===")
 
-    # Check human labels exist
-    if not TEMPLATE.exists():
-        print(f"ERROR: template not found: {TEMPLATE}")
+    if not template_path.exists():
+        print(f"ERROR: template not found: {template_path}")
         raise SystemExit(1)
 
-    with open(TEMPLATE, newline="", encoding="utf-8") as f:
+    print(f"  Template: {template_path.name}")
+    with open(template_path, newline="", encoding="utf-8") as f:
         template_rows = list(csv.DictReader(f))
 
     labeled_presence = [r for r in template_rows
                         if r.get("human_humor_presence", "").strip() in VALID_PRESENCE]
     labeled_type = [r for r in template_rows
-                    if r.get("human_humor_presence", "").strip() == "humor"
+                    if r.get("human_humor_presence", "").strip() == "1"
                     and r.get("human_humor_type", "").strip() in VALID_TYPES]
 
     print(f"  Presence labels: {len(labeled_presence)}")
@@ -95,7 +107,7 @@ def main() -> None:
     # Train presence classifier
     print("\n  Training domain-adapted presence classifier...")
     texts_bin = [preprocess(r["text"]) for r in labeled_presence]
-    labels_bin = [1 if r["human_humor_presence"] == "humor" else 0
+    labels_bin = [1 if r["human_humor_presence"].strip() == "1" else 0
                   for r in labeled_presence]
 
     bin_pipe = Pipeline([
@@ -115,7 +127,7 @@ def main() -> None:
     if len(labeled_type) >= 20:
         print("  Training domain-adapted type classifier...")
         texts_type = [preprocess(r["text"]) for r in labeled_type]
-        labels_type = [r["human_humor_type"] for r in labeled_type]
+        labels_type = [TYPE_CODE_TO_LABEL[r["human_humor_type"].strip()] for r in labeled_type]
         type_pipe = Pipeline([
             ("tfidf", TfidfVectorizer(
                 ngram_range=(1, 2), min_df=1, max_df=0.95,
@@ -146,11 +158,11 @@ def main() -> None:
     classified = []
     for i, (mr, prob) in enumerate(zip(master_rows, bin_probs)):
         if prob >= ABSTENTION_HI:
-            presence = "humor"
-            presence_status = "classified"
+            presence = "1"
+            presence_status = "ok"
         elif prob <= ABSTENTION_LO:
-            presence = "non_humor"
-            presence_status = "classified"
+            presence = "0"
+            presence_status = "ok"
         else:
             presence = "uncertain"
             presence_status = "abstained"
@@ -158,11 +170,10 @@ def main() -> None:
         # Type
         humor_type = "non_humorous"
         humor_type_score = 0.0
-        humor_type_status = "non_humorous_gate"
-        agg = aff = se = sd = non_h = "0"
-        non_h = "1" if presence != "humor" else "0"
+        agg = aff = se = sd = "0"
+        non_h = "0" if presence == "1" else "1"
 
-        if presence == "humor" and type_pipe is not None:
+        if presence == "1" and type_pipe is not None:
             t_vec = type_pipe.predict_proba([all_texts_pp[i]])
             type_cls = type_pipe.classes_
             max_p = float(np.max(t_vec))
@@ -171,18 +182,15 @@ def main() -> None:
             if max_p >= TYPE_ABSTENTION:
                 humor_type = pred_type
                 humor_type_score = max_p
-                humor_type_status = "classified"
             else:
                 humor_type = "uncertain"
-                humor_type_status = "abstained"
 
             agg = "1" if humor_type == "aggressive" else "0"
             aff = "1" if humor_type == "affiliative" else "0"
             se = "1" if humor_type == "self_enhancing" else "0"
             sd = "1" if humor_type == "self_defeating" else "0"
-        elif presence == "humor" and type_pipe is None:
+        elif presence == "1" and type_pipe is None:
             humor_type = "uncertain"
-            humor_type_status = "type_classifier_not_trained"
 
         classified.append({
             "fortune_rank": mr.get("fortune_rank", ""),
@@ -194,10 +202,9 @@ def main() -> None:
             "text": mr.get("text", ""),
             "humor_presence": presence,
             "humor_presence_score": f"{prob:.6f}",
-            "humor_presence_status": presence_status,
+            "classification_status": presence_status,
             "humor_type": humor_type,
             "humor_type_score": f"{humor_type_score:.6f}",
-            "humor_type_status": humor_type_status,
             "aggressive_humor": agg,
             "affiliative_humor": aff,
             "self_enhancing_humor": se,
