@@ -1,0 +1,4 @@
+sample,combo,n,k_full,df_resid,beta1_intensity,beta1_se,beta1_stars,beta2_intensity_sq,beta2_se,beta2_stars,turning_point,H3_supported,R2,adjR2
+Human_coded,year,43,14,29,8.23854,14.202106,,17.511806,89.471629,,-0.235228,False,0.845016,0.77554
+Human_coded,qoy,43,6,37,54.946946,13.833601,***,-211.18872,106.29139,*,0.13009,True,0.501933,0.434627
+Human_coded,year+qoy,43,17,26,7.607389,14.747512,,21.218273,93.599416,,-0.179265,False,0.852226,0.761287

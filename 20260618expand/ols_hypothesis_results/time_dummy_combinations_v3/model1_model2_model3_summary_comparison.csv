@@ -1,0 +1,10 @@
+hypothesis,model1_simple_ols_est,model1_simple_ols_stars,model2_company_dummy_est,model2_company_dummy_stars,m3_year_est,m3_year_stars,m3_month_est,m3_month_stars,m3_year+month_est,m3_year+month_stars,m3_year+month+week_est,m3_year+month+week_stars,m3_year+month+week+hour_est,m3_year+month+week+hour_stars,m3_year+month+week+date+hour_est,m3_year+month+week+date+hour_stars,m3_h3_year_est,m3_h3_year_stars,m3_h3_qoy_est,m3_h3_qoy_stars,m3_h3_year+qoy_est,m3_h3_year+qoy_stars,m3_h3_year_quarter_est,m3_h3_year_quarter_stars
+coef_aggressive,1.919804,***,0.324678,***,1.95483,***,1.92116,***,1.953347,***,1.95067,***,1.890301,***,1.733935,***,,,,,,,,
+coef_affiliative,0.806469,***,0.178508,***,0.823109,***,0.809187,***,0.821607,***,0.822895,***,0.781597,***,0.755028,***,,,,,,,,
+coef_self_enhancing,1.42973,***,0.249866,***,1.347534,***,1.437155,***,1.353559,***,1.357165,***,1.313514,***,1.290698,***,,,,,,,,
+coef_self_defeating,2.168065,***,0.453933,***,2.261393,***,2.183189,***,2.267938,***,2.268109,***,2.218491,***,2.016165,***,,,,,,,,
+H1,1.166525,***,0.224747,***,1.155238,***,1.170907,***,1.156361,***,1.15792,***,1.113501,***,1.069182,***,,,,,,,,
+H2-1,0.849484,***,0.112693,***,0.901712,***,0.846073,***,0.898775,***,0.893997,***,0.876009,***,0.749652,***,,,,,,,,
+H2-2,0.438443,***,0.060542,**,0.543391,***,0.431836,***,0.535847,***,0.529804,***,0.513503,***,0.392506,***,,,,,,,,
+H3_beta1_intensity,12.619846,***,-1.234697,*,,,,,,,,,,,,,13.176964,***,12.622564,***,13.169,***,13.177314,***
+H3_supported,True,,False,,,,,,,,,,,,,,True,,True,,True,,True,

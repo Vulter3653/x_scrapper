@@ -1,0 +1,9 @@
+sample,combo,n_firm_quarters,k_time_effective,df_resid,rank_deficient,beta1,beta1_se,beta1_t,beta1_p,beta1_stars,beta2,beta2_se,beta2_t,beta2_p,beta2_stars,turning_point,obs_intensity_min,obs_intensity_max,tp_in_obs_range,H3_supported,R2,adjR2,successfully_estimated
+Full_sample,year,1420,13,1404,False,13.176964,0.882103,14.9381,0.0,***,-11.484962,1.956888,-5.869,0.0,***,0.573662,0.0,1.0,True,True,0.238892,0.230761,yes
+Full_sample,qoy,1420,3,1414,False,12.622564,0.894424,14.1125,0.0,***,-11.189166,2.000597,-5.5929,0.0,***,0.564053,0.0,1.0,True,True,0.190686,0.187824,yes
+Full_sample,year+qoy,1420,16,1401,False,13.169,0.882336,14.9251,0.0,***,-11.421643,1.958391,-5.8322,0.0,***,0.576493,0.0,1.0,True,True,0.240173,0.230411,yes
+Full_sample,year_quarter,1420,46,1371,False,13.177314,0.888297,14.8343,0.0,***,-11.41725,1.976893,-5.7753,0.0,***,0.577079,0.0,1.0,True,True,0.254671,0.228576,yes
+Human_coded,year,43,11,29,False,8.23854,14.202106,0.5801,0.566332,,17.511806,89.471629,0.1957,0.846191,,-0.235228,0.0,0.151163,False,False,0.845016,0.77554,yes
+Human_coded,qoy,43,3,37,False,54.946946,13.833601,3.972,0.000317,***,-211.18872,106.29139,-1.9869,0.054378,*,0.13009,0.0,0.151163,True,True,0.501933,0.434627,yes
+Human_coded,year+qoy,43,14,26,False,7.607389,14.747512,0.5158,0.610324,,21.218273,93.599416,0.2267,0.822436,,-0.179265,0.0,0.151163,False,False,0.852226,0.761287,yes
+Human_coded,year_quarter,43,42,n/a,False,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,n/a,n/a,n/a,n/a,no

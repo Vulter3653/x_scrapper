@@ -1,0 +1,373 @@
+model,combo,hypothesis,contrast,estimate,std_error,t_stat,p_value,stars,direction,support
+Full_sample,year,H1,WHE,1.155238,0.016204,71.2948,0.0,***,positive,supported
+Full_sample,year,H2-1,Aggressive − Other (weighted avg),0.901712,0.041731,21.6076,0.0,***,positive,supported
+Full_sample,year,H2-2,Aggressive − SELF (weighted avg),0.543391,0.045279,12.001,0.0,***,positive,supported
+Full_sample,year,H2-3,Aggressive − Affiliative,1.13172,0.04321,26.1914,0.0,***,positive,supported
+Full_sample,year,H2-3,Aggressive − Self-Enhancing,0.607296,0.045713,13.285,0.0,***,positive,supported
+Full_sample,year,H2-3,Aggressive − Self-Defeating,-0.306563,0.093513,-3.2783,0.001045,***,negative,not_supported
+Full_sample,month,H1,WHE,1.170907,0.016664,70.2651,0.0,***,positive,supported
+Full_sample,month,H2-1,Aggressive − Other (weighted avg),0.846073,0.043165,19.601,0.0,***,positive,supported
+Full_sample,month,H2-2,Aggressive − SELF (weighted avg),0.431836,0.04682,9.2233,0.0,***,positive,supported
+Full_sample,month,H2-3,Aggressive − Affiliative,1.111973,0.044704,24.8743,0.0,***,positive,supported
+Full_sample,month,H2-3,Aggressive − Self-Enhancing,0.484005,0.047254,10.2427,0.0,***,positive,supported
+Full_sample,month,H2-3,Aggressive − Self-Defeating,-0.262029,0.09677,-2.7077,0.006776,***,negative,not_supported
+Full_sample,week,H1,WHE,1.175507,0.016656,70.5741,0.0,***,positive,supported
+Full_sample,week,H2-1,Aggressive − Other (weighted avg),0.843398,0.043059,19.5872,0.0,***,positive,supported
+Full_sample,week,H2-2,Aggressive − SELF (weighted avg),0.4298,0.046704,9.2026,0.0,***,positive,supported
+Full_sample,week,H2-3,Aggressive − Affiliative,1.108888,0.044597,24.8646,0.0,***,positive,supported
+Full_sample,week,H2-3,Aggressive − Self-Enhancing,0.482151,0.047139,10.2284,0.0,***,positive,supported
+Full_sample,week,H2-3,Aggressive − Self-Defeating,-0.266488,0.096527,-2.7608,0.005768,***,negative,not_supported
+Full_sample,date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,hour,H1,WHE,1.118559,0.016692,67.0109,0.0,***,positive,supported
+Full_sample,hour,H2-1,Aggressive − Other (weighted avg),0.83426,0.042953,19.4226,0.0,***,positive,supported
+Full_sample,hour,H2-2,Aggressive − SELF (weighted avg),0.42707,0.046587,9.1672,0.0,***,positive,supported
+Full_sample,hour,H2-3,Aggressive − Affiliative,1.095638,0.044488,24.6275,0.0,***,positive,supported
+Full_sample,hour,H2-3,Aggressive − Self-Enhancing,0.478863,0.047018,10.1847,0.0,***,positive,supported
+Full_sample,hour,H2-3,Aggressive − Self-Defeating,-0.261798,0.096303,-2.7185,0.00656,***,negative,not_supported
+Full_sample,year+month,H1,WHE,1.156361,0.016193,71.4114,0.0,***,positive,supported
+Full_sample,year+month,H2-1,Aggressive − Other (weighted avg),0.898775,0.041665,21.5712,0.0,***,positive,supported
+Full_sample,year+month,H2-2,Aggressive − SELF (weighted avg),0.535847,0.045211,11.852,0.0,***,positive,supported
+Full_sample,year+month,H2-3,Aggressive − Affiliative,1.13174,0.043138,26.235,0.0,***,positive,supported
+Full_sample,year+month,H2-3,Aggressive − Self-Enhancing,0.599788,0.045647,13.1396,0.0,***,positive,supported
+Full_sample,year+month,H2-3,Aggressive − Self-Defeating,-0.314591,0.093332,-3.3707,0.00075,***,negative,not_supported
+Full_sample,year+week,H1,WHE,1.158017,0.016198,71.4899,0.0,***,positive,supported
+Full_sample,year+week,H2-1,Aggressive − Other (weighted avg),0.893596,0.041609,21.4762,0.0,***,positive,supported
+Full_sample,year+week,H2-2,Aggressive − SELF (weighted avg),0.529823,0.045147,11.7355,0.0,***,positive,supported
+Full_sample,year+week,H2-3,Aggressive − Affiliative,1.127104,0.043084,26.1608,0.0,***,positive,supported
+Full_sample,year+week,H2-3,Aggressive − Self-Enhancing,0.593272,0.045584,13.015,0.0,***,positive,supported
+Full_sample,year+week,H2-3,Aggressive − Self-Defeating,-0.314082,0.093195,-3.3702,0.000752,***,negative,not_supported
+Full_sample,year+date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,year+date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,year+date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,year+date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,year+date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,year+date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,year+hour,H1,WHE,1.107803,0.016179,68.4726,0.0,***,positive,supported
+Full_sample,year+hour,H2-1,Aggressive − Other (weighted avg),0.881852,0.041368,21.317,0.0,***,positive,supported
+Full_sample,year+hour,H2-2,Aggressive − SELF (weighted avg),0.525064,0.044884,11.6982,0.0,***,positive,supported
+Full_sample,year+hour,H2-3,Aggressive − Affiliative,1.110876,0.042835,25.9338,0.0,***,positive,supported
+Full_sample,year+hour,H2-3,Aggressive − Self-Enhancing,0.58845,0.045316,12.9855,0.0,***,positive,supported
+Full_sample,year+hour,H2-3,Aggressive − Self-Defeating,-0.31799,0.092679,-3.4311,0.000601,***,negative,not_supported
+Full_sample,month+week,H1,WHE,1.175916,0.016661,70.5804,0.0,***,positive,supported
+Full_sample,month+week,H2-1,Aggressive − Other (weighted avg),0.843729,0.043063,19.5929,0.0,***,positive,supported
+Full_sample,month+week,H2-2,Aggressive − SELF (weighted avg),0.429658,0.046707,9.199,0.0,***,positive,supported
+Full_sample,month+week,H2-3,Aggressive − Affiliative,1.109524,0.044603,24.8753,0.0,***,positive,supported
+Full_sample,month+week,H2-3,Aggressive − Self-Enhancing,0.4819,0.047142,10.2223,0.0,***,positive,supported
+Full_sample,month+week,H2-3,Aggressive − Self-Defeating,-0.26518,0.096526,-2.7473,0.006011,***,negative,not_supported
+Full_sample,month+date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,month+date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,month+date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,month+date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,month+date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,month+date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,month+hour,H1,WHE,1.126147,0.016629,67.7228,0.0,***,positive,supported
+Full_sample,month+hour,H2-1,Aggressive − Other (weighted avg),0.832446,0.042761,19.4675,0.0,***,positive,supported
+Full_sample,month+hour,H2-2,Aggressive − SELF (weighted avg),0.422212,0.04638,9.1033,0.0,***,positive,supported
+Full_sample,month+hour,H2-3,Aggressive − Affiliative,1.095778,0.044287,24.7426,0.0,***,positive,supported
+Full_sample,month+hour,H2-3,Aggressive − Self-Enhancing,0.474618,0.046811,10.139,0.0,***,positive,supported
+Full_sample,month+hour,H2-3,Aggressive − Self-Defeating,-0.274808,0.095842,-2.8673,0.004141,***,negative,not_supported
+Full_sample,week+date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,week+date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,week+date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,week+date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,week+date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,week+date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,week+hour,H1,WHE,1.131627,0.016624,68.0702,0.0,***,positive,supported
+Full_sample,week+hour,H2-1,Aggressive − Other (weighted avg),0.829925,0.042669,19.4501,0.0,***,positive,supported
+Full_sample,week+hour,H2-2,Aggressive − SELF (weighted avg),0.419897,0.046281,9.0729,0.0,***,positive,supported
+Full_sample,week+hour,H2-3,Aggressive − Affiliative,1.093124,0.044195,24.7339,0.0,***,positive,supported
+Full_sample,week+hour,H2-3,Aggressive − Self-Enhancing,0.472436,0.046712,10.1137,0.0,***,positive,supported
+Full_sample,week+hour,H2-3,Aggressive − Self-Defeating,-0.278884,0.095631,-2.9162,0.003544,***,negative,not_supported
+Full_sample,date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Full_sample,year+month+week,H1,WHE,1.15792,0.0162,71.4751,0.0,***,positive,supported
+Full_sample,year+month+week,H2-1,Aggressive − Other (weighted avg),0.893997,0.041608,21.486,0.0,***,positive,supported
+Full_sample,year+month+week,H2-2,Aggressive − SELF (weighted avg),0.529804,0.045145,11.7355,0.0,***,positive,supported
+Full_sample,year+month+week,H2-3,Aggressive − Affiliative,1.127775,0.043085,26.1757,0.0,***,positive,supported
+Full_sample,year+month+week,H2-3,Aggressive − Self-Enhancing,0.593504,0.045583,13.0203,0.0,***,positive,supported
+Full_sample,year+month+week,H2-3,Aggressive − Self-Defeating,-0.31744,0.093184,-3.4066,0.000658,***,negative,not_supported
+Full_sample,year+month+date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,year+month+date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,year+month+date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,year+month+date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,year+month+date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,year+month+date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,year+month+hour,H1,WHE,1.111194,0.016168,68.7298,0.0,***,positive,supported
+Full_sample,year+month+hour,H2-1,Aggressive − Other (weighted avg),0.880184,0.041312,21.3056,0.0,***,positive,supported
+Full_sample,year+month+hour,H2-2,Aggressive − SELF (weighted avg),0.519114,0.044827,11.5804,0.0,***,positive,supported
+Full_sample,year+month+hour,H2-3,Aggressive − Affiliative,1.111958,0.042774,25.996,0.0,***,positive,supported
+Full_sample,year+month+hour,H2-3,Aggressive − Self-Enhancing,0.582633,0.04526,12.8729,0.0,***,positive,supported
+Full_sample,year+month+hour,H2-3,Aggressive − Self-Defeating,-0.325715,0.092521,-3.5204,0.000431,***,negative,not_supported
+Full_sample,year+week+date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,year+week+date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,year+week+date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,year+week+date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,year+week+date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,year+week+date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,year+week+hour,H1,WHE,1.113579,0.016174,68.8482,0.0,***,positive,supported
+Full_sample,year+week+hour,H2-1,Aggressive − Other (weighted avg),0.875381,0.041264,21.2143,0.0,***,positive,supported
+Full_sample,year+week+hour,H2-2,Aggressive − SELF (weighted avg),0.513227,0.044772,11.4632,0.0,***,positive,supported
+Full_sample,year+week+hour,H2-3,Aggressive − Affiliative,1.10785,0.042728,25.9282,0.0,***,positive,supported
+Full_sample,year+week+hour,H2-3,Aggressive − Self-Enhancing,0.576258,0.045206,12.7474,0.0,***,positive,supported
+Full_sample,year+week+hour,H2-3,Aggressive − Self-Defeating,-0.325118,0.092402,-3.5185,0.000434,***,negative,not_supported
+Full_sample,year+date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,year+date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,year+date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,year+date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,year+date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,year+date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Full_sample,month+week+date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,month+week+date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,month+week+date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,month+week+date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,month+week+date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,month+week+date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,month+week+hour,H1,WHE,1.131987,0.01663,68.0675,0.0,***,positive,supported
+Full_sample,month+week+hour,H2-1,Aggressive − Other (weighted avg),0.830421,0.042676,19.4588,0.0,***,positive,supported
+Full_sample,month+week+hour,H2-2,Aggressive − SELF (weighted avg),0.419953,0.046286,9.0731,0.0,***,positive,supported
+Full_sample,month+week+hour,H2-3,Aggressive − Affiliative,1.093902,0.044204,24.7468,0.0,***,positive,supported
+Full_sample,month+week+hour,H2-3,Aggressive − Self-Enhancing,0.4724,0.046718,10.1117,0.0,***,positive,supported
+Full_sample,month+week+hour,H2-3,Aggressive − Self-Defeating,-0.277611,0.095634,-2.9028,0.003699,***,negative,not_supported
+Full_sample,month+date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,month+date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,month+date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,month+date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,month+date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,month+date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Full_sample,week+date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,week+date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,week+date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,week+date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,week+date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,week+date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Full_sample,year+month+week+date,H1,WHE,1.098016,0.016307,67.3327,0.0,***,positive,supported
+Full_sample,year+month+week+date,H2-1,Aggressive − Other (weighted avg),0.765529,0.041727,18.3462,0.0,***,positive,supported
+Full_sample,year+month+week+date,H2-2,Aggressive − SELF (weighted avg),0.408169,0.045268,9.0167,0.0,***,positive,supported
+Full_sample,year+month+week+date,H2-3,Aggressive − Affiliative,0.99492,0.043189,23.0362,0.0,***,positive,supported
+Full_sample,year+month+week+date,H2-3,Aggressive − Self-Enhancing,0.460003,0.045705,10.0646,0.0,***,positive,supported
+Full_sample,year+month+week+date,H2-3,Aggressive − Self-Defeating,-0.281232,0.094223,-2.9847,0.002839,***,negative,not_supported
+Full_sample,year+month+week+hour,H1,WHE,1.113501,0.016178,68.8302,0.0,***,positive,supported
+Full_sample,year+month+week+hour,H2-1,Aggressive − Other (weighted avg),0.876009,0.041265,21.229,0.0,***,positive,supported
+Full_sample,year+month+week+hour,H2-2,Aggressive − SELF (weighted avg),0.513503,0.044771,11.4695,0.0,***,positive,supported
+Full_sample,year+month+week+hour,H2-3,Aggressive − Affiliative,1.108704,0.04273,25.9468,0.0,***,positive,supported
+Full_sample,year+month+week+hour,H2-3,Aggressive − Self-Enhancing,0.576787,0.045207,12.7589,0.0,***,positive,supported
+Full_sample,year+month+week+hour,H2-3,Aggressive − Self-Defeating,-0.32819,0.092394,-3.5521,0.000382,***,negative,not_supported
+Full_sample,year+month+date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,year+month+date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,year+month+date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,year+month+date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,year+month+date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,year+month+date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Full_sample,year+week+date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,year+week+date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,year+week+date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,year+week+date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,year+week+date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,year+week+date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Full_sample,month+week+date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,month+week+date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,month+week+date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,month+week+date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,month+week+date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,month+week+date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Full_sample,year+month+week+date+hour,H1,WHE,1.069182,0.016295,65.6141,0.0,***,positive,supported
+Full_sample,year+month+week+date+hour,H2-1,Aggressive − Other (weighted avg),0.749652,0.041473,18.0758,0.0,***,positive,supported
+Full_sample,year+month+week+date+hour,H2-2,Aggressive − SELF (weighted avg),0.392506,0.044994,8.7235,0.0,***,positive,supported
+Full_sample,year+month+week+date+hour,H2-3,Aggressive − Affiliative,0.978906,0.042925,22.8048,0.0,***,positive,supported
+Full_sample,year+month+week+date+hour,H2-3,Aggressive − Self-Enhancing,0.443237,0.04543,9.7565,0.0,***,positive,supported
+Full_sample,year+month+week+date+hour,H2-3,Aggressive − Self-Defeating,-0.282231,0.093629,-3.0144,0.002576,***,negative,not_supported
+Human_coded,year,H1,WHE,1.080736,0.088761,12.1757,0.0,***,positive,supported
+Human_coded,year,H2-1,Aggressive − Other (weighted avg),1.760531,0.205609,8.5625,0.0,***,positive,supported
+Human_coded,year,H2-2,Aggressive − SELF (weighted avg),1.643921,0.221144,7.4337,0.0,***,positive,supported
+Human_coded,year,H2-3,Aggressive − Affiliative,1.857823,0.216087,8.5976,0.0,***,positive,supported
+Human_coded,year,H2-3,Aggressive − Self-Enhancing,1.760772,0.224131,7.856,0.0,***,positive,supported
+Human_coded,year,H2-3,Aggressive − Self-Defeating,0.528324,0.402124,1.3138,0.188986,,positive,not_supported
+Human_coded,month,H1,WHE,1.282475,0.093674,13.6908,0.0,***,positive,supported
+Human_coded,month,H2-1,Aggressive − Other (weighted avg),1.796249,0.217987,8.2402,0.0,***,positive,supported
+Human_coded,month,H2-2,Aggressive − SELF (weighted avg),1.605646,0.234094,6.859,0.0,***,positive,supported
+Human_coded,month,H2-3,Aggressive − Affiliative,1.955275,0.229355,8.5251,0.0,***,positive,supported
+Human_coded,month,H2-3,Aggressive − Self-Enhancing,1.704535,0.237082,7.1897,0.0,***,positive,supported
+Human_coded,month,H2-3,Aggressive − Self-Defeating,0.661532,0.427284,1.5482,0.121657,,positive,not_supported
+Human_coded,week,H1,WHE,1.283786,0.093873,13.6758,0.0,***,positive,supported
+Human_coded,week,H2-1,Aggressive − Other (weighted avg),1.775891,0.218817,8.1159,0.0,***,positive,supported
+Human_coded,week,H2-2,Aggressive − SELF (weighted avg),1.583763,0.234876,6.743,0.0,***,positive,supported
+Human_coded,week,H2-3,Aggressive − Affiliative,1.936189,0.230259,8.4087,0.0,***,positive,supported
+Human_coded,week,H2-3,Aggressive − Self-Enhancing,1.688409,0.237905,7.097,0.0,***,positive,supported
+Human_coded,week,H2-3,Aggressive − Self-Defeating,0.584696,0.428989,1.363,0.172981,,positive,not_supported
+Human_coded,date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,hour,H1,WHE,1.242033,0.094953,13.0806,0.0,***,positive,supported
+Human_coded,hour,H2-1,Aggressive − Other (weighted avg),1.839059,0.219968,8.3606,0.0,***,positive,supported
+Human_coded,hour,H2-2,Aggressive − SELF (weighted avg),1.636433,0.236214,6.9278,0.0,***,positive,supported
+Human_coded,hour,H2-3,Aggressive − Affiliative,2.008115,0.231462,8.6758,0.0,***,positive,supported
+Human_coded,hour,H2-3,Aggressive − Self-Enhancing,1.727195,0.239254,7.2191,0.0,***,positive,supported
+Human_coded,hour,H2-3,Aggressive − Self-Defeating,0.76991,0.431283,1.7852,0.074321,*,positive,supported
+Human_coded,year+month,H1,WHE,1.085366,0.08802,12.3309,0.0,***,positive,supported
+Human_coded,year+month,H2-1,Aggressive − Other (weighted avg),1.727999,0.204081,8.4672,0.0,***,positive,supported
+Human_coded,year+month,H2-2,Aggressive − SELF (weighted avg),1.606468,0.219436,7.3209,0.0,***,positive,supported
+Human_coded,year+month,H2-3,Aggressive − Affiliative,1.829396,0.214456,8.5304,0.0,***,positive,supported
+Human_coded,year+month,H2-3,Aggressive − Self-Enhancing,1.728388,0.222396,7.7717,0.0,***,positive,supported
+Human_coded,year+month,H2-3,Aggressive − Self-Defeating,0.442475,0.398603,1.1101,0.267047,,positive,not_supported
+Human_coded,year+week,H1,WHE,1.086016,0.088402,12.2849,0.0,***,positive,supported
+Human_coded,year+week,H2-1,Aggressive − Other (weighted avg),1.70715,0.205195,8.3196,0.0,***,positive,supported
+Human_coded,year+week,H2-2,Aggressive − SELF (weighted avg),1.57847,0.220531,7.1576,0.0,***,positive,supported
+Human_coded,year+week,H2-3,Aggressive − Affiliative,1.814511,0.21569,8.4126,0.0,***,positive,supported
+Human_coded,year+week,H2-3,Aggressive − Self-Enhancing,1.705503,0.22353,7.6299,0.0,***,positive,supported
+Human_coded,year+week,H2-3,Aggressive − Self-Defeating,0.365667,0.400984,0.9119,0.361871,,positive,not_supported
+Human_coded,year+date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,year+date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,year+date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,year+date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,year+date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,year+date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,year+hour,H1,WHE,1.060538,0.088488,11.9851,0.0,***,positive,supported
+Human_coded,year+hour,H2-1,Aggressive − Other (weighted avg),1.762588,0.204117,8.6352,0.0,***,positive,supported
+Human_coded,year+hour,H2-2,Aggressive − SELF (weighted avg),1.642124,0.219483,7.4818,0.0,***,positive,supported
+Human_coded,year+hour,H2-3,Aggressive − Affiliative,1.863095,0.214522,8.6848,0.0,***,positive,supported
+Human_coded,year+hour,H2-3,Aggressive − Self-Enhancing,1.761048,0.222474,7.9158,0.0,***,positive,supported
+Human_coded,year+hour,H2-3,Aggressive − Self-Defeating,0.506737,0.398981,1.2701,0.204141,,positive,not_supported
+Human_coded,month+week,H1,WHE,1.281545,0.093924,13.6444,0.0,***,positive,supported
+Human_coded,month+week,H2-1,Aggressive − Other (weighted avg),1.764903,0.218913,8.0621,0.0,***,positive,supported
+Human_coded,month+week,H2-2,Aggressive − SELF (weighted avg),1.578842,0.234971,6.7193,0.0,***,positive,supported
+Human_coded,month+week,H2-3,Aggressive − Affiliative,1.920138,0.230396,8.3341,0.0,***,positive,supported
+Human_coded,month+week,H2-3,Aggressive − Self-Enhancing,1.684824,0.237965,7.0801,0.0,***,positive,supported
+Human_coded,month+week,H2-3,Aggressive − Self-Defeating,0.567021,0.429293,1.3208,0.186646,,positive,not_supported
+Human_coded,month+date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,month+date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,month+date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,month+date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,month+date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,month+date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,month+hour,H1,WHE,1.267973,0.093402,13.5754,0.0,***,positive,supported
+Human_coded,month+hour,H2-1,Aggressive − Other (weighted avg),1.817709,0.216525,8.3949,0.0,***,positive,supported
+Human_coded,month+hour,H2-2,Aggressive − SELF (weighted avg),1.632132,0.232443,7.0216,0.0,***,positive,supported
+Human_coded,month+hour,H2-3,Aggressive − Affiliative,1.972541,0.227823,8.6582,0.0,***,positive,supported
+Human_coded,month+hour,H2-3,Aggressive − Self-Enhancing,1.735929,0.235441,7.3731,0.0,***,positive,supported
+Human_coded,month+hour,H2-3,Aggressive − Self-Defeating,0.64117,0.424109,1.5118,0.130673,,positive,not_supported
+Human_coded,week+date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,week+date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,week+date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,week+date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,week+date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,week+date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,week+hour,H1,WHE,1.271648,0.093551,13.5931,0.0,***,positive,supported
+Human_coded,week+hour,H2-1,Aggressive − Other (weighted avg),1.795409,0.217364,8.2599,0.0,***,positive,supported
+Human_coded,week+hour,H2-2,Aggressive − SELF (weighted avg),1.607502,0.233241,6.892,0.0,***,positive,supported
+Human_coded,week+hour,H2-3,Aggressive − Affiliative,1.952186,0.22873,8.5349,0.0,***,positive,supported
+Human_coded,week+hour,H2-3,Aggressive − Self-Enhancing,1.71713,0.236277,7.2674,0.0,***,positive,supported
+Human_coded,week+hour,H2-3,Aggressive − Self-Defeating,0.560862,0.425837,1.3171,0.187898,,positive,not_supported
+Human_coded,date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported
+Human_coded,year+month+week,H1,WHE,1.086168,0.08842,12.2841,0.0,***,positive,supported
+Human_coded,year+month+week,H2-1,Aggressive − Other (weighted avg),1.694159,0.205196,8.2563,0.0,***,positive,supported
+Human_coded,year+month+week,H2-2,Aggressive − SELF (weighted avg),1.574057,0.220506,7.1384,0.0,***,positive,supported
+Human_coded,year+month+week,H2-3,Aggressive − Affiliative,1.794365,0.215738,8.3173,0.0,***,positive,supported
+Human_coded,year+month+week,H2-3,Aggressive − Self-Enhancing,1.701963,0.223476,7.6159,0.0,***,positive,supported
+Human_coded,year+month+week,H2-3,Aggressive − Self-Defeating,0.352915,0.401099,0.8799,0.378991,,positive,not_supported
+Human_coded,year+month+date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,year+month+date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,year+month+date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,year+month+date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,year+month+date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,year+month+date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,year+month+hour,H1,WHE,1.070642,0.087827,12.1903,0.0,***,positive,supported
+Human_coded,year+month+hour,H2-1,Aggressive − Other (weighted avg),1.736844,0.202883,8.5608,0.0,***,positive,supported
+Human_coded,year+month+hour,H2-2,Aggressive − SELF (weighted avg),1.613142,0.218082,7.397,0.0,***,positive,supported
+Human_coded,year+month+hour,H2-3,Aggressive − Affiliative,1.840052,0.213192,8.631,0.0,***,positive,supported
+Human_coded,year+month+hour,H2-3,Aggressive − Self-Enhancing,1.736752,0.22105,7.8568,0.0,***,positive,supported
+Human_coded,year+month+hour,H2-3,Aggressive − Self-Defeating,0.433017,0.395956,1.0936,0.274205,,positive,not_supported
+Human_coded,year+week+date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,year+week+date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,year+week+date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,year+week+date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,year+week+date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,year+week+date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,year+week+hour,H1,WHE,1.072102,0.088166,12.16,0.0,***,positive,supported
+Human_coded,year+week+hour,H2-1,Aggressive − Other (weighted avg),1.715721,0.203981,8.4112,0.0,***,positive,supported
+Human_coded,year+week+hour,H2-2,Aggressive − SELF (weighted avg),1.584242,0.21917,7.2284,0.0,***,positive,supported
+Human_coded,year+week+hour,H2-3,Aggressive − Affiliative,1.825418,0.214396,8.5142,0.0,***,positive,supported
+Human_coded,year+week+hour,H2-3,Aggressive − Self-Enhancing,1.71292,0.222177,7.7097,0.0,***,positive,supported
+Human_coded,year+week+hour,H2-3,Aggressive − Self-Defeating,0.355733,0.398293,0.8931,0.371842,,positive,not_supported
+Human_coded,year+date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,year+date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,year+date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,year+date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,year+date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,year+date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported
+Human_coded,month+week+date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,month+week+date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,month+week+date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,month+week+date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,month+week+date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,month+week+date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,month+week+hour,H1,WHE,1.269654,0.093604,13.5641,0.0,***,positive,supported
+Human_coded,month+week+hour,H2-1,Aggressive − Other (weighted avg),1.780424,0.217451,8.1877,0.0,***,positive,supported
+Human_coded,month+week+hour,H2-2,Aggressive − SELF (weighted avg),1.60021,0.233337,6.8579,0.0,***,positive,supported
+Human_coded,month+week+hour,H2-3,Aggressive − Affiliative,1.930782,0.228852,8.4368,0.0,***,positive,supported
+Human_coded,month+week+hour,H2-3,Aggressive − Self-Enhancing,1.711422,0.236334,7.2415,0.0,***,positive,supported
+Human_coded,month+week+hour,H2-3,Aggressive − Self-Defeating,0.538453,0.426136,1.2636,0.206469,,positive,not_supported
+Human_coded,month+date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,month+date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,month+date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,month+date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,month+date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,month+date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported
+Human_coded,week+date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,week+date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,week+date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,week+date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,week+date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,week+date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported
+Human_coded,year+month+week+date,H1,WHE,0.887094,0.117588,7.5441,0.0,***,positive,supported
+Human_coded,year+month+week+date,H2-1,Aggressive − Other (weighted avg),1.594502,0.273259,5.8351,0.0,***,positive,supported
+Human_coded,year+month+week+date,H2-2,Aggressive − SELF (weighted avg),1.449136,0.29292,4.9472,1e-06,***,positive,supported
+Human_coded,year+month+week+date,H2-3,Aggressive − Affiliative,1.715785,0.287081,5.9767,0.0,***,positive,supported
+Human_coded,year+month+week+date,H2-3,Aggressive − Self-Enhancing,1.533324,0.296105,5.1783,0.0,***,positive,supported
+Human_coded,year+month+week+date,H2-3,Aggressive − Self-Defeating,0.645381,0.580703,1.1114,0.266547,,positive,not_supported
+Human_coded,year+month+week+hour,H1,WHE,1.07199,0.088187,12.1559,0.0,***,positive,supported
+Human_coded,year+month+week+hour,H2-1,Aggressive − Other (weighted avg),1.700112,0.203974,8.335,0.0,***,positive,supported
+Human_coded,year+month+week+hour,H2-2,Aggressive − SELF (weighted avg),1.578755,0.219145,7.2042,0.0,***,positive,supported
+Human_coded,year+month+week+hour,H2-3,Aggressive − Affiliative,1.801364,0.214431,8.4007,0.0,***,positive,supported
+Human_coded,year+month+week+hour,H2-3,Aggressive − Self-Enhancing,1.708481,0.222119,7.6917,0.0,***,positive,supported
+Human_coded,year+month+week+hour,H2-3,Aggressive − Self-Defeating,0.340232,0.398406,0.854,0.393172,,positive,not_supported
+Human_coded,year+month+date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,year+month+date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,year+month+date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,year+month+date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,year+month+date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,year+month+date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported
+Human_coded,year+week+date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,year+week+date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,year+week+date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,year+week+date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,year+week+date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,year+week+date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported
+Human_coded,month+week+date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,month+week+date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,month+week+date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,month+week+date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,month+week+date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,month+week+date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported
+Human_coded,year+month+week+date+hour,H1,WHE,0.896444,0.117371,7.6377,0.0,***,positive,supported
+Human_coded,year+month+week+date+hour,H2-1,Aggressive − Other (weighted avg),1.625424,0.272896,5.9562,0.0,***,positive,supported
+Human_coded,year+month+week+date+hour,H2-2,Aggressive − SELF (weighted avg),1.468677,0.292648,5.0186,1e-06,***,positive,supported
+Human_coded,year+month+week+date+hour,H2-3,Aggressive − Affiliative,1.756203,0.286281,6.1345,0.0,***,positive,supported
+Human_coded,year+month+week+date+hour,H2-3,Aggressive − Self-Enhancing,1.543586,0.295869,5.2171,0.0,***,positive,supported
+Human_coded,year+month+week+date+hour,H2-3,Aggressive − Self-Defeating,0.753503,0.5794,1.3005,0.193595,,positive,not_supported

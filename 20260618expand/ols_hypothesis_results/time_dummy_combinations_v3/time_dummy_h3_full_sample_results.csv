@@ -1,0 +1,5 @@
+sample,combo,n,k_full,df_resid,beta1_intensity,beta1_se,beta1_stars,beta2_intensity_sq,beta2_se,beta2_stars,turning_point,H3_supported,R2,adjR2
+Full_sample,year,1420,16,1404,13.176964,0.882103,***,-11.484962,1.956888,***,0.573662,True,0.238892,0.230761
+Full_sample,qoy,1420,6,1414,12.622564,0.894424,***,-11.189166,2.000597,***,0.564053,True,0.190686,0.187824
+Full_sample,year+qoy,1420,19,1401,13.169,0.882336,***,-11.421643,1.958391,***,0.576493,True,0.240173,0.230411
+Full_sample,year_quarter,1420,49,1371,13.177314,0.888297,***,-11.41725,1.976893,***,0.577079,True,0.254671,0.228576
