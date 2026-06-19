@@ -1,0 +1,9 @@
+hypothesis,model_name,measurement_basis,focal_independent_variable,coefficient,se,se_type,t_stat,p_value,p_stars,n_obs,r_squared,interpretation_level,preliminary_verdict,note
+H1,H1_batch1_simple,batch1_human_coded,human_humor_presence,1.214982,0.13535,OLS,8.9766,0.0,***,1482,0.051635,preliminary_diagnostic,preliminary_supported,n=1482; measurement validity high (human labels)
+H1,H1_full_simple,full_sample_classifier_predicted,h1_humor_presence_pred_t50,1.145709,0.016046,OLS,71.3994,0.0,***,68039,0.069705,preliminary_diagnostic,preliminary_supported,n=68039; predicted IV introduces measurement error bias
+H2_1,H2_1_batch1_simple,batch1_human_coded,aggressive_vs_other,0.712293,0.422324,OLS,1.6866,0.092163,*,648,0.004384,preliminary_diagnostic,mixed,n=648; n_agg=44; human-coded; underpowered
+H2_1,H2_1_full_simple,full_sample_classifier_predicted,predicted_aggressive_vs_other,0.083304,0.02993,OLS,2.7833,0.005385,***,28177,0.000275,preliminary_diagnostic,mixed,n=28177 humor; classifier NOT_A_CANDIDATE; source-leakage risk
+H2_2,H2_2_batch1_simple,batch1_human_coded,aggressive,0.848772,0.434462,OLS,1.9536,0.051179,*,648,0.008926,preliminary_diagnostic,mixed,ref=affiliative; n_agg=44; human-coded
+H2_2,H2_2_full_simple,full_sample_classifier_predicted,predicted_aggressive,0.101494,0.030338,OLS,3.3454,0.000823,***,28177,0.001132,preliminary_diagnostic,mixed,ref=predicted_affiliative; classifier NOT_A_CANDIDATE
+H3,H3_batch1_human_coded_quadratic,batch1_human_coded,aggressive_intensity (quadratic),1.401675,3.080441,OLS,0.455,0.650252,ns,88,0.002639,preliminary_diagnostic,preliminary_diagnostic,n_firms=88 intensity>0=24 inverted_u=b1>0_b2<0 tp=0.3669
+H3,H3_full_sample_classifier_predicted_quadratic,full_sample_classifier_predicted,predicted_aggressive_intensity (quadratic),9.649312,3.863771,OLS,2.4974,0.01425,**,97,0.063109,preliminary_diagnostic,preliminary_diagnostic,n_firms=97 intensity>0=97 inverted_u=b1>0_b2<0 tp=0.4706 classifier NOT_A_CANDIDATE

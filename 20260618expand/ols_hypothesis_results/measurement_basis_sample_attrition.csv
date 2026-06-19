@@ -1,0 +1,22 @@
+measurement_basis,hypothesis,step,n_rows,n_dropped_from_previous,reason,required_columns,file_used
+batch1_human_coded,H1,raw_input_rows,1500,—,All rows in fortune100_human_labeling_template.csv,"human_humor_presence, total_engagement, tweet_id",fortune100_human_labeling_template.csv
+batch1_human_coded,H1,after_label_available,1482,18,"human_humor_presence in {0,1} (excluded code=2 = ambiguous)",human_humor_presence,fortune100_human_labeling_template.csv
+batch1_human_coded,H1,after_engagement_available,1482,0,total_engagement present for all 1482 rows,total_engagement,fortune100_human_labeling_template.csv
+batch1_human_coded,H1,after_controls_available,1482,0,text_length/hashtag_count/mention_count computed from text,"text_length, hashtag_count, mention_count",fortune100_human_labeling_template.csv (text col)
+batch1_human_coded,H2_1,raw_input_rows,926,—,All rows in type_training_leakage_filtered_variants.csv,"source, humor_type, tweet_id",type_training_leakage_filtered_variants.csv
+batch1_human_coded,H2_1,after_source_filter,648,278,source == batch1_fortune100 only (excluded wendys_human_type=278),source,type_training_leakage_filtered_variants.csv
+batch1_human_coded,H2_1,after_humor_only_filter,648,0,all batch1_fortune100 rows are humor (humor_presence_binary=1),humor_presence_binary,type_training_leakage_filtered_variants.csv
+batch1_human_coded,H2_1,after_engagement_join,648,0,joined with fortune100_h1_presence_classified_posts.csv on tweet_id,total_engagement,fortune100_h1_presence_classified_posts.csv
+batch1_human_coded,H2_2,raw_input_rows,926,—,Same file as H2_1; four-type dummies from humor_type column,humor_type,type_training_leakage_filtered_variants.csv
+batch1_human_coded,H2_2,after_source_filter,648,278,source == batch1_fortune100 only,source,type_training_leakage_filtered_variants.csv
+batch1_human_coded,H3,raw_input_rows,648,—,Batch1 type humor posts; firm-level aggregation,"company_name, humor_type, total_engagement",type_training_leakage_filtered_variants.csv + fortune100_h1_presence_classified_posts.csv
+batch1_human_coded,H3,after_firm_aggregation,88,560,Collapsed to firm level: intensity = n_aggressive/n_humor per firm,"company_name, humor_type",type_training_leakage_filtered_variants.csv
+full_sample_classifier_predicted,H1,raw_input_rows,68039,—,Full integrated corpus including fortune100+wendys_legacy+moonpie+cocacola+raw_append,"h1_humor_presence_pred_t50, total_engagement",integrated_h1_presence_classified_posts.csv
+full_sample_classifier_predicted,H1,after_missing_text,68039,0,"missing_text != True AND h1_humor_presence_pred_t50 in {0,1}","missing_text, h1_humor_presence_pred_t50",integrated_h1_presence_classified_posts.csv
+full_sample_classifier_predicted,H1,after_engagement_available,68039,0,total_engagement available for all rows (no missing),total_engagement,integrated_h1_presence_classified_posts.csv
+full_sample_classifier_predicted,H2_1,raw_input_rows,65245,—,Wendy's model applied to Fortune100; from model_transfer pipeline,"humor_type, aggressive_humor, log_total_engagement",h2_post_level_regression_ready.csv (model_transfer)
+full_sample_classifier_predicted,H2_1,after_humor_only_filter,28177,37068,humor_type != non_humorous (excluded 37068 non-humor predicted posts),humor_type,h2_post_level_regression_ready.csv
+full_sample_classifier_predicted,H2_2,raw_input_rows,65245,—,Same file; four-type dummies,"aggressive_humor, affiliative_humor, self_enhancing_humor, self_defeating_humor",h2_post_level_regression_ready.csv
+full_sample_classifier_predicted,H2_2,after_humor_only_filter,28177,37068,humor_type != non_humorous,humor_type,h2_post_level_regression_ready.csv
+full_sample_classifier_predicted,H3,raw_input_rows,28177,—,Humor-classified posts from model_transfer; firm-level aggregation,"company_name, aggressive_humor, log_total_engagement",h2_post_level_regression_ready.csv
+full_sample_classifier_predicted,H3,after_firm_aggregation,97,28080,Collapsed to firm level: intensity=n_aggressive/n_humor per firm,"company_name, aggressive_humor, humor_type",h2_post_level_regression_ready.csv

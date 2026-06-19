@@ -1,0 +1,98 @@
+company_name,n_humor_posts,predicted_aggressive_intensity,mean_log_eng,measurement_basis
+Performance Food Group,2,1.0,0.693147,full_sample_classifier_predicted
+Nike,90,0.477778,7.252358,full_sample_classifier_predicted
+AbbVie,425,0.465882,1.040255,full_sample_classifier_predicted
+Walmart,413,0.443099,4.601175,full_sample_classifier_predicted
+Target,326,0.432515,7.219039,full_sample_classifier_predicted
+Enterprise Products Partners,676,0.421598,0.007178,full_sample_classifier_predicted
+AT&T,394,0.408629,4.419449,full_sample_classifier_predicted
+Tesla,438,0.406393,8.658912,full_sample_classifier_predicted
+Walt Disney,402,0.400498,7.270853,full_sample_classifier_predicted
+Johnson & Johnson,286,0.398601,3.569385,full_sample_classifier_predicted
+Coca-Cola,105,0.371429,5.800199,full_sample_classifier_predicted
+Nationwide,420,0.366667,3.196499,full_sample_classifier_predicted
+Procter & Gamble,105,0.361905,2.682409,full_sample_classifier_predicted
+Dell Technologies,405,0.333333,4.298659,full_sample_classifier_predicted
+IBM,237,0.320675,4.252644,full_sample_classifier_predicted
+Publix Super Markets,538,0.302974,4.310782,full_sample_classifier_predicted
+New York Life Insurance,311,0.279743,2.075077,full_sample_classifier_predicted
+JPMorgan Chase,432,0.277778,4.033431,full_sample_classifier_predicted
+Uber Technologies,373,0.276139,5.280854,full_sample_classifier_predicted
+State Farm Insurance,58,0.275862,3.690799,full_sample_classifier_predicted
+Progressive,87,0.275862,3.160992,full_sample_classifier_predicted
+Liberty Mutual Insurance Group,554,0.270758,2.721543,full_sample_classifier_predicted
+Delta Air Lines,515,0.269903,5.748509,full_sample_classifier_predicted
+Goldman Sachs Group,298,0.268456,3.943652,full_sample_classifier_predicted
+TJX,307,0.267101,0.674969,full_sample_classifier_predicted
+Morgan Stanley,305,0.265574,3.227299,full_sample_classifier_predicted
+Nvidia,521,0.264875,5.857461,full_sample_classifier_predicted
+Ford Motor,529,0.26465,5.362275,full_sample_classifier_predicted
+Marathon Petroleum,178,0.264045,1.899499,full_sample_classifier_predicted
+Allstate,305,0.262295,2.889951,full_sample_classifier_predicted
+Massachusetts Mutual Life,556,0.255396,1.704495,full_sample_classifier_predicted
+Elevance Health,276,0.253623,2.452582,full_sample_classifier_predicted
+Intel,131,0.251908,4.944405,full_sample_classifier_predicted
+General Dynamics,529,0.249527,2.442123,full_sample_classifier_predicted
+Microsoft,310,0.248387,6.141022,full_sample_classifier_predicted
+Cisco Systems,283,0.24735,3.453524,full_sample_classifier_predicted
+ConocoPhillips,247,0.246964,2.270286,full_sample_classifier_predicted
+Amazon,482,0.246888,5.446454,full_sample_classifier_predicted
+HCA Healthcare,204,0.240196,1.782691,full_sample_classifier_predicted
+Prudential Financial,443,0.239278,3.131032,full_sample_classifier_predicted
+United Airlines Holdings,143,0.237762,6.556668,full_sample_classifier_predicted
+Bank of America,548,0.237226,3.781787,full_sample_classifier_predicted
+MetLife,260,0.234615,2.015792,full_sample_classifier_predicted
+Freddie Mac,30,0.233333,1.949567,full_sample_classifier_predicted
+Merck,112,0.232143,3.256809,full_sample_classifier_predicted
+StoneX Group,471,0.231423,0.771217,full_sample_classifier_predicted
+Energy Transfer,387,0.22739,2.054439,full_sample_classifier_predicted
+Albertsons,348,0.227011,2.485709,full_sample_classifier_predicted
+Travelers,261,0.218391,2.338297,full_sample_classifier_predicted
+FedEx,328,0.216463,4.221045,full_sample_classifier_predicted
+Meta Platforms,80,0.2125,6.156104,full_sample_classifier_predicted
+Cigna Group,243,0.209877,1.927824,full_sample_classifier_predicted
+Charter Communications,181,0.20442,1.933349,full_sample_classifier_predicted
+Phillips 66,290,0.203448,2.068048,full_sample_classifier_predicted
+Broadcom,59,0.20339,3.095527,full_sample_classifier_predicted
+Lowe's,490,0.197959,3.800828,full_sample_classifier_predicted
+Eli Lilly,162,0.197531,3.287615,full_sample_classifier_predicted
+Bristol-Myers Squibb,360,0.197222,2.305316,full_sample_classifier_predicted
+CVS Health,188,0.196809,2.506577,full_sample_classifier_predicted
+Lockheed Martin,431,0.194896,6.234133,full_sample_classifier_predicted
+Chevron,315,0.193651,3.960355,full_sample_classifier_predicted
+Pfizer,171,0.192982,4.17495,full_sample_classifier_predicted
+Comcast,333,0.192192,3.772685,full_sample_classifier_predicted
+Kroger,455,0.191209,3.317546,full_sample_classifier_predicted
+USAA,379,0.189974,4.631991,full_sample_classifier_predicted
+Tyson Foods,498,0.186747,2.632418,full_sample_classifier_predicted
+UnitedHealth Group,38,0.184211,2.67274,full_sample_classifier_predicted
+HP,174,0.183908,4.323757,full_sample_classifier_predicted
+Galaxy Digital,60,0.183333,1.75425,full_sample_classifier_predicted
+Sysco,355,0.183099,1.851715,full_sample_classifier_predicted
+Humana,508,0.181102,1.471393,full_sample_classifier_predicted
+Cencora,101,0.178218,1.314585,full_sample_classifier_predicted
+Capital One Financial,410,0.178049,4.153425,full_sample_classifier_predicted
+Boeing,363,0.176309,5.086057,full_sample_classifier_predicted
+General Motors,329,0.176292,4.20759,full_sample_classifier_predicted
+Citigroup,135,0.17037,2.672026,full_sample_classifier_predicted
+TD Synnex,274,0.164234,1.506178,full_sample_classifier_predicted
+RTX,141,0.163121,4.049943,full_sample_classifier_predicted
+Valero Energy,80,0.1625,2.389505,full_sample_classifier_predicted
+American Express,240,0.1625,3.639624,full_sample_classifier_predicted
+TIAA,63,0.15873,2.081297,full_sample_classifier_predicted
+Caterpillar,342,0.154971,3.237908,full_sample_classifier_predicted
+Alphabet,283,0.14841,6.4553,full_sample_classifier_predicted
+Home Depot,701,0.146933,1.370029,full_sample_classifier_predicted
+Exxon Mobil,234,0.145299,4.182763,full_sample_classifier_predicted
+Archer Daniels Midland,351,0.145299,2.118552,full_sample_classifier_predicted
+Wells Fargo,151,0.139073,3.820041,full_sample_classifier_predicted
+Verizon Communications,23,0.130435,6.766229,full_sample_classifier_predicted
+Cardinal Health,180,0.127778,2.098155,full_sample_classifier_predicted
+PepsiCo,294,0.122449,3.695123,full_sample_classifier_predicted
+Centene,115,0.121739,1.671797,full_sample_classifier_predicted
+UPS,69,0.115942,3.995196,full_sample_classifier_predicted
+McKesson,191,0.115183,1.989578,full_sample_classifier_predicted
+Fannie Mae,106,0.113208,2.594601,full_sample_classifier_predicted
+Ingram Micro Holding,509,0.104126,1.051998,full_sample_classifier_predicted
+American Airlines Group,94,0.085106,5.586447,full_sample_classifier_predicted
+Oracle,244,0.061475,4.329285,full_sample_classifier_predicted
