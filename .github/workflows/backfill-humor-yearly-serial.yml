@@ -27,6 +27,24 @@ on:
         description: 'Max companies in parallel per year (recommended: 1; use >1 only after render stability is verified)'
         required: true
         default: '1'
+      smoke:
+        description: 'Short diagnostic mode: force max_parallel=1, cap max_scrolls at 300, default 3 companies'
+        required: true
+        default: false
+        type: boolean
+      limit_companies:
+        description: 'Limit selected companies for smoke diagnostics'
+        required: true
+        default: '3'
+      per_company_timeout_seconds:
+        description: 'Hard timeout per company; smoke recommended: 180; 0 disables'
+        required: true
+        default: '180'
+      fail_fast_render:
+        description: 'Classify render/auth/block-like failures quickly when scraper logs expose them'
+        required: true
+        default: false
+        type: boolean
       target_scope:
         description: 'all = all active companies; failed_only = recoverable failures only'
         required: true
@@ -76,10 +94,16 @@ jobs:
           COMMIT='${{ inputs.commit_results }}'
           MP='${{ inputs.max_parallel_companies }}'
           RR='${{ inputs.retry_round }}'
+          SMOKE='${{ inputs.smoke }}'
+          LIMIT='${{ inputs.limit_companies }}'
+          PCT='${{ inputs.per_company_timeout_seconds }}'
 
           test "$COMMIT" = 'false' || test "$COMMIT" = 'true'
           test "$SCOPE" = 'all' || test "$SCOPE" = 'failed_only'
+          test "$SMOKE" = 'true' || test "$SMOKE" = 'false'
           test "$MP" -ge 1 && test "$MP" -le 10
+          test "$LIMIT" -ge 0
+          test "$PCT" -ge 0
           test "$RR" -ge 0
           if [ "$MP" -gt 1 ]; then
             echo "WARNING: max_parallel_companies=${MP} > 1. Parallel Playwright on one runner risks render_failure. Use 1 unless stability is verified." >&2
@@ -211,23 +235,32 @@ jobs:
           MP='${{ inputs.max_parallel_companies }}'
           MX='${{ inputs.max_posts_per_account }}'
           MS='${{ inputs.max_scrolls }}'
+          SMOKE='${{ inputs.smoke }}'
+          LIMIT='${{ inputs.limit_companies }}'
+          PCT='${{ inputs.per_company_timeout_seconds }}'
+          FFR='${{ inputs.fail_fast_render }}'
+          COMMON_ARGS=(
+            --max-posts-per-account "$MX"
+            --max-scrolls "$MS"
+            --max-parallel-companies "$MP"
+            --target-scope "$SCOPE"
+            --retry-round "$RETRY"
+          )
+          if [ "$SMOKE" = 'true' ]; then
+            COMMON_ARGS+=(--smoke --limit-companies "$LIMIT" --per-company-timeout-seconds "$PCT")
+          fi
+          if [ "$FFR" = 'true' ]; then
+            COMMON_ARGS+=(--fail-fast-render)
+          fi
           if [ -n "$TARGET" ]; then
             python scripts/run_yearly_humor_backfill.py \
               --target-year "$TARGET" \
-              --max-posts-per-account "$MX" \
-              --max-scrolls "$MS" \
-              --max-parallel-companies "$MP" \
-              --target-scope "$SCOPE" \
-              --retry-round "$RETRY"
+              "${COMMON_ARGS[@]}"
           else
             python scripts/run_yearly_humor_backfill.py \
               --start-year "$START" \
               --end-year "$END" \
-              --max-posts-per-account "$MX" \
-              --max-scrolls "$MS" \
-              --max-parallel-companies "$MP" \
-              --target-scope "$SCOPE" \
-              --retry-round "$RETRY"
+              "${COMMON_ARGS[@]}"
           fi
       - uses: actions/upload-artifact@v4
         if: always()

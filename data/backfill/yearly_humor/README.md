@@ -1,162 +1,187 @@
 # Yearly Humor Backfill — Runbook
 
-## 수집 원칙: Oldest-Year-First
+## Current Status
 
-**수집 순서: 2009 → 2010 → 2011 → ... → 2021**
+Run `27783926736` was a workflow PASS but a 2009 data-quality FAIL:
 
-각 연도는 이전 연도의 recoverable failure가 0이 될 때만 다음 연도로 이동한다.
-전체 범위(2009–2021) 동시 실행은 2009 단일 연도 안정성 테스트 이후에만 권장.
+- `validate-inputs`: success
+- `prepare-year-targets`: success
+- `collect-year`: success
+- `validate-yearly-outputs`: success
+- `optional-commit`: skipped
 
-### 이유
+Observed 2009 collection quality:
 
-- oldest-first로 수집해야 가장 희소한 초기 데이터(2009–2015)가 먼저 확보됨
-- render_failure 같은 불안정 요인을 작은 연도(post 수 적음) 부터 검증
-- 각 연도 성공률 확인 → 병렬도/스크롤 수 파라미터 튜닝 후 다음 연도 진행
+- `target_company_count = 99`
+- `attempted_company_count = 99`
+- `success_count = 0`
+- `recoverable_failure_count = 99`
+- `posts_collected = 0`
+- main failures: `recoverable_failed_timeout = 83`, `recoverable_failed_did_not_reach_year = 16`
 
----
+This means Playwright installation was resolved, but actual 2009 post collection failed. A 99-company run with `max_scrolls=3500` took more than two hours and must be treated as a full historical run, not a smoke test.
 
-## 권장 실행 파라미터
+## Smoke Test First
 
-### 1단계: 2009 단일 연도 안정성 테스트
+Use smoke mode before any full 99-company historical run.
 
-```
+Recommended 2009 smoke inputs:
+
+```text
 workflow: Yearly Humor Backfill Serial Years
-inputs:
-  target_year: 2009
-  start_year: 2009
-  end_year: 2009
-  max_posts_per_account: 0
-  max_scrolls: 3500
-  max_parallel_companies: 1
-  target_scope: all
-  retry_round: 0
-  commit_results: false
-```
-
-### 2단계: 2009 실패분 재시도
-
-```
-workflow: Yearly Humor Backfill Serial Years
-inputs:
-  target_year: 2009
-  max_parallel_companies: 1
-  target_scope: failed_only
-  retry_round: 1
-  commit_results: false
-```
-
-- `recoverable_failure_count == 0`이 될 때까지 retry_round를 올리며 반복
-- failed_only mode는 `recoverable_failed_*` 상태인 기업만 재시도함
-- terminal 상태(`terminal_created_after_year` 등)는 재시도 대상이 아님
-
-### 3단계: 2009 완료 후 2010으로 이동
-
-2009 `recoverable_failure_count == 0` 또는 terminal-only 상태 확인 후:
-
-```
-target_year: 2010
+target_year: 2009
+start_year: 2009
+end_year: 2009
 target_scope: all
 retry_round: 0
+max_posts_per_account: 0
+max_scrolls: 300
+max_parallel_companies: 1
+smoke: true
+limit_companies: 3
+per_company_timeout_seconds: 180
+fail_fast_render: true
 commit_results: false
 ```
 
-반복하여 2021까지 진행.
+Smoke mode effective behavior:
 
-### 4단계: 결과 commit
+- selected companies default to 3 unless `limit_companies` or `handles` is explicitly supplied.
+- `max_parallel_companies` is forced to 1.
+- `max_scrolls` is capped at 300 even if a larger value is supplied.
+- per-company hard timeout defaults to 180 seconds.
+- goal runtime is 10-20 minutes.
+- goal output is diagnostic artifact/audit data, not historical completeness.
 
-각 연도 또는 전체 완료 후:
+Smoke goals:
 
+- confirm artifact creation
+- classify render failure subtype
+- record company-level elapsed time
+- identify whether failures are auth/login, rate/block, selector, timeout, or unknown render failures
+
+A full 99-company `target_year=2009`, `max_scrolls=3500` run should happen only after smoke output has been reviewed and the user explicitly approves a full run.
+
+## Full Run Policy
+
+Full historical runs are long-running collection jobs. Run them only after smoke diagnostics identify and reduce render/timeout failure causes.
+
+A full run is any run with most/all active companies and high scroll depth, for example:
+
+```text
+target_year: 2009
+target_scope: all
+max_scrolls: 3500
+max_parallel_companies: 1
+smoke: false
+commit_results: false
 ```
-commit_results: true
+
+Do not call this a smoke test.
+
+## Oldest-Year-First Collection Principle
+
+Collection order remains:
+
+```text
+2009 -> 2010 -> 2011 -> ... -> 2021
 ```
 
----
+Move to the next year only after recoverable failures for the current year are understood or resolved.
 
-## Status 코드 설명
+## Status Codes
 
-### Recoverable (재시도 가능)
+### Recoverable
 
-| Status | 의미 | 조치 |
+| Status | Meaning | Action |
 |---|---|---|
-| `recoverable_failed_render` | Playwright render 실패 | max_parallel=1로 재시도 |
-| `recoverable_failed_did_not_reach_year` | 스크롤이 target year까지 도달하지 못함 | max_scrolls 증가 후 재시도 |
-| `recoverable_failed_timeout` | 3000s timeout 초과 | 재시도 |
-| `recoverable_failed_network` | 네트워크/DNS 오류 | 재시도 |
-| `recoverable_failed_browser` | 일반 브라우저 오류 | 재시도 |
-| `recoverable_failed_temporary_x_error` | X rate limit / 일시 오류 | 대기 후 재시도 |
+| `recoverable_failed_render` | Browser/render failure | Inspect `failure_subtype`; retry after fixing cause |
+| `recoverable_failed_company_timeout` | Company-level hard timeout | Retry with smaller target or improved render path |
+| `recoverable_failed_timeout` | Scraper timeout | Retry after diagnosing elapsed time/logs |
+| `recoverable_failed_did_not_reach_year` | Scroll did not reach target year | Increase scrolls only after render stability is known |
+| `recoverable_failed_network` | Network/DNS issue | Retry |
+| `recoverable_failed_browser` | General browser failure | Inspect logs |
+| `recoverable_failed_temporary_x_error` | X rate limit / temporary block | Wait and retry |
 
-### Terminal (재시도 불가)
+### Render Failure Subtypes
 
-| Status | 의미 | 근거 |
+| failure_subtype | Meaning |
+|---|---|
+| `render_failure_login_or_auth` | Login/auth/cookie issue suspected |
+| `render_failure_rate_limit_or_block` | Rate limit or block suspected |
+| `render_failure_selector_missing` | Selector/locator/page structure issue suspected |
+| `render_failure_timeout` | Render/navigation/company timeout |
+| `render_failure_unknown` | Render-like failure without enough evidence |
+
+### Terminal
+
+| Status | Meaning | Evidence |
 |---|---|---|
-| `terminal_created_after_year` | 계정이 target year 이후 생성 | `account_created_year > target_year` 확인 필수 |
-| `terminal_no_observable_posts_for_year` | 수집 성공이나 포스트 없음 | 계정 존재하나 해당 연도 포스트 없음 |
-| `terminal_account_protected` | 비공개 계정 | |
-| `terminal_account_suspended` | 정지된 계정 | |
-| `terminal_account_unavailable` | 계정 없음/삭제됨 | |
+| `terminal_created_after_year` | Account was created after target year | `account_created_year > target_year` required |
+| `terminal_no_observable_posts_for_year` | Successful scrape with no observable posts | Account exists but no observed target-year posts |
+| `terminal_account_protected` | Protected/private account | |
+| `terminal_account_suspended` | Suspended account | |
+| `terminal_account_unavailable` | Deleted/unavailable account | |
 
-### 중요: terminal_created_after_year 판정 기준
+`terminal_created_after_year` must not be inferred from earliest observed post date alone. Earliest observed post later than target year usually means the scraper did not scroll back far enough and should remain recoverable.
 
-`terminal_created_after_year`는 반드시 `account_created_year > target_year`가
-확인된 경우에만 부여.
+## Output Schema Additions
 
-`earliest_observed_post_year > target_year`만으로는 terminal 판정 불가 —
-이것은 "아직 충분히 스크롤하지 못했다"는 의미로 `recoverable_failed_did_not_reach_year`로 처리.
+Year summary now includes smoke/time-limit diagnostics including:
 
----
+- `smoke_mode`
+- `full_target_company_count`
+- `selected_company_count`
+- `input_max_scrolls`
+- `effective_max_scrolls`
+- `max_scrolls_cap_reason`
+- `per_company_timeout_seconds`
+- `total_elapsed_seconds`
+- `median_company_elapsed_seconds`
+- `max_company_elapsed_seconds`
+- timeout and render failure subtype counts
+- min/max seen dates and scroll statistics
 
-## 주의사항
+Company-level rows now include:
 
-### max_parallel_companies
+- `company_timeout_triggered`
+- `failure_subtype`
+- `elapsed_seconds`
+- stdout/stderr/combined tail paths
+- `exit_status_path`
+- `min_date_seen`, `max_date_seen`
+- `raw_collected`, `posts_on_or_before_target_year` via `posts_on_or_before_year`
+- smoke/max-scroll/time-limit fields
 
-- **기본값: 1 (권장)**
-- 동일 runner에서 Playwright 병렬 실행 → render_failure 대량 발생 위험
-- 2021 테스트: max_parallel=2에서 93개 render_failure 발생 (1개만 성공)
-- 2 이상은 render 안정성 확인 후에만 사용
+## Directory Structure
 
-### 실행 금지 사항
-
-- 실제 scraping 실행 전에 `build_yearly_humor_backfill_targets.py` 선실행 필수
-- `commit_results: true`는 안정성 확인 후에만 사용
-- 기존 run 취소/재실행 없이 이 workflow와 병행 실행 가능
-  (concurrency group: `backfill-humor-yearly-serial`)
-
----
-
-## 디렉토리 구조
-
-```
+```text
 data/backfill/yearly_humor/
   audit/
-    year_target_summary.csv       # 전체 연도 요약 (global)
+    year_target_summary.csv
   {year}/
     audit/
-      year_{year}_target_companies.csv   # 기업별 수집 결과
-      year_{year}_failed_targets.csv     # recoverable 실패만
-      year_{year}_terminal_targets.csv   # terminal 상태만
-      year_{year}_summary.csv            # 연도 요약
+      year_{year}_target_companies.csv
+      year_{year}_failed_targets.csv
+      year_{year}_terminal_targets.csv
+      year_{year}_summary.csv
     posts/
       y{year}__{group}__{company}__{handle}/
         collected_posts_raw.json
         posts_on_or_before_{year}.json
-        scraper_stdout_tail.txt    # 실패 원인 분석용 로그
+        scraper_stdout_tail.txt
         scraper_stderr_tail.txt
         scraper_combined_tail.txt
         scraper_exit_status.json
         scrape_metrics.json
 ```
 
----
-
 ## Validation
 
 ```bash
-# 기본 검증 (출력 없을 때)
 python scripts/validate_yearly_humor_backfill_outputs.py --allow-empty
-
-# 특정 연도 검증
 python scripts/validate_yearly_humor_backfill_outputs.py --target-year 2009
-
-# 엄격 모드 (warning도 FAIL)
 python scripts/validate_yearly_humor_backfill_outputs.py --target-year 2009 --strict
 ```
+
+Smoke output can pass validation with `success_count=0` when schema, selected count, recoverable failure status, and subtype diagnostics are internally consistent. That is still a data-quality failure and should not be treated as successful collection.
