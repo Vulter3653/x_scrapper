@@ -1,0 +1,31 @@
+model_id,fe_count,included_fe,formula,status
+year,1,year,focal_IV + year FE,defined
+month,1,month,focal_IV + month FE,defined
+week,1,week,focal_IV + week FE,defined
+day,1,day,focal_IV + day FE,defined
+hour,1,hour,focal_IV + hour FE,defined
+year_month,2,"year,month",focal_IV + year + month FE,defined
+year_week,2,"year,week",focal_IV + year + week FE,defined
+year_day,2,"year,day",focal_IV + year + day FE,defined
+year_hour,2,"year,hour",focal_IV + year + hour FE,defined
+month_week,2,"month,week",focal_IV + month + week FE,defined
+month_day,2,"month,day",focal_IV + month + day FE,defined
+month_hour,2,"month,hour",focal_IV + month + hour FE,defined
+week_day,2,"week,day",focal_IV + week + day FE,defined
+week_hour,2,"week,hour",focal_IV + week + hour FE,defined
+day_hour,2,"day,hour",focal_IV + day + hour FE,defined
+year_month_week,3,"year,month,week",focal_IV + year + month + week FE,defined
+year_month_day,3,"year,month,day",focal_IV + year + month + day FE,defined
+year_month_hour,3,"year,month,hour",focal_IV + year + month + hour FE,defined
+year_week_day,3,"year,week,day",focal_IV + year + week + day FE,defined
+year_week_hour,3,"year,week,hour",focal_IV + year + week + hour FE,defined
+year_day_hour,3,"year,day,hour",focal_IV + year + day + hour FE,defined
+month_week_day,3,"month,week,day",focal_IV + month + week + day FE,defined
+month_week_hour,3,"month,week,hour",focal_IV + month + week + hour FE,defined
+month_day_hour,3,"month,day,hour",focal_IV + month + day + hour FE,defined
+week_day_hour,3,"week,day,hour",focal_IV + week + day + hour FE,defined
+year_month_week_day,4,"year,month,week,day",focal_IV + year + month + week + day FE,defined
+year_month_week_hour,4,"year,month,week,hour",focal_IV + year + month + week + hour FE,defined
+year_month_day_hour,4,"year,month,day,hour",focal_IV + year + month + day + hour FE,defined
+year_week_day_hour,4,"year,week,day,hour",focal_IV + year + week + day + hour FE,defined
+month_week_day_hour,4,"month,week,day,hour",focal_IV + month + week + day + hour FE,defined

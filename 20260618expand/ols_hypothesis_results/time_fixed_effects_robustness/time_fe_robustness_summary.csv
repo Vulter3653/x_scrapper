@@ -1,0 +1,9 @@
+hypothesis,measurement_basis,key_variable,total_models_attempted,total_models_success,positive_direction_count,significant_p05_count,significant_p10_count,direction_stable,best_model_by_adj_r2,best_adj_r2,most_conservative_model,conclusion
+H1,batch1_human_coded,human_humor_presence,30,30,30,15,15,yes,hour,0.300797,hour,all_positive_some_sig_p05
+H1,full_sample_predicted,h1_humor_presence_pred_t50,30,30,30,30,30,yes,day_hour,0.296699,day_hour,all_positive_all_sig_p05
+H2_1,batch1_human_coded,aggressive_vs_other,30,30,30,2,7,yes,day,0.363541,hour,all_positive_some_sig_p05
+H2_1,full_sample_predicted,predicted_aggressive_vs_other,30,30,30,14,14,yes,hour,0.287126,hour,all_positive_some_sig_p05
+H2_2,batch1_human_coded,aggressive,30,30,30,7,7,yes,day,0.365556,hour,all_positive_some_sig_p05
+H2_2,full_sample_predicted,predicted_aggressive,30,30,30,14,14,yes,hour,0.287089,hour,all_positive_some_sig_p05
+H3,batch1_human_coded,aggressive_intensity,30,0,0,0,0,yes,,,,no_models_run
+H3,full_sample_predicted,predicted_aggressive_intensity,30,3,3,3,3,yes,year,0.070569,year,all_positive_all_sig_p05
