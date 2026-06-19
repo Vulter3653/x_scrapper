@@ -1,0 +1,9 @@
+category,label,n,pct
+full_sample_total,All posts,68039,100.0
+humor_presence_humorous,Humorous,22796,33.5
+humor_presence_non,Non-humorous,45243,66.5
+type_non_humorous,non_humorous,45243,66.5
+type_affiliative,affiliative,12393,18.21
+type_self_enhancing,self_enhancing,7339,10.79
+type_aggressive,aggressive,2567,3.77
+type_self_defeating,self_defeating,497,0.73

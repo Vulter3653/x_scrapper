@@ -1,0 +1,13 @@
+model,hypothesis,contrast,weights_info,estimate,std_error,t_statistic,p_value,stars,direction,support
+Full_sample,H1,Weighted Humor Effect (vs non-humorous),agg:0.113 aff:0.544 se:0.322 sd:0.022,1.12291,0.01664,67.4843,0.0,***,positive,supported
+Full_sample,H2-1,Aggressive − Other humor (weighted avg),,0.862238,0.042924,20.0877,0.0,***,positive,supported
+Full_sample,H2-2,Aggressive − Affiliative,,1.111012,0.044426,25.0084,0.0,***,positive,supported
+Full_sample,H2-2,Aggressive − Self-Enhancing,,0.518053,0.046977,11.0278,0.0,***,positive,supported
+Full_sample,H2-2,Aggressive − Self-Defeating,,-0.258669,0.100397,-2.5765,0.009984,***,negative,not_supported
+Full_sample,H2-3,Aggressive − SELF (se+sd weighted avg),,0.468789,0.046589,10.0621,0.0,***,positive,supported
+Human_coded,H1,Weighted Humor Effect (vs non-humorous),agg:0.134 aff:0.472 se:0.356 sd:0.038,1.248298,0.102547,12.1729,0.0,***,positive,supported
+Human_coded,H2-1,Aggressive − Other humor (weighted avg),,1.813468,0.227516,7.9707,0.0,***,positive,supported
+Human_coded,H2-2,Aggressive − Affiliative,,1.981428,0.239907,8.2591,0.0,***,positive,supported
+Human_coded,H2-2,Aggressive − Self-Enhancing,,1.703715,0.248375,6.8594,0.0,***,positive,supported
+Human_coded,H2-2,Aggressive − Self-Defeating,,0.743515,0.452659,1.6426,0.100579,,positive,not_supported
+Human_coded,H2-3,Aggressive − SELF (se+sd weighted avg),,1.612178,0.245117,6.5772,0.0,***,positive,supported
