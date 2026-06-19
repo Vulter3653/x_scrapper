@@ -1,0 +1,6 @@
+model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared,df_residual
+Full_sample_simple_OLS,intercept,3.126304,0.009964,313.7751,0.0,***,68039,0.080628,0.080574,68034
+Full_sample_simple_OLS,aggressive,1.799829,0.046462,38.738,0.0,***,68039,0.080628,0.080574,68034
+Full_sample_simple_OLS,affiliative,0.837743,0.019914,42.0675,0.0,***,68039,0.080628,0.080574,68034
+Full_sample_simple_OLS,self_enhancing,1.439115,0.023191,62.0541,0.0,***,68039,0.080628,0.080574,68034
+Full_sample_simple_OLS,self_defeating,2.100931,0.094822,22.1566,0.0,***,68039,0.080628,0.080574,68034

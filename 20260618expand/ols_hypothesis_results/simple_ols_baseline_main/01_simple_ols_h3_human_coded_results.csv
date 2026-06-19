@@ -1,0 +1,4 @@
+model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared,df_residual
+Human_coded_H3,intercept,3.619452,0.070836,51.0961,0.0,***,845,0.012502,0.010156,842
+Human_coded_H3,AggressiveIntensity,3.060947,1.4758,2.0741,0.038374,**,845,0.012502,0.010156,842
+Human_coded_H3,AggressiveIntensity_sq,-1.895608,1.68662,-1.1239,0.261372,,845,0.012502,0.010156,842
