@@ -1,5 +1,8 @@
-sample,variable,n_total,n_missing,missing_share
-Full_sample,text_length,68039,0,0.0
-Full_sample,hashtag_count,68039,0,0.0
-Full_sample,mention_count,68039,0,0.0
-Human_coded,controls_via_tweet_id_join,3574,500,0.139899
+sample,variable,n_total,n_missing,missing_share,note
+Full_sample,text_length,68039,0,0.0,
+Full_sample,hashtag_count,68039,0,0.0,
+Full_sample,mention_count,68039,0,0.0,
+Human_coded,matching_tier1_direct,3574,0,0.0,n_direct=3074
+Human_coded,matching_tier2_url_status_id,3574,0,0.0,n_url=500 (coder2 Batch2 Excel-precision recovered)
+Human_coded,matching_tier3_text_hash,3574,0,0.0,n_text=0
+Human_coded,unmatched_dropped,3574,0,0.0,真실질 unmatched=0; all 3574 recovered via three-tier fallback

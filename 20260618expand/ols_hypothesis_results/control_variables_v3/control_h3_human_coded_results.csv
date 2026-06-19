@@ -1,8 +1,8 @@
 model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared
-Human_coded_H3_Ctrl,intercept,3.995709,0.245396,16.2827,0.0,***,870,0.098819,0.092553
-Human_coded_H3_Ctrl,AggressiveIntensity,3.578225,1.549694,2.309,0.02118,**,870,0.098819,0.092553
-Human_coded_H3_Ctrl,AggressiveIntensity_sq,-2.546845,1.875234,-1.3581,0.174772,,870,0.098819,0.092553
-Human_coded_H3_Ctrl,mean_text_length,-0.002949,0.000858,-3.4365,0.000618,***,870,0.098819,0.092553
-Human_coded_H3_Ctrl,mean_hashtag_count,-0.41606,0.091558,-4.5442,6e-06,***,870,0.098819,0.092553
-Human_coded_H3_Ctrl,mean_mention_count,-0.035807,0.100784,-0.3553,0.722462,,870,0.098819,0.092553
-Human_coded_H3_Ctrl,log_total_posts,0.466394,0.12242,3.8098,0.000149,***,870,0.098819,0.092553
+Human_coded_H3_Ctrl,intercept,4.126864,0.238052,17.336,0.0,***,925,0.098778,0.092888
+Human_coded_H3_Ctrl,AggressiveIntensity,4.226055,1.433168,2.9488,0.003272,***,925,0.098778,0.092888
+Human_coded_H3_Ctrl,AggressiveIntensity_sq,-3.176324,1.795617,-1.7689,0.077237,*,925,0.098778,0.092888
+Human_coded_H3_Ctrl,mean_text_length,-0.003204,0.00085,-3.7705,0.000173,***,925,0.098778,0.092888
+Human_coded_H3_Ctrl,mean_hashtag_count,-0.439956,0.092902,-4.7357,3e-06,***,925,0.098778,0.092888
+Human_coded_H3_Ctrl,mean_mention_count,0.009876,0.101148,0.0976,0.922242,,925,0.098778,0.092888
+Human_coded_H3_Ctrl,log_total_posts,0.370826,0.111592,3.323,0.000926,***,925,0.098778,0.092888

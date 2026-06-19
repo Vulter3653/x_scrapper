@@ -1,3 +1,3 @@
 model,n_firm_quarters,k,matrix_rank,df_resid,condition_number,rank_deficient,beta1_intensity,beta1_se,beta1_t,beta1_p,beta1_stars,beta2_intensity_sq,beta2_se,beta2_t,beta2_p,beta2_stars,turning_point,obs_intensity_min,obs_intensity_max,tp_in_obs_range,H3_supported,r_squared,adj_r_squared
 Full_sample_H3_Ctrl,1420,7,7,1413,10934.4971,False,9.483818,0.984949,9.6287,0.0,***,-10.338158,1.956949,-5.2828,0.0,***,0.45868,0.0,1.0,True,True,0.29234,0.289335
-Human_coded_H3_Ctrl,870,7,7,863,7357.1727,False,3.578225,1.549694,2.309,0.02118,**,-2.546845,1.875234,-1.3581,0.174772,,0.702482,0.0,1.0,True,False,0.098819,0.092553
+Human_coded_H3_Ctrl,925,7,7,918,7257.7794,False,4.226055,1.433168,2.9488,0.003272,***,-3.176324,1.795617,-1.7689,0.077237,*,0.665243,0.0,1.0,True,True,0.098778,0.092888

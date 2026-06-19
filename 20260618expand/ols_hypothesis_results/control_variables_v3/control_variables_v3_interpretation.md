@@ -10,8 +10,10 @@ $$\log(1+\text{Eng}_i) = \beta_0 + \beta_1\text{Agg} + \beta_2\text{Aff} + \beta
 **H3** (firm-quarter):
 $$\overline{\log(1+\text{Eng})}_{fq} = \alpha + \beta_1\text{Intensity} + \beta_2\text{Intensity}^2 + \gamma_1\text{mean\_tl} + \gamma_2\text{mean\_ht} + \gamma_3\text{mean\_mn} + \gamma_4\log(1+\text{posts}) + \varepsilon$$
 
-- Full-sample N = 68,039  |  HC N = 3,074 (dropped 500 missing controls)
-- H3 firm-quarters: Full=1,420  HC=870
+- Full-sample N = 68,039  |  HC N = 3,574
+- HC matching: Tier-1 direct tweet_id=3,074; Tier-2 URL status_id=500 (coder2 Batch2 Excel-precision recovered); Tier-3 text_hash=0; unmatched=0
+- coder2 Batch2 500건은 Excel 정밀도 손상으로 tweet_id 직접 매칭에는 실패했으나, URL status ID fallback을 통해 모두 복구됨. 실질 unmatched=0.
+- H3 firm-quarters: Full=1,420  HC=925
 - Classical OLS SE. No company dummies. No time dummies. No emoji_count.
 
 ## VIF diagnostics (Full-sample H1/H2)
@@ -33,7 +35,7 @@ $$\overline{\log(1+\text{Eng})}_{fq} = \alpha + \beta_1\text{Intensity} + \beta_
 
 **Full sample**: estimate=1.15332, p=0.0***  → H1 **supported**
 
-**Human-coded**: estimate=1.198429, p=0.0***  → H1 **supported**
+**Human-coded**: estimate=1.215049, p=0.0***  → H1 **supported**
 
 ## H2-1: Aggressive vs Other humor
 
