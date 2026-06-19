@@ -47,6 +47,7 @@ commit_results: false
 Smoke mode effective behavior:
 
 - selected companies default to 3 unless `limit_companies` or `handles` is explicitly supplied.
+- `handles` matching is case-insensitive, so `@Broadcom` and `@broadcom` select the same target.
 - `max_parallel_companies` is forced to 1.
 - `max_scrolls` is capped at 300 even if a larger value is supplied.
 - per-company hard timeout defaults to 180 seconds.

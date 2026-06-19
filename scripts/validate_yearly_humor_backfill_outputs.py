@@ -128,6 +128,7 @@ def validate_status_rows(year: int, rows: list[dict[str, str]], summary: dict[st
 
     if is_true(summary.get("smoke_mode")):
         full = to_int(summary.get("full_target_company_count"))
+        _chk(selected > 0, f"year={year} smoke selected_company_count is nonzero ({selected})", errors)
         _chk(selected <= full if full else True, f"year={year} smoke selected count can be below full target count ({selected}/{full})", errors)
         _chk(to_int(summary.get("effective_max_scrolls")) <= 300, f"year={year} smoke effective_max_scrolls <= 300", errors)
         _chk(to_int(summary.get("per_company_timeout_seconds")) in (0, 180) or to_int(summary.get("per_company_timeout_seconds")) <= 300,
@@ -166,8 +167,8 @@ def main() -> int:
         _chk("commit_results" in text, "workflow has commit_results input", errors)
         _chk("default: 'false'" in text or "default: false" in text, "commit_results default is false", errors)
         _chk("backfill-humor-yearly-serial" in text, "workflow concurrency group is distinct", errors)
-        _chk("smoke" in text and "limit_companies" in text and "per_company_timeout_seconds" in text,
-             "workflow exposes smoke/limit/time-limit inputs", errors)
+        _chk("smoke" in text and "limit_companies" in text and "per_company_timeout_seconds" in text and "handles" in text,
+             "workflow exposes smoke/limit/handles/time-limit inputs", errors)
         _warn("default: '1'" in text or "default: 1" in text, "max_parallel_companies default is 1", warnings)
 
     print("\n[3] Global year target summary:")
@@ -209,12 +210,11 @@ def main() -> int:
             missing_base = base_fields - set(summary)
             _chk(not missing_base, f"year={year} summary has base fields (missing={missing_base})", errors)
             missing_ext = SUMMARY_EXTENDED_FIELDS - set(summary)
-            if target_rows and is_true(summary.get("smoke_mode")):
+            if is_true(summary.get("smoke_mode")):
                 _chk(not missing_ext, f"year={year} smoke summary has extended fields (missing={missing_ext})", errors)
             elif missing_ext:
                 warnings.append(f"WARN year={year}: summary lacks new smoke diagnostic fields; old artifact schema")
-            if target_rows:
-                validate_status_rows(year, target_rows, summary, errors, warnings)
+            validate_status_rows(year, target_rows, summary, errors, warnings)
         elif args.allow_empty:
             print(f"  SKIP year={year} summary: not yet present (--allow-empty)")
         else:

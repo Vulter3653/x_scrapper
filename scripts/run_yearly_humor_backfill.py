@@ -261,8 +261,8 @@ def _save_logs(posts_dir: Path, stdout: str, stderr: str, exit_code: int,
 
 
 def normalize_handle(handle: str) -> str:
-    h = handle.strip()
-    return h if h.startswith("@") or not h else f"@{h}"
+    h = str(handle or "").strip()
+    return f"@{h.lstrip('@').strip().lower()}" if h else ""
 
 
 def select_targets(all_targets: list[dict], year: int, args: argparse.Namespace) -> tuple[list[dict], int, int]:
@@ -511,6 +511,15 @@ def collect_year(year: int, all_targets: list[dict], args: argparse.Namespace) -
     year_audit = OUT_ROOT / str(year) / "audit"
     active, skipped_count, full_total = select_targets(all_targets, year, args)
     selected_count = len(active)
+    if args.smoke and args.handles and selected_count == 0:
+        requested = ",".join(sorted({normalize_handle(h) for h in args.handles.split(",") if h.strip()}))
+        available_sample = ",".join(sorted({normalize_handle(t.get("handle", "")) for t in all_targets if t.get("handle")} )[:10])
+        raise RuntimeError(
+            "smoke targeted handles matched zero companies: "
+            f"requested={requested or args.handles!r}; "
+            f"full_target_company_count={full_total}; "
+            f"available_handle_sample={available_sample}"
+        )
     args.full_target_company_count = full_total
     args.selected_company_count = selected_count
 
