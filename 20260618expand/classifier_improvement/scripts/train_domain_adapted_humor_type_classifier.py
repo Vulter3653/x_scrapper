@@ -155,16 +155,21 @@ def evaluate_type_pipeline(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--smoke", action="store_true")
+    parser.add_argument("--template", type=Path, default=None,
+                        help="Path to labeled template CSV (default: batch1 master)")
     args = parser.parse_args()
+
+    template_path = args.template if args.template else TEMPLATE
 
     print("=== train_domain_adapted_humor_type_classifier ===")
 
-    if not TEMPLATE.exists():
-        print(f"ERROR: template not found: {TEMPLATE}")
+    if not template_path.exists():
+        print(f"ERROR: template not found: {template_path}")
         print("Fill in human_humor_presence and human_humor_type labels first.")
         raise SystemExit(1)
 
-    with open(TEMPLATE, newline="", encoding="utf-8") as f:
+    print(f"  Template: {template_path.name}")
+    with open(template_path, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
 
     # Only train on humor posts (presence=1) with valid type label (1/2/3/4)

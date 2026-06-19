@@ -214,17 +214,22 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--smoke", action="store_true",
                         help="Use only first 200 labeled rows for quick smoke test")
+    parser.add_argument("--template", type=Path, default=None,
+                        help="Path to labeled template CSV (default: batch1 master)")
     args = parser.parse_args()
+
+    template_path = args.template if args.template else TEMPLATE
 
     print("=== train_domain_adapted_humor_presence_classifier ===")
 
-    if not TEMPLATE.exists():
-        print(f"ERROR: template not found: {TEMPLATE}")
+    if not template_path.exists():
+        print(f"ERROR: template not found: {template_path}")
         print("Run build_fortune_labeling_candidates.py and build_human_labeling_template.py first,")
         print("then fill in human_humor_presence labels.")
         raise SystemExit(1)
 
-    with open(TEMPLATE, newline="", encoding="utf-8") as f:
+    print(f"  Template: {template_path.name}")
+    with open(template_path, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
 
     labeled = [r for r in rows
