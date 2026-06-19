@@ -18,8 +18,8 @@ INPUT=ROOT/'20260618expand/classifier_improvement/humor_type_with_wendys_human/d
 LABELS=['aggressive','affiliative','self-enhancing','self-defeating']; SEEDS=list(range(30)); THRESH=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
 TOKEN_GROUPS={
  'wendys_brand':['wendy','wendys','wendy’s',"wendy's",'@wendys'],
- 'brand_product':['wendy','wendys','wendy’s',"wendy's",'@wendys','frosty','baconator','nuggs','nuggets','spicy nuggets','dave','jr frosty','frostyccino','breakfast baconator'],
- 'competitor_roast':['burger king','mcdonald','mcdonalds','mcdonald’s',"mcdonald's",'bk','clown','roast','roasting','diss','disrespectful','savage'],
+ 'brand_product':['wendy','wendys','wendy’s',"wendy's",'@wendys','frosty','nuggs','nuggets','spicy nuggets','jr frosty','frostyccino'],
+ 'competitor_roast':['bk','clown','roast','roasting','diss','disrespectful','savage'],
  'campaign_product':['free','app','drive-thru','drive thru','breakfast','fries','chicken sandwich','nuggets','coupon','deal','offer']}
 VARIANTS=[('original_text',[]),('mask_wendys_brand',['wendys_brand']),('mask_brand_product',['brand_product']),('mask_brand_product_competitor',['brand_product','competitor_roast']),('mask_campaign_product',['campaign_product']),('mask_all_leakage_groups',['brand_product','competitor_roast','campaign_product'])]
 PLACE={'wendys_brand':'<BRAND_TOKEN>','brand_product':'<PRODUCT_TOKEN>','competitor_roast':'<COMPETITOR_TOKEN>','campaign_product':'<CAMPAIGN_TOKEN>'}

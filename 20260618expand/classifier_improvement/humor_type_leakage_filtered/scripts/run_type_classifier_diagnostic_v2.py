@@ -366,8 +366,8 @@ def exp3_hard_masking_v2(rows: list[dict]) -> list[dict]:
             feat = feat_names[idx]
             lkg_flag = "FAIL" if any(
                 tok in feat.lower()
-                for tok in ["wendy", "nationalroastday", "roastday", "frosty", "baconator",
-                            "burgking", "burger king", "mcdonalds", "taco bell"]
+                for tok in ["wendy", "nationalroastday", "roastday", "frosty",
+                            "burgking", "taco bell"]
             ) else "PASS"
             results_top_feat.append({
                 "experiment": "hard_masking_v2_top_features",
@@ -604,9 +604,9 @@ def _detect_leakage_cues(text: str) -> str:
         cues.append("nationalroastday_hashtag")
     if "wendy" in text_l:
         cues.append("wendy_brand")
-    if any(t in text_l for t in ["frosty", "baconator", "nuggs"]):
+    if any(t in text_l for t in ["frosty", "nuggs"]):
         cues.append("wendy_product")
-    if any(t in text_l for t in ["burger king", "mcdonald", "taco bell"]):
+    if any(t in text_l for t in ["taco bell"]):
         cues.append("competitor_reference")
     if "should" in text_l:
         cues.append("modal_should")

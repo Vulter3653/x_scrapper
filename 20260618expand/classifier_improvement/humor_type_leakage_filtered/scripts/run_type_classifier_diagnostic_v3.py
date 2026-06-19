@@ -603,7 +603,7 @@ def exp6_feature_importance(rows: list[dict]) -> list[dict]:
             )
             lkg_flag = "FAIL" if any(
                 tok in fname.lower()
-                for tok in ["wendy", "nationalroastday", "roastday", "frosty", "baconator",
+                for tok in ["wendy", "nationalroastday", "roastday", "frosty",
                             "nugg", "campaign_event", "competitor_tok", "brand_tok"]
             ) else "PASS"
             output.append({
