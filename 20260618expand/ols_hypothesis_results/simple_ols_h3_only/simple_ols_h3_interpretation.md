@@ -18,9 +18,9 @@ This file reports H3 only. H1 and H2 are not analyzed. Controls and fixed effect
 
 ## Simple Quadratic OLS Result
 
-- beta1 aggressive_intensity: 10.044421 (p=0.000000, ***)
-- beta2 aggressive_intensity_sq: -8.244646 (p=0.000000, ***)
-- turning point: 0.609148
+- beta1 aggressive_intensity: 10.220228 (p=0.000000, ***)
+- beta2 aggressive_intensity_sq: -8.428199 (p=0.000000, ***)
+- turning point: 0.606311
 - turning point in observed range: true
 - pattern: inverted-U
 - H3_supported: true

@@ -1,5 +1,5 @@
 model,beta1_intensity,beta2_intensity_sq,beta2_p_value,beta2_stars,turning_point,observed_min,observed_max,tp_in_range,pattern,H3_supported,verdict
-M1_simple_ols,10.044421,-8.244646,0.000000,***,0.609148,0.000000,1.000000,true,inverted-U,true,"H3 지지: β₁>0, β₂<0 유의(p<.10), 전환점 관측 범위 내"
-M2_firm_dummies,-0.681103,0.761939,0.113945,,0.446954,0.000000,1.000000,true,U-shaped,false,H3 지지 불가: β₂>0 (역U자형 아님)
-M3_time_fe_year_month,10.307472,-8.589036,0.000000,***,0.600037,0.000000,1.000000,true,inverted-U,true,"H3 지지: β₁>0, β₂<0 유의(p<.10), 전환점 관측 범위 내"
-M4_firm_year_month_fe,-0.321069,0.165246,0.722419,,0.971485,0.000000,1.000000,true,U-shaped,false,H3 지지 불가: β₂>0 (역U자형 아님)
+M1_simple_ols,10.220228,-8.428199,0.000000,***,0.606311,0.000000,1.000000,true,inverted-U,true,"H3 지지: β₁>0, β₂<0 유의(p<.10), 전환점 관측 범위 내"
+M2_firm_dummies,-0.667305,1.404640,0.002260,***,0.237536,0.000000,1.000000,true,U-shaped,false,H3 지지 불가: β₂>0 (역U자형 아님)
+M3_time_fe_year_month,10.579983,-8.827960,0.000000,***,0.599232,0.000000,1.000000,true,inverted-U,true,"H3 지지: β₁>0, β₂<0 유의(p<.10), 전환점 관측 범위 내"
+M4_firm_year_month_fe,-0.307975,0.871023,0.049358,**,0.176789,0.000000,1.000000,true,U-shaped,false,H3 지지 불가: β₂>0 (역U자형 아님)

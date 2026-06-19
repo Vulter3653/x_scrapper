@@ -1,2 +1,2 @@
 beta1_intensity,beta2_intensity_squared,beta1_sign,beta2_sign,beta2_p_value,turning_point,observed_intensity_min,observed_intensity_max,turning_point_in_observed_range,pattern,H3_supported,interpretation
-10.044421,-8.244646,positive,negative,0.000000,0.609148,0.000000,1.000000,true,inverted-U,true,"H3 supported in this simple diagnostic: beta1>0, beta2<0, beta2 statistically significant, and turning point is inside the observed range."
+10.220228,-8.428199,positive,negative,0.000000,0.606311,0.000000,1.000000,true,inverted-U,true,"H3 supported in this simple diagnostic: beta1>0, beta2<0, beta2 statistically significant, and turning point is inside the observed range."
