@@ -1,0 +1,479 @@
+dataset,source_file,dummy_type,dummy_column_name,company_id,company_name,n_obs_in_dataset,is_reference_firm
+batch1_h1,template,firm_dummy,firm_dummy_1,1,AT&T,24,false
+batch1_h1,template,firm_dummy,firm_dummy_2,2,AbbVie,20,false
+batch1_h1,template,firm_dummy,firm_dummy_3,3,Albertsons,23,false
+batch1_h1,template,firm_dummy,firm_dummy_4,4,Allstate,9,false
+batch1_h1,template,firm_dummy,firm_dummy_5,5,Alphabet,13,false
+batch1_h1,template,firm_dummy,firm_dummy_6,6,Amazon,30,false
+batch1_h1,template,firm_dummy,firm_dummy_7,7,American Airlines Group,7,false
+batch1_h1,template,firm_dummy,firm_dummy_8,8,American Express,14,false
+batch1_h1,template,firm_dummy,firm_dummy_9,9,Archer Daniels Midland,20,false
+batch1_h1,template,firm_dummy,firm_dummy_10,10,Bank of America,23,false
+batch1_h1,template,firm_dummy,firm_dummy_11,11,Boeing,14,false
+batch1_h1,template,firm_dummy,firm_dummy_12,12,Bristol-Myers Squibb,15,false
+batch1_h1,template,firm_dummy,firm_dummy_13,13,Broadcom,2,false
+batch1_h1,template,firm_dummy,firm_dummy_14,14,CVS Health,6,false
+batch1_h1,template,firm_dummy,firm_dummy_15,15,Capital One Financial,8,false
+batch1_h1,template,firm_dummy,firm_dummy_16,16,Cardinal Health,5,false
+batch1_h1,template,firm_dummy,firm_dummy_17,17,Caterpillar,14,false
+batch1_h1,template,firm_dummy,firm_dummy_18,18,Cencora,10,false
+batch1_h1,template,firm_dummy,firm_dummy_19,19,Centene,11,false
+batch1_h1,template,firm_dummy,firm_dummy_20,20,Charter Communications,6,false
+batch1_h1,template,firm_dummy,firm_dummy_21,21,Chevron,17,false
+batch1_h1,template,firm_dummy,firm_dummy_22,22,Cigna Group,13,false
+batch1_h1,template,firm_dummy,firm_dummy_23,23,Cisco Systems,17,false
+batch1_h1,template,firm_dummy,firm_dummy_24,24,Citigroup,5,false
+batch1_h1,template,firm_dummy,firm_dummy_25,25,Coca-Cola,6,false
+batch1_h1,template,firm_dummy,firm_dummy_26,26,Comcast,27,false
+batch1_h1,template,firm_dummy,firm_dummy_27,27,ConocoPhillips,13,false
+batch1_h1,template,firm_dummy,firm_dummy_28,28,Dell Technologies,10,false
+batch1_h1,template,firm_dummy,firm_dummy_29,29,Delta Air Lines,19,false
+batch1_h1,template,firm_dummy,firm_dummy_30,30,Elevance Health,16,false
+batch1_h1,template,firm_dummy,firm_dummy_31,31,Eli Lilly,11,false
+batch1_h1,template,firm_dummy,firm_dummy_32,32,Energy Transfer,19,false
+batch1_h1,template,firm_dummy,firm_dummy_33,33,Enterprise Products Partners,51,false
+batch1_h1,template,firm_dummy,firm_dummy_34,34,Exxon Mobil,14,false
+batch1_h1,template,firm_dummy,firm_dummy_35,35,Fannie Mae,5,false
+batch1_h1,template,firm_dummy,firm_dummy_36,36,FedEx,13,false
+batch1_h1,template,firm_dummy,firm_dummy_37,37,Ford Motor,27,false
+batch1_h1,template,firm_dummy,firm_dummy_38,38,Freddie Mac,5,false
+batch1_h1,template,firm_dummy,firm_dummy_39,39,Galaxy Digital,2,false
+batch1_h1,template,firm_dummy,firm_dummy_40,40,General Dynamics,29,false
+batch1_h1,template,firm_dummy,firm_dummy_41,41,General Motors,10,false
+batch1_h1,template,firm_dummy,firm_dummy_42,42,Goldman Sachs Group,16,false
+batch1_h1,template,firm_dummy,firm_dummy_43,43,HCA Healthcare,13,false
+batch1_h1,template,firm_dummy,firm_dummy_44,44,HP,10,false
+batch1_h1,template,firm_dummy,firm_dummy_46,46,Humana,21,false
+batch1_h1,template,firm_dummy,firm_dummy_47,47,IBM,12,false
+batch1_h1,template,firm_dummy,firm_dummy_48,48,Ingram Micro Holding,23,false
+batch1_h1,template,firm_dummy,firm_dummy_49,49,Intel,6,false
+batch1_h1,template,firm_dummy,firm_dummy_50,50,JPMorgan Chase,18,false
+batch1_h1,template,firm_dummy,firm_dummy_51,51,Johnson & Johnson,17,false
+batch1_h1,template,firm_dummy,firm_dummy_52,52,Kroger,27,false
+batch1_h1,template,firm_dummy,firm_dummy_53,53,Liberty Mutual Insurance Group,14,false
+batch1_h1,template,firm_dummy,firm_dummy_54,54,Lockheed Martin,21,false
+batch1_h1,template,firm_dummy,firm_dummy_55,55,Lowe's,13,false
+batch1_h1,template,firm_dummy,firm_dummy_56,56,Marathon Petroleum,8,false
+batch1_h1,template,firm_dummy,firm_dummy_57,57,Massachusetts Mutual Life,19,false
+batch1_h1,template,firm_dummy,firm_dummy_58,58,McKesson,10,false
+batch1_h1,template,firm_dummy,firm_dummy_59,59,Merck,7,false
+batch1_h1,template,firm_dummy,firm_dummy_60,60,MetLife,16,false
+batch1_h1,template,firm_dummy,firm_dummy_61,61,Meta Platforms,4,false
+batch1_h1,template,firm_dummy,firm_dummy_62,62,Microsoft,21,false
+batch1_h1,template,firm_dummy,firm_dummy_64,64,Morgan Stanley,22,false
+batch1_h1,template,firm_dummy,firm_dummy_65,65,Nationwide,28,false
+batch1_h1,template,firm_dummy,firm_dummy_66,66,New York Life Insurance,11,false
+batch1_h1,template,firm_dummy,firm_dummy_67,67,Nike,14,false
+batch1_h1,template,firm_dummy,firm_dummy_68,68,Nvidia,18,false
+batch1_h1,template,firm_dummy,firm_dummy_69,69,Oracle,9,false
+batch1_h1,template,firm_dummy,firm_dummy_70,70,PepsiCo,16,false
+batch1_h1,template,firm_dummy,firm_dummy_71,71,Performance Food Group,1,false
+batch1_h1,template,firm_dummy,firm_dummy_72,72,Pfizer,5,false
+batch1_h1,template,firm_dummy,firm_dummy_73,73,Phillips 66,11,false
+batch1_h1,template,firm_dummy,firm_dummy_74,74,Procter & Gamble,4,false
+batch1_h1,template,firm_dummy,firm_dummy_75,75,Progressive,8,false
+batch1_h1,template,firm_dummy,firm_dummy_76,76,Prudential Financial,19,false
+batch1_h1,template,firm_dummy,firm_dummy_77,77,Publix Super Markets,24,false
+batch1_h1,template,firm_dummy,firm_dummy_78,78,RTX,7,false
+batch1_h1,template,firm_dummy,firm_dummy_79,79,State Farm Insurance,3,false
+batch1_h1,template,firm_dummy,firm_dummy_80,80,StoneX Group,19,false
+batch1_h1,template,firm_dummy,firm_dummy_81,81,Sysco,17,false
+batch1_h1,template,firm_dummy,firm_dummy_82,82,TD Synnex,11,false
+batch1_h1,template,firm_dummy,firm_dummy_83,83,TIAA,5,false
+batch1_h1,template,firm_dummy,firm_dummy_84,84,TJX,24,false
+batch1_h1,template,firm_dummy,firm_dummy_85,85,Target,28,false
+batch1_h1,template,firm_dummy,firm_dummy_86,86,Tesla,48,false
+batch1_h1,template,firm_dummy,firm_dummy_87,87,Travelers,16,false
+batch1_h1,template,firm_dummy,firm_dummy_88,88,Tyson Foods,21,false
+batch1_h1,template,firm_dummy,firm_dummy_89,89,UPS,3,false
+batch1_h1,template,firm_dummy,firm_dummy_90,90,USAA,20,false
+batch1_h1,template,firm_dummy,firm_dummy_91,91,Uber Technologies,22,false
+batch1_h1,template,firm_dummy,firm_dummy_92,92,United Airlines Holdings,13,false
+batch1_h1,template,firm_dummy,firm_dummy_93,93,UnitedHealth Group,1,false
+batch1_h1,template,firm_dummy,firm_dummy_94,94,Valero Energy,2,false
+batch1_h1,template,firm_dummy,firm_dummy_95,95,Verizon Communications,2,false
+batch1_h1,template,firm_dummy,firm_dummy_96,96,Walmart,22,false
+batch1_h1,template,firm_dummy,firm_dummy_97,97,Walt Disney,51,false
+batch1_h1,template,firm_dummy,firm_dummy_98,98,Wells Fargo,6,false
+batch1_h1,template,firm_dummy,REFERENCE_firm_id_45,45,Home Depot,52,true (omitted)
+batch1_h2,type_training,firm_dummy,firm_dummy_1,1,AT&T,15,false
+batch1_h2,type_training,firm_dummy,firm_dummy_3,3,Albertsons,14,false
+batch1_h2,type_training,firm_dummy,firm_dummy_4,4,Allstate,5,false
+batch1_h2,type_training,firm_dummy,firm_dummy_5,5,Alphabet,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_6,6,Amazon,12,false
+batch1_h2,type_training,firm_dummy,firm_dummy_7,7,American Airlines Group,6,false
+batch1_h2,type_training,firm_dummy,firm_dummy_8,8,American Express,6,false
+batch1_h2,type_training,firm_dummy,firm_dummy_9,9,Archer Daniels Midland,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_10,10,Bank of America,11,false
+batch1_h2,type_training,firm_dummy,firm_dummy_11,11,Boeing,5,false
+batch1_h2,type_training,firm_dummy,firm_dummy_12,12,Bristol-Myers Squibb,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_13,13,Broadcom,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_14,14,CVS Health,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_15,15,Capital One Financial,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_16,16,Cardinal Health,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_17,17,Caterpillar,6,false
+batch1_h2,type_training,firm_dummy,firm_dummy_18,18,Cencora,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_19,19,Centene,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_20,20,Charter Communications,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_21,21,Chevron,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_22,22,Cigna Group,4,false
+batch1_h2,type_training,firm_dummy,firm_dummy_23,23,Cisco Systems,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_24,24,Citigroup,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_25,25,Coca-Cola,6,false
+batch1_h2,type_training,firm_dummy,firm_dummy_26,26,Comcast,16,false
+batch1_h2,type_training,firm_dummy,firm_dummy_28,28,Dell Technologies,8,false
+batch1_h2,type_training,firm_dummy,firm_dummy_29,29,Delta Air Lines,10,false
+batch1_h2,type_training,firm_dummy,firm_dummy_32,32,Energy Transfer,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_33,33,Enterprise Products Partners,25,false
+batch1_h2,type_training,firm_dummy,firm_dummy_34,34,Exxon Mobil,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_36,36,FedEx,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_37,37,Ford Motor,20,false
+batch1_h2,type_training,firm_dummy,firm_dummy_39,39,Galaxy Digital,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_40,40,General Dynamics,9,false
+batch1_h2,type_training,firm_dummy,firm_dummy_41,41,General Motors,6,false
+batch1_h2,type_training,firm_dummy,firm_dummy_42,42,Goldman Sachs Group,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_43,43,HCA Healthcare,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_44,44,HP,5,false
+batch1_h2,type_training,firm_dummy,firm_dummy_45,45,Home Depot,14,false
+batch1_h2,type_training,firm_dummy,firm_dummy_46,46,Humana,8,false
+batch1_h2,type_training,firm_dummy,firm_dummy_47,47,IBM,9,false
+batch1_h2,type_training,firm_dummy,firm_dummy_48,48,Ingram Micro Holding,12,false
+batch1_h2,type_training,firm_dummy,firm_dummy_49,49,Intel,4,false
+batch1_h2,type_training,firm_dummy,firm_dummy_50,50,JPMorgan Chase,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_51,51,Johnson & Johnson,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_52,52,Kroger,21,false
+batch1_h2,type_training,firm_dummy,firm_dummy_53,53,Liberty Mutual Insurance Group,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_54,54,Lockheed Martin,9,false
+batch1_h2,type_training,firm_dummy,firm_dummy_55,55,Lowe's,10,false
+batch1_h2,type_training,firm_dummy,firm_dummy_56,56,Marathon Petroleum,4,false
+batch1_h2,type_training,firm_dummy,firm_dummy_57,57,Massachusetts Mutual Life,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_58,58,McKesson,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_59,59,Merck,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_60,60,MetLife,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_61,61,Meta Platforms,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_62,62,Microsoft,12,false
+batch1_h2,type_training,firm_dummy,firm_dummy_64,64,Morgan Stanley,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_65,65,Nationwide,18,false
+batch1_h2,type_training,firm_dummy,firm_dummy_66,66,New York Life Insurance,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_67,67,Nike,8,false
+batch1_h2,type_training,firm_dummy,firm_dummy_68,68,Nvidia,5,false
+batch1_h2,type_training,firm_dummy,firm_dummy_69,69,Oracle,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_70,70,PepsiCo,6,false
+batch1_h2,type_training,firm_dummy,firm_dummy_72,72,Pfizer,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_73,73,Phillips 66,4,false
+batch1_h2,type_training,firm_dummy,firm_dummy_74,74,Procter & Gamble,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_75,75,Progressive,8,false
+batch1_h2,type_training,firm_dummy,firm_dummy_76,76,Prudential Financial,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_77,77,Publix Super Markets,19,false
+batch1_h2,type_training,firm_dummy,firm_dummy_78,78,RTX,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_79,79,State Farm Insurance,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_80,80,StoneX Group,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_81,81,Sysco,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_82,82,TD Synnex,7,false
+batch1_h2,type_training,firm_dummy,firm_dummy_83,83,TIAA,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_84,84,TJX,3,false
+batch1_h2,type_training,firm_dummy,firm_dummy_85,85,Target,20,false
+batch1_h2,type_training,firm_dummy,firm_dummy_86,86,Tesla,31,false
+batch1_h2,type_training,firm_dummy,firm_dummy_87,87,Travelers,6,false
+batch1_h2,type_training,firm_dummy,firm_dummy_88,88,Tyson Foods,10,false
+batch1_h2,type_training,firm_dummy,firm_dummy_89,89,UPS,2,false
+batch1_h2,type_training,firm_dummy,firm_dummy_90,90,USAA,10,false
+batch1_h2,type_training,firm_dummy,firm_dummy_91,91,Uber Technologies,15,false
+batch1_h2,type_training,firm_dummy,firm_dummy_92,92,United Airlines Holdings,11,false
+batch1_h2,type_training,firm_dummy,firm_dummy_93,93,UnitedHealth Group,1,false
+batch1_h2,type_training,firm_dummy,firm_dummy_96,96,Walmart,18,false
+batch1_h2,type_training,firm_dummy,firm_dummy_98,98,Wells Fargo,4,false
+batch1_h2,type_training,firm_dummy,REFERENCE_firm_id_97,97,Walt Disney,34,true (omitted)
+full_h1,integrated,firm_dummy,firm_dummy_1,1,AT&T,937,false
+full_h1,integrated,firm_dummy,firm_dummy_2,2,AbbVie,841,false
+full_h1,integrated,firm_dummy,firm_dummy_3,3,Albertsons,765,false
+full_h1,integrated,firm_dummy,firm_dummy_4,4,Allstate,568,false
+full_h1,integrated,firm_dummy,firm_dummy_5,5,Alphabet,476,false
+full_h1,integrated,firm_dummy,firm_dummy_6,6,Amazon,1099,false
+full_h1,integrated,firm_dummy,firm_dummy_7,7,American Airlines Group,188,false
+full_h1,integrated,firm_dummy,firm_dummy_8,8,American Express,831,false
+full_h1,integrated,firm_dummy,firm_dummy_9,9,Archer Daniels Midland,795,false
+full_h1,integrated,firm_dummy,firm_dummy_10,10,Bank of America,839,false
+full_h1,integrated,firm_dummy,firm_dummy_11,11,Boeing,970,false
+full_h1,integrated,firm_dummy,firm_dummy_12,12,Bristol-Myers Squibb,931,false
+full_h1,integrated,firm_dummy,firm_dummy_13,13,Broadcom,184,false
+full_h1,integrated,firm_dummy,firm_dummy_14,14,CVS Health,574,false
+full_h1,integrated,firm_dummy,firm_dummy_15,15,Capital One Financial,628,false
+full_h1,integrated,firm_dummy,firm_dummy_16,16,Cardinal Health,520,false
+full_h1,integrated,firm_dummy,firm_dummy_17,17,Caterpillar,891,false
+full_h1,integrated,firm_dummy,firm_dummy_18,18,Cencora,479,false
+full_h1,integrated,firm_dummy,firm_dummy_19,19,Centene,465,false
+full_h1,integrated,firm_dummy,firm_dummy_20,20,Charter Communications,664,false
+full_h1,integrated,firm_dummy,firm_dummy_21,21,Chevron,805,false
+full_h1,integrated,firm_dummy,firm_dummy_22,22,Cigna Group,586,false
+full_h1,integrated,firm_dummy,firm_dummy_23,23,Cisco Systems,1017,false
+full_h1,integrated,firm_dummy,firm_dummy_24,24,Citigroup,403,false
+full_h1,integrated,firm_dummy,firm_dummy_25,25,Coca-Cola,866,false
+full_h1,integrated,firm_dummy,firm_dummy_26,26,Comcast,1107,false
+full_h1,integrated,firm_dummy,firm_dummy_27,27,ConocoPhillips,944,false
+full_h1,integrated,firm_dummy,firm_dummy_28,28,Dell Technologies,730,false
+full_h1,integrated,firm_dummy,firm_dummy_29,29,Delta Air Lines,716,false
+full_h1,integrated,firm_dummy,firm_dummy_30,30,Elevance Health,612,false
+full_h1,integrated,firm_dummy,firm_dummy_31,31,Eli Lilly,563,false
+full_h1,integrated,firm_dummy,firm_dummy_32,32,Energy Transfer,705,false
+full_h1,integrated,firm_dummy,firm_dummy_33,33,Enterprise Products Partners,761,false
+full_h1,integrated,firm_dummy,firm_dummy_34,34,Exxon Mobil,582,false
+full_h1,integrated,firm_dummy,firm_dummy_35,35,Fannie Mae,602,false
+full_h1,integrated,firm_dummy,firm_dummy_36,36,FedEx,882,false
+full_h1,integrated,firm_dummy,firm_dummy_37,37,Ford Motor,1146,false
+full_h1,integrated,firm_dummy,firm_dummy_38,38,Freddie Mac,220,false
+full_h1,integrated,firm_dummy,firm_dummy_39,39,Galaxy Digital,137,false
+full_h1,integrated,firm_dummy,firm_dummy_41,41,General Motors,694,false
+full_h1,integrated,firm_dummy,firm_dummy_42,42,Goldman Sachs Group,1014,false
+full_h1,integrated,firm_dummy,firm_dummy_43,43,HCA Healthcare,585,false
+full_h1,integrated,firm_dummy,firm_dummy_44,44,HP,407,false
+full_h1,integrated,firm_dummy,firm_dummy_45,45,Home Depot,1397,false
+full_h1,integrated,firm_dummy,firm_dummy_46,46,Humana,758,false
+full_h1,integrated,firm_dummy,firm_dummy_47,47,IBM,546,false
+full_h1,integrated,firm_dummy,firm_dummy_48,48,Ingram Micro Holding,935,false
+full_h1,integrated,firm_dummy,firm_dummy_49,49,Intel,291,false
+full_h1,integrated,firm_dummy,firm_dummy_50,50,JPMorgan Chase,839,false
+full_h1,integrated,firm_dummy,firm_dummy_51,51,Johnson & Johnson,761,false
+full_h1,integrated,firm_dummy,firm_dummy_52,52,Kroger,888,false
+full_h1,integrated,firm_dummy,firm_dummy_53,53,Liberty Mutual Insurance Group,1018,false
+full_h1,integrated,firm_dummy,firm_dummy_54,54,Lockheed Martin,867,false
+full_h1,integrated,firm_dummy,firm_dummy_55,55,Lowe's,909,false
+full_h1,integrated,firm_dummy,firm_dummy_56,56,Marathon Petroleum,379,false
+full_h1,integrated,firm_dummy,firm_dummy_57,57,Massachusetts Mutual Life,859,false
+full_h1,integrated,firm_dummy,firm_dummy_58,58,McKesson,840,false
+full_h1,integrated,firm_dummy,firm_dummy_59,59,Merck,507,false
+full_h1,integrated,firm_dummy,firm_dummy_60,60,MetLife,779,false
+full_h1,integrated,firm_dummy,firm_dummy_61,61,Meta Platforms,151,false
+full_h1,integrated,firm_dummy,firm_dummy_62,62,Microsoft,670,false
+full_h1,integrated,firm_dummy,firm_dummy_63,63,MoonPie,930,false
+full_h1,integrated,firm_dummy,firm_dummy_64,64,Morgan Stanley,850,false
+full_h1,integrated,firm_dummy,firm_dummy_65,65,Nationwide,1149,false
+full_h1,integrated,firm_dummy,firm_dummy_66,66,New York Life Insurance,456,false
+full_h1,integrated,firm_dummy,firm_dummy_67,67,Nike,192,false
+full_h1,integrated,firm_dummy,firm_dummy_68,68,Nvidia,1132,false
+full_h1,integrated,firm_dummy,firm_dummy_69,69,Oracle,913,false
+full_h1,integrated,firm_dummy,firm_dummy_70,70,PepsiCo,817,false
+full_h1,integrated,firm_dummy,firm_dummy_71,71,Performance Food Group,3,false
+full_h1,integrated,firm_dummy,firm_dummy_72,72,Pfizer,383,false
+full_h1,integrated,firm_dummy,firm_dummy_73,73,Phillips 66,684,false
+full_h1,integrated,firm_dummy,firm_dummy_74,74,Procter & Gamble,268,false
+full_h1,integrated,firm_dummy,firm_dummy_75,75,Progressive,170,false
+full_h1,integrated,firm_dummy,firm_dummy_76,76,Prudential Financial,874,false
+full_h1,integrated,firm_dummy,firm_dummy_77,77,Publix Super Markets,852,false
+full_h1,integrated,firm_dummy,firm_dummy_78,78,RTX,865,false
+full_h1,integrated,firm_dummy,firm_dummy_79,79,State Farm Insurance,148,false
+full_h1,integrated,firm_dummy,firm_dummy_80,80,StoneX Group,852,false
+full_h1,integrated,firm_dummy,firm_dummy_81,81,Sysco,863,false
+full_h1,integrated,firm_dummy,firm_dummy_82,82,TD Synnex,488,false
+full_h1,integrated,firm_dummy,firm_dummy_83,83,TIAA,217,false
+full_h1,integrated,firm_dummy,firm_dummy_84,84,TJX,909,false
+full_h1,integrated,firm_dummy,firm_dummy_85,85,Target,595,false
+full_h1,integrated,firm_dummy,firm_dummy_86,86,Tesla,721,false
+full_h1,integrated,firm_dummy,firm_dummy_87,87,Travelers,835,false
+full_h1,integrated,firm_dummy,firm_dummy_88,88,Tyson Foods,1082,false
+full_h1,integrated,firm_dummy,firm_dummy_89,89,UPS,202,false
+full_h1,integrated,firm_dummy,firm_dummy_90,90,USAA,899,false
+full_h1,integrated,firm_dummy,firm_dummy_91,91,Uber Technologies,960,false
+full_h1,integrated,firm_dummy,firm_dummy_92,92,United Airlines Holdings,294,false
+full_h1,integrated,firm_dummy,firm_dummy_93,93,UnitedHealth Group,155,false
+full_h1,integrated,firm_dummy,firm_dummy_94,94,Valero Energy,186,false
+full_h1,integrated,firm_dummy,firm_dummy_95,95,Verizon Communications,45,false
+full_h1,integrated,firm_dummy,firm_dummy_96,96,Walmart,842,false
+full_h1,integrated,firm_dummy,firm_dummy_97,97,Walt Disney,1359,false
+full_h1,integrated,firm_dummy,firm_dummy_98,98,Wells Fargo,256,false
+full_h1,integrated,firm_dummy,firm_dummy_99,99,Wendy's,977,false
+full_h1,integrated,firm_dummy,REFERENCE_firm_id_40,40,General Dynamics,1493,true (omitted)
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_1,1,AT&T,394,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_2,2,AbbVie,425,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_3,3,Albertsons,348,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_4,4,Allstate,305,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_5,5,Alphabet,283,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_6,6,Amazon,482,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_7,7,American Airlines Group,94,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_8,8,American Express,240,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_9,9,Archer Daniels Midland,351,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_10,10,Bank of America,548,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_11,11,Boeing,363,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_12,12,Bristol-Myers Squibb,360,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_13,13,Broadcom,59,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_14,14,CVS Health,188,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_15,15,Capital One Financial,410,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_16,16,Cardinal Health,180,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_17,17,Caterpillar,342,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_18,18,Cencora,101,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_19,19,Centene,115,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_20,20,Charter Communications,181,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_21,21,Chevron,315,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_22,22,Cigna Group,243,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_23,23,Cisco Systems,283,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_24,24,Citigroup,135,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_25,25,Coca-Cola,105,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_26,26,Comcast,333,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_27,27,ConocoPhillips,247,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_28,28,Dell Technologies,405,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_29,29,Delta Air Lines,515,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_30,30,Elevance Health,276,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_31,31,Eli Lilly,162,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_32,32,Energy Transfer,387,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_33,33,Enterprise Products Partners,676,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_34,34,Exxon Mobil,234,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_35,35,Fannie Mae,106,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_36,36,FedEx,328,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_37,37,Ford Motor,529,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_38,38,Freddie Mac,30,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_39,39,Galaxy Digital,60,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_40,40,General Dynamics,529,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_41,41,General Motors,329,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_42,42,Goldman Sachs Group,298,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_43,43,HCA Healthcare,204,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_44,44,HP,174,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_46,46,Humana,508,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_47,47,IBM,237,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_48,48,Ingram Micro Holding,509,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_49,49,Intel,131,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_50,50,JPMorgan Chase,432,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_51,51,Johnson & Johnson,286,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_52,52,Kroger,455,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_53,53,Liberty Mutual Insurance Group,554,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_54,54,Lockheed Martin,431,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_55,55,Lowe's,490,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_56,56,Marathon Petroleum,178,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_57,57,Massachusetts Mutual Life,556,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_58,58,McKesson,191,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_59,59,Merck,112,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_60,60,MetLife,260,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_61,61,Meta Platforms,80,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_62,62,Microsoft,310,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_64,64,Morgan Stanley,305,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_65,65,Nationwide,420,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_66,66,New York Life Insurance,311,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_67,67,Nike,90,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_68,68,Nvidia,521,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_69,69,Oracle,244,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_70,70,PepsiCo,294,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_71,71,Performance Food Group,2,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_72,72,Pfizer,171,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_73,73,Phillips 66,290,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_74,74,Procter & Gamble,105,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_75,75,Progressive,87,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_76,76,Prudential Financial,443,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_77,77,Publix Super Markets,538,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_78,78,RTX,141,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_79,79,State Farm Insurance,58,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_80,80,StoneX Group,471,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_81,81,Sysco,355,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_82,82,TD Synnex,274,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_83,83,TIAA,63,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_84,84,TJX,307,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_85,85,Target,326,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_86,86,Tesla,438,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_87,87,Travelers,261,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_88,88,Tyson Foods,498,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_89,89,UPS,69,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_90,90,USAA,379,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_91,91,Uber Technologies,373,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_92,92,United Airlines Holdings,143,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_93,93,UnitedHealth Group,38,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_94,94,Valero Energy,80,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_95,95,Verizon Communications,23,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_96,96,Walmart,413,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_97,97,Walt Disney,402,false
+full_h2,h2_regression_ready,firm_dummy,firm_dummy_98,98,Wells Fargo,151,false
+full_h2,h2_regression_ready,firm_dummy,REFERENCE_firm_id_45,45,Home Depot,701,true (omitted)
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_1,1,AT&T,37,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_2,2,AbbVie,34,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_3,3,Albertsons,61,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_4,4,Allstate,53,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_5,5,Alphabet,5,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_6,6,Amazon,36,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_7,7,American Airlines Group,29,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_8,8,American Express,58,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_9,9,Archer Daniels Midland,54,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_10,10,Bank of America,36,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_11,11,Boeing,66,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_12,12,Bristol-Myers Squibb,52,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_13,13,Broadcom,16,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_14,14,CVS Health,24,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_15,15,Capital One Financial,32,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_16,16,Cardinal Health,30,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_17,17,Caterpillar,28,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_18,18,Cencora,48,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_19,19,Centene,43,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_20,20,Charter Communications,52,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_21,21,Chevron,53,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_22,22,Cigna Group,27,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_23,23,Cisco Systems,21,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_24,24,Citigroup,27,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_25,25,Coca-Cola,18,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_26,26,Comcast,30,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_27,27,ConocoPhillips,65,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_28,28,Dell Technologies,25,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_29,29,Delta Air Lines,62,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_30,30,Elevance Health,33,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_31,31,Eli Lilly,56,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_32,32,Energy Transfer,14,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_33,33,Enterprise Products Partners,2,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_34,34,Exxon Mobil,57,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_35,35,Fannie Mae,57,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_36,36,FedEx,48,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_37,37,Ford Motor,52,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_38,38,Freddie Mac,12,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_39,39,Galaxy Digital,18,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_40,40,General Dynamics,47,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_41,41,General Motors,32,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_42,42,Goldman Sachs Group,35,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_43,43,HCA Healthcare,29,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_44,44,HP,42,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_46,46,Humana,20,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_47,47,IBM,23,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_48,48,Ingram Micro Holding,39,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_49,49,Intel,11,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_50,50,JPMorgan Chase,51,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_51,51,Johnson & Johnson,59,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_52,52,Kroger,72,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_53,53,Liberty Mutual Insurance Group,63,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_54,54,Lockheed Martin,22,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_55,55,Lowe's,62,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_56,56,Marathon Petroleum,17,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_57,57,Massachusetts Mutual Life,38,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_58,58,McKesson,54,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_59,59,Merck,50,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_60,60,MetLife,44,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_61,61,Meta Platforms,29,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_62,62,Microsoft,20,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_64,64,Morgan Stanley,47,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_65,65,Nationwide,51,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_66,66,New York Life Insurance,46,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_67,67,Nike,20,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_68,68,Nvidia,15,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_69,69,Oracle,24,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_70,70,PepsiCo,43,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_71,71,Performance Food Group,2,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_72,72,Pfizer,39,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_73,73,Phillips 66,33,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_74,74,Procter & Gamble,14,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_75,75,Progressive,25,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_76,76,Prudential Financial,46,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_77,77,Publix Super Markets,50,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_78,78,RTX,68,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_79,79,State Farm Insurance,16,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_80,80,StoneX Group,12,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_81,81,Sysco,53,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_82,82,TD Synnex,40,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_83,83,TIAA,17,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_84,84,TJX,62,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_85,85,Target,33,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_86,86,Tesla,13,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_87,87,Travelers,25,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_88,88,Tyson Foods,55,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_89,89,UPS,11,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_90,90,USAA,40,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_91,91,Uber Technologies,31,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_92,92,United Airlines Holdings,37,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_93,93,UnitedHealth Group,25,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_94,94,Valero Energy,24,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_95,95,Verizon Communications,10,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_96,96,Walmart,36,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_97,97,Walt Disney,30,false
+full_h3,h3_firm_month_panel,firm_dummy,firm_dummy_98,98,Wells Fargo,35,false
+full_h3,h3_firm_month_panel,firm_dummy,REFERENCE_firm_id_45,45,Home Depot,74,true (omitted)

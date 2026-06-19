@@ -1,0 +1,7 @@
+measurement_basis,hypothesis,dataset_key,raw_n,n_obs_year_fe_model,n_firms,fe_available,example_model_status
+batch1_human_coded,H1,batch1_h1,1482,1482,97,"day,hour,month,week,year",success
+full_sample_predicted,H1,full_h1,68039,68039,99,"day,hour,month,week,year",success
+batch1_human_coded,H2_1,batch1_h2,648,648,88,"day,hour,month,week,year",success
+full_sample_predicted,H2_1,full_h2,28177,28177,97,"day,hour,month,week,year",success
+batch1_human_coded,H3,batch1_h3,88,88,88,,not_applicable
+full_sample_predicted,H3,full_h3,3532,3532,97,"month,year",success
