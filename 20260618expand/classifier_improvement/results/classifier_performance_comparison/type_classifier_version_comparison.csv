@@ -1,0 +1,4 @@
+version,type_n,n_aggressive,n_affiliative,n_self_enhancing,n_self_defeating,n_splits_used,macro_f1,weighted_f1,overall_acc,aggressive_precision,aggressive_recall,aggressive_f1,affiliative_precision,affiliative_recall,affiliative_f1,self_enhancing_precision,self_enhancing_recall,self_enhancing_f1,self_defeating_precision,self_defeating_recall,self_defeating_f1,cm_agg_pred_agg,cm_agg_pred_aff,cm_agg_pred_sel,cm_aff_pred_agg,cm_aff_pred_aff,cm_aff_pred_sel,cm_sel_pred_agg,cm_sel_pred_aff,cm_sel_pred_sel
+v1,1027,80,510,403,34,5,0.3729,0.5319,0.5404,0.25,0.2,0.2222,0.6096,0.649,0.6287,0.5,0.5087,0.5043,0.3,0.0882,0.1364,16,30,2,16,331,3,5,13,3
+v2,1305,175,616,465,49,5,0.3749,0.5074,0.5111,0.3016,0.3257,0.3132,0.6019,0.6088,0.6053,0.4915,0.4989,0.4952,0.1429,0.0612,0.0857,57,56,7,57,375,8,18,19,3
+v3,1410,181,670,506,53,5,0.3738,0.519,0.5213,0.2986,0.3481,0.3214,0.6267,0.6239,0.6253,0.498,0.498,0.498,0.0769,0.0377,0.0506,63,51,11,62,418,7,18,18,2

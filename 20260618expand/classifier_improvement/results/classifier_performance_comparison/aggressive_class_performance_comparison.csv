@@ -1,0 +1,4 @@
+version,n_aggressive,aggressive_precision,aggressive_recall,aggressive_f1
+v1,80,0.25,0.2,0.2222
+v2,175,0.3016,0.3257,0.3132
+v3,181,0.2986,0.3481,0.3214

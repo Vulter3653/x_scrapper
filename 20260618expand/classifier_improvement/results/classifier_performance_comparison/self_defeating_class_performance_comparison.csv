@@ -1,0 +1,4 @@
+version,n_self_defeating,self_defeating_precision,self_defeating_recall,self_defeating_f1
+v1,34,0.3,0.0882,0.1364
+v2,49,0.1429,0.0612,0.0857
+v3,53,0.0769,0.0377,0.0506
