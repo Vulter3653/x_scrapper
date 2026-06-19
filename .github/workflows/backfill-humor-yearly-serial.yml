@@ -36,6 +36,10 @@ on:
         description: 'Limit selected companies for smoke diagnostics'
         required: true
         default: '3'
+      handles:
+        description: 'Comma-separated X handles for targeted smoke diagnostics, e.g. @Broadcom,@MorganStanley,@WellsFargo'
+        required: false
+        default: ''
       per_company_timeout_seconds:
         description: 'Hard timeout per company; smoke recommended: 180; 0 disables'
         required: true
@@ -96,6 +100,7 @@ jobs:
           RR='${{ inputs.retry_round }}'
           SMOKE='${{ inputs.smoke }}'
           LIMIT='${{ inputs.limit_companies }}'
+          HANDLES='${{ inputs.handles }}'
           PCT='${{ inputs.per_company_timeout_seconds }}'
 
           test "$COMMIT" = 'false' || test "$COMMIT" = 'true'
@@ -237,6 +242,7 @@ jobs:
           MS='${{ inputs.max_scrolls }}'
           SMOKE='${{ inputs.smoke }}'
           LIMIT='${{ inputs.limit_companies }}'
+          HANDLES='${{ inputs.handles }}'
           PCT='${{ inputs.per_company_timeout_seconds }}'
           FFR='${{ inputs.fail_fast_render }}'
           COMMON_ARGS=(
@@ -248,6 +254,9 @@ jobs:
           )
           if [ "$SMOKE" = 'true' ]; then
             COMMON_ARGS+=(--smoke --limit-companies "$LIMIT" --per-company-timeout-seconds "$PCT")
+          fi
+          if [ -n "$HANDLES" ]; then
+            COMMON_ARGS+=(--handles "$HANDLES")
           fi
           if [ "$FFR" = 'true' ]; then
             COMMON_ARGS+=(--fail-fast-render)
