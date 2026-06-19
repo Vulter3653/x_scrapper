@@ -53,9 +53,9 @@ TYPE_CODE_TO_LABEL = {
 VALID_TYPES = set(TYPE_CODE_TO_LABEL.keys())
 RANDOM_STATE = 42
 
-ABSTENTION_LO = 0.40
-ABSTENTION_HI = 0.60
-TYPE_ABSTENTION = 0.50
+# No abstention: classify all posts deterministically (argmax at p=0.5)
+PRESENCE_THRESHOLD = 0.50
+TYPE_ABSTENTION = 0.0  # always use argmax
 
 CLASSIFIER_NAME = "fortune100_domain_adapted_tfidf_logreg"
 CLASSIFIER_VERSION = "v1_trained_on_fortune100_human_labels"
@@ -76,6 +76,10 @@ def main() -> None:
                         help="Minimum human presence labels required to run")
     parser.add_argument("--template", type=Path, default=None,
                         help="Path to labeled template CSV (default: batch1 master)")
+    parser.add_argument("--input", type=Path, default=None,
+                        help="Corpus to classify (default: fortune100_post_master). "
+                             "Also accepts integrated_h1_presence_classified_posts.csv "
+                             "(68,039 rows)")
     args = parser.parse_args()
 
     template_path = args.template if args.template else TEMPLATE
@@ -142,9 +146,20 @@ def main() -> None:
     else:
         print("  WARNING: fewer than 20 typed rows — type classifier not trained")
 
-    # Load Fortune 100 posts
-    with open(MASTER, newline="", encoding="utf-8-sig") as f:
+    # Load corpus (fortune100 master or integrated)
+    corpus_path = args.input if args.input else MASTER
+    enc = "utf-8-sig" if corpus_path == MASTER else "utf-8"
+    with open(corpus_path, newline="", encoding=enc) as f:
         master_rows = list(csv.DictReader(f))
+    print(f"  Corpus: {corpus_path.name}  ({len(master_rows)} rows)")
+
+    # Normalise column names: integrated corpus uses 'created_at_raw'
+    for r in master_rows:
+        if "created_at_raw" in r and "created_at" not in r:
+            r["created_at"] = r["created_at_raw"]
+        if "source_dataset" not in r:
+            r["source_dataset"] = "fortune100"
+
     if args.smoke:
         master_rows = master_rows[:500]
         print(f"  Smoke mode: {len(master_rows)} posts")
@@ -157,15 +172,8 @@ def main() -> None:
 
     classified = []
     for i, (mr, prob) in enumerate(zip(master_rows, bin_probs)):
-        if prob >= ABSTENTION_HI:
-            presence = "1"
-            presence_status = "ok"
-        elif prob <= ABSTENTION_LO:
-            presence = "0"
-            presence_status = "ok"
-        else:
-            presence = "uncertain"
-            presence_status = "abstained"
+        # No abstention: argmax at 0.50 threshold
+        presence = "1" if prob >= PRESENCE_THRESHOLD else "0"
 
         # Type
         humor_type = "non_humorous"
@@ -177,22 +185,18 @@ def main() -> None:
             t_vec = type_pipe.predict_proba([all_texts_pp[i]])
             type_cls = type_pipe.classes_
             max_p = float(np.max(t_vec))
-            pred_type = type_cls[int(np.argmax(t_vec))]
-
-            if max_p >= TYPE_ABSTENTION:
-                humor_type = pred_type
-                humor_type_score = max_p
-            else:
-                humor_type = "uncertain"
-
+            pred_type = str(type_cls[int(np.argmax(t_vec))])  # always assign argmax
+            humor_type = pred_type
+            humor_type_score = max_p
             agg = "1" if humor_type == "aggressive" else "0"
             aff = "1" if humor_type == "affiliative" else "0"
             se = "1" if humor_type == "self_enhancing" else "0"
             sd = "1" if humor_type == "self_defeating" else "0"
         elif presence == "1" and type_pipe is None:
-            humor_type = "uncertain"
+            humor_type = "unknown"
 
         classified.append({
+            "source_dataset": mr.get("source_dataset", "fortune100"),
             "fortune_rank": mr.get("fortune_rank", ""),
             "company_name": mr.get("company_name", ""),
             "source_x_handle": mr.get("source_x_handle", ""),
@@ -200,9 +204,14 @@ def main() -> None:
             "tweet_url": mr.get("tweet_url", ""),
             "created_at": mr.get("created_at", ""),
             "text": mr.get("text", ""),
+            "total_engagement": mr.get("total_engagement", ""),
+            "log_total_engagement": mr.get("log_total_engagement", ""),
+            "text_length": mr.get("text_length", ""),
+            "hashtag_count": mr.get("hashtag_count", ""),
+            "mention_count": mr.get("mention_count", ""),
             "humor_presence": presence,
             "humor_presence_score": f"{prob:.6f}",
-            "classification_status": presence_status,
+            "classification_status": "ok",
             "humor_type": humor_type,
             "humor_type_score": f"{humor_type_score:.6f}",
             "aggressive_humor": agg,

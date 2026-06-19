@@ -31,14 +31,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 CI   = ROOT / "20260618expand" / "classifier_improvement"
 
-CLASSIFIED     = CI / "data" / "classified" / "fortune100_domain_adapted_humor_classification.csv"
-FORTUNE_MASTER = ROOT / "20260618expand" / "data" / "processed" / "fortune100_post_master.csv"
+CLASSIFIED = CI / "data" / "classified" / "fortune100_domain_adapted_humor_classification.csv"
 
-OUT_H1      = CI / "data" / "regression_ready" / "h1_post_level_regression_ready.csv"
-OUT_H2      = CI / "data" / "regression_ready" / "h2_post_level_regression_ready.csv"
+OUT_H1       = CI / "data" / "regression_ready" / "h1_post_level_regression_ready.csv"
+OUT_H2       = CI / "data" / "regression_ready" / "h2_post_level_regression_ready.csv"
 OUT_H3_PANEL = CI / "data" / "processed" / "h3_firm_month_panel.csv"
-OUT_H3_RR   = CI / "data" / "regression_ready" / "h3_firm_period_regression_ready.csv"
-OUT_INCL    = CI / "data" / "diagnostics" / "domain_adapted_regression_sample_inclusion.csv"
+OUT_H3_RR    = CI / "data" / "regression_ready" / "h3_firm_period_regression_ready.csv"
+OUT_INCL     = CI / "data" / "diagnostics" / "domain_adapted_regression_sample_inclusion.csv"
 
 VALID_TYPES = {"aggressive", "affiliative", "self_enhancing", "self_defeating", "non_humorous"}
 
@@ -60,16 +59,8 @@ def safe_float(v: str, default: float = 0.0) -> float:
         return default
 
 
-def load_master() -> dict[str, dict]:
-    with open(FORTUNE_MASTER, newline="", encoding="utf-8-sig") as f:
-        return {r["tweet_id"]: r for r in csv.DictReader(f)}
-
-
 def main() -> None:
     print("=== build_h1h2h3_from_domain_adapted ===\n")
-
-    master = load_master()
-    print(f"Master posts loaded: {len(master)}")
 
     with open(CLASSIFIED, newline="", encoding="utf-8") as f:
         classified = list(csv.DictReader(f))
@@ -79,36 +70,32 @@ def main() -> None:
     pres_dist = Counter(r["humor_presence"] for r in classified)
     stat_dist = Counter(r["classification_status"] for r in classified)
     type_dist = Counter(r["humor_type"] for r in classified)
+    src_dist  = Counter(r.get("source_dataset", "fortune100") for r in classified)
     print(f"  Presence: {dict(pres_dist)}")
     print(f"  Status:   {dict(stat_dist)}")
     print(f"  Type:     {dict(type_dist)}")
+    print(f"  Source:   {dict(src_dist)}")
 
-    # Merge with master
-    merged, n_miss = [], 0
+    # classified rows already carry engagement/length metrics from apply script
+    merged = []
     for cr in classified:
-        tid = cr.get("tweet_id", "")
-        mr  = master.get(tid)
-        if mr is None:
-            n_miss += 1
-            continue
-
         period = parse_yearmonth(cr.get("created_at", ""))
         year   = period[:4] if period != "missing_period" else "missing"
         month  = period[5:7] if period != "missing_period" else "missing"
-
         merged.append({
-            "tweet_id":             tid,
+            "tweet_id":             cr.get("tweet_id", ""),
+            "source_dataset":       cr.get("source_dataset", "fortune100"),
             "company_name":         cr.get("company_name", ""),
             "source_x_handle":      cr.get("source_x_handle", ""),
             "period":               period,
             "year":                 year,
             "month":                month,
             "created_at":           cr.get("created_at", ""),
-            "log_total_engagement": f"{safe_float(mr.get('log_total_engagement','')):.6f}",
-            "total_engagement":     mr.get("total_engagement", ""),
-            "text_length":          mr.get("text_length", ""),
-            "hashtag_count":        mr.get("hashtag_count", ""),
-            "mention_count":        mr.get("mention_count", ""),
+            "log_total_engagement": f"{safe_float(cr.get('log_total_engagement','')):.6f}",
+            "total_engagement":     cr.get("total_engagement", ""),
+            "text_length":          cr.get("text_length", ""),
+            "hashtag_count":        cr.get("hashtag_count", ""),
+            "mention_count":        cr.get("mention_count", ""),
             "humor_presence":       cr.get("humor_presence", ""),
             "humor_type":           cr.get("humor_type", ""),
             "aggressive_humor":     cr.get("aggressive_humor", ""),
@@ -119,9 +106,9 @@ def main() -> None:
             "classification_status": cr.get("classification_status", ""),
         })
 
-    print(f"\nMerged: {len(merged)}  (master-missing: {n_miss})")
+    print(f"\nTotal merged: {len(merged)}")
 
-    # H1: classified posts only
+    # H1: ALL 68,039 posts (integrated corpus, no filter by source_dataset)
     h1_rows = [
         r for r in merged
         if r["classification_status"] == "ok"
@@ -131,18 +118,21 @@ def main() -> None:
     print(f"  humor: {sum(1 for r in h1_rows if r['humor_presence']=='1')}  "
           f"non-humor: {sum(1 for r in h1_rows if r['humor_presence']=='0')}")
 
-    # H2: classified posts with valid humor type (incl. non_humorous)
+    # H2: fortune100 posts only (65,245), valid type
+    h2_base = [r for r in merged if r["source_dataset"] == "fortune100"]
     h2_rows = [
-        r for r in merged
+        r for r in h2_base
         if r["classification_status"] == "ok"
         and r["humor_type"] in VALID_TYPES
     ]
-    print(f"\nH2 sample: {len(h2_rows)}")
+    print(f"\nH2 base (fortune100 only): {len(h2_base)}")
+    print(f"H2 sample (valid type): {len(h2_rows)}")
     print(f"  Type dist: {dict(Counter(r['humor_type'] for r in h2_rows))}")
 
     # Write H1
     h1_cols = [
-        "tweet_id", "company_name", "source_x_handle", "period", "year", "month",
+        "tweet_id", "source_dataset", "company_name", "source_x_handle",
+        "period", "year", "month",
         "log_total_engagement", "humor_presence",
         "text_length", "hashtag_count", "mention_count",
         "h1_sample_inclusion_flag",
@@ -173,9 +163,12 @@ def main() -> None:
         w.writerows(h2_rows)
     print(f"H2 → {OUT_H2.name}")
 
-    # H3 firm-month panel (from H1 sample)
+    # H3 firm-month panel (fortune100 only, from H1 fortune100 subset)
+    h3_base = [r for r in h1_rows if r["source_dataset"] == "fortune100"]
+    print(f"\nH3 base (fortune100 H1 subset): {len(h3_base)}")
+
     panel: dict[tuple, dict] = {}
-    for r in h1_rows:
+    for r in h3_base:
         key = (r["company_name"], r["period"])
         if key not in panel:
             panel[key] = {
@@ -253,21 +246,26 @@ def main() -> None:
         w = csv.DictWriter(f, fieldnames=["metric", "value"])
         w.writeheader()
         for m, v in [
-            ("total_classified_rows",         len(classified)),
-            ("master_matched_rows",            len(merged)),
-            ("master_missing_rows",            n_miss),
-            ("presence_ok",                    stat_dist.get("ok", 0)),
-            ("presence_abstained_uncertain",   stat_dist.get("abstained", 0)),
-            ("h1_sample_rows",                 len(h1_rows)),
-            ("h1_humor_rows",                  sum(1 for r in h1_rows if r["humor_presence"]=="1")),
-            ("h1_non_humor_rows",              sum(1 for r in h1_rows if r["humor_presence"]=="0")),
-            ("h2_sample_rows",                 len(h2_rows)),
-            ("h2_aggressive_rows",             sum(1 for r in h2_rows if r["aggressive_humor"]=="1")),
-            ("h3_firm_month_rows",             len(panel_rows)),
-            ("h3_nonzero_aggressive_rows",     n_nonzero),
-            ("training_data_source",           "batch1+batch2_combined"),
-            ("n_training_labels",              1980),
-            ("classifier",                     "tfidf_logreg_domain_adapted"),
+            ("total_classified_rows",            len(classified)),
+            ("fortune100_rows",                  src_dist.get("fortune100", 0)),
+            ("extra_rows_wendys_moonpie_etc",    len(classified) - src_dist.get("fortune100", 0)),
+            ("presence_ok_all",                  stat_dist.get("ok", 0)),
+            ("h1_sample_rows",                   len(h1_rows)),
+            ("h1_humor_rows",                    sum(1 for r in h1_rows if r["humor_presence"]=="1")),
+            ("h1_non_humor_rows",                sum(1 for r in h1_rows if r["humor_presence"]=="0")),
+            ("h2_fortune100_base_rows",          len(h2_base)),
+            ("h2_sample_rows",                   len(h2_rows)),
+            ("h2_aggressive_rows",               sum(1 for r in h2_rows if r["aggressive_humor"]=="1")),
+            ("h2_affiliative_rows",              sum(1 for r in h2_rows if r["affiliative_humor"]=="1")),
+            ("h2_non_humorous_rows",             sum(1 for r in h2_rows if r["non_humorous"]=="1")),
+            ("h3_fortune100_h1_base",            len(h3_base)),
+            ("h3_firm_month_rows",               len(panel_rows)),
+            ("h3_nonzero_aggressive_rows",       n_nonzero),
+            ("training_data_source",             "batch1+batch2_combined"),
+            ("n_training_labels",                1980),
+            ("classifier",                       "tfidf_logreg_domain_adapted_no_abstention"),
+            ("presence_threshold",               "0.50_argmax"),
+            ("type_assignment",                  "argmax_always"),
         ]:
             w.writerow({"metric": m, "value": v})
 
