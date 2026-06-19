@@ -1,0 +1,7 @@
+dataset,measurement_basis,hypothesis,raw_n,after_label_filter,after_company_filter,n_firms,n_dummies,note
+batch1_h1,batch1_human_coded,H1,1500,1482,1482,97,96,"human_humor_presence in {0,1}"
+full_h1,full_sample_predicted,H1,68039,68039,68039,99,98,"missing_text excluded; h1_pred_t50 in {0,1}"
+batch1_h2,batch1_human_coded,H2_1/H2_2,648,648,648,88,87,batch1_fortune100 source; valid engagement join
+full_h2,full_sample_predicted,H2_1/H2_2,65245,28177,28177,97,96,humor_type != non_humorous
+batch1_h3,batch1_human_coded,H3,88,88,not_applicable,88,87,firm cross-section; firm dummies = n_firms-1 = 87 with n=88 → collinear
+full_h3,full_sample_predicted,H3,3532,3532,3532,97,96,firm-month panel; multiple periods per firm

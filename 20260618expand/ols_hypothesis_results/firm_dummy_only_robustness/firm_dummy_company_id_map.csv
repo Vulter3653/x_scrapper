@@ -1,0 +1,100 @@
+company_id,company_identifier_original,n_posts,source_file
+1,AT&T,1407,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+2,AbbVie,1320,h2_regression_ready;h3_firm_month_panel;integrated;template
+3,Albertsons,1211,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+4,Allstate,940,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+5,Alphabet,779,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+6,Amazon,1659,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+7,American Airlines Group,324,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+8,American Express,1149,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+9,Archer Daniels Midland,1227,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+10,Bank of America,1457,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+11,Boeing,1418,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+12,Bristol-Myers Squibb,1360,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+13,Broadcom,262,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+14,CVS Health,793,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+15,Capital One Financial,1080,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+16,Cardinal Health,736,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+17,Caterpillar,1281,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+18,Cencora,640,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+19,Centene,636,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+20,Charter Communications,905,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+21,Chevron,1193,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+22,Cigna Group,873,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+23,Cisco Systems,1345,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+24,Citigroup,573,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+25,Coca-Cola,1001,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+26,Comcast,1513,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+27,ConocoPhillips,1269,h2_regression_ready;h3_firm_month_panel;integrated;template
+28,Dell Technologies,1178,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+29,Delta Air Lines,1322,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+30,Elevance Health,937,h2_regression_ready;h3_firm_month_panel;integrated;template
+31,Eli Lilly,792,h2_regression_ready;h3_firm_month_panel;integrated;template
+32,Energy Transfer,1132,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+33,Enterprise Products Partners,1515,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+34,Exxon Mobil,889,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+35,Fannie Mae,770,h2_regression_ready;h3_firm_month_panel;integrated;template
+36,FedEx,1278,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+37,Ford Motor,1774,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+38,Freddie Mac,267,h2_regression_ready;h3_firm_month_panel;integrated;template
+39,Galaxy Digital,218,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+40,General Dynamics,2107,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+41,General Motors,1071,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+42,Goldman Sachs Group,1364,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+43,HCA Healthcare,834,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+44,HP,638,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+45,Home Depot,2238,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+46,Humana,1315,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+47,IBM,827,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+48,Ingram Micro Holding,1518,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+49,Intel,443,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+50,JPMorgan Chase,1343,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+51,Johnson & Johnson,1125,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+52,Kroger,1463,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+53,Liberty Mutual Insurance Group,1656,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+54,Lockheed Martin,1350,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+55,Lowe's,1484,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+56,Marathon Petroleum,586,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+57,Massachusetts Mutual Life,1479,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+58,McKesson,1097,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+59,Merck,677,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+60,MetLife,1101,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+61,Meta Platforms,265,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+62,Microsoft,1033,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+63,MoonPie,930,integrated
+64,Morgan Stanley,1226,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+65,Nationwide,1666,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+66,New York Life Insurance,827,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+67,Nike,324,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+68,Nvidia,1691,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+69,Oracle,1193,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+70,PepsiCo,1176,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+71,Performance Food Group,8,h2_regression_ready;h3_firm_month_panel;integrated;template
+72,Pfizer,600,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+73,Phillips 66,1022,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+74,Procter & Gamble,393,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+75,Progressive,298,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+76,Prudential Financial,1389,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+77,Publix Super Markets,1483,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+78,RTX,1083,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+79,State Farm Insurance,228,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+80,StoneX Group,1357,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+81,Sysco,1295,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+82,TD Synnex,820,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+83,TIAA,303,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+84,TJX,1305,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+85,Target,1002,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+86,Tesla,1251,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+87,Travelers,1143,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+88,Tyson Foods,1666,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+89,UPS,287,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+90,USAA,1348,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+91,Uber Technologies,1401,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+92,United Airlines Holdings,498,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+93,UnitedHealth Group,220,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+94,Valero Energy,292,h2_regression_ready;h3_firm_month_panel;integrated;template
+95,Verizon Communications,80,h2_regression_ready;h3_firm_month_panel;integrated;template
+96,Walmart,1331,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+97,Walt Disney,1876,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+98,Wells Fargo,452,h2_regression_ready;h3_firm_month_panel;integrated;template;type_training
+99,Wendy's,977,integrated

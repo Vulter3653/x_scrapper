@@ -1,0 +1,9 @@
+hypothesis,measurement_basis,key_variable,model_id,coefficient,classical_ols_se,p_value,stars,n_obs,n_firms,n_firm_dummies,reference_company,r_squared,adj_r_squared,direction,significant_p05,significant_p10,conclusion,status
+H1,batch1_human_coded,human_humor_presence,firm_dummy_only,0.240636,0.084375,0.004409,***,1482,97,96,Home Depot,0.731615,0.712805,positive,yes,yes,positive_sig_p05,success
+H1,full_sample_predicted,h1_humor_presence_pred_t50,firm_dummy_only,0.202458,0.012171,0.0,***,68039,99,98,General Dynamics,0.624433,0.623886,positive,yes,yes,positive_sig_p05,success
+H2_1,batch1_human_coded,"aggressive_vs_other (n_agg=44, low power)",firm_dummy_only,0.118795,0.276753,0.667911,ns,648,88,87,Walt Disney,0.698026,0.650488,positive,no,no,positive_ns,success
+H2_1,full_sample_predicted,predicted_aggressive_vs_other (NOT_A_CANDIDATE),firm_dummy_only,-0.101486,0.017216,0.0,***,28177,97,96,Home Depot,0.684121,0.68303,negative,yes,yes,negative_sig_p05,success
+H2_2,batch1_human_coded,aggressive vs affiliative ref (n_agg=44),firm_dummy_only,0.20598,0.28861,0.475714,ns,648,88,87,Walt Disney,0.699397,0.650825,positive,no,no,positive_ns,success
+H2_2,full_sample_predicted,predicted_aggressive vs affiliative (NOT_A_CANDIDATE),firm_dummy_only,-0.111675,0.017475,0.0,***,28177,97,96,Home Depot,0.684249,0.683136,negative,yes,yes,negative_sig_p05,success
+H3,batch1_human_coded,firm_cross_section_not_applicable,firm_dummy_only,,,,,88,88,87,,,,zero,na,na,not_applicable,not_applicable
+H3,full_sample_predicted,predicted_aggressive_intensity,firm_dummy_only,-2.072017,0.208533,0.0,***,3532,97,96,Home Depot,0.778057,0.771721,negative,yes,yes,negative_sig_p05,success
