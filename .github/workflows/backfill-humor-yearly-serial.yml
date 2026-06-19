@@ -128,6 +128,10 @@ jobs:
           test "$COMMIT" = 'false' || test "$COMMIT" = 'true'
           test "$SCOPE" = 'all' || test "$SCOPE" = 'failed_only'
           test "$SMOKE" = 'true' || test "$SMOKE" = 'false'
+          if [ "$SMOKE" = 'true' ] && [ "$PRESET_B" = 'false' ] && [ -z "$TARGET" ] && [ "$START" != "$END" ]; then
+            echo "ERROR: smoke=true with multi-year range is blocked. Set target_year or use targeted_b_smoke=true." >&2
+            exit 1
+          fi
           test "$MP" -ge 1 && test "$MP" -le 10
           test "$LIMIT" -ge 0
           test "$PCT" -ge 0
