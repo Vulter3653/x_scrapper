@@ -303,7 +303,8 @@ def build_coef_rows(b, V, t_, p_, coef_names, model_label, n, r2, adj_r2, df):
 
 
 def run_contrasts(b, V, df, n_agg, n_aff, n_se, n_sd, model_label):
-    """Run H1, H2-1, H2-2, H2-3 contrasts on b[1:5], V[1:5,1:5]."""
+    """Run H1, H2-1, H2-2, H2-3 contrasts on b[1:5], V[1:5,1:5].
+    Order: H1 · H2-1(Other wtd) · H2-2(SELF wtd) · H2-3(pairwise ×3)."""
     b_h  = b[1:5]         # [β_agg, β_aff, β_se, β_sd]
     V_h  = V[1:5, 1:5]
 
@@ -366,14 +367,14 @@ def run_contrasts(b, V, df, n_agg, n_aff, n_se, n_sd, model_label):
     c_h2_1 = [1.0, -w_aff_other, -w_se_other, -w_sd_other]
     _add("H2-1", "Aggressive − Other humor (weighted avg)", c_h2_1, "positive_sig")
 
-    # H2-2: pairwise
-    _add("H2-2", "Aggressive − Affiliative",      [1.0, -1.0,  0.0,  0.0], "positive_sig")
-    _add("H2-2", "Aggressive − Self-Enhancing",   [1.0,  0.0, -1.0,  0.0], "positive_sig")
-    _add("H2-2", "Aggressive − Self-Defeating",   [1.0,  0.0,  0.0, -1.0], "positive_sig")
+    # H2-2: Aggressive − SELF weighted avg
+    c_h2_2 = [1.0, 0.0, -w_se_self, -w_sd_self]
+    _add("H2-2", "Aggressive − SELF (se+sd weighted avg)", c_h2_2, "positive_sig")
 
-    # H2-3: Aggressive − SELF weighted avg
-    c_h2_3 = [1.0, 0.0, -w_se_self, -w_sd_self]
-    _add("H2-3", "Aggressive − SELF (se+sd weighted avg)",   c_h2_3, "positive_sig")
+    # H2-3: pairwise
+    _add("H2-3", "Aggressive − Affiliative",      [1.0, -1.0,  0.0,  0.0], "positive_sig")
+    _add("H2-3", "Aggressive − Self-Enhancing",   [1.0,  0.0, -1.0,  0.0], "positive_sig")
+    _add("H2-3", "Aggressive − Self-Defeating",   [1.0,  0.0,  0.0, -1.0], "positive_sig")
 
     return contrast_rows
 
@@ -808,6 +809,15 @@ def _write_interpretation(
     h21_f = h21_est(b_fs, V_fs, df_fs, n_agg_f, n_aff_f, n_se_f, n_sd_f)
     h21_h = h21_est(b_hc, V_hc, df_hc, n_agg_h, n_aff_h, n_se_h, n_sd_h)
 
+    # H2-2: Aggressive − SELF weighted avg
+    def h22_est(b, V, df, n_s, n_sd_):
+        n_self_ = n_s + n_sd_
+        c = [1, 0, -n_s/n_self_ if n_self_ else 0, -n_sd_/n_self_ if n_self_ else 0]
+        return contrast_test(c, b[1:5], V[1:5, 1:5], df)
+
+    h22_f = h22_est(b_fs, V_fs, df_fs, n_se_f, n_sd_f)
+    h22_h = h22_est(b_hc, V_hc, df_hc, n_se_h, n_sd_h)
+
     lines = [
         "# 01 Simple OLS Baseline — Interpretation",
         "",
@@ -875,6 +885,33 @@ def _write_interpretation(
         f"**Human-coded**: estimate = {h21_h[0]:+.4f}, SE = {h21_h[1]:.4f}, "
         f"t = {h21_h[2]:+.3f}, p = {h21_h[3]:.4f}{sig(h21_h[3])}",
         f"  → H2-1 **{'supported' if h21_h[0]>0 and h21_h[3]<0.10 else 'not supported'}**",
+        "",
+        "---",
+        "",
+        "## H2-2: Aggressive vs SELF humor (weighted average)",
+        "",
+        f"**Full sample**: estimate = {h22_f[0]:+.4f}, SE = {h22_f[1]:.4f}, "
+        f"t = {h22_f[2]:+.3f}, p = {h22_f[3]:.4f}{sig(h22_f[3])}",
+        f"  → H2-2 **{'supported' if h22_f[0]>0 and h22_f[3]<0.10 else 'not supported'}**",
+        "",
+        f"**Human-coded**: estimate = {h22_h[0]:+.4f}, SE = {h22_h[1]:.4f}, "
+        f"t = {h22_h[2]:+.3f}, p = {h22_h[3]:.4f}{sig(h22_h[3])}",
+        f"  → H2-2 **{'supported' if h22_h[0]>0 and h22_h[3]<0.10 else 'not supported'}**",
+        "",
+        "---",
+        "",
+        "## H2 overall judgment",
+        "",
+        "**H2 is strongly but partially supported.**",
+        "",
+        "Aggressive humor shows significantly higher engagement than the weighted average of "
+        "other humor types (H2-1) and the combined SELF category (H2-2). "
+        "However, it is not consistently higher than self-defeating humor in pairwise contrasts (H2-3). "
+        "Therefore, H2 is interpreted as strongly but partially supported.",
+        "",
+        "한국어: Aggressive humor는 other humor의 가중평균 및 SELF 통합 범주보다 유의하게 높은 "
+        "engagement를 보였다. 그러나 개별 pairwise 비교에서는 self-defeating humor보다 일관되게 "
+        "높지 않았기 때문에 H2는 강한 부분 지지로 해석한다.",
         "",
         "---",
         "",

@@ -54,6 +54,26 @@ Weights (full sample): aggressive=0.113, affiliative=0.540, self_enhancing=0.322
 
 ---
 
+## H2-2: Aggressive vs SELF humor (weighted average)
+
+**Full sample**: estimate = +0.4384, SE = 0.0471, t = +9.318, p = 0.0000***
+  → H2-2 **supported**
+
+**Human-coded**: estimate = +1.6177, SE = 0.2379, t = +6.800, p = 0.0000***
+  → H2-2 **supported**
+
+---
+
+## H2 overall judgment
+
+**H2 is strongly but partially supported.**
+
+Aggressive humor shows significantly higher engagement than the weighted average of other humor types (H2-1) and the combined SELF category (H2-2). However, it is not consistently higher than self-defeating humor in pairwise contrasts (H2-3). Therefore, H2 is interpreted as strongly but partially supported.
+
+한국어: Aggressive humor는 other humor의 가중평균 및 SELF 통합 범주보다 유의하게 높은 engagement를 보였다. 그러나 개별 pairwise 비교에서는 self-defeating humor보다 일관되게 높지 않았기 때문에 H2는 강한 부분 지지로 해석한다.
+
+---
+
 ## H3 firm-quarter results
 
 | Item | Full sample | Human-coded |

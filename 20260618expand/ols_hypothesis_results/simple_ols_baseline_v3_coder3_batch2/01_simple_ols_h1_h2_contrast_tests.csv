@@ -1,13 +1,13 @@
 model,hypothesis,contrast,weights_info,estimate,std_error,t_statistic,p_value,stars,direction,support
 Full_sample,H1,Weighted Humor Effect (vs non-humorous),agg:0.113 aff:0.540 se:0.322 sd:0.024,1.166525,0.016733,69.7159,0.0,***,positive,supported
 Full_sample,H2-1,Aggressive − Other humor (weighted avg),,0.849484,0.043381,19.5817,0.0,***,positive,supported
-Full_sample,H2-2,Aggressive − Affiliative,,1.113334,0.044931,24.779,0.0,***,positive,supported
-Full_sample,H2-2,Aggressive − Self-Enhancing,,0.490074,0.047487,10.3203,0.0,***,positive,supported
-Full_sample,H2-2,Aggressive − Self-Defeating,,-0.248261,0.097288,-2.5518,0.010718,**,negative,not_supported
-Full_sample,H2-3,Aggressive − SELF (se+sd weighted avg),,0.438443,0.047053,9.3181,0.0,***,positive,supported
+Full_sample,H2-2,Aggressive − SELF (se+sd weighted avg),,0.438443,0.047053,9.3181,0.0,***,positive,supported
+Full_sample,H2-3,Aggressive − Affiliative,,1.113334,0.044931,24.779,0.0,***,positive,supported
+Full_sample,H2-3,Aggressive − Self-Enhancing,,0.490074,0.047487,10.3203,0.0,***,positive,supported
+Full_sample,H2-3,Aggressive − Self-Defeating,,-0.248261,0.097288,-2.5518,0.010718,**,negative,not_supported
 Human_coded,H1,Weighted Humor Effect (vs non-humorous),agg:0.128 aff:0.475 se:0.359 sd:0.038,1.305853,0.095483,13.6763,0.0,***,positive,supported
 Human_coded,H2-1,Aggressive − Other humor (weighted avg),,1.825489,0.221483,8.2421,0.0,***,positive,supported
-Human_coded,H2-2,Aggressive − Affiliative,,1.998837,0.233042,8.5772,0.0,***,positive,supported
-Human_coded,H2-2,Aggressive − Self-Enhancing,,1.702177,0.240941,7.0647,0.0,***,positive,supported
-Human_coded,H2-2,Aggressive − Self-Defeating,,0.811393,0.434487,1.8675,0.061918,*,positive,supported
-Human_coded,H2-3,Aggressive − SELF (se+sd weighted avg),,1.61772,0.237912,6.7997,0.0,***,positive,supported
+Human_coded,H2-2,Aggressive − SELF (se+sd weighted avg),,1.61772,0.237912,6.7997,0.0,***,positive,supported
+Human_coded,H2-3,Aggressive − Affiliative,,1.998837,0.233042,8.5772,0.0,***,positive,supported
+Human_coded,H2-3,Aggressive − Self-Enhancing,,1.702177,0.240941,7.0647,0.0,***,positive,supported
+Human_coded,H2-3,Aggressive − Self-Defeating,,0.811393,0.434487,1.8675,0.061918,*,positive,supported
