@@ -40,6 +40,11 @@ on:
         description: 'Comma-separated X handles for targeted smoke diagnostics, e.g. @Broadcom,@MorganStanley,@WellsFargo'
         required: false
         default: ''
+      targeted_b_smoke:
+        description: 'Preset B smoke: 2009, @Broadcom/@MorganStanley/@WellsFargo, max_scrolls=300, timeout=300, no commit'
+        required: true
+        default: false
+        type: boolean
       per_company_timeout_seconds:
         description: 'Hard timeout per company; smoke recommended: 180; 0 disables'
         required: true
@@ -101,7 +106,24 @@ jobs:
           SMOKE='${{ inputs.smoke }}'
           LIMIT='${{ inputs.limit_companies }}'
           HANDLES='${{ inputs.handles }}'
+          PRESET_B='${{ inputs.targeted_b_smoke }}'
           PCT='${{ inputs.per_company_timeout_seconds }}'
+
+          test "$PRESET_B" = 'true' || test "$PRESET_B" = 'false'
+          if [ "$PRESET_B" = 'true' ]; then
+            START='2009'
+            END='2009'
+            TARGET='2009'
+            SCOPE='all'
+            COMMIT='false'
+            MP='1'
+            RR='0'
+            SMOKE='true'
+            LIMIT='3'
+            HANDLES='@Broadcom,@MorganStanley,@WellsFargo'
+            PCT='300'
+            echo "Preset B smoke active: target_year=2009 handles=$HANDLES max_scrolls=300 timeout=300 commit_results=false"
+          fi
 
           test "$COMMIT" = 'false' || test "$COMMIT" = 'true'
           test "$SCOPE" = 'all' || test "$SCOPE" = 'failed_only'
@@ -150,6 +172,10 @@ jobs:
           END='${{ needs.validate-inputs.outputs.end_year }}'
           TARGET='${{ needs.validate-inputs.outputs.target_year }}'
           SCOPE='${{ inputs.target_scope }}'
+          PRESET_B='${{ inputs.targeted_b_smoke }}'
+          if [ "$PRESET_B" = 'true' ]; then
+            SCOPE='all'
+          fi
           if [ -n "$TARGET" ]; then
             python scripts/build_yearly_humor_backfill_targets.py \
               --target-year "$TARGET" \
@@ -243,8 +269,22 @@ jobs:
           SMOKE='${{ inputs.smoke }}'
           LIMIT='${{ inputs.limit_companies }}'
           HANDLES='${{ inputs.handles }}'
+          PRESET_B='${{ inputs.targeted_b_smoke }}'
           PCT='${{ inputs.per_company_timeout_seconds }}'
           FFR='${{ inputs.fail_fast_render }}'
+          if [ "$PRESET_B" = 'true' ]; then
+            SCOPE='all'
+            RETRY='0'
+            MP='1'
+            MX='0'
+            MS='300'
+            SMOKE='true'
+            LIMIT='3'
+            HANDLES='@Broadcom,@MorganStanley,@WellsFargo'
+            PCT='300'
+            FFR='true'
+            echo "Preset B smoke active: target_year=${TARGET:-2009} handles=$HANDLES max_scrolls=$MS timeout=$PCT commit_results=false"
+          fi
           COMMON_ARGS=(
             --max-posts-per-account "$MX"
             --max-scrolls "$MS"
@@ -308,7 +348,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     needs: [validate-inputs, validate-yearly-outputs]
-    if: ${{ inputs.commit_results == 'true' }}
+    if: ${{ inputs.commit_results == 'true' && !inputs.targeted_b_smoke }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4

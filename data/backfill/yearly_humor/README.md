@@ -25,7 +25,15 @@ This means Playwright installation was resolved, but actual 2009 post collection
 
 Use smoke mode before any full 99-company historical run.
 
-Recommended 2009 smoke inputs:
+Recommended targeted B smoke toggle:
+
+```text
+targeted_b_smoke: true
+```
+
+This preset forces `target_year=2009`, `target_scope=all`, `retry_round=0`, `max_posts_per_account=0`, `max_scrolls=300`, `max_parallel_companies=1`, `smoke=true`, `limit_companies=3`, `handles=@Broadcom,@MorganStanley,@WellsFargo`, `per_company_timeout_seconds=300`, `fail_fast_render=true`, and disables commit.
+
+Manual 2009 smoke inputs:
 
 ```text
 workflow: Yearly Humor Backfill Serial Years
