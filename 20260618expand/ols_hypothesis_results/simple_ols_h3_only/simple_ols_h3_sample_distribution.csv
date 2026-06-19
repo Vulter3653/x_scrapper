@@ -2,8 +2,8 @@ metric,value
 total_firm_month_observations,3532
 number_of_firms,97
 number_of_months,130
-firm_months_with_nonzero_intensity,747
-firm_months_with_zero_intensity,2785
+firm_months_nonzero_intensity,747
+firm_months_zero_intensity,2785
 aggressive_intensity_mean,0.022457
 aggressive_intensity_sd,0.066716
 aggressive_intensity_min,0.000000

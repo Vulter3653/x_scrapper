@@ -1,43 +1,44 @@
-# Simple OLS Model Specification — H1 and H2 Diagnostic
+# OLS Model Specification — H1 and H2 Diagnostic
 
-## Model (M1 Simple OLS)
+## M1 Simple OLS
 
 ```
-log(1 + Engagement_i) = β₀
-                      + β₁ Aggressive_i
-                      + β₂ Affiliative_i
-                      + β₃ SelfEnhancing_i
-                      + β₄ SelfDefeating_i
-                      + ε_i
+log(1+Engagement_i) = β₀ + β₁·Aggressive + β₂·Affiliative
+                    + β₃·SelfEnhancing + β₄·SelfDefeating + ε_i
 ```
 
-| Item | Value |
-|:---|:---|
-| DV | log_total_engagement (log₁₊₁) |
-| Reference category | non_humorous (omitted) |
-| Controls | NONE |
-| Fixed effects | NONE |
-| H3 variables | EXCLUDED |
-| SE type | Classical OLS (homoskedastic) |
-| Stars convention | *** p<.01 / ** p<.05 / * p<.10 (two-sided) |
+## M2 Firm FE (FWL within-firm demeaning)
 
-## Identification Rules Applied
+```
+log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
+                    + β₃·SelfEnhancing + β₄·SelfDefeating
+                    + μ_f + ε_i
+```
 
-1. `non_humorous` = reference category (omitted dummy)
-2. `non_humorous` dummy not included in regression
-3. `HumorPresence` dummy not included (avoids perfect multicollinearity)
-4. Only four humor type dummies as IVs
-5. No numeric company_id covariate
-6. No C(company_id) firm fixed effects
+μ_f absorbed via within-firm demeaning (FWL). No intercept after demeaning.
 
-## Excluded Variables
+| Item | M1 | M2 |
+|:---|:---|:---|
+| DV | log_total_engagement | log_total_engagement |
+| Reference category | non_humorous (omitted) | non_humorous (omitted) |
+| Controls | NONE | NONE |
+| Firm FE | NONE | YES (FWL) |
+| Time FE | NONE | NONE |
+| H3 variables | EXCLUDED | EXCLUDED |
+| N | 65,245 | 65,245 |
+| Firms | — | 97 |
+| df_resid | 65,240 | 65,144 |
+| SE type | Classical OLS | Classical OLS (FWL-adjusted df) |
 
-- H3: aggressive humor usage intensity, intensity², interaction terms
-- Controls: text_length, hashtag_count, mention_count, emoji_count
-- Fixed effects: year, month, hour, firm
+## Identification Rules
+
+1. non_humorous = reference category (omitted)
+2. non_humorous dummy not included in regression
+3. HumorPresence dummy not included (avoids perfect multicollinearity)
+4. No company_id numeric covariate
+5. M2 firm FE: within-firm demeaning — df_resid = N − N_firms − k_within
 
 ## Data Source
 
-- Input: `h2_post_level_regression_ready.csv`
-- N = 65,245 Fortune100 posts
+- `h2_post_level_regression_ready.csv` — N=65,245 Fortune100 posts
 - Classifier: domain-adapted TF-IDF LogReg trained on 1,980 Fortune100 human labels (batch1+batch2); predictions only — NOT_A_CANDIDATE level evidence; leakage risk: classifier trained on same corpus as regression sample

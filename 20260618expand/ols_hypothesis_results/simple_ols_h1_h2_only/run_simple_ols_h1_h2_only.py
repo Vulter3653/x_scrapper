@@ -1,15 +1,20 @@
 """
 run_simple_ols_h1_h2_only.py
 
-Simple OLS diagnostic for H1 and H2 using domain-adapted classifier predictions.
+OLS diagnostic for H1 and H2 using domain-adapted classifier predictions.
 
-Model (M1 Simple OLS only):
-  log1p_engagement ~ β₀ + β₁*Aggressive + β₂*Affiliative
-                   + β₃*SelfEnhancing + β₄*SelfDefeating + ε
+Models:
+  M1 Simple OLS:
+    log1p_engagement ~ β₀ + β₁*Aggressive + β₂*Affiliative
+                     + β₃*SelfEnhancing + β₄*SelfDefeating + ε
+
+  M2 Firm FE (FWL within-firm demeaning):
+    log1p_engagement_dm ~ β₁*Aggressive_dm + β₂*Affiliative_dm
+                        + β₃*SelfEnhancing_dm + β₄*SelfDefeating_dm + ε
 
 Reference category : non_humorous (omitted)
 Controls           : NONE
-Fixed effects      : NONE
+Time FE            : NONE
 H3 variables       : EXCLUDED
 
 H1: All four β > 0 (humor > non-humor); weighted average humor effect > 0
@@ -74,37 +79,34 @@ def write_csv(path: Path, rows: list[dict]) -> None:
 
 # ── OLS ──────────────────────────────────────────────────────────────────────
 
-def ols_fit(X: np.ndarray, y: np.ndarray):
-    """
-    Returns beta, vcov (s²(X'X)⁻¹), se, t_stat, p_two, n, k, r2, r2_adj, df_resid.
-    Classical (homoskedastic) OLS SE.
-    """
+def ols_fit(X: np.ndarray, y: np.ndarray, df_override: int | None = None):
+    """Classical OLS. df_override sets df_resid (used for FWL to account for FE)."""
     n, k = X.shape
     XtX  = X.T @ X
-    Xty  = X.T @ y
-    beta = np.linalg.solve(XtX, Xty)
-
-    y_hat = X @ beta
-    resid = y - y_hat
-    df_r  = n - k
-    s2    = (resid @ resid) / df_r
-    vcov  = s2 * np.linalg.inv(XtX)
-    se    = np.sqrt(np.diag(vcov))
+    beta = np.linalg.solve(XtX, X.T @ y)
+    resid  = y - X @ beta
+    df_r   = df_override if df_override is not None else n - k
+    s2     = (resid @ resid) / df_r
+    vcov   = s2 * np.linalg.inv(XtX)
+    se     = np.sqrt(np.diag(vcov))
     t_stat = beta / se
     p_two  = 2 * t_dist.sf(np.abs(t_stat), df=df_r)
-
     ss_tot = np.sum((y - y.mean()) ** 2)
-    ss_res = resid @ resid
-    r2     = 1.0 - ss_res / ss_tot
+    r2     = 1.0 - (resid @ resid) / ss_tot
     r2_adj = 1.0 - (1.0 - r2) * (n - 1) / df_r
-
     return beta, vcov, se, t_stat, p_two, n, k, r2, r2_adj, df_r
 
 
+def demean_by_group(arr: np.ndarray, groups: list) -> np.ndarray:
+    """Subtract group mean from each element (FWL within-demeaning)."""
+    out = arr.copy().astype(float)
+    for g in set(groups):
+        idx = [i for i, x in enumerate(groups) if x == g]
+        out[idx] -= out[idx].mean(axis=0)
+    return out
+
+
 def linear_contrast(c: np.ndarray, beta: np.ndarray, vcov: np.ndarray, df_r: int):
-    """
-    Estimate and SE for a linear contrast c'β̂.
-    """
     estimate = float(c @ beta)
     var_c    = float(c @ vcov @ c)
     se_c     = math.sqrt(max(var_c, 0.0))
@@ -113,25 +115,88 @@ def linear_contrast(c: np.ndarray, beta: np.ndarray, vcov: np.ndarray, df_r: int
     return estimate, se_c, t_c, p_two
 
 
+# ── interpretation helpers ────────────────────────────────────────────────────
+
+def interp_h1(est, p):
+    if p < 0.01 and est > 0: return "H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)"
+    if p < 0.05 and est > 0: return "H1 지지: 전체 유머 평균효과 양수 유의 (p<.05)"
+    if p < 0.10 and est > 0: return "H1 부분 지지: 전체 유머 평균효과 양수 유의 (p<.10)"
+    return "H1 지지 불가"
+
+def interp_h21(est, p):
+    if p < 0.01 and est > 0: return "H2-1 지지: aggressive > other humor weighted average (p<.01)"
+    if p < 0.05 and est > 0: return "H2-1 지지: aggressive > other humor weighted average (p<.05)"
+    if p < 0.10 and est > 0: return "H2-1 부분 지지: aggressive > other humor weighted average (p<.10)"
+    if est > 0:               return "H2-1 지지 불가: 방향 맞으나 유의하지 않음"
+    return "H2-1 지지 불가: aggressive <= other humor"
+
+def interp_pair(est, p, lbl):
+    if p < 0.01 and est > 0: return f"H2-2 지지: aggressive > {lbl} (p<.01)"
+    if p < 0.05 and est > 0: return f"H2-2 지지: aggressive > {lbl} (p<.05)"
+    if p < 0.10 and est > 0: return f"H2-2 부분 지지: aggressive > {lbl} (p<.10)"
+    if est > 0:               return f"H2-2 지지 불가: aggressive > {lbl} 방향이나 유의하지 않음"
+    return f"H2-2 지지 불가: aggressive <= {lbl}"
+
+
+# ── contrast block ────────────────────────────────────────────────────────────
+
+def run_contrasts(beta, vcov, df_r,
+                  w_agg, w_aff, w_se, w_sd,
+                  w_aff2, w_se2, w_sd2, model_label):
+    """Return list of contrast result dicts. beta has 4 elements: [agg,aff,se,sd]."""
+    c_h1   = np.array([w_agg, w_aff, w_se, w_sd])
+    c_h21  = np.array([1.0, -w_aff2, -w_se2, -w_sd2])
+    c_aa   = np.array([1.0, -1.0,  0.0,  0.0])
+    c_as   = np.array([1.0,  0.0, -1.0,  0.0])
+    c_asd  = np.array([1.0,  0.0,  0.0, -1.0])
+
+    rows = []
+    for test, hyp, lbl, formula, wt, c in [
+        ("H1_humor_avg_vs_nonhumor",       "H1",   "weighted avg humor effect vs non-humorous",
+         "w_agg*β1+w_aff*β2+w_se*β3+w_sd*β4",
+         f"w_agg={w_agg:.4f} w_aff={w_aff:.4f} w_se={w_se:.4f} w_sd={w_sd:.4f}", c_h1),
+        ("H2_1_aggressive_vs_other",       "H2-1", "aggressive vs other humor weighted average",
+         "β1-(w_aff2*β2+w_se2*β3+w_sd2*β4)",
+         f"w_aff2={w_aff2:.4f} w_se2={w_se2:.4f} w_sd2={w_sd2:.4f}", c_h21),
+        ("H2_2a_aggressive_vs_affiliative","H2-2", "aggressive vs affiliative",  "β1-β2", "—", c_aa),
+        ("H2_2b_aggressive_vs_self_enhancing","H2-2","aggressive vs self-enhancing","β1-β3","—",c_as),
+        ("H2_2c_aggressive_vs_self_defeating","H2-2","aggressive vs self-defeating","β1-β4","—",c_asd),
+    ]:
+        est, se_c, t_c, p_c = linear_contrast(c, beta, vcov, df_r)
+        if hyp == "H1":
+            interp = interp_h1(est, p_c)
+        elif hyp == "H2-1":
+            interp = interp_h21(est, p_c)
+        else:
+            other = lbl.split("vs ")[-1]
+            interp = interp_pair(est, p_c, other)
+        rows.append({
+            "model": model_label, "test": test, "hypothesis": hyp,
+            "contrast_label": lbl, "contrast_formula": formula,
+            "weights_used": wt,
+            "estimate": f"{est:.6f}", "se": f"{se_c:.6f}",
+            "t_stat": f"{t_c:.4f}", "p_value_two_sided": f"{p_c:.6f}",
+            "stars": p_stars(p_c), "interpretation": interp,
+        })
+    return rows
+
+
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main() -> None:
     print("=== run_simple_ols_h1_h2_only ===\n")
 
-    # 1. Load H2 data (fortune100, all types including non_humorous)
     with open(H2_CSV, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
-    print(f"Input rows: {len(rows)}")
-    print(f"Input file: {H2_CSV.name}")
+    print(f"Input rows: {len(rows)}  |  {H2_CSV.name}")
 
-    # Verify no H3 / control / FE columns used
     IVS = ["aggressive_humor", "affiliative_humor",
            "self_enhancing_humor", "self_defeating_humor"]
     DV  = "log_total_engagement"
     for col in IVS + [DV]:
         assert col in rows[0], f"Missing column: {col}"
 
-    # 2. Sample distribution
+    # ── Sample counts ─────────────────────────────────────────────────────
     n_agg = sum(1 for r in rows if r["aggressive_humor"]    == "1")
     n_aff = sum(1 for r in rows if r["affiliative_humor"]   == "1")
     n_se  = sum(1 for r in rows if r["self_enhancing_humor"]== "1")
@@ -139,282 +204,203 @@ def main() -> None:
     n_nh  = sum(1 for r in rows if r["non_humorous"]        == "1")
     n_tot = len(rows)
     n_hum = n_agg + n_aff + n_se + n_sd
-    assert n_nh + n_hum == n_tot, f"Count mismatch: {n_nh}+{n_hum} != {n_tot}"
+    assert n_nh + n_hum == n_tot
+    firms = sorted(set(r["company_name"] for r in rows))
+    n_firms = len(firms)
 
     dist_rows = [
-        {"group": "non_humorous (reference)",  "n": n_nh,  "pct_total": f"{n_nh/n_tot*100:.2f}%", "pct_humor": "—"},
-        {"group": "aggressive",                "n": n_agg, "pct_total": f"{n_agg/n_tot*100:.2f}%", "pct_humor": f"{n_agg/n_hum*100:.2f}%"},
-        {"group": "affiliative",               "n": n_aff, "pct_total": f"{n_aff/n_tot*100:.2f}%", "pct_humor": f"{n_aff/n_hum*100:.2f}%"},
-        {"group": "self_enhancing",            "n": n_se,  "pct_total": f"{n_se/n_tot*100:.2f}%",  "pct_humor": f"{n_se/n_hum*100:.2f}%"},
-        {"group": "self_defeating",            "n": n_sd,  "pct_total": f"{n_sd/n_tot*100:.2f}%",  "pct_humor": f"{n_sd/n_hum*100:.2f}%"},
-        {"group": "humor_total",               "n": n_hum, "pct_total": f"{n_hum/n_tot*100:.2f}%", "pct_humor": "100.00%"},
-        {"group": "TOTAL",                     "n": n_tot, "pct_total": "100.00%",                  "pct_humor": "—"},
+        {"group": "non_humorous (reference)", "n": n_nh,  "pct_total": f"{n_nh/n_tot*100:.2f}%", "pct_humor": "—"},
+        {"group": "aggressive",               "n": n_agg, "pct_total": f"{n_agg/n_tot*100:.2f}%","pct_humor": f"{n_agg/n_hum*100:.2f}%"},
+        {"group": "affiliative",              "n": n_aff, "pct_total": f"{n_aff/n_tot*100:.2f}%","pct_humor": f"{n_aff/n_hum*100:.2f}%"},
+        {"group": "self_enhancing",           "n": n_se,  "pct_total": f"{n_se/n_tot*100:.2f}%", "pct_humor": f"{n_se/n_hum*100:.2f}%"},
+        {"group": "self_defeating",           "n": n_sd,  "pct_total": f"{n_sd/n_tot*100:.2f}%", "pct_humor": f"{n_sd/n_hum*100:.2f}%"},
+        {"group": "humor_total",              "n": n_hum, "pct_total": f"{n_hum/n_tot*100:.2f}%","pct_humor": "100.00%"},
+        {"group": "TOTAL",                    "n": n_tot, "pct_total": "100.00%",                 "pct_humor": "—"},
+        {"group": "n_firms",                  "n": n_firms,"pct_total": "—",                      "pct_humor": "—"},
     ]
     write_csv(OUT / "simple_ols_h1_h2_sample_distribution.csv", dist_rows)
+    print(f"  N={n_tot:,}  humor={n_hum:,} (agg={n_agg} aff={n_aff} se={n_se} sd={n_sd})"
+          f"  non-humor={n_nh:,}  firms={n_firms}")
 
-    print(f"\nSample: N={n_tot:,}  |  humor={n_hum:,} "
-          f"(agg={n_agg:,} aff={n_aff:,} se={n_se:,} sd={n_sd:,})  |  non-humor={n_nh:,}")
-
-    # 3. Build design matrix
-    # X = [intercept, aggressive, affiliative, self_enhancing, self_defeating]
-    # NO controls, NO FE, NO H3 variables
-    X = np.array([
-        [1.0,
-         to_f(r["aggressive_humor"]),
-         to_f(r["affiliative_humor"]),
-         to_f(r["self_enhancing_humor"]),
-         to_f(r["self_defeating_humor"])]
-        for r in rows
-    ])
-    y = np.array([to_f(r[DV]) for r in rows])
-
-    feat_names = ["intercept", "aggressive", "affiliative",
-                  "self_enhancing", "self_defeating"]
-
-    # 4. OLS fit
-    beta, vcov, se, t_stat, p_two, n, k, r2, r2_adj, df_r = ols_fit(X, y)
-
-    print(f"\nOLS: N={n:,}  k={k}  df_resid={df_r:,}  R²={r2:.4f}  adj-R²={r2_adj:.4f}")
-
-    # 5. Regression results CSV
-    reg_rows = []
-    for i, fname in enumerate(feat_names):
-        reg_rows.append({
-            "variable":               fname,
-            "coefficient":            f"{beta[i]:.6f}",
-            "classical_ols_se":       f"{se[i]:.6f}",
-            "t_stat":                 f"{t_stat[i]:.4f}",
-            "p_value_two_sided":      f"{p_two[i]:.6f}",
-            "stars":                  p_stars(p_two[i]),
-            "n_obs":                  n,
-            "r_squared":              f"{r2:.6f}",
-            "r_squared_adj":          f"{r2_adj:.6f}",
-            "df_resid":               df_r,
-            "reference_category":     "non_humorous",
-            "controls_included":      "false",
-            "fixed_effects_included": "false",
-            "h3_variables_included":  "false",
-            "classifier_limitation":  CLASSIFIER_NOTE,
-        })
-    write_csv(OUT / "simple_ols_h1_h2_regression_results.csv", reg_rows)
-
-    # Print results
-    print("\n--- Regression Coefficients ---")
-    print(f"{'Variable':<20}  {'β':>9}  {'SE':>8}  {'t':>8}  {'p':>8}  Stars")
-    for i, fname in enumerate(feat_names):
-        print(f"  {fname:<18}  {beta[i]:+9.4f}  {se[i]:8.4f}  "
-              f"{t_stat[i]:+8.4f}  {p_two[i]:8.4f}  {p_stars(p_two[i])}")
-
-    # 6. Contrast tests
-    # ── Weights inside humor sample ──────────────────────────────
+    # ── Contrast weights ──────────────────────────────────────────────────
     w_agg = n_agg / n_hum
     w_aff = n_aff / n_hum
     w_se  = n_se  / n_hum
     w_sd  = n_sd  / n_hum
-    # Other-humor weights (excluding aggressive)
     n_other = n_aff + n_se + n_sd
     w_aff2 = n_aff / n_other
     w_se2  = n_se  / n_other
     w_sd2  = n_sd  / n_other
 
-    # ── H1: weighted average humor effect ──────────────────────
-    # c = [0, w_agg, w_aff, w_se, w_sd]  vs. intercept (non-humor baseline)
-    c_h1 = np.array([0.0, w_agg, w_aff, w_se, w_sd])
-    est_h1, se_h1, t_h1, p_h1 = linear_contrast(c_h1, beta, vcov, df_r)
+    # ════════════════════════════════════════════════════════════════════════
+    # M1: Simple OLS
+    # ════════════════════════════════════════════════════════════════════════
+    X_m1 = np.array([
+        [1.0, to_f(r["aggressive_humor"]), to_f(r["affiliative_humor"]),
+         to_f(r["self_enhancing_humor"]),  to_f(r["self_defeating_humor"])]
+        for r in rows
+    ])
+    y = np.array([to_f(r[DV]) for r in rows])
 
-    # ── H2-1: aggressive vs. other humor weighted average ───────
-    # contrast: β_agg - (w_aff2*β_aff + w_se2*β_se + w_sd2*β_sd)
-    c_h21 = np.array([0.0, 1.0, -w_aff2, -w_se2, -w_sd2])
-    est_h21, se_h21, t_h21, p_h21 = linear_contrast(c_h21, beta, vcov, df_r)
+    b1, v1, s1, t1, p1, n1, k1, r2_1, r2a_1, df1 = ols_fit(X_m1, y)
+    fn_m1 = ["intercept", "aggressive", "affiliative", "self_enhancing", "self_defeating"]
 
-    # ── H2-2 pairwise ───────────────────────────────────────────
-    # β_agg - β_aff
-    c_agg_aff = np.array([0.0, 1.0, -1.0,  0.0,  0.0])
-    est_aa, se_aa, t_aa, p_aa = linear_contrast(c_agg_aff, beta, vcov, df_r)
-    # β_agg - β_se
-    c_agg_se  = np.array([0.0, 1.0,  0.0, -1.0,  0.0])
-    est_as, se_as, t_as, p_as = linear_contrast(c_agg_se,  beta, vcov, df_r)
-    # β_agg - β_sd
-    c_agg_sd  = np.array([0.0, 1.0,  0.0,  0.0, -1.0])
-    est_asd, se_asd, t_asd, p_asd = linear_contrast(c_agg_sd, beta, vcov, df_r)
+    print(f"\nM1 Simple OLS: N={n1:,} k={k1} df={df1:,} R²={r2_1:.4f} adj-R²={r2a_1:.4f}")
+    for i, fn in enumerate(fn_m1):
+        print(f"  {fn:<22} β={b1[i]:+.4f}  SE={s1[i]:.4f}  t={t1[i]:+.4f}  {p_stars(p1[i])}")
 
-    def interp_h1(est, p):
-        if p < 0.01 and est > 0:
-            return "H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)"
-        if p < 0.05 and est > 0:
-            return "H1 지지: 전체 유머 평균효과 양수 유의 (p<.05)"
-        if p < 0.10 and est > 0:
-            return "H1 부분 지지: 전체 유머 평균효과 양수 유의 (p<.10)"
-        return "H1 지지 불가"
+    # ════════════════════════════════════════════════════════════════════════
+    # M2: Firm FE via FWL within-firm demeaning
+    # ════════════════════════════════════════════════════════════════════════
+    firm_groups = [r["company_name"] for r in rows]
 
-    def interp_h21(est, p):
-        if p < 0.01 and est > 0:
-            return "H2-1 지지: aggressive > other humor weighted average (p<.01)"
-        if p < 0.05 and est > 0:
-            return "H2-1 지지: aggressive > other humor weighted average (p<.05)"
-        if p < 0.10 and est > 0:
-            return "H2-1 부분 지지: aggressive > other humor weighted average (p<.10)"
-        if est > 0:
-            return "H2-1 지지 불가: 방향 맞으나 유의하지 않음"
-        return "H2-1 지지 불가: aggressive <= other humor"
+    # demean DV and all 4 IVs by firm
+    mat = np.column_stack([y,
+                           [to_f(r["aggressive_humor"])    for r in rows],
+                           [to_f(r["affiliative_humor"])   for r in rows],
+                           [to_f(r["self_enhancing_humor"])for r in rows],
+                           [to_f(r["self_defeating_humor"])for r in rows]])
+    mat_dm = demean_by_group(mat, firm_groups)
 
-    def interp_pair(est, p, other_label):
-        if p < 0.01 and est > 0:
-            return f"H2-2 지지: aggressive > {other_label} (p<.01)"
-        if p < 0.05 and est > 0:
-            return f"H2-2 지지: aggressive > {other_label} (p<.05)"
-        if p < 0.10 and est > 0:
-            return f"H2-2 부분 지지: aggressive > {other_label} (p<.10)"
-        if est > 0:
-            return f"H2-2 지지 불가: aggressive > {other_label} 방향이나 유의하지 않음"
-        return f"H2-2 지지 불가: aggressive <= {other_label}"
+    y_dm  = mat_dm[:, 0]
+    X_dm  = mat_dm[:, 1:]           # no intercept after demeaning
+    fn_m2 = ["aggressive", "affiliative", "self_enhancing", "self_defeating"]
 
-    contrast_rows = [
-        {
-            "test":             "H1_humor_avg_vs_nonhumor",
-            "hypothesis":       "H1",
-            "contrast_label":   "weighted avg humor effect vs non-humorous",
-            "contrast_formula": "w_agg*β1 + w_aff*β2 + w_se*β3 + w_sd*β4",
-            "weights_used":     f"w_agg={w_agg:.4f} w_aff={w_aff:.4f} w_se={w_se:.4f} w_sd={w_sd:.4f}",
-            "estimate":         f"{est_h1:.6f}",
-            "se":               f"{se_h1:.6f}",
-            "t_stat":           f"{t_h1:.4f}",
-            "p_value_two_sided":f"{p_h1:.6f}",
-            "stars":            p_stars(p_h1),
-            "interpretation":   interp_h1(est_h1, p_h1),
-        },
-        {
-            "test":             "H2_1_aggressive_vs_other_weighted",
-            "hypothesis":       "H2-1",
-            "contrast_label":   "aggressive vs other humor weighted average",
-            "contrast_formula": "β1 - (w_aff2*β2 + w_se2*β3 + w_sd2*β4)",
-            "weights_used":     f"w_aff2={w_aff2:.4f} w_se2={w_se2:.4f} w_sd2={w_sd2:.4f}",
-            "estimate":         f"{est_h21:.6f}",
-            "se":               f"{se_h21:.6f}",
-            "t_stat":           f"{t_h21:.4f}",
-            "p_value_two_sided":f"{p_h21:.6f}",
-            "stars":            p_stars(p_h21),
-            "interpretation":   interp_h21(est_h21, p_h21),
-        },
-        {
-            "test":             "H2_2a_aggressive_vs_affiliative",
-            "hypothesis":       "H2-2",
-            "contrast_label":   "aggressive vs affiliative",
-            "contrast_formula": "β1 - β2",
-            "weights_used":     "—",
-            "estimate":         f"{est_aa:.6f}",
-            "se":               f"{se_aa:.6f}",
-            "t_stat":           f"{t_aa:.4f}",
-            "p_value_two_sided":f"{p_aa:.6f}",
-            "stars":            p_stars(p_aa),
-            "interpretation":   interp_pair(est_aa, p_aa, "affiliative"),
-        },
-        {
-            "test":             "H2_2b_aggressive_vs_self_enhancing",
-            "hypothesis":       "H2-2",
-            "contrast_label":   "aggressive vs self-enhancing",
-            "contrast_formula": "β1 - β3",
-            "weights_used":     "—",
-            "estimate":         f"{est_as:.6f}",
-            "se":               f"{se_as:.6f}",
-            "t_stat":           f"{t_as:.4f}",
-            "p_value_two_sided":f"{p_as:.6f}",
-            "stars":            p_stars(p_as),
-            "interpretation":   interp_pair(est_as, p_as, "self-enhancing"),
-        },
-        {
-            "test":             "H2_2c_aggressive_vs_self_defeating",
-            "hypothesis":       "H2-2",
-            "contrast_label":   "aggressive vs self-defeating",
-            "contrast_formula": "β1 - β4",
-            "weights_used":     "—",
-            "estimate":         f"{est_asd:.6f}",
-            "se":               f"{se_asd:.6f}",
-            "t_stat":           f"{t_asd:.4f}",
-            "p_value_two_sided":f"{p_asd:.6f}",
-            "stars":            p_stars(p_asd),
-            "interpretation":   interp_pair(est_asd, p_asd, "self-defeating"),
-        },
-    ]
-    write_csv(OUT / "simple_ols_h1_h2_contrast_tests.csv", contrast_rows)
+    # df_resid = n - n_firms - k_within (FWL accounts for firm FE parameters)
+    df2 = n_tot - n_firms - len(fn_m2)
+    # R²_within: based on within-firm SS
+    ss_within_tot = np.sum(y_dm ** 2)
 
-    # 7. Model specification MD
+    b2, v2, s2, t2, p2, n2, k2, _, _, _ = ols_fit(X_dm, y_dm, df_override=df2)
+    resid_dm = y_dm - X_dm @ b2
+    r2_within = 1.0 - (resid_dm @ resid_dm) / ss_within_tot
+    r2a_2 = 1.0 - (1.0 - r2_within) * (n_tot - 1) / df2
+
+    print(f"\nM2 Firm FE (FWL): N={n_tot:,} firms={n_firms} k_within={len(fn_m2)}"
+          f" df={df2:,} R²_within={r2_within:.4f}")
+    for i, fn in enumerate(fn_m2):
+        print(f"  {fn:<22} β={b2[i]:+.4f}  SE={s2[i]:.4f}  t={t2[i]:+.4f}  {p_stars(p2[i])}")
+
+    # ── Regression results CSV ────────────────────────────────────────────
+    reg_rows = []
+    for i, fn in enumerate(fn_m1):
+        reg_rows.append({
+            "model": "M1_simple_ols", "variable": fn,
+            "coefficient": f"{b1[i]:.6f}", "classical_ols_se": f"{s1[i]:.6f}",
+            "t_stat": f"{t1[i]:.4f}", "p_value_two_sided": f"{p1[i]:.6f}",
+            "stars": p_stars(p1[i]),
+            "n_obs": n1, "r_squared": f"{r2_1:.6f}", "r_squared_adj": f"{r2a_1:.6f}",
+            "df_resid": df1, "n_firms": n_firms,
+            "reference_category": "non_humorous",
+            "controls_included": "false", "fixed_effects": "none",
+            "h3_variables_included": "false",
+            "classifier_limitation": CLASSIFIER_NOTE,
+        })
+    for i, fn in enumerate(fn_m2):
+        reg_rows.append({
+            "model": "M2_firm_fe_fwl", "variable": fn,
+            "coefficient": f"{b2[i]:.6f}", "classical_ols_se": f"{s2[i]:.6f}",
+            "t_stat": f"{t2[i]:.4f}", "p_value_two_sided": f"{p2[i]:.6f}",
+            "stars": p_stars(p2[i]),
+            "n_obs": n_tot, "r_squared": f"{r2_within:.6f}", "r_squared_adj": f"{r2a_2:.6f}",
+            "df_resid": df2, "n_firms": n_firms,
+            "reference_category": "non_humorous",
+            "controls_included": "false", "fixed_effects": "firm (FWL within-demeaning)",
+            "h3_variables_included": "false",
+            "classifier_limitation": CLASSIFIER_NOTE,
+        })
+    write_csv(OUT / "simple_ols_h1_h2_regression_results.csv", reg_rows)
+
+    # ── Contrast tests: M1 and M2 ─────────────────────────────────────────
+    # M1: beta indices [1..4] = agg,aff,se,sd; vcov slice [1:5,1:5]
+    beta_iv_m1 = b1[1:]
+    vcov_iv_m1 = v1[1:, 1:]
+    ct_m1 = run_contrasts(beta_iv_m1, vcov_iv_m1, df1,
+                          w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M1_simple_ols")
+
+    # M2: beta already [agg,aff,se,sd]
+    ct_m2 = run_contrasts(b2, v2, df2,
+                          w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M2_firm_fe_fwl")
+
+    write_csv(OUT / "simple_ols_h1_h2_contrast_tests.csv", ct_m1 + ct_m2)
+
+    # ── Model specification MD ────────────────────────────────────────────
     spec_md = f"""\
-# Simple OLS Model Specification — H1 and H2 Diagnostic
+# OLS Model Specification — H1 and H2 Diagnostic
 
-## Model (M1 Simple OLS)
+## M1 Simple OLS
 
 ```
-log(1 + Engagement_i) = β₀
-                      + β₁ Aggressive_i
-                      + β₂ Affiliative_i
-                      + β₃ SelfEnhancing_i
-                      + β₄ SelfDefeating_i
-                      + ε_i
+log(1+Engagement_i) = β₀ + β₁·Aggressive + β₂·Affiliative
+                    + β₃·SelfEnhancing + β₄·SelfDefeating + ε_i
 ```
 
-| Item | Value |
-|:---|:---|
-| DV | log_total_engagement (log₁₊₁) |
-| Reference category | non_humorous (omitted) |
-| Controls | NONE |
-| Fixed effects | NONE |
-| H3 variables | EXCLUDED |
-| SE type | Classical OLS (homoskedastic) |
-| Stars convention | *** p<.01 / ** p<.05 / * p<.10 (two-sided) |
+## M2 Firm FE (FWL within-firm demeaning)
 
-## Identification Rules Applied
+```
+log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
+                    + β₃·SelfEnhancing + β₄·SelfDefeating
+                    + μ_f + ε_i
+```
 
-1. `non_humorous` = reference category (omitted dummy)
-2. `non_humorous` dummy not included in regression
-3. `HumorPresence` dummy not included (avoids perfect multicollinearity)
-4. Only four humor type dummies as IVs
-5. No numeric company_id covariate
-6. No C(company_id) firm fixed effects
+μ_f absorbed via within-firm demeaning (FWL). No intercept after demeaning.
 
-## Excluded Variables
+| Item | M1 | M2 |
+|:---|:---|:---|
+| DV | log_total_engagement | log_total_engagement |
+| Reference category | non_humorous (omitted) | non_humorous (omitted) |
+| Controls | NONE | NONE |
+| Firm FE | NONE | YES (FWL) |
+| Time FE | NONE | NONE |
+| H3 variables | EXCLUDED | EXCLUDED |
+| N | {n_tot:,} | {n_tot:,} |
+| Firms | — | {n_firms} |
+| df_resid | {df1:,} | {df2:,} |
+| SE type | Classical OLS | Classical OLS (FWL-adjusted df) |
 
-- H3: aggressive humor usage intensity, intensity², interaction terms
-- Controls: text_length, hashtag_count, mention_count, emoji_count
-- Fixed effects: year, month, hour, firm
+## Identification Rules
+
+1. non_humorous = reference category (omitted)
+2. non_humorous dummy not included in regression
+3. HumorPresence dummy not included (avoids perfect multicollinearity)
+4. No company_id numeric covariate
+5. M2 firm FE: within-firm demeaning — df_resid = N − N_firms − k_within
 
 ## Data Source
 
-- Input: `{H2_CSV.name}`
-- N = {n_tot:,} Fortune100 posts
+- `{H2_CSV.name}` — N={n_tot:,} Fortune100 posts
 - Classifier: {CLASSIFIER_NOTE}
 """
     (OUT / "simple_ols_h1_h2_model_specification.md").write_text(spec_md, encoding="utf-8")
-    print(f"  → simple_ols_h1_h2_model_specification.md")
+    print("  → simple_ols_h1_h2_model_specification.md")
 
-    # 8. Interpretation MD
-    # Determine H2-2 verdict
-    h22_results = [
-        ("aggressive vs affiliative",    est_aa,  p_aa),
-        ("aggressive vs self-enhancing", est_as,  p_as),
-        ("aggressive vs self-defeating", est_asd, p_asd),
-    ]
-    n_h22_support = sum(1 for _, e, p in h22_results if e > 0 and p < 0.05)
-    if n_h22_support == 3:
-        h22_verdict = "완전 지지 (full support): 세 대비 모두 aggressive > other (p<.05)"
-    elif n_h22_support == 2:
-        h22_verdict = "부분 지지 (partial support): 세 대비 중 2개 유의"
-    elif n_h22_support == 1:
-        h22_verdict = "부분 지지 (partial support): 세 대비 중 1개 유의"
-    else:
-        h22_verdict = "지지 불가: 유의한 pairwise 우위 없음"
+    # ── Interpretation MD ─────────────────────────────────────────────────
+    def h22_verdict(contrast_rows, model_lbl):
+        sub = [r for r in contrast_rows if r["model"] == model_lbl and r["hypothesis"] == "H2-2"]
+        n_sup = sum(1 for r in sub if float(r["estimate"]) > 0 and float(r["p_value_two_sided"]) < 0.05)
+        if n_sup == 3: return "완전 지지 (3/3 유의)"
+        if n_sup == 2: return "부분 지지 (2/3 유의)"
+        if n_sup == 1: return "부분 지지 (1/3 유의)"
+        return "지지 불가"
+
+    all_ct = ct_m1 + ct_m2
+
+    def ct_row(model_lbl, test_key):
+        for r in all_ct:
+            if r["model"] == model_lbl and r["test"] == test_key:
+                return r
+        return {}
 
     interp_md = f"""\
-# Simple OLS H1 / H2 해석 (Preliminary Diagnostic)
+# OLS H1 / H2 해석 — M1 Simple OLS + M2 Firm FE (Preliminary Diagnostic)
 
-> **주의**: domain-adapted 분류기 예측값 기반 결과. Controls 및 Fixed Effects 미포함.
-> NOT_A_CANDIDATE 수준 증거. Classifier leakage risk 존재.
+> **주의**: domain-adapted 분류기 예측값 기반. Controls 미포함. NOT_A_CANDIDATE 수준 증거.
 
 ---
 
 ## 1. 표본 구성
 
-| 유형 | N | 전체 비율 | 유머 내 비율 |
+| 유형 | N | 비율(전체) | 비율(유머 내) |
 |:---|---:|---:|---:|
 | Non-humorous (reference) | {n_nh:,} | {n_nh/n_tot*100:.1f}% | — |
 | Aggressive | {n_agg:,} | {n_agg/n_tot*100:.1f}% | {n_agg/n_hum*100:.1f}% |
@@ -423,89 +409,94 @@ log(1 + Engagement_i) = β₀
 | Self-Defeating | {n_sd:,} | {n_sd/n_tot*100:.1f}% | {n_sd/n_hum*100:.1f}% |
 | Humor Total | {n_hum:,} | {n_hum/n_tot*100:.1f}% | 100% |
 | **Total** | **{n_tot:,}** | **100%** | — |
+| Firms | {n_firms} | — | — |
 
 ---
 
-## 2. 회귀 결과 (M1 Simple OLS)
+## 2. 회귀 결과
 
-```
-log(1 + Engagement) = β₀ + β₁·Aggressive + β₂·Affiliative + β₃·SelfEnhancing + β₄·SelfDefeating
-```
+|  | M1 Simple OLS | M2 Firm FE (FWL) |
+|:---|:---:|:---:|
+| Aggressive (β₁) | {b1[1]:+.4f}{p_stars(p1[1])} ({s1[1]:.4f}) | {b2[0]:+.4f}{p_stars(p2[0])} ({s2[0]:.4f}) |
+| Affiliative (β₂) | {b1[2]:+.4f}{p_stars(p1[2])} ({s1[2]:.4f}) | {b2[1]:+.4f}{p_stars(p2[1])} ({s2[1]:.4f}) |
+| Self-Enhancing (β₃) | {b1[3]:+.4f}{p_stars(p1[3])} ({s1[3]:.4f}) | {b2[2]:+.4f}{p_stars(p2[2])} ({s2[2]:.4f}) |
+| Self-Defeating (β₄) | {b1[4]:+.4f}{p_stars(p1[4])} ({s1[4]:.4f}) | {b2[3]:+.4f}{p_stars(p2[3])} ({s2[3]:.4f}) |
+| Intercept | {b1[0]:+.4f} | absorbed |
+| N | {n_tot:,} | {n_tot:,} |
+| Firms | — | {n_firms} |
+| R² | {r2_1:.4f} | {r2_within:.4f} (within) |
+| adj-R² | {r2a_1:.4f} | {r2a_2:.4f} |
+| df_resid | {df1:,} | {df2:,} |
+| Controls | none | none |
+| Firm FE | no | yes (FWL) |
 
-| 변수 | β | SE | t | p (2-sided) | Stars |
-|:---|---:|---:|---:|---:|:---:|
-| Intercept | {beta[0]:+.4f} | {se[0]:.4f} | {t_stat[0]:+.4f} | {p_two[0]:.4f} | {p_stars(p_two[0])} |
-| Aggressive (β₁) | {beta[1]:+.4f} | {se[1]:.4f} | {t_stat[1]:+.4f} | {p_two[1]:.4f} | {p_stars(p_two[1])} |
-| Affiliative (β₂) | {beta[2]:+.4f} | {se[2]:.4f} | {t_stat[2]:+.4f} | {p_two[2]:.4f} | {p_stars(p_two[2])} |
-| Self-Enhancing (β₃) | {beta[3]:+.4f} | {se[3]:.4f} | {t_stat[3]:+.4f} | {p_two[3]:.4f} | {p_stars(p_two[3])} |
-| Self-Defeating (β₄) | {beta[4]:+.4f} | {se[4]:.4f} | {t_stat[4]:+.4f} | {p_two[4]:.4f} | {p_stars(p_two[4])} |
-
-N={n:,} | R²={r2:.4f} | adj-R²={r2_adj:.4f} | df_resid={df_r:,}
-Reference category = non_humorous | Controls = none | FE = none
-
----
-
-## 3. H1 검정 결과
-
-**명제**: 유머 포스트가 비유머 포스트보다 engagement가 높다.
-
-| 유형 | β | 방향 | 유의 |
-|:---|---:|:---:|:---:|
-| Aggressive (β₁) | {beta[1]:+.4f} | {'✓' if beta[1]>0 else '✗'} | {p_stars(p_two[1]) or 'ns'} |
-| Affiliative (β₂) | {beta[2]:+.4f} | {'✓' if beta[2]>0 else '✗'} | {p_stars(p_two[2]) or 'ns'} |
-| Self-Enhancing (β₃) | {beta[3]:+.4f} | {'✓' if beta[3]>0 else '✗'} | {p_stars(p_two[3]) or 'ns'} |
-| Self-Defeating (β₄) | {beta[4]:+.4f} | {'✓' if beta[4]>0 else '✗'} | {p_stars(p_two[4]) or 'ns'} |
-
-**전체 유머 평균효과** (가중치 = 유머 내 유형 비율):
-
-- 추정치: {est_h1:+.4f}  SE={se_h1:.4f}  t={t_h1:+.4f}  p={p_h1:.4f} {p_stars(p_h1)}
-- **{interp_h1(est_h1, p_h1)}**
+*괄호 = classical OLS SE. *** p<.01 / ** p<.05 / * p<.10 (two-sided)*
 
 ---
 
-## 4. H2-1 검정 결과
+## 3. H1 검정 — 전체 유머 가중평균효과
 
-**명제**: Aggressive humor가 other humor types보다 engagement가 높다.
-
-- Contrast: β₁ − (w_aff·β₂ + w_se·β₃ + w_sd·β₄)
-- Other-humor weights: affiliative={w_aff2:.4f}, self-enhancing={w_se2:.4f}, self-defeating={w_sd2:.4f}
-- 추정치: {est_h21:+.4f}  SE={se_h21:.4f}  t={t_h21:+.4f}  p={p_h21:.4f} {p_stars(p_h21)}
-- **{interp_h21(est_h21, p_h21)}**
-
----
-
-## 5. H2-2 검정 결과 (Pairwise Contrasts)
-
-**명제**: Aggressive humor가 각 유머 유형보다 engagement가 높다.
-
-| Contrast | 추정치 | SE | t | p (2-sided) | Stars | 판정 |
+| 모델 | 추정치 | SE | t | p | Stars | 판정 |
 |:---|---:|---:|---:|---:|:---:|:---|
-| β₁ − β₂ (agg vs. affiliative) | {est_aa:+.4f} | {se_aa:.4f} | {t_aa:+.4f} | {p_aa:.4f} | {p_stars(p_aa)} | {interp_pair(est_aa, p_aa, 'affiliative')} |
-| β₁ − β₃ (agg vs. self-enhancing) | {est_as:+.4f} | {se_as:.4f} | {t_as:+.4f} | {p_as:.4f} | {p_stars(p_as)} | {interp_pair(est_as, p_as, 'self-enhancing')} |
-| β₁ − β₄ (agg vs. self-defeating) | {est_asd:+.4f} | {se_asd:.4f} | {t_asd:+.4f} | {p_asd:.4f} | {p_stars(p_asd)} | {interp_pair(est_asd, p_asd, 'self-defeating')} |
+"""
+    for ml in ["M1_simple_ols", "M2_firm_fe_fwl"]:
+        r = ct_row(ml, "H1_humor_avg_vs_nonhumor")
+        interp_md += f"| {ml} | {r['estimate']} | {r['se']} | {r['t_stat']} | {r['p_value_two_sided']} | {r['stars']} | {r['interpretation']} |\n"
 
-**H2-2 종합 판정**: {h22_verdict}
+    interp_md += f"""
+---
+
+## 4. H2-1 검정 — Aggressive vs Other Humor 가중평균
+
+| 모델 | 추정치 | SE | t | p | Stars | 판정 |
+|:---|---:|---:|---:|---:|:---:|:---|
+"""
+    for ml in ["M1_simple_ols", "M2_firm_fe_fwl"]:
+        r = ct_row(ml, "H2_1_aggressive_vs_other")
+        interp_md += f"| {ml} | {r['estimate']} | {r['se']} | {r['t_stat']} | {r['p_value_two_sided']} | {r['stars']} | {r['interpretation']} |\n"
+
+    interp_md += f"""
+---
+
+## 5. H2-2 검정 — Pairwise Contrasts
+
+| 모델 | Contrast | 추정치 | SE | t | p | Stars | 판정 |
+|:---|:---|---:|---:|---:|---:|:---:|:---|
+"""
+    for ml in ["M1_simple_ols", "M2_firm_fe_fwl"]:
+        for tk, lbl in [
+            ("H2_2a_aggressive_vs_affiliative",    "agg vs aff"),
+            ("H2_2b_aggressive_vs_self_enhancing", "agg vs se"),
+            ("H2_2c_aggressive_vs_self_defeating",  "agg vs sd"),
+        ]:
+            r = ct_row(ml, tk)
+            interp_md += (f"| {ml} | {lbl} | {r['estimate']} | {r['se']} | "
+                          f"{r['t_stat']} | {r['p_value_two_sided']} | {r['stars']} | {r['interpretation']} |\n")
+
+    interp_md += f"""
+**H2-2 종합**:
+- M1 Simple OLS: {h22_verdict(all_ct, 'M1_simple_ols')}
+- M2 Firm FE:    {h22_verdict(all_ct, 'M2_firm_fe_fwl')}
 
 ---
 
 ## 6. 해석 주의사항
 
-1. **Classifier limitation**: 결과는 domain-adapted TF-IDF LogReg 예측값 기반이며, 동일 코퍼스에서 훈련된 분류기를 적용했으므로 leakage risk 존재.
-2. **Controls/FE 미포함**: 기업 특성, 시간 트렌드, 포스트 속성이 통제되지 않아 추정치에 omitted variable bias가 있을 수 있음.
-3. **단순 OLS 진단 목적**: 이 결과는 "기초 OLS 진단"으로 해석하며, causal 또는 robust evidence로 단정하지 않음.
+1. **Classifier limitation**: domain-adapted TF-IDF LogReg 예측값 기반. 동일 코퍼스 훈련으로 leakage risk 존재.
+2. **Controls 미포함**: text_length, hashtag_count, mention_count 미통제. M2 Firm FE는 기업 수준 고정 이질성을 흡수하지만 시간 FE 및 포스트 속성은 여전히 미통제.
+3. **단순 OLS 진단 목적**: causal 또는 robust evidence가 아닌 preliminary diagnostic.
 """
     (OUT / "simple_ols_h1_h2_interpretation.md").write_text(interp_md, encoding="utf-8")
-    print(f"  → simple_ols_h1_h2_interpretation.md")
+    print("  → simple_ols_h1_h2_interpretation.md")
 
-    # 9. Summary
+    # ── Console summary ───────────────────────────────────────────────────
     print("\n=== CONTRAST SUMMARY ===")
-    for cr in contrast_rows:
-        print(f"  [{cr['hypothesis']}] {cr['contrast_label']}")
-        print(f"    estimate={cr['estimate']}  SE={cr['se']}  "
-              f"t={cr['t_stat']}  p={cr['p_value_two_sided']}  {cr['stars']}")
-        print(f"    → {cr['interpretation']}")
+    for r in all_ct:
+        print(f"  [{r['model']}] [{r['hypothesis']}] {r['contrast_label']}")
+        print(f"    est={r['estimate']}  SE={r['se']}  t={r['t_stat']}  "
+              f"p={r['p_value_two_sided']}  {r['stars']}")
+        print(f"    → {r['interpretation']}")
 
-    print(f"\n  H2-2 종합: {h22_verdict}")
     print("\n=== run_simple_ols_h1_h2_only COMPLETE ===")
 
 
