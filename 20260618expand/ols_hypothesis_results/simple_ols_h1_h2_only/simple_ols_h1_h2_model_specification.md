@@ -7,28 +7,28 @@ log(1+Engagement_i) = β₀ + β₁·Aggressive + β₂·Affiliative
                     + β₃·SelfEnhancing + β₄·SelfDefeating + ε_i
 ```
 
-## M2 Firm FE (FWL within-firm demeaning)
+## M2 기업 더미 변수 OLS (Simple OLS + 99 firm dummies, no intercept)
 
 ```
 log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
                     + β₃·SelfEnhancing + β₄·SelfDefeating
-                    + μ_f + ε_i
+                    + Σ(f=1~99) γ_f · D_firm_f + ε_i
 ```
 
-μ_f absorbed via within-firm demeaning (FWL). No intercept after demeaning.
+인터셉트 없음 (기업 더미 99개가 흡수). reference 기업 없음 (all 99 included).
 
 | Item | M1 | M2 |
 |:---|:---|:---|
 | DV | log_total_engagement | log_total_engagement |
 | Reference category | non_humorous (omitted) | non_humorous (omitted) |
 | Controls | NONE | NONE |
-| Firm FE | NONE | YES (FWL) |
+| Firm dummies | NONE | 99개 (no reference, no intercept) |
 | Time FE | NONE | NONE |
 | H3 variables | EXCLUDED | EXCLUDED |
 | N | 68,039 | 68,039 |
-| Firms | — | 99 |
+| k | 5 | 103 |
 | df_resid | 68,034 | 67,936 |
-| SE type | Classical OLS | Classical OLS (FWL-adjusted df) |
+| SE type | Classical OLS | Classical OLS |
 
 ## Identification Rules
 
@@ -36,7 +36,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 2. non_humorous dummy not included in regression
 3. HumorPresence dummy not included (avoids perfect multicollinearity)
 4. No company_id numeric covariate
-5. M2 firm FE: within-firm demeaning — df_resid = N − N_firms − k_within
+5. M2 firm dummies: 99개 더미 직접 포함, 인터셉트 제거 (dummy variable trap 방지)
 
 ## Data Source
 

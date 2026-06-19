@@ -258,34 +258,24 @@ def main() -> None:
         print(f"  {fn:<22} β={b1[i]:+.4f}  SE={s1[i]:.4f}  t={t1[i]:+.4f}  {p_stars(p1[i])}")
 
     # ════════════════════════════════════════════════════════════════════════
-    # M2: Firm FE via FWL within-firm demeaning
+    # M2: Simple OLS + 기업 더미 변수 (99개, 인터셉트 없음)
     # ════════════════════════════════════════════════════════════════════════
     firm_groups = [r["company_name"] for r in rows]
+    D_firm, firm_cats = make_dummies(firm_groups, ref=None)
+    n_firm_dummies = len(firm_cats)  # 99
 
-    # demean DV and all 4 IVs by firm
-    mat = np.column_stack([y,
-                           [to_f(r["aggressive_humor"])    for r in rows],
-                           [to_f(r["affiliative_humor"])   for r in rows],
-                           [to_f(r["self_enhancing_humor"])for r in rows],
-                           [to_f(r["self_defeating_humor"])for r in rows]])
-    mat_dm = demean_by_group(mat, firm_groups)
+    agg_arr = np.array([to_f(r["aggressive_humor"])     for r in rows])
+    aff_arr = np.array([to_f(r["affiliative_humor"])    for r in rows])
+    se_arr  = np.array([to_f(r["self_enhancing_humor"]) for r in rows])
+    sd_arr  = np.array([to_f(r["self_defeating_humor"]) for r in rows])
 
-    y_dm  = mat_dm[:, 0]
-    X_dm  = mat_dm[:, 1:]           # no intercept after demeaning
+    # [agg, aff, se, sd, D_firm(99)] — no intercept (firm dummies absorb it)
+    X_m2 = np.column_stack([agg_arr, aff_arr, se_arr, sd_arr, D_firm])
+    b2, v2, s2, t2, p2, n2, k2, r2_2, r2a_2, df2 = ols_fit(X_m2, y)
     fn_m2 = ["aggressive", "affiliative", "self_enhancing", "self_defeating"]
 
-    # df_resid = n - n_firms - k_within (FWL accounts for firm FE parameters)
-    df2 = n_tot - n_firms - len(fn_m2)
-    # R²_within: based on within-firm SS
-    ss_within_tot = np.sum(y_dm ** 2)
-
-    b2, v2, s2, t2, p2, n2, k2, _, _, _ = ols_fit(X_dm, y_dm, df_override=df2)
-    resid_dm = y_dm - X_dm @ b2
-    r2_within = 1.0 - (resid_dm @ resid_dm) / ss_within_tot
-    r2a_2 = 1.0 - (1.0 - r2_within) * (n_tot - 1) / df2
-
-    print(f"\nM2 Firm FE (FWL): N={n_tot:,} firms={n_firms} k_within={len(fn_m2)}"
-          f" df={df2:,} R²_within={r2_within:.4f}")
+    print(f"\nM2 Firm dummies OLS: N={n2:,} firm_dummies={n_firm_dummies} k={k2} df={df2:,}"
+          f" R²={r2_2:.4f} adj-R²={r2a_2:.4f}")
     for i, fn in enumerate(fn_m2):
         print(f"  {fn:<22} β={b2[i]:+.4f}  SE={s2[i]:.4f}  t={t2[i]:+.4f}  {p_stars(p2[i])}")
 
@@ -313,16 +303,10 @@ def main() -> None:
         print(f"  {fn:<22} β={b3[i]:+.4f}  SE={s3[i]:.4f}  t={t3[i]:+.4f}  {p_stars(p3[i])}")
 
     # ════════════════════════════════════════════════════════════════════════
-    # M4: Firm FE + Time FE (all 99 firm dummies, no intercept, no reference)
+    # M4: 기업 더미 + 시간 FE (all 99 firm dummies, no intercept)
     # ════════════════════════════════════════════════════════════════════════
-    D_firm, firm_cats = make_dummies([r["company_name"] for r in rows], ref=None)
-    n_firm_dummies = len(firm_cats)  # 99
-
+    # D_firm, agg_arr, aff_arr, se_arr, sd_arr already built in M2
     # No intercept: [agg, aff, se, sd, D_firm(99), D_year(13 ref=2015), D_month(11 ref=01)]
-    agg_arr = np.array([to_f(r["aggressive_humor"])     for r in rows])
-    aff_arr = np.array([to_f(r["affiliative_humor"])    for r in rows])
-    se_arr  = np.array([to_f(r["self_enhancing_humor"]) for r in rows])
-    sd_arr  = np.array([to_f(r["self_defeating_humor"]) for r in rows])
     X_m4 = np.column_stack([agg_arr, aff_arr, se_arr, sd_arr, D_firm, D_year, D_month])
     b4, v4, s4, t4, p4, n4, k4, r2_4, r2a_4, df4 = ols_fit(X_m4, y)
 
@@ -350,14 +334,15 @@ def main() -> None:
         })
     for i, fn in enumerate(fn_m2):
         reg_rows.append({
-            "model": "M2_firm_fe_fwl", "variable": fn,
+            "model": "M2_firm_dummies", "variable": fn,
             "coefficient": f"{b2[i]:.6f}", "classical_ols_se": f"{s2[i]:.6f}",
             "t_stat": f"{t2[i]:.4f}", "p_value_two_sided": f"{p2[i]:.6f}",
             "stars": p_stars(p2[i]),
-            "n_obs": n_tot, "r_squared": f"{r2_within:.6f}", "r_squared_adj": f"{r2a_2:.6f}",
+            "n_obs": n2, "r_squared": f"{r2_2:.6f}", "r_squared_adj": f"{r2a_2:.6f}",
             "df_resid": df2, "n_firms": n_firms,
             "reference_category": "non_humorous",
-            "controls_included": "false", "fixed_effects": "firm (FWL within-demeaning)",
+            "controls_included": "false",
+            "fixed_effects": f"firm_dummies({n_firm_dummies} all, no reference, no intercept)",
             "h3_variables_included": "false",
             "classifier_limitation": CLASSIFIER_NOTE,
         })
@@ -399,9 +384,9 @@ def main() -> None:
     ct_m1 = run_contrasts(beta_iv_m1, vcov_iv_m1, df1,
                           w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M1_simple_ols")
 
-    # M2: beta already [agg,aff,se,sd]
-    ct_m2 = run_contrasts(b2, v2, df2,
-                          w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M2_firm_fe_fwl")
+    # M2: beta[0:4] = [agg,aff,se,sd]; vcov[0:4,0:4]
+    ct_m2 = run_contrasts(b2[0:4], v2[0:4, 0:4], df2,
+                          w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M2_firm_dummies")
 
     # M3: beta[1:5] = [agg,aff,se,sd]; vcov[1:5,1:5]
     ct_m3 = run_contrasts(b3[1:5], v3[1:5, 1:5], df3,
@@ -424,28 +409,28 @@ log(1+Engagement_i) = β₀ + β₁·Aggressive + β₂·Affiliative
                     + β₃·SelfEnhancing + β₄·SelfDefeating + ε_i
 ```
 
-## M2 Firm FE (FWL within-firm demeaning)
+## M2 기업 더미 변수 OLS (Simple OLS + 99 firm dummies, no intercept)
 
 ```
 log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
                     + β₃·SelfEnhancing + β₄·SelfDefeating
-                    + μ_f + ε_i
+                    + Σ(f=1~99) γ_f · D_firm_f + ε_i
 ```
 
-μ_f absorbed via within-firm demeaning (FWL). No intercept after demeaning.
+인터셉트 없음 (기업 더미 99개가 흡수). reference 기업 없음 (all 99 included).
 
 | Item | M1 | M2 |
 |:---|:---|:---|
 | DV | log_total_engagement | log_total_engagement |
 | Reference category | non_humorous (omitted) | non_humorous (omitted) |
 | Controls | NONE | NONE |
-| Firm FE | NONE | YES (FWL) |
+| Firm dummies | NONE | 99개 (no reference, no intercept) |
 | Time FE | NONE | NONE |
 | H3 variables | EXCLUDED | EXCLUDED |
-| N | {n_tot:,} | {n_tot:,} |
-| Firms | — | {n_firms} |
+| N | {n_tot:,} | {n2:,} |
+| k | {k1} | {k2} |
 | df_resid | {df1:,} | {df2:,} |
-| SE type | Classical OLS | Classical OLS (FWL-adjusted df) |
+| SE type | Classical OLS | Classical OLS |
 
 ## Identification Rules
 
@@ -453,7 +438,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 2. non_humorous dummy not included in regression
 3. HumorPresence dummy not included (avoids perfect multicollinearity)
 4. No company_id numeric covariate
-5. M2 firm FE: within-firm demeaning — df_resid = N − N_firms − k_within
+5. M2 firm dummies: 99개 더미 직접 포함, 인터셉트 제거 (dummy variable trap 방지)
 
 ## Data Source
 
@@ -504,20 +489,20 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 
 ## 2. 회귀 결과
 
-|  | M1 Simple OLS | M2 Firm FE (FWL) |
+|  | M1 Simple OLS | M2 Firm dummies |
 |:---|:---:|:---:|
 | Aggressive (β₁) | {b1[1]:+.4f}{p_stars(p1[1])} ({s1[1]:.4f}) | {b2[0]:+.4f}{p_stars(p2[0])} ({s2[0]:.4f}) |
 | Affiliative (β₂) | {b1[2]:+.4f}{p_stars(p1[2])} ({s1[2]:.4f}) | {b2[1]:+.4f}{p_stars(p2[1])} ({s2[1]:.4f}) |
 | Self-Enhancing (β₃) | {b1[3]:+.4f}{p_stars(p1[3])} ({s1[3]:.4f}) | {b2[2]:+.4f}{p_stars(p2[2])} ({s2[2]:.4f}) |
 | Self-Defeating (β₄) | {b1[4]:+.4f}{p_stars(p1[4])} ({s1[4]:.4f}) | {b2[3]:+.4f}{p_stars(p2[3])} ({s2[3]:.4f}) |
-| Intercept | {b1[0]:+.4f} | absorbed |
-| N | {n_tot:,} | {n_tot:,} |
+| Intercept | {b1[0]:+.4f} | — (absorbed by firm dummies) |
+| N | {n_tot:,} | {n2:,} |
 | Firms | — | {n_firms} |
-| R² | {r2_1:.4f} | {r2_within:.4f} (within) |
+| R² | {r2_1:.4f} | {r2_2:.4f} |
 | adj-R² | {r2a_1:.4f} | {r2a_2:.4f} |
 | df_resid | {df1:,} | {df2:,} |
 | Controls | none | none |
-| Firm FE | no | yes (FWL) |
+| Firm dummies | no | 99개 (no reference, no intercept) |
 
 *괄호 = classical OLS SE. *** p<.01 / ** p<.05 / * p<.10 (two-sided)*
 
@@ -528,7 +513,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 | 모델 | 추정치 | SE | t | p | Stars | 판정 |
 |:---|---:|---:|---:|---:|:---:|:---|
 """
-    for ml in ["M1_simple_ols", "M2_firm_fe_fwl", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
+    for ml in ["M1_simple_ols", "M2_firm_dummies", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
         r = ct_row(ml, "H1_humor_avg_vs_nonhumor")
         interp_md += f"| {ml} | {r['estimate']} | {r['se']} | {r['t_stat']} | {r['p_value_two_sided']} | {r['stars']} | {r['interpretation']} |\n"
 
@@ -540,7 +525,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 | 모델 | 추정치 | SE | t | p | Stars | 판정 |
 |:---|---:|---:|---:|---:|:---:|:---|
 """
-    for ml in ["M1_simple_ols", "M2_firm_fe_fwl", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
+    for ml in ["M1_simple_ols", "M2_firm_dummies", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
         r = ct_row(ml, "H2_1_aggressive_vs_other")
         interp_md += f"| {ml} | {r['estimate']} | {r['se']} | {r['t_stat']} | {r['p_value_two_sided']} | {r['stars']} | {r['interpretation']} |\n"
 
@@ -552,7 +537,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 | 모델 | Contrast | 추정치 | SE | t | p | Stars | 판정 |
 |:---|:---|---:|---:|---:|---:|:---:|:---|
 """
-    for ml in ["M1_simple_ols", "M2_firm_fe_fwl", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
+    for ml in ["M1_simple_ols", "M2_firm_dummies", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
         for tk, lbl in [
             ("H2_2a_aggressive_vs_affiliative",    "agg vs aff"),
             ("H2_2b_aggressive_vs_self_enhancing", "agg vs se"),
@@ -565,7 +550,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
     interp_md += f"""
 **H2-2 종합**:
 - M1 Simple OLS:        {h22_verdict(all_ct, 'M1_simple_ols')}
-- M2 Firm FE (FWL):     {h22_verdict(all_ct, 'M2_firm_fe_fwl')}
+- M2 Firm FE (FWL):     {h22_verdict(all_ct, 'M2_firm_dummies')}
 - M3 Time FE:           {h22_verdict(all_ct, 'M3_time_fe_year_month')}
 - M4 Firm+Time FE:      {h22_verdict(all_ct, 'M4_firm_year_month_fe')}
 

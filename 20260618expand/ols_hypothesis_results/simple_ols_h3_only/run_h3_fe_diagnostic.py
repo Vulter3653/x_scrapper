@@ -224,37 +224,30 @@ def main() -> None:
                               obs_min, obs_max, "M1_simple_ols"))
 
     # ════════════════════════════════════════════════════════════════════════
-    # M2: Firm FE (FWL within-demeaning)
+    # M2: Simple OLS + 기업 더미 변수 (99개, 인터셉트 없음)
     # ════════════════════════════════════════════════════════════════════════
-    mat = np.column_stack([y, x1, x2])
-    mat_dm = demean_by_group(mat, firm_groups)
-    y_dm  = mat_dm[:, 0]
-    X2_dm = mat_dm[:, 1:]   # no intercept
-    k_within = 2
-    df2 = n_obs - n_firms - k_within
-    ss_within = np.sum(y_dm ** 2)
-
-    b2, v2, s2, t2, p2, n2, k2, _, _, _, resid2 = ols_fit(X2_dm, y_dm, df_override=df2)
-    r2_2  = 1.0 - (resid2 @ resid2) / ss_within
-    ra2   = 1.0 - (1.0 - r2_2) * (n_obs - 1) / df2
+    # D_firm already built above (line ~188, ref=None, 99 firms)
+    X2 = np.column_stack([x1, x2, D_firm])   # no intercept
+    b2, v2, s2, t2, p2, n2, k2, r2_2, ra2, df2, _ = ols_fit(X2, y)
     fn2 = ["aggressive_intensity", "aggressive_intensity_sq"]
 
-    print(f"\nM2 Firm FE (FWL): N={n_obs} firms={n_firms} k_within={k_within} df={df2} R²_within={r2_2:.4f}")
+    print(f"\nM2 Firm dummies OLS: N={n2} firm_dummies={n_fd} k={k2} df={df2} R²={r2_2:.4f} adj-R²={ra2:.4f}")
     for i, fn in enumerate(fn2):
         print(f"  {fn:<28} β={b2[i]:+.4f}  SE={s2[i]:.4f}  t={t2[i]:+.4f}  {p_stars(p2[i])}")
 
     for i, fn in enumerate(fn2):
         reg_rows.append({
-            "model": "M2_firm_fe_fwl", "variable": fn,
+            "model": "M2_firm_dummies", "variable": fn,
             "coefficient": f"{b2[i]:.6f}", "classical_ols_se": f"{s2[i]:.6f}",
             "t_stat": f"{t2[i]:.4f}", "p_value_two_sided": f"{p2[i]:.6f}",
             "stars": p_stars(p2[i]),
-            "n_obs": n_obs, "r_squared": f"{r2_2:.6f}", "r_squared_adj": f"{ra2:.6f}",
+            "n_obs": n2, "r_squared": f"{r2_2:.6f}", "r_squared_adj": f"{ra2:.6f}",
             "df_resid": df2, "n_firms": n_firms,
-            "fixed_effects": "firm (FWL within-demeaning)", "classifier_limitation": CLASSIFIER_NOTE,
+            "fixed_effects": f"firm_dummies({n_fd} all, no reference, no intercept)",
+            "classifier_limitation": CLASSIFIER_NOTE,
         })
     diag_rows.append(h3_diag(float(b2[0]), float(b2[1]), float(p2[1]),
-                              obs_min, obs_max, "M2_firm_fe_fwl"))
+                              obs_min, obs_max, "M2_firm_dummies"))
 
     # ════════════════════════════════════════════════════════════════════════
     # M3: Time FE (year + month dummies, explicit)
