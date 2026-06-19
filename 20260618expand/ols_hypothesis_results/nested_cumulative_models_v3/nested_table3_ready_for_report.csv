@@ -1,0 +1,43 @@
+sample,variable,type,Model1,Model2,Model3,Model4
+Full_sample,intercept,coef_se,+3.3793*** (0.0481),+5.8202*** (0.2134),+7.6149*** (1.4358),+6.2690*** (0.7365)
+Full_sample,AggressiveIntensity,coef_se,+12.6198*** (0.8947),+9.4838*** (0.9849),+9.0797*** (0.9636),+0.3813 (0.6192)
+Full_sample,AggressiveIntensity_sq,coef_se,-11.2572*** (2.0001),-10.3382*** (1.9569),-9.4655*** (1.9057),-0.5488 (1.0183)
+Full_sample,mean_text_length,coef_se,—,-0.0062*** (0.0009),-0.0087*** (0.0009),-0.0014** (0.0006)
+Full_sample,mean_hashtag_count,coef_se,—,-0.5500*** (0.0801),-0.4229*** (0.0805),+0.1240** (0.0546)
+Full_sample,mean_mention_count,coef_se,—,+0.2249*** (0.0858),+0.2749*** (0.0838),-0.0174 (0.0497)
+Full_sample,log_total_posts,coef_se,—,-0.2730*** (0.0358),-0.2380*** (0.0356),-0.3145*** (0.0215)
+Full_sample,--- Specification ---,header,,,,
+Full_sample,Controls,spec,No,Yes,Yes,Yes
+Full_sample,Time FE (Year + QoY),spec,No,No,Yes,Yes
+Full_sample,Company dummies (ref=Amazon),spec,No,No,No,Yes
+Full_sample,N_fq,stat,1420,1420,1420,1420
+Full_sample,k,stat,3,7,23,121
+Full_sample,df,stat,1417,1413,1397,1299
+Full_sample,R2,stat,0.1884,0.2923,0.3421,0.8588
+Full_sample,adjR2,stat,0.1873,0.2893,0.3317,0.8458
+Full_sample,TP,stat,0.5605,0.4587,0.4796,0.3474
+Full_sample,H3,stat,True,True,True,False
+Full_sample,beta1,stat,+12.6198***,+9.4838***,+9.0797***,+0.3813
+Full_sample,beta2,stat,-11.2572***,-10.3382***,-9.4655***,-0.5488
+Full_sample,H3_supported,support,True,True,True,False
+Human_coded,intercept,coef_se,+3.6739*** (0.0709),+4.1269*** (0.2381),+3.2888*** (1.1253),+3.0158** (1.4654)
+Human_coded,AggressiveIntensity,coef_se,+7.3491*** (1.3643),+4.2261*** (1.4332),+3.2246** (1.3860),+0.1956 (0.8035)
+Human_coded,AggressiveIntensity_sq,coef_se,-6.2526*** (1.7383),-3.1763* (1.7956),-2.0352 (1.7349),-0.4262 (0.9969)
+Human_coded,mean_text_length,coef_se,—,-0.0032*** (0.0008),-0.0043*** (0.0008),+0.0005 (0.0006)
+Human_coded,mean_hashtag_count,coef_se,—,-0.4400*** (0.0929),-0.3489*** (0.0926),+0.0891 (0.0595)
+Human_coded,mean_mention_count,coef_se,—,+0.0099 (0.1011),+0.1192 (0.0984),-0.0227 (0.0582)
+Human_coded,log_total_posts,coef_se,—,+0.3708*** (0.1116),+0.5354*** (0.1101),-0.1553* (0.0808)
+Human_coded,--- Specification ---,header,,,,
+Human_coded,Controls,spec,No,Yes,Yes,Yes
+Human_coded,Time FE (Year + QoY),spec,No,No,Yes,Yes
+Human_coded,Company dummies (ref=Amazon),spec,No,No,No,Yes
+Human_coded,N_fq,stat,925,925,925,925
+Human_coded,k,stat,3,7,21,118
+Human_coded,df,stat,922,918,904,807
+Human_coded,R2,stat,0.0401,0.0988,0.1856,0.7977
+Human_coded,adjR2,stat,0.038,0.0929,0.1676,0.7684
+Human_coded,TP,stat,0.5877,0.6652,0.7922,0.2295
+Human_coded,H3,stat,True,True,False,False
+Human_coded,beta1,stat,+7.3491***,+4.2261***,+3.2246**,+0.1956
+Human_coded,beta2,stat,-6.2526***,-3.1763*,-2.0352,-0.4262
+Human_coded,H3_supported,support,True,True,False,False

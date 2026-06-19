@@ -1,0 +1,9 @@
+model,n_fq,k,matrix_rank,df_resid,condition_number,rank_deficient,beta1,beta1_se,beta1_t,beta1_p,beta1_stars,beta2,beta2_se,beta2_t,beta2_p,beta2_stars,turning_point,obs_min,obs_max,tp_in_obs_range,H3_supported,r_squared,adj_r_squared,inc_controls,inc_time,inc_company
+M1_Full_sample,1420,3,3,1417,51.22,False,12.619846,0.894671,14.1056,0.0,***,-11.257243,2.000117,-5.6283,0.0,***,0.560521,0.0,1.0,True,True,0.1884,0.187255,False,False,False
+M2_Full_sample,1420,7,7,1413,10934.5,False,9.483818,0.984949,9.6287,0.0,***,-10.338158,1.956949,-5.2828,0.0,***,0.45868,0.0,1.0,True,True,0.29234,0.289335,True,False,False
+M3_Full_sample,1420,23,23,1397,28620.17,False,9.079711,0.963599,9.4227,0.0,***,-9.465466,1.905708,-4.9669,1e-06,***,0.479623,0.0,1.0,True,True,0.342091,0.33173,True,True,False
+M4_Full_sample,1420,121,121,1299,29443.59,False,0.381347,0.619247,0.6158,0.538119,,-0.548842,1.018288,-0.539,0.58999,,0.347411,0.0,1.0,True,False,0.858809,0.845766,True,True,True
+M1_Human_coded,925,3,3,922,31.99,False,7.349133,1.364252,5.3869,0.0,***,-6.252584,1.738302,-3.5969,0.000339,***,0.587688,0.0,1.0,True,True,0.040065,0.037983,False,False,False
+M2_Human_coded,925,7,7,918,7257.78,False,4.226055,1.433168,2.9488,0.003272,***,-3.176324,1.795617,-1.7689,0.077237,*,0.665243,0.0,1.0,True,True,0.098778,0.092888,True,False,False
+M3_Human_coded,925,21,21,904,13066.04,False,3.224567,1.386016,2.3265,0.020212,**,-2.035208,1.734935,-1.1731,0.241075,,0.792196,0.0,1.0,True,False,0.185624,0.167607,True,True,False
+M4_Human_coded,925,118,118,807,33892.24,False,0.195619,0.803519,0.2435,0.807717,,-0.426237,0.996935,-0.4275,0.669094,,0.229471,0.0,1.0,True,False,0.797737,0.768413,True,True,True

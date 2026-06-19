@@ -1,0 +1,49 @@
+model,hypothesis,contrast,estimate,std_error,t_stat,p_value,stars,direction,support,n,inc_controls,inc_time,inc_company
+M1_Full_sample,H1,Weighted Humor Effect (vs non-humorous),1.166525,0.016733,69.7159,0.0,***,positive,supported,68039,False,False,False
+M1_Full_sample,H2-1,Aggressive − Other humor (weighted avg),0.849484,0.043381,19.5817,0.0,***,positive,supported,68039,False,False,False
+M1_Full_sample,H2-2,Aggressive − SELF (se+sd weighted avg),0.438443,0.047053,9.3181,0.0,***,positive,supported,68039,False,False,False
+M1_Full_sample,H2-3,Aggressive − Affiliative,1.113334,0.044931,24.779,0.0,***,positive,supported,68039,False,False,False
+M1_Full_sample,H2-3,Aggressive − Self-Enhancing,0.490074,0.047487,10.3203,0.0,***,positive,supported,68039,False,False,False
+M1_Full_sample,H2-3,Aggressive − Self-Defeating,-0.248261,0.097288,-2.5518,0.010718,**,negative,not_supported,68039,False,False,False
+M2_Full_sample,H1,Weighted Humor Effect (vs non-humorous),1.15332,0.017268,66.7887,0.0,***,positive,supported,68039,True,False,False
+M2_Full_sample,H2-1,Aggressive − Other humor (weighted avg),0.791973,0.043601,18.1639,0.0,***,positive,supported,68039,True,False,False
+M2_Full_sample,H2-2,Aggressive − SELF (se+sd weighted avg),0.414448,0.0471,8.7993,0.0,***,positive,supported,68039,True,False,False
+M2_Full_sample,H2-3,Aggressive − Affiliative,1.034308,0.045269,22.8482,0.0,***,positive,supported,68039,True,False,False
+M2_Full_sample,H2-3,Aggressive − Self-Enhancing,0.463414,0.047549,9.7459,0.0,***,positive,supported,68039,True,False,False
+M2_Full_sample,H2-3,Aggressive − Self-Defeating,-0.236813,0.096934,-2.443,0.014567,**,negative,not_supported,68039,True,False,False
+M3_Full_sample,H1,Weighted Humor Effect (vs non-humorous),1.109234,0.016698,66.4306,0.0,***,positive,supported,68039,True,True,False
+M3_Full_sample,H2-1,Aggressive − Other humor (weighted avg),0.820063,0.041916,19.5646,0.0,***,positive,supported,68039,True,True,False
+M3_Full_sample,H2-2,Aggressive − SELF (se+sd weighted avg),0.479996,0.045289,10.5985,0.0,***,positive,supported,68039,True,True,False
+M3_Full_sample,H2-3,Aggressive − Affiliative,1.038355,0.043508,23.8656,0.0,***,positive,supported,68039,True,True,False
+M3_Full_sample,H2-3,Aggressive − Self-Enhancing,0.540501,0.045738,11.8173,0.0,***,positive,supported,68039,True,True,False
+M3_Full_sample,H2-3,Aggressive − Self-Defeating,-0.324745,0.0931,-3.4881,0.000487,***,negative,not_supported,68039,True,True,False
+M4_Full_sample,H1,Weighted Humor Effect (vs non-humorous),0.221485,0.012011,18.4397,0.0,***,positive,supported,68039,True,True,True
+M4_Full_sample,H2-1,Aggressive − Other humor (weighted avg),0.113958,0.027457,4.1504,3.3e-05,***,positive,supported,68039,True,True,True
+M4_Full_sample,H2-2,Aggressive − SELF (se+sd weighted avg),0.10562,0.029572,3.5717,0.000355,***,positive,supported,68039,True,True,True
+M4_Full_sample,H2-3,Aggressive − Affiliative,0.119311,0.028541,4.1803,2.9e-05,***,positive,supported,68039,True,True,True
+M4_Full_sample,H2-3,Aggressive − Self-Enhancing,0.124577,0.029952,4.1593,3.2e-05,***,positive,supported,68039,True,True,True
+M4_Full_sample,H2-3,Aggressive − Self-Defeating,-0.146516,0.059694,-2.4544,0.014113,**,negative,not_supported,68039,True,True,True
+M1_Human_coded,H1,Weighted Humor Effect (vs non-humorous),1.263779,0.095375,13.2506,0.0,***,positive,supported,3574,False,False,False
+M1_Human_coded,H2-1,Aggressive − Other humor (weighted avg),1.821471,0.221865,8.2098,0.0,***,positive,supported,3574,False,False,False
+M1_Human_coded,H2-2,Aggressive − SELF (se+sd weighted avg),1.61348,0.238323,6.7701,0.0,***,positive,supported,3574,False,False,False
+M1_Human_coded,H2-3,Aggressive − Affiliative,1.995003,0.233444,8.5459,0.0,***,positive,supported,3574,False,False,False
+M1_Human_coded,H2-3,Aggressive − Self-Enhancing,1.697887,0.241357,7.0348,0.0,***,positive,supported,3574,False,False,False
+M1_Human_coded,H2-3,Aggressive − Self-Defeating,0.80763,0.435237,1.8556,0.063592,*,positive,supported,3574,False,False,False
+M2_Human_coded,H1,Weighted Humor Effect (vs non-humorous),1.215049,0.094133,12.9077,0.0,***,positive,supported,3574,True,False,False
+M2_Human_coded,H2-1,Aggressive − Other humor (weighted avg),1.57783,0.219186,7.1986,0.0,***,positive,supported,3574,True,False,False
+M2_Human_coded,H2-2,Aggressive − SELF (se+sd weighted avg),1.436493,0.234975,6.1134,0.0,***,positive,supported,3574,True,False,False
+M2_Human_coded,H2-3,Aggressive − Affiliative,1.695752,0.230892,7.3443,0.0,***,positive,supported,3574,True,False,False
+M2_Human_coded,H2-3,Aggressive − Self-Enhancing,1.497724,0.238121,6.2898,0.0,***,positive,supported,3574,True,False,False
+M2_Human_coded,H2-3,Aggressive − Self-Defeating,0.851905,0.427332,1.9935,0.046278,**,positive,supported,3574,True,False,False
+M3_Human_coded,H1,Weighted Humor Effect (vs non-humorous),1.008849,0.086618,11.6471,0.0,***,positive,supported,3574,True,True,False
+M3_Human_coded,H2-1,Aggressive − Other humor (weighted avg),1.468577,0.20085,7.3118,0.0,***,positive,supported,3574,True,True,False
+M3_Human_coded,H2-2,Aggressive − SELF (se+sd weighted avg),1.39096,0.215487,6.4549,0.0,***,positive,supported,3574,True,True,False
+M3_Human_coded,H2-3,Aggressive − Affiliative,1.533335,0.211322,7.2559,0.0,***,positive,supported,3574,True,True,False
+M3_Human_coded,H2-3,Aggressive − Self-Enhancing,1.489566,0.218526,6.8164,0.0,***,positive,supported,3574,True,True,False
+M3_Human_coded,H2-3,Aggressive − Self-Defeating,0.449549,0.38987,1.1531,0.248958,,positive,not_supported,3574,True,True,False
+M4_Human_coded,H1,Weighted Humor Effect (vs non-humorous),0.218941,0.054188,4.0404,5.5e-05,***,positive,supported,3574,True,True,True
+M4_Human_coded,H2-1,Aggressive − Other humor (weighted avg),0.333472,0.118629,2.811,0.004966,***,positive,supported,3574,True,True,True
+M4_Human_coded,H2-2,Aggressive − SELF (se+sd weighted avg),0.355166,0.127248,2.7911,0.005281,***,positive,supported,3574,True,True,True
+M4_Human_coded,H2-3,Aggressive − Affiliative,0.315372,0.124786,2.5273,0.011539,**,positive,supported,3574,True,True,True
+M4_Human_coded,H2-3,Aggressive − Self-Enhancing,0.41513,0.129253,3.2118,0.001331,***,positive,supported,3574,True,True,True
+M4_Human_coded,H2-3,Aggressive − Self-Defeating,-0.217319,0.226397,-0.9599,0.337172,,negative,not_supported,3574,True,True,True

@@ -1,0 +1,81 @@
+sample,variable,type,Model1,Model2,Model3,Model4
+Full_sample,intercept,coef_se,+3.1891*** (0.0095),+3.2937*** (0.0188),+6.4418*** (1.9546),+4.7735*** (1.2526)
+Full_sample,aggressive,coef_se,+1.9198*** (0.0420),+1.8556*** (0.0428),+1.8364*** (0.0412),+0.3225*** (0.0278)
+Full_sample,affiliative,coef_se,+0.8065*** (0.0210),+0.8213*** (0.0213),+0.7981*** (0.0205),+0.2032*** (0.0141)
+Full_sample,self_enhancing,coef_se,+1.4297*** (0.0260),+1.3922*** (0.0263),+1.2959*** (0.0254),+0.1980*** (0.0174)
+Full_sample,self_defeating,coef_se,+2.1681*** (0.0888),+2.0924*** (0.0888),+2.1612*** (0.0854),+0.4691*** (0.0556)
+Full_sample,text_length,coef_se,—,+0.0002*** (0.0001),-0.0004*** (0.0001),+0.0011*** (0.0000)
+Full_sample,hashtag_count,coef_se,—,-0.1855*** (0.0084),-0.1353*** (0.0081),+0.0789*** (0.0056)
+Full_sample,mention_count,coef_se,—,-0.0474*** (0.0082),-0.0287*** (0.0079),-0.1225*** (0.0053)
+Full_sample,--- Specification ---,header,,,,
+Full_sample,Controls,spec,No,Yes,Yes,Yes
+Full_sample,Time FE (Year + Month),spec,No,No,Yes,Yes
+Full_sample,Company dummies (ref=Amazon),spec,No,No,No,Yes
+Full_sample,N,stat,68039,68039,68039,68039
+Full_sample,k,stat,5,8,32,130
+Full_sample,df,stat,68034,68031,68007,67909
+Full_sample,R2,stat,0.0788,0.086,0.1585,0.6557
+Full_sample,adjR2,stat,0.0787,0.0859,0.1581,0.655
+Full_sample,--- Contrasts ---,header,,,,
+Full_sample,Weighted Humor Effect (vs non-humorous),contrast_est,+1.1665***,+1.1533***,+1.1092***,+0.2215***
+Full_sample,Aggressive − Other humor (weighted avg),contrast_est,+0.8495***,+0.7920***,+0.8201***,+0.1140***
+Full_sample,Aggressive − SELF (se+sd weighted avg),contrast_est,+0.4384***,+0.4144***,+0.4800***,+0.1056***
+Full_sample,Aggressive − Affiliative,contrast_est,+1.1133***,+1.0343***,+1.0384***,+0.1193***
+Full_sample,Aggressive − Self-Enhancing,contrast_est,+0.4901***,+0.4634***,+0.5405***,+0.1246***
+Full_sample,Aggressive − Self-Defeating,contrast_est,-0.2483**,-0.2368**,-0.3247***,-0.1465**
+Full_sample,--- H2 overall support ---,header,,,,
+Full_sample,H1_M1,hypothesis_result,supported,,,
+Full_sample,H2-1_M1,hypothesis_result,supported,,,
+Full_sample,H2-2_M1,hypothesis_result,supported,,,
+Full_sample,H1_M2,hypothesis_result,,supported,,
+Full_sample,H2-1_M2,hypothesis_result,,supported,,
+Full_sample,H2-2_M2,hypothesis_result,,supported,,
+Full_sample,H1_M3,hypothesis_result,,,supported,
+Full_sample,H2-1_M3,hypothesis_result,,,supported,
+Full_sample,H2-2_M3,hypothesis_result,,,supported,
+Full_sample,H1_M4,hypothesis_result,,,,supported
+Full_sample,H2-1_M4,hypothesis_result,,,,supported
+Full_sample,H2-2_M4,hypothesis_result,,,,supported
+Full_sample,H1_support,support,supported,supported,supported,supported
+Full_sample,H2-1_support,support,supported,supported,supported,supported
+Full_sample,H2-2_support,support,supported,supported,supported,supported
+Human_coded,intercept,coef_se,+3.8482*** (0.0599),+4.3930*** (0.0875),+3.6513** (1.4497),+3.1361** (1.4777)
+Human_coded,aggressive,coef_se,+2.8514*** (0.2156),+2.5903*** (0.2138),+2.2889*** (0.1965),+0.5096*** (0.1174)
+Human_coded,affiliative,coef_se,+0.8564*** (0.1232),+0.8946*** (0.1214),+0.7556*** (0.1112),+0.1942*** (0.0672)
+Human_coded,self_enhancing,coef_se,+1.1535*** (0.1376),+1.0926*** (0.1352),+0.7993*** (0.1242),+0.0945 (0.0763)
+Human_coded,self_defeating,coef_se,+2.0438*** (0.3874),+1.7384*** (0.3813),+1.8394*** (0.3480),+0.7269*** (0.2040)
+Human_coded,text_length,coef_se,—,-0.0008** (0.0003),-0.0015*** (0.0003),+0.0003** (0.0002)
+Human_coded,hashtag_count,coef_se,—,-0.5621*** (0.0559),-0.5338*** (0.0523),+0.1155*** (0.0340)
+Human_coded,mention_count,coef_se,—,-0.1985*** (0.0533),-0.0760 (0.0494),-0.1535*** (0.0295)
+Human_coded,--- Specification ---,header,,,,
+Human_coded,Controls,spec,No,Yes,Yes,Yes
+Human_coded,Time FE (Year + Month),spec,No,No,Yes,Yes
+Human_coded,Company dummies (ref=Amazon),spec,No,No,No,Yes
+Human_coded,N,stat,3574,3574,3574,3574
+Human_coded,k,stat,5,8,30,127
+Human_coded,df,stat,3569,3566,3544,3447
+Human_coded,R2,stat,0.0663,0.1013,0.2609,0.7634
+Human_coded,adjR2,stat,0.0653,0.0995,0.2549,0.7547
+Human_coded,--- Contrasts ---,header,,,,
+Human_coded,Weighted Humor Effect (vs non-humorous),contrast_est,+1.2638***,+1.2150***,+1.0088***,+0.2189***
+Human_coded,Aggressive − Other humor (weighted avg),contrast_est,+1.8215***,+1.5778***,+1.4686***,+0.3335***
+Human_coded,Aggressive − SELF (se+sd weighted avg),contrast_est,+1.6135***,+1.4365***,+1.3910***,+0.3552***
+Human_coded,Aggressive − Affiliative,contrast_est,+1.9950***,+1.6958***,+1.5333***,+0.3154**
+Human_coded,Aggressive − Self-Enhancing,contrast_est,+1.6979***,+1.4977***,+1.4896***,+0.4151***
+Human_coded,Aggressive − Self-Defeating,contrast_est,+0.8076*,+0.8519**,+0.4495,-0.2173
+Human_coded,--- H2 overall support ---,header,,,,
+Human_coded,H1_M1,hypothesis_result,supported,,,
+Human_coded,H2-1_M1,hypothesis_result,supported,,,
+Human_coded,H2-2_M1,hypothesis_result,supported,,,
+Human_coded,H1_M2,hypothesis_result,,supported,,
+Human_coded,H2-1_M2,hypothesis_result,,supported,,
+Human_coded,H2-2_M2,hypothesis_result,,supported,,
+Human_coded,H1_M3,hypothesis_result,,,supported,
+Human_coded,H2-1_M3,hypothesis_result,,,supported,
+Human_coded,H2-2_M3,hypothesis_result,,,supported,
+Human_coded,H1_M4,hypothesis_result,,,,supported
+Human_coded,H2-1_M4,hypothesis_result,,,,supported
+Human_coded,H2-2_M4,hypothesis_result,,,,supported
+Human_coded,H1_support,support,supported,supported,supported,supported
+Human_coded,H2-1_support,support,supported,supported,supported,supported
+Human_coded,H2-2_support,support,supported,supported,supported,supported

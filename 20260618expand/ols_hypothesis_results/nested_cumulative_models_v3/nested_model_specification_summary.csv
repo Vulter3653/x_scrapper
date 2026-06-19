@@ -1,0 +1,5 @@
+model_number,label,humor_vars,controls,time_dummies,company_dummies
+1,Model 1: Simple OLS,Yes,No,No,No
+2,Model 2: + Controls,Yes,"Yes (text_length, hashtag_count, mention_count)",No,No
+3,Model 3: + Controls + Time,Yes,Yes,H1/H2: Year+Month;  H3: Year+QoY,No
+4,Model 4: Full Spec (+ Company dummies),Yes,Yes,H1/H2: Year+Month;  H3: Year+QoY,Yes (98 dummies; ref=Amazon)
