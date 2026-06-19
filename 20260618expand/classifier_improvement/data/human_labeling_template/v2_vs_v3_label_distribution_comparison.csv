@@ -1,0 +1,11 @@
+metric,v2,v3,delta
+total_rows,3095,3595,500
+binary_training_eligible,3077,3574,497
+presence_0_non_humorous,1741,2133,392
+presence_1_humorous,1336,1441,105
+presence_2_ambiguous,18,21,3
+type_training_eligible,1305,1410,105
+type_1_aggressive,175,181,6
+type_2_affiliative,616,670,54
+type_3_self_enhancing,465,506,41
+type_4_self_defeating,49,53,4

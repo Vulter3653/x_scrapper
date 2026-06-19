@@ -1,0 +1,2 @@
+n_labels,n_splits,macro_f1,weighted_f1,overall_acc,label_dist,aggressive_precision,aggressive_recall,aggressive_f1,affiliative_precision,affiliative_recall,affiliative_f1,self_enhancing_precision,self_enhancing_recall,self_enhancing_f1,self_defeating_precision,self_defeating_recall,self_defeating_f1
+1410,5,0.3738,0.519,0.5213,"{'self_enhancing': 506, 'aggressive': 181, 'self_defeating': 53, 'affiliative': 670}",0.2986,0.3481,0.3214,0.6267,0.6239,0.6253,0.498,0.498,0.498,0.0769,0.0377,0.0506

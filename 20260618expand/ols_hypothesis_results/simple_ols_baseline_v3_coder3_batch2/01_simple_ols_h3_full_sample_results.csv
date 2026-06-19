@@ -1,0 +1,4 @@
+model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared,df_residual
+Full_sample_H3,intercept,3.379346,0.048144,70.1926,0.0,***,1420,0.1884,0.187255,1417
+Full_sample_H3,AggressiveIntensity,12.619846,0.894671,14.1056,0.0,***,1420,0.1884,0.187255,1417
+Full_sample_H3,AggressiveIntensity_sq,-11.257243,2.000117,-5.6283,0.0,***,1420,0.1884,0.187255,1417
