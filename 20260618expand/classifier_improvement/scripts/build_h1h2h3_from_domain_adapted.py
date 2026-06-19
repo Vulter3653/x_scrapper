@@ -163,9 +163,9 @@ def main() -> None:
         w.writerows(h2_rows)
     print(f"H2 → {OUT_H2.name}")
 
-    # H3 firm-month panel (fortune100 only, from H1 fortune100 subset)
-    h3_base = [r for r in h1_rows if r["source_dataset"] == "fortune100"]
-    print(f"\nH3 base (fortune100 H1 subset): {len(h3_base)}")
+    # H3 firm-month panel (all 68,039 posts, consistent with H1/H2)
+    h3_base = h1_rows
+    print(f"\nH3 base (all integrated corpus): {len(h3_base)}")
 
     panel: dict[tuple, dict] = {}
     for r in h3_base:

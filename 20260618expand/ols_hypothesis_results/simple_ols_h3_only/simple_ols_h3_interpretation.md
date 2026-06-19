@@ -11,16 +11,16 @@ This file reports H3 only. H1 and H2 are not analyzed. Controls and fixed effect
 ## Sample
 
 - Unit of analysis: firm x month
-- N: 3,532
-- Firms: 97
-- Months: 130
+- N: 3,769
+- Firms: 99
+- Months: 133
 - Aggressive intensity range: [0.000000, 1.000000]
 
 ## Simple Quadratic OLS Result
 
-- beta1 aggressive_intensity: 6.414502 (p=0.000000, ***)
-- beta2 aggressive_intensity_sq: -6.402879 (p=0.000000, ***)
-- turning point: 0.500908
+- beta1 aggressive_intensity: 10.044421 (p=0.000000, ***)
+- beta2 aggressive_intensity_sq: -8.244646 (p=0.000000, ***)
+- turning point: 0.609148
 - turning point in observed range: true
 - pattern: inverted-U
 - H3_supported: true
