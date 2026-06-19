@@ -1,0 +1,6 @@
+model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared,df_residual,controls_included,fixed_effects_included
+V2_human_coded_simple_OLS,intercept,3.891551,0.067022,58.0635,0.0,***,3046,0.068095,0.066869,3041,false,false
+V2_human_coded_simple_OLS,aggressive,2.815192,0.221768,12.6943,0.0,***,3046,0.068095,0.066869,3041,false,false
+V2_human_coded_simple_OLS,affiliative,0.837648,0.131102,6.3893,0.0,***,3046,0.068095,0.066869,3041,false,false
+V2_human_coded_simple_OLS,self_enhancing,1.115856,0.145981,7.6439,0.0,***,3046,0.068095,0.066869,3041,false,false
+V2_human_coded_simple_OLS,self_defeating,2.075493,0.405087,5.1236,0.0,***,3046,0.068095,0.066869,3041,false,false

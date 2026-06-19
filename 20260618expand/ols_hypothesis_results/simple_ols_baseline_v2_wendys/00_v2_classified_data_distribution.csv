@@ -1,0 +1,13 @@
+category,label,n,pct
+v2_full_sample_presence,0,44707,65.7079
+v2_full_sample_presence,1,23332,34.2921
+v2_full_sample_type,non_humorous,44707,65.7079
+v2_full_sample_type,affiliative,12746,18.7334
+v2_full_sample_type,self_enhancing,7563,11.1157
+v2_full_sample_type,aggressive,2752,4.0447
+v2_full_sample_type,self_defeating,271,0.3983
+v2_training_labels,0,1741,57.1569
+v2_training_labels,1,175,5.7452
+v2_training_labels,2,616,20.2232
+v2_training_labels,3,465,15.2659
+v2_training_labels,4,49,1.6087

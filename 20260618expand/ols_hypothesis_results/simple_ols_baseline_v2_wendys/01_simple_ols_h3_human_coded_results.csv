@@ -1,0 +1,4 @@
+model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared,df_residual,unit_of_analysis,controls_included,fixed_effects_included
+V2_human_coded_H3,intercept,3.667345,0.072574,50.5326,0.0,***,872,0.042224,0.04002,869,firm-quarter,false,false
+V2_human_coded_H3,aggressive_intensity,7.627229,1.364059,5.5916,0.0,***,872,0.042224,0.04002,869,firm-quarter,false,false
+V2_human_coded_H3,aggressive_intensity_sq,-6.758789,1.587899,-4.2564,2.3e-05,***,872,0.042224,0.04002,869,firm-quarter,false,false

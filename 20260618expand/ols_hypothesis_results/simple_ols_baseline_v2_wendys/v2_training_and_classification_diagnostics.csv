@@ -1,0 +1,10 @@
+metric,value
+human_coded_rows_matched_to_corpus,3046
+presence_humor_rows,1305
+presence_non_humor_rows,1741
+presence_training_rows,3046
+type_train_affiliative,616
+type_train_aggressive,175
+type_train_self_defeating,49
+type_train_self_enhancing,465
+type_training_rows,1305

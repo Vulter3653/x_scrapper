@@ -1,0 +1,3 @@
+H3_supported,adj_r_squared,beta1_intensity,beta1_p,beta2_intensity_sq,beta2_p,controls_included,fixed_effects_included,model,n_firm_quarters,observed_intensity_max,observed_intensity_min,pattern,r_squared,turning_point,turning_point_in_observed_range,unit_of_analysis
+true,0.196055,10.59015,0.0,-7.841834,2.5e-05,false,false,V2_full_sample_H3,1420,1.0,0.0,inverted-U,0.197188,0.675234,true,firm-quarter
+true,0.04002,7.627229,0.0,-6.758789,2.3e-05,false,false,V2_human_coded_H3,872,1.0,0.0,inverted-U,0.042224,0.564245,true,firm-quarter
