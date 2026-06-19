@@ -1,0 +1,8 @@
+model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared
+Full_sample_H3_Ctrl,intercept,5.820154,0.213371,27.2772,0.0,***,1420,0.29234,0.289335
+Full_sample_H3_Ctrl,AggressiveIntensity,9.483818,0.984949,9.6287,0.0,***,1420,0.29234,0.289335
+Full_sample_H3_Ctrl,AggressiveIntensity_sq,-10.338158,1.956949,-5.2828,0.0,***,1420,0.29234,0.289335
+Full_sample_H3_Ctrl,mean_text_length,-0.006228,0.000868,-7.1722,0.0,***,1420,0.29234,0.289335
+Full_sample_H3_Ctrl,mean_hashtag_count,-0.549977,0.080097,-6.8664,0.0,***,1420,0.29234,0.289335
+Full_sample_H3_Ctrl,mean_mention_count,0.224949,0.085776,2.6225,0.008823,***,1420,0.29234,0.289335
+Full_sample_H3_Ctrl,log_total_posts,-0.273017,0.035815,-7.6229,0.0,***,1420,0.29234,0.289335

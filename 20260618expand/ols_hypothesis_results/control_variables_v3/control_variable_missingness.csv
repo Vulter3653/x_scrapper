@@ -1,0 +1,5 @@
+sample,variable,n_total,n_missing,missing_share
+Full_sample,text_length,68039,0,0.0
+Full_sample,hashtag_count,68039,0,0.0
+Full_sample,mention_count,68039,0,0.0
+Human_coded,controls_via_tweet_id_join,3574,500,0.139899

@@ -1,0 +1,9 @@
+model,term,coefficient,std_error,t_statistic,p_value,stars,n,r_squared,adj_r_squared,df_residual
+Full_sample_Ctrl,intercept,3.293724,0.018781,175.3717,0.0,***,68039,0.086002,0.085908,68031
+Full_sample_Ctrl,aggressive,1.855601,0.042817,43.3381,0.0,***,68039,0.086002,0.085908,68031
+Full_sample_Ctrl,affiliative,0.821293,0.021297,38.563,0.0,***,68039,0.086002,0.085908,68031
+Full_sample_Ctrl,self_enhancing,1.392187,0.026311,52.9128,0.0,***,68039,0.086002,0.085908,68031
+Full_sample_Ctrl,self_defeating,2.092413,0.088778,23.569,0.0,***,68039,0.086002,0.085908,68031
+Full_sample_Ctrl,text_length,0.000243,7.2e-05,3.3536,0.000798,***,68039,0.086002,0.085908,68031
+Full_sample_Ctrl,hashtag_count,-0.185478,0.008355,-22.2006,0.0,***,68039,0.086002,0.085908,68031
+Full_sample_Ctrl,mention_count,-0.047409,0.008159,-5.8109,0.0,***,68039,0.086002,0.085908,68031

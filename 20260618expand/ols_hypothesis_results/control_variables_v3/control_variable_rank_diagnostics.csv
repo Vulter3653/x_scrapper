@@ -1,0 +1,5 @@
+model,n,k,matrix_rank,df_resid,condition_number,rank_deficient
+Full_sample_Ctrl,68039,8,8,68031,2566.1932,False
+Human_coded_Ctrl,3074,8,8,3066,1880.1654,False
+Full_sample_H3_Ctrl,1420,7,7,1413,10934.4971,False
+Human_coded_H3_Ctrl,870,7,7,863,7357.1727,False
