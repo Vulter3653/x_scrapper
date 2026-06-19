@@ -25,9 +25,9 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 | Firm FE | NONE | YES (FWL) |
 | Time FE | NONE | NONE |
 | H3 variables | EXCLUDED | EXCLUDED |
-| N | 65,245 | 65,245 |
-| Firms | — | 97 |
-| df_resid | 65,240 | 65,144 |
+| N | 68,039 | 68,039 |
+| Firms | — | 99 |
+| df_resid | 68,034 | 67,936 |
 | SE type | Classical OLS | Classical OLS (FWL-adjusted df) |
 
 ## Identification Rules
@@ -40,5 +40,5 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 
 ## Data Source
 
-- `h2_post_level_regression_ready.csv` — N=65,245 Fortune100 posts
+- `h2_post_level_regression_ready.csv` — N=68,039 Fortune100 posts
 - Classifier: domain-adapted TF-IDF LogReg trained on 1,980 Fortune100 human labels (batch1+batch2); predictions only — NOT_A_CANDIDATE level evidence; leakage risk: classifier trained on same corpus as regression sample

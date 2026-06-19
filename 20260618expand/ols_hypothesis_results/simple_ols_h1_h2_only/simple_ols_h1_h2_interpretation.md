@@ -8,14 +8,14 @@
 
 | 유형 | N | 비율(전체) | 비율(유머 내) |
 |:---|---:|---:|---:|
-| Non-humorous (reference) | 42,020 | 64.4% | — |
-| Aggressive | 1,416 | 2.2% | 6.1% |
-| Affiliative | 12,696 | 19.5% | 54.7% |
-| Self-Enhancing | 8,788 | 13.5% | 37.8% |
-| Self-Defeating | 325 | 0.5% | 1.4% |
-| Humor Total | 23,225 | 35.6% | 100% |
-| **Total** | **65,245** | **100%** | — |
-| Firms | 97 | — | — |
+| Non-humorous (reference) | 42,606 | 62.6% | — |
+| Aggressive | 1,807 | 2.7% | 7.1% |
+| Affiliative | 13,541 | 19.9% | 53.2% |
+| Self-Enhancing | 9,613 | 14.1% | 37.8% |
+| Self-Defeating | 472 | 0.7% | 1.9% |
+| Humor Total | 25,433 | 37.4% | 100% |
+| **Total** | **68,039** | **100%** | — |
+| Firms | 99 | — | — |
 
 ---
 
@@ -23,16 +23,16 @@
 
 |  | M1 Simple OLS | M2 Firm FE (FWL) |
 |:---|:---:|:---:|
-| Aggressive (β₁) | +1.1543*** (0.0533) | +0.2648*** (0.0354) |
-| Affiliative (β₂) | +0.7266*** (0.0200) | +0.1808*** (0.0140) |
-| Self-Enhancing (β₃) | +1.1330*** (0.0231) | +0.2566*** (0.0162) |
-| Self-Defeating (β₄) | +0.9627*** (0.1099) | +0.1891*** (0.0715) |
-| Intercept | +3.1162 | absorbed |
-| N | 65,245 | 65,245 |
-| Firms | — | 97 |
-| R² | 0.0499 | 0.0053 (within) |
-| adj-R² | 0.0498 | 0.0037 |
-| df_resid | 65,240 | 65,144 |
+| Aggressive (β₁) | +1.6816*** (0.0493) | +0.2250*** (0.0329) |
+| Affiliative (β₂) | +0.8389*** (0.0203) | +0.1687*** (0.0141) |
+| Self-Enhancing (β₃) | +1.3191*** (0.0232) | +0.2592*** (0.0162) |
+| Self-Defeating (β₄) | +2.0410*** (0.0950) | +0.3210*** (0.0618) |
+| Intercept | +3.1561 | absorbed |
+| N | 68,039 | 68,039 |
+| Firms | — | 99 |
+| R² | 0.0706 | 0.0048 (within) |
+| adj-R² | 0.0705 | 0.0033 |
+| df_resid | 68,034 | 67,936 |
 | Controls | none | none |
 | Firm FE | no | yes (FWL) |
 
@@ -44,8 +44,10 @@
 
 | 모델 | 추정치 | SE | t | p | Stars | 판정 |
 |:---|---:|---:|---:|---:|:---:|:---|
-| M1_simple_ols | 0.909745 | 0.016132 | 56.3942 | 0.000000 | *** | H1 지지: 전체 유머 평균효과 양수 유의 (p<.01) |
-| M2_firm_fe_fwl | 0.214695 | 0.011847 | 18.1216 | 0.000000 | *** | H1 지지: 전체 유머 평균효과 양수 유의 (p<.01) |
+| M1_simple_ols | 1.102543 | 0.016270 | 67.7642 | 0.000000 | *** | H1 지지: 전체 유머 평균효과 양수 유의 (p<.01) |
+| M2_firm_fe_fwl | 0.209708 | 0.011978 | 17.5082 | 0.000000 | *** | H1 지지: 전체 유머 평균효과 양수 유의 (p<.01) |
+| M3_time_fe_year_month | 1.100421 | 0.015718 | 70.0107 | 0.000000 | *** | H1 지지: 전체 유머 평균효과 양수 유의 (p<.01) |
+| M4_firm_year_month_fe | 0.180299 | 0.011623 | 15.5122 | 0.000000 | *** | H1 지지: 전체 유머 평균효과 양수 유의 (p<.01) |
 
 ---
 
@@ -53,8 +55,10 @@
 
 | 모델 | 추정치 | SE | t | p | Stars | 판정 |
 |:---|---:|---:|---:|---:|:---:|:---|
-| M1_simple_ols | 0.260486 | 0.054106 | 4.8144 | 0.000001 | *** | H2-1 지지: aggressive > other humor weighted average (p<.01) |
-| M2_firm_fe_fwl | 0.053382 | 0.035297 | 1.5124 | 0.130444 |  | H2-1 지지 불가: 방향 맞으나 유의하지 않음 |
+| M1_simple_ols | 0.623296 | 0.050116 | 12.4371 | 0.000000 | *** | H2-1 지지: aggressive > other humor weighted average (p<.01) |
+| M2_firm_fe_fwl | 0.016431 | 0.032502 | 0.5055 | 0.613186 |  | H2-1 지지 불가: 방향 맞으나 유의하지 않음 |
+| M3_time_fe_year_month | 0.672294 | 0.048089 | 13.9802 | 0.000000 | *** | H2-1 지지: aggressive > other humor weighted average (p<.01) |
+| M4_firm_year_month_fe | 0.026795 | 0.031473 | 0.8514 | 0.394570 |  | H2-1 지지 불가: 방향 맞으나 유의하지 않음 |
 
 ---
 
@@ -62,16 +66,24 @@
 
 | 모델 | Contrast | 추정치 | SE | t | p | Stars | 판정 |
 |:---|:---|---:|---:|---:|---:|:---:|:---|
-| M1_simple_ols | agg vs aff | 0.427798 | 0.055277 | 7.7391 | 0.000000 | *** | H2-2 지지: aggressive > affiliative (p<.01) |
-| M1_simple_ols | agg vs se | 0.021316 | 0.056497 | 0.3773 | 0.705957 |  | H2-2 지지 불가: aggressive > self-enhancing 방향이나 유의하지 않음 |
-| M1_simple_ols | agg vs sd | 0.191648 | 0.121351 | 1.5793 | 0.114275 |  | H2-2 지지 불가: aggressive > self-defeating 방향이나 유의하지 않음 |
-| M2_firm_fe_fwl | agg vs aff | 0.084065 | 0.036108 | 2.3282 | 0.019905 | ** | H2-2 지지: aggressive > affiliative (p<.05) |
-| M2_firm_fe_fwl | agg vs se | 0.008228 | 0.036847 | 0.2233 | 0.823301 |  | H2-2 지지 불가: aggressive > self-enhancing 방향이나 유의하지 않음 |
-| M2_firm_fe_fwl | agg vs sd | 0.075717 | 0.078407 | 0.9657 | 0.334198 |  | H2-2 지지 불가: aggressive > self-defeating 방향이나 유의하지 않음 |
+| M1_simple_ols | agg vs aff | 0.842701 | 0.051425 | 16.3871 | 0.000000 | *** | H2-2 지지: aggressive > affiliative (p<.01) |
+| M1_simple_ols | agg vs se | 0.362495 | 0.052647 | 6.8854 | 0.000000 | *** | H2-2 지지: aggressive > self-enhancing (p<.01) |
+| M1_simple_ols | agg vs sd | -0.359481 | 0.106138 | -3.3869 | 0.000707 | *** | H2-2 지지 불가: aggressive <= self-defeating |
+| M2_firm_fe_fwl | agg vs aff | 0.056291 | 0.033448 | 1.6829 | 0.092398 | * | H2-2 부분 지지: aggressive > affiliative (p<.10) |
+| M2_firm_fe_fwl | agg vs se | -0.034196 | 0.034078 | -1.0034 | 0.315647 |  | H2-2 지지 불가: aggressive <= self-enhancing |
+| M2_firm_fe_fwl | agg vs sd | -0.095999 | 0.067810 | -1.4157 | 0.156867 |  | H2-2 지지 불가: aggressive <= self-defeating |
+| M3_time_fe_year_month | agg vs aff | 0.878156 | 0.049341 | 17.7975 | 0.000000 | *** | H2-2 지지: aggressive > affiliative (p<.01) |
+| M3_time_fe_year_month | agg vs se | 0.440223 | 0.050536 | 8.7110 | 0.000000 | *** | H2-2 지지: aggressive > self-enhancing (p<.01) |
+| M3_time_fe_year_month | agg vs sd | -0.507132 | 0.101819 | -4.9807 | 0.000001 | *** | H2-2 지지 불가: aggressive <= self-defeating |
+| M4_firm_year_month_fe | agg vs aff | 0.049581 | 0.032391 | 1.5307 | 0.125845 |  | H2-2 지지 불가: aggressive > affiliative 방향이나 유의하지 않음 |
+| M4_firm_year_month_fe | agg vs se | 0.000714 | 0.033003 | 0.0216 | 0.982751 |  | H2-2 지지 불가: aggressive > self-enhancing 방향이나 유의하지 않음 |
+| M4_firm_year_month_fe | agg vs sd | -0.095716 | 0.065668 | -1.4576 | 0.144964 |  | H2-2 지지 불가: aggressive <= self-defeating |
 
 **H2-2 종합**:
-- M1 Simple OLS: 부분 지지 (1/3 유의)
-- M2 Firm FE:    부분 지지 (1/3 유의)
+- M1 Simple OLS:        부분 지지 (2/3 유의)
+- M2 Firm FE (FWL):     지지 불가
+- M3 Time FE:           부분 지지 (2/3 유의)
+- M4 Firm+Time FE:      지지 불가
 
 ---
 

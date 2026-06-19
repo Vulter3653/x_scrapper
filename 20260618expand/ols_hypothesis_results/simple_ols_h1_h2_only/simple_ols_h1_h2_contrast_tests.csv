@@ -1,11 +1,21 @@
 model,test,hypothesis,contrast_label,contrast_formula,weights_used,estimate,se,t_stat,p_value_two_sided,stars,interpretation
-M1_simple_ols,H1_humor_avg_vs_nonhumor,H1,weighted avg humor effect vs non-humorous,w_agg*β1+w_aff*β2+w_se*β3+w_sd*β4,w_agg=0.0610 w_aff=0.5467 w_se=0.3784 w_sd=0.0140,0.909745,0.016132,56.3942,0.000000,***,H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)
-M1_simple_ols,H2_1_aggressive_vs_other,H2-1,aggressive vs other humor weighted average,β1-(w_aff2*β2+w_se2*β3+w_sd2*β4),w_aff2=0.5821 w_se2=0.4030 w_sd2=0.0149,0.260486,0.054106,4.8144,0.000001,***,H2-1 지지: aggressive > other humor weighted average (p<.01)
-M1_simple_ols,H2_2a_aggressive_vs_affiliative,H2-2,aggressive vs affiliative,β1-β2,—,0.427798,0.055277,7.7391,0.000000,***,H2-2 지지: aggressive > affiliative (p<.01)
-M1_simple_ols,H2_2b_aggressive_vs_self_enhancing,H2-2,aggressive vs self-enhancing,β1-β3,—,0.021316,0.056497,0.3773,0.705957,,H2-2 지지 불가: aggressive > self-enhancing 방향이나 유의하지 않음
-M1_simple_ols,H2_2c_aggressive_vs_self_defeating,H2-2,aggressive vs self-defeating,β1-β4,—,0.191648,0.121351,1.5793,0.114275,,H2-2 지지 불가: aggressive > self-defeating 방향이나 유의하지 않음
-M2_firm_fe_fwl,H1_humor_avg_vs_nonhumor,H1,weighted avg humor effect vs non-humorous,w_agg*β1+w_aff*β2+w_se*β3+w_sd*β4,w_agg=0.0610 w_aff=0.5467 w_se=0.3784 w_sd=0.0140,0.214695,0.011847,18.1216,0.000000,***,H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)
-M2_firm_fe_fwl,H2_1_aggressive_vs_other,H2-1,aggressive vs other humor weighted average,β1-(w_aff2*β2+w_se2*β3+w_sd2*β4),w_aff2=0.5821 w_se2=0.4030 w_sd2=0.0149,0.053382,0.035297,1.5124,0.130444,,H2-1 지지 불가: 방향 맞으나 유의하지 않음
-M2_firm_fe_fwl,H2_2a_aggressive_vs_affiliative,H2-2,aggressive vs affiliative,β1-β2,—,0.084065,0.036108,2.3282,0.019905,**,H2-2 지지: aggressive > affiliative (p<.05)
-M2_firm_fe_fwl,H2_2b_aggressive_vs_self_enhancing,H2-2,aggressive vs self-enhancing,β1-β3,—,0.008228,0.036847,0.2233,0.823301,,H2-2 지지 불가: aggressive > self-enhancing 방향이나 유의하지 않음
-M2_firm_fe_fwl,H2_2c_aggressive_vs_self_defeating,H2-2,aggressive vs self-defeating,β1-β4,—,0.075717,0.078407,0.9657,0.334198,,H2-2 지지 불가: aggressive > self-defeating 방향이나 유의하지 않음
+M1_simple_ols,H1_humor_avg_vs_nonhumor,H1,weighted avg humor effect vs non-humorous,w_agg*β1+w_aff*β2+w_se*β3+w_sd*β4,w_agg=0.0710 w_aff=0.5324 w_se=0.3780 w_sd=0.0186,1.102543,0.016270,67.7642,0.000000,***,H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)
+M1_simple_ols,H2_1_aggressive_vs_other,H2-1,aggressive vs other humor weighted average,β1-(w_aff2*β2+w_se2*β3+w_sd2*β4),w_aff2=0.5731 w_se2=0.4069 w_sd2=0.0200,0.623296,0.050116,12.4371,0.000000,***,H2-1 지지: aggressive > other humor weighted average (p<.01)
+M1_simple_ols,H2_2a_aggressive_vs_affiliative,H2-2,aggressive vs affiliative,β1-β2,—,0.842701,0.051425,16.3871,0.000000,***,H2-2 지지: aggressive > affiliative (p<.01)
+M1_simple_ols,H2_2b_aggressive_vs_self_enhancing,H2-2,aggressive vs self-enhancing,β1-β3,—,0.362495,0.052647,6.8854,0.000000,***,H2-2 지지: aggressive > self-enhancing (p<.01)
+M1_simple_ols,H2_2c_aggressive_vs_self_defeating,H2-2,aggressive vs self-defeating,β1-β4,—,-0.359481,0.106138,-3.3869,0.000707,***,H2-2 지지 불가: aggressive <= self-defeating
+M2_firm_fe_fwl,H1_humor_avg_vs_nonhumor,H1,weighted avg humor effect vs non-humorous,w_agg*β1+w_aff*β2+w_se*β3+w_sd*β4,w_agg=0.0710 w_aff=0.5324 w_se=0.3780 w_sd=0.0186,0.209708,0.011978,17.5082,0.000000,***,H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)
+M2_firm_fe_fwl,H2_1_aggressive_vs_other,H2-1,aggressive vs other humor weighted average,β1-(w_aff2*β2+w_se2*β3+w_sd2*β4),w_aff2=0.5731 w_se2=0.4069 w_sd2=0.0200,0.016431,0.032502,0.5055,0.613186,,H2-1 지지 불가: 방향 맞으나 유의하지 않음
+M2_firm_fe_fwl,H2_2a_aggressive_vs_affiliative,H2-2,aggressive vs affiliative,β1-β2,—,0.056291,0.033448,1.6829,0.092398,*,H2-2 부분 지지: aggressive > affiliative (p<.10)
+M2_firm_fe_fwl,H2_2b_aggressive_vs_self_enhancing,H2-2,aggressive vs self-enhancing,β1-β3,—,-0.034196,0.034078,-1.0034,0.315647,,H2-2 지지 불가: aggressive <= self-enhancing
+M2_firm_fe_fwl,H2_2c_aggressive_vs_self_defeating,H2-2,aggressive vs self-defeating,β1-β4,—,-0.095999,0.067810,-1.4157,0.156867,,H2-2 지지 불가: aggressive <= self-defeating
+M3_time_fe_year_month,H1_humor_avg_vs_nonhumor,H1,weighted avg humor effect vs non-humorous,w_agg*β1+w_aff*β2+w_se*β3+w_sd*β4,w_agg=0.0710 w_aff=0.5324 w_se=0.3780 w_sd=0.0186,1.100421,0.015718,70.0107,0.000000,***,H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)
+M3_time_fe_year_month,H2_1_aggressive_vs_other,H2-1,aggressive vs other humor weighted average,β1-(w_aff2*β2+w_se2*β3+w_sd2*β4),w_aff2=0.5731 w_se2=0.4069 w_sd2=0.0200,0.672294,0.048089,13.9802,0.000000,***,H2-1 지지: aggressive > other humor weighted average (p<.01)
+M3_time_fe_year_month,H2_2a_aggressive_vs_affiliative,H2-2,aggressive vs affiliative,β1-β2,—,0.878156,0.049341,17.7975,0.000000,***,H2-2 지지: aggressive > affiliative (p<.01)
+M3_time_fe_year_month,H2_2b_aggressive_vs_self_enhancing,H2-2,aggressive vs self-enhancing,β1-β3,—,0.440223,0.050536,8.7110,0.000000,***,H2-2 지지: aggressive > self-enhancing (p<.01)
+M3_time_fe_year_month,H2_2c_aggressive_vs_self_defeating,H2-2,aggressive vs self-defeating,β1-β4,—,-0.507132,0.101819,-4.9807,0.000001,***,H2-2 지지 불가: aggressive <= self-defeating
+M4_firm_year_month_fe,H1_humor_avg_vs_nonhumor,H1,weighted avg humor effect vs non-humorous,w_agg*β1+w_aff*β2+w_se*β3+w_sd*β4,w_agg=0.0710 w_aff=0.5324 w_se=0.3780 w_sd=0.0186,0.180299,0.011623,15.5122,0.000000,***,H1 지지: 전체 유머 평균효과 양수 유의 (p<.01)
+M4_firm_year_month_fe,H2_1_aggressive_vs_other,H2-1,aggressive vs other humor weighted average,β1-(w_aff2*β2+w_se2*β3+w_sd2*β4),w_aff2=0.5731 w_se2=0.4069 w_sd2=0.0200,0.026795,0.031473,0.8514,0.394570,,H2-1 지지 불가: 방향 맞으나 유의하지 않음
+M4_firm_year_month_fe,H2_2a_aggressive_vs_affiliative,H2-2,aggressive vs affiliative,β1-β2,—,0.049581,0.032391,1.5307,0.125845,,H2-2 지지 불가: aggressive > affiliative 방향이나 유의하지 않음
+M4_firm_year_month_fe,H2_2b_aggressive_vs_self_enhancing,H2-2,aggressive vs self-enhancing,β1-β3,—,0.000714,0.033003,0.0216,0.982751,,H2-2 지지 불가: aggressive > self-enhancing 방향이나 유의하지 않음
+M4_firm_year_month_fe,H2_2c_aggressive_vs_self_defeating,H2-2,aggressive vs self-defeating,β1-β4,—,-0.095716,0.065668,-1.4576,0.144964,,H2-2 지지 불가: aggressive <= self-defeating

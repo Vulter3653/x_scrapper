@@ -118,14 +118,14 @@ def main() -> None:
     print(f"  humor: {sum(1 for r in h1_rows if r['humor_presence']=='1')}  "
           f"non-humor: {sum(1 for r in h1_rows if r['humor_presence']=='0')}")
 
-    # H2: fortune100 posts only (65,245), valid type
-    h2_base = [r for r in merged if r["source_dataset"] == "fortune100"]
+    # H2: all 68,039 posts (integrated corpus), valid type
+    h2_base = merged
     h2_rows = [
         r for r in h2_base
         if r["classification_status"] == "ok"
         and r["humor_type"] in VALID_TYPES
     ]
-    print(f"\nH2 base (fortune100 only): {len(h2_base)}")
+    print(f"\nH2 base (all integrated corpus): {len(h2_base)}")
     print(f"H2 sample (valid type): {len(h2_rows)}")
     print(f"  Type dist: {dict(Counter(r['humor_type'] for r in h2_rows))}")
 

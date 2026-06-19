@@ -1,9 +1,9 @@
 group,n,pct_total,pct_humor
-non_humorous (reference),42020,64.40%,—
-aggressive,1416,2.17%,6.10%
-affiliative,12696,19.46%,54.67%
-self_enhancing,8788,13.47%,37.84%
-self_defeating,325,0.50%,1.40%
-humor_total,23225,35.60%,100.00%
-TOTAL,65245,100.00%,—
-n_firms,97,—,—
+non_humorous (reference),42606,62.62%,—
+aggressive,1807,2.66%,7.10%
+affiliative,13541,19.90%,53.24%
+self_enhancing,9613,14.13%,37.80%
+self_defeating,472,0.69%,1.86%
+humor_total,25433,37.38%,100.00%
+TOTAL,68039,100.00%,—
+n_firms,99,—,—

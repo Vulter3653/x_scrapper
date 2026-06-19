@@ -106,6 +106,14 @@ def demean_by_group(arr: np.ndarray, groups: list) -> np.ndarray:
     return out
 
 
+def make_dummies(groups: list, ref: str) -> tuple[np.ndarray, list]:
+    """Binary dummy matrix for categorical variable, dropping reference category."""
+    cats = [c for c in sorted(set(groups)) if c != ref]
+    groups_arr = np.array(groups)
+    mat = np.column_stack([(groups_arr == cat).astype(float) for cat in cats])
+    return mat, cats
+
+
 def linear_contrast(c: np.ndarray, beta: np.ndarray, vcov: np.ndarray, df_r: int):
     estimate = float(c @ beta)
     var_c    = float(c @ vcov @ c)
@@ -281,6 +289,47 @@ def main() -> None:
     for i, fn in enumerate(fn_m2):
         print(f"  {fn:<22} β={b2[i]:+.4f}  SE={s2[i]:.4f}  t={t2[i]:+.4f}  {p_stars(p2[i])}")
 
+    # ════════════════════════════════════════════════════════════════════════
+    # M3: Time FE (Year + Month_of_year dummies, explicit)
+    # ════════════════════════════════════════════════════════════════════════
+    year_groups  = [r["year"]  for r in rows]
+    month_groups = [r["month"] for r in rows]
+    REF_YEAR  = "2015"
+    REF_MONTH = "01"
+
+    D_year,  year_cats  = make_dummies(year_groups,  REF_YEAR)
+    D_month, month_cats = make_dummies(month_groups, REF_MONTH)
+    n_year_dummies  = len(year_cats)
+    n_month_dummies = len(month_cats)
+
+    X_m3 = np.column_stack([X_m1, D_year, D_month])
+    b3, v3, s3, t3, p3, n3, k3, r2_3, r2a_3, df3 = ols_fit(X_m3, y)
+
+    print(f"\nM3 Time FE (year+month): N={n3:,} k={k3} df={df3:,}"
+          f" R²={r2_3:.4f} adj-R²={r2a_3:.4f}")
+    print(f"  year_dummies={n_year_dummies} (ref={REF_YEAR})  month_dummies={n_month_dummies} (ref={REF_MONTH})")
+    for i, fn in enumerate(["intercept", "aggressive", "affiliative",
+                             "self_enhancing", "self_defeating"]):
+        print(f"  {fn:<22} β={b3[i]:+.4f}  SE={s3[i]:.4f}  t={t3[i]:+.4f}  {p_stars(p3[i])}")
+
+    # ════════════════════════════════════════════════════════════════════════
+    # M4: Firm FE + Time FE (explicit dummies: firm + year + month)
+    # ════════════════════════════════════════════════════════════════════════
+    REF_FIRM = firms[0]
+    D_firm, firm_cats = make_dummies([r["company_name"] for r in rows], REF_FIRM)
+    n_firm_dummies = len(firm_cats)
+
+    X_m4 = np.column_stack([X_m1, D_firm, D_year, D_month])
+    b4, v4, s4, t4, p4, n4, k4, r2_4, r2a_4, df4 = ols_fit(X_m4, y)
+
+    print(f"\nM4 Firm+Time FE (two-way): N={n4:,} firms={n_firms} k={k4} df={df4:,}"
+          f" R²={r2_4:.4f} adj-R²={r2a_4:.4f}")
+    print(f"  firm_dummies={n_firm_dummies} (ref={REF_FIRM})"
+          f"  year_dummies={n_year_dummies}  month_dummies={n_month_dummies}")
+    for i, fn in enumerate(["intercept", "aggressive", "affiliative",
+                             "self_enhancing", "self_defeating"]):
+        print(f"  {fn:<22} β={b4[i]:+.4f}  SE={s4[i]:.4f}  t={t4[i]:+.4f}  {p_stars(p4[i])}")
+
     # ── Regression results CSV ────────────────────────────────────────────
     reg_rows = []
     for i, fn in enumerate(fn_m1):
@@ -309,6 +358,36 @@ def main() -> None:
             "h3_variables_included": "false",
             "classifier_limitation": CLASSIFIER_NOTE,
         })
+    for i, fn in enumerate(["intercept", "aggressive", "affiliative",
+                             "self_enhancing", "self_defeating"]):
+        reg_rows.append({
+            "model": "M3_time_fe_year_month", "variable": fn,
+            "coefficient": f"{b3[i]:.6f}", "classical_ols_se": f"{s3[i]:.6f}",
+            "t_stat": f"{t3[i]:.4f}", "p_value_two_sided": f"{p3[i]:.6f}",
+            "stars": p_stars(p3[i]),
+            "n_obs": n3, "r_squared": f"{r2_3:.6f}", "r_squared_adj": f"{r2a_3:.6f}",
+            "df_resid": df3, "n_firms": n_firms,
+            "reference_category": "non_humorous",
+            "controls_included": "false",
+            "fixed_effects": f"year_dummies({n_year_dummies} ref={REF_YEAR}) + month_dummies({n_month_dummies} ref={REF_MONTH})",
+            "h3_variables_included": "false",
+            "classifier_limitation": CLASSIFIER_NOTE,
+        })
+    for i, fn in enumerate(["intercept", "aggressive", "affiliative",
+                             "self_enhancing", "self_defeating"]):
+        reg_rows.append({
+            "model": "M4_firm_year_month_fe", "variable": fn,
+            "coefficient": f"{b4[i]:.6f}", "classical_ols_se": f"{s4[i]:.6f}",
+            "t_stat": f"{t4[i]:.4f}", "p_value_two_sided": f"{p4[i]:.6f}",
+            "stars": p_stars(p4[i]),
+            "n_obs": n4, "r_squared": f"{r2_4:.6f}", "r_squared_adj": f"{r2a_4:.6f}",
+            "df_resid": df4, "n_firms": n_firms,
+            "reference_category": "non_humorous",
+            "controls_included": "false",
+            "fixed_effects": f"firm_dummies({n_firm_dummies} ref={REF_FIRM}) + year_dummies({n_year_dummies}) + month_dummies({n_month_dummies})",
+            "h3_variables_included": "false",
+            "classifier_limitation": CLASSIFIER_NOTE,
+        })
     write_csv(OUT / "simple_ols_h1_h2_regression_results.csv", reg_rows)
 
     # ── Contrast tests: M1 and M2 ─────────────────────────────────────────
@@ -322,7 +401,15 @@ def main() -> None:
     ct_m2 = run_contrasts(b2, v2, df2,
                           w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M2_firm_fe_fwl")
 
-    write_csv(OUT / "simple_ols_h1_h2_contrast_tests.csv", ct_m1 + ct_m2)
+    # M3: beta[1:5] = [agg,aff,se,sd]; vcov[1:5,1:5]
+    ct_m3 = run_contrasts(b3[1:5], v3[1:5, 1:5], df3,
+                          w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M3_time_fe_year_month")
+
+    # M4: beta[1:5] = [agg,aff,se,sd]; vcov[1:5,1:5]
+    ct_m4 = run_contrasts(b4[1:5], v4[1:5, 1:5], df4,
+                          w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M4_firm_year_month_fe")
+
+    write_csv(OUT / "simple_ols_h1_h2_contrast_tests.csv", ct_m1 + ct_m2 + ct_m3 + ct_m4)
 
     # ── Model specification MD ────────────────────────────────────────────
     spec_md = f"""\
@@ -383,7 +470,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
         if n_sup == 1: return "부분 지지 (1/3 유의)"
         return "지지 불가"
 
-    all_ct = ct_m1 + ct_m2
+    all_ct = ct_m1 + ct_m2 + ct_m3 + ct_m4
 
     def ct_row(model_lbl, test_key):
         for r in all_ct:
@@ -439,7 +526,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 | 모델 | 추정치 | SE | t | p | Stars | 판정 |
 |:---|---:|---:|---:|---:|:---:|:---|
 """
-    for ml in ["M1_simple_ols", "M2_firm_fe_fwl"]:
+    for ml in ["M1_simple_ols", "M2_firm_fe_fwl", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
         r = ct_row(ml, "H1_humor_avg_vs_nonhumor")
         interp_md += f"| {ml} | {r['estimate']} | {r['se']} | {r['t_stat']} | {r['p_value_two_sided']} | {r['stars']} | {r['interpretation']} |\n"
 
@@ -451,7 +538,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 | 모델 | 추정치 | SE | t | p | Stars | 판정 |
 |:---|---:|---:|---:|---:|:---:|:---|
 """
-    for ml in ["M1_simple_ols", "M2_firm_fe_fwl"]:
+    for ml in ["M1_simple_ols", "M2_firm_fe_fwl", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
         r = ct_row(ml, "H2_1_aggressive_vs_other")
         interp_md += f"| {ml} | {r['estimate']} | {r['se']} | {r['t_stat']} | {r['p_value_two_sided']} | {r['stars']} | {r['interpretation']} |\n"
 
@@ -463,7 +550,7 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 | 모델 | Contrast | 추정치 | SE | t | p | Stars | 판정 |
 |:---|:---|---:|---:|---:|---:|:---:|:---|
 """
-    for ml in ["M1_simple_ols", "M2_firm_fe_fwl"]:
+    for ml in ["M1_simple_ols", "M2_firm_fe_fwl", "M3_time_fe_year_month", "M4_firm_year_month_fe"]:
         for tk, lbl in [
             ("H2_2a_aggressive_vs_affiliative",    "agg vs aff"),
             ("H2_2b_aggressive_vs_self_enhancing", "agg vs se"),
@@ -475,8 +562,10 @@ log(1+Engagement_i) = β₁·Aggressive + β₂·Affiliative
 
     interp_md += f"""
 **H2-2 종합**:
-- M1 Simple OLS: {h22_verdict(all_ct, 'M1_simple_ols')}
-- M2 Firm FE:    {h22_verdict(all_ct, 'M2_firm_fe_fwl')}
+- M1 Simple OLS:        {h22_verdict(all_ct, 'M1_simple_ols')}
+- M2 Firm FE (FWL):     {h22_verdict(all_ct, 'M2_firm_fe_fwl')}
+- M3 Time FE:           {h22_verdict(all_ct, 'M3_time_fe_year_month')}
+- M4 Firm+Time FE:      {h22_verdict(all_ct, 'M4_firm_year_month_fe')}
 
 ---
 
