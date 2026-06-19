@@ -1,0 +1,6 @@
+dataset,n_total_rows,n_y_valid,n_ctrl_valid,n_both_valid,ctrl_miss_pct
+batch1_h1,1482,1482,1482,1482,0.0
+full_h1,68039,68039,68039,68039,0.0
+batch1_h2,648,648,648,648,0.0
+full_h2,28177,28177,28177,28177,0.0
+full_h3,3532,3532,3532,3532,0.0
