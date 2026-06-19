@@ -1,25 +1,2 @@
-model,item,value,note
-M1_simple_ols,beta1_intensity,6.414502,SE=0.676431  t=9.4829  p=0.000000  ***
-M1_simple_ols,beta2_intensity_squared,-6.402879,SE=1.254038  t=-5.1058  p=0.000000  ***
-M1_simple_ols,beta1_sign,positive,H3 요구: positive
-M1_simple_ols,beta2_sign,negative,H3 요구: negative
-M1_simple_ols,beta2_p_value,0.000000,***
-M1_simple_ols,turning_point,0.500908,= −β₁/(2β₂)
-M1_simple_ols,observed_intensity_min,0.000000,
-M1_simple_ols,observed_intensity_max,1.000000,
-M1_simple_ols,turning_point_in_observed_range,true,"range [0.0000, 1.0000]"
-M1_simple_ols,pattern,inverted-U,
-M1_simple_ols,H3_supported,true,"H3 지지 (p<.01): β₁>0, β₂<0 유의, 전환점 관측 범위 내"
-M1_simple_ols,interpretation,"H3 지지 (p<.01): β₁>0, β₂<0 유의, 전환점 관측 범위 내",
-M2_firm_fe_fwl,beta1_intensity,-1.023477,SE=0.395372  t=-2.5886  p=0.009676  ***
-M2_firm_fe_fwl,beta2_intensity_squared,1.655204,SE=0.665217  t=2.4882  p=0.012886  **
-M2_firm_fe_fwl,beta1_sign,negative,H3 요구: positive
-M2_firm_fe_fwl,beta2_sign,positive,H3 요구: negative
-M2_firm_fe_fwl,beta2_p_value,0.012886,**
-M2_firm_fe_fwl,turning_point,0.309169,= −β₁/(2β₂)
-M2_firm_fe_fwl,observed_intensity_min,0.000000,
-M2_firm_fe_fwl,observed_intensity_max,1.000000,
-M2_firm_fe_fwl,turning_point_in_observed_range,true,"range [0.0000, 1.0000]"
-M2_firm_fe_fwl,pattern,U-shaped,
-M2_firm_fe_fwl,H3_supported,false,H3 지지 불가: β₂>0 (역U자형 아님)
-M2_firm_fe_fwl,interpretation,H3 지지 불가: β₂>0 (역U자형 아님),
+beta1_intensity,beta2_intensity_squared,beta1_sign,beta2_sign,beta2_p_value,turning_point,observed_intensity_min,observed_intensity_max,turning_point_in_observed_range,pattern,H3_supported,interpretation
+6.414502,-6.402879,positive,negative,0.000000,0.500908,0.000000,1.000000,true,inverted-U,true,"H3 supported in this simple diagnostic: beta1>0, beta2<0, beta2 statistically significant, and turning point is inside the observed range."

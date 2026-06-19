@@ -1,15 +1,2 @@
-metric,value
-total_firm_month_observations,3532
-number_of_firms,97
-number_of_months,130
-firm_months_nonzero_intensity,747
-firm_months_zero_intensity,2785
-aggressive_intensity_mean,0.022457
-aggressive_intensity_sd,0.066716
-aggressive_intensity_min,0.000000
-aggressive_intensity_p25,0.000000
-aggressive_intensity_median,0.000000
-aggressive_intensity_p75,0.000000
-aggressive_intensity_max,1.000000
-mean_log1p_engagement_mean,3.5740
-mean_log1p_engagement_sd,1.5905
+total_firm_month_observations,number_of_firms,number_of_months,aggressive_intensity_mean,aggressive_intensity_sd,aggressive_intensity_min,aggressive_intensity_max,aggressive_intensity_p25,aggressive_intensity_median,aggressive_intensity_p75,mean_log1p_engagement_mean,mean_log1p_engagement_sd
+3532,97,130,0.022457,0.066716,0.000000,1.000000,0.000000,0.000000,0.000000,3.573951,1.590452

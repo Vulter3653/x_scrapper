@@ -1,37 +1,35 @@
-# OLS Model Specification — H3 Diagnostic
+# Simple OLS H3 Model Specification
 
-## M1 Simple Quadratic OLS
+## Model
 
-```
-mean_log(1+Engagement)_{ft} = α + β₁·Intensity_{ft} + β₂·Intensity²_{ft} + ε
-```
-
-## M2 Firm FE (FWL within-firm demeaning)
-
-```
-mean_log(1+Engagement)_{ft} = β₁·Intensity_{ft} + β₂·Intensity²_{ft} + μ_f + ε
+```text
+mean_log1p_engagement_ft = alpha + beta1 * aggressive_intensity_ft + beta2 * aggressive_intensity_sq_ft + epsilon_ft
 ```
 
-μ_f absorbed via within-firm demeaning. No intercept after demeaning.
+## Scope
 
-| Item | M1 | M2 |
-|:---|:---|:---|
-| Unit of analysis | firm×month | firm×month |
-| DV | mean_log_total_engagement | mean_log_total_engagement |
-| IVs | Intensity, Intensity² | Intensity, Intensity² |
-| Controls | NONE | NONE |
-| Firm FE | NONE | YES (FWL) |
-| Time FE | NONE | NONE |
-| H1/H2 variables | EXCLUDED | EXCLUDED |
-| N | 3532 | 3532 |
-| Firms | — | 97 |
-| df_resid | 3529 | 3433 |
+- Hypothesis: H3 only
+- Unit of analysis: firm x month
+- Dependent variable: firm-month mean log(1 + engagement), stored as `mean_log_total_engagement` in the source panel
+- Independent variables: `aggressive_humor_usage_intensity`, `aggressive_humor_usage_intensity_sq`
+- Controls included: false
+- Fixed effects included: false
+- H1 humor presence variables included: false
+- H2 humor type dummies included: false
+- Post-level aggressive dummy included: false
 
-## H3 Acceptance Criteria
+## Explicit Exclusions
 
-β₁>0, β₂<0, β₂ significant (p<.10), turning_point = −β₁/(2β₂) within observed range.
+No firm fixed effects, year fixed effects, month fixed effects, text controls, hashtag controls, mention controls, emoji controls, post-format controls, H1 variables, H2 variables, or post-level type dummies are included.
+
+## H3 Criteria
+
+H3 is supported only if beta1 > 0, beta2 < 0, beta2 is statistically significant, and the turning point `-beta1 / (2 * beta2)` lies inside the observed aggressive intensity range.
 
 ## Data Source
 
-- `h3_firm_period_regression_ready.csv` — N=3532 firm-month obs (97 firms × up to 130 months)
-- Classifier: domain-adapted TF-IDF LogReg trained on 1,980 Fortune100 human labels (batch1+batch2); aggressive_humor_usage_intensity = fraction of posts in firm-month classified as aggressive by this model; NOT_A_CANDIDATE level evidence; leakage risk: classifier trained on same corpus as regression sample
+`20260618expand/classifier_improvement/data/regression_ready/h3_firm_period_regression_ready.csv`
+
+## Limitation
+
+classifier-predicted aggressive labels from the current domain-adapted classifier; preliminary diagnostic evidence only; aggressive/type classifier leakage risk and NOT_A_CANDIDATE limitations remain; not robust or causal evidence. This is a preliminary diagnostic baseline, not robust causal evidence.
