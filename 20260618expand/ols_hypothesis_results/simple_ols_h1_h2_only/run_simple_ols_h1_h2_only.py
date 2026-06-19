@@ -106,9 +106,9 @@ def demean_by_group(arr: np.ndarray, groups: list) -> np.ndarray:
     return out
 
 
-def make_dummies(groups: list, ref: str) -> tuple[np.ndarray, list]:
-    """Binary dummy matrix for categorical variable, dropping reference category."""
-    cats = [c for c in sorted(set(groups)) if c != ref]
+def make_dummies(groups: list, ref: str | None = None) -> tuple[np.ndarray, list]:
+    """Binary dummy matrix. ref=None includes all categories (no reference dropped)."""
+    cats = [c for c in sorted(set(groups)) if ref is None or c != ref]
     groups_arr = np.array(groups)
     mat = np.column_stack([(groups_arr == cat).astype(float) for cat in cats])
     return mat, cats
@@ -313,21 +313,24 @@ def main() -> None:
         print(f"  {fn:<22} β={b3[i]:+.4f}  SE={s3[i]:.4f}  t={t3[i]:+.4f}  {p_stars(p3[i])}")
 
     # ════════════════════════════════════════════════════════════════════════
-    # M4: Firm FE + Time FE (explicit dummies: firm + year + month)
+    # M4: Firm FE + Time FE (all 99 firm dummies, no intercept, no reference)
     # ════════════════════════════════════════════════════════════════════════
-    REF_FIRM = firms[0]
-    D_firm, firm_cats = make_dummies([r["company_name"] for r in rows], REF_FIRM)
-    n_firm_dummies = len(firm_cats)
+    D_firm, firm_cats = make_dummies([r["company_name"] for r in rows], ref=None)
+    n_firm_dummies = len(firm_cats)  # 99
 
-    X_m4 = np.column_stack([X_m1, D_firm, D_year, D_month])
+    # No intercept: [agg, aff, se, sd, D_firm(99), D_year(13 ref=2015), D_month(11 ref=01)]
+    agg_arr = np.array([to_f(r["aggressive_humor"])     for r in rows])
+    aff_arr = np.array([to_f(r["affiliative_humor"])    for r in rows])
+    se_arr  = np.array([to_f(r["self_enhancing_humor"]) for r in rows])
+    sd_arr  = np.array([to_f(r["self_defeating_humor"]) for r in rows])
+    X_m4 = np.column_stack([agg_arr, aff_arr, se_arr, sd_arr, D_firm, D_year, D_month])
     b4, v4, s4, t4, p4, n4, k4, r2_4, r2a_4, df4 = ols_fit(X_m4, y)
 
     print(f"\nM4 Firm+Time FE (two-way): N={n4:,} firms={n_firms} k={k4} df={df4:,}"
           f" R²={r2_4:.4f} adj-R²={r2a_4:.4f}")
-    print(f"  firm_dummies={n_firm_dummies} (ref={REF_FIRM})"
-          f"  year_dummies={n_year_dummies}  month_dummies={n_month_dummies}")
-    for i, fn in enumerate(["intercept", "aggressive", "affiliative",
-                             "self_enhancing", "self_defeating"]):
+    print(f"  firm_dummies={n_firm_dummies} (no reference, no intercept)"
+          f"  year_dummies={n_year_dummies} (ref=2015)  month_dummies={n_month_dummies} (ref=01)")
+    for i, fn in enumerate(["aggressive", "affiliative", "self_enhancing", "self_defeating"]):
         print(f"  {fn:<22} β={b4[i]:+.4f}  SE={s4[i]:.4f}  t={t4[i]:+.4f}  {p_stars(p4[i])}")
 
     # ── Regression results CSV ────────────────────────────────────────────
@@ -373,8 +376,7 @@ def main() -> None:
             "h3_variables_included": "false",
             "classifier_limitation": CLASSIFIER_NOTE,
         })
-    for i, fn in enumerate(["intercept", "aggressive", "affiliative",
-                             "self_enhancing", "self_defeating"]):
+    for i, fn in enumerate(["aggressive", "affiliative", "self_enhancing", "self_defeating"]):
         reg_rows.append({
             "model": "M4_firm_year_month_fe", "variable": fn,
             "coefficient": f"{b4[i]:.6f}", "classical_ols_se": f"{s4[i]:.6f}",
@@ -384,7 +386,7 @@ def main() -> None:
             "df_resid": df4, "n_firms": n_firms,
             "reference_category": "non_humorous",
             "controls_included": "false",
-            "fixed_effects": f"firm_dummies({n_firm_dummies} ref={REF_FIRM}) + year_dummies({n_year_dummies}) + month_dummies({n_month_dummies})",
+            "fixed_effects": f"firm_dummies({n_firm_dummies} all, no reference, no intercept) + year_dummies({n_year_dummies} ref=2015) + month_dummies({n_month_dummies} ref=01)",
             "h3_variables_included": "false",
             "classifier_limitation": CLASSIFIER_NOTE,
         })
@@ -405,8 +407,8 @@ def main() -> None:
     ct_m3 = run_contrasts(b3[1:5], v3[1:5, 1:5], df3,
                           w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M3_time_fe_year_month")
 
-    # M4: beta[1:5] = [agg,aff,se,sd]; vcov[1:5,1:5]
-    ct_m4 = run_contrasts(b4[1:5], v4[1:5, 1:5], df4,
+    # M4: no intercept → beta[0:4] = [agg,aff,se,sd]; vcov[0:4,0:4]
+    ct_m4 = run_contrasts(b4[0:4], v4[0:4, 0:4], df4,
                           w_agg, w_aff, w_se, w_sd, w_aff2, w_se2, w_sd2, "M4_firm_year_month_fe")
 
     write_csv(OUT / "simple_ols_h1_h2_contrast_tests.csv", ct_m1 + ct_m2 + ct_m3 + ct_m4)

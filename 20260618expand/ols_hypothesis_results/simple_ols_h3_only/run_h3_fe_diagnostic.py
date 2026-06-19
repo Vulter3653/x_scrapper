@@ -90,8 +90,9 @@ def demean_by_group(arr: np.ndarray, groups: list) -> np.ndarray:
     return out
 
 
-def make_dummies(groups: list, ref: str) -> tuple[np.ndarray, list]:
-    cats = [c for c in sorted(set(groups)) if c != ref]
+def make_dummies(groups: list, ref: str | None = None) -> tuple[np.ndarray, list]:
+    """Binary dummy matrix. ref=None includes all categories (no reference dropped)."""
+    cats = [c for c in sorted(set(groups)) if ref is None or c != ref]
     groups_arr = np.array(groups)
     mat = np.column_stack([(groups_arr == cat).astype(float) for cat in cats])
     return mat, cats
@@ -182,11 +183,9 @@ def main() -> None:
 
     REF_YEAR  = min(year_groups)   # earliest year in data
     REF_MONTH = "01"
-    REF_FIRM  = firms[0]
-
-    D_year,  year_cats  = make_dummies(year_groups,  REF_YEAR)
-    D_month, month_cats = make_dummies(month_groups, REF_MONTH)
-    D_firm,  firm_cats  = make_dummies(firm_groups,  REF_FIRM)
+    D_year,  year_cats  = make_dummies(year_groups,  ref=REF_YEAR)
+    D_month, month_cats = make_dummies(month_groups, ref=REF_MONTH)
+    D_firm,  firm_cats  = make_dummies(firm_groups,  ref=None)   # all 99 firms, no reference
 
     n_yd = len(year_cats)
     n_md = len(month_cats)
@@ -194,7 +193,7 @@ def main() -> None:
 
     print(f"  Firms={n_firms}  Periods={len(set(r['period'] for r in clean))}  N={n_obs}")
     print(f"  Year dummies: {n_yd} (ref={REF_YEAR})  Month dummies: {n_md} (ref={REF_MONTH})")
-    print(f"  Firm dummies: {n_fd} (ref={REF_FIRM})")
+    print(f"  Firm dummies: {n_fd} (no reference, no intercept in M4)")
     print(f"  Intensity range: [{obs_min:.6f}, {obs_max:.6f}]")
 
     reg_rows  = []
@@ -283,13 +282,16 @@ def main() -> None:
                               obs_min, obs_max, "M3_time_fe_year_month"))
 
     # ════════════════════════════════════════════════════════════════════════
-    # M4: Firm + Time FE (explicit dummies: firm + year + month)
+    # M4: Firm + Time FE (all 99 firm dummies, no intercept, no reference)
     # ════════════════════════════════════════════════════════════════════════
-    X4 = np.column_stack([ones, x1, x2, D_firm, D_year, D_month])
+    # No intercept: [intensity, intensity², D_firm(99), D_year(ref), D_month(ref)]
+    X4 = np.column_stack([x1, x2, D_firm, D_year, D_month])
     b4, v4, s4, t4, p4, n4, k4, r2_4, ra4, df4, _ = ols_fit(X4, y)
-    fn4 = ["intercept", "aggressive_intensity", "aggressive_intensity_sq"]
+    fn4 = ["aggressive_intensity", "aggressive_intensity_sq"]
 
     print(f"\nM4 Firm+Time FE (two-way): N={n4} firms={n_firms} k={k4} df={df4} R²={r2_4:.4f} adj-R²={ra4:.4f}")
+    print(f"  firm_dummies={n_fd} (no reference, no intercept)"
+          f"  year_dummies={n_yd} (ref={REF_YEAR})  month_dummies={n_md} (ref={REF_MONTH})")
     for i, fn in enumerate(fn4):
         print(f"  {fn:<28} β={b4[i]:+.4f}  SE={s4[i]:.4f}  t={t4[i]:+.4f}  {p_stars(p4[i])}")
 
@@ -301,10 +303,10 @@ def main() -> None:
             "stars": p_stars(p4[i]),
             "n_obs": n4, "r_squared": f"{r2_4:.6f}", "r_squared_adj": f"{ra4:.6f}",
             "df_resid": df4, "n_firms": n_firms,
-            "fixed_effects": f"firm_dummies({n_fd} ref={REF_FIRM}) + year_dummies({n_yd}) + month_dummies({n_md})",
+            "fixed_effects": f"firm_dummies({n_fd} all, no reference, no intercept) + year_dummies({n_yd} ref={REF_YEAR}) + month_dummies({n_md} ref={REF_MONTH})",
             "classifier_limitation": CLASSIFIER_NOTE,
         })
-    diag_rows.append(h3_diag(float(b4[1]), float(b4[2]), float(p4[2]),
+    diag_rows.append(h3_diag(float(b4[0]), float(b4[1]), float(p4[1]),
                               obs_min, obs_max, "M4_firm_year_month_fe"))
 
     # ── Output ───────────────────────────────────────────────────────────────
