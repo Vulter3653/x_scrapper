@@ -1,0 +1,16 @@
+﻿dataset,normalized_label,label_name,n,class_share,total_n
+current_training_valid,0,non-humorous,1453,0.585887,2480
+current_training_valid,1,aggressive,80,0.032258,2480
+current_training_valid,2,affiliative,510,0.205645,2480
+current_training_valid,3,self-enhancing,403,0.1625,2480
+current_training_valid,4,self-defeating,34,0.01371,2480
+wendys_new_additions,0,non-humorous,288,0.508834,566
+wendys_new_additions,1,aggressive,95,0.167845,566
+wendys_new_additions,2,affiliative,106,0.187279,566
+wendys_new_additions,3,self-enhancing,62,0.109541,566
+wendys_new_additions,4,self-defeating,15,0.026502,566
+training_labels_v2_with_wendys,0,non-humorous,1741,0.571569,3046
+training_labels_v2_with_wendys,1,aggressive,175,0.057452,3046
+training_labels_v2_with_wendys,2,affiliative,616,0.202232,3046
+training_labels_v2_with_wendys,3,self-enhancing,465,0.152659,3046
+training_labels_v2_with_wendys,4,self-defeating,49,0.016087,3046
