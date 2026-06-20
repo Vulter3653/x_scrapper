@@ -58,16 +58,73 @@ suppressPackageStartupMessages({
 
 
 # ── 1. 경로 설정 및 데이터 로드 ──────────────────────────────
+# ─────────────────────────────────────────────────────────────
+# [방법 A] 단일 통합 CSV 사용 (권장, 바로 분석 가능)
+# ─────────────────────────────────────────────────────────────
+#  파일: analysis_ready_dataset.csv  (이 스크립트와 같은 폴더)
+#  내용: FS 68,039행 + HC 3,574행 = 총 71,613행 (sample_type으로 구분)
+#
+# ─────────────────────────────────────────────────────────────
+# [방법 B] 원본 RAW CSV 3개에서 직접 로드 (데이터 출처 추적용)
+# ─────────────────────────────────────────────────────────────
+#  RAW_FS  : .../data/regression_ready_v3/h2_post_level_regression_ready.csv
+#            → Fortune 100 전체 트윗 (v3 분류 완료). h2_sample_inclusion_flag==1 필터 적용.
+#            → 열: tweet_id, company_name, period, year, month,
+#                  log_total_engagement, aggressive_humor, affiliative_humor,
+#                  self_enhancing_humor, self_defeating_humor, non_humorous,
+#                  text_length, hashtag_count, mention_count, h2_sample_inclusion_flag
+#
+#  RAW_HC  : .../data/human_labeling_template/training_labels_v3_with_coder3_batch2.csv
+#            → 인간 코더가 레이블링한 3,595개 후보 트윗
+#            → 열: candidate_id, company_name, tweet_id, tweet_url, created_at, text,
+#                  total_engagement, human_humor_presence, human_humor_type, reviewer_id
+#
+#  RAW_V3  : .../data/classified/fortune100_domain_adapted_humor_classification_v3.csv
+#            → v3 분류기 결과 전체 (text_length/hashtag_count/mention_count 제공)
+#            → HC 매칭 시 tweet_id → URL status_id → 텍스트 MD5 순으로 참조
+#
+#  방법 B 사용 시: 아래 "방법 B" 섹션의 주석을 해제하고 방법 A 섹션을 주석 처리.
+# ─────────────────────────────────────────────────────────────
+
 # 이 스크립트 파일이 있는 디렉토리를 OUT으로 설정
 # RStudio에서 실행할 경우:
 OUT <- dirname(rstudioapi::getSourceEditorContext()$path)
 # 터미널에서 실행할 경우 아래 줄의 주석을 해제하고 경로를 지정:
 # OUT <- "/home/user/marketingstrategy/20260618expand/ols_hypothesis_results/nested_cumulative_models_v3"
 
+# ── 방법 A: 단일 통합 CSV (기본 실행 경로) ───────────────────
 DATA_FILE <- file.path(OUT, "analysis_ready_dataset.csv")
 cat(sprintf("데이터 파일: %s\n", DATA_FILE))
 cat(sprintf("파일 존재 여부: %s\n", ifelse(file.exists(DATA_FILE), "확인됨", "없음 — 경로를 확인하라")))
 stopifnot(file.exists(DATA_FILE))
+
+# ── 방법 B: RAW CSV 3개에서 직접 로드 (아래 전체 블록 주석 해제 후 사용) ──
+# ROOT   <- "/home/user/marketingstrategy"
+# CI     <- file.path(ROOT, "20260618expand", "classifier_improvement")
+# RAW_FS <- file.path(CI, "data", "regression_ready_v3",
+#                     "h2_post_level_regression_ready.csv")
+# RAW_HC <- file.path(CI, "data", "human_labeling_template",
+#                     "training_labels_v3_with_coder3_batch2.csv")
+# RAW_V3 <- file.path(CI, "data", "classified",
+#                     "fortune100_domain_adapted_humor_classification_v3.csv")
+#
+# # [FS] 전체 표본: h2_sample_inclusion_flag==1 필터 후 필요 열만 선택
+# fs_raw_b <- read_csv(RAW_FS, col_types=cols(.default="c"), show_col_types=FALSE) %>%
+#   filter(h2_sample_inclusion_flag=="1") %>%
+#   mutate(qoy = as.character((as.integer(month)-1L)%/%3L+1L),
+#          sample_type = "Full_sample",
+#          log_eng     = log_total_engagement) %>%
+#   select(sample_type, company_name, log_eng, aggressive_humor, affiliative_humor,
+#          self_enhancing_humor, self_defeating_humor,
+#          text_length, hashtag_count, mention_count, year, month, qoy)
+#
+# # [HC] 인간 코딩 표본: 3단계 fallback 매칭 (tweet_id → URL status_id → 텍스트 MD5)
+# # 매칭 로직은 Python 스크립트(run_nested_cumulative_models_v3.py)와 동일.
+# # R에서 MD5 해시: digest::digest(tolower(trimws(text)), algo="md5", serialize=FALSE)
+# # 상세 R 구현은 프로젝트 Python 스크립트 참조 또는 방법 A의 analysis_ready_dataset.csv 사용.
+#
+# # 방법 B로 로드한 후 아래 raw에 할당:
+# # raw <- bind_rows(fs_raw_b, hc_df_b)   # hc_df_b는 HC 매칭 완료 후 동일 열 구조
 
 
 # ── 2. 데이터 로드 및 전처리 ─────────────────────────────────
