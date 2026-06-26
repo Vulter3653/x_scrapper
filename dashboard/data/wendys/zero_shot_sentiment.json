@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 979,
+  "post_count": 980,
   "label_counts": {
+    "positive": 450,
     "negative": 492,
-    "positive": 449,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.4584743789216671,
-    "neutral": 0.1294937843227185,
-    "negative": 0.41203183499512996
+    "positive": 0.4584160912241454,
+    "neutral": 0.12957443401793003,
+    "negative": 0.412009473029647
   },
   "posts": [
+    {
+      "id": "2070253169066508765",
+      "tweet_url": "https://x.com/Wendys/status/2070253169066508765",
+      "created_at": "Thu Jun 25 21:09:53 +0000 2026",
+      "text": "When I ask do you want to split a meal, this is what I mean. https://t.co/3I0T6quqKs",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.4013524353504181,
+      "scores": {
+        "positive": 0.4013524353504181,
+        "negative": 0.3901171088218689,
+        "neutral": 0.2085304856300354
+      }
+    },
     {
       "id": "2067687662656307653",
       "tweet_url": "https://x.com/Wendys/status/2067687662656307653",
@@ -19600,5 +19620,5 @@
       }
     }
   ],
-  "generated_at": "2026-06-25T17:39:31.712796+00:00"
+  "generated_at": "2026-06-26T17:25:31.013908+00:00"
 }

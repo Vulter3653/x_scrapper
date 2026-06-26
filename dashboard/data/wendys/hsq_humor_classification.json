@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 979,
+  "post_count": 980,
   "label_counts": {
+    "Non-humorous brand message": 615,
     "Self-enhancing humor": 346,
-    "Non-humorous brand message": 614,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13034014403308714,
-    "Self-enhancing humor": 0.29219624314093784,
-    "Aggressive humor": 0.11416155376041533,
-    "Self-defeating humor": 0.11476746748274799,
-    "Non-humorous brand message": 0.34853459293138334
+    "Affiliative humor": 0.1303711692694508,
+    "Self-enhancing humor": 0.2921160916660019,
+    "Aggressive humor": 0.11416071083844219,
+    "Self-defeating humor": 0.11486289223266423,
+    "Non-humorous brand message": 0.34848913729502057
   },
   "posts": [
+    {
+      "id": "2070253169066508765",
+      "tweet_url": "https://x.com/Wendys/status/2070253169066508765",
+      "created_at": "Thu Jun 25 21:09:53 +0000 2026",
+      "text": "When I ask do you want to split a meal, this is what I mean. https://t.co/3I0T6quqKs",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3039880692958832,
+      "scores": {
+        "Non-humorous brand message": 0.3039880692958832,
+        "Self-enhancing humor": 0.21364779770374298,
+        "Self-defeating humor": 0.20828372240066528,
+        "Affiliative humor": 0.16074487566947937,
+        "Aggressive humor": 0.1133354902267456
+      }
+    },
     {
       "id": "2067687662656307653",
       "tweet_url": "https://x.com/Wendys/status/2067687662656307653",
@@ -23524,5 +23548,5 @@
       }
     }
   ],
-  "generated_at": "2026-06-25T17:43:03.305695+00:00"
+  "generated_at": "2026-06-26T17:29:05.380079+00:00"
 }

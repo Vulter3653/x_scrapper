@@ -2,18 +2,18 @@
   {
     "humor_type": "Affiliative humor",
     "post_count": 17,
-    "share": 0.006121714079942384,
-    "average_engagement": 5566.64705882353,
+    "share": 0.006119510439164867,
+    "average_engagement": 5566.470588235294,
     "median_engagement": 494.0,
     "p75_engagement": 871.0,
-    "p90_engagement": 16234.800000000007,
+    "p90_engagement": 16233.000000000007,
     "max_engagement": 50315.0,
     "average_humor_score": 0.34570393229232116
   },
   {
     "humor_type": "Aggressive humor",
     "post_count": 24,
-    "share": 0.008642419877565718,
+    "share": 0.008639308855291577,
     "average_engagement": 4033.9583333333335,
     "median_engagement": 1692.0,
     "p75_engagement": 4470.75,
@@ -23,20 +23,20 @@
   },
   {
     "humor_type": "Non-humorous brand message",
-    "post_count": 1733,
-    "share": 0.6240547353258913,
-    "average_engagement": 9286.128101557992,
-    "median_engagement": 971.0,
-    "p75_engagement": 4131.0,
-    "p90_engagement": 11620.399999999996,
-    "max_engagement": 997957.0,
-    "average_humor_score": 0.4496177266305124
+    "post_count": 1734,
+    "share": 0.6241900647948164,
+    "average_engagement": 9280.61534025375,
+    "median_engagement": 969.5,
+    "p75_engagement": 4126.25,
+    "p90_engagement": 11610.600000000004,
+    "max_engagement": 997838.0,
+    "average_humor_score": 0.449533741822361
   },
   {
     "humor_type": "Self-defeating humor",
     "post_count": 14,
-    "share": 0.005041411595246669,
-    "average_engagement": 13063.42857142857,
+    "share": 0.005039596832253419,
+    "average_engagement": 13063.357142857143,
     "median_engagement": 2278.5,
     "p75_engagement": 5205.75,
     "p90_engagement": 39507.30000000004,
@@ -46,12 +46,12 @@
   {
     "humor_type": "Self-enhancing humor",
     "post_count": 989,
-    "share": 0.356139719121354,
-    "average_engagement": 3270.767441860465,
+    "share": 0.3560115190784737,
+    "average_engagement": 3270.6531850353895,
     "median_engagement": 664.0,
     "p75_engagement": 2613.0,
-    "p90_engagement": 8250.200000000003,
-    "max_engagement": 102832.0,
+    "p90_engagement": 8250.000000000002,
+    "max_engagement": 102821.0,
     "average_humor_score": 0.4827139311148978
   }
 ]
