@@ -21,7 +21,7 @@
 frosty, free, fry, wendy, spicy, purchase, small, bag, fresh, offer, app, big
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
-- [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041332734883201293](https://x.com/Wendys/status/2041332734883201293): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 - [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 
 ## Topic 1
@@ -32,7 +32,7 @@ wendy, nationalroastday, day, breakfast, big, time, pm, right, tomorrow, et, thi
 - [1425134843923517449](https://x.com/Wendys/status/1425134843923517449): RT @Wendys: Did somebody say FREE Sausage or Bacon, Egg &amp; Swiss Croissant? Yep, it was us. ❤️ this Tweet and we’ll remind you when it’s go…
 
 ## Topic 2
-free, wendy, fries, honey, chicken, honey butter, butter, butter chicken, biscuit, chicken biscuit, ll, app
+free, wendy, fries, honey, chicken, butter, butter chicken, honey butter, biscuit, chicken biscuit, ll, app
 
 - [1498426568946892801](https://x.com/Wendys/status/1498426568946892801): Wendy’s Pick ‘Em is BACK, baby! 
 

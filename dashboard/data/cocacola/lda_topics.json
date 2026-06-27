@@ -9,12 +9,12 @@
     "max_topics": 9,
     "selected_num_topics": 8,
     "selected_coherence_npmi": 0.3664842513631882,
-    "selected_perplexity": 1219.6242148132014,
+    "selected_perplexity": 1219.6242148132003,
     "evaluations": [
       {
         "num_topics": 2,
         "coherence_npmi": 0.19266672866800688,
-        "perplexity": 1181.007145806931
+        "perplexity": 1181.007145806929
       },
       {
         "num_topics": 3,
@@ -24,7 +24,7 @@
       {
         "num_topics": 4,
         "coherence_npmi": 0.16502758484618338,
-        "perplexity": 1282.6262530549789
+        "perplexity": 1282.6262530549743
       },
       {
         "num_topics": 5,
@@ -39,12 +39,12 @@
       {
         "num_topics": 7,
         "coherence_npmi": 0.3025329613270835,
-        "perplexity": 1249.6017735471132
+        "perplexity": 1249.601773547113
       },
       {
         "num_topics": 8,
         "coherence_npmi": 0.3664842513631882,
-        "perplexity": 1219.6242148132014
+        "perplexity": 1219.6242148132003
       },
       {
         "num_topics": 9,
@@ -219,16 +219,16 @@
       ],
       "representative_posts": [
         {
-          "id": "1195475187292147713",
-          "tweet_url": "https://x.com/CocaCola/status/1195475187292147713",
-          "score": 0.9635333379470075,
-          "text": "❤️ ✨\nLOVE is\nboundless\nageless\nbeautiful\ncreative\nlimitless\nreal✨\namazing\nreassuring❤️\ninviting\nembracing...\n❤️\nLOVE is \nAll That Is✨\n       ✨   ❤️    ✨\n❤️   ✨     ❤️\n✨     ❤️✨   ✨\n       ❤️     ✨❤️✨\n              ✨❤️\n                              ❤️\n\n#FridayFeeling"
-        },
-        {
           "id": "1205510188482146304",
           "tweet_url": "https://x.com/CocaCola/status/1205510188482146304",
           "score": 0.9635333379470075,
           "text": "RT @MyPowertalk: ❤️ ✨\nLOVE is\nboundless\nageless\nbeautiful\ncreative\nlimitless\nreal✨\namazing\nreassuring❤️\ninviting\nembracing...\n❤️\nLOVE is \nA…"
+        },
+        {
+          "id": "1195475187292147713",
+          "tweet_url": "https://x.com/CocaCola/status/1195475187292147713",
+          "score": 0.9635333379470075,
+          "text": "❤️ ✨\nLOVE is\nboundless\nageless\nbeautiful\ncreative\nlimitless\nreal✨\namazing\nreassuring❤️\ninviting\nembracing...\n❤️\nLOVE is \nAll That Is✨\n       ✨   ❤️    ✨\n❤️   ✨     ❤️\n✨     ❤️✨   ✨\n       ❤️     ✨❤️✨\n              ✨❤️\n                              ❤️\n\n#FridayFeeling"
         },
         {
           "id": "1252245596657901569",
@@ -366,16 +366,16 @@
       ],
       "representative_posts": [
         {
-          "id": "1452885532376113157",
-          "tweet_url": "https://x.com/CocaCola/status/1452885532376113157",
-          "score": 0.9749991209078565,
-          "text": "Thanks for joining my Coca-Cola Real Magic campaign stream! \n\nBe sure to redeem the following code- S91SH181EP\n\non https://t.co/cpJeHN6N33 to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes"
-        },
-        {
           "id": "1457841275647008769",
           "tweet_url": "https://x.com/CocaCola/status/1457841275647008769",
           "score": 0.9749991209078565,
           "text": "Thanks for joining my Coca-Cola Real Magic campaign stream! \n\nBe sure to redeem the following code - Z8Q0SH9U47 \n\non https://t.co/8eDOkmRtTi to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes"
+        },
+        {
+          "id": "1452885532376113157",
+          "tweet_url": "https://x.com/CocaCola/status/1452885532376113157",
+          "score": 0.9749991209078565,
+          "text": "Thanks for joining my Coca-Cola Real Magic campaign stream! \n\nBe sure to redeem the following code- S91SH181EP\n\non https://t.co/cpJeHN6N33 to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes"
         },
         {
           "id": "1247645518261559298",
@@ -386,7 +386,7 @@
         {
           "id": "1201018708790890496",
           "tweet_url": "https://x.com/CocaCola/status/1201018708790890496",
-          "score": 0.9687483681334209,
+          "score": 0.9687483681334211,
           "text": "POSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER\nPOSITIVE VIBES THIS DECEMBER \nPOSITIVE VIBES THIS DECEMBER"
         },
         {
@@ -447,5 +447,5 @@
       ]
     }
   ],
-  "generated_at": "2026-06-26T17:29:19.818853+00:00"
+  "generated_at": "2026-06-27T16:50:13.585965+00:00"
 }
