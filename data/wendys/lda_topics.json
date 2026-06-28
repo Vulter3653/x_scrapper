@@ -9,27 +9,27 @@
     "max_topics": 9,
     "selected_num_topics": 4,
     "selected_coherence_npmi": 0.2572077780168915,
-    "selected_perplexity": 1323.584022743547,
+    "selected_perplexity": 1323.5840227435506,
     "evaluations": [
       {
         "num_topics": 2,
         "coherence_npmi": 0.1369411433587191,
-        "perplexity": 1204.0937492229439
+        "perplexity": 1204.093749222944
       },
       {
         "num_topics": 3,
         "coherence_npmi": 0.19202489765738295,
-        "perplexity": 1249.1003117702503
+        "perplexity": 1249.1003117702535
       },
       {
         "num_topics": 4,
         "coherence_npmi": 0.2572077780168915,
-        "perplexity": 1323.584022743547
+        "perplexity": 1323.5840227435506
       },
       {
         "num_topics": 5,
         "coherence_npmi": 0.23323551261850187,
-        "perplexity": 1386.3126681458516
+        "perplexity": 1386.3126681458505
       },
       {
         "num_topics": 6,
@@ -78,8 +78,8 @@
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions."
         },
         {
-          "id": "2041332734883201293",
-          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
+          "id": "2041187810728727004",
+          "tweet_url": "https://x.com/Wendys/status/2041187810728727004",
           "score": 0.9811114445782717,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
@@ -96,8 +96,8 @@
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
         {
-          "id": "2041187810728727004",
-          "tweet_url": "https://x.com/Wendys/status/2041187810728727004",
+          "id": "2041332734883201293",
+          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
           "score": 0.9811114445782717,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         }
@@ -160,9 +160,9 @@
         "fries",
         "honey",
         "chicken",
+        "honey butter",
         "butter",
         "butter chicken",
-        "honey butter",
         "biscuit",
         "chicken biscuit",
         "ll",
@@ -221,7 +221,7 @@
         {
           "id": "1509591862335655943",
           "tweet_url": "https://x.com/Wendys/status/1509591862335655943",
-          "score": 0.9748253911189401,
+          "score": 0.9748253911189402,
           "text": "The  #BestOfTweets Brand Bracket Semifinals are here.\n\nIn this round, Conversation Starters and Iconic Mascots collide. But you pick who will advance to the finals. \n\n✈️ @Delta’s travel tips\nVS\n🍟 @Wendys infamous spice\n\nVote now!"
         },
         {
@@ -251,5 +251,5 @@
       ]
     }
   ],
-  "generated_at": "2026-06-27T16:46:14.585143+00:00"
+  "generated_at": "2026-06-28T16:49:16.158619+00:00"
 }

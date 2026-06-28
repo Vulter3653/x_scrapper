@@ -24,7 +24,7 @@
       {
         "num_topics": 4,
         "coherence_npmi": 0.13233723238319198,
-        "perplexity": 1067.7474895225105
+        "perplexity": 1067.7474895212986
       },
       {
         "num_topics": 5,
@@ -182,16 +182,16 @@
           "text": "One time I was blowing kisses to some birds outside my office window and my boss told me to stop but THEN one day I caught him blowing kisses to some birds outside HIS office window\n\nWe still haven’t talked about it please don’t tell anyone https://t.co/8KNaZc6s9V"
         },
         {
-          "id": "898147816018763776",
-          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
-          "score": 0.9387571870132602,
-          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
-        },
-        {
           "id": "897992833726128128",
           "tweet_url": "https://x.com/MoonPie/status/897992833726128128",
           "score": 0.9387571870132602,
           "text": "You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB"
+        },
+        {
+          "id": "898147816018763776",
+          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
+          "score": 0.9387571870132602,
+          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
         },
         {
           "id": "956022159469613056",
@@ -398,5 +398,5 @@
       ]
     }
   ],
-  "generated_at": "2026-06-27T16:53:51.588762+00:00"
+  "generated_at": "2026-06-28T17:00:12.188104+00:00"
 }
