@@ -5,7 +5,7 @@
     "post_count": 5,
     "share": 0.0017998560115190785,
     "average_engagement": 7566.6,
-    "median_engagement": 869.0,
+    "median_engagement": 870.0,
     "average_humor_score": 0.2904029071331024,
     "average_sentiment_score": 0.7668227076530456
   },
@@ -14,7 +14,7 @@
     "sentiment_label": "positive",
     "post_count": 12,
     "share": 0.004319654427645789,
-    "average_engagement": 4732.5,
+    "average_engagement": 4732.583333333333,
     "median_engagement": 467.5,
     "average_humor_score": 0.3687460261086623,
     "average_sentiment_score": 0.7297550911704699
@@ -24,7 +24,7 @@
     "sentiment_label": "negative",
     "post_count": 19,
     "share": 0.006839452843772498,
-    "average_engagement": 4096.684210526316,
+    "average_engagement": 4096.578947368421,
     "median_engagement": 1901.0,
     "average_humor_score": 0.3877696002784528,
     "average_sentiment_score": 0.7036692594227038
@@ -34,8 +34,8 @@
     "sentiment_label": "positive",
     "post_count": 5,
     "share": 0.0017998560115190785,
-    "average_engagement": 3801.4,
-    "median_engagement": 1281.0,
+    "average_engagement": 3801.0,
+    "median_engagement": 1280.0,
     "average_humor_score": 0.34709974825382234,
     "average_sentiment_score": 0.7658598124980927
   },
@@ -44,8 +44,8 @@
     "sentiment_label": "negative",
     "post_count": 759,
     "share": 0.2732181425485961,
-    "average_engagement": 12674.347826086956,
-    "median_engagement": 1358.0,
+    "average_engagement": 12673.274044795784,
+    "median_engagement": 1359.0,
     "average_humor_score": 0.39826290205376264,
     "average_sentiment_score": 0.5376361077639111
   },
@@ -54,7 +54,7 @@
     "sentiment_label": "neutral",
     "post_count": 83,
     "share": 0.029877609791216703,
-    "average_engagement": 8140.843373493976,
+    "average_engagement": 8140.22891566265,
     "median_engagement": 2050.0,
     "average_humor_score": 0.4912431530923729,
     "average_sentiment_score": 0.4639973407050213
@@ -64,8 +64,8 @@
     "sentiment_label": "positive",
     "post_count": 892,
     "share": 0.3210943124550036,
-    "average_engagement": 6495.839686098655,
-    "median_engagement": 725.5,
+    "average_engagement": 6495.0739910313905,
+    "median_engagement": 725.0,
     "average_humor_score": 0.48927890577858874,
     "average_sentiment_score": 0.6999285813805234
   },
@@ -74,8 +74,8 @@
     "sentiment_label": "negative",
     "post_count": 12,
     "share": 0.004319654427645789,
-    "average_engagement": 14947.916666666666,
-    "median_engagement": 2278.5,
+    "average_engagement": 14947.416666666666,
+    "median_engagement": 2278.0,
     "average_humor_score": 0.33205872525771457,
     "average_sentiment_score": 0.7759901334842046
   },
@@ -84,8 +84,8 @@
     "sentiment_label": "neutral",
     "post_count": 1,
     "share": 0.0003599712023038157,
-    "average_engagement": 3208.0,
-    "median_engagement": 3208.0,
+    "average_engagement": 3207.0,
+    "median_engagement": 3207.0,
     "average_humor_score": 0.26029810309410095,
     "average_sentiment_score": 0.4890373647212982
   },
@@ -104,7 +104,7 @@
     "sentiment_label": "negative",
     "post_count": 435,
     "share": 0.15658747300215983,
-    "average_engagement": 4554.83908045977,
+    "average_engagement": 4554.448275862069,
     "median_engagement": 854.0,
     "average_humor_score": 0.4047828123829831,
     "average_sentiment_score": 0.6402449596202237
@@ -114,7 +114,7 @@
     "sentiment_label": "neutral",
     "post_count": 18,
     "share": 0.0064794816414686825,
-    "average_engagement": 2987.1666666666665,
+    "average_engagement": 2987.1111111111113,
     "median_engagement": 1059.0,
     "average_humor_score": 0.35092974868085647,
     "average_sentiment_score": 0.4428141481346554
@@ -124,7 +124,7 @@
     "sentiment_label": "positive",
     "post_count": 536,
     "share": 0.1929445644348452,
-    "average_engagement": 2236.9850746268658,
+    "average_engagement": 2236.8899253731342,
     "median_engagement": 551.0,
     "average_humor_score": 0.5503858563615315,
     "average_sentiment_score": 0.7700117504529989
