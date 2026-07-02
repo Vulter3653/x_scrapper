@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 932,
+  "post_count": 933,
   "label_counts": {
+    "Self-enhancing humor": 269,
     "Non-humorous brand message": 634,
     "Affiliative humor": 8,
-    "Self-enhancing humor": 268,
     "Self-defeating humor": 9,
     "Aggressive humor": 13
   },
   "average_scores": {
-    "Affiliative humor": 0.13972054447732915,
-    "Self-enhancing humor": 0.2556820319812593,
-    "Aggressive humor": 0.12036613926019539,
-    "Self-defeating humor": 0.12403438023884597,
-    "Non-humorous brand message": 0.3601969026449804
+    "Affiliative humor": 0.13975807390598,
+    "Self-enhancing humor": 0.25567538602006123,
+    "Aggressive humor": 0.12041226832221945,
+    "Self-defeating humor": 0.1241038380272333,
+    "Non-humorous brand message": 0.3600504323765276
   },
   "posts": [
+    {
+      "id": "2072374172597297506",
+      "tweet_url": "https://x.com/MoonPie/status/2072374172597297506",
+      "created_at": "Wed Jul 01 17:38:00 +0000 2026",
+      "text": "If you don’t eat these while you watch soccer we will lose https://t.co/Jdi7ZkZ4to",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.24948135018348694,
+      "scores": {
+        "Self-enhancing humor": 0.24948135018348694,
+        "Non-humorous brand message": 0.22354014217853546,
+        "Self-defeating humor": 0.18883849680423737,
+        "Affiliative humor": 0.17473550140857697,
+        "Aggressive humor": 0.16340455412864685
+      }
+    },
     {
       "id": "2052811071883182335",
       "tweet_url": "https://x.com/MoonPie/status/2052811071883182335",
@@ -22396,5 +22420,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-01T17:52:29.438014+00:00"
+  "generated_at": "2026-07-02T17:34:27.450196+00:00"
 }

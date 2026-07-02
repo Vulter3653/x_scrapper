@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 980,
+  "post_count": 981,
   "label_counts": {
+    "Self-enhancing humor": 347,
     "Non-humorous brand message": 615,
-    "Self-enhancing humor": 346,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.1303711692694508,
-    "Self-enhancing humor": 0.2921160916660019,
-    "Aggressive humor": 0.11416071083844219,
-    "Self-defeating humor": 0.11486289223266423,
-    "Non-humorous brand message": 0.34848913729502057
+    "Affiliative humor": 0.13040691258200177,
+    "Self-enhancing humor": 0.29212724522209965,
+    "Aggressive humor": 0.11417670370916853,
+    "Self-defeating humor": 0.11487954577324755,
+    "Non-humorous brand message": 0.3484095940744945
   },
   "posts": [
+    {
+      "id": "2072445194033676639",
+      "tweet_url": "https://x.com/Wendys/status/2072445194033676639",
+      "created_at": "Wed Jul 01 22:20:13 +0000 2026",
+      "text": "Got our gameday fit on 🇺🇸🦅 https://t.co/HSdahUWcbw",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.3030577301979065,
+      "scores": {
+        "Self-enhancing humor": 0.3030577301979065,
+        "Non-humorous brand message": 0.2704572379589081,
+        "Affiliative humor": 0.16543535888195038,
+        "Self-defeating humor": 0.13120001554489136,
+        "Aggressive humor": 0.12984971702098846
+      }
+    },
     {
       "id": "2070253169066508765",
       "tweet_url": "https://x.com/Wendys/status/2070253169066508765",
@@ -23548,5 +23572,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-01T17:41:32.826230+00:00"
+  "generated_at": "2026-07-02T17:24:12.706384+00:00"
 }

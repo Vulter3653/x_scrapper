@@ -1,21 +1,21 @@
 # HSQ Zero-Shot Humor Classification for @MoonPie
 
-- Posts analyzed: 932
+- Posts analyzed: 933
 - Model: `typeform/distilbert-base-uncased-mnli`
 - Codebook: HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook
 
 ## Label Counts
 - Non-humorous brand message: 634
-- Self-enhancing humor: 268
+- Self-enhancing humor: 269
 - Aggressive humor: 13
 - Self-defeating humor: 9
 - Affiliative humor: 8
 
 ## Average Scores
-- Non-humorous brand message: 0.3602
+- Non-humorous brand message: 0.3601
 - Self-enhancing humor: 0.2557
-- Affiliative humor: 0.1397
-- Self-defeating humor: 0.1240
+- Affiliative humor: 0.1398
+- Self-defeating humor: 0.1241
 - Aggressive humor: 0.1204
 
 ## Highest Confidence Examples

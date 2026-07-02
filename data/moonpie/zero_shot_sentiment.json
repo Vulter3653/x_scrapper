@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 932,
+  "post_count": 933,
   "label_counts": {
+    "negative": 474,
     "positive": 404,
-    "negative": 473,
     "neutral": 55
   },
   "average_scores": {
-    "positive": 0.4368264796232301,
-    "neutral": 0.1657736511765838,
-    "negative": 0.39739986891398804
+    "positive": 0.4366237056628269,
+    "neutral": 0.16583041871674467,
+    "negative": 0.3975458754143933
   },
   "posts": [
+    {
+      "id": "2072374172597297506",
+      "tweet_url": "https://x.com/MoonPie/status/2072374172597297506",
+      "created_at": "Wed Jul 01 17:38:00 +0000 2026",
+      "text": "If you don’t eat these while you watch soccer we will lose https://t.co/Jdi7ZkZ4to",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.5336239337921143,
+      "scores": {
+        "negative": 0.5336239337921143,
+        "positive": 0.24763837456703186,
+        "neutral": 0.21873776614665985
+      }
+    },
     {
       "id": "2052811071883182335",
       "tweet_url": "https://x.com/MoonPie/status/2052811071883182335",
@@ -18660,5 +18680,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-01T17:49:13.677831+00:00"
+  "generated_at": "2026-07-02T17:31:29.258891+00:00"
 }

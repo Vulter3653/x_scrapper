@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 980,
+  "post_count": 981,
   "label_counts": {
-    "positive": 450,
+    "positive": 451,
     "negative": 492,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.4584160912241454,
-    "neutral": 0.12957443401793003,
-    "negative": 0.412009473029647
+    "positive": 0.4586488323070908,
+    "neutral": 0.1295185803786591,
+    "negative": 0.4118325855117855
   },
   "posts": [
+    {
+      "id": "2072445194033676639",
+      "tweet_url": "https://x.com/Wendys/status/2072445194033676639",
+      "created_at": "Wed Jul 01 22:20:13 +0000 2026",
+      "text": "Got our gameday fit on 🇺🇸🦅 https://t.co/HSdahUWcbw",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.6867350935935974,
+      "scores": {
+        "positive": 0.6867350935935974,
+        "negative": 0.23848281800746918,
+        "neutral": 0.07478201389312744
+      }
+    },
     {
       "id": "2070253169066508765",
       "tweet_url": "https://x.com/Wendys/status/2070253169066508765",
@@ -19620,5 +19640,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-01T17:38:01.587127+00:00"
+  "generated_at": "2026-07-02T17:20:59.038626+00:00"
 }
