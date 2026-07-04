@@ -1,16 +1,16 @@
 # Zero-Shot Sentiment for @MoonPie
 
-- Posts analyzed: 933
+- Posts analyzed: 934
 - Model: `typeform/distilbert-base-uncased-mnli`
 
 ## Label Counts
 - negative: 474
-- positive: 404
+- positive: 405
 - neutral: 55
 
 ## Average Scores
 - positive: 0.4366
-- negative: 0.3975
+- negative: 0.3976
 - neutral: 0.1658
 
 ## Highest Confidence Examples

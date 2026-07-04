@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 933,
+  "post_count": 934,
   "label_counts": {
-    "Self-enhancing humor": 269,
+    "Self-enhancing humor": 270,
     "Non-humorous brand message": 634,
     "Affiliative humor": 8,
     "Self-defeating humor": 9,
     "Aggressive humor": 13
   },
   "average_scores": {
-    "Affiliative humor": 0.13975807390598,
-    "Self-enhancing humor": 0.25567538602006123,
-    "Aggressive humor": 0.12041226832221945,
-    "Self-defeating humor": 0.1241038380272333,
-    "Non-humorous brand message": 0.3600504323765276
+    "Affiliative humor": 0.13984715571872317,
+    "Self-enhancing humor": 0.25570696737663123,
+    "Aggressive humor": 0.12052500590442593,
+    "Self-defeating humor": 0.12409647820032316,
+    "Non-humorous brand message": 0.3598243915012238
   },
   "posts": [
+    {
+      "id": "2073409746070012385",
+      "tweet_url": "https://x.com/MoonPie/status/2073409746070012385",
+      "created_at": "Sat Jul 04 14:13:00 +0000 2026",
+      "text": "Imagine a big ole bald eagle is clutching a MoonPie in one talon and you in the other one and you’re flying over a mountain and there’s fireworks and you’re just kinda nibbling on that MoonPie while America happens all around you imagine that",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.28517237305641174,
+      "scores": {
+        "Self-enhancing humor": 0.28517237305641174,
+        "Aggressive humor": 0.22570917010307312,
+        "Affiliative humor": 0.2229604870080948,
+        "Non-humorous brand message": 0.14892825484275818,
+        "Self-defeating humor": 0.11722975969314575
+      }
+    },
     {
       "id": "2072374172597297506",
       "tweet_url": "https://x.com/MoonPie/status/2072374172597297506",
@@ -22420,5 +22444,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-03T17:21:00.078315+00:00"
+  "generated_at": "2026-07-04T16:57:27.465077+00:00"
 }

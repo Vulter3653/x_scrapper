@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 933,
+  "post_count": 934,
   "label_counts": {
+    "positive": 405,
     "negative": 474,
-    "positive": 404,
     "neutral": 55
   },
   "average_scores": {
-    "positive": 0.4366237056628269,
-    "neutral": 0.16583041871674467,
-    "negative": 0.3975458754143933
+    "positive": 0.43663911399186234,
+    "neutral": 0.16575824820485585,
+    "negative": 0.3976026375735361
   },
   "posts": [
+    {
+      "id": "2073409746070012385",
+      "tweet_url": "https://x.com/MoonPie/status/2073409746070012385",
+      "created_at": "Sat Jul 04 14:13:00 +0000 2026",
+      "text": "Imagine a big ole bald eagle is clutching a MoonPie in one talon and you in the other one and you’re flying over a mountain and there’s fireworks and you’re just kinda nibbling on that MoonPie while America happens all around you imagine that",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.45101508498191833,
+      "scores": {
+        "positive": 0.45101508498191833,
+        "negative": 0.4505617320537567,
+        "neutral": 0.09842316061258316
+      }
+    },
     {
       "id": "2072374172597297506",
       "tweet_url": "https://x.com/MoonPie/status/2072374172597297506",
@@ -18680,5 +18700,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-03T17:17:47.520017+00:00"
+  "generated_at": "2026-07-04T16:53:48.205146+00:00"
 }
