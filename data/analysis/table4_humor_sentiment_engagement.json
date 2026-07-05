@@ -4,7 +4,7 @@
     "sentiment_label": "negative",
     "post_count": 5,
     "share": 0.0017979144192736426,
-    "average_engagement": 7565.8,
+    "average_engagement": 7566.0,
     "median_engagement": 870.0,
     "average_humor_score": 0.2904029071331024,
     "average_sentiment_score": 0.7668227076530456
@@ -14,7 +14,7 @@
     "sentiment_label": "positive",
     "post_count": 12,
     "share": 0.004314994606256742,
-    "average_engagement": 4732.583333333333,
+    "average_engagement": 4732.5,
     "median_engagement": 467.5,
     "average_humor_score": 0.3687460261086623,
     "average_sentiment_score": 0.7297550911704699
@@ -24,7 +24,7 @@
     "sentiment_label": "negative",
     "post_count": 19,
     "share": 0.0068320747932398415,
-    "average_engagement": 4097.578947368421,
+    "average_engagement": 4098.1578947368425,
     "median_engagement": 1901.0,
     "average_humor_score": 0.3877696002784528,
     "average_sentiment_score": 0.7036692594227038
@@ -44,7 +44,7 @@
     "sentiment_label": "negative",
     "post_count": 759,
     "share": 0.27292340884573896,
-    "average_engagement": 12670.68906455863,
+    "average_engagement": 12670.034255599472,
     "median_engagement": 1358.0,
     "average_humor_score": 0.39826290205376264,
     "average_sentiment_score": 0.5376361077639111
@@ -54,7 +54,7 @@
     "sentiment_label": "neutral",
     "post_count": 83,
     "share": 0.029845379359942466,
-    "average_engagement": 8138.9277108433735,
+    "average_engagement": 8138.795180722892,
     "median_engagement": 2050.0,
     "average_humor_score": 0.4912431530923729,
     "average_sentiment_score": 0.4639973407050213
@@ -64,7 +64,7 @@
     "sentiment_label": "positive",
     "post_count": 892,
     "share": 0.3207479323984178,
-    "average_engagement": 6493.058295964125,
+    "average_engagement": 6492.66928251121,
     "median_engagement": 725.0,
     "average_humor_score": 0.48927890577858874,
     "average_sentiment_score": 0.6999285813805234
@@ -74,7 +74,7 @@
     "sentiment_label": "negative",
     "post_count": 12,
     "share": 0.004314994606256742,
-    "average_engagement": 14945.833333333334,
+    "average_engagement": 14945.25,
     "median_engagement": 2277.5,
     "average_humor_score": 0.33205872525771457,
     "average_sentiment_score": 0.7759901334842046
@@ -104,8 +104,8 @@
     "sentiment_label": "negative",
     "post_count": 436,
     "share": 0.15677813736066162,
-    "average_engagement": 4543.5802752293575,
-    "median_engagement": 848.5,
+    "average_engagement": 4543.399082568807,
+    "median_engagement": 848.0,
     "average_humor_score": 0.40442661636876404,
     "average_sentiment_score": 0.6400004159830032
   },
@@ -124,8 +124,8 @@
     "sentiment_label": "positive",
     "post_count": 538,
     "share": 0.19345559151384395,
-    "average_engagement": 2230.014869888476,
-    "median_engagement": 548.0,
+    "average_engagement": 2232.4832713754645,
+    "median_engagement": 554.0,
     "average_humor_score": 0.5494331767900282,
     "average_sentiment_score": 0.7692640305230165
   }
