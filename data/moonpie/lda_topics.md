@@ -159,5 +159,5 @@ moonpies, ve, tweet, great, lol, don, moon, buy, time, friends, going, years
 - [984569155797028865](https://x.com/MoonPie/status/984569155797028865): One time I was blowing kisses to some birds outside my office window and my boss told me to stop but THEN one day I caught him blowing kisses to some birds outside HIS office window
 
 We still haven’t talked about it please don’t tell anyone https://t.co/8KNaZc6s9V
-- [935238021795983362](https://x.com/MoonPie/status/935238021795983362): RT @NPR: Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU
 - [934400023613227009](https://x.com/MoonPie/status/934400023613227009): Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU
+- [935238021795983362](https://x.com/MoonPie/status/935238021795983362): RT @NPR: Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU

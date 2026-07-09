@@ -1,96 +1,42 @@
 # LDA Topics for @Wendys
 
-- Documents analyzed: 888
-- Selected topics: 9
+- Documents analyzed: 889
+- Selected topics: 5
 - Selection method: NPMI coherence, candidates 2-9
-- Selected coherence: 0.2558
-- Selected perplexity: 1425.4539
+- Selected coherence: 0.2393
+- Selected perplexity: 1338.4562
 
 ## Topic Count Evaluation
 
-- 2 topics: coherence=0.1428, perplexity=1214.1780
-- 3 topics: coherence=0.1813, perplexity=1243.5589
-- 4 topics: coherence=0.1995, perplexity=1296.2783
-- 5 topics: coherence=0.2030, perplexity=1377.9231
-- 6 topics: coherence=0.2244, perplexity=1402.8516
-- 7 topics: coherence=0.2185, perplexity=1430.5897
-- 8 topics: coherence=0.2081, perplexity=1454.9896
-- 9 topics: coherence=0.2558, perplexity=1425.4539
+- 2 topics: coherence=0.1416, perplexity=1200.4342
+- 3 topics: coherence=0.2208, perplexity=1252.7683
+- 4 topics: coherence=0.2215, perplexity=1302.7321
+- 5 topics: coherence=0.2393, perplexity=1338.4562
+- 6 topics: coherence=0.1804, perplexity=1465.7185
+- 7 topics: coherence=0.2169, perplexity=1423.4917
+- 8 topics: coherence=0.2174, perplexity=1447.3161
+- 9 topics: coherence=0.2219, perplexity=1490.9607
 
 ## Topic 0
-wendy, ll, win, morty, hit, true, tweet, free, rick, time, baconator, drink
-
-- [1498426568946892801](https://x.com/Wendys/status/1498426568946892801): Wendy’s Pick ‘Em is BACK, baby! 
-
-Hit the ❤️, and we’ll hit you up when it’s time to make your picks for EVERY round of March Madness. 
-
-Winning picks win sweet deals, so Choose Wisely #ForTheWendys https://t.co/7l8jasWATw
-- [1370124888049061895](https://x.com/Wendys/status/1370124888049061895): It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.
-
-❤️ this tweet and we’ll hit you up when it’s time to vote in each tourney round. https://t.co/rvWMGK1xv6
-- [1371097041837916163](https://x.com/Wendys/status/1371097041837916163): RT @Wendys: It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.
-
-❤️ this twee…
-
-## Topic 1
-live, pm, et, time, square, pm et, watch, tweets, tune, going, don, house
-
-- [1508870042414424071](https://x.com/Wendys/status/1508870042414424071): RT @TwitterMktg: Quarterfinals of the #BestOfTweets Brand Bracket is a matter of taste.
-
-Whose Tweets satisfy your appetite? 
-
-🍉 @SourPatch…
-- [2056485781707821429](https://x.com/Wendys/status/2056485781707821429): If you have flaming locks of auburn hair and a face card that never declines, we have the perfect contest for you 😉
-Wendy’s Look-Alike Contest is 3:30-5:30pm May 26th at Seaport Square in NYC! https://t.co/sEUa15Db7G
-- [1378453149044850688](https://x.com/Wendys/status/1378453149044850688): #FinalFour Twitter Live presented by @Wendys is LIVE!
-
-Watch @BaylorMBB &amp; @UHCougarMBK in a Texas showdown for a #NationalChampionship spot. #MarchMadness
-
-@RexChapman | @AdamLefkoe | @bwood_33 https://t.co/fw7fOmcneX
-
-## Topic 2
-fries, free, fry, small, frosty, purchase, free small, wendy, small fry, app, code, hey
+free, frosty, wendy, fries, app, spicy, purchase, fry, nuggets, sandwich, pc, chicken
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
-- [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 - [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 
-## Topic 3
-chicken, biscuit, honey, butter chicken, butter, honey butter, free, chicken biscuit, wendy, breakfast, eat, time
+## Topic 1
+baconator, wendy, breakfast, time, bacon, cheeseburger, live, pretzel, free, pub, morty, pretzel bacon
 
-- [1370109813070381066](https://x.com/Wendys/status/1370109813070381066): It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free Honey Butter Chicken Biscuit. https://t.co/YuVPLdfMj9
-- [1385655564835901449](https://x.com/Wendys/status/1385655564835901449): Wendy, Honey, Butter and Chicken Biscuit are on the hunt again. Watch us stream Monster Hunter Rise on Twitch and grab a Honey Butter Chicken Biscuit for a $1.99 the next time you get breakfast. https://t.co/P0GZ7DIn5g
-- [1423726854154821635](https://x.com/Wendys/status/1423726854154821635): Did somebody say FREE Sausage or Bacon, Egg &amp; Swiss Croissant? Yep, it was us. ❤️ this Tweet and we’ll remind you when it’s go time on Friday 8/13 and Saturday 8/14. https://t.co/pzsEgNdykw
+- [1306035620494671874](https://x.com/Wendys/status/1306035620494671874): Concert is live! Get your food on with Uber Eats, you can order the Pretzel Bacon Pub Cheeseburger, Spicy Nuggs, and whatever else you want with $0 Delivery Fee on Wendy's orders with $10 min. Terms and other fees apply. See Uber Eats for availability. https://t.co/IfR64uwusI
+- [1269040852350971906](https://x.com/Wendys/status/1269040852350971906): No🧢...all facts, @Wendys is supporting the Black College Community and we're ecstatic that their donation will provide opportunities for our #HBCU talent! Together we can make a difference!
+- [1440121644920365059](https://x.com/Wendys/status/1440121644920365059): Another fun week of College Football is in the books 🙌
 
-## Topic 4
-frosty, bacon, free, cheeseburger, day, pretzel, app, big, breakfast, pretzel bacon, bacon pub, pub
+Set a reminder to join @RJ_Young and @GeoffSchwartz tomorrow as they discuss all the biggest storylines from Week 3 (Brought to you by @Wendys) 🏈⬇️
 
-- [1278388817301512195](https://x.com/Wendys/status/1278388817301512195): Tomorrow we’re putting these Twitter fingers to work and you won’t want to miss it. We’ll see you all bright and early as we tweet with our friends @tmcf_hbcu to talk about their organization and how we can support the Black College Community.
-- [1550150187624046592](https://x.com/Wendys/status/1550150187624046592): Get your fill of Strawberry Frosty before it’s poly-gone...sorry. Also, Frosty Mountain Village is live on Horizon Worlds. https://t.co/EKBDCviiEn https://t.co/GEYnCiT2KA
-- [1648334094319882240](https://x.com/Wendys/status/1648334094319882240): McDonald's announced they're changing their burgers.  
-Big Macs &amp; other burgers are getting softer buns, meltier cheese, tastier onions, and Big Macs are getting more Big Mac sauce. 
+https://t.co/1pZF6U42I1
 
-The changes are rolling out slowly. What do you think of this? https://t.co/7NvFsRco8w
-
-## Topic 5
-wendy, biggie, bag, beef, twitch, time, eats, biggie bag, sir, roast, delivery, order
-
-- [1641209202222723073](https://x.com/Wendys/status/1641209202222723073): This Thurs, 3/30 &amp; Fri, 3/31 from 6 – 7 PM EDT
- get ❗$30 off❗ when you add a Biggie Bag to your Wendy’s DoorDash order of $12 or more.
-
-Promo code BIGGIE https://t.co/SUGr1eMNMl
-- [1262515931135332352](https://x.com/Wendys/status/1262515931135332352): To be the best, you gotta beat the best. Introducing The Ultimate Wendy’s Invitational - a Smash Bros tourney on Twitch. It starts tomorrow and the field is set. Who ya got? https://t.co/pMFo4INx6P
-- [1577337977071706113](https://x.com/Wendys/status/1577337977071706113): Low vibration angel numbers astrology overwatch 2 house of the dragon sir this is a wendy’s Mario movie spooky season breath of the wild 2 soup-core Minecraft streaming Fortnite anime vibes aesthetic gen z Elden ring corn
-
-## Topic 6
-wendy, nationalroastday, codes, don, breakfast, let, cyber, right, day, search, start, cyber search
-
-- [1257082671118913537](https://x.com/Wendys/status/1257082671118913537): This week, we will be hiding codes. Lots of codes. Codes that will score you free Wendy's. Hidden across our entire internet presence. The clues start Monday. Think you can solve the Cyber Search? https://t.co/FB2IXQSyAq
-- [1263145989583536129](https://x.com/Wendys/status/1263145989583536129): Shoutout to @Wendys for winning the Ultimate Wendy’s Invitational yesterday. Is quality your recipe? It’s your turn to prove it. Download a Wendy Mii using these Smash Bros codes &amp; enter our Queen of the Hill Tournament tomorrow. Wendys only. https://t.co/h71vxeQ6RN
-- [1904565120010723568](https://x.com/Wendys/status/1904565120010723568): For all of March Madness®, get a $1 JBC or Double Stack in the Wendy’s app. Don’t worry about forgetting, we have a simple hashtag to help you remember: #DollarJBCorDoubleStackinWendysAppWithOfferLegalSaidToIncludeWithAdditionalPurchase
-
-## Topic 7
-spicy, free, dave, single, wendy, dave single, nuggets, love, pc, drive, app, nuggs
+## Topic 2
+wendy, don, stream, love, brand, bag, biggie, bracket, hang, bestoftweets, brand bracket, bestoftweets brand
 
 - [1509591862335655943](https://x.com/Wendys/status/1509591862335655943): The  #BestOfTweets Brand Bracket Semifinals are here.
 
@@ -101,26 +47,29 @@ VS
 🍟 @Wendys infamous spice
 
 Vote now!
-- [1504835309258817538](https://x.com/Wendys/status/1504835309258817538): Rounding out the first week of #BestOfTweets Brand Bracket.
+- [1641560467918270465](https://x.com/Wendys/status/1641560467918270465): Your hour starts now!
 
-On deck: top hats and hot takes. 
-🥜 @MrPeanut’s nonstop nuttiness
-VS
-🍟 @Wendys infamous spice
+From now until 7 PM EDT get up to ❗️$30 off❗️ when you add a Biggie Bag to your Wendy's DoorDash order. DON'T FORGET: make sure your cart has at least a $12 subtotal before you apply the code. 
 
-Vote now!
-- [1724894653793833227](https://x.com/Wendys/status/1724894653793833227): On the 1st Wednesday of Nuggetmas my true love gave to me: FREE NUGGETS.
-.
-.
-.
-.
+Promo code BIGGIE
+- [1425503905832701956](https://x.com/Wendys/status/1425503905832701956): Do you love Wendy’s? Do you love Wendy’s Spicy Nuggs? Do you also love Discord? Then you’re going to triple love our Genshin Impact stream on Twitch. Watch us live or hang out in our new Spice Club channel on Discord https://t.co/P0GZ7DIn5g
 
-Get a free 6 pc Nuggs today with any purchase from our in-app offer.
-Limited time only at participating U.S. Wendy’s. Account registration required.
+## Topic 3
+breakfast, wendy, codes, big, day, let, dave, don, burger, ve, nationalroastday, cyber
 
-## Topic 8
-breakfast, app, free, purchase, wendy, baconator, purchase app, wendy app, breakfast baconator, sandwich, morning, free breakfast
+- [1257325300704215047](https://x.com/Wendys/status/1257325300704215047): Welcome to Wendy's Cyber Search. All week we'll be sharing hints to codes hidden across the internet to win Wendy’s gift cards. Each worth a little something, some worth a lot of something. DM us the code on Twitter for your chance to win. Happy hunting! https://t.co/H9bM7rWONS
+- [1435333827812106244](https://x.com/Wendys/status/1435333827812106244): Use your big brain to win the right to sit on your big brain. Our Tetris 99 tournament for the Wendy’s Big Brain Bean Bag Chair starts NOW at https://t.co/P0GZ7DIn5g https://t.co/ZKC1qBpjXc
+- [1435261233364615177](https://x.com/Wendys/status/1435261233364615177): Attn: ✨ 🧠  𝔹𝕀𝔾 𝔹ℝ𝔸𝕀ℕ𝕊 🧠 ✨  the Wendy’s Big Brain Bean Bag Chair is up for grabs. Compete in our Tetris 99 tournament TODAY at https://t.co/P0GZ7DIn5g @ 4 PM EST. Winner takes home this intelligent piece of furniture. https://t.co/ZKC1qBpjXc https://t.co/jx8wYbrxkq
 
-- [1654276971214299136](https://x.com/Wendys/status/1654276971214299136): Dearest @Wendys — if you help promote our Remember Right Now 20 Year Anniversary Tour with a RT, we will send *you* free food for a month! [wsg on select dates: @RookieOfTheYear + @ValenciaShane + @heybobnanna] 🖤🖤🖤 TICKETS: https://t.co/5bxGHadYA7 https://t.co/JspQNpNNjr
-- [1654284843490988033](https://x.com/Wendys/status/1654284843490988033): RT @Spitalfield98: Dearest @Wendys — if you help promote our Remember Right Now 20 Year Anniversary Tour with a RT, we will send *you* free…
-- [2040186917312979266](https://x.com/Wendys/status/2040186917312979266): Oh good you made it. Introducing: The Official Dunks Menu 🏀 Order in the Wendy’s app all March Madness® long for the chance to win prizes in the Dunkstakes https://t.co/hI3HxiD7VV
+## Topic 4
+free, chicken, wendy, honey, time, ll, biscuit, butter chicken, honey butter, butter, chicken biscuit, tweet
+
+- [1498426568946892801](https://x.com/Wendys/status/1498426568946892801): Wendy’s Pick ‘Em is BACK, baby! 
+
+Hit the ❤️, and we’ll hit you up when it’s time to make your picks for EVERY round of March Madness. 
+
+Winning picks win sweet deals, so Choose Wisely #ForTheWendys https://t.co/7l8jasWATw
+- [1370124888049061895](https://x.com/Wendys/status/1370124888049061895): It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.
+
+❤️ this tweet and we’ll hit you up when it’s time to vote in each tourney round. https://t.co/rvWMGK1xv6
+- [1370109813070381066](https://x.com/Wendys/status/1370109813070381066): It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free Honey Butter Chicken Biscuit. https://t.co/YuVPLdfMj9

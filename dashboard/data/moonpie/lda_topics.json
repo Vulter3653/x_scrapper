@@ -34,7 +34,7 @@
       {
         "num_topics": 6,
         "coherence_npmi": 0.09277965482862793,
-        "perplexity": 1259.9247622253836
+        "perplexity": 1259.9247622253833
       },
       {
         "num_topics": 7,
@@ -49,7 +49,7 @@
       {
         "num_topics": 9,
         "coherence_npmi": 0.10226133741212441,
-        "perplexity": 1390.128795707008
+        "perplexity": 1390.1287957070078
       }
     ]
   },
@@ -139,16 +139,16 @@
           "text": "We’ve been informed that this account has been given the 280 character limit despite our public protest. While we’re still deciding on our next course of action, we will work to ensure our tweets continue fall under the traditional 140 characters that all of us enjoy. Thank you. https://t.co/fOuBQ8iyEY"
         },
         {
-          "id": "898147816018763776",
-          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
-          "score": 0.9374873781014488,
-          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
-        },
-        {
           "id": "897992833726128128",
           "tweet_url": "https://x.com/MoonPie/status/897992833726128128",
           "score": 0.9374873781014488,
           "text": "You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB"
+        },
+        {
+          "id": "898147816018763776",
+          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
+          "score": 0.9374873781014488,
+          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
         }
       ]
     },
@@ -337,7 +337,7 @@
         {
           "id": "1532139684280803329",
           "tweet_url": "https://x.com/MoonPie/status/1532139684280803329",
-          "score": 0.9485219578570997,
+          "score": 0.9485219578570998,
           "text": "Crazy how italicizing certain words can totally change the meaning of a sentence\n\n𝘐 will destroy the sun\nI 𝘸𝘪𝘭𝘭 destroy the sun\nI will 𝘥𝘦𝘴𝘵𝘳𝘰𝘺 the sun\nI will destroy 𝘵𝘩𝘦 sun\nI will destroy the 𝘴𝘶𝘯"
         },
         {
@@ -386,7 +386,7 @@
         {
           "id": "2041557036274475228",
           "tweet_url": "https://x.com/MoonPie/status/2041557036274475228",
-          "score": 0.9374542796328338,
+          "score": 0.9374542796328339,
           "text": "Hello, Moon. It’s great to be back.\n \nHere’s a taste of what the Artemis II astronauts photographed during their flight around the Moon. Check out more photos from the mission: https://t.co/rzM1P0QbOl https://t.co/6jWINHkDLh"
         },
         {
@@ -421,16 +421,16 @@
           "text": "One time I was blowing kisses to some birds outside my office window and my boss told me to stop but THEN one day I caught him blowing kisses to some birds outside HIS office window\n\nWe still haven’t talked about it please don’t tell anyone https://t.co/8KNaZc6s9V"
         },
         {
-          "id": "935238021795983362",
-          "tweet_url": "https://x.com/MoonPie/status/935238021795983362",
-          "score": 0.9374953666074614,
-          "text": "RT @NPR: Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU"
-        },
-        {
           "id": "934400023613227009",
           "tweet_url": "https://x.com/MoonPie/status/934400023613227009",
           "score": 0.9374953666074614,
           "text": "Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU"
+        },
+        {
+          "id": "935238021795983362",
+          "tweet_url": "https://x.com/MoonPie/status/935238021795983362",
+          "score": 0.9374953666074614,
+          "text": "RT @NPR: Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU"
         },
         {
           "id": "925003677194248198",
@@ -447,5 +447,5 @@
       ]
     }
   ],
-  "generated_at": "2026-07-08T17:18:23.023312+00:00"
+  "generated_at": "2026-07-09T17:42:45.998918+00:00"
 }
