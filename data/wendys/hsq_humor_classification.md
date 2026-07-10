@@ -1,21 +1,21 @@
 # HSQ Zero-Shot Humor Classification for @Wendys
 
-- Posts analyzed: 982
+- Posts analyzed: 984
 - Model: `typeform/distilbert-base-uncased-mnli`
 - Codebook: HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook
 
 ## Label Counts
-- Non-humorous brand message: 615
+- Non-humorous brand message: 617
 - Self-enhancing humor: 348
 - Aggressive humor: 10
 - Affiliative humor: 5
 - Self-defeating humor: 4
 
 ## Average Scores
-- Non-humorous brand message: 0.3482
-- Self-enhancing humor: 0.2923
+- Non-humorous brand message: 0.3486
+- Self-enhancing humor: 0.2920
 - Affiliative humor: 0.1304
-- Self-defeating humor: 0.1149
+- Self-defeating humor: 0.1148
 - Aggressive humor: 0.1142
 
 ## Highest Confidence Examples
