@@ -7,18 +7,58 @@
     "neutral",
     "negative"
   ],
-  "post_count": 984,
+  "post_count": 986,
   "label_counts": {
+    "positive": 453,
     "negative": 495,
-    "positive": 451,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45804845746069467,
-    "neutral": 0.12973493022614796,
-    "negative": 0.41221661041018387
+    "positive": 0.45837221859775307,
+    "neutral": 0.1297357627933594,
+    "negative": 0.41189201673999953
   },
   "posts": [
+    {
+      "id": "2075685759168737693",
+      "tweet_url": "https://x.com/Wendys/status/2075685759168737693",
+      "created_at": "Fri Jul 10 20:57:04 +0000 2026",
+      "text": "real recognize real https://t.co/n1nq8VDPHn",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.4212923049926758,
+      "scores": {
+        "positive": 0.4212923049926758,
+        "negative": 0.38182103633880615,
+        "neutral": 0.19688665866851807
+      }
+    },
+    {
+      "id": "2075683731772240362",
+      "tweet_url": "https://x.com/Wendys/status/2075683731772240362",
+      "created_at": "Fri Jul 10 20:49:00 +0000 2026",
+      "text": "Finally, a banana masterpiece you can actually eat. Grab the Minions &amp; Monsters Meal at Wendy’s while it’s still hanging around and see the movie in theaters now. https://t.co/qtsbqYOCFs",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.8140330910682678,
+      "scores": {
+        "positive": 0.8140330910682678,
+        "negative": 0.12256282567977905,
+        "neutral": 0.06340411305427551
+      }
+    },
     {
       "id": "2075325590509441298",
       "tweet_url": "https://x.com/Wendys/status/2075325590509441298",
@@ -19700,5 +19740,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-10T17:28:37.736881+00:00"
+  "generated_at": "2026-07-11T16:36:17.486049+00:00"
 }

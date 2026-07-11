@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 984,
+  "post_count": 986,
   "label_counts": {
-    "Non-humorous brand message": 617,
-    "Self-enhancing humor": 348,
+    "Non-humorous brand message": 618,
+    "Self-enhancing humor": 349,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.1303605462668882,
-    "Self-enhancing humor": 0.2920264554985163,
-    "Aggressive humor": 0.11415642006919903,
-    "Self-defeating humor": 0.11484965098580739,
-    "Non-humorous brand message": 0.3486069284834496
+    "Affiliative humor": 0.13038269925589105,
+    "Self-enhancing humor": 0.29191544472851977,
+    "Aggressive humor": 0.11420996209737762,
+    "Self-defeating humor": 0.11496613892106979,
+    "Non-humorous brand message": 0.3485257562983575
   },
   "posts": [
+    {
+      "id": "2075685759168737693",
+      "tweet_url": "https://x.com/Wendys/status/2075685759168737693",
+      "created_at": "Fri Jul 10 20:57:04 +0000 2026",
+      "text": "real recognize real https://t.co/n1nq8VDPHn",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3446546494960785,
+      "scores": {
+        "Non-humorous brand message": 0.3446546494960785,
+        "Self-enhancing humor": 0.18717771768569946,
+        "Self-defeating humor": 0.18132957816123962,
+        "Affiliative humor": 0.14776425063610077,
+        "Aggressive humor": 0.13907381892204285
+      }
+    },
+    {
+      "id": "2075683731772240362",
+      "tweet_url": "https://x.com/Wendys/status/2075683731772240362",
+      "created_at": "Fri Jul 10 20:49:00 +0000 2026",
+      "text": "Finally, a banana masterpiece you can actually eat. Grab the Minions &amp; Monsters Meal at Wendy’s while it’s still hanging around and see the movie in theaters now. https://t.co/qtsbqYOCFs",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.28741857409477234,
+      "scores": {
+        "Self-enhancing humor": 0.28741857409477234,
+        "Non-humorous brand message": 0.272523432970047,
+        "Self-defeating humor": 0.16322682797908783,
+        "Aggressive humor": 0.1420314610004425,
+        "Affiliative humor": 0.13479968905448914
+      }
+    },
     {
       "id": "2075325590509441298",
       "tweet_url": "https://x.com/Wendys/status/2075325590509441298",
@@ -23644,5 +23692,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-10T17:32:09.752291+00:00"
+  "generated_at": "2026-07-11T16:39:48.331133+00:00"
 }
