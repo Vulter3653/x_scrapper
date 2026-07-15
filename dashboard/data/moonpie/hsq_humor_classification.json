@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 934,
+  "post_count": 936,
   "label_counts": {
+    "Non-humorous brand message": 636,
     "Self-enhancing humor": 270,
-    "Non-humorous brand message": 634,
     "Affiliative humor": 8,
     "Self-defeating humor": 9,
     "Aggressive humor": 13
   },
   "average_scores": {
-    "Affiliative humor": 0.13984715571872317,
-    "Self-enhancing humor": 0.25570696737663123,
-    "Aggressive humor": 0.12052500590442593,
-    "Self-defeating humor": 0.12409647820032316,
-    "Non-humorous brand message": 0.3598243915012238
+    "Affiliative humor": 0.13984439393324363,
+    "Self-enhancing humor": 0.2556597076880777,
+    "Aggressive humor": 0.1205122417152616,
+    "Self-defeating humor": 0.12414720309258968,
+    "Non-humorous brand message": 0.3598364522988096
   },
   "posts": [
+    {
+      "id": "2077160258426871926",
+      "tweet_url": "https://x.com/MoonPie/status/2077160258426871926",
+      "created_at": "Tue Jul 14 22:36:12 +0000 2026",
+      "text": "Looks delicious but idk if I’m gonna be allowed to sell it in the south",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.29770392179489136,
+      "scores": {
+        "Non-humorous brand message": 0.29770392179489136,
+        "Self-enhancing humor": 0.2550460398197174,
+        "Self-defeating humor": 0.19777584075927734,
+        "Affiliative humor": 0.13364443182945251,
+        "Aggressive humor": 0.11582978814840317
+      }
+    },
+    {
+      "id": "2076995685166268471",
+      "tweet_url": "https://x.com/MoonPie/status/2076995685166268471",
+      "created_at": "Tue Jul 14 11:42:14 +0000 2026",
+      "text": "🚨: Natural sugar discovered in space near the centre of Milky Way galaxy, for the first time! https://t.co/Ob5V6k9auU",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.43323376774787903,
+      "scores": {
+        "Non-humorous brand message": 0.43323376774787903,
+        "Self-enhancing humor": 0.21213282644748688,
+        "Affiliative humor": 0.1434648483991623,
+        "Aggressive humor": 0.11327294260263443,
+        "Self-defeating humor": 0.09789561480283737
+      }
+    },
     {
       "id": "2073409746070012385",
       "tweet_url": "https://x.com/MoonPie/status/2073409746070012385",
@@ -22444,5 +22492,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-14T17:08:31.689782+00:00"
+  "generated_at": "2026-07-15T17:14:09.809291+00:00"
 }

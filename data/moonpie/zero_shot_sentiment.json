@@ -7,18 +7,58 @@
     "neutral",
     "negative"
   ],
-  "post_count": 934,
+  "post_count": 936,
   "label_counts": {
-    "positive": 405,
-    "negative": 474,
+    "positive": 406,
+    "negative": 475,
     "neutral": 55
   },
   "average_scores": {
-    "positive": 0.43663911399186234,
-    "neutral": 0.16575824820485585,
-    "negative": 0.3976026375735361
+    "positive": 0.43666042883195877,
+    "neutral": 0.1656581580766961,
+    "negative": 0.39768141283821024
   },
   "posts": [
+    {
+      "id": "2077160258426871926",
+      "tweet_url": "https://x.com/MoonPie/status/2077160258426871926",
+      "created_at": "Tue Jul 14 22:36:12 +0000 2026",
+      "text": "Looks delicious but idk if I’m gonna be allowed to sell it in the south",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.4898041784763336,
+      "scores": {
+        "positive": 0.4898041784763336,
+        "negative": 0.4154382348060608,
+        "neutral": 0.09475760906934738
+      }
+    },
+    {
+      "id": "2076995685166268471",
+      "tweet_url": "https://x.com/MoonPie/status/2076995685166268471",
+      "created_at": "Tue Jul 14 11:42:14 +0000 2026",
+      "text": "🚨: Natural sugar discovered in space near the centre of Milky Way galaxy, for the first time! https://t.co/Ob5V6k9auU",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.4535006880760193,
+      "scores": {
+        "negative": 0.4535006880760193,
+        "positive": 0.4034247398376465,
+        "neutral": 0.14307452738285065
+      }
+    },
     {
       "id": "2073409746070012385",
       "tweet_url": "https://x.com/MoonPie/status/2073409746070012385",
@@ -18700,5 +18740,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-14T17:05:30.598381+00:00"
+  "generated_at": "2026-07-15T17:10:53.445042+00:00"
 }

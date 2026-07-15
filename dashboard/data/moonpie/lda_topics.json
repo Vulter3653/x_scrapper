@@ -1,55 +1,55 @@
 {
   "target_user": "MoonPie",
   "input_file": "/home/runner/work/x_scrapper/x_scrapper/data/moonpie/posts.json",
-  "document_count": 863,
-  "num_topics": 8,
+  "document_count": 865,
+  "num_topics": 9,
   "topic_selection": {
     "method": "NPMI coherence over candidate topic counts",
     "min_topics": 2,
     "max_topics": 9,
-    "selected_num_topics": 8,
-    "selected_coherence_npmi": 0.1360127405830933,
-    "selected_perplexity": 1333.648297307147,
+    "selected_num_topics": 9,
+    "selected_coherence_npmi": 0.13732532941472242,
+    "selected_perplexity": 1408.1641324835966,
     "evaluations": [
       {
         "num_topics": 2,
-        "coherence_npmi": 0.054082592369336574,
-        "perplexity": 885.4706155705549
+        "coherence_npmi": 0.03893643344245111,
+        "perplexity": 899.7290638715924
       },
       {
         "num_topics": 3,
-        "coherence_npmi": 0.07818913508242355,
-        "perplexity": 982.6996487208243
+        "coherence_npmi": 0.06942530891632197,
+        "perplexity": 986.5969354770907
       },
       {
         "num_topics": 4,
-        "coherence_npmi": 0.081632184473866,
-        "perplexity": 1102.868040587066
+        "coherence_npmi": 0.07414213609590664,
+        "perplexity": 1108.7943455520492
       },
       {
         "num_topics": 5,
-        "coherence_npmi": 0.08166247980280528,
-        "perplexity": 1163.2934317133468
+        "coherence_npmi": 0.10685698600140947,
+        "perplexity": 1165.945441430336
       },
       {
         "num_topics": 6,
-        "coherence_npmi": 0.09277965482862793,
-        "perplexity": 1259.9247622253836
+        "coherence_npmi": 0.11539576813721136,
+        "perplexity": 1240.2087587876374
       },
       {
         "num_topics": 7,
-        "coherence_npmi": 0.11763245610600845,
-        "perplexity": 1306.9356537588835
+        "coherence_npmi": 0.12548132034082285,
+        "perplexity": 1305.7078550159815
       },
       {
         "num_topics": 8,
-        "coherence_npmi": 0.1360127405830933,
-        "perplexity": 1333.648297307147
+        "coherence_npmi": 0.12949319022068484,
+        "perplexity": 1343.6923613145025
       },
       {
         "num_topics": 9,
-        "coherence_npmi": 0.10226133741212441,
-        "perplexity": 1390.128795707008
+        "coherence_npmi": 0.13732532941472242,
+        "perplexity": 1408.1641324835966
       }
     ]
   },
@@ -57,48 +57,48 @@
     {
       "topic_id": 0,
       "top_terms": [
-        "moonpies",
-        "eat",
         "moon",
+        "happy",
+        "ok",
+        "year",
+        "brand",
+        "sun",
+        "phase",
+        "tweet",
         "time",
-        "super",
-        "love",
-        "tell",
-        "world",
-        "blood",
-        "tried",
-        "lot",
-        "team"
+        "want",
+        "day",
+        "moonpies"
       ],
       "representative_posts": [
         {
-          "id": "1108529699268034561",
-          "tweet_url": "https://x.com/MoonPie/status/1108529699268034561",
-          "score": 0.9756829803105048,
-          "text": "The moon names are only gonna get scarier folks\n- Super moon\n- Super blood wolf moon\n- Super blood wolf monster scream moon\n- Super blood wolf someone you love texting ”we need to talk” moon\n- Super blood moon 2 the reckoning"
+          "id": "913052856990814208",
+          "tweet_url": "https://x.com/MoonPie/status/913052856990814208",
+          "score": 0.9644305416889802,
+          "text": "This account has been asked to test Twitter's new 280 character limit, but as a 100-year-old brand, we believe our fans most enjoy traditional tweets with brevity, so we declined. We hope to continue to provide a fun, positive place to discuss MoonPies moving forward. Thank you."
         },
         {
-          "id": "1322649810822975488",
-          "tweet_url": "https://x.com/MoonPie/status/1322649810822975488",
-          "score": 0.9539168163352378,
-          "text": "Whoa there’s a lot happening tonight\n\n- Halloween\n- Full moon\n- The sacred ritual of throwing MoonPies into the night sky and howling until the wolf inside you is satisfied\n- Daylight saving time"
+          "id": "1084567361737445386",
+          "tweet_url": "https://x.com/MoonPie/status/1084567361737445386",
+          "score": 0.9576604993682781,
+          "text": "The phases of the moon: \n\n🌕 full phase\n\n🌖 waning gibbous\n\n🌗 half phase I think\n\n🌜 🦆 ???\n\n🌑  goth phase\n\n🎤🌛 “I can make it in comedy bc I’m funny” phase\n\n🌓 half phase for sure this time it’s gotta be \n\n🌔 waxing gibbous"
         },
         {
-          "id": "1013920972435525633",
-          "tweet_url": "https://x.com/MoonPie/status/1013920972435525633",
-          "score": 0.9416259263629516,
-          "text": "Pretend you’re the best MoonPie seller in the world—it’s controversial but some call you the best of all time—buuuut your store isn’t really the best at selling MoonPies\n\nIt would be kinda strange for you to move to another store that’s even worse at selling MoonPies wouldn’t it"
+          "id": "2039473910987534599",
+          "tweet_url": "https://x.com/MoonPie/status/2039473910987534599",
+          "score": 0.9555462532036124,
+          "text": "Liftoff.\n\nThe Artemis II mission launched from @NASAKennedy at 6:35pm ET (2235 UTC), propelling four astronauts on a journey around the Moon.\n\nArtemis II will pave the way for future Moon landings, as well as the next giant leap — astronauts on Mars. https://t.co/ENQA4RTqAc"
         },
         {
-          "id": "915964551195185152",
-          "tweet_url": "https://x.com/MoonPie/status/915964551195185152",
-          "score": 0.941612868249272,
-          "text": "So what if you didn’t go to law school like your parents wanted you just might get a cool job tweeting about delicious MoonPies who knows :)"
+          "id": "1556775212359745540",
+          "tweet_url": "https://x.com/MoonPie/status/1556775212359745540",
+          "score": 0.9444337267472293,
+          "text": "Moon fact:\n\nThis 🌖 phase of the moon is called the waning gibbous phase and I like to think we all go through a waning gibbous phase sometimes"
         },
         {
           "id": "958108108408094720",
           "tweet_url": "https://x.com/MoonPie/status/958108108408094720",
-          "score": 0.9415815795323024,
+          "score": 0.9407224497128034,
           "text": "So if you had a tough day why don’t you just grab a nice warm MoonPie cuddle up with your favorite stuffed animal and let it all out it’s gonna be ok"
         }
       ]
@@ -106,346 +106,395 @@
     {
       "topic_id": 1,
       "top_terms": [
-        "eclipse",
-        "right",
-        "haha",
-        "thing",
-        "think",
-        "come",
+        "moon",
+        "don",
+        "good",
+        "love",
+        "guys",
+        "ve",
+        "idea",
         "linda",
-        "work",
-        "stop",
-        "going",
-        "little",
-        "love"
+        "come",
+        "lunar",
+        "saying",
+        "life"
       ],
       "representative_posts": [
         {
-          "id": "958389268233244672",
-          "tweet_url": "https://x.com/MoonPie/status/958389268233244672",
-          "score": 0.9583100484070426,
-          "text": "Is your child texting about brands?\nA guide:\n\nBRB: busy retweeting brands\nOMG: order more goods!\nMIMBF: MoonPie is my best friend\nIB4B: I brake for business\nLIT: lost in trends\nPLMAIDAL: please leave me alone I’m designing a logo\nHAHA: hire a huge accountant\nROI: right on, Ian"
+          "id": "2040063993188929837",
+          "tweet_url": "https://x.com/MoonPie/status/2040063993188929837",
+          "score": 0.9407155339908327,
+          "text": "That's us! 🌍\n\nThe Artemis II crew captured beautiful, high-resolution images of our home planet during their journey to the Moon. As @Astro_Christina put it: \"You guys look great.\" https://t.co/CkjDKGocip"
         },
         {
-          "id": "1360992140453625865",
-          "tweet_url": "https://x.com/MoonPie/status/1360992140453625865",
-          "score": 0.9538918239026574,
-          "text": "It’s Valentine’s Day! Don’t forget to get a big bouquet of MoonPies for your loved one Linda I’m sorry I wrote so many IOUs on Valentine’s Day and still forgot the biggest IOU of all... an apology"
+          "id": "1115665696833331200",
+          "tweet_url": "https://x.com/MoonPie/status/1115665696833331200",
+          "score": 0.9364973346869617,
+          "text": "Heard about our plans to go to the Moon by 2024? 🚀🌑 We’ve accelerated plans to get humans there as fast as possible, send humans &amp; robots to explore more of the lunar surface, and make it sustainable to conduct long-term missions. Learn more: https://t.co/tiSi3SM1B7\n#Moon2024 https://t.co/TzcZJX2DoW"
         },
         {
-          "id": "928074891022229505",
-          "tweet_url": "https://x.com/MoonPie/status/928074891022229505",
-          "score": 0.9484859091448474,
-          "text": "We’ve been informed that this account has been given the 280 character limit despite our public protest. While we’re still deciding on our next course of action, we will work to ensure our tweets continue fall under the traditional 140 characters that all of us enjoy. Thank you. https://t.co/fOuBQ8iyEY"
+          "id": "1445154719802920965",
+          "tweet_url": "https://x.com/MoonPie/status/1445154719802920965",
+          "score": 0.9364879337427431,
+          "text": "To the huge community of people and businesses around the world who depend on us: we're sorry. We’ve been working hard to restore access to our apps and services and are happy to report they are coming back online now. Thank you for bearing with us."
         },
         {
-          "id": "898147816018763776",
-          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
-          "score": 0.9374873781014488,
-          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
+          "id": "892871993518936064",
+          "tweet_url": "https://x.com/MoonPie/status/892871993518936064",
+          "score": 0.9259068645274228,
+          "text": "Sure this isn't technically an ice cream sandwich but it's pretty close, ya feel me? #nationalicecreamsandwichday https://t.co/vpnXMWgK7O"
         },
         {
-          "id": "897992833726128128",
-          "tweet_url": "https://x.com/MoonPie/status/897992833726128128",
-          "score": 0.9374873781014488,
-          "text": "You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB"
+          "id": "948730352922656769",
+          "tweet_url": "https://x.com/MoonPie/status/948730352922656769",
+          "score": 0.9259002998887844,
+          "text": "Sometimes the 1st bite of MoonPie is the best bite other times it may be the 2nd bite anyway Linda if you’re listening I’m sorry please tell me what I did wrong"
         }
       ]
     },
     {
       "topic_id": 2,
       "top_terms": [
-        "thebigthing",
+        "moon",
         "moonpies",
-        "commercial",
-        "good",
-        "want",
+        "super",
+        "great",
         "time",
-        "snack",
-        "called",
-        "commercial called",
-        "actually",
-        "laugh",
+        "talk",
+        "little",
+        "night",
+        "eating",
+        "blood",
+        "sweet",
         "need"
       ],
       "representative_posts": [
         {
-          "id": "1092206054652461057",
-          "tweet_url": "https://x.com/MoonPie/status/1092206054652461057",
-          "score": 0.9416242682320567,
-          "text": "Happy commercial time here is the one called “The Family” and I hope it makes you want to buy one or more MoonPies #TheBigThing https://t.co/3NgLMEythP"
+          "id": "1108529699268034561",
+          "tweet_url": "https://x.com/MoonPie/status/1108529699268034561",
+          "score": 0.9753044180746299,
+          "text": "The moon names are only gonna get scarier folks\n- Super moon\n- Super blood wolf moon\n- Super blood wolf monster scream moon\n- Super blood wolf someone you love texting ”we need to talk” moon\n- Super blood moon 2 the reckoning"
         },
         {
-          "id": "972109828943380480",
-          "tweet_url": "https://x.com/MoonPie/status/972109828943380480",
-          "score": 0.9374416571960329,
-          "text": "It's safe to say that house made of MoonPies would taste delicious but it's unsafe to say that a house made of MoonPies would protect you from the elements especially if you live in the desert"
+          "id": "1322649810822975488",
+          "tweet_url": "https://x.com/MoonPie/status/1322649810822975488",
+          "score": 0.9532022397441628,
+          "text": "Whoa there’s a lot happening tonight\n\n- Halloween\n- Full moon\n- The sacred ritual of throwing MoonPies into the night sky and howling until the wolf inside you is satisfied\n- Daylight saving time"
         },
         {
-          "id": "956022159469613056",
-          "tweet_url": "https://x.com/MoonPie/status/956022159469613056",
-          "score": 0.9374202234693116,
-          "text": "You might be sad that pie day is over but just remember we live in a world where you can think about ‘pies every day or even every couple of months if you want"
+          "id": "939221175640653825",
+          "tweet_url": "https://x.com/MoonPie/status/939221175640653825",
+          "score": 0.9505886466828947,
+          "text": "[In this tweet instead of being online I’m on a boat]\n\nCaptain: MoonPie! The ship is going down\n\nMe: Oh no\n\nCaptain: Send a tweet from your account asking for help\n\nMe: I can't it wouldn't be funny\n\nCaptain: Dang it\n\nMe: Did you see where we roasted this teen\n\nCaptain: Haha yeah"
         },
         {
-          "id": "1359641650042126339",
-          "tweet_url": "https://x.com/MoonPie/status/1359641650042126339",
-          "score": 0.9326355286686319,
-          "text": "A few years ago we could tweet something like “MoonPies are my spirit animal” and get several thousand likes but now we’d have to say a very bad word to get even half that amount"
+          "id": "928074891022229505",
+          "tweet_url": "https://x.com/MoonPie/status/928074891022229505",
+          "score": 0.9476905507879118,
+          "text": "We’ve been informed that this account has been given the 280 character limit despite our public protest. While we’re still deciding on our next course of action, we will work to ensure our tweets continue fall under the traditional 140 characters that all of us enjoy. Thank you. https://t.co/fOuBQ8iyEY"
         },
         {
-          "id": "1125468706736263168",
-          "tweet_url": "https://x.com/MoonPie/status/1125468706736263168",
-          "score": 0.9270236872486016,
-          "text": ".@veryfamousbaby I brought this all the way to your castle but the hat guys won’t let me in so I’m just gonna leave it outside hbd https://t.co/9bgw04Wn6Z"
+          "id": "943132447826472963",
+          "tweet_url": "https://x.com/MoonPie/status/943132447826472963",
+          "score": 0.9407218126037369,
+          "text": "Ok if you are going to follow this account we have some rules\n\n1️⃣ You will need a visitor sticker please pick one up in the lobby\n2️⃣ No hitting not even pretend hitting\n3️⃣ Do not get too loud or I will blow the moon whistle\n\nHit like once you have read all the rules"
         }
       ]
     },
     {
       "topic_id": 3,
       "top_terms": [
-        "moon",
-        "sorry",
-        "hey",
-        "did",
-        "wanna",
-        "idea",
+        "day",
         "ll",
-        "lunar",
-        "better",
-        "ve",
-        "guys",
-        "day"
+        "buddy",
+        "win",
+        "best",
+        "way",
+        "working",
+        "moonpies",
+        "help",
+        "year",
+        "wants",
+        "supply"
       ],
       "representative_posts": [
         {
-          "id": "2039473910987534599",
-          "tweet_url": "https://x.com/MoonPie/status/2039473910987534599",
-          "score": 0.9562407159129778,
-          "text": "Liftoff.\n\nThe Artemis II mission launched from @NASAKennedy at 6:35pm ET (2235 UTC), propelling four astronauts on a journey around the Moon.\n\nArtemis II will pave the way for future Moon landings, as well as the next giant leap — astronauts on Mars. https://t.co/ENQA4RTqAc"
+          "id": "1174823304655454211",
+          "tweet_url": "https://x.com/MoonPie/status/1174823304655454211",
+          "score": 0.9444259724697521,
+          "text": "The steps to eating a MoonPie are the same steps as kissing !\n\n1️⃣ practice in the mirror first\n\n2️⃣ find you a sweet one &amp; ask permission\n\n3️⃣ close your eyes\n\n4️⃣  gotta hold still or you’ll make a mess\n\n5️⃣ ??\n\n6️⃣ oh no alone again\n\n7️⃣ repeat next month"
         },
         {
-          "id": "918851488507748352",
-          "tweet_url": "https://x.com/MoonPie/status/918851488507748352",
-          "score": 0.9484919826748268,
-          "text": "Hey kids did you know if you say “spooky lil MoonPie” 3 times in a mirror on this day nothing’s gonna happen what is wrong with you"
+          "id": "984569155797028865",
+          "tweet_url": "https://x.com/MoonPie/status/984569155797028865",
+          "score": 0.9444202231220933,
+          "text": "One time I was blowing kisses to some birds outside my office window and my boss told me to stop but THEN one day I caught him blowing kisses to some birds outside HIS office window\n\nWe still haven’t talked about it please don’t tell anyone https://t.co/8KNaZc6s9V"
         },
         {
-          "id": "1112759739153346565",
-          "tweet_url": "https://x.com/MoonPie/status/1112759739153346565",
-          "score": 0.9452535745453847,
-          "text": "The best way to make sure your brand is still relevant is to make a fake product that no one can actually buy and post about it on the same day as every other brand in the world"
+          "id": "899387918174879744",
+          "tweet_url": "https://x.com/MoonPie/status/899387918174879744",
+          "score": 0.9407318933604012,
+          "text": "Take pics at #SolarEclipse2017✅\nWin big ✅\n\nPost a pic tomorrow w/ #MoonPieEclipse &amp; we'll pick our fave to win a year's supply of MoonPie https://t.co/FVHxnNCTXy"
         },
         {
-          "id": "939147348181180416",
-          "tweet_url": "https://x.com/MoonPie/status/939147348181180416",
-          "score": 0.9374331096613381,
-          "text": "If no one RSVP's to your house party try switching the name of the party to “MoonPie House Party” and see if that helps otherwise it's time to come to grips with the reality that your house just isn’t that fun"
+          "id": "1080902820017201158",
+          "tweet_url": "https://x.com/MoonPie/status/1080902820017201158",
+          "score": 0.9407087884592228,
+          "text": "New years resolutions\n\n- Eat like I mean it\n- Learn the ancient ways\n- Lift weights\n- Invent a new noise\n- Put the weights back down\n- Move on from Linda\n- Linda please\n- Idk read a book or something"
         },
         {
-          "id": "949103431024807936",
-          "tweet_url": "https://x.com/MoonPie/status/949103431024807936",
-          "score": 0.937408231836937,
-          "text": "Ah finally sweet sweet night time when all the MoonPies are asleep and the ghost in my apartment gently reminds me that I am still afraid of the dark"
+          "id": "899705161702023168",
+          "tweet_url": "https://x.com/MoonPie/status/899705161702023168",
+          "score": 0.9364954373791194,
+          "text": "Post your best pic from today with #MoonPieEclipse for a chance to win a YEAR'S SUPPLY of 'pie!\n\nExtra points if there's a MoonPie in it FYI https://t.co/rx6T12wajW"
         }
       ]
     },
     {
       "topic_id": 4,
       "top_terms": [
-        "people",
-        "think",
-        "don",
-        "ok",
-        "moon",
         "moonpies",
-        "thank",
-        "day",
+        "eat",
         "man",
-        "lot",
-        "oh",
-        "social"
+        "did",
+        "day",
+        "sure",
+        "snack",
+        "actually",
+        "post",
+        "moon",
+        "ve",
+        "cool"
       ],
       "representative_posts": [
         {
+          "id": "960280100448227329",
+          "tweet_url": "https://x.com/MoonPie/status/960280100448227329",
+          "score": 0.9555395673166447,
+          "text": "I wanted to run commercials but we've been too busy making MoonPies so I will be posting several scripts during breaks tonight that I have written for very good and important MoonPie spots that you can enjoy right here on Twitter instead #TheBigThing"
+        },
+        {
+          "id": "988444138436689920",
+          "tweet_url": "https://x.com/MoonPie/status/988444138436689920",
+          "score": 0.9532054379658482,
+          "text": "We fight. We yell. We kiss. We hug. We text. We yell. We morph into anthropomorphic marshmallow sandwiches. We argue. We laugh. We yell. We smile. We love. We eat MoonPies. We yell. That's just us &lt;3"
+        },
+        {
+          "id": "1360992140453625865",
+          "tweet_url": "https://x.com/MoonPie/status/1360992140453625865",
+          "score": 0.9532013761760301,
+          "text": "It’s Valentine’s Day! Don’t forget to get a big bouquet of MoonPies for your loved one Linda I’m sorry I wrote so many IOUs on Valentine’s Day and still forgot the biggest IOU of all... an apology"
+        },
+        {
           "id": "935888134675599360",
           "tweet_url": "https://x.com/MoonPie/status/935888134675599360",
-          "score": 0.9484680797499171,
+          "score": 0.9476917157699168,
           "text": "MoonPie eating checklist:\n\n☑️ Find a MoonPie\n☑️ Wash your hands\n☑️ Wash a celebrity's hands\n☑️ Haha um you're sort of holding hands with a celebrity :)\n☑️ Don't freak out tho keep scrubbing !!\n☑️ Ok that's enough not too much be cool be cool\n☑️ Eat that 'pie"
         },
         {
-          "id": "1174823304655454211",
-          "tweet_url": "https://x.com/MoonPie/status/1174823304655454211",
-          "score": 0.9452708412583852,
-          "text": "The steps to eating a MoonPie are the same steps as kissing !\n\n1️⃣ practice in the mirror first\n\n2️⃣ find you a sweet one &amp; ask permission\n\n3️⃣ close your eyes\n\n4️⃣  gotta hold still or you’ll make a mess\n\n5️⃣ ??\n\n6️⃣ oh no alone again\n\n7️⃣ repeat next month"
-        },
-        {
-          "id": "1345159635695710213",
-          "tweet_url": "https://x.com/MoonPie/status/1345159635695710213",
-          "score": 0.9416193322209435,
-          "text": "A few things to remember in 2021\n\n-This year might not be perfect either but that’s ok\n-Covering yourself in blankets feels sorta like a hug\n-MoonPies will always give you a reason to smile :) \n-Linda I’m a different person now please text me back"
-        },
-        {
-          "id": "943132447826472963",
-          "tweet_url": "https://x.com/MoonPie/status/943132447826472963",
-          "score": 0.9416034760320919,
-          "text": "Ok if you are going to follow this account we have some rules\n\n1️⃣ You will need a visitor sticker please pick one up in the lobby\n2️⃣ No hitting not even pretend hitting\n3️⃣ Do not get too loud or I will blow the moon whistle\n\nHit like once you have read all the rules"
-        },
-        {
-          "id": "1080902820017201158",
-          "tweet_url": "https://x.com/MoonPie/status/1080902820017201158",
-          "score": 0.9415874115474461,
-          "text": "New years resolutions\n\n- Eat like I mean it\n- Learn the ancient ways\n- Lift weights\n- Invent a new noise\n- Put the weights back down\n- Move on from Linda\n- Linda please\n- Idk read a book or something"
+          "id": "1112759739153346565",
+          "tweet_url": "https://x.com/MoonPie/status/1112759739153346565",
+          "score": 0.9444165985185765,
+          "text": "The best way to make sure your brand is still relevant is to make a fake product that no one can actually buy and post about it on the same day as every other brand in the world"
         }
       ]
     },
     {
       "topic_id": 5,
       "top_terms": [
-        "sun",
         "day",
         "moonpies",
+        "think",
         "say",
-        "let",
-        "year",
-        "good",
-        "happy",
-        "yell",
-        "mean",
+        "does",
+        "social",
         "brands",
-        "tweet"
+        "media",
+        "social media",
+        "want",
+        "lol",
+        "eclipse"
       ],
       "representative_posts": [
         {
-          "id": "913052856990814208",
-          "tweet_url": "https://x.com/MoonPie/status/913052856990814208",
-          "score": 0.9649683747419705,
-          "text": "This account has been asked to test Twitter's new 280 character limit, but as a 100-year-old brand, we believe our fans most enjoy traditional tweets with brevity, so we declined. We hope to continue to provide a fun, positive place to discuss MoonPies moving forward. Thank you."
+          "id": "972109828943380480",
+          "tweet_url": "https://x.com/MoonPie/status/972109828943380480",
+          "score": 0.9364945206779077,
+          "text": "It's safe to say that house made of MoonPies would taste delicious but it's unsafe to say that a house made of MoonPies would protect you from the elements especially if you live in the desert"
         },
         {
-          "id": "988444138436689920",
-          "tweet_url": "https://x.com/MoonPie/status/988444138436689920",
-          "score": 0.9539076103391134,
-          "text": "We fight. We yell. We kiss. We hug. We text. We yell. We morph into anthropomorphic marshmallow sandwiches. We argue. We laugh. We yell. We smile. We love. We eat MoonPies. We yell. That's just us &lt;3"
+          "id": "956022159469613056",
+          "tweet_url": "https://x.com/MoonPie/status/956022159469613056",
+          "score": 0.9364941499647247,
+          "text": "You might be sad that pie day is over but just remember we live in a world where you can think about ‘pies every day or even every couple of months if you want"
         },
         {
-          "id": "939221175640653825",
-          "tweet_url": "https://x.com/MoonPie/status/939221175640653825",
-          "score": 0.951314825576874,
-          "text": "[In this tweet instead of being online I’m on a boat]\n\nCaptain: MoonPie! The ship is going down\n\nMe: Oh no\n\nCaptain: Send a tweet from your account asking for help\n\nMe: I can't it wouldn't be funny\n\nCaptain: Dang it\n\nMe: Did you see where we roasted this teen\n\nCaptain: Haha yeah"
+          "id": "1106217990545174529",
+          "tweet_url": "https://x.com/MoonPie/status/1106217990545174529",
+          "score": 0.9316176004001262,
+          "text": "Due to the overwhelming amount of brands posting about pi day we would like to refrain from joining in the crowded social media conversation thank you for understanding"
         },
         {
-          "id": "1532139684280803329",
-          "tweet_url": "https://x.com/MoonPie/status/1532139684280803329",
-          "score": 0.9485219578570997,
-          "text": "Crazy how italicizing certain words can totally change the meaning of a sentence\n\n𝘐 will destroy the sun\nI 𝘸𝘪𝘭𝘭 destroy the sun\nI will 𝘥𝘦𝘴𝘵𝘳𝘰𝘺 the sun\nI will destroy 𝘵𝘩𝘦 sun\nI will destroy the 𝘴𝘶𝘯"
+          "id": "1900694905803911577",
+          "tweet_url": "https://x.com/MoonPie/status/1900694905803911577",
+          "score": 0.9316144995569344,
+          "text": "Say what you will but I think pi day should be a company holiday for anyone who makes pies or uses mathematics or potentially both if they are accountants"
         },
         {
-          "id": "940603428748906496",
-          "tweet_url": "https://x.com/MoonPie/status/940603428748906496",
-          "score": 0.9484945279571696,
-          "text": "MoonPies are great for the holidays not only do they taste great but if you set out MoonPies instead of cookies on Christmas Eve you probably wouldn’t get any fewer presents from Santa"
+          "id": "955887353163370496",
+          "tweet_url": "https://x.com/MoonPie/status/955887353163370496",
+          "score": 0.9316061615509104,
+          "text": "Today is national pie day but does anyone ask why\n\nI believe it might be a ploy to sell you more ‘pies I mean I am not complaining but still crazy to think about"
         }
       ]
     },
     {
       "topic_id": 6,
       "top_terms": [
-        "moon",
-        "pie",
-        "time",
         "moonpies",
-        "moon pie",
-        "phase",
-        "earth",
-        "brand",
-        "picture",
-        "does",
-        "hello",
-        "eating"
+        "commercial",
+        "thebigthing",
+        "eclipse",
+        "buy",
+        "called",
+        "commercial called",
+        "time",
+        "gonna",
+        "buy moonpies",
+        "makes",
+        "solar"
       ],
       "representative_posts": [
         {
-          "id": "1084567361737445386",
-          "tweet_url": "https://x.com/MoonPie/status/1084567361737445386",
-          "score": 0.9583230053493421,
-          "text": "The phases of the moon: \n\n🌕 full phase\n\n🌖 waning gibbous\n\n🌗 half phase I think\n\n🌜 🦆 ???\n\n🌑  goth phase\n\n🎤🌛 “I can make it in comedy bc I’m funny” phase\n\n🌓 half phase for sure this time it’s gotta be \n\n🌔 waxing gibbous"
+          "id": "897992833726128128",
+          "tweet_url": "https://x.com/MoonPie/status/897992833726128128",
+          "score": 0.9365034070655475,
+          "text": "You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB"
         },
         {
-          "id": "1556775212359745540",
-          "tweet_url": "https://x.com/MoonPie/status/1556775212359745540",
-          "score": 0.9452990033412654,
-          "text": "Moon fact:\n\nThis 🌖 phase of the moon is called the waning gibbous phase and I like to think we all go through a waning gibbous phase sometimes"
+          "id": "898147816018763776",
+          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
+          "score": 0.9365034070655475,
+          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
         },
         {
-          "id": "1836402093097116052",
-          "tweet_url": "https://x.com/MoonPie/status/1836402093097116052",
-          "score": 0.9374858296678787,
-          "text": "Earth is set to temporarily obtain another moon on September 29th.\n\nThe asteroid known as a ‘mini-moon’ is expected to make a single orbit journey around Earth, ending on November 25th. https://t.co/7UOS5LZ5vH"
+          "id": "1065343981901570048",
+          "tweet_url": "https://x.com/MoonPie/status/1065343981901570048",
+          "score": 0.9315985981704967,
+          "text": "Shove a couple MoonPies up inside your turkey for a thanksgiving surprise ha ha sorry grandma this is my thanksgiving now"
         },
         {
-          "id": "2041557036274475228",
-          "tweet_url": "https://x.com/MoonPie/status/2041557036274475228",
-          "score": 0.9374542796328338,
-          "text": "Hello, Moon. It’s great to be back.\n \nHere’s a taste of what the Artemis II astronauts photographed during their flight around the Moon. Check out more photos from the mission: https://t.co/rzM1P0QbOl https://t.co/6jWINHkDLh"
+          "id": "908348362092679168",
+          "tweet_url": "https://x.com/MoonPie/status/908348362092679168",
+          "score": 0.9315932340576463,
+          "text": "You (an intellectual): I don't engage with brands online\n\nMe (an intellectual brand): ok that's fine we respect that but please buy MoonPies"
         },
         {
-          "id": "899705161702023168",
-          "tweet_url": "https://x.com/MoonPie/status/899705161702023168",
-          "score": 0.9374509115136269,
-          "text": "Post your best pic from today with #MoonPieEclipse for a chance to win a YEAR'S SUPPLY of 'pie!\n\nExtra points if there's a MoonPie in it FYI https://t.co/rx6T12wajW"
+          "id": "1359641650042126339",
+          "tweet_url": "https://x.com/MoonPie/status/1359641650042126339",
+          "score": 0.9315735417794287,
+          "text": "A few years ago we could tweet something like “MoonPies are my spirit animal” and get several thousand likes but now we’d have to say a very bad word to get even half that amount"
         }
       ]
     },
     {
       "topic_id": 7,
       "top_terms": [
-        "moonpies",
-        "ve",
-        "tweet",
-        "great",
-        "lol",
-        "don",
         "moon",
-        "buy",
+        "moonpies",
+        "sun",
+        "let",
+        "pie",
+        "great",
+        "moon pie",
+        "ha",
+        "earth",
+        "thing",
         "time",
-        "friends",
-        "going",
-        "years"
+        "day"
       ],
       "representative_posts": [
         {
-          "id": "984569155797028865",
-          "tweet_url": "https://x.com/MoonPie/status/984569155797028865",
-          "score": 0.9452542134788025,
-          "text": "One time I was blowing kisses to some birds outside my office window and my boss told me to stop but THEN one day I caught him blowing kisses to some birds outside HIS office window\n\nWe still haven’t talked about it please don’t tell anyone https://t.co/8KNaZc6s9V"
+          "id": "941687972692463616",
+          "tweet_url": "https://x.com/MoonPie/status/941687972692463616",
+          "score": 0.9595778032305595,
+          "text": "1 MoonPie = great\n2 MoonPies = even better\n50 MoonPies = wow loving this\n100 MoonPies = seems like a lot but ok\n666 MoonPies = uh oh\n667 MoonPies = whew ha ha alright keep em coming"
         },
         {
-          "id": "935238021795983362",
-          "tweet_url": "https://x.com/MoonPie/status/935238021795983362",
-          "score": 0.9374953666074614,
-          "text": "RT @NPR: Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU"
+          "id": "958389268233244672",
+          "tweet_url": "https://x.com/MoonPie/status/958389268233244672",
+          "score": 0.9576615501295538,
+          "text": "Is your child texting about brands?\nA guide:\n\nBRB: busy retweeting brands\nOMG: order more goods!\nMIMBF: MoonPie is my best friend\nIB4B: I brake for business\nLIT: lost in trends\nPLMAIDAL: please leave me alone I’m designing a logo\nHAHA: hire a huge accountant\nROI: right on, Ian"
         },
         {
-          "id": "934400023613227009",
-          "tweet_url": "https://x.com/MoonPie/status/934400023613227009",
-          "score": 0.9374953666074614,
-          "text": "Like any great legend, the MoonPie mythos has been handed down in the great oral tradition. https://t.co/ujWNusqgrU"
+          "id": "1532139684280803329",
+          "tweet_url": "https://x.com/MoonPie/status/1532139684280803329",
+          "score": 0.9477074886580283,
+          "text": "Crazy how italicizing certain words can totally change the meaning of a sentence\n\n𝘐 will destroy the sun\nI 𝘸𝘪𝘭𝘭 destroy the sun\nI will 𝘥𝘦𝘴𝘵𝘳𝘰𝘺 the sun\nI will destroy 𝘵𝘩𝘦 sun\nI will destroy the 𝘴𝘶𝘯"
         },
         {
-          "id": "925003677194248198",
-          "tweet_url": "https://x.com/MoonPie/status/925003677194248198",
-          "score": 0.9374573551618728,
-          "text": "With all the important news going on we’ve decided not to tweet about MoonPies today but we look forward to tweeting about them tomorrow"
+          "id": "940603428748906496",
+          "tweet_url": "https://x.com/MoonPie/status/940603428748906496",
+          "score": 0.94769374432627,
+          "text": "MoonPies are great for the holidays not only do they taste great but if you set out MoonPies instead of cookies on Christmas Eve you probably wouldn’t get any fewer presents from Santa"
         },
         {
-          "id": "914862256491548672",
-          "tweet_url": "https://x.com/MoonPie/status/914862256491548672",
-          "score": 0.932654341990552,
-          "text": "✨Time for a follow spree!✨\n\nJust reply to this tweet with \"I promise to become a famous influencer and promote MoonPie® for free\" and we'll follow you"
+          "id": "1013920972435525633",
+          "tweet_url": "https://x.com/MoonPie/status/1013920972435525633",
+          "score": 0.9407191669649272,
+          "text": "Pretend you’re the best MoonPie seller in the world—it’s controversial but some call you the best of all time—buuuut your store isn’t really the best at selling MoonPies\n\nIt would be kinda strange for you to move to another store that’s even worse at selling MoonPies wouldn’t it"
+        }
+      ]
+    },
+    {
+      "topic_id": 8,
+      "top_terms": [
+        "time",
+        "moonpies",
+        "eat",
+        "tell",
+        "people",
+        "say",
+        "mean",
+        "don",
+        "boss",
+        "want",
+        "sorry",
+        "lot"
+      ],
+      "representative_posts": [
+        {
+          "id": "1028762242584600577",
+          "tweet_url": "https://x.com/MoonPie/status/1028762242584600577",
+          "score": 0.9505974294626209,
+          "text": "A lot of people ask me “Hey, are MoonPies any good” and I would say I’d probably eat them even if I didn’t work here that’s a pretty big endorsement"
+        },
+        {
+          "id": "918851488507748352",
+          "tweet_url": "https://x.com/MoonPie/status/918851488507748352",
+          "score": 0.9476889017759706,
+          "text": "Hey kids did you know if you say “spooky lil MoonPie” 3 times in a mirror on this day nothing’s gonna happen what is wrong with you"
+        },
+        {
+          "id": "1677347074231394304",
+          "tweet_url": "https://x.com/MoonPie/status/1677347074231394304",
+          "score": 0.9364952319990343,
+          "text": "Eating a banana:\n-strange\n-peel the skin off?\n-fine I guess\n\nEating a banana MoonPie:\n-delicious\n-the skin stays on\n-eat the skin do it"
+        },
+        {
+          "id": "1474157552049000451",
+          "tweet_url": "https://x.com/MoonPie/status/1474157552049000451",
+          "score": 0.9316079762666172,
+          "text": "We all know the nine famous reindeer but everybody seems to forget Chancer the bad boy who only ate MoonPies and tried to get everyone to invest in crypto early"
+        },
+        {
+          "id": "955459552828362752",
+          "tweet_url": "https://x.com/MoonPie/status/955459552828362752",
+          "score": 0.9259093283080149,
+          "text": "Sorry, but we won't be tweeting/responding to replies during the government shutdown. Also, all public NASA activities and events are cancelled or postponed until further notice. We'll be back as soon as possible! Sorry for the inconvenience. https://t.co/78WCQwO0sW"
         }
       ]
     }
   ],
-  "generated_at": "2026-07-14T17:03:39.709789+00:00"
+  "generated_at": "2026-07-15T17:08:52.545810+00:00"
 }
