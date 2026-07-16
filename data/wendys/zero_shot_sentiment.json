@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 986,
+  "post_count": 987,
   "label_counts": {
+    "negative": 496,
     "positive": 453,
-    "negative": 495,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45837221859775307,
-    "neutral": 0.1297357627933594,
-    "negative": 0.41189201673999953
+    "positive": 0.45827813908420484,
+    "neutral": 0.12967251951508663,
+    "negative": 0.41204933958655504
   },
   "posts": [
+    {
+      "id": "2077510307979694128",
+      "tweet_url": "https://x.com/Wendys/status/2077510307979694128",
+      "created_at": "Wed Jul 15 21:47:10 +0000 2026",
+      "text": "Pick your player and then grab your Minions &amp; Monsters Meal at Wendy’s now. See the movie in theaters now. https://t.co/Nn7kqG2Yn4",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.5671696662902832,
+      "scores": {
+        "negative": 0.5671696662902832,
+        "positive": 0.36551573872566223,
+        "neutral": 0.06731464713811874
+      }
+    },
     {
       "id": "2075685759168737693",
       "tweet_url": "https://x.com/Wendys/status/2075685759168737693",
@@ -19740,5 +19760,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-15T16:59:27.379493+00:00"
+  "generated_at": "2026-07-16T16:57:49.841240+00:00"
 }

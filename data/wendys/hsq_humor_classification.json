@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 986,
+  "post_count": 987,
   "label_counts": {
+    "Self-enhancing humor": 350,
     "Non-humorous brand message": 618,
-    "Self-enhancing humor": 349,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13038269925589105,
-    "Self-enhancing humor": 0.29191544472851977,
-    "Aggressive humor": 0.11420996209737762,
-    "Self-defeating humor": 0.11496613892106979,
-    "Non-humorous brand message": 0.3485257562983575
+    "Affiliative humor": 0.1304315444042627,
+    "Self-enhancing humor": 0.29187234876047075,
+    "Aggressive humor": 0.11431179802475029,
+    "Self-defeating humor": 0.11497037150031815,
+    "Non-humorous brand message": 0.3484139385949981
   },
   "posts": [
+    {
+      "id": "2077510307979694128",
+      "tweet_url": "https://x.com/Wendys/status/2077510307979694128",
+      "created_at": "Wed Jul 15 21:47:10 +0000 2026",
+      "text": "Pick your player and then grab your Minions &amp; Monsters Meal at Wendy’s now. See the movie in theaters now. https://t.co/Nn7kqG2Yn4",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.2493797242641449,
+      "scores": {
+        "Self-enhancing humor": 0.2493797242641449,
+        "Non-humorous brand message": 0.23816168308258057,
+        "Aggressive humor": 0.21472202241420746,
+        "Affiliative humor": 0.17859286069869995,
+        "Self-defeating humor": 0.11914369463920593
+      }
+    },
     {
       "id": "2075685759168737693",
       "tweet_url": "https://x.com/Wendys/status/2075685759168737693",
@@ -23692,5 +23716,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-15T17:03:02.842501+00:00"
+  "generated_at": "2026-07-16T17:01:23.187730+00:00"
 }
