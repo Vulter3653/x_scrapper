@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 987,
+  "post_count": 989,
   "label_counts": {
+    "Non-humorous brand message": 620,
     "Self-enhancing humor": 350,
-    "Non-humorous brand message": 618,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.1304315444042627,
-    "Self-enhancing humor": 0.29187234876047075,
-    "Aggressive humor": 0.11431179802475029,
-    "Self-defeating humor": 0.11497037150031815,
-    "Non-humorous brand message": 0.3484139385949981
+    "Affiliative humor": 0.1304413290423387,
+    "Self-enhancing humor": 0.2916475262401552,
+    "Aggressive humor": 0.1143003363376129,
+    "Self-defeating humor": 0.11501737441010661,
+    "Non-humorous brand message": 0.348593435161587
   },
   "posts": [
+    {
+      "id": "2077891933897166907",
+      "tweet_url": "https://x.com/Wendys/status/2077891933897166907",
+      "created_at": "Thu Jul 16 23:03:37 +0000 2026",
+      "text": "The original poster. My alternative design. https://t.co/ZsufsHErI0",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.5815337300300598,
+      "scores": {
+        "Non-humorous brand message": 0.5815337300300598,
+        "Self-enhancing humor": 0.16748841106891632,
+        "Self-defeating humor": 0.09411395341157913,
+        "Affiliative humor": 0.0935613140463829,
+        "Aggressive humor": 0.06330256164073944
+      }
+    },
+    {
+      "id": "2077889191782785456",
+      "tweet_url": "https://x.com/Wendys/status/2077889191782785456",
+      "created_at": "Thu Jul 16 22:52:43 +0000 2026",
+      "text": "anyone know the answer to 14 down on the @nytimes crossword today? https://t.co/a7JGBW9q7V",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.29281625151634216,
+      "scores": {
+        "Non-humorous brand message": 0.29281625151634216,
+        "Self-enhancing humor": 0.19390681385993958,
+        "Self-defeating humor": 0.18231266736984253,
+        "Affiliative humor": 0.17697878181934357,
+        "Aggressive humor": 0.1539854258298874
+      }
+    },
     {
       "id": "2077510307979694128",
       "tweet_url": "https://x.com/Wendys/status/2077510307979694128",
@@ -23716,5 +23764,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-16T17:01:23.187730+00:00"
+  "generated_at": "2026-07-17T16:52:41.882955+00:00"
 }

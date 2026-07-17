@@ -7,18 +7,58 @@
     "neutral",
     "negative"
   ],
-  "post_count": 987,
+  "post_count": 989,
   "label_counts": {
-    "negative": 496,
-    "positive": 453,
+    "positive": 454,
+    "negative": 497,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45827813908420484,
-    "neutral": 0.12967251951508663,
-    "negative": 0.41204933958655504
+    "positive": 0.4581440301308092,
+    "neutral": 0.12971838006173086,
+    "negative": 0.4121375879969751
   },
   "posts": [
+    {
+      "id": "2077891933897166907",
+      "tweet_url": "https://x.com/Wendys/status/2077891933897166907",
+      "created_at": "Thu Jul 16 23:03:37 +0000 2026",
+      "text": "The original poster. My alternative design. https://t.co/ZsufsHErI0",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.4817711114883423,
+      "scores": {
+        "positive": 0.4817711114883423,
+        "negative": 0.2908201813697815,
+        "neutral": 0.22740867733955383
+      }
+    },
+    {
+      "id": "2077889191782785456",
+      "tweet_url": "https://x.com/Wendys/status/2077889191782785456",
+      "created_at": "Thu Jul 16 22:52:43 +0000 2026",
+      "text": "anyone know the answer to 14 down on the @nytimes crossword today? https://t.co/a7JGBW9q7V",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.6205561757087708,
+      "scores": {
+        "negative": 0.6205561757087708,
+        "positive": 0.3021514117717743,
+        "neutral": 0.07729244232177734
+      }
+    },
     {
       "id": "2077510307979694128",
       "tweet_url": "https://x.com/Wendys/status/2077510307979694128",
@@ -19760,5 +19800,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-16T16:57:49.841240+00:00"
+  "generated_at": "2026-07-17T16:49:25.245585+00:00"
 }
