@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 989,
+  "post_count": 990,
   "label_counts": {
+    "negative": 498,
     "positive": 454,
-    "negative": 497,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.4581440301308092,
-    "neutral": 0.12971838006173086,
-    "negative": 0.4121375879969751
+    "positive": 0.45775274862311877,
+    "neutral": 0.12965577027229522,
+    "negative": 0.41259147927335243
   },
   "posts": [
+    {
+      "id": "2078223656019247576",
+      "tweet_url": "https://x.com/Wendys/status/2078223656019247576",
+      "created_at": "Fri Jul 17 21:01:45 +0000 2026",
+      "text": "Pull up for Minions &amp; Monsters Meal. Zero regrets, tbh.🍌✨Grab the Minions &amp; Monsters Meal TODAY and go see the film in theaters now. https://t.co/TonmuD3JTC",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.8614899516105652,
+      "scores": {
+        "negative": 0.8614899516105652,
+        "positive": 0.0707753375172615,
+        "neutral": 0.06773468852043152
+      }
+    },
     {
       "id": "2077891933897166907",
       "tweet_url": "https://x.com/Wendys/status/2077891933897166907",
@@ -19800,5 +19820,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-17T16:49:25.245585+00:00"
+  "generated_at": "2026-07-18T16:38:13.993739+00:00"
 }

@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 989,
+  "post_count": 990,
   "label_counts": {
-    "Non-humorous brand message": 620,
+    "Non-humorous brand message": 621,
     "Self-enhancing humor": 350,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.1304413290423387,
-    "Self-enhancing humor": 0.2916475262401552,
-    "Aggressive humor": 0.1143003363376129,
-    "Self-defeating humor": 0.11501737441010661,
-    "Non-humorous brand message": 0.348593435161587
+    "Affiliative humor": 0.13037564353605807,
+    "Self-enhancing humor": 0.29174004155681516,
+    "Aggressive humor": 0.1142443018872379,
+    "Self-defeating humor": 0.11499705560307837,
+    "Non-humorous brand message": 0.34864295853214866
   },
   "posts": [
+    {
+      "id": "2078223656019247576",
+      "tweet_url": "https://x.com/Wendys/status/2078223656019247576",
+      "created_at": "Fri Jul 17 21:01:45 +0000 2026",
+      "text": "Pull up for Minions &amp; Monsters Meal. Zero regrets, tbh.🍌✨Grab the Minions &amp; Monsters Meal TODAY and go see the film in theaters now. https://t.co/TonmuD3JTC",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3976215720176697,
+      "scores": {
+        "Non-humorous brand message": 0.3976215720176697,
+        "Self-enhancing humor": 0.38323768973350525,
+        "Self-defeating humor": 0.09490175545215607,
+        "Affiliative humor": 0.06541267782449722,
+        "Aggressive humor": 0.058826230466365814
+      }
+    },
     {
       "id": "2077891933897166907",
       "tweet_url": "https://x.com/Wendys/status/2077891933897166907",
@@ -23764,5 +23788,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-17T16:52:41.882955+00:00"
+  "generated_at": "2026-07-18T16:41:35.211296+00:00"
 }
