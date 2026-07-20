@@ -49,6 +49,21 @@ year, bottles, ll, olympics, worldkindnessday, tokyo, refreshthefeed, bottles ye
 ## Topic 3
 best, kindnessstartswith, love, coke, friend, shareacoke, ve, kindness, kind, summer, world, day
 
+- [1205510188482146304](https://x.com/CocaCola/status/1205510188482146304): RT @MyPowertalk: ❤️ ✨
+LOVE is
+boundless
+ageless
+beautiful
+creative
+limitless
+real✨
+amazing
+reassuring❤️
+inviting
+embracing...
+❤️
+LOVE is 
+A…
 - [1195475187292147713](https://x.com/CocaCola/status/1195475187292147713): ❤️ ✨
 LOVE is
 boundless
@@ -72,21 +87,6 @@ All That Is✨
                               ❤️
 
 #FridayFeeling
-- [1205510188482146304](https://x.com/CocaCola/status/1205510188482146304): RT @MyPowertalk: ❤️ ✨
-LOVE is
-boundless
-ageless
-beautiful
-creative
-limitless
-real✨
-amazing
-reassuring❤️
-inviting
-embracing...
-❤️
-LOVE is 
-A…
 - [1252245596657901569](https://x.com/CocaCola/status/1252245596657901569): 37 million Americans were facing hunger every day before the outbreak of COVID-19. But as this pandemic continues to impact our neighbors, the need has become staggering.
 
 Food banks are here to help, but can't do it alone. You can help: https://t.co/FUjL92ixle https://t.co/4I0x8JJ4wz
@@ -109,16 +109,16 @@ enjoyyours, marchmadness, better, cheers, step, weekend, special, meet, bottle, 
 ## Topic 6
 real, magic, sweepstakes, real magic, thanks, ad, code, magic sweepstakes, unlock, positive, unlock real, ad sweepstakes
 
-- [1452885532376113157](https://x.com/CocaCola/status/1452885532376113157): Thanks for joining my Coca-Cola Real Magic campaign stream! 
-
-Be sure to redeem the following code- S91SH181EP
-
-on https://t.co/cpJeHN6N33 to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes
 - [1457841275647008769](https://x.com/CocaCola/status/1457841275647008769): Thanks for joining my Coca-Cola Real Magic campaign stream! 
 
 Be sure to redeem the following code - Z8Q0SH9U47 
 
 on https://t.co/8eDOkmRtTi to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes
+- [1452885532376113157](https://x.com/CocaCola/status/1452885532376113157): Thanks for joining my Coca-Cola Real Magic campaign stream! 
+
+Be sure to redeem the following code- S91SH181EP
+
+on https://t.co/cpJeHN6N33 to have a chance at winning Twitch bits &amp; other prizes! #ad #sweepstakes
 - [1247645518261559298](https://x.com/CocaCola/status/1247645518261559298): Whenever duty calls, members of the U.S. National Guard swap their civilian clothes for a uniform to prepare for the moments when their nation needs them most. The #COVID19 pandemic, is one of those moments: https://t.co/T5eMrfUanh
 Photo Credit: DVIDS/Army Spc. Samuel D. Keenan https://t.co/a2532d7jpW
 

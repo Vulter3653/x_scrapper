@@ -128,8 +128,8 @@ day, moonpies, think, say, does, social, brands, media, social media, want, lol,
 ## Topic 6
 moonpies, commercial, thebigthing, eclipse, buy, called, commercial called, time, gonna, buy moonpies, makes, solar
 
-- [897992833726128128](https://x.com/MoonPie/status/897992833726128128): You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB
 - [898147816018763776](https://x.com/MoonPie/status/898147816018763776): RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…
+- [897992833726128128](https://x.com/MoonPie/status/897992833726128128): You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB
 - [1065343981901570048](https://x.com/MoonPie/status/1065343981901570048): Shove a couple MoonPies up inside your turkey for a thanksgiving surprise ha ha sorry grandma this is my thanksgiving now
 
 ## Topic 7
