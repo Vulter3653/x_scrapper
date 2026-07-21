@@ -19,7 +19,7 @@
       {
         "num_topics": 3,
         "coherence_npmi": 0.06942530891632197,
-        "perplexity": 986.596935477089
+        "perplexity": 986.5969354770907
       },
       {
         "num_topics": 4,
@@ -44,7 +44,7 @@
       {
         "num_topics": 8,
         "coherence_npmi": 0.12949319022068484,
-        "perplexity": 1343.6923613145013
+        "perplexity": 1343.6923613145025
       },
       {
         "num_topics": 9,
@@ -135,7 +135,7 @@
         {
           "id": "1445154719802920965",
           "tweet_url": "https://x.com/MoonPie/status/1445154719802920965",
-          "score": 0.9364879337427432,
+          "score": 0.9364879337427431,
           "text": "To the huge community of people and businesses around the world who depend on us: we're sorry. We’ve been working hard to restore access to our apps and services and are happy to report they are coming back online now. Thank you for bearing with us."
         },
         {
@@ -366,16 +366,16 @@
       ],
       "representative_posts": [
         {
-          "id": "898147816018763776",
-          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
-          "score": 0.9365034070655475,
-          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
-        },
-        {
           "id": "897992833726128128",
           "tweet_url": "https://x.com/MoonPie/status/897992833726128128",
           "score": 0.9365034070655475,
           "text": "You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB"
+        },
+        {
+          "id": "898147816018763776",
+          "tweet_url": "https://x.com/MoonPie/status/898147816018763776",
+          "score": 0.9365034070655475,
+          "text": "RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…"
         },
         {
           "id": "1065343981901570048",
@@ -496,5 +496,5 @@
       ]
     }
   ],
-  "generated_at": "2026-07-20T17:16:36.961728+00:00"
+  "generated_at": "2026-07-21T17:14:04.169575+00:00"
 }

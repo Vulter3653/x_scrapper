@@ -8,8 +8,8 @@
     "min_topics": 2,
     "max_topics": 9,
     "selected_num_topics": 9,
-    "selected_coherence_npmi": 0.2990369184670464,
-    "selected_perplexity": 1463.735540483126,
+    "selected_coherence_npmi": 0.29298970815562453,
+    "selected_perplexity": 1463.7355404831274,
     "evaluations": [
       {
         "num_topics": 2,
@@ -19,17 +19,17 @@
       {
         "num_topics": 3,
         "coherence_npmi": 0.13211647533271456,
-        "perplexity": 1272.5443073161982
+        "perplexity": 1272.5443073162005
       },
       {
         "num_topics": 4,
         "coherence_npmi": 0.16619720941226973,
-        "perplexity": 1326.0559061936128
+        "perplexity": 1326.055906193614
       },
       {
         "num_topics": 5,
         "coherence_npmi": 0.1711847559960237,
-        "perplexity": 1388.6601289127398
+        "perplexity": 1388.66012891274
       },
       {
         "num_topics": 6,
@@ -39,17 +39,17 @@
       {
         "num_topics": 7,
         "coherence_npmi": 0.27044323851872015,
-        "perplexity": 1432.7373186934221
+        "perplexity": 1432.7373186934235
       },
       {
         "num_topics": 8,
-        "coherence_npmi": 0.25204207893673425,
-        "perplexity": 1418.48006169201
+        "coherence_npmi": 0.24604725466877728,
+        "perplexity": 1418.480061692011
       },
       {
         "num_topics": 9,
-        "coherence_npmi": 0.2990369184670464,
-        "perplexity": 1463.735540483126
+        "coherence_npmi": 0.29298970815562453,
+        "perplexity": 1463.7355404831274
       }
     ]
   },
@@ -115,8 +115,8 @@
         "bracket",
         "sweet",
         "tweet",
-        "bestoftweets",
         "bestoftweets brand",
+        "bestoftweets",
         "brand bracket"
       ],
       "representative_posts": [
@@ -190,7 +190,7 @@
         {
           "id": "1258109329816813568",
           "tweet_url": "https://x.com/Wendys/status/1258109329816813568",
-          "score": 0.9506073293930803,
+          "score": 0.9506073293930805,
           "text": "A final batch of clues to bring it home on Cyber Search day 3. Did you score big today, or is your treasure coming tomorrow? https://t.co/H9bM7rWONS https://t.co/MGgpXugsPI"
         },
         {
@@ -208,9 +208,9 @@
         "honey",
         "biscuit",
         "app",
-        "butter chicken",
-        "butter",
         "honey butter",
+        "butter",
+        "butter chicken",
         "free",
         "chicken biscuit",
         "spicy",
@@ -225,16 +225,16 @@
           "text": "This week, we will be hiding codes. Lots of codes. Codes that will score you free Wendy's. Hidden across our entire internet presence. The clues start Monday. Think you can solve the Cyber Search? https://t.co/FB2IXQSyAq"
         },
         {
-          "id": "1379418884504236037",
-          "tweet_url": "https://x.com/Wendys/status/1379418884504236037",
-          "score": 0.9595914595606495,
-          "text": "RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…"
-        },
-        {
           "id": "1376979649578872837",
           "tweet_url": "https://x.com/Wendys/status/1376979649578872837",
           "score": 0.9595914595606495,
           "text": "What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://t.co/0xe5ukedCm"
+        },
+        {
+          "id": "1379418884504236037",
+          "tweet_url": "https://x.com/Wendys/status/1379418884504236037",
+          "score": 0.9595914595606495,
+          "text": "RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…"
         },
         {
           "id": "1825310472368791724",
@@ -313,7 +313,7 @@
         "want",
         "week",
         "minions monsters",
-        "minions"
+        "monsters meal"
       ],
       "representative_posts": [
         {
@@ -386,7 +386,7 @@
         {
           "id": "1641209202222723073",
           "tweet_url": "https://x.com/Wendys/status/1641209202222723073",
-          "score": 0.9576653955103457,
+          "score": 0.9576653955103458,
           "text": "This Thurs, 3/30 &amp; Fri, 3/31 from 6 – 7 PM EDT\n get ❗$30 off❗ when you add a Biggie Bag to your Wendy’s DoorDash order of $12 or more.\n\nPromo code BIGGIE https://t.co/SUGr1eMNMl"
         },
         {
@@ -423,7 +423,7 @@
         {
           "id": "1481341396430766085",
           "tweet_url": "https://x.com/Wendys/status/1481341396430766085",
-          "score": 0.9595853634139325,
+          "score": 0.9595853634139326,
           "text": "Everyone good? Feeling great? \nStill many hours left in the day, but take a quick lunch break because we’re trying to push this free medium fries with purchase thing in the app and I want to keep my job."
         },
         {
@@ -470,20 +470,14 @@
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions."
         },
         {
-          "id": "2041274861461586245",
-          "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
-          "score": 0.9777763900838947,
-          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
-        },
-        {
           "id": "2041187810728727004",
           "tweet_url": "https://x.com/Wendys/status/2041187810728727004",
           "score": 0.9777763900838947,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
         {
-          "id": "2041526924149690528",
-          "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
+          "id": "2041274861461586245",
+          "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
           "score": 0.9777763900838947,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
@@ -492,9 +486,15 @@
           "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
           "score": 0.9777763900838947,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
+        },
+        {
+          "id": "2041526924149690528",
+          "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
+          "score": 0.9777763900838947,
+          "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         }
       ]
     }
   ],
-  "generated_at": "2026-07-20T17:08:39.319047+00:00"
+  "generated_at": "2026-07-21T17:03:03.017640+00:00"
 }

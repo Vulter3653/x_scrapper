@@ -3,7 +3,7 @@
 - Documents analyzed: 896
 - Selected topics: 9
 - Selection method: NPMI coherence, candidates 2-9
-- Selected coherence: 0.2990
+- Selected coherence: 0.2930
 - Selected perplexity: 1463.7355
 
 ## Topic Count Evaluation
@@ -14,8 +14,8 @@
 - 5 topics: coherence=0.1712, perplexity=1388.6601
 - 6 topics: coherence=0.2245, perplexity=1414.9330
 - 7 topics: coherence=0.2704, perplexity=1432.7373
-- 8 topics: coherence=0.2520, perplexity=1418.4801
-- 9 topics: coherence=0.2990, perplexity=1463.7355
+- 8 topics: coherence=0.2460, perplexity=1418.4801
+- 9 topics: coherence=0.2930, perplexity=1463.7355
 
 ## Topic 0
 wendy, come, twitch, love, going, clues, pm, live, hang, stream, play, tonight
@@ -29,7 +29,7 @@ Choose Wisely #ForTheWendys
 - [1258441499085242369](https://x.com/Wendys/status/1258441499085242369): Cyber Search day 4 is here. Follow a clue, DM us the code, and if you win, we'll message you back the deets for a big ol' Wendy's gift card. https://t.co/H9bM7rWONS https://t.co/9kK4uPoxOZ
 
 ## Topic 1
-time, ll, breakfast, brand, free, croissant, bracket, sweet, tweet, bestoftweets, bestoftweets brand, brand bracket
+time, ll, breakfast, brand, free, croissant, bracket, sweet, tweet, bestoftweets brand, bestoftweets, brand bracket
 
 - [1370124888049061895](https://x.com/Wendys/status/1370124888049061895): It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.
 
@@ -56,11 +56,11 @@ By releasing Smith, the Raiders will open up $8M in salary cap space while takin
 Get breaking news alerts from Adam Schefter through the ESPN App: https://t.co/wLAog0kJUB
 
 ## Topic 3
-chicken, honey, biscuit, app, butter chicken, butter, honey butter, free, chicken biscuit, spicy, sandwich, purchase
+chicken, honey, biscuit, app, honey butter, butter, butter chicken, free, chicken biscuit, spicy, sandwich, purchase
 
 - [1257082671118913537](https://x.com/Wendys/status/1257082671118913537): This week, we will be hiding codes. Lots of codes. Codes that will score you free Wendy's. Hidden across our entire internet presence. The clues start Monday. Think you can solve the Cyber Search? https://t.co/FB2IXQSyAq
-- [1379418884504236037](https://x.com/Wendys/status/1379418884504236037): RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…
 - [1376979649578872837](https://x.com/Wendys/status/1376979649578872837): What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://t.co/0xe5ukedCm
+- [1379418884504236037](https://x.com/Wendys/status/1379418884504236037): RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…
 
 ## Topic 4
 single, dave, free, dave single, ve, frosty, free dave, wendy, friend, don, ll, app
@@ -72,7 +72,7 @@ Hit the ❤️, and we’ll hit you up when it’s time to make your picks for E
 - [1425549128399040519](https://x.com/Wendys/status/1425549128399040519): Only real spiceheads can enter our new Spice Club on Discord. If you’re a fan of authentic spicy nuggs, join our Spice Club Channel now: https://t.co/omlOuutGf3
 
 ## Topic 5
-fries, eat, time, house, choosehotandcrispy, monsters, meal, crispy, want, week, minions monsters, minions
+fries, eat, time, house, choosehotandcrispy, monsters, meal, crispy, want, week, minions monsters, monsters meal
 
 - [1441794626281607179](https://x.com/Wendys/status/1441794626281607179): The game of the week is finally here!
 
@@ -105,5 +105,5 @@ Still many hours left in the day, but take a quick lunch break because we’re t
 wendy, small, frosty, fry, person, free, breakfast, offer, stop, free small, small fry, purchase
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
-- [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 - [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
