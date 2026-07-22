@@ -1,20 +1,71 @@
 [
   {
+    "id": "2079663592085815508",
+    "tweet_url": "https://x.com/Wendys/status/2079663592085815508",
+    "created_at": "Tue Jul 21 20:23:33 +0000 2026",
+    "text": "watching the way nolan intended https://t.co/WdFSWchyxH",
+    "reply_count": 32,
+    "favorite_count": 489,
+    "retweet_count": 46,
+    "quote_count": 5,
+    "bookmark_count": 21,
+    "view_count": "105661",
+    "lang": "en",
+    "conversation_id": "2079663592085815508",
+    "is_quote_status": false,
+    "source": "browser_graphql",
+    "scraped_at": 1784739552
+  },
+  {
+    "id": "2079625880997867527",
+    "tweet_url": "https://x.com/Wendys/status/2079625880997867527",
+    "created_at": "Tue Jul 21 17:53:42 +0000 2026",
+    "text": "Try parallel parking a $1 frosty",
+    "reply_count": 21,
+    "favorite_count": 275,
+    "retweet_count": 32,
+    "quote_count": 4,
+    "bookmark_count": 5,
+    "view_count": "107937",
+    "lang": "en",
+    "conversation_id": "2079625880997867527",
+    "is_quote_status": true,
+    "source": "browser_graphql",
+    "scraped_at": 1784739552
+  },
+  {
+    "id": "2079222204747624629",
+    "tweet_url": "https://x.com/Wendys/status/2079222204747624629",
+    "created_at": "Mon Jul 20 15:09:38 +0000 2026",
+    "text": "why are lyft drivers showing up as a @Wendys Frosty 😭☠️ https://t.co/hkv8i4r6Gj",
+    "reply_count": 2,
+    "favorite_count": 42,
+    "retweet_count": 1,
+    "quote_count": 1,
+    "bookmark_count": 1,
+    "view_count": "103551",
+    "lang": "en",
+    "conversation_id": "2079222204747624629",
+    "is_quote_status": false,
+    "source": "browser_graphql",
+    "scraped_at": 1784739552
+  },
+  {
     "id": "2078223656019247576",
     "tweet_url": "https://x.com/Wendys/status/2078223656019247576",
     "created_at": "Fri Jul 17 21:01:45 +0000 2026",
     "text": "Pull up for Minions &amp; Monsters Meal. Zero regrets, tbh.🍌✨Grab the Minions &amp; Monsters Meal TODAY and go see the film in theaters now. https://t.co/TonmuD3JTC",
     "reply_count": 30,
-    "favorite_count": 93,
-    "retweet_count": 29,
+    "favorite_count": 95,
+    "retweet_count": 28,
     "quote_count": 1,
     "bookmark_count": 6,
-    "view_count": "43292",
+    "view_count": "44286",
     "lang": "en",
     "conversation_id": "2078223656019247576",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2077891933897166907",
@@ -22,16 +73,16 @@
     "created_at": "Thu Jul 16 23:03:37 +0000 2026",
     "text": "The original poster. My alternative design. https://t.co/ZsufsHErI0",
     "reply_count": 23,
-    "favorite_count": 511,
+    "favorite_count": 515,
     "retweet_count": 64,
     "quote_count": 0,
     "bookmark_count": 39,
-    "view_count": "59710",
+    "view_count": "60484",
     "lang": "en",
     "conversation_id": "2077891933897166907",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2077889191782785456",
@@ -39,16 +90,16 @@
     "created_at": "Thu Jul 16 22:52:43 +0000 2026",
     "text": "anyone know the answer to 14 down on the @nytimes crossword today? https://t.co/a7JGBW9q7V",
     "reply_count": 59,
-    "favorite_count": 143,
+    "favorite_count": 146,
     "retweet_count": 10,
     "quote_count": 1,
     "bookmark_count": 8,
-    "view_count": "48516",
+    "view_count": "49210",
     "lang": "en",
     "conversation_id": "2077889191782785456",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2077510307979694128",
@@ -56,16 +107,16 @@
     "created_at": "Wed Jul 15 21:47:10 +0000 2026",
     "text": "Pick your player and then grab your Minions &amp; Monsters Meal at Wendy’s now. See the movie in theaters now. https://t.co/Nn7kqG2Yn4",
     "reply_count": 23,
-    "favorite_count": 141,
-    "retweet_count": 30,
+    "favorite_count": 143,
+    "retweet_count": 31,
     "quote_count": 0,
     "bookmark_count": 15,
-    "view_count": "52687",
+    "view_count": "53236",
     "lang": "en",
     "conversation_id": "2077510307979694128",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2075685759168737693",
@@ -73,16 +124,16 @@
     "created_at": "Fri Jul 10 20:57:04 +0000 2026",
     "text": "real recognize real https://t.co/n1nq8VDPHn",
     "reply_count": 59,
-    "favorite_count": 5267,
+    "favorite_count": 5272,
     "retweet_count": 311,
     "quote_count": 30,
     "bookmark_count": 133,
-    "view_count": "211990",
+    "view_count": "212340",
     "lang": "en",
     "conversation_id": "2075685759168737693",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2075683731772240362",
@@ -90,16 +141,16 @@
     "created_at": "Fri Jul 10 20:49:00 +0000 2026",
     "text": "Finally, a banana masterpiece you can actually eat. Grab the Minions &amp; Monsters Meal at Wendy’s while it’s still hanging around and see the movie in theaters now. https://t.co/qtsbqYOCFs",
     "reply_count": 39,
-    "favorite_count": 185,
+    "favorite_count": 186,
     "retweet_count": 18,
     "quote_count": 5,
     "bookmark_count": 10,
-    "view_count": "58555",
+    "view_count": "58853",
     "lang": "en",
     "conversation_id": "2075683731772240362",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2075325590509441298",
@@ -107,16 +158,16 @@
     "created_at": "Thu Jul 09 21:05:53 +0000 2026",
     "text": "@ianmcconnellmus",
     "reply_count": 3,
-    "favorite_count": 15,
+    "favorite_count": 16,
     "retweet_count": 0,
     "quote_count": 0,
     "bookmark_count": 0,
-    "view_count": "24163",
+    "view_count": "24245",
     "lang": "qam",
     "conversation_id": "2075325544606920822",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2075325544606920822",
@@ -124,16 +175,16 @@
     "created_at": "Thu Jul 09 21:05:42 +0000 2026",
     "text": "🎶 🎼 You NEver get me the BIGGie BAAAAg\nYou NEver COOK me BURgers in a SQUARish SHAAAPE\nNEver aNOINT me with SIGnature SAAAAAUCE\nNEver WRITE me a MIIIIXtape\nYou NEver THROW out the FROzen BEEF of my ENemies 🎼 🎶",
     "reply_count": 38,
-    "favorite_count": 155,
+    "favorite_count": 157,
     "retweet_count": 9,
     "quote_count": 0,
     "bookmark_count": 9,
-    "view_count": "63527",
+    "view_count": "63789",
     "lang": "en",
     "conversation_id": "2075325544606920822",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2074917581635363158",
@@ -145,12 +196,12 @@
     "retweet_count": 49,
     "quote_count": 4,
     "bookmark_count": 28,
-    "view_count": "67598",
+    "view_count": "67856",
     "lang": "en",
     "conversation_id": "2074917581635363158",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2072445194033676639",
@@ -158,16 +209,16 @@
     "created_at": "Wed Jul 01 22:20:13 +0000 2026",
     "text": "Got our gameday fit on 🇺🇸🦅 https://t.co/HSdahUWcbw",
     "reply_count": 70,
-    "favorite_count": 495,
+    "favorite_count": 496,
     "retweet_count": 47,
     "quote_count": 2,
     "bookmark_count": 11,
-    "view_count": "71958",
+    "view_count": "72177",
     "lang": "en",
     "conversation_id": "2072445194033676639",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2070253169066508765",
@@ -175,16 +226,16 @@
     "created_at": "Thu Jun 25 21:09:53 +0000 2026",
     "text": "When I ask do you want to split a meal, this is what I mean. https://t.co/3I0T6quqKs",
     "reply_count": 172,
-    "favorite_count": 605,
+    "favorite_count": 606,
     "retweet_count": 67,
     "quote_count": 14,
     "bookmark_count": 33,
-    "view_count": "87961",
+    "view_count": "88153",
     "lang": "en",
     "conversation_id": "2070253169066508765",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2067687662656307653",
@@ -192,16 +243,16 @@
     "created_at": "Thu Jun 18 19:15:29 +0000 2026",
     "text": "If you wanna see a real monster, try and take one of my fries. Fight off the munchies with the Minions &amp; Monsters Meal TODAY and go see the film, only in theaters on July 1. https://t.co/VdZbsGqV5z",
     "reply_count": 94,
-    "favorite_count": 436,
+    "favorite_count": 437,
     "retweet_count": 72,
     "quote_count": 20,
     "bookmark_count": 31,
-    "view_count": "66526",
+    "view_count": "66691",
     "lang": "en",
     "conversation_id": "2067687662656307653",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2065192194277818396",
@@ -209,16 +260,16 @@
     "created_at": "Thu Jun 11 21:59:23 +0000 2026",
     "text": "if u dress up i will love u forever. Come experience the most bananas drive-thru ever. https://t.co/FDvzC4JTr1",
     "reply_count": 59,
-    "favorite_count": 480,
+    "favorite_count": 481,
     "retweet_count": 82,
     "quote_count": 13,
     "bookmark_count": 69,
-    "view_count": "69735",
+    "view_count": "69886",
     "lang": "en",
     "conversation_id": "2065192194277818396",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2064726596179706275",
@@ -226,16 +277,16 @@
     "created_at": "Wed Jun 10 15:09:15 +0000 2026",
     "text": "Her: Gimme 10\nMe: minutes or nuggets?",
     "reply_count": 103,
-    "favorite_count": 573,
+    "favorite_count": 574,
     "retweet_count": 46,
     "quote_count": 11,
     "bookmark_count": 16,
-    "view_count": "65446",
+    "view_count": "65596",
     "lang": "en",
     "conversation_id": "2064726596179706275",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2064504139749417369",
@@ -243,16 +294,16 @@
     "created_at": "Wed Jun 10 00:25:18 +0000 2026",
     "text": "What does one wear to meet a minion",
     "reply_count": 89,
-    "favorite_count": 491,
+    "favorite_count": 492,
     "retweet_count": 32,
     "quote_count": 8,
     "bookmark_count": 19,
-    "view_count": "65416",
+    "view_count": "65535",
     "lang": "en",
     "conversation_id": "2064504139749417369",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2063002561263640786",
@@ -260,16 +311,16 @@
     "created_at": "Fri Jun 05 20:58:33 +0000 2026",
     "text": "The KPIs, ROIs, and LOLs are about to go off the charts.\nCongratulations to our NEW Chief Tasting Officer Amber Luster 🎉🎉🎉 We can’t wait to see all the incredible things you do with your title. \n\nAnd thank you to all our fans who submitted an application❤️ https://t.co/WxU0LzL72Z",
     "reply_count": 57,
-    "favorite_count": 236,
+    "favorite_count": 237,
     "retweet_count": 21,
     "quote_count": 2,
     "bookmark_count": 17,
-    "view_count": "63762",
+    "view_count": "63876",
     "lang": "en",
     "conversation_id": "2063002561263640786",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2061565494453555359",
@@ -277,16 +328,16 @@
     "created_at": "Mon Jun 01 21:48:10 +0000 2026",
     "text": "Came for a Frosty, stayed for the door to the backrooms https://t.co/0BMCyHc7XK",
     "reply_count": 80,
-    "favorite_count": 689,
+    "favorite_count": 691,
     "retweet_count": 55,
     "quote_count": 11,
     "bookmark_count": 35,
-    "view_count": "77179",
+    "view_count": "77262",
     "lang": "en",
     "conversation_id": "2061565494453555359",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739552
   },
   {
     "id": "2060433958609813857",
@@ -294,16 +345,16 @@
     "created_at": "Fri May 29 18:51:51 +0000 2026",
     "text": "Y’all nearly crashed the system with all your applications, but we’ve finally made our top selections. Stay tuned for an announcement coming real soon 👀👀👀 https://t.co/f6wqnO0yeF",
     "reply_count": 67,
-    "favorite_count": 164,
+    "favorite_count": 165,
     "retweet_count": 21,
     "quote_count": 6,
     "bookmark_count": 10,
-    "view_count": "49355",
+    "view_count": "49456",
     "lang": "en",
     "conversation_id": "2060433958609813857",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739557
   },
   {
     "id": "2060406022825554333",
@@ -315,29 +366,29 @@
     "retweet_count": 7,
     "quote_count": 0,
     "bookmark_count": 2,
-    "view_count": "28724",
+    "view_count": "28755",
     "lang": "en",
     "conversation_id": "2060405944735957384",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653146
+    "scraped_at": 1784739557
   },
   {
     "id": "2060405944735957384",
     "tweet_url": "https://x.com/Wendys/status/2060405944735957384",
     "created_at": "Fri May 29 17:00:32 +0000 2026",
     "text": "rich asf craving the new Ice Spicy Meal on DoorDash https://t.co/kVe28gJjYt",
-    "reply_count": 63,
-    "favorite_count": 174,
+    "reply_count": 64,
+    "favorite_count": 176,
     "retweet_count": 29,
     "quote_count": 6,
     "bookmark_count": 6,
-    "view_count": "72999",
+    "view_count": "73141",
     "lang": "en",
     "conversation_id": "2060405944735957384",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2060393163458498982",
@@ -345,16 +396,16 @@
     "created_at": "Fri May 29 16:09:45 +0000 2026",
     "text": "28 and 10? Fine. Free FRENCH fries in the app with $5 purchase for everybody (including aliens 👽)",
     "reply_count": 16,
-    "favorite_count": 174,
+    "favorite_count": 175,
     "retweet_count": 13,
     "quote_count": 2,
     "bookmark_count": 6,
-    "view_count": "59954",
+    "view_count": "60085",
     "lang": "en",
     "conversation_id": "2060393163458498982",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2059700189909111001",
@@ -366,12 +417,12 @@
     "retweet_count": 43,
     "quote_count": 3,
     "bookmark_count": 25,
-    "view_count": "52583",
+    "view_count": "52664",
     "lang": "en",
     "conversation_id": "2059700189909111001",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2059459943040753916",
@@ -383,12 +434,12 @@
     "retweet_count": 15,
     "quote_count": 0,
     "bookmark_count": 15,
-    "view_count": "49481",
+    "view_count": "49558",
     "lang": "en",
     "conversation_id": "2059459943040753916",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2059351523583311924",
@@ -400,12 +451,12 @@
     "retweet_count": 9,
     "quote_count": 2,
     "bookmark_count": 4,
-    "view_count": "62687",
+    "view_count": "62785",
     "lang": "en",
     "conversation_id": "2059351523583311924",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2057593602490970314",
@@ -417,12 +468,12 @@
     "retweet_count": 3,
     "quote_count": 1,
     "bookmark_count": 4,
-    "view_count": "31143",
+    "view_count": "31172",
     "lang": "und",
     "conversation_id": "2057589742649192842",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2057590511653794039",
@@ -434,12 +485,12 @@
     "retweet_count": 6,
     "quote_count": 0,
     "bookmark_count": 1,
-    "view_count": "27846",
+    "view_count": "27871",
     "lang": "en",
     "conversation_id": "2057589742649192842",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2057590262373785937",
@@ -451,12 +502,12 @@
     "retweet_count": 1,
     "quote_count": 0,
     "bookmark_count": 1,
-    "view_count": "16605",
+    "view_count": "16630",
     "lang": "qam",
     "conversation_id": "2057589742649192842",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2057589742649192842",
@@ -464,16 +515,16 @@
     "created_at": "Thu May 21 22:29:57 +0000 2026",
     "text": "it's not roasting if it's true 😌 @Jeopardy https://t.co/Da3mvCbEFB",
     "reply_count": 159,
-    "favorite_count": 5233,
+    "favorite_count": 5232,
     "retweet_count": 296,
     "quote_count": 9,
     "bookmark_count": 95,
-    "view_count": "163875",
+    "view_count": "163939",
     "lang": "en",
     "conversation_id": "2057589742649192842",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2057509387422380064",
@@ -485,12 +536,12 @@
     "retweet_count": 16,
     "quote_count": 0,
     "bookmark_count": 6,
-    "view_count": "95231",
+    "view_count": "95316",
     "lang": "en",
     "conversation_id": "2057509387422380064",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2056803537636467033",
@@ -498,16 +549,16 @@
     "created_at": "Tue May 19 18:25:51 +0000 2026",
     "text": "might change my name to Wemby’s and only serve french fries after last night’s game",
     "reply_count": 504,
-    "favorite_count": 67157,
-    "retweet_count": 6998,
+    "favorite_count": 67140,
+    "retweet_count": 6996,
     "quote_count": 455,
-    "bookmark_count": 1928,
-    "view_count": "2400009",
+    "bookmark_count": 1927,
+    "view_count": "2400264",
     "lang": "en",
     "conversation_id": "2056803537636467033",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2056485781707821429",
@@ -519,12 +570,12 @@
     "retweet_count": 30,
     "quote_count": 12,
     "bookmark_count": 15,
-    "view_count": "213921",
+    "view_count": "214169",
     "lang": "en",
     "conversation_id": "2056485781707821429",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2054933542442848652",
@@ -532,16 +583,16 @@
     "created_at": "Thu May 14 14:35:09 +0000 2026",
     "text": "🟨🟦🍟 https://t.co/y9M33fb83V",
     "reply_count": 108,
-    "favorite_count": 553,
+    "favorite_count": 554,
     "retweet_count": 63,
     "quote_count": 27,
     "bookmark_count": 37,
-    "view_count": "120320",
+    "view_count": "120387",
     "lang": "qme",
     "conversation_id": "2054933542442848652",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2054257059399389281",
@@ -553,12 +604,12 @@
     "retweet_count": 6,
     "quote_count": 1,
     "bookmark_count": 4,
-    "view_count": "39854",
+    "view_count": "39903",
     "lang": "en",
     "conversation_id": "2054257059399389281",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2052863834503700774",
@@ -566,16 +617,16 @@
     "created_at": "Fri May 08 21:30:53 +0000 2026",
     "text": "Their love story is almost as fresh as our beef ❤️ https://t.co/OydNIkjSGV",
     "reply_count": 280,
-    "favorite_count": 28991,
-    "retweet_count": 2639,
+    "favorite_count": 28994,
+    "retweet_count": 2636,
     "quote_count": 265,
-    "bookmark_count": 3197,
-    "view_count": "3017672",
+    "bookmark_count": 3196,
+    "view_count": "3017770",
     "lang": "en",
     "conversation_id": "2052863834503700774",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2052727809756348567",
@@ -583,16 +634,16 @@
     "created_at": "Fri May 08 12:30:22 +0000 2026",
     "text": "Sir, this is a banana https://t.co/mtSrVrahpo",
     "reply_count": 161,
-    "favorite_count": 1706,
+    "favorite_count": 1705,
     "retweet_count": 123,
     "quote_count": 24,
     "bookmark_count": 80,
-    "view_count": "277360",
+    "view_count": "277420",
     "lang": "en",
     "conversation_id": "2052727809756348567",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2052536825336729602",
@@ -600,16 +651,16 @@
     "created_at": "Thu May 07 23:51:28 +0000 2026",
     "text": "Rick Devens after last night’s tribal council \n@Rick_Devens @MrBeast #Survivor50",
     "reply_count": 17,
-    "favorite_count": 1922,
+    "favorite_count": 1923,
     "retweet_count": 62,
     "quote_count": 4,
     "bookmark_count": 39,
-    "view_count": "180703",
+    "view_count": "180766",
     "lang": "en",
     "conversation_id": "2052536825336729602",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2052513071906619715",
@@ -617,16 +668,16 @@
     "created_at": "Thu May 07 22:17:04 +0000 2026",
     "text": "The necklace of every mom’s dreams is here. Tag a mom and tell us why she deserves one below and we might just surprise a few ❤️ https://t.co/p9208Rvu4D",
     "reply_count": 459,
-    "favorite_count": 1124,
+    "favorite_count": 1126,
     "retweet_count": 107,
     "quote_count": 16,
     "bookmark_count": 75,
-    "view_count": "131614",
+    "view_count": "131658",
     "lang": "en",
     "conversation_id": "2052513071906619715",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739557
   },
   {
     "id": "2050328345645133837",
@@ -634,16 +685,16 @@
     "created_at": "Fri May 01 21:35:45 +0000 2026",
     "text": "new spicy chicken sandwich slaps https://t.co/nDUnSsL79R",
     "reply_count": 1446,
-    "favorite_count": 12241,
-    "retweet_count": 1240,
+    "favorite_count": 12256,
+    "retweet_count": 1238,
     "quote_count": 335,
-    "bookmark_count": 1476,
-    "view_count": "3511746",
+    "bookmark_count": 1477,
+    "view_count": "3514309",
     "lang": "en",
     "conversation_id": "2050328345645133837",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739562
   },
   {
     "id": "2050307931778732264",
@@ -655,12 +706,12 @@
     "retweet_count": 43,
     "quote_count": 2,
     "bookmark_count": 19,
-    "view_count": "48669",
+    "view_count": "48709",
     "lang": "en",
     "conversation_id": "2050307931778732264",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653151
+    "scraped_at": 1784739562
   },
   {
     "id": "2050243908991328359",
@@ -672,12 +723,12 @@
     "retweet_count": 84,
     "quote_count": 18,
     "bookmark_count": 39,
-    "view_count": "82199",
+    "view_count": "82239",
     "lang": "en",
     "conversation_id": "2050243908991328359",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2048730947017654333",
@@ -686,15 +737,15 @@
     "text": "Sweet &amp; Sour is BACK… but only for a limited time unless y’all get loud. Go get the sauce in-restaurant + like, comment and share this post to save it. SWEET &amp; SOUR ARMY DO UR THING. https://t.co/ndF0vOrTpo",
     "reply_count": 437,
     "favorite_count": 1034,
-    "retweet_count": 249,
+    "retweet_count": 248,
     "quote_count": 128,
     "bookmark_count": 85,
-    "view_count": "476872",
+    "view_count": "476938",
     "lang": "en",
     "conversation_id": "2048730947017654333",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2047463502583869524",
@@ -702,16 +753,16 @@
     "created_at": "Thu Apr 23 23:51:53 +0000 2026",
     "text": "THIS would happen at Wendy's 👀 https://t.co/lNjM2bD6pb",
     "reply_count": 403,
-    "favorite_count": 11736,
-    "retweet_count": 885,
+    "favorite_count": 11742,
+    "retweet_count": 884,
     "quote_count": 174,
     "bookmark_count": 600,
-    "view_count": "4619711",
+    "view_count": "4630670",
     "lang": "en",
     "conversation_id": "2047463502583869524",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2042359791239024659",
@@ -719,16 +770,16 @@
     "created_at": "Thu Apr 09 21:51:34 +0000 2026",
     "text": "She a baddie with her baddie friend (I'm the baddie friend)",
     "reply_count": 167,
-    "favorite_count": 1334,
+    "favorite_count": 1335,
     "retweet_count": 138,
     "quote_count": 15,
     "bookmark_count": 56,
-    "view_count": "191167",
+    "view_count": "191225",
     "lang": "en",
     "conversation_id": "2042359791239024659",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2042345361310957745",
@@ -736,16 +787,16 @@
     "created_at": "Thu Apr 09 20:54:13 +0000 2026",
     "text": "still rich still craving @wendys new spicy chicken sandwich #wendyspartner",
     "reply_count": 367,
-    "favorite_count": 6838,
-    "retweet_count": 473,
+    "favorite_count": 6843,
+    "retweet_count": 475,
     "quote_count": 119,
     "bookmark_count": 288,
-    "view_count": "1021228",
+    "view_count": "1025701",
     "lang": "en",
     "conversation_id": "2042345361310957745",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2042276646711894177",
@@ -753,16 +804,16 @@
     "created_at": "Thu Apr 09 16:21:10 +0000 2026",
     "text": "WE’VE GOT OUR WINNER🏆 the Pretzel Bacon Pub Burger is coming back to the menu soon https://t.co/jdeIQgJBnp",
     "reply_count": 411,
-    "favorite_count": 4887,
+    "favorite_count": 4888,
     "retweet_count": 262,
     "quote_count": 171,
     "bookmark_count": 570,
-    "view_count": "10369768",
+    "view_count": "10369855",
     "lang": "en",
     "conversation_id": "2042276646711894177",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041987332509782141",
@@ -774,12 +825,12 @@
     "retweet_count": 21,
     "quote_count": 4,
     "bookmark_count": 18,
-    "view_count": "62207",
+    "view_count": "62238",
     "lang": "en",
     "conversation_id": "2041987332509782141",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041526924149690528",
@@ -791,12 +842,12 @@
     "retweet_count": 14,
     "quote_count": 3,
     "bookmark_count": 27,
-    "view_count": "82651",
+    "view_count": "82667",
     "lang": "en",
     "conversation_id": "2041526852036988999",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041526852036988999",
@@ -804,16 +855,16 @@
     "created_at": "Tue Apr 07 14:41:45 +0000 2026",
     "text": "🫵 YOU GET A FREE FRY AND FROSTY 🫵 AND YOU GET A FREE FRY AND FROSTY 🫵 AND YOU GET A FREE FRY AND FROSTY 🫵 https://t.co/OQ2OI18i5U",
     "reply_count": 189,
-    "favorite_count": 4724,
+    "favorite_count": 4725,
     "retweet_count": 253,
     "quote_count": 80,
     "bookmark_count": 763,
-    "view_count": "631928",
+    "view_count": "631962",
     "lang": "en",
     "conversation_id": "2041526852036988999",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041332734883201293",
@@ -825,12 +876,12 @@
     "retweet_count": 16,
     "quote_count": 2,
     "bookmark_count": 59,
-    "view_count": "74141",
+    "view_count": "74156",
     "lang": "en",
     "conversation_id": "2041332610928951432",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041332610928951432",
@@ -842,12 +893,12 @@
     "retweet_count": 313,
     "quote_count": 46,
     "bookmark_count": 642,
-    "view_count": "956420",
+    "view_count": "956462",
     "lang": "en",
     "conversation_id": "2041332610928951432",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041332103036412007",
@@ -859,12 +910,12 @@
     "retweet_count": 123,
     "quote_count": 23,
     "bookmark_count": 56,
-    "view_count": "2877543",
+    "view_count": "2877610",
     "lang": "en",
     "conversation_id": "2041332103036412007",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041317545412546926",
@@ -876,12 +927,12 @@
     "retweet_count": 5,
     "quote_count": 1,
     "bookmark_count": 1,
-    "view_count": "46511",
+    "view_count": "46535",
     "lang": "en",
     "conversation_id": "2041317545412546926",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041286930231373912",
@@ -889,16 +940,16 @@
     "created_at": "Mon Apr 06 22:48:24 +0000 2026",
     "text": "You: Wow I hope so and so team wins\n\nMe: DUNKS DUNKS DUNKS DUNKS",
     "reply_count": 16,
-    "favorite_count": 159,
+    "favorite_count": 160,
     "retweet_count": 8,
     "quote_count": 2,
     "bookmark_count": 2,
-    "view_count": "47005",
+    "view_count": "47029",
     "lang": "en",
     "conversation_id": "2041286930231373912",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041274861461586245",
@@ -910,12 +961,12 @@
     "retweet_count": 4,
     "quote_count": 0,
     "bookmark_count": 6,
-    "view_count": "38612",
+    "view_count": "38623",
     "lang": "en",
     "conversation_id": "2041274790418485741",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041274790418485741",
@@ -923,16 +974,16 @@
     "created_at": "Mon Apr 06 22:00:09 +0000 2026",
     "text": "Who shall fulfill the prophecy?!?!?!?!\n\nTag us when you see who unlocks it 👀 https://t.co/mmdG7uqh7a",
     "reply_count": 27,
-    "favorite_count": 216,
+    "favorite_count": 217,
     "retweet_count": 32,
     "quote_count": 3,
     "bookmark_count": 19,
-    "view_count": "52821",
+    "view_count": "52844",
     "lang": "en",
     "conversation_id": "2041274790418485741",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041273129272824054",
@@ -944,12 +995,12 @@
     "retweet_count": 31,
     "quote_count": 34,
     "bookmark_count": 12,
-    "view_count": "179436",
+    "view_count": "179482",
     "lang": "en",
     "conversation_id": "2041272778461258077",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041272778461258077",
@@ -957,16 +1008,16 @@
     "created_at": "Mon Apr 06 21:52:10 +0000 2026",
     "text": "The Bourbon Bacon Cheeseburger and Pretzel Bacon Pub Burger have made it to our championship! Get your votes in to decide who will be crowned the winner and end up back on the menu https://t.co/VIgjuIMDNF",
     "reply_count": 218,
-    "favorite_count": 1417,
+    "favorite_count": 1418,
     "retweet_count": 72,
     "quote_count": 80,
     "bookmark_count": 181,
-    "view_count": "5881082",
+    "view_count": "5881126",
     "lang": "en",
     "conversation_id": "2041272778461258077",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041270386478780749",
@@ -978,12 +1029,12 @@
     "retweet_count": 6,
     "quote_count": 2,
     "bookmark_count": 1,
-    "view_count": "39569",
+    "view_count": "39587",
     "lang": "en",
     "conversation_id": "2041270386478780749",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739562
   },
   {
     "id": "2041241219603554599",
@@ -995,12 +1046,12 @@
     "retweet_count": 11,
     "quote_count": 1,
     "bookmark_count": 1,
-    "view_count": "36509",
+    "view_count": "36527",
     "lang": "en",
     "conversation_id": "2041241219603554599",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739565
   },
   {
     "id": "2041187810728727004",
@@ -1012,12 +1063,12 @@
     "retweet_count": 2,
     "quote_count": 1,
     "bookmark_count": 0,
-    "view_count": "29790",
+    "view_count": "29799",
     "lang": "en",
     "conversation_id": "2041187699764163013",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653155
+    "scraped_at": 1784739565
   },
   {
     "id": "2041187699764163013",
@@ -1029,12 +1080,12 @@
     "retweet_count": 14,
     "quote_count": 2,
     "bookmark_count": 1,
-    "view_count": "38717",
+    "view_count": "38734",
     "lang": "en",
     "conversation_id": "2041187699764163013",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2040186917312979266",
@@ -1046,12 +1097,12 @@
     "retweet_count": 7,
     "quote_count": 0,
     "bookmark_count": 8,
-    "view_count": "32830",
+    "view_count": "32836",
     "lang": "en",
     "conversation_id": "2040186885704683992",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2040186893468393651",
@@ -1063,12 +1114,12 @@
     "retweet_count": 4,
     "quote_count": 0,
     "bookmark_count": 2,
-    "view_count": "45667",
+    "view_count": "45673",
     "lang": "en",
     "conversation_id": "2040186885704683992",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2040186889131479302",
@@ -1096,13 +1147,13 @@
     "favorite_count": 258,
     "retweet_count": 8,
     "quote_count": 0,
-    "bookmark_count": 21,
-    "view_count": "134327",
+    "bookmark_count": 20,
+    "view_count": "134345",
     "lang": "en",
     "conversation_id": "2040186885704683992",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2039915068729541060",
@@ -1114,12 +1165,12 @@
     "retweet_count": 0,
     "quote_count": 0,
     "bookmark_count": 7,
-    "view_count": "29190",
+    "view_count": "29196",
     "lang": "en",
     "conversation_id": "2039900754387869992",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2039900754387869992",
@@ -1127,16 +1178,16 @@
     "created_at": "Fri Apr 03 03:00:14 +0000 2026",
     "text": "Help us give the people what they want! If there’s a dunk during the natty everyone in America gets a free small fry and classic Frosty on April 7th https://t.co/UnfLgpYclZ",
     "reply_count": 23,
-    "favorite_count": 197,
+    "favorite_count": 198,
     "retweet_count": 19,
     "quote_count": 1,
     "bookmark_count": 10,
-    "view_count": "50027",
+    "view_count": "50041",
     "lang": "en",
     "conversation_id": "2039900754387869992",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2039789214120996993",
@@ -1148,12 +1199,12 @@
     "retweet_count": 4,
     "quote_count": 1,
     "bookmark_count": 1,
-    "view_count": "30200",
+    "view_count": "30212",
     "lang": "en",
     "conversation_id": "2039789214120996993",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2039714223337463977",
@@ -1165,12 +1216,12 @@
     "retweet_count": 15,
     "quote_count": 21,
     "bookmark_count": 3,
-    "view_count": "49968",
+    "view_count": "49974",
     "lang": "fr",
     "conversation_id": "2039713760378487274",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2039714041212358979",
@@ -1182,12 +1233,12 @@
     "retweet_count": 5,
     "quote_count": 9,
     "bookmark_count": 4,
-    "view_count": "17890",
+    "view_count": "17896",
     "lang": "fr",
     "conversation_id": "2039713760378487274",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2039713760378487274",
@@ -1195,16 +1246,16 @@
     "created_at": "Thu Apr 02 14:37:11 +0000 2026",
     "text": "We’ve got our final four! It’s time to decide who will make it to the championship and ultimately end up back on the menu. Get your votes in now! https://t.co/Yat9QPbeFA",
     "reply_count": 172,
-    "favorite_count": 560,
+    "favorite_count": 559,
     "retweet_count": 34,
     "quote_count": 24,
     "bookmark_count": 80,
-    "view_count": "952099",
+    "view_count": "952139",
     "lang": "en",
     "conversation_id": "2039713760378487274",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2038738065678811271",
@@ -1216,12 +1267,12 @@
     "retweet_count": 5,
     "quote_count": 2,
     "bookmark_count": 0,
-    "view_count": "46311",
+    "view_count": "46315",
     "lang": "fr",
     "conversation_id": "2038736376653554124",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2038737809075565002",
@@ -1233,12 +1284,12 @@
     "retweet_count": 3,
     "quote_count": 1,
     "bookmark_count": 0,
-    "view_count": "19275",
+    "view_count": "19279",
     "lang": "fr",
     "conversation_id": "2038736376653554124",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2038737532473803096",
@@ -1250,12 +1301,12 @@
     "retweet_count": 4,
     "quote_count": 4,
     "bookmark_count": 1,
-    "view_count": "19326",
+    "view_count": "19330",
     "lang": "fr",
     "conversation_id": "2038736376653554124",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2038737391863869923",
@@ -1267,12 +1318,12 @@
     "retweet_count": 4,
     "quote_count": 3,
     "bookmark_count": 0,
-    "view_count": "31939",
+    "view_count": "31947",
     "lang": "fr",
     "conversation_id": "2038736376653554124",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2038736376653554124",
@@ -1284,12 +1335,12 @@
     "retweet_count": 57,
     "quote_count": 33,
     "bookmark_count": 101,
-    "view_count": "1152858",
+    "view_count": "1152877",
     "lang": "en",
     "conversation_id": "2038736376653554124",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2037346325923278851",
@@ -1301,12 +1352,12 @@
     "retweet_count": 62,
     "quote_count": 6,
     "bookmark_count": 15,
-    "view_count": "110985",
+    "view_count": "110999",
     "lang": "en",
     "conversation_id": "2037346325923278851",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2037342589230408021",
@@ -1314,16 +1365,16 @@
     "created_at": "Fri Mar 27 01:34:59 +0000 2026",
     "text": "TREY KAUFMAN-RENN GAME-WINNER 🚨\n\nPURDUE ADVANCES TO THE ELITE 8 🤯 https://t.co/CYj7ltsGXT",
     "reply_count": 75,
-    "favorite_count": 2318,
+    "favorite_count": 2317,
     "retweet_count": 443,
     "quote_count": 86,
     "bookmark_count": 96,
-    "view_count": "323491",
+    "view_count": "323514",
     "lang": "en",
     "conversation_id": "2037342589230408021",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2036210859299455486",
@@ -1331,16 +1382,16 @@
     "created_at": "Mon Mar 23 22:37:54 +0000 2026",
     "text": "“Fries + Frosty = The Best of Both Worlds” https://t.co/ixuIhrXwcR",
     "reply_count": 223,
-    "favorite_count": 12100,
-    "retweet_count": 1271,
+    "favorite_count": 12099,
+    "retweet_count": 1269,
     "quote_count": 143,
     "bookmark_count": 669,
-    "view_count": "401697",
+    "view_count": "401734",
     "lang": "en",
     "conversation_id": "2036210859299455486",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739565
   },
   {
     "id": "2035444365800214846",
@@ -1352,12 +1403,12 @@
     "retweet_count": 82,
     "quote_count": 9,
     "bookmark_count": 25,
-    "view_count": "112645",
+    "view_count": "112659",
     "lang": "en",
     "conversation_id": "2035444365800214846",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739569
   },
   {
     "id": "2035438297070096829",
@@ -1365,16 +1416,16 @@
     "created_at": "Sat Mar 21 19:28:01 +0000 2026",
     "text": "Fears ➡️ Carr 🔨 https://t.co/Y7Wa3vl7X5",
     "reply_count": 9,
-    "favorite_count": 430,
+    "favorite_count": 429,
     "retweet_count": 42,
     "quote_count": 3,
     "bookmark_count": 17,
-    "view_count": "933652",
+    "view_count": "933668",
     "lang": "en",
     "conversation_id": "2035438297070096829",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739569
   },
   {
     "id": "2035415108646490534",
@@ -1382,16 +1433,16 @@
     "created_at": "Sat Mar 21 17:55:52 +0000 2026",
     "text": "I hope Yaxel doesn’t dunk his fries in his Frosty this violently https://t.co/l75Yp2p6YX",
     "reply_count": 28,
-    "favorite_count": 1788,
+    "favorite_count": 1786,
     "retweet_count": 209,
     "quote_count": 14,
     "bookmark_count": 37,
-    "view_count": "141279",
+    "view_count": "141295",
     "lang": "en",
     "conversation_id": "2035415108646490534",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739569
   },
   {
     "id": "2035414922763350398",
@@ -1403,12 +1454,12 @@
     "retweet_count": 2,
     "quote_count": 0,
     "bookmark_count": 0,
-    "view_count": "46010",
+    "view_count": "46024",
     "lang": "en",
     "conversation_id": "2035414922763350398",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2035411565797634404",
@@ -1416,16 +1467,16 @@
     "created_at": "Sat Mar 21 17:41:48 +0000 2026",
     "text": "YAXEL LENDEBORG. ABSOLUTELY DISGUSTING.\n\n#MarchMadness https://t.co/GzFu2ZqKzo",
     "reply_count": 85,
-    "favorite_count": 6549,
+    "favorite_count": 6546,
     "retweet_count": 1322,
     "quote_count": 207,
     "bookmark_count": 322,
-    "view_count": "1141071",
+    "view_count": "1141130",
     "lang": "en",
     "conversation_id": "2035411565797634404",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653160
+    "scraped_at": 1784739569
   },
   {
     "id": "2035213787020575096",
@@ -1437,12 +1488,12 @@
     "retweet_count": 21,
     "quote_count": 2,
     "bookmark_count": 7,
-    "view_count": "73379",
+    "view_count": "73396",
     "lang": "en",
     "conversation_id": "2035213787020575096",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2035089780396953839",
@@ -1454,12 +1505,12 @@
     "retweet_count": 6,
     "quote_count": 0,
     "bookmark_count": 2,
-    "view_count": "48291",
+    "view_count": "48305",
     "lang": "en",
     "conversation_id": "2035089780396953839",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2035036863413805229",
@@ -1471,12 +1522,12 @@
     "retweet_count": 5,
     "quote_count": 0,
     "bookmark_count": 1,
-    "view_count": "26905",
+    "view_count": "26916",
     "lang": "en",
     "conversation_id": "2035036863413805229",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2034753037797904417",
@@ -1485,15 +1536,15 @@
     "text": "Coen Carr AGAIN 😤 https://t.co/Hwfed2ciRF",
     "reply_count": 22,
     "favorite_count": 1252,
-    "retweet_count": 49,
+    "retweet_count": 48,
     "quote_count": 3,
     "bookmark_count": 61,
-    "view_count": "5660470",
+    "view_count": "5660487",
     "lang": "en",
     "conversation_id": "2034753037797904417",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2033636564551524646",
@@ -1501,16 +1552,16 @@
     "created_at": "Mon Mar 16 20:08:34 +0000 2026",
     "text": "truly life changing https://t.co/0tX6CyMW2P",
     "reply_count": 106,
-    "favorite_count": 627,
+    "favorite_count": 626,
     "retweet_count": 41,
     "quote_count": 14,
     "bookmark_count": 36,
-    "view_count": "57999",
+    "view_count": "58010",
     "lang": "en",
     "conversation_id": "2033636564551524646",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2033326344264888604",
@@ -1518,16 +1569,16 @@
     "created_at": "Sun Mar 15 23:35:52 +0000 2026",
     "text": "Congrats to our Aunt on winning Best Supporting Actress! https://t.co/5EVi2wrFcH",
     "reply_count": 175,
-    "favorite_count": 7661,
+    "favorite_count": 7656,
     "retweet_count": 1163,
     "quote_count": 124,
     "bookmark_count": 315,
-    "view_count": "342373",
+    "view_count": "342394",
     "lang": "en",
     "conversation_id": "2033326344264888604",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2032563031024996510",
@@ -1539,12 +1590,12 @@
     "retweet_count": 68,
     "quote_count": 34,
     "bookmark_count": 135,
-    "view_count": "328031",
+    "view_count": "328048",
     "lang": "en",
     "conversation_id": "2032563031024996510",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2031884901557965271",
@@ -1556,12 +1607,12 @@
     "retweet_count": 94,
     "quote_count": 23,
     "bookmark_count": 37,
-    "view_count": "84579",
+    "view_count": "84591",
     "lang": "en",
     "conversation_id": "2031884901557965271",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2031738937870364955",
@@ -1569,16 +1620,16 @@
     "created_at": "Wed Mar 11 14:28:05 +0000 2026",
     "text": "travis gonna love the drive thru at his mom's house https://t.co/ssjGEuifjO",
     "reply_count": 46,
-    "favorite_count": 1137,
+    "favorite_count": 1136,
     "retweet_count": 45,
     "quote_count": 9,
     "bookmark_count": 34,
-    "view_count": "124793",
+    "view_count": "124806",
     "lang": "en",
     "conversation_id": "2031738937870364955",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2030448455412252800",
@@ -1586,16 +1637,16 @@
     "created_at": "Sun Mar 08 01:00:10 +0000 2026",
     "text": "Travis and Jason Kelce’s mom, Donna Kelce, is in the middle of a home renovation ... TMZ has learned.\n\nRead more: https://t.co/4KursdUOlk https://t.co/FsAv2tPWyz",
     "reply_count": 3883,
-    "favorite_count": 7895,
+    "favorite_count": 7898,
     "retweet_count": 628,
     "quote_count": 2901,
-    "bookmark_count": 1937,
-    "view_count": "30986517",
+    "bookmark_count": 1936,
+    "view_count": "30986846",
     "lang": "en",
     "conversation_id": "2030448455412252800",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2030030225254359259",
@@ -1603,16 +1654,16 @@
     "created_at": "Fri Mar 06 21:18:16 +0000 2026",
     "text": "No purch nec. 50 US/DC, 18+. Ends 3/30. Rules: https://t.co/mNIqecbPOQ. To qualify tag @Wendys and #WendysCTOcontest",
     "reply_count": 32,
-    "favorite_count": 435,
+    "favorite_count": 434,
     "retweet_count": 21,
     "quote_count": 6,
     "bookmark_count": 92,
-    "view_count": "211323",
+    "view_count": "211329",
     "lang": "en",
     "conversation_id": "2030030060720164942",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2030030060720164942",
@@ -1621,15 +1672,15 @@
     "text": ".@GenoSmith3 in case things don’t work out in free agency we’re looking for a Chief Tasting Officer…",
     "reply_count": 1182,
     "favorite_count": 31307,
-    "retweet_count": 3123,
+    "retweet_count": 3122,
     "quote_count": 830,
     "bookmark_count": 1810,
-    "view_count": "7854899",
+    "view_count": "7854993",
     "lang": "en",
     "conversation_id": "2030030060720164942",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2030021566528893409",
@@ -1641,12 +1692,12 @@
     "retweet_count": 63,
     "quote_count": 16,
     "bookmark_count": 58,
-    "view_count": "101445",
+    "view_count": "101455",
     "lang": "en",
     "conversation_id": "2030021566528893409",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2029952811224514866",
@@ -1654,16 +1705,16 @@
     "created_at": "Fri Mar 06 16:10:39 +0000 2026",
     "text": "Breaking: The Raiders are releasing last season’s starting QB Geno Smith, barring a trade before the start of the new league year, sources tell @AdamSchefter.  \n\nBy releasing Smith, the Raiders will open up $8M in salary cap space while taking on $18.5M in dead money.\n\nGet breaking news alerts from Adam Schefter through the ESPN App: https://t.co/wLAog0kJUB",
     "reply_count": 138,
-    "favorite_count": 1498,
+    "favorite_count": 1499,
     "retweet_count": 178,
     "quote_count": 56,
     "bookmark_count": 44,
-    "view_count": "3721618",
+    "view_count": "3721688",
     "lang": "en",
     "conversation_id": "2029952811224514866",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2029687889098068156",
@@ -1671,16 +1722,16 @@
     "created_at": "Thu Mar 05 22:37:57 +0000 2026",
     "text": "Our first Chief Tasting Officer application is in, and lets just say the bar is LOW. Apply now and make your video more than a McNibble.  Link in bio to enter the first #WendysCTOcontest https://t.co/JXujBHw5pP",
     "reply_count": 404,
-    "favorite_count": 3849,
-    "retweet_count": 297,
+    "favorite_count": 3846,
+    "retweet_count": 296,
     "quote_count": 82,
     "bookmark_count": 203,
-    "view_count": "275636",
+    "view_count": "275649",
     "lang": "en",
     "conversation_id": "2029687889098068156",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2029585417066946625",
@@ -1688,16 +1739,16 @@
     "created_at": "Thu Mar 05 15:50:45 +0000 2026",
     "text": "Ever wish you could eat Wendy’s professionally? Now you can (oh and make $100k). See how to apply at https://t.co/mNIqecbPOQ #WendysCTOcontest https://t.co/bQZSEBjfAx",
     "reply_count": 354,
-    "favorite_count": 1644,
-    "retweet_count": 164,
+    "favorite_count": 1643,
+    "retweet_count": 163,
     "quote_count": 108,
-    "bookmark_count": 542,
-    "view_count": "486424",
+    "bookmark_count": 543,
+    "view_count": "486440",
     "lang": "en",
     "conversation_id": "2029585417066946625",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2029290891425529996",
@@ -1705,16 +1756,16 @@
     "created_at": "Wed Mar 04 20:20:25 +0000 2026",
     "text": "This is what it looks like when you don’t have to pretend to like your “product”",
     "reply_count": 1130,
-    "favorite_count": 15126,
-    "retweet_count": 940,
+    "favorite_count": 15125,
+    "retweet_count": 939,
     "quote_count": 141,
     "bookmark_count": 715,
-    "view_count": "812503",
+    "view_count": "812521",
     "lang": "en",
     "conversation_id": "2029290891425529996",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2029249180762341501",
@@ -1722,16 +1773,16 @@
     "created_at": "Wed Mar 04 17:34:40 +0000 2026",
     "text": "Wendy’s US President posts new video amid burger battle with McDonald’s &amp; Burger King. https://t.co/R6IALUetCC",
     "reply_count": 2533,
-    "favorite_count": 46669,
-    "retweet_count": 2380,
+    "favorite_count": 46665,
+    "retweet_count": 2379,
     "quote_count": 2611,
     "bookmark_count": 4844,
-    "view_count": "6584575",
+    "view_count": "6584780",
     "lang": "en",
     "conversation_id": "2029249180762341501",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2027127868791431190",
@@ -1739,16 +1790,16 @@
     "created_at": "Thu Feb 26 21:05:20 +0000 2026",
     "text": "No trowaway votes around here… https://t.co/KuKsN6ZoOj",
     "reply_count": 67,
-    "favorite_count": 454,
+    "favorite_count": 455,
     "retweet_count": 22,
     "quote_count": 4,
     "bookmark_count": 26,
-    "view_count": "78026",
+    "view_count": "78035",
     "lang": "en",
     "conversation_id": "2027127868791431190",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2027105501260202278",
@@ -1756,33 +1807,33 @@
     "created_at": "Thu Feb 26 19:36:27 +0000 2026",
     "text": "i’ll take ew for 400 https://t.co/ShRmiSgG6W",
     "reply_count": 136,
-    "favorite_count": 1076,
+    "favorite_count": 1077,
     "retweet_count": 45,
     "quote_count": 8,
     "bookmark_count": 52,
-    "view_count": "170598",
+    "view_count": "170609",
     "lang": "en",
     "conversation_id": "2027105501260202278",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2026335579764343176",
     "tweet_url": "https://x.com/Wendys/status/2026335579764343176",
     "created_at": "Tue Feb 24 16:37:04 +0000 2026",
     "text": "McDonald's is launching the Big Arch burger in the US on March 3 https://t.co/U5n8YWn3U4",
-    "reply_count": 283,
-    "favorite_count": 5632,
+    "reply_count": 282,
+    "favorite_count": 5629,
     "retweet_count": 176,
     "quote_count": 194,
     "bookmark_count": 588,
-    "view_count": "1531944",
+    "view_count": "1532150",
     "lang": "en",
     "conversation_id": "2026335579764343176",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2022846838726922625",
@@ -1790,16 +1841,16 @@
     "created_at": "Sun Feb 15 01:34:03 +0000 2026",
     "text": "Based on the results from today’s dunk contest this would blow the judges minds https://t.co/6nP4bbhJ2h",
     "reply_count": 116,
-    "favorite_count": 691,
-    "retweet_count": 41,
+    "favorite_count": 689,
+    "retweet_count": 40,
     "quote_count": 9,
     "bookmark_count": 21,
-    "view_count": "96773",
+    "view_count": "96779",
     "lang": "en",
     "conversation_id": "2022846838726922625",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2021355348100313369",
@@ -1811,12 +1862,12 @@
     "retweet_count": 12,
     "quote_count": 2,
     "bookmark_count": 7,
-    "view_count": "146164",
+    "view_count": "146175",
     "lang": "en",
     "conversation_id": "2021355348100313369",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2021268433296367729",
@@ -1828,12 +1879,12 @@
     "retweet_count": 50,
     "quote_count": 3,
     "bookmark_count": 24,
-    "view_count": "158390",
+    "view_count": "158403",
     "lang": "en",
     "conversation_id": "2021268433296367729",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739569
   },
   {
     "id": "2020685488789815407",
@@ -1844,13 +1895,13 @@
     "favorite_count": 2704,
     "retweet_count": 136,
     "quote_count": 20,
-    "bookmark_count": 28,
-    "view_count": "206847",
+    "bookmark_count": 27,
+    "view_count": "206867",
     "lang": "en",
     "conversation_id": "2020685488789815407",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739577
   },
   {
     "id": "2019221773569728518",
@@ -1858,16 +1909,16 @@
     "created_at": "Thu Feb 05 01:29:20 +0000 2026",
     "text": "also okc receives a first round pick somehow @ShamsCharania https://t.co/WUoYrt9zY7",
     "reply_count": 149,
-    "favorite_count": 6770,
+    "favorite_count": 6771,
     "retweet_count": 610,
     "quote_count": 65,
     "bookmark_count": 342,
-    "view_count": "730812",
+    "view_count": "730821",
     "lang": "en",
     "conversation_id": "2019221773569728518",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653165
+    "scraped_at": 1784739577
   },
   {
     "id": "2015935710449009033",
@@ -1875,16 +1926,16 @@
     "created_at": "Mon Jan 26 23:51:42 +0000 2026",
     "text": "kind of seems like you just wanted a reason to eat nothing but wendys chili for a month?",
     "reply_count": 135,
-    "favorite_count": 847,
-    "retweet_count": 24,
+    "favorite_count": 845,
+    "retweet_count": 23,
     "quote_count": 3,
     "bookmark_count": 10,
-    "view_count": "182435",
+    "view_count": "182449",
     "lang": "en",
     "conversation_id": "2015935710449009033",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2014446063961178239",
@@ -1896,12 +1947,12 @@
     "retweet_count": 7,
     "quote_count": 11,
     "bookmark_count": 24,
-    "view_count": "606416",
+    "view_count": "606436",
     "lang": "en",
     "conversation_id": "2014446063961178239",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2014093064155889768",
@@ -1909,16 +1960,16 @@
     "created_at": "Wed Jan 21 21:49:41 +0000 2026",
     "text": "We don’t chikin out on Sundays https://t.co/pA1BXe0Sc0",
     "reply_count": 190,
-    "favorite_count": 850,
+    "favorite_count": 849,
     "retweet_count": 77,
     "quote_count": 26,
     "bookmark_count": 66,
-    "view_count": "131827",
+    "view_count": "131837",
     "lang": "en",
     "conversation_id": "2014093064155889768",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2012261535259726070",
@@ -1930,12 +1981,12 @@
     "retweet_count": 15,
     "quote_count": 2,
     "bookmark_count": 9,
-    "view_count": "197018",
+    "view_count": "197028",
     "lang": "en",
     "conversation_id": "2012261535259726070",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2012226909820621147",
@@ -1947,12 +1998,12 @@
     "retweet_count": 9,
     "quote_count": 2,
     "bookmark_count": 9,
-    "view_count": "238030",
+    "view_count": "238052",
     "lang": "en",
     "conversation_id": "2012226909820621147",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2009777266847363171",
@@ -1960,16 +2011,16 @@
     "created_at": "Sat Jan 10 00:00:14 +0000 2026",
     "text": "life is so crazy bc wdym i’m giving out bogo dave’s singles or doubles on doordash just bc some lady asked where’s the beef 42 years ago",
     "reply_count": 103,
-    "favorite_count": 623,
+    "favorite_count": 622,
     "retweet_count": 32,
     "quote_count": 3,
     "bookmark_count": 23,
-    "view_count": "100542",
+    "view_count": "100549",
     "lang": "en",
     "conversation_id": "2009777266847363171",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2007833761703223723",
@@ -1978,15 +2029,15 @@
     "text": "We should play wide receiver cuz we're wide open on Sunday. Score a FREE 3pc Tendy's on @UberEats w/ $10 purchase today (Sunday) https://t.co/f252WJhD40",
     "reply_count": 58,
     "favorite_count": 136,
-    "retweet_count": 20,
+    "retweet_count": 19,
     "quote_count": 2,
     "bookmark_count": 9,
-    "view_count": "82381",
+    "view_count": "82388",
     "lang": "en",
     "conversation_id": "2007833761703223723",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2001787208093614204",
@@ -1998,12 +2049,12 @@
     "retweet_count": 12,
     "quote_count": 1,
     "bookmark_count": 4,
-    "view_count": "63893",
+    "view_count": "63896",
     "lang": "en",
     "conversation_id": "2001787068914225487",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2001787158034866204",
@@ -2015,12 +2066,12 @@
     "retweet_count": 7,
     "quote_count": 0,
     "bookmark_count": 4,
-    "view_count": "73842",
+    "view_count": "73845",
     "lang": "en",
     "conversation_id": "2001787068914225487",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "2001787068914225487",
@@ -2032,12 +2083,12 @@
     "retweet_count": 25,
     "quote_count": 1,
     "bookmark_count": 11,
-    "view_count": "92828",
+    "view_count": "92834",
     "lang": "en",
     "conversation_id": "2001787068914225487",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1996659770724696551",
@@ -2045,16 +2096,16 @@
     "created_at": "Thu Dec 04 19:16:00 +0000 2025",
     "text": "im hot and im cold https://t.co/BVtiB1CiRA",
     "reply_count": 386,
-    "favorite_count": 3957,
+    "favorite_count": 3953,
     "retweet_count": 247,
     "quote_count": 239,
-    "bookmark_count": 182,
-    "view_count": "870847",
+    "bookmark_count": 180,
+    "view_count": "870870",
     "lang": "en",
     "conversation_id": "1996659770724696551",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1996272892787778047",
@@ -2066,12 +2117,12 @@
     "retweet_count": 21,
     "quote_count": 6,
     "bookmark_count": 5,
-    "view_count": "74150",
+    "view_count": "74156",
     "lang": "en",
     "conversation_id": "1996272892787778047",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1993735456609972272",
@@ -2079,16 +2130,16 @@
     "created_at": "Wed Nov 26 17:35:49 +0000 2025",
     "text": "Let’s get u to bed wendy https://t.co/DY3BoVEDUi",
     "reply_count": 81,
-    "favorite_count": 485,
+    "favorite_count": 484,
     "retweet_count": 46,
     "quote_count": 6,
     "bookmark_count": 15,
-    "view_count": "78294",
+    "view_count": "78302",
     "lang": "en",
     "conversation_id": "1993735456609972272",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1991966149815496874",
@@ -2096,16 +2147,16 @@
     "created_at": "Fri Nov 21 20:25:13 +0000 2025",
     "text": "don’t ask for her ig, ask for her wendy's order https://t.co/97FPbtJodn",
     "reply_count": 253,
-    "favorite_count": 2120,
+    "favorite_count": 2118,
     "retweet_count": 167,
     "quote_count": 45,
     "bookmark_count": 80,
-    "view_count": "191126",
+    "view_count": "191132",
     "lang": "en",
     "conversation_id": "1991966149815496874",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1988671571091980633",
@@ -2117,12 +2168,12 @@
     "retweet_count": 43,
     "quote_count": 21,
     "bookmark_count": 15,
-    "view_count": "92474",
+    "view_count": "92486",
     "lang": "en",
     "conversation_id": "1988671571091980633",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1980393481068831176",
@@ -2134,12 +2185,12 @@
     "retweet_count": 182,
     "quote_count": 25,
     "bookmark_count": 50,
-    "view_count": "221977",
+    "view_count": "221985",
     "lang": "en",
     "conversation_id": "1980393481068831176",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1976057070555132086",
@@ -2147,16 +2198,16 @@
     "created_at": "Wed Oct 08 22:48:13 +0000 2025",
     "text": "Canceling my hair appointment at angie’s 1.5 salons",
     "reply_count": 241,
-    "favorite_count": 1805,
+    "favorite_count": 1806,
     "retweet_count": 153,
     "quote_count": 76,
     "bookmark_count": 101,
-    "view_count": "1267425",
+    "view_count": "1267522",
     "lang": "en",
     "conversation_id": "1976057070555132086",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1975235300231434581",
@@ -2168,12 +2219,12 @@
     "retweet_count": 84,
     "quote_count": 137,
     "bookmark_count": 138,
-    "view_count": "742492",
+    "view_count": "742518",
     "lang": "en",
     "conversation_id": "1975235300231434581",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1965423062154924241",
@@ -2185,12 +2236,12 @@
     "retweet_count": 46,
     "quote_count": 5,
     "bookmark_count": 7,
-    "view_count": "217627",
+    "view_count": "217641",
     "lang": "en",
     "conversation_id": "1965423062154924241",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1965414892438958172",
@@ -2202,12 +2253,12 @@
     "retweet_count": 80,
     "quote_count": 14,
     "bookmark_count": 28,
-    "view_count": "256566",
+    "view_count": "256579",
     "lang": "en",
     "conversation_id": "1965414892438958172",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1960389997531423031",
@@ -2215,16 +2266,16 @@
     "created_at": "Tue Aug 26 17:12:52 +0000 2025",
     "text": "Can’t believe we got Travis Swift before gta6",
     "reply_count": 270,
-    "favorite_count": 10846,
+    "favorite_count": 10847,
     "retweet_count": 1151,
     "quote_count": 77,
-    "bookmark_count": 268,
-    "view_count": "503093",
+    "bookmark_count": 267,
+    "view_count": "503104",
     "lang": "en",
     "conversation_id": "1960389997531423031",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739577
   },
   {
     "id": "1957893154453041344",
@@ -2232,16 +2283,16 @@
     "created_at": "Tue Aug 19 19:51:18 +0000 2025",
     "text": "Today is the most important day on the calendar (national baked potato day)",
     "reply_count": 133,
-    "favorite_count": 681,
+    "favorite_count": 680,
     "retweet_count": 61,
     "quote_count": 8,
     "bookmark_count": 18,
-    "view_count": "149378",
+    "view_count": "149385",
     "lang": "en",
     "conversation_id": "1957893154453041344",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739582
   },
   {
     "id": "1948426303293579682",
@@ -2249,16 +2300,16 @@
     "created_at": "Thu Jul 24 16:53:25 +0000 2025",
     "text": "i hope my misfortune comes with fries https://t.co/II0cqSofil",
     "reply_count": 180,
-    "favorite_count": 1523,
+    "favorite_count": 1522,
     "retweet_count": 135,
     "quote_count": 34,
     "bookmark_count": 84,
-    "view_count": "211748",
+    "view_count": "211755",
     "lang": "en",
     "conversation_id": "1948426303293579682",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653171
+    "scraped_at": 1784739582
   },
   {
     "id": "1946349498231345200",
@@ -2266,16 +2317,16 @@
     "created_at": "Fri Jul 18 23:20:56 +0000 2025",
     "text": "kinda want to see how they share chili",
     "reply_count": 99,
-    "favorite_count": 811,
+    "favorite_count": 810,
     "retweet_count": 50,
     "quote_count": 2,
     "bookmark_count": 51,
-    "view_count": "258974",
+    "view_count": "258981",
     "lang": "en",
     "conversation_id": "1946349498231345200",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1945931126129988023",
@@ -2283,16 +2334,16 @@
     "created_at": "Thu Jul 17 19:38:28 +0000 2025",
     "text": "Dave Franco and Alison Brie spotted sharing a fry at Wendy’s. https://t.co/zCCMKwFg4F",
     "reply_count": 586,
-    "favorite_count": 19311,
+    "favorite_count": 19309,
     "retweet_count": 352,
     "quote_count": 933,
     "bookmark_count": 1568,
-    "view_count": "3132848",
+    "view_count": "3132986",
     "lang": "en",
     "conversation_id": "1945931126129988023",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1942770676286505156",
@@ -2304,12 +2355,12 @@
     "retweet_count": 16,
     "quote_count": 5,
     "bookmark_count": 12,
-    "view_count": "126040",
+    "view_count": "126041",
     "lang": "en",
     "conversation_id": "1942767810238632071",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1942767810238632071",
@@ -2317,16 +2368,16 @@
     "created_at": "Wed Jul 09 02:08:35 +0000 2025",
     "text": "She’s got bette davis friesssss",
     "reply_count": 179,
-    "favorite_count": 1338,
+    "favorite_count": 1337,
     "retweet_count": 74,
     "quote_count": 11,
     "bookmark_count": 36,
-    "view_count": "174795",
+    "view_count": "174800",
     "lang": "en",
     "conversation_id": "1942767810238632071",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1938000813210714481",
@@ -2334,16 +2385,16 @@
     "created_at": "Wed Jun 25 22:26:14 +0000 2025",
     "text": "mommy? https://t.co/d3bMKmPhaE",
     "reply_count": 334,
-    "favorite_count": 5336,
+    "favorite_count": 5335,
     "retweet_count": 316,
     "quote_count": 66,
     "bookmark_count": 272,
-    "view_count": "452722",
+    "view_count": "452729",
     "lang": "en",
     "conversation_id": "1938000813210714481",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1934989870239261157",
@@ -2351,16 +2402,16 @@
     "created_at": "Tue Jun 17 15:01:50 +0000 2025",
     "text": "if you can guess what it is you win @TakisUSA https://t.co/P9mgUnvngw",
     "reply_count": 719,
-    "favorite_count": 2202,
-    "retweet_count": 120,
+    "favorite_count": 2200,
+    "retweet_count": 119,
     "quote_count": 66,
     "bookmark_count": 148,
-    "view_count": "364694",
+    "view_count": "364700",
     "lang": "en",
     "conversation_id": "1934989870239261157",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1920237379442397554",
@@ -2368,16 +2419,16 @@
     "created_at": "Wed May 07 22:00:42 +0000 2025",
     "text": ".@TSA do I still need a real id if I have a Frosty key tag",
     "reply_count": 304,
-    "favorite_count": 8578,
+    "favorite_count": 8577,
     "retweet_count": 338,
     "quote_count": 37,
     "bookmark_count": 131,
-    "view_count": "540126",
+    "view_count": "540133",
     "lang": "en",
     "conversation_id": "1920237379442397554",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1917664473776623724",
@@ -2385,16 +2436,16 @@
     "created_at": "Wed Apr 30 19:36:53 +0000 2025",
     "text": "100 fries vs. 1 girlfriend who said she wasn’t hungry",
     "reply_count": 557,
-    "favorite_count": 16517,
+    "favorite_count": 16508,
     "retweet_count": 1199,
     "quote_count": 168,
-    "bookmark_count": 291,
-    "view_count": "799639",
+    "bookmark_count": 290,
+    "view_count": "799645",
     "lang": "en",
     "conversation_id": "1917664473776623724",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1914826173638414390",
@@ -2402,16 +2453,16 @@
     "created_at": "Tue Apr 22 23:38:30 +0000 2025",
     "text": "when we say Frosty Swirls just know the car is making the swirls",
     "reply_count": 106,
-    "favorite_count": 807,
+    "favorite_count": 806,
     "retweet_count": 71,
     "quote_count": 5,
     "bookmark_count": 26,
-    "view_count": "362219",
+    "view_count": "362225",
     "lang": "en",
     "conversation_id": "1914826173638414390",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1914824035609027011",
@@ -2423,12 +2474,12 @@
     "retweet_count": 64,
     "quote_count": 21,
     "bookmark_count": 26,
-    "view_count": "383562",
+    "view_count": "383569",
     "lang": "en",
     "conversation_id": "1914824035609027011",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1914683170374459772",
@@ -2436,16 +2487,16 @@
     "created_at": "Tue Apr 22 14:10:15 +0000 2025",
     "text": "get ready to taste a fresh way to Frosty",
     "reply_count": 95,
-    "favorite_count": 453,
-    "retweet_count": 55,
+    "favorite_count": 452,
+    "retweet_count": 54,
     "quote_count": 4,
     "bookmark_count": 11,
-    "view_count": "280335",
+    "view_count": "280341",
     "lang": "en",
     "conversation_id": "1914683170374459772",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1914680845526278493",
@@ -2457,12 +2508,12 @@
     "retweet_count": 25,
     "quote_count": 4,
     "bookmark_count": 8,
-    "view_count": "289747",
+    "view_count": "289754",
     "lang": "en",
     "conversation_id": "1914680845526278493",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1911933396550287524",
@@ -2470,16 +2521,16 @@
     "created_at": "Tue Apr 15 00:03:38 +0000 2025",
     "text": "I kissed the ground and i liked it",
     "reply_count": 3366,
-    "favorite_count": 148921,
+    "favorite_count": 148892,
     "retweet_count": 7564,
     "quote_count": 858,
     "bookmark_count": 2773,
-    "view_count": "11072230",
+    "view_count": "11072254",
     "lang": "en",
     "conversation_id": "1911933396550287524",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1911781221559844913",
@@ -2487,16 +2538,16 @@
     "created_at": "Mon Apr 14 13:58:57 +0000 2025",
     "text": "Katy Perry seemingly kisses the ground after returning from Space. https://t.co/ugi07THOjC",
     "reply_count": 1560,
-    "favorite_count": 161672,
-    "retweet_count": 4193,
+    "favorite_count": 161660,
+    "retweet_count": 4192,
     "quote_count": 4096,
-    "bookmark_count": 6017,
-    "view_count": "21325493",
+    "bookmark_count": 6014,
+    "view_count": "21325575",
     "lang": "en",
     "conversation_id": "1911781221559844913",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1910713017144127729",
@@ -2504,16 +2555,16 @@
     "created_at": "Fri Apr 11 15:14:17 +0000 2025",
     "text": "Okay we lied (kinda) but also Strawberry, Brownie Batter, and Caramel Frosty Swirls! https://t.co/3rC3oIORjZ https://t.co/cMj5lYqypC",
     "reply_count": 231,
-    "favorite_count": 9006,
+    "favorite_count": 9007,
     "retweet_count": 277,
     "quote_count": 116,
-    "bookmark_count": 830,
-    "view_count": "3061353",
+    "bookmark_count": 829,
+    "view_count": "3061363",
     "lang": "en",
     "conversation_id": "1910713017144127729",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1909664559243178141",
@@ -2521,16 +2572,16 @@
     "created_at": "Tue Apr 08 17:48:05 +0000 2025",
     "text": "Sorry to say, but Frosty is out :/",
     "reply_count": 1558,
-    "favorite_count": 13114,
+    "favorite_count": 13109,
     "retweet_count": 356,
     "quote_count": 278,
     "bookmark_count": 445,
-    "view_count": "2339913",
+    "view_count": "2339932",
     "lang": "en",
     "conversation_id": "1909664559243178141",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1907472436305813963",
@@ -2538,16 +2589,16 @@
     "created_at": "Wed Apr 02 16:37:22 +0000 2025",
     "text": "Keep your game fresh this March Madness with a $1 JBC or Double Stack in the Wendy’s app (w/ additional purchase). #NothingBeatsFresh",
     "reply_count": 58,
-    "favorite_count": 315,
+    "favorite_count": 313,
     "retweet_count": 56,
     "quote_count": 3,
     "bookmark_count": 4,
-    "view_count": "388817",
+    "view_count": "388821",
     "lang": "en",
     "conversation_id": "1907472436305813963",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1907167027267010864",
@@ -2555,16 +2606,16 @@
     "created_at": "Tue Apr 01 20:23:47 +0000 2025",
     "text": "HERE IS CUTE HASHTAG THE BURGER BUN IS A BASKETBALL\n#DollarJBCorDoubleStackinWendysAppWithOfferLegalSaidToIncludeWithAdditionalPurchase",
     "reply_count": 39,
-    "favorite_count": 334,
+    "favorite_count": 332,
     "retweet_count": 49,
     "quote_count": 0,
     "bookmark_count": 7,
-    "view_count": "381124",
+    "view_count": "381128",
     "lang": "en",
     "conversation_id": "1907167027267010864",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1906741707875483676",
@@ -2576,12 +2627,12 @@
     "retweet_count": 52,
     "quote_count": 1,
     "bookmark_count": 2,
-    "view_count": "297971",
+    "view_count": "297975",
     "lang": "en",
     "conversation_id": "1906741707875483676",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1905709754686788031",
@@ -2589,16 +2640,16 @@
     "created_at": "Fri Mar 28 19:53:06 +0000 2025",
     "text": "Freeze your meeting, not your burgers. https://t.co/YDWr58Z49k https://t.co/ADx5QdbXzs",
     "reply_count": 16,
-    "favorite_count": 266,
+    "favorite_count": 265,
     "retweet_count": 13,
     "quote_count": 4,
     "bookmark_count": 25,
-    "view_count": "239743",
+    "view_count": "239745",
     "lang": "en",
     "conversation_id": "1905709287558791496",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1905709287558791496",
@@ -2610,12 +2661,12 @@
     "retweet_count": 49,
     "quote_count": 2,
     "bookmark_count": 18,
-    "view_count": "291548",
+    "view_count": "291551",
     "lang": "en",
     "conversation_id": "1905709287558791496",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1905701777573621999",
@@ -2623,16 +2674,16 @@
     "created_at": "Fri Mar 28 19:21:24 +0000 2025",
     "text": "it’s time for basketball and burgers. burgerball. what if the burger bun was a basketball? idk. if you use this hashtag, u will see basketbun #WendysBasketballBurger",
     "reply_count": 27,
-    "favorite_count": 212,
+    "favorite_count": 211,
     "retweet_count": 55,
     "quote_count": 2,
     "bookmark_count": 5,
-    "view_count": "225924",
+    "view_count": "225929",
     "lang": "en",
     "conversation_id": "1905701777573621999",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739582
   },
   {
     "id": "1905005766244815166",
@@ -2644,12 +2695,12 @@
     "retweet_count": 56,
     "quote_count": 1,
     "bookmark_count": 11,
-    "view_count": "203877",
+    "view_count": "203882",
     "lang": "en",
     "conversation_id": "1905005766244815166",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739586
   },
   {
     "id": "1904642614470545836",
@@ -2661,12 +2712,12 @@
     "retweet_count": 119,
     "quote_count": 15,
     "bookmark_count": 36,
-    "view_count": "208208",
+    "view_count": "208212",
     "lang": "en",
     "conversation_id": "1904642614470545836",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653176
+    "scraped_at": 1784739586
   },
   {
     "id": "1904565120010723568",
@@ -2678,12 +2729,12 @@
     "retweet_count": 67,
     "quote_count": 1,
     "bookmark_count": 4,
-    "view_count": "146413",
+    "view_count": "146417",
     "lang": "en",
     "conversation_id": "1904565120010723568",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1903162702585008400",
@@ -2695,12 +2746,12 @@
     "retweet_count": 57,
     "quote_count": 0,
     "bookmark_count": 10,
-    "view_count": "153792",
+    "view_count": "153797",
     "lang": "en",
     "conversation_id": "1903162702585008400",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1903112530345521579",
@@ -2708,16 +2759,16 @@
     "created_at": "Fri Mar 21 15:52:40 +0000 2025",
     "text": "hang the banner @VandyMBB https://t.co/uqk1MMR3d6",
     "reply_count": 71,
-    "favorite_count": 13966,
-    "retweet_count": 603,
+    "favorite_count": 13962,
+    "retweet_count": 602,
     "quote_count": 51,
     "bookmark_count": 211,
-    "view_count": "1097567",
+    "view_count": "1097580",
     "lang": "en",
     "conversation_id": "1903112530345521579",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1901851793795219858",
@@ -2725,16 +2776,16 @@
     "created_at": "Tue Mar 18 04:22:56 +0000 2025",
     "text": "March Madness bracket if  you picked each matchup by which School's home stadium is closest to an @Wendys location https://t.co/HBiHGjsNdg",
     "reply_count": 106,
-    "favorite_count": 5803,
+    "favorite_count": 5802,
     "retweet_count": 219,
     "quote_count": 109,
     "bookmark_count": 208,
-    "view_count": "1847876",
+    "view_count": "1847884",
     "lang": "en",
     "conversation_id": "1901851793795219858",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1899970489797271587",
@@ -2742,16 +2793,16 @@
     "created_at": "Wed Mar 12 23:47:19 +0000 2025",
     "text": "BIGGIE BAGS FLY FREE https://t.co/59iYwMlcCW",
     "reply_count": 134,
-    "favorite_count": 979,
+    "favorite_count": 977,
     "retweet_count": 101,
     "quote_count": 18,
     "bookmark_count": 23,
-    "view_count": "293543",
+    "view_count": "293547",
     "lang": "en",
     "conversation_id": "1899970489797271587",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1893347732040880523",
@@ -2763,12 +2814,12 @@
     "retweet_count": 127,
     "quote_count": 28,
     "bookmark_count": 47,
-    "view_count": "199856",
+    "view_count": "199861",
     "lang": "en",
     "conversation_id": "1893347732040880523",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1892979312707473537",
@@ -2776,16 +2827,16 @@
     "created_at": "Fri Feb 21 16:46:52 +0000 2025",
     "text": "Im gonna show up at your door selling Thin Mints Frosty",
     "reply_count": 665,
-    "favorite_count": 3160,
-    "retweet_count": 174,
+    "favorite_count": 3158,
+    "retweet_count": 173,
     "quote_count": 83,
     "bookmark_count": 23,
-    "view_count": "253102",
+    "view_count": "253108",
     "lang": "en",
     "conversation_id": "1892979312707473537",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1889332081404088470",
@@ -2793,16 +2844,16 @@
     "created_at": "Tue Feb 11 15:14:04 +0000 2025",
     "text": "Fresh meets fast.",
     "reply_count": 94,
-    "favorite_count": 746,
-    "retweet_count": 77,
+    "favorite_count": 745,
+    "retweet_count": 76,
     "quote_count": 4,
     "bookmark_count": 19,
-    "view_count": "230470",
+    "view_count": "230481",
     "lang": "en",
     "conversation_id": "1889332081404088470",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1889331721939673543",
@@ -2814,12 +2865,12 @@
     "retweet_count": 148,
     "quote_count": 31,
     "bookmark_count": 31,
-    "view_count": "269023",
+    "view_count": "269036",
     "lang": "en",
     "conversation_id": "1889331721939673543",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1889052840129114344",
@@ -2827,16 +2878,16 @@
     "created_at": "Mon Feb 10 20:44:28 +0000 2025",
     "text": "if you thought my burgers were fresh, wait till u see my whip 🏁",
     "reply_count": 213,
-    "favorite_count": 1136,
+    "favorite_count": 1134,
     "retweet_count": 82,
     "quote_count": 19,
     "bookmark_count": 17,
-    "view_count": "150500",
+    "view_count": "150506",
     "lang": "en",
     "conversation_id": "1889052840129114344",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1886095648572760240",
@@ -2844,16 +2895,16 @@
     "created_at": "Sun Feb 02 16:53:39 +0000 2025",
     "text": "If i see my shadow u get 6 more weeks of vanilla frosty",
     "reply_count": 178,
-    "favorite_count": 1278,
+    "favorite_count": 1277,
     "retweet_count": 93,
     "quote_count": 12,
     "bookmark_count": 9,
-    "view_count": "184941",
+    "view_count": "184945",
     "lang": "en",
     "conversation_id": "1886095648572760240",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1881055482015805887",
@@ -2861,16 +2912,16 @@
     "created_at": "Sun Jan 19 19:05:49 +0000 2025",
     "text": "Thank you Mr. Beast",
     "reply_count": 405,
-    "favorite_count": 14100,
+    "favorite_count": 14093,
     "retweet_count": 336,
     "quote_count": 29,
     "bookmark_count": 221,
-    "view_count": "1677450",
+    "view_count": "1677526",
     "lang": "en",
     "conversation_id": "1881055482015805887",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1879984832446623928",
@@ -2878,16 +2929,16 @@
     "created_at": "Thu Jan 16 20:11:27 +0000 2025",
     "text": "Can’t believe we’re getting TikTok ban before gta 6",
     "reply_count": 916,
-    "favorite_count": 19275,
-    "retweet_count": 2123,
+    "favorite_count": 19271,
+    "retweet_count": 2124,
     "quote_count": 240,
     "bookmark_count": 604,
-    "view_count": "1458549",
+    "view_count": "1458561",
     "lang": "en",
     "conversation_id": "1879984832446623928",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1879575467256422436",
@@ -2895,16 +2946,16 @@
     "created_at": "Wed Jan 15 17:04:46 +0000 2025",
     "text": "4pc in 4k https://t.co/w8cOOHtz6P",
     "reply_count": 217,
-    "favorite_count": 3276,
+    "favorite_count": 3275,
     "retweet_count": 177,
     "quote_count": 34,
     "bookmark_count": 107,
-    "view_count": "684061",
+    "view_count": "684065",
     "lang": "pt",
     "conversation_id": "1879575467256422436",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1874908984093876692",
@@ -2916,29 +2967,29 @@
     "retweet_count": 59,
     "quote_count": 5,
     "bookmark_count": 22,
-    "view_count": "277642",
+    "view_count": "277650",
     "lang": "en",
     "conversation_id": "1874908984093876692",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1874116245085446380",
     "tweet_url": "https://x.com/Wendys/status/1874116245085446380",
     "created_at": "Tue Dec 31 15:31:46 +0000 2024",
     "text": "2025 = 45^2\n\nIt's a perfect square.  It will probably be the only perfect square year you ever get to live in.\n\nThe last time that occurred was in 1936.  The next will be in 2116.\n\nSo, make 2025 a perfect year for you.",
-    "reply_count": 521,
-    "favorite_count": 280240,
-    "retweet_count": 31715,
+    "reply_count": 520,
+    "favorite_count": 280169,
+    "retweet_count": 31714,
     "quote_count": 1972,
-    "bookmark_count": 21184,
-    "view_count": "7962242",
+    "bookmark_count": 21174,
+    "view_count": "7962280",
     "lang": "en",
     "conversation_id": "1874116245085446380",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1869446006234104036",
@@ -2946,16 +2997,16 @@
     "created_at": "Wed Dec 18 18:13:55 +0000 2024",
     "text": "Do you pronounce it caramel or do u pronounce it wrong?",
     "reply_count": 239,
-    "favorite_count": 996,
-    "retweet_count": 78,
+    "favorite_count": 995,
+    "retweet_count": 79,
     "quote_count": 27,
     "bookmark_count": 26,
-    "view_count": "162093",
+    "view_count": "162097",
     "lang": "en",
     "conversation_id": "1869446006234104036",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1869053674779291778",
@@ -2963,16 +3014,16 @@
     "created_at": "Tue Dec 17 16:14:56 +0000 2024",
     "text": "Keep things roasty this holiday season. https://t.co/UG4KDOSndU",
     "reply_count": 63,
-    "favorite_count": 258,
+    "favorite_count": 257,
     "retweet_count": 53,
     "quote_count": 7,
     "bookmark_count": 21,
-    "view_count": "124992",
+    "view_count": "125004",
     "lang": "en",
     "conversation_id": "1869053674779291778",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1868743844931797186",
@@ -2980,16 +3031,16 @@
     "created_at": "Mon Dec 16 19:43:46 +0000 2024",
     "text": "Frosty Key Tag: It’s like the best investment of your life except it’s free frosty treats but same vibes.",
     "reply_count": 54,
-    "favorite_count": 241,
-    "retweet_count": 39,
+    "favorite_count": 240,
+    "retweet_count": 38,
     "quote_count": 4,
     "bookmark_count": 8,
-    "view_count": "117849",
+    "view_count": "117853",
     "lang": "en",
     "conversation_id": "1868743844931797186",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1865181393224974679",
@@ -2997,16 +3048,16 @@
     "created_at": "Fri Dec 06 23:47:52 +0000 2024",
     "text": "idk, i like our version better https://t.co/lxLle9WjFt",
     "reply_count": 139,
-    "favorite_count": 1794,
+    "favorite_count": 1792,
     "retweet_count": 143,
     "quote_count": 15,
     "bookmark_count": 41,
-    "view_count": "302916",
+    "view_count": "302923",
     "lang": "en",
     "conversation_id": "1865181393224974679",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1864694795936899378",
@@ -3014,16 +3065,16 @@
     "created_at": "Thu Dec 05 15:34:18 +0000 2024",
     "text": "Meet Pantone's Color of the Year 2025: PANTONE 17-1230 Mocha Mousse 🍫☕\nA rich, warming brown inspired by chocolate, and coffee. Earthy, elegant, and comforting—Mocha Mousse connects us to nature and modern refinement.\nExplore more via https://t.co/T8fKMpL4Pm #MochaMousse https://t.co/2b428qm7iy",
     "reply_count": 168,
-    "favorite_count": 3424,
+    "favorite_count": 3422,
     "retweet_count": 1737,
     "quote_count": 1563,
     "bookmark_count": 444,
-    "view_count": "1593387",
+    "view_count": "1593410",
     "lang": "en",
     "conversation_id": "1864694795936899378",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1864373989759471899",
@@ -3040,7 +3091,7 @@
     "conversation_id": "1864360277942075898",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739586
   },
   {
     "id": "1864360277942075898",
@@ -3048,16 +3099,16 @@
     "created_at": "Wed Dec 04 17:25:03 +0000 2024",
     "text": "my aesthetic is Laufey + salted caramel frosty 🥺",
     "reply_count": 74,
-    "favorite_count": 339,
+    "favorite_count": 338,
     "retweet_count": 38,
     "quote_count": 8,
     "bookmark_count": 7,
-    "view_count": "147293",
+    "view_count": "147296",
     "lang": "en",
     "conversation_id": "1864360277942075898",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739591
   },
   {
     "id": "1861447874346934316",
@@ -3065,16 +3116,16 @@
     "created_at": "Tue Nov 26 16:32:11 +0000 2024",
     "text": "REPORT: Naive Little Salted Caramel Frosty Totally Unaware Woman’s Happiness Rests on Her Shoulders",
     "reply_count": 74,
-    "favorite_count": 357,
+    "favorite_count": 358,
     "retweet_count": 36,
     "quote_count": 3,
     "bookmark_count": 10,
-    "view_count": "134659",
+    "view_count": "134662",
     "lang": "en",
     "conversation_id": "1861447874346934316",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653180
+    "scraped_at": 1784739591
   },
   {
     "id": "1859714761916555425",
@@ -3083,15 +3134,15 @@
     "text": "“U changed my life” I’m literally just a salted caramel frosty",
     "reply_count": 144,
     "favorite_count": 921,
-    "retweet_count": 69,
+    "retweet_count": 68,
     "quote_count": 14,
     "bookmark_count": 23,
-    "view_count": "165847",
+    "view_count": "165848",
     "lang": "en",
     "conversation_id": "1859714761916555425",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1859336640713330801",
@@ -3103,12 +3154,12 @@
     "retweet_count": 44,
     "quote_count": 7,
     "bookmark_count": 37,
-    "view_count": "148911",
+    "view_count": "148913",
     "lang": "en",
     "conversation_id": "1859336640713330801",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1849526709361480181",
@@ -3120,12 +3171,12 @@
     "retweet_count": 31,
     "quote_count": 8,
     "bookmark_count": 9,
-    "view_count": "224127",
+    "view_count": "224134",
     "lang": "en",
     "conversation_id": "1849526709361480181",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1847306069816594818",
@@ -3133,16 +3184,16 @@
     "created_at": "Fri Oct 18 15:57:42 +0000 2024",
     "text": "When mom doesn’t stop for a Wendy’s Krabby Patty Kollab burger https://t.co/jZgDsddw1l",
     "reply_count": 311,
-    "favorite_count": 2231,
+    "favorite_count": 2230,
     "retweet_count": 214,
     "quote_count": 34,
     "bookmark_count": 106,
-    "view_count": "191424",
+    "view_count": "191429",
     "lang": "en",
     "conversation_id": "1847306069816594818",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1846290474933670375",
@@ -3154,12 +3205,12 @@
     "retweet_count": 63,
     "quote_count": 9,
     "bookmark_count": 18,
-    "view_count": "156560",
+    "view_count": "156564",
     "lang": "en",
     "conversation_id": "1846290474933670375",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1844751905022447697",
@@ -3167,16 +3218,16 @@
     "created_at": "Fri Oct 11 14:48:22 +0000 2024",
     "text": "this guy https://t.co/YwNEDcYzgH",
     "reply_count": 102,
-    "favorite_count": 2065,
+    "favorite_count": 2062,
     "retweet_count": 84,
     "quote_count": 5,
-    "bookmark_count": 55,
-    "view_count": "270211",
+    "bookmark_count": 54,
+    "view_count": "270218",
     "lang": "en",
     "conversation_id": "1844751905022447697",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1843779609789378824",
@@ -3184,16 +3235,16 @@
     "created_at": "Tue Oct 08 22:24:49 +0000 2024",
     "text": "REV UP THOSE FRYERS https://t.co/iGRVIYwGjO",
     "reply_count": 590,
-    "favorite_count": 13070,
-    "retweet_count": 2159,
+    "favorite_count": 13068,
+    "retweet_count": 2158,
     "quote_count": 265,
-    "bookmark_count": 1595,
-    "view_count": "706129",
+    "bookmark_count": 1594,
+    "view_count": "706137",
     "lang": "en",
     "conversation_id": "1843779609789378824",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1843405888624963775",
@@ -3201,16 +3252,16 @@
     "created_at": "Mon Oct 07 21:39:47 +0000 2024",
     "text": "America tomorrow https://t.co/BG87XHjcvj",
     "reply_count": 496,
-    "favorite_count": 8788,
+    "favorite_count": 8785,
     "retweet_count": 871,
     "quote_count": 161,
     "bookmark_count": 362,
-    "view_count": "695002",
+    "view_count": "695009",
     "lang": "en",
     "conversation_id": "1843405888624963775",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1842315701081530795",
@@ -3218,16 +3269,16 @@
     "created_at": "Fri Oct 04 21:27:46 +0000 2024",
     "text": "when wendy’s krabby patty kollab gets announced but you gotta wait til tuesday https://t.co/UBztx3sg66",
     "reply_count": 212,
-    "favorite_count": 4534,
-    "retweet_count": 442,
+    "favorite_count": 4531,
+    "retweet_count": 441,
     "quote_count": 34,
     "bookmark_count": 166,
-    "view_count": "278974",
+    "view_count": "278977",
     "lang": "en",
     "conversation_id": "1842315701081530795",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1841548608854016300",
@@ -3235,16 +3286,16 @@
     "created_at": "Wed Oct 02 18:39:37 +0000 2024",
     "text": "BBBBRRREAKING NEWWWS https://t.co/Vw5FulLl0U",
     "reply_count": 1334,
-    "favorite_count": 74966,
-    "retweet_count": 7947,
+    "favorite_count": 74960,
+    "retweet_count": 7945,
     "quote_count": 1352,
-    "bookmark_count": 3897,
-    "view_count": "5084745",
+    "bookmark_count": 3899,
+    "view_count": "5084761",
     "lang": "en",
     "conversation_id": "1841548608854016300",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1841265943395082611",
@@ -3252,16 +3303,16 @@
     "created_at": "Tue Oct 01 23:56:24 +0000 2024",
     "text": "If you want something done right, you gotta do it yourself. https://t.co/jEKOYLjxGc",
     "reply_count": 112,
-    "favorite_count": 983,
+    "favorite_count": 984,
     "retweet_count": 124,
     "quote_count": 46,
     "bookmark_count": 89,
-    "view_count": "179784",
+    "view_count": "179788",
     "lang": "en",
     "conversation_id": "1841265943395082611",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1839768956812378574",
@@ -3269,16 +3320,16 @@
     "created_at": "Fri Sep 27 20:47:55 +0000 2024",
     "text": "👀👀👀",
     "reply_count": 105,
-    "favorite_count": 1302,
+    "favorite_count": 1301,
     "retweet_count": 67,
     "quote_count": 5,
     "bookmark_count": 31,
-    "view_count": "252266",
+    "view_count": "252271",
     "lang": "art",
     "conversation_id": "1839768956812378574",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1839411514715090949",
@@ -3286,16 +3337,16 @@
     "created_at": "Thu Sep 26 21:07:34 +0000 2024",
     "text": "I scream. You scream. We all scream for working ice cream machines. https://t.co/8cAJRNFGKS",
     "reply_count": 128,
-    "favorite_count": 1053,
-    "retweet_count": 92,
+    "favorite_count": 1052,
+    "retweet_count": 91,
     "quote_count": 24,
     "bookmark_count": 39,
-    "view_count": "159514",
+    "view_count": "159518",
     "lang": "en",
     "conversation_id": "1839411514715090949",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1839266928679845920",
@@ -3307,12 +3358,12 @@
     "retweet_count": 11,
     "quote_count": 4,
     "bookmark_count": 3,
-    "view_count": "253620",
+    "view_count": "253626",
     "lang": "en",
     "conversation_id": "1839266928679845920",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1836585948496162855",
@@ -3324,12 +3375,12 @@
     "retweet_count": 17,
     "quote_count": 4,
     "bookmark_count": 6,
-    "view_count": "125333",
+    "view_count": "125336",
     "lang": "en",
     "conversation_id": "1836585948496162855",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1835137149286379953",
@@ -3341,12 +3392,12 @@
     "retweet_count": 0,
     "quote_count": 2,
     "bookmark_count": 0,
-    "view_count": "222717",
+    "view_count": "222725",
     "lang": "en",
     "conversation_id": "1835137149286379953",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1834619968442323418",
@@ -3354,16 +3405,16 @@
     "created_at": "Fri Sep 13 15:47:40 +0000 2024",
     "text": "POV: me going straight from bed to the couch every Saturday",
     "reply_count": 41,
-    "favorite_count": 259,
+    "favorite_count": 258,
     "retweet_count": 15,
     "quote_count": 0,
     "bookmark_count": 7,
-    "view_count": "186897",
+    "view_count": "186901",
     "lang": "en",
     "conversation_id": "1834619968442323418",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1834347199402229959",
@@ -3375,12 +3426,12 @@
     "retweet_count": 12,
     "quote_count": 2,
     "bookmark_count": 2,
-    "view_count": "241987",
+    "view_count": "241992",
     "lang": "en",
     "conversation_id": "1834347199402229959",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1833595083490238906",
@@ -3392,12 +3443,12 @@
     "retweet_count": 1,
     "quote_count": 5,
     "bookmark_count": 6,
-    "view_count": "275977",
+    "view_count": "275985",
     "lang": "en",
     "conversation_id": "1833595083490238906",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1827852148366843989",
@@ -3405,16 +3456,16 @@
     "created_at": "Sun Aug 25 23:34:46 +0000 2024",
     "text": "Unhappy Hour means you can get a $1 Honey Buddy w purchase in the app. See? Life still has meaning - even on Monday mornings. https://t.co/9ANLjAkbTt",
     "reply_count": 87,
-    "favorite_count": 363,
+    "favorite_count": 362,
     "retweet_count": 38,
     "quote_count": 5,
     "bookmark_count": 3,
-    "view_count": "158822",
+    "view_count": "158825",
     "lang": "en",
     "conversation_id": "1827852148366843989",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1826439447467966764",
@@ -3426,12 +3477,12 @@
     "retweet_count": 46,
     "quote_count": 3,
     "bookmark_count": 23,
-    "view_count": "136635",
+    "view_count": "136637",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739591
   },
   {
     "id": "1826437489961435372",
@@ -3443,12 +3494,12 @@
     "retweet_count": 14,
     "quote_count": 2,
     "bookmark_count": 4,
-    "view_count": "105436",
+    "view_count": "105443",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739594
   },
   {
     "id": "1826437406708695361",
@@ -3460,12 +3511,12 @@
     "retweet_count": 13,
     "quote_count": 2,
     "bookmark_count": 3,
-    "view_count": "90638",
+    "view_count": "90639",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653184
+    "scraped_at": 1784739594
   },
   {
     "id": "1826437226713989454",
@@ -3477,12 +3528,12 @@
     "retweet_count": 14,
     "quote_count": 1,
     "bookmark_count": 2,
-    "view_count": "85536",
+    "view_count": "85538",
     "lang": "es",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826437118563889607",
@@ -3499,7 +3550,7 @@
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826437010606764235",
@@ -3511,12 +3562,12 @@
     "retweet_count": 11,
     "quote_count": 1,
     "bookmark_count": 2,
-    "view_count": "77366",
+    "view_count": "77367",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826436573988090093",
@@ -3528,12 +3579,12 @@
     "retweet_count": 12,
     "quote_count": 0,
     "bookmark_count": 1,
-    "view_count": "77371",
+    "view_count": "77372",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826436504614273198",
@@ -3545,12 +3596,12 @@
     "retweet_count": 10,
     "quote_count": 0,
     "bookmark_count": 2,
-    "view_count": "70352",
+    "view_count": "70353",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826432938801570164",
@@ -3562,12 +3613,12 @@
     "retweet_count": 12,
     "quote_count": 0,
     "bookmark_count": 3,
-    "view_count": "82941",
+    "view_count": "82942",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826432611092136230",
@@ -3579,12 +3630,12 @@
     "retweet_count": 14,
     "quote_count": 0,
     "bookmark_count": 2,
-    "view_count": "68744",
+    "view_count": "68745",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826432485950898219",
@@ -3596,12 +3647,12 @@
     "retweet_count": 21,
     "quote_count": 1,
     "bookmark_count": 3,
-    "view_count": "75925",
+    "view_count": "75926",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826432151862026427",
@@ -3609,16 +3660,16 @@
     "created_at": "Thu Aug 22 01:32:13 +0000 2024",
     "text": "Can’t wait to watch… \n“Any Given Day but Sunday” \na thread 🧵",
     "reply_count": 169,
-    "favorite_count": 3345,
+    "favorite_count": 3346,
     "retweet_count": 328,
     "quote_count": 106,
     "bookmark_count": 165,
-    "view_count": "515856",
+    "view_count": "515871",
     "lang": "en",
     "conversation_id": "1826432151862026427",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1826331865781075979",
@@ -3626,16 +3677,16 @@
     "created_at": "Wed Aug 21 18:53:43 +0000 2024",
     "text": "Chick-Fil-A is launching its own streaming platform \n\n• The plan is to launch a slate of TV shows\n• There are also talks of doing animated projects https://t.co/RamoYkIxPw",
     "reply_count": 646,
-    "favorite_count": 6781,
+    "favorite_count": 6780,
     "retweet_count": 400,
     "quote_count": 1732,
     "bookmark_count": 802,
-    "view_count": "5449276",
+    "view_count": "5449301",
     "lang": "en",
     "conversation_id": "1826331865781075979",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1825520839032291500",
@@ -3647,12 +3698,12 @@
     "retweet_count": 40,
     "quote_count": 2,
     "bookmark_count": 3,
-    "view_count": "97772",
+    "view_count": "97775",
     "lang": "en",
     "conversation_id": "1825520839032291500",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1825310472368791724",
@@ -3660,16 +3711,16 @@
     "created_at": "Sun Aug 18 23:15:03 +0000 2024",
     "text": "Unhappy Hour means you can get a $1 Honey Buddy w purchase in the app. Also means monday morning but forget that part.",
     "reply_count": 24,
-    "favorite_count": 388,
+    "favorite_count": 386,
     "retweet_count": 39,
     "quote_count": 4,
     "bookmark_count": 7,
-    "view_count": "146118",
+    "view_count": "146122",
     "lang": "en",
     "conversation_id": "1825310472368791724",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1822987972481806759",
@@ -3677,16 +3728,16 @@
     "created_at": "Mon Aug 12 13:26:16 +0000 2024",
     "text": "UNHAPPY HOUR",
     "reply_count": 35,
-    "favorite_count": 325,
+    "favorite_count": 324,
     "retweet_count": 41,
     "quote_count": 2,
     "bookmark_count": 6,
-    "view_count": "100923",
+    "view_count": "100927",
     "lang": "en",
     "conversation_id": "1822987972481806759",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1822772454533579005",
@@ -3694,16 +3745,16 @@
     "created_at": "Sun Aug 11 23:09:53 +0000 2024",
     "text": "Unhappy Hour is tomorrow so yew can get a $1 Honey Buddy w purchase in the app. Does that help?",
     "reply_count": 45,
-    "favorite_count": 394,
+    "favorite_count": 393,
     "retweet_count": 40,
     "quote_count": 5,
     "bookmark_count": 3,
-    "view_count": "117106",
+    "view_count": "117110",
     "lang": "en",
     "conversation_id": "1822772454533579005",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1821635837161029764",
@@ -3711,16 +3762,16 @@
     "created_at": "Thu Aug 08 19:53:22 +0000 2024",
     "text": "@NYTGames Why ru playing games 😔 @NYTGames",
     "reply_count": 13,
-    "favorite_count": 155,
+    "favorite_count": 154,
     "retweet_count": 13,
     "quote_count": 1,
     "bookmark_count": 2,
-    "view_count": "87534",
+    "view_count": "87536",
     "lang": "en",
     "conversation_id": "1821610561962176956",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1821610694745485569",
@@ -3728,16 +3779,16 @@
     "created_at": "Thu Aug 08 18:13:28 +0000 2024",
     "text": "@NYTGames why u flirtin with me",
     "reply_count": 9,
-    "favorite_count": 226,
+    "favorite_count": 225,
     "retweet_count": 12,
     "quote_count": 1,
     "bookmark_count": 3,
-    "view_count": "112318",
+    "view_count": "112320",
     "lang": "en",
     "conversation_id": "1821610561962176956",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1821610561962176956",
@@ -3745,16 +3796,16 @@
     "created_at": "Thu Aug 08 18:12:56 +0000 2024",
     "text": "Wordle 1,146 1/6\n\n🟩🟩🟩🟩🟩",
     "reply_count": 61,
-    "favorite_count": 614,
+    "favorite_count": 613,
     "retweet_count": 50,
     "quote_count": 6,
     "bookmark_count": 8,
-    "view_count": "131839",
+    "view_count": "131843",
     "lang": "en",
     "conversation_id": "1821610561962176956",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1820445708874658217",
@@ -3766,12 +3817,12 @@
     "retweet_count": 46,
     "quote_count": 6,
     "bookmark_count": 9,
-    "view_count": "105724",
+    "view_count": "105727",
     "lang": "en",
     "conversation_id": "1820445708874658217",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1820231911635087503",
@@ -3779,16 +3830,16 @@
     "created_at": "Sun Aug 04 22:54:40 +0000 2024",
     "text": "Unhappy Hour: get a $1 Honey Buddy w purchase in the app. Monday mornings, it’s literally the least we could do.\n\nHope that’s enough.",
     "reply_count": 51,
-    "favorite_count": 455,
+    "favorite_count": 454,
     "retweet_count": 54,
     "quote_count": 6,
     "bookmark_count": 4,
-    "view_count": "122806",
+    "view_count": "122809",
     "lang": "en",
     "conversation_id": "1820231911635087503",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739594
   },
   {
     "id": "1818340302802850216",
@@ -3796,16 +3847,16 @@
     "created_at": "Tue Jul 30 17:38:05 +0000 2024",
     "text": "My saucy nuggs get such a good block from the table they do a yurchenko double pike into my mouth",
     "reply_count": 93,
-    "favorite_count": 1013,
-    "retweet_count": 116,
+    "favorite_count": 1012,
+    "retweet_count": 115,
     "quote_count": 20,
     "bookmark_count": 26,
-    "view_count": "150649",
+    "view_count": "150652",
     "lang": "en",
     "conversation_id": "1818340302802850216",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739597
   },
   {
     "id": "1817921258727862748",
@@ -3817,12 +3868,12 @@
     "retweet_count": 58,
     "quote_count": 15,
     "bookmark_count": 13,
-    "view_count": "231568",
+    "view_count": "231581",
     "lang": "en",
     "conversation_id": "1817921258727862748",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653189
+    "scraped_at": 1784739597
   },
   {
     "id": "1817695153110528201",
@@ -3830,16 +3881,16 @@
     "created_at": "Sun Jul 28 22:54:30 +0000 2024",
     "text": "Happy hours are overrated. Come to Unhappy Hour tomorrow AM for a $1 Honey Buddy w purchase in the app (and lil’ head pats)",
     "reply_count": 68,
-    "favorite_count": 661,
+    "favorite_count": 660,
     "retweet_count": 71,
     "quote_count": 7,
     "bookmark_count": 14,
-    "view_count": "144176",
+    "view_count": "144180",
     "lang": "en",
     "conversation_id": "1817695153110528201",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1811795717297508777",
@@ -3847,16 +3898,16 @@
     "created_at": "Fri Jul 12 16:12:15 +0000 2024",
     "text": "That’s cute. \n\nWe’ve got free fries every Friday in the app. All year long.",
     "reply_count": 530,
-    "favorite_count": 7673,
-    "retweet_count": 577,
+    "favorite_count": 7669,
+    "retweet_count": 576,
     "quote_count": 152,
     "bookmark_count": 235,
-    "view_count": "629586",
+    "view_count": "629591",
     "lang": "en",
     "conversation_id": "1811795717297508777",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1811499139739398639",
@@ -3868,12 +3919,12 @@
     "retweet_count": 82,
     "quote_count": 4,
     "bookmark_count": 16,
-    "view_count": "128941",
+    "view_count": "128945",
     "lang": "en",
     "conversation_id": "1811499139739398639",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1811077661101301959",
@@ -3881,16 +3932,16 @@
     "created_at": "Wed Jul 10 16:38:57 +0000 2024",
     "text": "Workin’ on the ol’ photoshop skills again…\nHit us up if your profile pic needs some sauce",
     "reply_count": 1164,
-    "favorite_count": 1959,
+    "favorite_count": 1958,
     "retweet_count": 110,
     "quote_count": 16,
     "bookmark_count": 49,
-    "view_count": "346345",
+    "view_count": "346348",
     "lang": "en",
     "conversation_id": "1811077661101301959",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1810668075450036606",
@@ -3898,16 +3949,16 @@
     "created_at": "Tue Jul 09 13:31:24 +0000 2024",
     "text": "McDonald’s are giving away free fries on National French Fry Day, July 12th https://t.co/B8V25hppkI",
     "reply_count": 359,
-    "favorite_count": 16173,
+    "favorite_count": 16167,
     "retweet_count": 666,
     "quote_count": 484,
     "bookmark_count": 890,
-    "view_count": "2013820",
+    "view_count": "2013826",
     "lang": "en",
     "conversation_id": "1810668075450036606",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1810406280198299682",
@@ -3915,16 +3966,16 @@
     "created_at": "Mon Jul 08 20:11:07 +0000 2024",
     "text": "Missing messy? Well, our saucy nuggs are just sitting there waiting for ya. Go messy!",
     "reply_count": 90,
-    "favorite_count": 540,
-    "retweet_count": 47,
+    "favorite_count": 539,
+    "retweet_count": 46,
     "quote_count": 15,
     "bookmark_count": 3,
-    "view_count": "139317",
+    "view_count": "139320",
     "lang": "en",
     "conversation_id": "1810406280198299682",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1810007794310840603",
@@ -3932,16 +3983,16 @@
     "created_at": "Sun Jul 07 17:47:41 +0000 2024",
     "text": "Whenever i need new tires i just pull up to a pit crew during a nascar race @NASCARChicago",
     "reply_count": 52,
-    "favorite_count": 628,
+    "favorite_count": 626,
     "retweet_count": 76,
     "quote_count": 6,
     "bookmark_count": 6,
-    "view_count": "146659",
+    "view_count": "146662",
     "lang": "en",
     "conversation_id": "1810007794310840603",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1808626600872665366",
@@ -3949,16 +4000,16 @@
     "created_at": "Wed Jul 03 22:19:18 +0000 2024",
     "text": ".@shanevg97 you asked for some sauce for your race in Chicago. This work? https://t.co/e67YBsIvdK",
     "reply_count": 65,
-    "favorite_count": 798,
-    "retweet_count": 94,
+    "favorite_count": 797,
+    "retweet_count": 93,
     "quote_count": 11,
     "bookmark_count": 17,
-    "view_count": "151148",
+    "view_count": "151152",
     "lang": "en",
     "conversation_id": "1808626600872665366",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1806348032662802747",
@@ -3966,16 +4017,16 @@
     "created_at": "Thu Jun 27 15:25:05 +0000 2024",
     "text": "ANYTHING IS SAUCE-A-BLEEEEEEEEEE",
     "reply_count": 31,
-    "favorite_count": 692,
+    "favorite_count": 691,
     "retweet_count": 82,
     "quote_count": 3,
     "bookmark_count": 9,
-    "view_count": "199398",
+    "view_count": "199403",
     "lang": "en",
     "conversation_id": "1806348032662802747",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1806180519689834523",
@@ -3987,12 +4038,12 @@
     "retweet_count": 45,
     "quote_count": 12,
     "bookmark_count": 36,
-    "view_count": "251197",
+    "view_count": "251203",
     "lang": "en",
     "conversation_id": "1806180519689834523",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1806158973009097170",
@@ -4000,16 +4051,16 @@
     "created_at": "Thu Jun 27 02:53:50 +0000 2024",
     "text": "Congrats to @DaRonagon on achieving your life long dream. And also being drafted to the NBA.\n\nA year’s worth of saucy nuggs comin’ atcha https://t.co/wXE3qADVg0",
     "reply_count": 62,
-    "favorite_count": 1928,
+    "favorite_count": 1927,
     "retweet_count": 224,
     "quote_count": 49,
     "bookmark_count": 28,
-    "view_count": "245034",
+    "view_count": "245038",
     "lang": "en",
     "conversation_id": "1806158973009097170",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1806124723254022149",
@@ -4021,12 +4072,12 @@
     "retweet_count": 41,
     "quote_count": 0,
     "bookmark_count": 6,
-    "view_count": "104955",
+    "view_count": "104956",
     "lang": "art",
     "conversation_id": "1806116941091811827",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1806116941091811827",
@@ -4034,16 +4085,16 @@
     "created_at": "Thu Jun 27 00:06:49 +0000 2024",
     "text": "Whoever becomes a nugget tonight gets FREE saucy nuggets for a year 👀",
     "reply_count": 258,
-    "favorite_count": 1886,
+    "favorite_count": 1887,
     "retweet_count": 124,
     "quote_count": 58,
     "bookmark_count": 30,
-    "view_count": "384493",
+    "view_count": "384496",
     "lang": "en",
     "conversation_id": "1806116941091811827",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1801112110136500397",
@@ -4055,12 +4106,12 @@
     "retweet_count": 49,
     "quote_count": 4,
     "bookmark_count": 5,
-    "view_count": "117313",
+    "view_count": "117314",
     "lang": "en",
     "conversation_id": "1801106753884434800",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1801106753884434800",
@@ -4068,16 +4119,16 @@
     "created_at": "Thu Jun 13 04:18:07 +0000 2024",
     "text": "Wait now I wanna see ur likes",
     "reply_count": 237,
-    "favorite_count": 2227,
+    "favorite_count": 2226,
     "retweet_count": 162,
     "quote_count": 23,
     "bookmark_count": 16,
-    "view_count": "196689",
+    "view_count": "196693",
     "lang": "en",
     "conversation_id": "1801106753884434800",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1797664751524384826",
@@ -4089,12 +4140,12 @@
     "retweet_count": 186,
     "quote_count": 128,
     "bookmark_count": 90,
-    "view_count": "503047",
+    "view_count": "503050",
     "lang": "en",
     "conversation_id": "1797664751524384826",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1793796655512183145",
@@ -4102,16 +4153,16 @@
     "created_at": "Fri May 24 00:10:24 +0000 2024",
     "text": "Stop taking the concept of a Biggie Bag and making it worse",
     "reply_count": 138,
-    "favorite_count": 976,
+    "favorite_count": 977,
     "retweet_count": 95,
     "quote_count": 22,
     "bookmark_count": 33,
-    "view_count": "251891",
+    "view_count": "251898",
     "lang": "en",
     "conversation_id": "1793796655512183145",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1793780306484285515",
@@ -4123,12 +4174,12 @@
     "retweet_count": 9,
     "quote_count": 8,
     "bookmark_count": 4,
-    "view_count": "298473",
+    "view_count": "298481",
     "lang": "en",
     "conversation_id": "1793780306484285515",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1793669890429358538",
@@ -4140,12 +4191,12 @@
     "retweet_count": 44,
     "quote_count": 0,
     "bookmark_count": 6,
-    "view_count": "100896",
+    "view_count": "100898",
     "lang": "fr",
     "conversation_id": "1793669887094927716",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1793669887094927716",
@@ -4157,12 +4208,12 @@
     "retweet_count": 73,
     "quote_count": 13,
     "bookmark_count": 15,
-    "view_count": "154296",
+    "view_count": "154300",
     "lang": "en",
     "conversation_id": "1793669887094927716",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739597
   },
   {
     "id": "1787884953876705769",
@@ -4170,16 +4221,16 @@
     "created_at": "Tue May 07 16:39:24 +0000 2024",
     "text": "same energy https://t.co/piNJhbGVin",
     "reply_count": 186,
-    "favorite_count": 5615,
+    "favorite_count": 5612,
     "retweet_count": 357,
     "quote_count": 43,
     "bookmark_count": 118,
-    "view_count": "579782",
+    "view_count": "579786",
     "lang": "en",
     "conversation_id": "1787884953876705769",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739600
   },
   {
     "id": "1787542849061626009",
@@ -4187,16 +4238,16 @@
     "created_at": "Mon May 06 18:00:00 +0000 2024",
     "text": "me inventing the mcflurry fries",
     "reply_count": 729,
-    "favorite_count": 6798,
+    "favorite_count": 6796,
     "retweet_count": 321,
     "quote_count": 354,
     "bookmark_count": 481,
-    "view_count": "19928335",
+    "view_count": "19928339",
     "lang": "en",
     "conversation_id": "1787542849061626009",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739600
   },
   {
     "id": "1785760296335822857",
@@ -4208,29 +4259,29 @@
     "retweet_count": 251,
     "quote_count": 44,
     "bookmark_count": 61,
-    "view_count": "356573",
+    "view_count": "356577",
     "lang": "en",
     "conversation_id": "1785760296335822857",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739600
   },
   {
     "id": "1785674044190175475",
     "tweet_url": "https://x.com/Wendys/status/1785674044190175475",
     "created_at": "Wed May 01 14:14:03 +0000 2024",
     "text": "McDonald’s announced plans to create their largest burger ever https://t.co/IMnQErb8sy",
-    "reply_count": 1157,
-    "favorite_count": 18651,
+    "reply_count": 1156,
+    "favorite_count": 18647,
     "retweet_count": 601,
     "quote_count": 2812,
     "bookmark_count": 1013,
-    "view_count": "5646199",
+    "view_count": "5646206",
     "lang": "en",
     "conversation_id": "1785674044190175475",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653190
+    "scraped_at": 1784739600
   },
   {
     "id": "1785401765271101734",
@@ -4238,16 +4289,16 @@
     "created_at": "Tue Apr 30 20:12:06 +0000 2024",
     "text": "Look between CAPS LOCK and RETURN on your keyboard. That’s the alphabet. Use it to write an original joke.",
     "reply_count": 111,
-    "favorite_count": 1501,
+    "favorite_count": 1502,
     "retweet_count": 193,
     "quote_count": 14,
     "bookmark_count": 40,
-    "view_count": "155680",
+    "view_count": "155684",
     "lang": "en",
     "conversation_id": "1785401765271101734",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1783201437113082357",
@@ -4259,12 +4310,12 @@
     "retweet_count": 93,
     "quote_count": 3,
     "bookmark_count": 16,
-    "view_count": "272097",
+    "view_count": "272102",
     "lang": "en",
     "conversation_id": "1783201437113082357",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1783192374044184957",
@@ -4272,16 +4323,16 @@
     "created_at": "Wed Apr 24 17:52:46 +0000 2024",
     "text": "You can get chili for $1 with purchase in the app today.\nWhich means you should get a @Cinnabon Pull-Apart to go with it and then like walk around and make people mad or sumthn. https://t.co/FGv8IS89zC",
     "reply_count": 51,
-    "favorite_count": 291,
-    "retweet_count": 57,
+    "favorite_count": 289,
+    "retweet_count": 56,
     "quote_count": 2,
     "bookmark_count": 11,
-    "view_count": "127066",
+    "view_count": "127071",
     "lang": "en",
     "conversation_id": "1783192374044184957",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1783121130837954590",
@@ -4289,16 +4340,16 @@
     "created_at": "Wed Apr 24 13:09:41 +0000 2024",
     "text": "REGGIE BUSH IS GETTING HIS HEISMAN BACK 🔥 (per @PeteThamel) https://t.co/WR19AowcCi",
     "reply_count": 27,
-    "favorite_count": 5371,
+    "favorite_count": 5372,
     "retweet_count": 867,
     "quote_count": 173,
     "bookmark_count": 28,
-    "view_count": "515690",
+    "view_count": "515697",
     "lang": "en",
     "conversation_id": "1783121130837954590",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1781058134250758398",
@@ -4306,16 +4357,16 @@
     "created_at": "Thu Apr 18 20:32:04 +0000 2024",
     "text": "You're welcome https://t.co/cJVqUJJ8u3",
     "reply_count": 156,
-    "favorite_count": 7330,
+    "favorite_count": 7327,
     "retweet_count": 426,
     "quote_count": 73,
     "bookmark_count": 95,
-    "view_count": "813527",
+    "view_count": "813532",
     "lang": "en",
     "conversation_id": "1781058134250758398",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1781022004847522155",
@@ -4327,12 +4378,12 @@
     "retweet_count": 51,
     "quote_count": 2,
     "bookmark_count": 7,
-    "view_count": "159976",
+    "view_count": "159978",
     "lang": "en",
     "conversation_id": "1781022004847522155",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1781013620115312711",
@@ -4343,13 +4394,13 @@
     "favorite_count": 151,
     "retweet_count": 19,
     "quote_count": 47,
-    "bookmark_count": 17,
-    "view_count": "847589",
+    "bookmark_count": 16,
+    "view_count": "847596",
     "lang": "en",
     "conversation_id": "1781013620115312711",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1779914355594727486",
@@ -4361,12 +4412,12 @@
     "retweet_count": 109,
     "quote_count": 12,
     "bookmark_count": 21,
-    "view_count": "202150",
+    "view_count": "202154",
     "lang": "en",
     "conversation_id": "1779914355594727486",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1778907911395107025",
@@ -4378,12 +4429,12 @@
     "retweet_count": 35,
     "quote_count": 1,
     "bookmark_count": 5,
-    "view_count": "102653",
+    "view_count": "102654",
     "lang": "fr",
     "conversation_id": "1778907905896435764",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1778907905896435764",
@@ -4395,12 +4446,12 @@
     "retweet_count": 55,
     "quote_count": 17,
     "bookmark_count": 32,
-    "view_count": "223563",
+    "view_count": "223566",
     "lang": "en",
     "conversation_id": "1778907905896435764",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1775209957358522399",
@@ -4408,16 +4459,16 @@
     "created_at": "Tue Apr 02 17:13:30 +0000 2024",
     "text": "New @Cinnabon Pull-Apart? It’s okay to have just a lil’ treat. 🥹",
     "reply_count": 113,
-    "favorite_count": 559,
+    "favorite_count": 558,
     "retweet_count": 48,
     "quote_count": 9,
     "bookmark_count": 8,
-    "view_count": "238993",
+    "view_count": "238996",
     "lang": "en",
     "conversation_id": "1775209957358522399",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1770483284897616104",
@@ -4429,12 +4480,12 @@
     "retweet_count": 51,
     "quote_count": 21,
     "bookmark_count": 13,
-    "view_count": "202581",
+    "view_count": "202585",
     "lang": "en",
     "conversation_id": "1770483284897616104",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1769903716776157419",
@@ -4446,12 +4497,12 @@
     "retweet_count": 131,
     "quote_count": 11,
     "bookmark_count": 28,
-    "view_count": "487160",
+    "view_count": "487162",
     "lang": "en",
     "conversation_id": "1769903716776157419",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1769882785836371981",
@@ -4463,12 +4514,12 @@
     "retweet_count": 23,
     "quote_count": 9,
     "bookmark_count": 9,
-    "view_count": "528627",
+    "view_count": "528629",
     "lang": "en",
     "conversation_id": "1769868742601953303",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1769784989338464723",
@@ -4480,12 +4531,12 @@
     "retweet_count": 60,
     "quote_count": 12,
     "bookmark_count": 22,
-    "view_count": "232119",
+    "view_count": "232120",
     "lang": "en",
     "conversation_id": "1769784989338464723",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1767684773659418706",
@@ -4497,12 +4548,12 @@
     "retweet_count": 66,
     "quote_count": 36,
     "bookmark_count": 19,
-    "view_count": "207319",
+    "view_count": "207323",
     "lang": "en",
     "conversation_id": "1767684773659418706",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1767666525698207989",
@@ -4514,12 +4565,12 @@
     "retweet_count": 141,
     "quote_count": 24,
     "bookmark_count": 56,
-    "view_count": "308056",
+    "view_count": "308060",
     "lang": "en",
     "conversation_id": "1767666525698207989",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1757905771189190791",
@@ -4531,12 +4582,12 @@
     "retweet_count": 52,
     "quote_count": 30,
     "bookmark_count": 37,
-    "view_count": "320644",
+    "view_count": "320648",
     "lang": "en",
     "conversation_id": "1757905771189190791",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1757549861858119986",
@@ -4548,12 +4599,12 @@
     "retweet_count": 21,
     "quote_count": 7,
     "bookmark_count": 14,
-    "view_count": "189182",
+    "view_count": "189189",
     "lang": "en",
     "conversation_id": "1757549861858119986",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1757109191762747848",
@@ -4561,16 +4612,16 @@
     "created_at": "Mon Feb 12 18:27:31 +0000 2024",
     "text": ". @joshcellars burgers are fun\nred wine is posh\nwanna pair up?\nnvm blame it on the Josh https://t.co/i8bRaSup6s",
     "reply_count": 72,
-    "favorite_count": 316,
+    "favorite_count": 315,
     "retweet_count": 30,
     "quote_count": 8,
     "bookmark_count": 9,
-    "view_count": "185529",
+    "view_count": "185532",
     "lang": "en",
     "conversation_id": "1757109191762747848",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1755700112045580732",
@@ -4582,12 +4633,12 @@
     "retweet_count": 21,
     "quote_count": 0,
     "bookmark_count": 10,
-    "view_count": "130323",
+    "view_count": "130325",
     "lang": "en",
     "conversation_id": "1755671017173774387",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739600
   },
   {
     "id": "1755671017173774387",
@@ -4599,12 +4650,12 @@
     "retweet_count": 60,
     "quote_count": 25,
     "bookmark_count": 80,
-    "view_count": "277833",
+    "view_count": "277841",
     "lang": "en",
     "conversation_id": "1755671017173774387",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739605
   },
   {
     "id": "1752389070351675762",
@@ -4612,16 +4663,16 @@
     "created_at": "Tue Jan 30 17:51:26 +0000 2024",
     "text": "Pookie looking absolutely fire https://t.co/zx9zjINi7m",
     "reply_count": 400,
-    "favorite_count": 9733,
-    "retweet_count": 853,
+    "favorite_count": 9731,
+    "retweet_count": 854,
     "quote_count": 114,
     "bookmark_count": 252,
-    "view_count": "603294",
+    "view_count": "603300",
     "lang": "en",
     "conversation_id": "1752389070351675762",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653194
+    "scraped_at": 1784739605
   },
   {
     "id": "1750997136404029658",
@@ -4629,16 +4680,16 @@
     "created_at": "Fri Jan 26 21:40:23 +0000 2024",
     "text": "https://t.co/A2e8OWmrfx",
     "reply_count": 354,
-    "favorite_count": 4621,
+    "favorite_count": 4622,
     "retweet_count": 385,
     "quote_count": 69,
-    "bookmark_count": 75,
-    "view_count": "569151",
+    "bookmark_count": 74,
+    "view_count": "569156",
     "lang": "zxx",
     "conversation_id": "1750997136404029658",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1750522723510493356",
@@ -4646,16 +4697,16 @@
     "created_at": "Thu Jan 25 14:15:15 +0000 2024",
     "text": "McDonald’s is releasing a Double Big Mac https://t.co/M8IhDWesyG",
     "reply_count": 3992,
-    "favorite_count": 33311,
-    "retweet_count": 1344,
-    "quote_count": 10504,
-    "bookmark_count": 1557,
-    "view_count": "25453157",
+    "favorite_count": 33309,
+    "retweet_count": 1343,
+    "quote_count": 10502,
+    "bookmark_count": 1556,
+    "view_count": "25453208",
     "lang": "en",
     "conversation_id": "1750522723510493356",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1748061377682387211",
@@ -4667,12 +4718,12 @@
     "retweet_count": 63,
     "quote_count": 11,
     "bookmark_count": 28,
-    "view_count": "253996",
+    "view_count": "253999",
     "lang": "en",
     "conversation_id": "1748061377682387211",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1747413044945117351",
@@ -4689,7 +4740,7 @@
     "conversation_id": "1747413044945117351",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1747408308141494598",
@@ -4701,12 +4752,12 @@
     "retweet_count": 221,
     "quote_count": 123,
     "bookmark_count": 56,
-    "view_count": "470562",
+    "view_count": "470571",
     "lang": "en",
     "conversation_id": "1747408308141494598",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1744381160086524197",
@@ -4718,12 +4769,12 @@
     "retweet_count": 180,
     "quote_count": 66,
     "bookmark_count": 43,
-    "view_count": "574732",
+    "view_count": "574757",
     "lang": "en",
     "conversation_id": "1744381160086524197",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1724894653793833227",
@@ -4735,12 +4786,12 @@
     "retweet_count": 28,
     "quote_count": 4,
     "bookmark_count": 12,
-    "view_count": "237142",
+    "view_count": "237147",
     "lang": "en",
     "conversation_id": "1724894653793833227",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1724568790820687971",
@@ -4748,16 +4799,16 @@
     "created_at": "Tue Nov 14 23:23:35 +0000 2023",
     "text": "https://t.co/2m6fIRFQvX",
     "reply_count": 250,
-    "favorite_count": 1535,
-    "retweet_count": 107,
+    "favorite_count": 1534,
+    "retweet_count": 106,
     "quote_count": 27,
     "bookmark_count": 47,
-    "view_count": "327173",
+    "view_count": "327176",
     "lang": "zxx",
     "conversation_id": "1724568790820687971",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1720890415690256753",
@@ -4765,16 +4816,16 @@
     "created_at": "Sat Nov 04 19:47:02 +0000 2023",
     "text": "helping @LisaBarlow7 get her rings insured today just in case. #BravoCon https://t.co/aH8xmU9sGB",
     "reply_count": 68,
-    "favorite_count": 796,
+    "favorite_count": 795,
     "retweet_count": 44,
     "quote_count": 5,
     "bookmark_count": 7,
-    "view_count": "249719",
+    "view_count": "249721",
     "lang": "en",
     "conversation_id": "1720890415690256753",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1720855479293731083",
@@ -4782,16 +4833,16 @@
     "created_at": "Sat Nov 04 17:28:12 +0000 2023",
     "text": "Attack this croissant am i right https://t.co/h3zS2Rfkhw",
     "reply_count": 100,
-    "favorite_count": 1806,
+    "favorite_count": 1804,
     "retweet_count": 182,
     "quote_count": 37,
     "bookmark_count": 55,
-    "view_count": "399473",
+    "view_count": "399477",
     "lang": "en",
     "conversation_id": "1720855479293731083",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1716894851499966760",
@@ -4799,16 +4850,16 @@
     "created_at": "Tue Oct 24 19:10:05 +0000 2023",
     "text": "WHERE IS WENDY",
     "reply_count": 355,
-    "favorite_count": 36354,
-    "retweet_count": 10256,
+    "favorite_count": 36345,
+    "retweet_count": 10255,
     "quote_count": 1843,
-    "bookmark_count": 1175,
-    "view_count": "2917829",
+    "bookmark_count": 1177,
+    "view_count": "2917847",
     "lang": "en",
     "conversation_id": "1716894851499966760",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1716838471950639260",
@@ -4816,16 +4867,16 @@
     "created_at": "Tue Oct 24 15:26:03 +0000 2023",
     "text": "Red Velvet's Seulgi, Irene, Joy and Yeri in mood samplers for ‘Chill Kill.’ Wendy's has yet to be released. https://t.co/Kfda6DJhrJ",
     "reply_count": 129,
-    "favorite_count": 10084,
-    "retweet_count": 2045,
+    "favorite_count": 10086,
+    "retweet_count": 2044,
     "quote_count": 440,
     "bookmark_count": 195,
-    "view_count": "2907760",
+    "view_count": "2907784",
     "lang": "en",
     "conversation_id": "1716838471950639260",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1708923043551338818",
@@ -4833,16 +4884,16 @@
     "created_at": "Mon Oct 02 19:12:58 +0000 2023",
     "text": "The Starting Lineup\nCorner Three Days Grace \nStep Back Sunday",
     "reply_count": 118,
-    "favorite_count": 1005,
+    "favorite_count": 1004,
     "retweet_count": 80,
     "quote_count": 9,
     "bookmark_count": 16,
-    "view_count": "739004",
+    "view_count": "739008",
     "lang": "en",
     "conversation_id": "1708923043551338818",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1708846678881513926",
@@ -4850,16 +4901,16 @@
     "created_at": "Mon Oct 02 14:09:31 +0000 2023",
     "text": "“I’m emo” \n\n- Jimmy Butler \n\n(Via @ByTimReynolds ) https://t.co/IrL9Nqqvyv",
     "reply_count": 977,
-    "favorite_count": 40088,
-    "retweet_count": 3870,
+    "favorite_count": 40087,
+    "retweet_count": 3868,
     "quote_count": 3970,
     "bookmark_count": 641,
-    "view_count": "5715961",
+    "view_count": "5715979",
     "lang": "en",
     "conversation_id": "1708846678881513926",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1705356808959787436",
@@ -4867,16 +4918,16 @@
     "created_at": "Fri Sep 22 23:02:01 +0000 2023",
     "text": "Fun fact, these are doubloons. https://t.co/GjW2QACWt3",
     "reply_count": 136,
-    "favorite_count": 698,
+    "favorite_count": 697,
     "retweet_count": 48,
     "quote_count": 7,
     "bookmark_count": 10,
-    "view_count": "303124",
+    "view_count": "303126",
     "lang": "en",
     "conversation_id": "1705356808959787436",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1704183136916017577",
@@ -4888,12 +4939,12 @@
     "retweet_count": 81,
     "quote_count": 21,
     "bookmark_count": 18,
-    "view_count": "365054",
+    "view_count": "365056",
     "lang": "en",
     "conversation_id": "1704183136916017577",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1703862493611802817",
@@ -4901,16 +4952,16 @@
     "created_at": "Mon Sep 18 20:04:09 +0000 2023",
     "text": "Today is the day that is good and nothing bad happens. Yup, National Cheeseburger day. Celebrate with a 1 cent jbc with any purchase in the app.",
     "reply_count": 840,
-    "favorite_count": 1344,
+    "favorite_count": 1343,
     "retweet_count": 79,
     "quote_count": 58,
     "bookmark_count": 11,
-    "view_count": "569841",
+    "view_count": "569849",
     "lang": "en",
     "conversation_id": "1703862493611802817",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1699798695691395159",
@@ -4918,16 +4969,16 @@
     "created_at": "Thu Sep 07 14:56:04 +0000 2023",
     "text": "https://t.co/OQOqI9VO8g",
     "reply_count": 46,
-    "favorite_count": 395,
+    "favorite_count": 394,
     "retweet_count": 20,
     "quote_count": 8,
     "bookmark_count": 30,
-    "view_count": "205745",
+    "view_count": "205746",
     "lang": "zxx",
     "conversation_id": "1699796550636200229",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1699796550636200229",
@@ -4935,16 +4986,16 @@
     "created_at": "Thu Sep 07 14:47:33 +0000 2023",
     "text": "https://t.co/l4bH6S4RXz",
     "reply_count": 188,
-    "favorite_count": 1136,
+    "favorite_count": 1135,
     "retweet_count": 68,
     "quote_count": 19,
     "bookmark_count": 27,
-    "view_count": "326711",
+    "view_count": "326714",
     "lang": "zxx",
     "conversation_id": "1699796550636200229",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1699409208628650328",
@@ -4952,16 +5003,16 @@
     "created_at": "Wed Sep 06 13:08:23 +0000 2023",
     "text": "Stop in for a weather appropriate pumpkin spice frosty starting 9/12! https://t.co/ZnEgpFDdsD",
     "reply_count": 160,
-    "favorite_count": 731,
+    "favorite_count": 730,
     "retweet_count": 110,
     "quote_count": 141,
     "bookmark_count": 24,
-    "view_count": "478731",
+    "view_count": "478733",
     "lang": "en",
     "conversation_id": "1699409208628650328",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1692596616299999573",
@@ -4969,16 +5020,16 @@
     "created_at": "Fri Aug 18 17:57:34 +0000 2023",
     "text": "https://t.co/PZH0rWXOC4",
     "reply_count": 217,
-    "favorite_count": 3942,
+    "favorite_count": 3940,
     "retweet_count": 203,
     "quote_count": 39,
     "bookmark_count": 40,
-    "view_count": "784304",
+    "view_count": "784308",
     "lang": "zxx",
     "conversation_id": "1692596616299999573",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1692415477480411288",
@@ -4990,12 +5041,12 @@
     "retweet_count": 0,
     "quote_count": 3,
     "bookmark_count": 1,
-    "view_count": "779963",
+    "view_count": "779968",
     "lang": "en",
     "conversation_id": "1692415477480411288",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739605
   },
   {
     "id": "1684338270325424129",
@@ -5003,16 +5054,16 @@
     "created_at": "Wed Jul 26 23:01:51 +0000 2023",
     "text": "My red flag is thinking she still thinks about me https://t.co/AYfjEK0Gve",
     "reply_count": 210,
-    "favorite_count": 1956,
+    "favorite_count": 1955,
     "retweet_count": 55,
     "quote_count": 11,
     "bookmark_count": 19,
-    "view_count": "511143",
+    "view_count": "511146",
     "lang": "en",
     "conversation_id": "1684338270325424129",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739610
   },
   {
     "id": "1683273880004173824",
@@ -5020,16 +5071,16 @@
     "created_at": "Mon Jul 24 00:32:21 +0000 2023",
     "text": "That’s his most expensive X yet 😮",
     "reply_count": 171,
-    "favorite_count": 4383,
+    "favorite_count": 4380,
     "retweet_count": 315,
     "quote_count": 54,
     "bookmark_count": 28,
-    "view_count": "708582",
+    "view_count": "708584",
     "lang": "en",
     "conversation_id": "1683273880004173824",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653199
+    "scraped_at": 1784739610
   },
   {
     "id": "1681758534982148097",
@@ -5037,16 +5088,16 @@
     "created_at": "Wed Jul 19 20:10:54 +0000 2023",
     "text": "F*dge it. 27 minutes of food footage https://t.co/sgKlje7vmI",
     "reply_count": 207,
-    "favorite_count": 1267,
+    "favorite_count": 1266,
     "retweet_count": 152,
     "quote_count": 25,
     "bookmark_count": 80,
-    "view_count": "379701",
+    "view_count": "379704",
     "lang": "en",
     "conversation_id": "1681758534982148097",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1677057469187518465",
@@ -5054,16 +5105,16 @@
     "created_at": "Thu Jul 06 20:50:33 +0000 2023",
     "text": "I AM SUING OUR THREADS ACCOUNT",
     "reply_count": 464,
-    "favorite_count": 6451,
+    "favorite_count": 6453,
     "retweet_count": 324,
     "quote_count": 58,
     "bookmark_count": 45,
-    "view_count": "963023",
+    "view_count": "963027",
     "lang": "en",
     "conversation_id": "1677057469187518465",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1674801534251552769",
@@ -5071,16 +5122,16 @@
     "created_at": "Fri Jun 30 15:26:16 +0000 2023",
     "text": "Straw #Barbie Frosty? https://t.co/G92L2Fo8f8",
     "reply_count": 287,
-    "favorite_count": 1686,
+    "favorite_count": 1685,
     "retweet_count": 123,
     "quote_count": 36,
     "bookmark_count": 21,
-    "view_count": "491272",
+    "view_count": "491277",
     "lang": "en",
     "conversation_id": "1674801534251552769",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1673337925763776513",
@@ -5088,16 +5139,16 @@
     "created_at": "Mon Jun 26 14:30:25 +0000 2023",
     "text": "And Baconate https://t.co/IUvcqDW4f4",
     "reply_count": 103,
-    "favorite_count": 894,
+    "favorite_count": 893,
     "retweet_count": 98,
     "quote_count": 7,
     "bookmark_count": 17,
-    "view_count": "692986",
+    "view_count": "692990",
     "lang": "en",
     "conversation_id": "1673337925763776513",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1673334051069997057",
@@ -5105,16 +5156,16 @@
     "created_at": "Mon Jun 26 14:15:01 +0000 2023",
     "text": ".@Wendys Shake...",
     "reply_count": 19,
-    "favorite_count": 351,
+    "favorite_count": 350,
     "retweet_count": 17,
     "quote_count": 1,
     "bookmark_count": 0,
-    "view_count": "683024",
+    "view_count": "683029",
     "lang": "en",
     "conversation_id": "1673334051069997057",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1671254412919205888",
@@ -5126,12 +5177,12 @@
     "retweet_count": 87,
     "quote_count": 24,
     "bookmark_count": 30,
-    "view_count": "378458",
+    "view_count": "378461",
     "lang": "zxx",
     "conversation_id": "1671254412919205888",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1669414854078218240",
@@ -5143,12 +5194,12 @@
     "retweet_count": 123,
     "quote_count": 27,
     "bookmark_count": 34,
-    "view_count": "455549",
+    "view_count": "455558",
     "lang": "zxx",
     "conversation_id": "1669414854078218240",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1668661154325966852",
@@ -5156,16 +5207,16 @@
     "created_at": "Tue Jun 13 16:46:36 +0000 2023",
     "text": "https://t.co/MbvA7eagxO",
     "reply_count": 114,
-    "favorite_count": 6958,
+    "favorite_count": 6959,
     "retweet_count": 534,
     "quote_count": 55,
     "bookmark_count": 82,
-    "view_count": "2167972",
+    "view_count": "2167976",
     "lang": "zxx",
     "conversation_id": "1668661154325966852",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1667183491551821832",
@@ -5177,12 +5228,12 @@
     "retweet_count": 0,
     "quote_count": 2,
     "bookmark_count": 2,
-    "view_count": "1613555",
+    "view_count": "1613560",
     "lang": "en",
     "conversation_id": "1666774094166073344",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1664302314826416129",
@@ -5190,16 +5241,16 @@
     "created_at": "Thu Jun 01 16:06:07 +0000 2023",
     "text": "Bet. Starting 6/5 everyone can get a free small Frosty in the Wendy’s app.",
     "reply_count": 142,
-    "favorite_count": 673,
+    "favorite_count": 674,
     "retweet_count": 75,
     "quote_count": 10,
     "bookmark_count": 18,
-    "view_count": "486786",
+    "view_count": "486789",
     "lang": "en",
     "conversation_id": "1664302314826416129",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1663376242433720321",
@@ -5211,12 +5262,12 @@
     "retweet_count": 165,
     "quote_count": 44,
     "bookmark_count": 25,
-    "view_count": "483646",
+    "view_count": "483649",
     "lang": "en",
     "conversation_id": "1663376242433720321",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1662099102618857473",
@@ -5233,7 +5284,7 @@
     "conversation_id": "1662098257575649282",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1662098257575649282",
@@ -5245,12 +5296,12 @@
     "retweet_count": 63,
     "quote_count": 22,
     "bookmark_count": 24,
-    "view_count": "401926",
+    "view_count": "401928",
     "lang": "en",
     "conversation_id": "1662098257575649282",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1661089747027017748",
@@ -5262,12 +5313,12 @@
     "retweet_count": 8,
     "quote_count": 0,
     "bookmark_count": 2,
-    "view_count": "220708",
+    "view_count": "220709",
     "lang": "en",
     "conversation_id": "1661013813658009603",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1661013813658009603",
@@ -5275,16 +5326,16 @@
     "created_at": "Tue May 23 14:18:47 +0000 2023",
     "text": "Are you a bacon person or a sausage person? @ us and we’ll tell you exactly what you are based on your profile. Which is probably really unique.",
     "reply_count": 781,
-    "favorite_count": 718,
+    "favorite_count": 719,
     "retweet_count": 25,
     "quote_count": 40,
     "bookmark_count": 5,
-    "view_count": "496802",
+    "view_count": "496808",
     "lang": "en",
     "conversation_id": "1661013813658009603",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1659651535268093953",
@@ -5296,12 +5347,12 @@
     "retweet_count": 104,
     "quote_count": 11,
     "bookmark_count": 7,
-    "view_count": "351655",
+    "view_count": "351658",
     "lang": "en",
     "conversation_id": "1659651535268093953",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1658178790713876486",
@@ -5313,12 +5364,12 @@
     "retweet_count": 37,
     "quote_count": 13,
     "bookmark_count": 4,
-    "view_count": "263341",
+    "view_count": "263344",
     "lang": "en",
     "conversation_id": "1658178790713876486",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1656345646134353921",
@@ -5330,12 +5381,12 @@
     "retweet_count": 79,
     "quote_count": 51,
     "bookmark_count": 73,
-    "view_count": "385669",
+    "view_count": "385674",
     "lang": "en",
     "conversation_id": "1656345646134353921",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1655950878724202499",
@@ -5347,12 +5398,12 @@
     "retweet_count": 31,
     "quote_count": 8,
     "bookmark_count": 11,
-    "view_count": "266765",
+    "view_count": "266767",
     "lang": "en",
     "conversation_id": "1655950878724202499",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1654524291231129600",
@@ -5360,16 +5411,16 @@
     "created_at": "Fri May 05 16:31:45 +0000 2023",
     "text": "https://t.co/PBcoTxw1zV",
     "reply_count": 194,
-    "favorite_count": 2520,
-    "retweet_count": 166,
+    "favorite_count": 2518,
+    "retweet_count": 165,
     "quote_count": 30,
     "bookmark_count": 35,
-    "view_count": "329391",
+    "view_count": "329394",
     "lang": "zxx",
     "conversation_id": "1654524291231129600",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739610
   },
   {
     "id": "1654284843490988033",
@@ -5386,7 +5437,7 @@
     "conversation_id": "1654284843490988033",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739615
   },
   {
     "id": "1654276971214299136",
@@ -5398,12 +5449,12 @@
     "retweet_count": 23,
     "quote_count": 0,
     "bookmark_count": 4,
-    "view_count": "226622",
+    "view_count": "226632",
     "lang": "en",
     "conversation_id": "1654276971214299136",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739615
   },
   {
     "id": "1653824235846901769",
@@ -5415,12 +5466,12 @@
     "retweet_count": 34,
     "quote_count": 5,
     "bookmark_count": 13,
-    "view_count": "250383",
+    "view_count": "250385",
     "lang": "en",
     "conversation_id": "1653824235846901769",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653204
+    "scraped_at": 1784739615
   },
   {
     "id": "1651965168270671872",
@@ -5428,16 +5479,16 @@
     "created_at": "Fri Apr 28 15:02:42 +0000 2023",
     "text": "https://t.co/dyZwO11Voc",
     "reply_count": 323,
-    "favorite_count": 4011,
+    "favorite_count": 4010,
     "retweet_count": 171,
     "quote_count": 21,
     "bookmark_count": 39,
-    "view_count": "483910",
+    "view_count": "483913",
     "lang": "zxx",
     "conversation_id": "1651965168270671872",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1650890952855150592",
@@ -5449,12 +5500,12 @@
     "retweet_count": 31,
     "quote_count": 8,
     "bookmark_count": 9,
-    "view_count": "495526",
+    "view_count": "495530",
     "lang": "en",
     "conversation_id": "1650890952855150592",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1650820225728741378",
@@ -5466,12 +5517,12 @@
     "retweet_count": 1,
     "quote_count": 1,
     "bookmark_count": 1,
-    "view_count": "503216",
+    "view_count": "503222",
     "lang": "en",
     "conversation_id": "1650820225728741378",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1648417729508958215",
@@ -5479,16 +5530,16 @@
     "created_at": "Tue Apr 18 20:06:27 +0000 2023",
     "text": "Where’s the beef?",
     "reply_count": 385,
-    "favorite_count": 3709,
-    "retweet_count": 193,
+    "favorite_count": 3705,
+    "retweet_count": 192,
     "quote_count": 48,
     "bookmark_count": 32,
-    "view_count": "1436427",
+    "view_count": "1436433",
     "lang": "en",
     "conversation_id": "1648417729508958215",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1648372138863214613",
@@ -5496,16 +5547,16 @@
     "created_at": "Tue Apr 18 17:05:17 +0000 2023",
     "text": "This is where the yellow boxes are 🟨",
     "reply_count": 55,
-    "favorite_count": 1297,
+    "favorite_count": 1295,
     "retweet_count": 57,
     "quote_count": 3,
     "bookmark_count": 9,
-    "view_count": "569955",
+    "view_count": "569958",
     "lang": "en",
     "conversation_id": "1648372138863214613",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1648334094319882240",
@@ -5517,12 +5568,12 @@
     "retweet_count": 7,
     "quote_count": 42,
     "bookmark_count": 9,
-    "view_count": "1421745",
+    "view_count": "1421752",
     "lang": "en",
     "conversation_id": "1648334094319882240",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1646139417172783117",
@@ -5530,16 +5581,16 @@
     "created_at": "Wed Apr 12 13:13:15 +0000 2023",
     "text": "Play the full clip 😉",
     "reply_count": 46,
-    "favorite_count": 586,
+    "favorite_count": 584,
     "retweet_count": 45,
     "quote_count": 1,
     "bookmark_count": 22,
-    "view_count": "482565",
+    "view_count": "482568",
     "lang": "en",
     "conversation_id": "1646139417172783117",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1646136173037772800",
@@ -5548,15 +5599,15 @@
     "text": "*clears throat* It’s #NationalRoastDay on TikTok https://t.co/YhNuzeZpuP",
     "reply_count": 327,
     "favorite_count": 2279,
-    "retweet_count": 147,
+    "retweet_count": 146,
     "quote_count": 59,
     "bookmark_count": 78,
-    "view_count": "749606",
+    "view_count": "749609",
     "lang": "en",
     "conversation_id": "1646136173037772800",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1646128960802111489",
@@ -5568,12 +5619,12 @@
     "retweet_count": 10,
     "quote_count": 5,
     "bookmark_count": 5,
-    "view_count": "530211",
+    "view_count": "530215",
     "lang": "en",
     "conversation_id": "1646128960802111489",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1644140500218179585",
@@ -5581,16 +5632,16 @@
     "created_at": "Fri Apr 07 00:50:16 +0000 2023",
     "text": "I’m a burger girl, in a burger world https://t.co/E5UsSIHwBE",
     "reply_count": 213,
-    "favorite_count": 2043,
+    "favorite_count": 2042,
     "retweet_count": 162,
     "quote_count": 24,
     "bookmark_count": 32,
-    "view_count": "421396",
+    "view_count": "421400",
     "lang": "en",
     "conversation_id": "1644140500218179585",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1644025053384679530",
@@ -5602,12 +5653,12 @@
     "retweet_count": 19,
     "quote_count": 2,
     "bookmark_count": 3,
-    "view_count": "291836",
+    "view_count": "291838",
     "lang": "en",
     "conversation_id": "1644025053384679530",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1641560467918270465",
@@ -5615,16 +5666,16 @@
     "created_at": "Thu Mar 30 21:58:08 +0000 2023",
     "text": "Your hour starts now!\n\nFrom now until 7 PM EDT get up to ❗️$30 off❗️ when you add a Biggie Bag to your Wendy's DoorDash order. DON'T FORGET: make sure your cart has at least a $12 subtotal before you apply the code. \n\nPromo code BIGGIE",
     "reply_count": 4446,
-    "favorite_count": 1670,
+    "favorite_count": 1669,
     "retweet_count": 169,
     "quote_count": 332,
     "bookmark_count": 91,
-    "view_count": "2595510",
+    "view_count": "2595517",
     "lang": "en",
     "conversation_id": "1641560467918270465",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1641209202222723073",
@@ -5632,16 +5683,16 @@
     "created_at": "Wed Mar 29 22:42:20 +0000 2023",
     "text": "This Thurs, 3/30 &amp; Fri, 3/31 from 6 – 7 PM EDT\n get ❗$30 off❗ when you add a Biggie Bag to your Wendy’s DoorDash order of $12 or more.\n\nPromo code BIGGIE https://t.co/SUGr1eMNMl",
     "reply_count": 1995,
-    "favorite_count": 1956,
+    "favorite_count": 1955,
     "retweet_count": 276,
     "quote_count": 384,
     "bookmark_count": 197,
-    "view_count": "1644528",
+    "view_count": "1644535",
     "lang": "en",
     "conversation_id": "1641209202222723073",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1633912561732145156",
@@ -5649,16 +5700,16 @@
     "created_at": "Thu Mar 09 19:28:06 +0000 2023",
     "text": "say hi before you keep scrolling pls",
     "reply_count": 3065,
-    "favorite_count": 10749,
+    "favorite_count": 10746,
     "retweet_count": 287,
     "quote_count": 39,
     "bookmark_count": 56,
-    "view_count": "2235284",
+    "view_count": "2235288",
     "lang": "en",
     "conversation_id": "1633912561732145156",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1626647347584286720",
@@ -5666,33 +5717,33 @@
     "created_at": "Fri Feb 17 18:18:43 +0000 2023",
     "text": "That’s the perfect place for people that don’t like beef tbh",
     "reply_count": 290,
-    "favorite_count": 5141,
+    "favorite_count": 5142,
     "retweet_count": 148,
     "quote_count": 27,
     "bookmark_count": 16,
-    "view_count": "1005026",
+    "view_count": "1005029",
     "lang": "en",
     "conversation_id": "1626647347584286720",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1625171742267256839",
     "tweet_url": "https://x.com/Wendys/status/1625171742267256839",
     "created_at": "Mon Feb 13 16:35:12 +0000 2023",
     "text": "Just kidding, found it. #Daytona500 #NASCAR",
-    "reply_count": 161,
+    "reply_count": 160,
     "favorite_count": 2069,
     "retweet_count": 152,
     "quote_count": 15,
     "bookmark_count": 14,
-    "view_count": "730992",
+    "view_count": "730996",
     "lang": "en",
     "conversation_id": "1625171742267256839",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1625171069064839168",
@@ -5704,12 +5755,12 @@
     "retweet_count": 391,
     "quote_count": 191,
     "bookmark_count": 29,
-    "view_count": "1643892",
+    "view_count": "1643898",
     "lang": "und",
     "conversation_id": "1625171069064839168",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1625165317189009409",
@@ -5717,16 +5768,16 @@
     "created_at": "Mon Feb 13 16:09:40 +0000 2023",
     "text": "Where's the beef?",
     "reply_count": 1078,
-    "favorite_count": 5519,
+    "favorite_count": 5517,
     "retweet_count": 233,
     "quote_count": 114,
     "bookmark_count": 27,
-    "view_count": "2034342",
+    "view_count": "2034345",
     "lang": "en",
     "conversation_id": "1625165317189009409",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1623778043176124416",
@@ -5734,16 +5785,16 @@
     "created_at": "Thu Feb 09 20:17:08 +0000 2023",
     "text": "I want some",
     "reply_count": 223,
-    "favorite_count": 2270,
+    "favorite_count": 2271,
     "retweet_count": 68,
     "quote_count": 12,
     "bookmark_count": 11,
-    "view_count": "828689",
+    "view_count": "828691",
     "lang": "en",
     "conversation_id": "1623778043176124416",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1623714551152648193",
@@ -5755,12 +5806,12 @@
     "retweet_count": 202,
     "quote_count": 13,
     "bookmark_count": 19,
-    "view_count": "689368",
+    "view_count": "689371",
     "lang": "en",
     "conversation_id": "1623714551152648193",
     "is_quote_status": true,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1623545691305046016",
@@ -5768,16 +5819,16 @@
     "created_at": "Thu Feb 09 04:53:51 +0000 2023",
     "text": "A successful Trios Title defense means one thing.. an ELITE @Wendys feast. https://t.co/aA03WhTYrA",
     "reply_count": 218,
-    "favorite_count": 6034,
-    "retweet_count": 457,
+    "favorite_count": 6032,
+    "retweet_count": 456,
     "quote_count": 73,
-    "bookmark_count": 39,
-    "view_count": "1002162",
+    "bookmark_count": 38,
+    "view_count": "1002166",
     "lang": "en",
     "conversation_id": "1623545691305046016",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1620815679707582465",
@@ -5785,16 +5836,16 @@
     "created_at": "Wed Feb 01 16:05:45 +0000 2023",
     "text": "https://t.co/GIrRuNlcDy",
     "reply_count": 1270,
-    "favorite_count": 47164,
-    "retweet_count": 1910,
+    "favorite_count": 47156,
+    "retweet_count": 1909,
     "quote_count": 301,
     "bookmark_count": 377,
-    "view_count": "3232808",
+    "view_count": "3232812",
     "lang": "zxx",
     "conversation_id": "1620815679707582465",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1620468613915504645",
@@ -5802,16 +5853,16 @@
     "created_at": "Tue Jan 31 17:06:39 +0000 2023",
     "text": "Put out garlic fries and didn’t even think about how it would make the vampires feel. My bad, y’all. That one’s on me.",
     "reply_count": 261,
-    "favorite_count": 7871,
+    "favorite_count": 7870,
     "retweet_count": 342,
     "quote_count": 42,
     "bookmark_count": 38,
-    "view_count": "817415",
+    "view_count": "817419",
     "lang": "en",
     "conversation_id": "1620468613915504645",
     "is_quote_status": false,
     "source": "browser_graphql",
-    "scraped_at": 1784653209
+    "scraped_at": 1784739615
   },
   {
     "id": "1619013166251544577",

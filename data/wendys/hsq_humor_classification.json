@@ -11,22 +11,94 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 990,
+  "post_count": 993,
   "label_counts": {
-    "Non-humorous brand message": 621,
-    "Self-enhancing humor": 350,
+    "Non-humorous brand message": 623,
+    "Self-enhancing humor": 351,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13037564353605807,
-    "Self-enhancing humor": 0.29174004155681516,
-    "Aggressive humor": 0.1142443018872379,
-    "Self-defeating humor": 0.11499705560307837,
-    "Non-humorous brand message": 0.34864295853214866
+    "Affiliative humor": 0.13034888953291732,
+    "Self-enhancing humor": 0.29143604034021464,
+    "Aggressive humor": 0.11419978580182437,
+    "Self-defeating humor": 0.11502817904103964,
+    "Non-humorous brand message": 0.34898710640722724
   },
   "posts": [
+    {
+      "id": "2079663592085815508",
+      "tweet_url": "https://x.com/Wendys/status/2079663592085815508",
+      "created_at": "Tue Jul 21 20:23:33 +0000 2026",
+      "text": "watching the way nolan intended https://t.co/WdFSWchyxH",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3340071439743042,
+      "scores": {
+        "Non-humorous brand message": 0.3340071439743042,
+        "Self-enhancing humor": 0.26296281814575195,
+        "Self-defeating humor": 0.15229643881320953,
+        "Affiliative humor": 0.13889876008033752,
+        "Aggressive humor": 0.11183483898639679
+      }
+    },
+    {
+      "id": "2079625880997867527",
+      "tweet_url": "https://x.com/Wendys/status/2079625880997867527",
+      "created_at": "Tue Jul 21 17:53:42 +0000 2026",
+      "text": "Try parallel parking a $1 frosty",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.8140566945075989,
+      "scores": {
+        "Non-humorous brand message": 0.8140566945075989,
+        "Self-enhancing humor": 0.05884886160492897,
+        "Affiliative humor": 0.05402122810482979,
+        "Self-defeating humor": 0.040254805237054825,
+        "Aggressive humor": 0.03281843662261963
+      }
+    },
+    {
+      "id": "2079222204747624629",
+      "tweet_url": "https://x.com/Wendys/status/2079222204747624629",
+      "created_at": "Mon Jul 20 15:09:38 +0000 2026",
+      "text": "why are lyft drivers showing up as a @Wendys Frosty 😭☠️ https://t.co/hkv8i4r6Gj",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.25153523683547974,
+      "scores": {
+        "Self-enhancing humor": 0.25153523683547974,
+        "Non-humorous brand message": 0.23960387706756592,
+        "Self-defeating humor": 0.1833454966545105,
+        "Affiliative humor": 0.17164021730422974,
+        "Aggressive humor": 0.15387515723705292
+      }
+    },
     {
       "id": "2078223656019247576",
       "tweet_url": "https://x.com/Wendys/status/2078223656019247576",
@@ -23788,5 +23860,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-21T17:08:31.842943+00:00"
+  "generated_at": "2026-07-22T17:08:23.450635+00:00"
 }

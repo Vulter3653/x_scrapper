@@ -7,18 +7,78 @@
     "neutral",
     "negative"
   ],
-  "post_count": 990,
+  "post_count": 993,
   "label_counts": {
-    "negative": 498,
+    "negative": 501,
     "positive": 454,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45775274862311877,
-    "neutral": 0.12965577027229522,
-    "negative": 0.41259147927335243
+    "positive": 0.4572155508846992,
+    "neutral": 0.12978076441453237,
+    "negative": 0.4130036827812785
   },
   "posts": [
+    {
+      "id": "2079663592085815508",
+      "tweet_url": "https://x.com/Wendys/status/2079663592085815508",
+      "created_at": "Tue Jul 21 20:23:33 +0000 2026",
+      "text": "watching the way nolan intended https://t.co/WdFSWchyxH",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.4697672128677368,
+      "scores": {
+        "negative": 0.4697672128677368,
+        "positive": 0.3062317371368408,
+        "neutral": 0.22400103509426117
+      }
+    },
+    {
+      "id": "2079625880997867527",
+      "tweet_url": "https://x.com/Wendys/status/2079625880997867527",
+      "created_at": "Tue Jul 21 17:53:42 +0000 2026",
+      "text": "Try parallel parking a $1 frosty",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.5349037051200867,
+      "scores": {
+        "negative": 0.5349037051200867,
+        "neutral": 0.2372342050075531,
+        "positive": 0.22786203026771545
+      }
+    },
+    {
+      "id": "2079222204747624629",
+      "tweet_url": "https://x.com/Wendys/status/2079222204747624629",
+      "created_at": "Mon Jul 20 15:09:38 +0000 2026",
+      "text": "why are lyft drivers showing up as a @Wendys Frosty 😭☠️ https://t.co/hkv8i4r6Gj",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.6424216032028198,
+      "scores": {
+        "negative": 0.6424216032028198,
+        "positive": 0.30572712421417236,
+        "neutral": 0.05185125395655632
+      }
+    },
     {
       "id": "2078223656019247576",
       "tweet_url": "https://x.com/Wendys/status/2078223656019247576",
@@ -19820,5 +19880,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-21T17:05:11.523064+00:00"
+  "generated_at": "2026-07-22T17:05:07.062052+00:00"
 }
