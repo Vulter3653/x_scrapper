@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 993,
+  "post_count": 994,
   "label_counts": {
-    "negative": 501,
+    "negative": 502,
     "positive": 454,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.4572155508846992,
-    "neutral": 0.12978076441453237,
-    "negative": 0.4130036827812785
+    "positive": 0.4570281362486394,
+    "neutral": 0.12981174243450697,
+    "negative": 0.4131601193693125
   },
   "posts": [
+    {
+      "id": "2080319015252083002",
+      "tweet_url": "https://x.com/Wendys/status/2080319015252083002",
+      "created_at": "Thu Jul 23 15:47:58 +0000 2026",
+      "text": "you can’t hide fresh, but now you CAN hide in a Wendy’s 👀  going live at 1pm EST. see u there (but will u see us heheh) https://t.co/0qrAjUii4E https://t.co/vfsEH8DLMF",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.5685016512870789,
+      "scores": {
+        "negative": 0.5685016512870789,
+        "positive": 0.2709254026412964,
+        "neutral": 0.16057291626930237
+      }
+    },
     {
       "id": "2079663592085815508",
       "tweet_url": "https://x.com/Wendys/status/2079663592085815508",
@@ -19880,5 +19900,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-22T17:05:07.062052+00:00"
+  "generated_at": "2026-07-23T17:12:04.594530+00:00"
 }

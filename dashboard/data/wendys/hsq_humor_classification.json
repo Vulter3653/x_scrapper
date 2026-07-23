@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 993,
+  "post_count": 994,
   "label_counts": {
-    "Non-humorous brand message": 623,
+    "Non-humorous brand message": 624,
     "Self-enhancing humor": 351,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13034888953291732,
-    "Self-enhancing humor": 0.29143604034021464,
-    "Aggressive humor": 0.11419978580182437,
-    "Self-defeating humor": 0.11502817904103964,
-    "Non-humorous brand message": 0.34898710640722724
+    "Affiliative humor": 0.13038017182394027,
+    "Self-enhancing humor": 0.2913906385319146,
+    "Aggressive humor": 0.11424361527542257,
+    "Self-defeating humor": 0.11509371390688032,
+    "Non-humorous brand message": 0.34889186153896207
   },
   "posts": [
+    {
+      "id": "2080319015252083002",
+      "tweet_url": "https://x.com/Wendys/status/2080319015252083002",
+      "created_at": "Thu Jul 23 15:47:58 +0000 2026",
+      "text": "you can’t hide fresh, but now you CAN hide in a Wendy’s 👀  going live at 1pm EST. see u there (but will u see us heheh) https://t.co/0qrAjUii4E https://t.co/vfsEH8DLMF",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.25431370735168457,
+      "scores": {
+        "Non-humorous brand message": 0.25431370735168457,
+        "Self-enhancing humor": 0.2463066428899765,
+        "Self-defeating humor": 0.18016983568668365,
+        "Affiliative humor": 0.16144348680973053,
+        "Aggressive humor": 0.15776628255844116
+      }
+    },
     {
       "id": "2079663592085815508",
       "tweet_url": "https://x.com/Wendys/status/2079663592085815508",
@@ -23860,5 +23884,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-22T17:08:23.450635+00:00"
+  "generated_at": "2026-07-23T17:15:27.888336+00:00"
 }
