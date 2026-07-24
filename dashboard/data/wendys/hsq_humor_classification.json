@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 994,
+  "post_count": 996,
   "label_counts": {
-    "Non-humorous brand message": 624,
+    "Non-humorous brand message": 626,
     "Self-enhancing humor": 351,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13038017182394027,
-    "Self-enhancing humor": 0.2913906385319146,
-    "Aggressive humor": 0.11424361527542257,
-    "Self-defeating humor": 0.11509371390688032,
-    "Non-humorous brand message": 0.34889186153896207
+    "Affiliative humor": 0.13046136990539733,
+    "Self-enhancing humor": 0.29125289980604513,
+    "Aggressive humor": 0.11430396003393307,
+    "Self-defeating humor": 0.11505717168474218,
+    "Non-humorous brand message": 0.34892459976452733
   },
   "posts": [
+    {
+      "id": "2080664263039848809",
+      "tweet_url": "https://x.com/Wendys/status/2080664263039848809",
+      "created_at": "Fri Jul 24 14:39:51 +0000 2026",
+      "text": "$1 Frosty summer babyyyyyy #DollarFrostySummer\n\n#1Frosty\n#DollarFrosty\n#1DollarFrosty\n#FrostySummer",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3907458484172821,
+      "scores": {
+        "Non-humorous brand message": 0.3907458484172821,
+        "Affiliative humor": 0.186184823513031,
+        "Self-enhancing humor": 0.18310454487800598,
+        "Aggressive humor": 0.1473463475704193,
+        "Self-defeating humor": 0.09261848777532578
+      }
+    },
+    {
+      "id": "2080373704375087324",
+      "tweet_url": "https://x.com/Wendys/status/2080373704375087324",
+      "created_at": "Thu Jul 23 19:25:17 +0000 2026",
+      "text": "chameleons win! wanna play in the Wendy’s? subscribe to our custom map: https://t.co/yxTy8droTu https://t.co/8rILnHOuDq",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3396451473236084,
+      "scores": {
+        "Non-humorous brand message": 0.3396451473236084,
+        "Self-enhancing humor": 0.2624889612197876,
+        "Affiliative humor": 0.1554488092660904,
+        "Aggressive humor": 0.14124426245689392,
+        "Self-defeating humor": 0.10117288678884506
+      }
+    },
     {
       "id": "2080319015252083002",
       "tweet_url": "https://x.com/Wendys/status/2080319015252083002",
@@ -23884,5 +23932,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-23T17:15:27.888336+00:00"
+  "generated_at": "2026-07-24T17:18:48.633607+00:00"
 }
