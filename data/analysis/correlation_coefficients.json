@@ -2,820 +2,820 @@
   {
     "variable_a": "likes",
     "variable_b": "replies",
-    "pearson_r": 0.5369103410444429,
-    "spearman_rho": 0.7732989058756169,
+    "pearson_r": 0.536903269534193,
+    "spearman_rho": 0.7732629745662876,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "retweets",
-    "pearson_r": 0.888386405103004,
-    "spearman_rho": 0.8799782997410643,
+    "pearson_r": 0.8883727713331341,
+    "spearman_rho": 0.8799759133780096,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "quotes",
-    "pearson_r": 0.5105744873714314,
-    "spearman_rho": 0.6093491984896188,
+    "pearson_r": 0.5105719994496084,
+    "spearman_rho": 0.6093559335177738,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "total_engagement",
-    "pearson_r": 0.9972673211662493,
-    "spearman_rho": 0.9872110057763567,
+    "pearson_r": 0.9972667419373132,
+    "spearman_rho": 0.9872134479780273,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "log_total_engagement",
-    "pearson_r": 0.35785970254736127,
-    "spearman_rho": 0.9872110057763567,
+    "pearson_r": 0.35785235774670443,
+    "spearman_rho": 0.9872134479780273,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "text_length",
-    "pearson_r": -0.04166904859219147,
-    "spearman_rho": -0.10747981995643922,
+    "pearson_r": -0.041677342893295506,
+    "spearman_rho": -0.10747612746417572,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "word_count",
-    "pearson_r": -0.03128029560095212,
-    "spearman_rho": -0.038929979143444635,
+    "pearson_r": -0.031290703517854394,
+    "spearman_rho": -0.038943577565324225,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "has_url",
-    "pearson_r": 0.003185239130180762,
-    "spearman_rho": -0.08594227811167565,
+    "pearson_r": 0.0031859876828906337,
+    "spearman_rho": -0.0859307560530572,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "hashtag_count",
-    "pearson_r": -0.0711991749909668,
-    "spearman_rho": -0.32164928207093285,
+    "pearson_r": -0.07119863317956106,
+    "spearman_rho": -0.321638563513142,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "mention_count",
-    "pearson_r": -0.053181265761985064,
-    "spearman_rho": -0.38466724044313194,
+    "pearson_r": -0.05318198786303145,
+    "spearman_rho": -0.3847111170108283,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "sentiment_score",
-    "pearson_r": -0.056295654269175634,
-    "spearman_rho": -0.19186773424353037,
+    "pearson_r": -0.05629770254300721,
+    "spearman_rho": -0.19188529958340508,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "humor_score",
-    "pearson_r": -0.01903421754009484,
-    "spearman_rho": -0.10391187509217654,
+    "pearson_r": -0.019029193384082592,
+    "spearman_rho": -0.10392640859687831,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "topic_score",
-    "pearson_r": -0.05774209531808305,
-    "spearman_rho": -0.09969166740827394,
+    "pearson_r": -0.057748228671926326,
+    "spearman_rho": -0.09968246611141879,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "is_viral",
-    "pearson_r": 0.4967942469503511,
-    "spearman_rho": 0.3348832774394819,
+    "pearson_r": 0.49679259323440356,
+    "spearman_rho": 0.33488732577187225,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "sentiment_negative",
-    "pearson_r": 0.060663701214684514,
-    "spearman_rho": 0.13409377305795872,
+    "pearson_r": 0.060663404771460136,
+    "spearman_rho": 0.13409332881773284,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "sentiment_neutral",
-    "pearson_r": 0.000816469816526597,
-    "spearman_rho": 0.05693510792877481,
+    "pearson_r": 0.000818508063856445,
+    "spearman_rho": 0.05693983053538711,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "sentiment_positive",
-    "pearson_r": -0.06063660329233783,
-    "spearman_rho": -0.15471417300413493,
+    "pearson_r": -0.060637073058227825,
+    "spearman_rho": -0.15471550273247908,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "humor_affiliative_humor",
-    "pearson_r": -0.00298169166275301,
-    "spearman_rho": -0.01733652079097423,
+    "pearson_r": -0.002980948855582343,
+    "spearman_rho": -0.017333673739445887,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "humor_aggressive_humor",
-    "pearson_r": -0.006855730225022619,
-    "spearman_rho": 0.03748884864640196,
+    "pearson_r": -0.006854777489980246,
+    "spearman_rho": 0.037488848939094134,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "humor_non_humorous_brand_message",
-    "pearson_r": 0.07237081964834675,
-    "spearman_rho": 0.08792792554198646,
+    "pearson_r": 0.07237821208625687,
+    "spearman_rho": 0.08797224266718566,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "humor_self_defeating_humor",
-    "pearson_r": 0.010167606435911474,
-    "spearman_rho": 0.03220735214466908,
+    "pearson_r": 0.010168468054479947,
+    "spearman_rho": 0.03221362390861698,
     "n": 2798
   },
   {
     "variable_a": "likes",
     "variable_b": "humor_self_enhancing_humor",
-    "pearson_r": -0.07289285874640455,
-    "spearman_rho": -0.09808671892763642,
+    "pearson_r": -0.07290076678843821,
+    "spearman_rho": -0.09813292946980352,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "retweets",
-    "pearson_r": 0.41303937501295845,
-    "spearman_rho": 0.6638431840162657,
+    "pearson_r": 0.4130363137913399,
+    "spearman_rho": 0.6637190331220761,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "quotes",
-    "pearson_r": 0.4782296651092752,
-    "spearman_rho": 0.7179000816995228,
+    "pearson_r": 0.4782227594249728,
+    "spearman_rho": 0.7179138782804416,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "total_engagement",
-    "pearson_r": 0.546270607671652,
-    "spearman_rho": 0.7963554119155312,
+    "pearson_r": 0.5462657678216462,
+    "spearman_rho": 0.7963098901033563,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "log_total_engagement",
-    "pearson_r": 0.3482930515989085,
-    "spearman_rho": 0.7963554119155312,
+    "pearson_r": 0.3482783913154826,
+    "spearman_rho": 0.7963098901033563,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "text_length",
-    "pearson_r": -0.023037242759502852,
-    "spearman_rho": -0.05057891289560919,
+    "pearson_r": -0.02303674728864414,
+    "spearman_rho": -0.05059455573852382,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "word_count",
-    "pearson_r": -0.008411323413782132,
-    "spearman_rho": -0.002878370957167624,
+    "pearson_r": -0.008414150345044348,
+    "spearman_rho": -0.002963845331095718,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "has_url",
-    "pearson_r": -0.03401435267735384,
-    "spearman_rho": -0.06689651870903128,
+    "pearson_r": -0.03401904363710408,
+    "spearman_rho": -0.06692621369072836,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "hashtag_count",
-    "pearson_r": -0.05939351139662015,
-    "spearman_rho": -0.19546947678789175,
+    "pearson_r": -0.05937543154602296,
+    "spearman_rho": -0.19537407385522276,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "mention_count",
-    "pearson_r": -0.07218952351881627,
-    "spearman_rho": -0.3613996649868685,
+    "pearson_r": -0.072190670181877,
+    "spearman_rho": -0.3614460565258229,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "sentiment_score",
-    "pearson_r": -0.015788302293239277,
-    "spearman_rho": -0.13859672892701103,
+    "pearson_r": -0.01578594558346074,
+    "spearman_rho": -0.13862910976924578,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "humor_score",
-    "pearson_r": -0.001576565844502333,
-    "spearman_rho": -0.06574746105096169,
+    "pearson_r": -0.0015747519920609305,
+    "spearman_rho": -0.06572557944542248,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "topic_score",
-    "pearson_r": -0.04134975388773451,
-    "spearman_rho": -0.029777930088851958,
+    "pearson_r": -0.041351895801900636,
+    "spearman_rho": -0.029821517992028188,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "is_viral",
-    "pearson_r": 0.46862833137146087,
-    "spearman_rho": 0.31159699951588193,
+    "pearson_r": 0.4686199778190188,
+    "spearman_rho": 0.3115909173362846,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "sentiment_negative",
-    "pearson_r": 0.04755408655192179,
-    "spearman_rho": 0.10206955314711746,
+    "pearson_r": 0.04754789145191973,
+    "spearman_rho": 0.10204505447514585,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "sentiment_neutral",
-    "pearson_r": -0.012875262929866817,
-    "spearman_rho": 0.019024943334841313,
+    "pearson_r": -0.012874933766607918,
+    "spearman_rho": 0.019002508879238184,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "sentiment_positive",
-    "pearson_r": -0.042463036906203,
-    "spearman_rho": -0.10864521245532054,
+    "pearson_r": -0.04245699932507972,
+    "spearman_rho": -0.10861243287970804,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "humor_affiliative_humor",
-    "pearson_r": -0.012894089860861255,
-    "spearman_rho": -0.025477656433655682,
+    "pearson_r": -0.01289417308293571,
+    "spearman_rho": -0.025480503016803206,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "humor_aggressive_humor",
-    "pearson_r": -0.0018343468756508296,
-    "spearman_rho": 0.005936737420743741,
+    "pearson_r": -0.0018436673769106169,
+    "spearman_rho": 0.005922339271690776,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "humor_non_humorous_brand_message",
-    "pearson_r": 0.046113842444127515,
-    "spearman_rho": 0.035915027619651776,
+    "pearson_r": 0.04611786716497004,
+    "spearman_rho": 0.036004586395902566,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "humor_self_defeating_humor",
-    "pearson_r": 0.04138901791134403,
-    "spearman_rho": 0.013479530709433508,
+    "pearson_r": 0.04139042470862189,
+    "spearman_rho": 0.013470121461399804,
     "n": 2798
   },
   {
     "variable_a": "replies",
     "variable_b": "humor_self_enhancing_humor",
-    "pearson_r": -0.05029470601587554,
-    "spearman_rho": -0.03532073211022956,
+    "pearson_r": -0.05029717547983808,
+    "spearman_rho": -0.03540669392928757,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "quotes",
-    "pearson_r": 0.4749558069271076,
-    "spearman_rho": 0.5114813438897369,
+    "pearson_r": 0.47495979618564876,
+    "spearman_rho": 0.5114974983303271,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "total_engagement",
-    "pearson_r": 0.9164077776795316,
-    "spearman_rho": 0.9133114838417176,
+    "pearson_r": 0.9163989109232249,
+    "spearman_rho": 0.9133034989718655,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "log_total_engagement",
-    "pearson_r": 0.29523627399646185,
-    "spearman_rho": 0.9133114838417176,
+    "pearson_r": 0.2952249024335023,
+    "spearman_rho": 0.9133034989718655,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "text_length",
-    "pearson_r": -0.01583337174144218,
-    "spearman_rho": -0.027452734689358445,
+    "pearson_r": -0.015833240497973404,
+    "spearman_rho": -0.027382991731255756,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "word_count",
-    "pearson_r": -0.011850211617737848,
-    "spearman_rho": 0.015057059231669313,
+    "pearson_r": -0.01185236754790578,
+    "spearman_rho": 0.01506945889087217,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "has_url",
-    "pearson_r": 0.021092272333604355,
-    "spearman_rho": -0.02423550463483471,
+    "pearson_r": 0.02109425233575462,
+    "spearman_rho": -0.02418498439074259,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "hashtag_count",
-    "pearson_r": -0.045473047247631626,
-    "spearman_rho": -0.19894627010681845,
+    "pearson_r": -0.04546917214011903,
+    "spearman_rho": -0.19881784375891332,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "mention_count",
-    "pearson_r": -0.03330761615314897,
-    "spearman_rho": -0.3149000607272349,
+    "pearson_r": -0.03330634333340978,
+    "spearman_rho": -0.31491242213430315,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "sentiment_score",
-    "pearson_r": -0.03302164101050579,
-    "spearman_rho": -0.1395674556788818,
+    "pearson_r": -0.03302200602202272,
+    "spearman_rho": -0.13958141061250867,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "humor_score",
-    "pearson_r": -0.008725490639949545,
-    "spearman_rho": -0.06922737033704073,
+    "pearson_r": -0.008722571305741797,
+    "spearman_rho": -0.06924905186613732,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "topic_score",
-    "pearson_r": -0.041379373994695295,
-    "spearman_rho": -0.06448745546440483,
+    "pearson_r": -0.04138077308533009,
+    "spearman_rho": -0.06443422140291266,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "is_viral",
-    "pearson_r": 0.43684725298916804,
-    "spearman_rho": 0.3481958697583434,
+    "pearson_r": 0.43684054301912345,
+    "spearman_rho": 0.3481999410777928,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "sentiment_negative",
-    "pearson_r": 0.029643637122667644,
-    "spearman_rho": 0.11409921981136927,
+    "pearson_r": 0.02964086442100805,
+    "spearman_rho": 0.11410457159029717,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "sentiment_neutral",
-    "pearson_r": 0.0018998644657604116,
-    "spearman_rho": 0.03045397515808175,
+    "pearson_r": 0.0019010093446278939,
+    "spearman_rho": 0.030459880022169136,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "sentiment_positive",
-    "pearson_r": -0.03019340489225691,
-    "spearman_rho": -0.12489598927041339,
+    "pearson_r": -0.03019107689047162,
+    "spearman_rho": -0.12490352665086964,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "humor_affiliative_humor",
-    "pearson_r": 0.00018513571284478264,
-    "spearman_rho": -0.016109156596006063,
+    "pearson_r": 0.000185034009588918,
+    "spearman_rho": -0.016217349369461374,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "humor_aggressive_humor",
-    "pearson_r": -0.008133393776566333,
-    "spearman_rho": 0.028133635466053877,
+    "pearson_r": -0.008131589697087044,
+    "spearman_rho": 0.028126439781003928,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "humor_non_humorous_brand_message",
-    "pearson_r": 0.06167489815103889,
-    "spearman_rho": 0.051867777914380436,
+    "pearson_r": 0.06167936164235249,
+    "spearman_rho": 0.05188559943653826,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "humor_self_defeating_humor",
-    "pearson_r": 0.0037908242235087162,
-    "spearman_rho": 0.03444579742878209,
+    "pearson_r": 0.0037916266588522065,
+    "spearman_rho": 0.03445207139173172,
     "n": 2798
   },
   {
     "variable_a": "retweets",
     "variable_b": "humor_self_enhancing_humor",
-    "pearson_r": -0.06140275177490158,
-    "spearman_rho": -0.060341262782740115,
+    "pearson_r": -0.06140771554085649,
+    "spearman_rho": -0.06034126722924362,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "total_engagement",
-    "pearson_r": 0.5362970581769216,
-    "spearman_rho": 0.6244187862153936,
+    "pearson_r": 0.536298032144691,
+    "spearman_rho": 0.6244292029424525,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "log_total_engagement",
-    "pearson_r": 0.2576127457535538,
-    "spearman_rho": 0.6244187862153936,
+    "pearson_r": 0.2576055931071745,
+    "spearman_rho": 0.6244292029424525,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "text_length",
-    "pearson_r": -0.007636209423640236,
-    "spearman_rho": -0.06884823592346018,
+    "pearson_r": -0.007636388370918238,
+    "spearman_rho": -0.06888670850165753,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "word_count",
-    "pearson_r": -0.007451309850588384,
-    "spearman_rho": -0.028487945894372802,
+    "pearson_r": -0.0074519470711750715,
+    "spearman_rho": -0.028600352834592717,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "has_url",
-    "pearson_r": 0.04647866302067671,
-    "spearman_rho": -0.04164785952996637,
+    "pearson_r": 0.04647764973489005,
+    "spearman_rho": -0.041725072021826855,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "hashtag_count",
-    "pearson_r": -0.039320713904331187,
-    "spearman_rho": -0.2354859695510394,
+    "pearson_r": -0.03931870520142596,
+    "spearman_rho": -0.2353264779597469,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "mention_count",
-    "pearson_r": -0.035220123047316594,
-    "spearman_rho": -0.21580524369213,
+    "pearson_r": -0.035220137975141584,
+    "spearman_rho": -0.21583970098128494,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "sentiment_score",
-    "pearson_r": -0.06587872594830477,
-    "spearman_rho": -0.1517144627113889,
+    "pearson_r": -0.06587840033821359,
+    "spearman_rho": -0.1517165287718058,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "humor_score",
-    "pearson_r": -0.04012230866263968,
-    "spearman_rho": -0.09152091910403061,
+    "pearson_r": -0.0401216595380766,
+    "spearman_rho": -0.0914574902841192,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "topic_score",
-    "pearson_r": -0.040885701460774596,
-    "spearman_rho": -0.06444219791109292,
+    "pearson_r": -0.04088606556452002,
+    "spearman_rho": -0.06450662024047153,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "is_viral",
-    "pearson_r": 0.40539004343119794,
-    "spearman_rho": 0.24914319252127298,
+    "pearson_r": 0.4053890641154875,
+    "spearman_rho": 0.24914210108843504,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "sentiment_negative",
-    "pearson_r": 0.07534493173219847,
-    "spearman_rho": 0.13939567304678271,
+    "pearson_r": 0.07534412993390895,
+    "spearman_rho": 0.13930806726653563,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "sentiment_neutral",
-    "pearson_r": 0.0004833868171715029,
-    "spearman_rho": 0.029111392091258063,
+    "pearson_r": 0.0004835261089004573,
+    "spearman_rho": 0.029101761388184023,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "sentiment_positive",
-    "pearson_r": -0.07511221019037503,
-    "spearman_rho": -0.14954980431027115,
+    "pearson_r": -0.07511146504887714,
+    "spearman_rho": -0.14945906732082923,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "humor_affiliative_humor",
-    "pearson_r": -0.008414659814396376,
-    "spearman_rho": -0.02629678037384111,
+    "pearson_r": -0.008414680681053261,
+    "spearman_rho": -0.02629677395602501,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "humor_aggressive_humor",
-    "pearson_r": -0.0066656607376045516,
-    "spearman_rho": 0.00685041558767328,
+    "pearson_r": -0.006665655699209626,
+    "spearman_rho": 0.0068504139158067304,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "humor_non_humorous_brand_message",
-    "pearson_r": 0.0475444180108816,
-    "spearman_rho": 0.027185850661808602,
+    "pearson_r": 0.047544304228129074,
+    "spearman_rho": 0.02721424214478797,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "humor_self_defeating_humor",
-    "pearson_r": 0.03967849604885009,
-    "spearman_rho": 0.0017542090557671123,
+    "pearson_r": 0.039678899487762154,
+    "spearman_rho": 0.0017542086276465985,
     "n": 2798
   },
   {
     "variable_a": "quotes",
     "variable_b": "humor_self_enhancing_humor",
-    "pearson_r": -0.05128608903076499,
-    "spearman_rho": -0.024806818697237408,
+    "pearson_r": -0.05128603098229715,
+    "spearman_rho": -0.024835535676500986,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "log_total_engagement",
-    "pearson_r": 0.35877822877031357,
-    "spearman_rho": 1.0,
+    "pearson_r": 0.3587706639831915,
+    "spearman_rho": 0.9999999999999999,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "text_length",
-    "pearson_r": -0.03806829982401269,
-    "spearman_rho": -0.09358422639302386,
+    "pearson_r": -0.03807518036429137,
+    "spearman_rho": -0.09359105596619437,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "word_count",
-    "pearson_r": -0.028432300128776518,
-    "spearman_rho": -0.02704847593392474,
+    "pearson_r": -0.028441388666389712,
+    "spearman_rho": -0.027073400556266107,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "has_url",
-    "pearson_r": 0.0063298922742810034,
-    "spearman_rho": -0.08239644518705004,
+    "pearson_r": 0.006330838827706312,
+    "spearman_rho": -0.08238979731614883,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "hashtag_count",
-    "pearson_r": -0.06889250359404196,
-    "spearman_rho": -0.3109650172566641,
+    "pearson_r": -0.0688910961205217,
+    "spearman_rho": -0.31095147435389653,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "mention_count",
-    "pearson_r": -0.05209775665023556,
-    "spearman_rho": -0.3727293234197801,
+    "pearson_r": -0.05209827843583867,
+    "spearman_rho": -0.3727680987122639,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "sentiment_score",
-    "pearson_r": -0.05431311262066602,
-    "spearman_rho": -0.18297073845598041,
+    "pearson_r": -0.05431489002683264,
+    "spearman_rho": -0.18297889587939173,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "humor_score",
-    "pearson_r": -0.01839943018786845,
-    "spearman_rho": -0.09507631916115704,
+    "pearson_r": -0.01839475527740786,
+    "spearman_rho": -0.0950954629326054,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "topic_score",
-    "pearson_r": -0.05663526220591098,
-    "spearman_rho": -0.09472659538994252,
+    "pearson_r": -0.05664075795887258,
+    "spearman_rho": -0.09474383119078797,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "is_viral",
-    "pearson_r": 0.503027816807287,
-    "spearman_rho": 0.3497460469157192,
+    "pearson_r": 0.5030265504387955,
+    "spearman_rho": 0.3497470560348187,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "sentiment_negative",
-    "pearson_r": 0.058401292199555144,
-    "spearman_rho": 0.1313017283697552,
+    "pearson_r": 0.05840055625143963,
+    "spearman_rho": 0.13129905595761363,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "sentiment_neutral",
-    "pearson_r": 0.0007119550031815803,
-    "spearman_rho": 0.05029753435437977,
+    "pearson_r": 0.0007138418306219094,
+    "spearman_rho": 0.05029399261580931,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "sentiment_positive",
-    "pearson_r": -0.058347421816678506,
-    "spearman_rho": -0.14944760875131843,
+    "pearson_r": -0.05834739769282971,
+    "spearman_rho": -0.14944362246074608,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "humor_affiliative_humor",
-    "pearson_r": -0.0029732093854824,
-    "spearman_rho": -0.018628056299744015,
+    "pearson_r": -0.002972618083298845,
+    "spearman_rho": -0.018628056179835827,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "humor_aggressive_humor",
-    "pearson_r": -0.007185292661016983,
-    "spearman_rho": 0.03386634880973635,
+    "pearson_r": -0.007184445046655547,
+    "spearman_rho": 0.03387114688425773,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "humor_non_humorous_brand_message",
-    "pearson_r": 0.07221897168263895,
-    "spearman_rho": 0.08108932341430589,
+    "pearson_r": 0.07222606443804377,
+    "spearman_rho": 0.08113546411911601,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "humor_self_defeating_humor",
-    "pearson_r": 0.011032296645315855,
-    "spearman_rho": 0.03249080946165752,
+    "pearson_r": 0.011033276348438082,
+    "spearman_rho": 0.0324845381061627,
     "n": 2798
   },
   {
     "variable_a": "total_engagement",
     "variable_b": "humor_self_enhancing_humor",
-    "pearson_r": -0.07280460128091865,
-    "spearman_rho": -0.09030434253308249,
+    "pearson_r": -0.07281217877780587,
+    "spearman_rho": -0.09035101110116206,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "text_length",
-    "pearson_r": -0.052551040158438846,
-    "spearman_rho": -0.09358422639302386,
+    "pearson_r": -0.05252005938161373,
+    "spearman_rho": -0.09359105596619437,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "word_count",
-    "pearson_r": 0.0025123382083226072,
-    "spearman_rho": -0.02704847593392474,
+    "pearson_r": 0.002521964127270569,
+    "spearman_rho": -0.027073400556266107,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "has_url",
-    "pearson_r": -0.054134770587895516,
-    "spearman_rho": -0.08239644518705004,
+    "pearson_r": -0.05409753474684291,
+    "spearman_rho": -0.08238979731614883,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "hashtag_count",
-    "pearson_r": -0.22547412549286827,
-    "spearman_rho": -0.3109650172566641,
+    "pearson_r": -0.2253261290893754,
+    "spearman_rho": -0.31095147435389653,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "mention_count",
-    "pearson_r": -0.31163431901614913,
-    "spearman_rho": -0.3727293234197801,
+    "pearson_r": -0.3116586837068685,
+    "spearman_rho": -0.3727680987122639,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "sentiment_score",
-    "pearson_r": -0.1631950484503135,
-    "spearman_rho": -0.18297073845598041,
+    "pearson_r": -0.16321767732301784,
+    "spearman_rho": -0.18297889587939173,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "humor_score",
-    "pearson_r": -0.047324647057932635,
-    "spearman_rho": -0.09507631916115704,
+    "pearson_r": -0.04733434348833081,
+    "spearman_rho": -0.0950954629326054,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "topic_score",
-    "pearson_r": -0.10831718999729012,
-    "spearman_rho": -0.09472659538994252,
+    "pearson_r": -0.10830409174130401,
+    "spearman_rho": -0.09474383119078797,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "is_viral",
-    "pearson_r": 0.411238379137661,
-    "spearman_rho": 0.3497460469157192,
+    "pearson_r": 0.41122840951929807,
+    "spearman_rho": 0.3497470560348187,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "sentiment_negative",
-    "pearson_r": 0.14030234765141608,
-    "spearman_rho": 0.1313017283697552,
+    "pearson_r": 0.14027210236726728,
+    "spearman_rho": 0.13129905595761363,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "sentiment_neutral",
-    "pearson_r": 0.038725263537374106,
-    "spearman_rho": 0.05029753435437977,
+    "pearson_r": 0.038725820450800724,
+    "spearman_rho": 0.05029399261580931,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "sentiment_positive",
-    "pearson_r": -0.15405781749236785,
-    "spearman_rho": -0.14944760875131843,
+    "pearson_r": -0.15402794732445868,
+    "spearman_rho": -0.14944362246074608,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "humor_affiliative_humor",
-    "pearson_r": -0.014927818984173596,
-    "spearman_rho": -0.018628056299744015,
+    "pearson_r": -0.014930504689243063,
+    "spearman_rho": -0.018628056179835827,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "humor_aggressive_humor",
-    "pearson_r": 0.027182017901503326,
-    "spearman_rho": 0.03386634880973635,
+    "pearson_r": 0.02718423152989514,
+    "spearman_rho": 0.03387114688425773,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "humor_non_humorous_brand_message",
-    "pearson_r": 0.07079370414620098,
-    "spearman_rho": 0.08108932341430589,
+    "pearson_r": 0.07082100533375207,
+    "spearman_rho": 0.08113546411911601,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "humor_self_defeating_humor",
-    "pearson_r": 0.033800843631494,
-    "spearman_rho": 0.03249080946165752,
+    "pearson_r": 0.033799771460264236,
+    "spearman_rho": 0.0324845381061627,
     "n": 2798
   },
   {
     "variable_a": "log_total_engagement",
     "variable_b": "humor_self_enhancing_humor",
-    "pearson_r": -0.0793971372360952,
-    "spearman_rho": -0.09030434253308249,
+    "pearson_r": -0.0794245832404548,
+    "spearman_rho": -0.09035101110116206,
     "n": 2798
   },
   {
