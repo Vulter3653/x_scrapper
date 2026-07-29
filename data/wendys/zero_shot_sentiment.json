@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 996,
+  "post_count": 997,
   "label_counts": {
-    "positive": 455,
+    "positive": 456,
     "negative": 503,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45719072269755007,
-    "neutral": 0.1296622799855835,
-    "negative": 0.4131469953283531
+    "positive": 0.45752477860267377,
+    "neutral": 0.12964869421709319,
+    "negative": 0.41282652517876817
   },
   "posts": [
+    {
+      "id": "2082208291485098213",
+      "tweet_url": "https://x.com/Wendys/status/2082208291485098213",
+      "created_at": "Tue Jul 28 20:55:16 +0000 2026",
+      "text": "New favorite song just dropped. https://t.co/1B195kaJNN",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.790244460105896,
+      "scores": {
+        "positive": 0.790244460105896,
+        "neutral": 0.11611726880073547,
+        "negative": 0.09363825619220734
+      }
+    },
     {
       "id": "2080664263039848809",
       "tweet_url": "https://x.com/Wendys/status/2080664263039848809",
@@ -19940,5 +19960,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-28T17:11:09.896549+00:00"
+  "generated_at": "2026-07-29T16:59:31.797076+00:00"
 }

@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 996,
+  "post_count": 997,
   "label_counts": {
-    "Non-humorous brand message": 626,
+    "Non-humorous brand message": 627,
     "Self-enhancing humor": 351,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13046136990539733,
-    "Self-enhancing humor": 0.29125289980604513,
-    "Aggressive humor": 0.11430396003393307,
-    "Self-defeating humor": 0.11505717168474218,
-    "Non-humorous brand message": 0.34892459976452733
+    "Affiliative humor": 0.13046423787330047,
+    "Self-enhancing humor": 0.29122196458823746,
+    "Aggressive humor": 0.11433348023700643,
+    "Self-defeating humor": 0.11508301135812071,
+    "Non-humorous brand message": 0.34889730715172773
   },
   "posts": [
+    {
+      "id": "2082208291485098213",
+      "tweet_url": "https://x.com/Wendys/status/2082208291485098213",
+      "created_at": "Tue Jul 28 20:55:16 +0000 2026",
+      "text": "New favorite song just dropped. https://t.co/1B195kaJNN",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.3217138648033142,
+      "scores": {
+        "Non-humorous brand message": 0.3217138648033142,
+        "Self-enhancing humor": 0.26041048765182495,
+        "Aggressive humor": 0.1437356024980545,
+        "Self-defeating humor": 0.14081932604312897,
+        "Affiliative humor": 0.13332073390483856
+      }
+    },
     {
       "id": "2080664263039848809",
       "tweet_url": "https://x.com/Wendys/status/2080664263039848809",
@@ -23932,5 +23956,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-28T17:14:27.723710+00:00"
+  "generated_at": "2026-07-29T17:03:08.915724+00:00"
 }
