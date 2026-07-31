@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 997,
+  "post_count": 999,
   "label_counts": {
-    "Non-humorous brand message": 627,
+    "Non-humorous brand message": 629,
     "Self-enhancing humor": 351,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13046423787330047,
-    "Self-enhancing humor": 0.29122196458823746,
-    "Aggressive humor": 0.11433348023700643,
-    "Self-defeating humor": 0.11508301135812071,
-    "Non-humorous brand message": 0.34889730715172773
+    "Affiliative humor": 0.13052210222066915,
+    "Self-enhancing humor": 0.2910269639740052,
+    "Aggressive humor": 0.11437362503248197,
+    "Self-defeating humor": 0.115117800433666,
+    "Non-humorous brand message": 0.3489595096421058
   },
   "posts": [
+    {
+      "id": "2082912783943766337",
+      "tweet_url": "https://x.com/Wendys/status/2082912783943766337",
+      "created_at": "Thu Jul 30 19:34:40 +0000 2026",
+      "text": "Inside you there are two fries",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.5025873184204102,
+      "scores": {
+        "Non-humorous brand message": 0.5025873184204102,
+        "Self-enhancing humor": 0.1513129323720932,
+        "Affiliative humor": 0.14375780522823334,
+        "Self-defeating humor": 0.10695451498031616,
+        "Aggressive humor": 0.09538749605417252
+      }
+    },
+    {
+      "id": "2082883626102821003",
+      "tweet_url": "https://x.com/Wendys/status/2082883626102821003",
+      "created_at": "Thu Jul 30 17:38:49 +0000 2026",
+      "text": "stream &amp; seek round ✌️ were hopping on now, come find us on Twitch and check out the new updated map! https://t.co/P0GZ7DIn5g https://t.co/Jlm1pPWnfG",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.25734758377075195,
+      "scores": {
+        "Non-humorous brand message": 0.25734758377075195,
+        "Self-enhancing humor": 0.23632538318634033,
+        "Affiliative humor": 0.1749771535396576,
+        "Aggressive humor": 0.17338411509990692,
+        "Self-defeating humor": 0.1579657942056656
+      }
+    },
     {
       "id": "2082208291485098213",
       "tweet_url": "https://x.com/Wendys/status/2082208291485098213",
@@ -23956,5 +24004,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-30T17:15:52.082961+00:00"
+  "generated_at": "2026-07-31T17:18:23.626352+00:00"
 }

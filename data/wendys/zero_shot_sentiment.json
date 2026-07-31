@@ -7,18 +7,58 @@
     "neutral",
     "negative"
   ],
-  "post_count": 997,
+  "post_count": 999,
   "label_counts": {
-    "positive": 456,
-    "negative": 503,
+    "positive": 457,
+    "negative": 504,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45752477860267377,
-    "neutral": 0.12964869421709319,
-    "negative": 0.41282652517876817
+    "positive": 0.4574824785124986,
+    "neutral": 0.12960485632576677,
+    "negative": 0.4129126631344446
   },
   "posts": [
+    {
+      "id": "2082912783943766337",
+      "tweet_url": "https://x.com/Wendys/status/2082912783943766337",
+      "created_at": "Thu Jul 30 19:34:40 +0000 2026",
+      "text": "Inside you there are two fries",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.43007758259773254,
+      "scores": {
+        "positive": 0.43007758259773254,
+        "negative": 0.4269636273384094,
+        "neutral": 0.14295881986618042
+      }
+    },
+    {
+      "id": "2082883626102821003",
+      "tweet_url": "https://x.com/Wendys/status/2082883626102821003",
+      "created_at": "Thu Jul 30 17:38:49 +0000 2026",
+      "text": "stream &amp; seek round ✌️ were hopping on now, come find us on Twitch and check out the new updated map! https://t.co/P0GZ7DIn5g https://t.co/Jlm1pPWnfG",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.4847412407398224,
+      "scores": {
+        "negative": 0.4847412407398224,
+        "positive": 0.4427141845226288,
+        "neutral": 0.07254451513290405
+      }
+    },
     {
       "id": "2082208291485098213",
       "tweet_url": "https://x.com/Wendys/status/2082208291485098213",
@@ -19960,5 +20000,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-30T17:12:31.662149+00:00"
+  "generated_at": "2026-07-31T17:15:09.363018+00:00"
 }
