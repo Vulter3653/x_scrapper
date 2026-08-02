@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 999,
+  "post_count": 1000,
   "label_counts": {
+    "Self-enhancing humor": 352,
     "Non-humorous brand message": 629,
-    "Self-enhancing humor": 351,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13052210222066915,
-    "Self-enhancing humor": 0.2910269639740052,
-    "Aggressive humor": 0.11437362503248197,
-    "Self-defeating humor": 0.115117800433666,
-    "Non-humorous brand message": 0.3489595096421058
+    "Affiliative humor": 0.13048857721558307,
+    "Self-enhancing humor": 0.2912719947206788,
+    "Aggressive humor": 0.11430718674427771,
+    "Self-defeating humor": 0.11506993666989729,
+    "Non-humorous brand message": 0.3488623059958918
   },
   "posts": [
+    {
+      "id": "2083245457598263389",
+      "tweet_url": "https://x.com/Wendys/status/2083245457598263389",
+      "created_at": "Fri Jul 31 17:36:36 +0000 2026",
+      "text": "more depth. more texture. more places to hide. still no frozen beef 😏 check out the latest &amp; greatest official Wendy’s map: https://t.co/yxTy8droTu https://t.co/rxjbFut3ZG",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.536057710647583,
+      "scores": {
+        "Self-enhancing humor": 0.536057710647583,
+        "Non-humorous brand message": 0.25175586342811584,
+        "Affiliative humor": 0.09699709713459015,
+        "Self-defeating humor": 0.06725403666496277,
+        "Aggressive humor": 0.04793533682823181
+      }
+    },
     {
       "id": "2082912783943766337",
       "tweet_url": "https://x.com/Wendys/status/2082912783943766337",
@@ -24004,5 +24028,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-31T17:18:23.626352+00:00"
+  "generated_at": "2026-08-02T01:33:58.056728+00:00"
 }

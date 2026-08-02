@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 999,
+  "post_count": 1000,
   "label_counts": {
-    "positive": 457,
+    "positive": 458,
     "negative": 504,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.4574824785124986,
-    "neutral": 0.12960485632576677,
-    "negative": 0.4129126631344446
+    "positive": 0.457641480497201,
+    "neutral": 0.12952828580109052,
+    "negative": 0.4128302316429181
   },
   "posts": [
+    {
+      "id": "2083245457598263389",
+      "tweet_url": "https://x.com/Wendys/status/2083245457598263389",
+      "created_at": "Fri Jul 31 17:36:36 +0000 2026",
+      "text": "more depth. more texture. more places to hide. still no frozen beef 😏 check out the latest &amp; greatest official Wendy’s map: https://t.co/yxTy8droTu https://t.co/rxjbFut3ZG",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.6164844632148743,
+      "scores": {
+        "positive": 0.6164844632148743,
+        "negative": 0.3304811716079712,
+        "neutral": 0.053034331649541855
+      }
+    },
     {
       "id": "2082912783943766337",
       "tweet_url": "https://x.com/Wendys/status/2082912783943766337",
@@ -20000,5 +20020,5 @@
       }
     }
   ],
-  "generated_at": "2026-07-31T17:15:09.363018+00:00"
+  "generated_at": "2026-08-02T01:30:35.669587+00:00"
 }
