@@ -7,18 +7,58 @@
     "neutral",
     "negative"
   ],
-  "post_count": 1000,
+  "post_count": 1002,
   "label_counts": {
-    "positive": 458,
-    "negative": 504,
+    "positive": 459,
+    "negative": 505,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.457641480497201,
-    "neutral": 0.12952828580109052,
-    "negative": 0.4128302316429181
+    "positive": 0.45794707482335384,
+    "neutral": 0.12938671756164913,
+    "negative": 0.4126662054718427
   },
   "posts": [
+    {
+      "id": "2084647970717212848",
+      "tweet_url": "https://x.com/Wendys/status/2084647970717212848",
+      "created_at": "Tue Aug 04 14:29:41 +0000 2026",
+      "text": "Winner, winner, we’re having the Pretzel Bacon Pub Cheeseburger for dinner! Act fast because this fan favorite is only back for a limited time.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.9991154670715332,
+      "scores": {
+        "positive": 0.9991154670715332,
+        "negative": 0.00047288110363297164,
+        "neutral": 0.0004115855263080448
+      }
+    },
+    {
+      "id": "2084391680476602507",
+      "tweet_url": "https://x.com/Wendys/status/2084391680476602507",
+      "created_at": "Mon Aug 03 21:31:17 +0000 2026",
+      "text": "creamy Vanilla Frosty. spiced apple syrup. crunchy oat crumble. is it just me or is it starting to feel like fall up in here 🍁 Apple Crumble Frosty Fusion now available in restaurant. https://t.co/1Kkyc2tx2E",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.6608333587646484,
+      "scores": {
+        "negative": 0.6608333587646484,
+        "positive": 0.22237300872802734,
+        "neutral": 0.11679361015558243
+      }
+    },
     {
       "id": "2083245457598263389",
       "tweet_url": "https://x.com/Wendys/status/2083245457598263389",
@@ -20020,5 +20060,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-03T17:33:41.957389+00:00"
+  "generated_at": "2026-08-04T17:21:13.671361+00:00"
 }

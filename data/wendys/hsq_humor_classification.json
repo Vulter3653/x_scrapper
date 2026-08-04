@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 1000,
+  "post_count": 1002,
   "label_counts": {
-    "Self-enhancing humor": 352,
-    "Non-humorous brand message": 629,
+    "Non-humorous brand message": 630,
+    "Self-enhancing humor": 353,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13048857721558307,
-    "Self-enhancing humor": 0.2912719947206788,
-    "Aggressive humor": 0.11430718674427771,
-    "Self-defeating humor": 0.11506993666989729,
-    "Non-humorous brand message": 0.3488623059958918
+    "Affiliative humor": 0.13047308456062054,
+    "Self-enhancing humor": 0.29134459378236827,
+    "Aggressive humor": 0.11417159741985072,
+    "Self-defeating humor": 0.11499216598588713,
+    "Non-humorous brand message": 0.3490185596004915
   },
   "posts": [
+    {
+      "id": "2084647970717212848",
+      "tweet_url": "https://x.com/Wendys/status/2084647970717212848",
+      "created_at": "Tue Aug 04 14:29:41 +0000 2026",
+      "text": "Winner, winner, we’re having the Pretzel Bacon Pub Cheeseburger for dinner! Act fast because this fan favorite is only back for a limited time.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.5525264739990234,
+      "scores": {
+        "Non-humorous brand message": 0.5525264739990234,
+        "Self-enhancing humor": 0.3125407099723816,
+        "Affiliative humor": 0.09096459299325943,
+        "Self-defeating humor": 0.028465747833251953,
+        "Aggressive humor": 0.015502503141760826
+      }
+    },
+    {
+      "id": "2084391680476602507",
+      "tweet_url": "https://x.com/Wendys/status/2084391680476602507",
+      "created_at": "Mon Aug 03 21:31:17 +0000 2026",
+      "text": "creamy Vanilla Frosty. spiced apple syrup. crunchy oat crumble. is it just me or is it starting to feel like fall up in here 🍁 Apple Crumble Frosty Fusion now available in restaurant. https://t.co/1Kkyc2tx2E",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.3427475392818451,
+      "scores": {
+        "Self-enhancing humor": 0.3427475392818451,
+        "Non-humorous brand message": 0.30176424980163574,
+        "Affiliative humor": 0.1544889211654663,
+        "Self-defeating humor": 0.12374790012836456,
+        "Aggressive humor": 0.0772513672709465
+      }
+    },
     {
       "id": "2083245457598263389",
       "tweet_url": "https://x.com/Wendys/status/2083245457598263389",
@@ -24028,5 +24076,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-03T17:37:05.323420+00:00"
+  "generated_at": "2026-08-04T17:24:32.332961+00:00"
 }
