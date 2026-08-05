@@ -1,65 +1,69 @@
 # LDA Topics for @Wendys
 
-- Documents analyzed: 908
-- Selected topics: 8
+- Documents analyzed: 910
+- Selected topics: 9
 - Selection method: NPMI coherence, candidates 2-9
-- Selected coherence: 0.2900
-- Selected perplexity: 1440.8007
+- Selected coherence: 0.2498
+- Selected perplexity: 1534.5473
 
 ## Topic Count Evaluation
 
-- 2 topics: coherence=0.1416, perplexity=1226.2333
-- 3 topics: coherence=0.2134, perplexity=1235.1260
-- 4 topics: coherence=0.2105, perplexity=1286.6464
-- 5 topics: coherence=0.2070, perplexity=1344.3957
-- 6 topics: coherence=0.2707, perplexity=1363.1093
-- 7 topics: coherence=0.2548, perplexity=1423.4599
-- 8 topics: coherence=0.2900, perplexity=1440.8007
-- 9 topics: coherence=0.2745, perplexity=1457.4664
+- 2 topics: coherence=0.1134, perplexity=1221.2010
+- 3 topics: coherence=0.1279, perplexity=1266.7212
+- 4 topics: coherence=0.2282, perplexity=1373.1177
+- 5 topics: coherence=0.2180, perplexity=1388.5183
+- 6 topics: coherence=0.2166, perplexity=1459.6672
+- 7 topics: coherence=0.2207, perplexity=1447.1069
+- 8 topics: coherence=0.2233, perplexity=1489.5624
+- 9 topics: coherence=0.2498, perplexity=1534.5473
 
 ## Topic 0
-free, breakfast, wendy, spicy, ya, nuggs, delivery, app, purchase, choosehotandcrispy, purchase app, sandwich
+frosty, free, dave, single, dave single, ve, ll, did, app, free dave, maybe, tweet
 
-- [1433133572324532224](https://x.com/Wendys/status/1433133572324532224): Introducing Wendy’s BOGO $1 Big Brain Bean Bag Chair. The FIRST ever chair that transforms the knowledge of great deals into back support. And it can be YOURS! Stay tuned for deets on how to win. #BOGOBigBrain https://t.co/7wEgIhajgN
-- [1254067898349428737](https://x.com/Wendys/status/1254067898349428737): We gave you a GroupNug, now send some to a friend. Use Postmates code: NUGHUG and send a loved one free 10pc. nugs with free delivery fee by ordering Wendy’s through Postmates! This weekend only.
-- [1825310472368791724](https://x.com/Wendys/status/1825310472368791724): Unhappy Hour means you can get a $1 Honey Buddy w purchase in the app. Also means monday morning but forget that part.
+- [1425134843923517449](https://x.com/Wendys/status/1425134843923517449): RT @Wendys: Did somebody say FREE Sausage or Bacon, Egg &amp; Swiss Croissant? Yep, it was us. ❤️ this Tweet and we’ll remind you when it’s go…
+- [1248680953628819457](https://x.com/Wendys/status/1248680953628819457): Yoooou, got what I neeeeeeed. But I guess I'll text your friend. Yeah, guess I'll text your friend. 
+
+Teaching ghosts some lesson and getting that Fresh Beef in the Dave's Single.
+- [2029952811224514866](https://x.com/Wendys/status/2029952811224514866): Breaking: The Raiders are releasing last season’s starting QB Geno Smith, barring a trade before the start of the new league year, sources tell @AdamSchefter.  
+
+By releasing Smith, the Raiders will open up $8M in salary cap space while taking on $18.5M in dead money.
+
+Get breaking news alerts from Adam Schefter through the ESPN App: https://t.co/wLAog0kJUB
 
 ## Topic 1
-codes, cyber, search, clues, ll, cyber search, did, getting, fresh, score, spicy, day
-
-- [1257082671118913537](https://x.com/Wendys/status/1257082671118913537): This week, we will be hiding codes. Lots of codes. Codes that will score you free Wendy's. Hidden across our entire internet presence. The clues start Monday. Think you can solve the Cyber Search? https://t.co/FB2IXQSyAq
-- [1269040852350971906](https://x.com/Wendys/status/1269040852350971906): No🧢...all facts, @Wendys is supporting the Black College Community and we're ecstatic that their donation will provide opportunities for our #HBCU talent! Together we can make a difference!
-- [1258049228502433792](https://x.com/Wendys/status/1258049228502433792): For Cyber Search Day 3 we’ve hidden 9 codes totaling $1000 in free Wendy’s. You’ve got to be the first to DM us a code after we share the hint. And if you’re not first, well, we’re here all week… https://t.co/H9bM7rWONS
-
-## Topic 2
-wendy, breakfast, stream, baconator, grab, love, live, pm, watch, don, going, favorite
-
-- [1425503905832701956](https://x.com/Wendys/status/1425503905832701956): Do you love Wendy’s? Do you love Wendy’s Spicy Nuggs? Do you also love Discord? Then you’re going to triple love our Genshin Impact stream on Twitch. Watch us live or hang out in our new Spice Club channel on Discord https://t.co/P0GZ7DIn5g
-- [1654276971214299136](https://x.com/Wendys/status/1654276971214299136): Dearest @Wendys — if you help promote our Remember Right Now 20 Year Anniversary Tour with a RT, we will send *you* free food for a month! [wsg on select dates: @RookieOfTheYear + @ValenciaShane + @heybobnanna] 🖤🖤🖤 TICKETS: https://t.co/5bxGHadYA7 https://t.co/JspQNpNNjr
-- [1316077291592716289](https://x.com/Wendys/status/1316077291592716289): Don’t thank us, thank yourselves. 10.8K RT’s means y’all made this coupon worth up to 30% off any Wendy’s breakfast order. Use code WENDYS30 in the @UberEats app Wednesday through Friday to treat yo self. https://t.co/DSsRWbFuA6
-
-## Topic 3
-chicken, biscuit, honey, butter, butter chicken, honey butter, wendy, chicken biscuit, time, breakfast, ll, burger
-
-- [1498426568946892801](https://x.com/Wendys/status/1498426568946892801): Wendy’s Pick ‘Em is BACK, baby! 
-
-Hit the ❤️, and we’ll hit you up when it’s time to make your picks for EVERY round of March Madness. 
-
-Winning picks win sweet deals, so Choose Wisely #ForTheWendys https://t.co/7l8jasWATw
-- [1370124888049061895](https://x.com/Wendys/status/1370124888049061895): It’s MARCH MADNESS TIME, BABY. Choose wisely in our tournament polls and we’ll hook you up with some sweet deals.
-
-❤️ this tweet and we’ll hit you up when it’s time to vote in each tourney round. https://t.co/rvWMGK1xv6
-- [1370109813070381066](https://x.com/Wendys/status/1370109813070381066): It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free Honey Butter Chicken Biscuit. https://t.co/YuVPLdfMj9
-
-## Topic 4
-free, frosty, wendy, small, purchase, say, person, spicy, offer, restaurant, free small, ll
+wendy, free, frosty, fry, small, purchase, let, restaurant, friends, free small, spicy, time
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
 - [2041526924149690528](https://x.com/Wendys/status/2041526924149690528): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
-- [2041332734883201293](https://x.com/Wendys/status/2041332734883201293): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 
-## Topic 5
-wendy, hot, bracket, crispy, brand, vote, vs, dunks, time, tomorrow, bestoftweets brand, bestoftweets
+## Topic 2
+tomorrow, wendy, come, real, frosty, app, pm, true, purchase, burger, drive, nationalroastday
+
+- [1440121644920365059](https://x.com/Wendys/status/1440121644920365059): Another fun week of College Football is in the books 🙌
+
+Set a reminder to join @RJ_Young and @GeoffSchwartz tomorrow as they discuss all the biggest storylines from Week 3 (Brought to you by @Wendys) 🏈⬇️
+
+https://t.co/1pZF6U42I1
+- [1252619450748219393](https://x.com/Wendys/status/1252619450748219393): Come to Wendy’s drive-thru this Friday and get FREE 4pc nuggets. No purchase necessary and not a single string attached. https://t.co/tRx2bZQn2M
+- [1395802538310606852](https://x.com/Wendys/status/1395802538310606852): Wendy’s Frosty-ccino is cold brew with Frosty creamer. Overwatch is a video game celebrating its 5th anniversary. Twitch is where they meet. https://t.co/P0GZ7DIn5g
+
+## Topic 3
+wendy, app, free, purchase, wendy app, frozen, fresh, bag, time, grab, meal, sir
+
+- [1724894653793833227](https://x.com/Wendys/status/1724894653793833227): On the 1st Wednesday of Nuggetmas my true love gave to me: FREE NUGGETS.
+.
+.
+.
+.
+
+Get a free 6 pc Nuggs today with any purchase from our in-app offer.
+Limited time only at participating U.S. Wendy’s. Account registration required.
+- [1595102167110922241](https://x.com/Wendys/status/1595102167110922241): Hey @wendysuk USA vs England this Friday. Let’s put all the chips on the table. If we win, FREE fries with purchase in the Wendy’s app for the entire USA. #USA #USMNT https://t.co/KzrgjlE8I0
+- [2078223656019247576](https://x.com/Wendys/status/2078223656019247576): Pull up for Minions &amp; Monsters Meal. Zero regrets, tbh.🍌✨Grab the Minions &amp; Monsters Meal TODAY and go see the film in theaters now. https://t.co/TonmuD3JTC
+
+## Topic 4
+day, spicy, brand, bracket, morty, vs, bestoftweets, brand bracket, bestoftweets brand, twitch, app, roast
 
 - [1509591862335655943](https://x.com/Wendys/status/1509591862335655943): The  #BestOfTweets Brand Bracket Semifinals are here.
 
@@ -70,11 +74,6 @@ VS
 🍟 @Wendys infamous spice
 
 Vote now!
-- [1641560467918270465](https://x.com/Wendys/status/1641560467918270465): Your hour starts now!
-
-From now until 7 PM EDT get up to ❗️$30 off❗️ when you add a Biggie Bag to your Wendy's DoorDash order. DON'T FORGET: make sure your cart has at least a $12 subtotal before you apply the code. 
-
-Promo code BIGGIE
 - [1504835309258817538](https://x.com/Wendys/status/1504835309258817538): Rounding out the first week of #BestOfTweets Brand Bracket.
 
 On deck: top hats and hot takes. 
@@ -83,22 +82,49 @@ VS
 🍟 @Wendys infamous spice
 
 Vote now!
+- [1508851162983723016](https://x.com/Wendys/status/1508851162983723016): Quarterfinals of the #BestOfTweets Brand Bracket is a matter of taste.
+
+Whose Tweets satisfy your appetite? 
+
+🍉 @SourPatchKids’ sweet mischief
+VS
+🍟 @Wendys infamous spice
+
+Vote now!
+
+## Topic 5
+wendy, live, big, bacon, pretzel, codes, time, cyber, pick, search, pub, love
+
+- [1257325300704215047](https://x.com/Wendys/status/1257325300704215047): Welcome to Wendy's Cyber Search. All week we'll be sharing hints to codes hidden across the internet to win Wendy’s gift cards. Each worth a little something, some worth a lot of something. DM us the code on Twitter for your chance to win. Happy hunting! https://t.co/H9bM7rWONS
+- [1435333827812106244](https://x.com/Wendys/status/1435333827812106244): Use your big brain to win the right to sit on your big brain. Our Tetris 99 tournament for the Wendy’s Big Brain Bean Bag Chair starts NOW at https://t.co/P0GZ7DIn5g https://t.co/ZKC1qBpjXc
+- [1435261233364615177](https://x.com/Wendys/status/1435261233364615177): Attn: ✨ 🧠  𝔹𝕀𝔾 𝔹ℝ𝔸𝕀ℕ𝕊 🧠 ✨  the Wendy’s Big Brain Bean Bag Chair is up for grabs. Compete in our Tetris 99 tournament TODAY at https://t.co/P0GZ7DIn5g @ 4 PM EST. Winner takes home this intelligent piece of furniture. https://t.co/ZKC1qBpjXc https://t.co/jx8wYbrxkq
 
 ## Topic 6
-wendy, bacon, cheeseburger, frosty, pretzel, pub, day, good, frozen, pretzel bacon, bacon pub, win
+wendy, big, breakfast, frosty, don, double, emo, wake, way, nationalroastday, use, caramel
 
-- [1904565120010723568](https://x.com/Wendys/status/1904565120010723568): For all of March Madness®, get a $1 JBC or Double Stack in the Wendy’s app. Don’t worry about forgetting, we have a simple hashtag to help you remember: #DollarJBCorDoubleStackinWendysAppWithOfferLegalSaidToIncludeWithAdditionalPurchase
-- [1662098257575649282](https://x.com/Wendys/status/1662098257575649282): Pretty fair trade in our opinion. 
-
-Starting today through 6/1 you can celebrate National Hamburger Day with a 1¢ Junior Bacon Cheeseburger with any purchase in the Wendy’s app. One use per person.
-- [1301938615392636929](https://x.com/Wendys/status/1301938615392636929): We didn’t just bring back the pretzel bun, we brought you the Pretzel Bacon Pub Cheeseburger. And now Postmates will bring it to you for FREE with a $15 minimum purchase. https://t.co/eM8HxPFLq7
+- [1263145989583536129](https://x.com/Wendys/status/1263145989583536129): Shoutout to @Wendys for winning the Ultimate Wendy’s Invitational yesterday. Is quality your recipe? It’s your turn to prove it. Download a Wendy Mii using these Smash Bros codes &amp; enter our Queen of the Hill Tournament tomorrow. Wendys only. https://t.co/h71vxeQ6RN
+- [1252704850711842817](https://x.com/Wendys/status/1252704850711842817): RT @Wendys: We’re giving America a GroupNug this Friday. ♥ this tweet and we’ll remind you when to get your free 4pc nuggets! https://t.co/…
+- [1252379047335608320](https://x.com/Wendys/status/1252379047335608320): We’re giving America a GroupNug this Friday. ♥ this tweet and we’ll remind you when to get your free 4pc nuggets! https://t.co/AKWHpSXdD6
 
 ## Topic 7
-free, app, single, dave, fries, dave single, purchase, live, frosty, free dave, nuggets, ve
+breakfast, chicken, free, wendy, biscuit, honey, honey butter, butter chicken, butter, chicken biscuit, sandwich, baconator
 
-- [1441794626281607179](https://x.com/Wendys/status/1441794626281607179): The game of the week is finally here!
+- [1370109813070381066](https://x.com/Wendys/status/1370109813070381066): It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free Honey Butter Chicken Biscuit. https://t.co/YuVPLdfMj9
+- [1510656447528542212](https://x.com/Wendys/status/1510656447528542212): Who do you have to WIN. IT. ALL?!  8. North Carolina or 1. Kansas?
 
-Catch Notre Dame vs Wisconsin with @RJ_Young, @geoffschwartz and special guests @deshonekizer &amp; @Chris_Guwap live from Soldier Field (brought to you by @Wendys) https://t.co/hi4YcW15Ri
-- [1268326640972595206](https://x.com/Wendys/status/1268326640972595206): We’re about putting our money where our mouth is. So here’s our money and here’s our mouth. We are committed to donating $500k to support social justice, the youth and education in the Black community starting with the Thurgood Marshall College Fund and we’ll have receipts.
-- [1481341396430766085](https://x.com/Wendys/status/1481341396430766085): Everyone good? Feeling great? 
-Still many hours left in the day, but take a quick lunch break because we’re trying to push this free medium fries with purchase thing in the app and I want to keep my job.
+Tweet your CHAMP and we’ll @ you with how you did plus send a Wendy’s offer just for you. 
+
+Choose Wisely #ForTheWendys
+- [1371831384575197186](https://x.com/Wendys/status/1371831384575197186): RT @Wendys: It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free…
+
+## Topic 8
+nuggs, spicy, spicy nuggs, stream, finally, dunks, does, watch, let, hang, saucy, cheese
+
+- [1269040852350971906](https://x.com/Wendys/status/1269040852350971906): No🧢...all facts, @Wendys is supporting the Black College Community and we're ecstatic that their donation will provide opportunities for our #HBCU talent! Together we can make a difference!
+- [1441797252536692744](https://x.com/Wendys/status/1441797252536692744): RT @CFBONFOX: The game of the week is finally here!
+
+Catch Notre Dame vs Wisconsin with @RJ_Young, @geoffschwartz and special guests @desho…
+- [2030021566528893409](https://x.com/Wendys/status/2030021566528893409): .@maurahiggins Since being a faithful fell through, here’s a job to get u more Birkins 
+https://t.co/mNIqecbPOQ.
+
+No purch nec. 50 US/DC, 18+. Ends 3/30. Rules: To qualify tag @Wendys and #WendysCTOContest https://t.co/RWQGC4PJmA

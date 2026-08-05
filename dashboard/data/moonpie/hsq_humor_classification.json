@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 936,
+  "post_count": 937,
   "label_counts": {
+    "Self-enhancing humor": 271,
     "Non-humorous brand message": 636,
-    "Self-enhancing humor": 270,
     "Affiliative humor": 8,
     "Self-defeating humor": 9,
     "Aggressive humor": 13
   },
   "average_scores": {
-    "Affiliative humor": 0.13984439393324363,
-    "Self-enhancing humor": 0.2556597076880777,
-    "Aggressive humor": 0.1205122417152616,
-    "Self-defeating humor": 0.12414720309258968,
-    "Non-humorous brand message": 0.3598364522988096
+    "Affiliative humor": 0.13991841154069648,
+    "Self-enhancing humor": 0.25563274508564787,
+    "Aggressive humor": 0.12059491786386062,
+    "Self-defeating humor": 0.1242075520675687,
+    "Non-humorous brand message": 0.35964637220337226
   },
   "posts": [
+    {
+      "id": "2084767221968961659",
+      "tweet_url": "https://x.com/MoonPie/status/2084767221968961659",
+      "created_at": "Tue Aug 04 22:23:33 +0000 2026",
+      "text": "You can’t be the first person to walk on the moon but you can be the first one to catch a big ole largemouth bass with a MoonPie",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.23039574921131134,
+      "scores": {
+        "Self-enhancing humor": 0.23039574921131134,
+        "Affiliative humor": 0.20919889211654663,
+        "Aggressive humor": 0.19797979295253754,
+        "Non-humorous brand message": 0.18173140287399292,
+        "Self-defeating humor": 0.18069419264793396
+      }
+    },
     {
       "id": "2077160258426871926",
       "tweet_url": "https://x.com/MoonPie/status/2077160258426871926",
@@ -22492,5 +22516,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-04T17:34:48.263418+00:00"
+  "generated_at": "2026-08-05T17:27:53.479514+00:00"
 }

@@ -1,22 +1,22 @@
 # HSQ Zero-Shot Humor Classification for @MoonPie
 
-- Posts analyzed: 936
+- Posts analyzed: 937
 - Model: `typeform/distilbert-base-uncased-mnli`
 - Codebook: HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook
 
 ## Label Counts
 - Non-humorous brand message: 636
-- Self-enhancing humor: 270
+- Self-enhancing humor: 271
 - Aggressive humor: 13
 - Self-defeating humor: 9
 - Affiliative humor: 8
 
 ## Average Scores
-- Non-humorous brand message: 0.3598
-- Self-enhancing humor: 0.2557
-- Affiliative humor: 0.1398
-- Self-defeating humor: 0.1241
-- Aggressive humor: 0.1205
+- Non-humorous brand message: 0.3596
+- Self-enhancing humor: 0.2556
+- Affiliative humor: 0.1399
+- Self-defeating humor: 0.1242
+- Aggressive humor: 0.1206
 
 ## Highest Confidence Examples
 - Non-humorous brand message (0.991) [2039482821392097425](https://x.com/MoonPie/status/2039482821392097425): Please tell the moon how much we love her

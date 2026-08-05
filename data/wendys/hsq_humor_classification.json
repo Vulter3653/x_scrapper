@@ -11,22 +11,70 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 1002,
+  "post_count": 1004,
   "label_counts": {
-    "Non-humorous brand message": 630,
-    "Self-enhancing humor": 353,
+    "Non-humorous brand message": 631,
+    "Self-enhancing humor": 354,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13047308456062054,
-    "Self-enhancing humor": 0.29134459378236827,
-    "Aggressive humor": 0.11417159741985072,
-    "Self-defeating humor": 0.11499216598588713,
-    "Non-humorous brand message": 0.3490185596004915
+    "Affiliative humor": 0.13047179298355258,
+    "Self-enhancing humor": 0.2911903602567379,
+    "Aggressive humor": 0.11408108708911528,
+    "Self-defeating humor": 0.11490921067227924,
+    "Non-humorous brand message": 0.34934755034484544
   },
   "posts": [
+    {
+      "id": "2085009792859295920",
+      "tweet_url": "https://x.com/Wendys/status/2085009792859295920",
+      "created_at": "Wed Aug 05 14:27:26 +0000 2026",
+      "text": "guys its so hot you deserve a #1DollarFrosty today\n\n#1Frosty\n#DollarFrosty\n#DollarFrostySummer\n#FrostySummer",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Non-humorous brand message",
+      "top_score": 0.7384533286094666,
+      "scores": {
+        "Non-humorous brand message": 0.7384533286094666,
+        "Self-enhancing humor": 0.10809548199176788,
+        "Affiliative humor": 0.09263506531715393,
+        "Self-defeating humor": 0.036654289811849594,
+        "Aggressive humor": 0.024161826819181442
+      }
+    },
+    {
+      "id": "2084690540029731231",
+      "tweet_url": "https://x.com/Wendys/status/2084690540029731231",
+      "created_at": "Tue Aug 04 17:18:51 +0000 2026",
+      "text": "Finally, another iconic redhead to help take some weight off my shoulders https://t.co/f7kJQoff7H",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.31974324584007263,
+      "scores": {
+        "Self-enhancing humor": 0.31974324584007263,
+        "Non-humorous brand message": 0.28989049792289734,
+        "Affiliative humor": 0.16701436042785645,
+        "Aggressive humor": 0.11330899596214294,
+        "Self-defeating humor": 0.11004290729761124
+      }
+    },
     {
       "id": "2084647970717212848",
       "tweet_url": "https://x.com/Wendys/status/2084647970717212848",
@@ -24076,5 +24124,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-04T17:24:32.332961+00:00"
+  "generated_at": "2026-08-05T17:16:48.258589+00:00"
 }

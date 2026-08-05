@@ -1,26 +1,25 @@
 # LDA Topics for @MoonPie
 
-- Documents analyzed: 865
-- Selected topics: 9
+- Documents analyzed: 866
+- Selected topics: 5
 - Selection method: NPMI coherence, candidates 2-9
-- Selected coherence: 0.1373
-- Selected perplexity: 1408.1641
+- Selected coherence: 0.1242
+- Selected perplexity: 1185.2462
 
 ## Topic Count Evaluation
 
-- 2 topics: coherence=0.0389, perplexity=899.7291
-- 3 topics: coherence=0.0694, perplexity=986.5969
-- 4 topics: coherence=0.0741, perplexity=1108.7943
-- 5 topics: coherence=0.1069, perplexity=1165.9454
-- 6 topics: coherence=0.1154, perplexity=1240.2088
-- 7 topics: coherence=0.1255, perplexity=1305.7079
-- 8 topics: coherence=0.1295, perplexity=1343.6924
-- 9 topics: coherence=0.1373, perplexity=1408.1641
+- 2 topics: coherence=0.0709, perplexity=884.0196
+- 3 topics: coherence=0.0798, perplexity=1002.5697
+- 4 topics: coherence=0.0710, perplexity=1106.7512
+- 5 topics: coherence=0.1242, perplexity=1185.2462
+- 6 topics: coherence=0.1080, perplexity=1238.4271
+- 7 topics: coherence=0.0861, perplexity=1292.8204
+- 8 topics: coherence=0.0968, perplexity=1344.9401
+- 9 topics: coherence=0.1145, perplexity=1420.0861
 
 ## Topic 0
-moon, happy, ok, year, brand, sun, phase, tweet, time, want, day, moonpies
+moonpies, don, ok, eat, say, buy, lot, gonna, day, guys, think, does
 
-- [913052856990814208](https://x.com/MoonPie/status/913052856990814208): This account has been asked to test Twitter's new 280 character limit, but as a 100-year-old brand, we believe our fans most enjoy traditional tweets with brevity, so we declined. We hope to continue to provide a fun, positive place to discuss MoonPies moving forward. Thank you.
 - [1084567361737445386](https://x.com/MoonPie/status/1084567361737445386): The phases of the moon: 
 
 🌕 full phase
@@ -38,24 +37,19 @@ moon, happy, ok, year, brand, sun, phase, tweet, time, want, day, moonpies
 🌓 half phase for sure this time it’s gotta be 
 
 🌔 waxing gibbous
-- [2039473910987534599](https://x.com/MoonPie/status/2039473910987534599): Liftoff.
+- [988444138436689920](https://x.com/MoonPie/status/988444138436689920): We fight. We yell. We kiss. We hug. We text. We yell. We morph into anthropomorphic marshmallow sandwiches. We argue. We laugh. We yell. We smile. We love. We eat MoonPies. We yell. That's just us &lt;3
+- [935888134675599360](https://x.com/MoonPie/status/935888134675599360): MoonPie eating checklist:
 
-The Artemis II mission launched from @NASAKennedy at 6:35pm ET (2235 UTC), propelling four astronauts on a journey around the Moon.
-
-Artemis II will pave the way for future Moon landings, as well as the next giant leap — astronauts on Mars. https://t.co/ENQA4RTqAc
+☑️ Find a MoonPie
+☑️ Wash your hands
+☑️ Wash a celebrity's hands
+☑️ Haha um you're sort of holding hands with a celebrity :)
+☑️ Don't freak out tho keep scrubbing !!
+☑️ Ok that's enough not too much be cool be cool
+☑️ Eat that 'pie
 
 ## Topic 1
-moon, don, good, love, guys, ve, idea, linda, come, lunar, saying, life
-
-- [2040063993188929837](https://x.com/MoonPie/status/2040063993188929837): That's us! 🌍
-
-The Artemis II crew captured beautiful, high-resolution images of our home planet during their journey to the Moon. As @Astro_Christina put it: "You guys look great." https://t.co/CkjDKGocip
-- [1115665696833331200](https://x.com/MoonPie/status/1115665696833331200): Heard about our plans to go to the Moon by 2024? 🚀🌑 We’ve accelerated plans to get humans there as fast as possible, send humans &amp; robots to explore more of the lunar surface, and make it sustainable to conduct long-term missions. Learn more: https://t.co/tiSi3SM1B7
-#Moon2024 https://t.co/TzcZJX2DoW
-- [1445154719802920965](https://x.com/MoonPie/status/1445154719802920965): To the huge community of people and businesses around the world who depend on us: we're sorry. We’ve been working hard to restore access to our apps and services and are happy to report they are coming back online now. Thank you for bearing with us.
-
-## Topic 2
-moon, moonpies, super, great, time, talk, little, night, eating, blood, sweet, need
+moon, time, happy, let, year, sun, super, love, earth, tell, help, need
 
 - [1108529699268034561](https://x.com/MoonPie/status/1108529699268034561): The moon names are only gonna get scarier folks
 - Super moon
@@ -63,12 +57,18 @@ moon, moonpies, super, great, time, talk, little, night, eating, blood, sweet, n
 - Super blood wolf monster scream moon
 - Super blood wolf someone you love texting ”we need to talk” moon
 - Super blood moon 2 the reckoning
-- [1322649810822975488](https://x.com/MoonPie/status/1322649810822975488): Whoa there’s a lot happening tonight
+- [913052856990814208](https://x.com/MoonPie/status/913052856990814208): This account has been asked to test Twitter's new 280 character limit, but as a 100-year-old brand, we believe our fans most enjoy traditional tweets with brevity, so we declined. We hope to continue to provide a fun, positive place to discuss MoonPies moving forward. Thank you.
+- [943132447826472963](https://x.com/MoonPie/status/943132447826472963): Ok if you are going to follow this account we have some rules
 
-- Halloween
-- Full moon
-- The sacred ritual of throwing MoonPies into the night sky and howling until the wolf inside you is satisfied
-- Daylight saving time
+1️⃣ You will need a visitor sticker please pick one up in the lobby
+2️⃣ No hitting not even pretend hitting
+3️⃣ Do not get too loud or I will blow the moon whistle
+
+Hit like once you have read all the rules
+
+## Topic 2
+tweet, come, moonpies, don, ve, boss, commercial, thebigthing, great, called, post, account
+
 - [939221175640653825](https://x.com/MoonPie/status/939221175640653825): [In this tweet instead of being online I’m on a boat]
 
 Captain: MoonPie! The ship is going down
@@ -84,10 +84,36 @@ Captain: Dang it
 Me: Did you see where we roasted this teen
 
 Captain: Haha yeah
+- [940603428748906496](https://x.com/MoonPie/status/940603428748906496): MoonPies are great for the holidays not only do they taste great but if you set out MoonPies instead of cookies on Christmas Eve you probably wouldn’t get any fewer presents from Santa
+- [928074891022229505](https://x.com/MoonPie/status/928074891022229505): We’ve been informed that this account has been given the 280 character limit despite our public protest. While we’re still deciding on our next course of action, we will work to ensure our tweets continue fall under the traditional 140 characters that all of us enjoy. Thank you. https://t.co/fOuBQ8iyEY
 
 ## Topic 3
-day, ll, buddy, win, best, way, working, moonpies, help, year, wants, supply
+moon, moonpies, pie, time, eclipse, moon pie, think, day, sure, brand, ve, night
 
+- [2039473910987534599](https://x.com/MoonPie/status/2039473910987534599): Liftoff.
+
+The Artemis II mission launched from @NASAKennedy at 6:35pm ET (2235 UTC), propelling four astronauts on a journey around the Moon.
+
+Artemis II will pave the way for future Moon landings, as well as the next giant leap — astronauts on Mars. https://t.co/ENQA4RTqAc
+- [1322649810822975488](https://x.com/MoonPie/status/1322649810822975488): Whoa there’s a lot happening tonight
+
+- Halloween
+- Full moon
+- The sacred ritual of throwing MoonPies into the night sky and howling until the wolf inside you is satisfied
+- Daylight saving time
+- [1112759739153346565](https://x.com/MoonPie/status/1112759739153346565): The best way to make sure your brand is still relevant is to make a fake product that no one can actually buy and post about it on the same day as every other brand in the world
+
+## Topic 4
+moonpies, day, good, sun, great, thing, brands, ll, life, social, say, delicious
+
+- [960280100448227329](https://x.com/MoonPie/status/960280100448227329): I wanted to run commercials but we've been too busy making MoonPies so I will be posting several scripts during breaks tonight that I have written for very good and important MoonPie spots that you can enjoy right here on Twitter instead #TheBigThing
+- [1532139684280803329](https://x.com/MoonPie/status/1532139684280803329): Crazy how italicizing certain words can totally change the meaning of a sentence
+
+𝘐 will destroy the sun
+I 𝘸𝘪𝘭𝘭 destroy the sun
+I will 𝘥𝘦𝘴𝘵𝘳𝘰𝘺 the sun
+I will destroy 𝘵𝘩𝘦 sun
+I will destroy the 𝘴𝘶𝘯
 - [1174823304655454211](https://x.com/MoonPie/status/1174823304655454211): The steps to eating a MoonPie are the same steps as kissing !
 
 1️⃣ practice in the mirror first
@@ -103,74 +129,3 @@ day, ll, buddy, win, best, way, working, moonpies, help, year, wants, supply
 6️⃣ oh no alone again
 
 7️⃣ repeat next month
-- [984569155797028865](https://x.com/MoonPie/status/984569155797028865): One time I was blowing kisses to some birds outside my office window and my boss told me to stop but THEN one day I caught him blowing kisses to some birds outside HIS office window
-
-We still haven’t talked about it please don’t tell anyone https://t.co/8KNaZc6s9V
-- [899387918174879744](https://x.com/MoonPie/status/899387918174879744): Take pics at #SolarEclipse2017✅
-Win big ✅
-
-Post a pic tomorrow w/ #MoonPieEclipse &amp; we'll pick our fave to win a year's supply of MoonPie https://t.co/FVHxnNCTXy
-
-## Topic 4
-moonpies, eat, man, did, day, sure, snack, actually, post, moon, ve, cool
-
-- [960280100448227329](https://x.com/MoonPie/status/960280100448227329): I wanted to run commercials but we've been too busy making MoonPies so I will be posting several scripts during breaks tonight that I have written for very good and important MoonPie spots that you can enjoy right here on Twitter instead #TheBigThing
-- [988444138436689920](https://x.com/MoonPie/status/988444138436689920): We fight. We yell. We kiss. We hug. We text. We yell. We morph into anthropomorphic marshmallow sandwiches. We argue. We laugh. We yell. We smile. We love. We eat MoonPies. We yell. That's just us &lt;3
-- [1360992140453625865](https://x.com/MoonPie/status/1360992140453625865): It’s Valentine’s Day! Don’t forget to get a big bouquet of MoonPies for your loved one Linda I’m sorry I wrote so many IOUs on Valentine’s Day and still forgot the biggest IOU of all... an apology
-
-## Topic 5
-day, moonpies, think, say, does, social, brands, media, social media, want, lol, eclipse
-
-- [972109828943380480](https://x.com/MoonPie/status/972109828943380480): It's safe to say that house made of MoonPies would taste delicious but it's unsafe to say that a house made of MoonPies would protect you from the elements especially if you live in the desert
-- [956022159469613056](https://x.com/MoonPie/status/956022159469613056): You might be sad that pie day is over but just remember we live in a world where you can think about ‘pies every day or even every couple of months if you want
-- [1106217990545174529](https://x.com/MoonPie/status/1106217990545174529): Due to the overwhelming amount of brands posting about pi day we would like to refrain from joining in the crowded social media conversation thank you for understanding
-
-## Topic 6
-moonpies, commercial, thebigthing, eclipse, buy, called, commercial called, time, gonna, buy moonpies, makes, solar
-
-- [897992833726128128](https://x.com/MoonPie/status/897992833726128128): You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https://t.co/y2ffFVh3fB
-- [898147816018763776](https://x.com/MoonPie/status/898147816018763776): RT @ESKTeffeteller: You might be a little excited about the eclipse when you visit 4 stores and buy out all the @MoonPie #Eclipse2017 https…
-- [1065343981901570048](https://x.com/MoonPie/status/1065343981901570048): Shove a couple MoonPies up inside your turkey for a thanksgiving surprise ha ha sorry grandma this is my thanksgiving now
-
-## Topic 7
-moon, moonpies, sun, let, pie, great, moon pie, ha, earth, thing, time, day
-
-- [941687972692463616](https://x.com/MoonPie/status/941687972692463616): 1 MoonPie = great
-2 MoonPies = even better
-50 MoonPies = wow loving this
-100 MoonPies = seems like a lot but ok
-666 MoonPies = uh oh
-667 MoonPies = whew ha ha alright keep em coming
-- [958389268233244672](https://x.com/MoonPie/status/958389268233244672): Is your child texting about brands?
-A guide:
-
-BRB: busy retweeting brands
-OMG: order more goods!
-MIMBF: MoonPie is my best friend
-IB4B: I brake for business
-LIT: lost in trends
-PLMAIDAL: please leave me alone I’m designing a logo
-HAHA: hire a huge accountant
-ROI: right on, Ian
-- [1532139684280803329](https://x.com/MoonPie/status/1532139684280803329): Crazy how italicizing certain words can totally change the meaning of a sentence
-
-𝘐 will destroy the sun
-I 𝘸𝘪𝘭𝘭 destroy the sun
-I will 𝘥𝘦𝘴𝘵𝘳𝘰𝘺 the sun
-I will destroy 𝘵𝘩𝘦 sun
-I will destroy the 𝘴𝘶𝘯
-
-## Topic 8
-time, moonpies, eat, tell, people, say, mean, don, boss, want, sorry, lot
-
-- [1028762242584600577](https://x.com/MoonPie/status/1028762242584600577): A lot of people ask me “Hey, are MoonPies any good” and I would say I’d probably eat them even if I didn’t work here that’s a pretty big endorsement
-- [918851488507748352](https://x.com/MoonPie/status/918851488507748352): Hey kids did you know if you say “spooky lil MoonPie” 3 times in a mirror on this day nothing’s gonna happen what is wrong with you
-- [1677347074231394304](https://x.com/MoonPie/status/1677347074231394304): Eating a banana:
--strange
--peel the skin off?
--fine I guess
-
-Eating a banana MoonPie:
--delicious
--the skin stays on
--eat the skin do it

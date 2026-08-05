@@ -1,17 +1,17 @@
 # Zero-Shot Sentiment for @MoonPie
 
-- Posts analyzed: 936
+- Posts analyzed: 937
 - Model: `typeform/distilbert-base-uncased-mnli`
 
 ## Label Counts
-- negative: 475
+- negative: 476
 - positive: 406
 - neutral: 55
 
 ## Average Scores
-- positive: 0.4367
+- positive: 0.4365
 - negative: 0.3977
-- neutral: 0.1657
+- neutral: 0.1658
 
 ## Highest Confidence Examples
 - positive (1.000) [1392610689689194496](https://x.com/MoonPie/status/1392610689689194496): Due to marketing reasons we are pleased to announce that there is also a shortage of MoonPies

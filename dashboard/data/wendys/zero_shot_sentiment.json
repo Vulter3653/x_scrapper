@@ -7,18 +7,58 @@
     "neutral",
     "negative"
   ],
-  "post_count": 1002,
+  "post_count": 1004,
   "label_counts": {
-    "positive": 459,
+    "positive": 461,
     "negative": 505,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45794707482335384,
-    "neutral": 0.12938671756164913,
-    "negative": 0.4126662054718427
+    "positive": 0.4585011678543062,
+    "neutral": 0.1292429124430681,
+    "negative": 0.41225591750773594
   },
   "posts": [
+    {
+      "id": "2085009792859295920",
+      "tweet_url": "https://x.com/Wendys/status/2085009792859295920",
+      "created_at": "Wed Aug 05 14:27:26 +0000 2026",
+      "text": "guys its so hot you deserve a #1DollarFrosty today\n\n#1Frosty\n#DollarFrosty\n#DollarFrostySummer\n#FrostySummer",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.9265406131744385,
+      "scores": {
+        "positive": 0.9265406131744385,
+        "negative": 0.07259853929281235,
+        "neutral": 0.0008607987547293305
+      }
+    },
+    {
+      "id": "2084690540029731231",
+      "tweet_url": "https://x.com/Wendys/status/2084690540029731231",
+      "created_at": "Tue Aug 04 17:18:51 +0000 2026",
+      "text": "Finally, another iconic redhead to help take some weight off my shoulders https://t.co/f7kJQoff7H",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "positive",
+      "top_score": 0.5456629395484924,
+      "scores": {
+        "positive": 0.5456629395484924,
+        "negative": 0.3408047556877136,
+        "neutral": 0.11353229731321335
+      }
+    },
     {
       "id": "2084647970717212848",
       "tweet_url": "https://x.com/Wendys/status/2084647970717212848",
@@ -20060,5 +20100,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-04T17:21:13.671361+00:00"
+  "generated_at": "2026-08-05T17:13:07.110170+00:00"
 }

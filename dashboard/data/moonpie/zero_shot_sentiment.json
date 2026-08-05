@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 936,
+  "post_count": 937,
   "label_counts": {
+    "negative": 476,
     "positive": 406,
-    "negative": 475,
     "neutral": 55
   },
   "average_scores": {
-    "positive": 0.43666042883195877,
-    "neutral": 0.1656581580766961,
-    "negative": 0.39768141283821024
+    "positive": 0.43649812472691973,
+    "neutral": 0.16578318952503449,
+    "negative": 0.397718685495181
   },
   "posts": [
+    {
+      "id": "2084767221968961659",
+      "tweet_url": "https://x.com/MoonPie/status/2084767221968961659",
+      "created_at": "Tue Aug 04 22:23:33 +0000 2026",
+      "text": "You can’t be the first person to walk on the moon but you can be the first one to catch a big ole largemouth bass with a MoonPie",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.43260589241981506,
+      "scores": {
+        "negative": 0.43260589241981506,
+        "positive": 0.2845814824104309,
+        "neutral": 0.28281262516975403
+      }
+    },
     {
       "id": "2077160258426871926",
       "tweet_url": "https://x.com/MoonPie/status/2077160258426871926",
@@ -18740,5 +18760,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-04T17:31:46.768680+00:00"
+  "generated_at": "2026-08-05T17:24:36.074756+00:00"
 }
