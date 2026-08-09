@@ -19,12 +19,12 @@
       {
         "num_topics": 3,
         "coherence_npmi": 0.11235814170139612,
-        "perplexity": 1253.0367669070254
+        "perplexity": 1253.0367669070233
       },
       {
         "num_topics": 4,
         "coherence_npmi": 0.18117530373253754,
-        "perplexity": 1363.9477650716965
+        "perplexity": 1363.9477650717013
       },
       {
         "num_topics": 5,
@@ -49,7 +49,7 @@
       {
         "num_topics": 9,
         "coherence_npmi": 0.196897678941315,
-        "perplexity": 1479.128186569726
+        "perplexity": 1479.1281865697247
       }
     ]
   },
@@ -127,14 +127,14 @@
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions."
         },
         {
-          "id": "2041332734883201293",
-          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
+          "id": "2041526924149690528",
+          "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
           "score": 0.979950719310408,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
         {
-          "id": "2041526924149690528",
-          "tweet_url": "https://x.com/Wendys/status/2041526924149690528",
+          "id": "2041274861461586245",
+          "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
           "score": 0.979950719310408,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
@@ -145,8 +145,8 @@
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         },
         {
-          "id": "2041274861461586245",
-          "tweet_url": "https://x.com/Wendys/status/2041274861461586245",
+          "id": "2041332734883201293",
+          "tweet_url": "https://x.com/Wendys/status/2041332734883201293",
           "score": 0.979950719310408,
           "text": "Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last."
         }
@@ -209,9 +209,9 @@
         "free",
         "honey",
         "biscuit",
-        "butter chicken",
-        "honey butter",
         "butter",
+        "honey butter",
+        "butter chicken",
         "chicken biscuit",
         "app",
         "purchase",
@@ -237,16 +237,16 @@
           "text": "RT @Wendys: It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free…"
         },
         {
-          "id": "1376979649578872837",
-          "tweet_url": "https://x.com/Wendys/status/1376979649578872837",
-          "score": 0.9635327501544523,
-          "text": "What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://t.co/0xe5ukedCm"
-        },
-        {
           "id": "1379418884504236037",
           "tweet_url": "https://x.com/Wendys/status/1379418884504236037",
           "score": 0.9635327501544523,
           "text": "RT @Wendys: What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://…"
+        },
+        {
+          "id": "1376979649578872837",
+          "tweet_url": "https://x.com/Wendys/status/1376979649578872837",
+          "score": 0.9635327501544523,
+          "text": "What’s better than Wendy’s Honey Butter Chicken Biscuit? Wendy’s  $1.99 Honey Butter Chicken Biscuit. Get yours today! https://t.co/0xe5ukedCm"
         }
       ]
     },
@@ -300,5 +300,5 @@
       ]
     }
   ],
-  "generated_at": "2026-08-08T16:03:26.121905+00:00"
+  "generated_at": "2026-08-09T16:04:56.754599+00:00"
 }

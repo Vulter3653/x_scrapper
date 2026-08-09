@@ -28,8 +28,8 @@ frosty, free, ve, dave, bacon, single, dave single, cheeseburger, pretzel, getti
 wendy, frosty, free, live, pm, spicy, fry, love, big, breakfast, time, small
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
-- [2041332734883201293](https://x.com/Wendys/status/2041332734883201293): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 - [2041526924149690528](https://x.com/Wendys/status/2041526924149690528): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
 
 ## Topic 2
 live, ll, beef, frosty, wendy, don, watch, stream, codes, app, tweet, purchase
@@ -43,7 +43,7 @@ Set a reminder to join @RJ_Young and @GeoffSchwartz tomorrow as they discuss all
 https://t.co/1pZF6U42I1
 
 ## Topic 3
-chicken, wendy, free, honey, biscuit, butter chicken, honey butter, butter, chicken biscuit, app, purchase, chicken sandwich
+chicken, wendy, free, honey, biscuit, butter, honey butter, butter chicken, chicken biscuit, app, purchase, chicken sandwich
 
 - [1257325300704215047](https://x.com/Wendys/status/1257325300704215047): Welcome to Wendy's Cyber Search. All week we'll be sharing hints to codes hidden across the internet to win Wendy’s gift cards. Each worth a little something, some worth a lot of something. DM us the code on Twitter for your chance to win. Happy hunting! https://t.co/H9bM7rWONS
 - [1370109813070381066](https://x.com/Wendys/status/1370109813070381066): It’s FREE HONEY BUTTER CHICKEN BISCUITBALL TIME. ❤️  this tweet and we’ll remind you on Thursday 3/18 when you can score a free Honey Butter Chicken Biscuit. https://t.co/YuVPLdfMj9
