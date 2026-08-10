@@ -7,18 +7,38 @@
     "neutral",
     "negative"
   ],
-  "post_count": 1007,
+  "post_count": 1008,
   "label_counts": {
+    "negative": 506,
     "positive": 464,
-    "negative": 505,
     "neutral": 38
   },
   "average_scores": {
-    "positive": 0.45906768097667544,
-    "neutral": 0.12934398028503385,
-    "negative": 0.4115883366091302
+    "positive": 0.4586685563850869,
+    "neutral": 0.1292583129870186,
+    "negative": 0.4120731284786719
   },
   "posts": [
+    {
+      "id": "2086835672938148239",
+      "tweet_url": "https://x.com/Wendys/status/2086835672938148239",
+      "created_at": "Mon Aug 10 15:22:50 +0000 2026",
+      "text": "Ohhhhh you wanna break up. I thought you said you bought me a pretzel bacon pub cheeseburger, ok.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "labels": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "hypothesis_template": "This brand post expresses a {} sentiment.",
+      "top_label": "negative",
+      "top_score": 0.9002585411071777,
+      "scores": {
+        "negative": 0.9002585411071777,
+        "positive": 0.0567500926554203,
+        "neutral": 0.04299134388566017
+      }
+    },
     {
       "id": "2085863037253071251",
       "tweet_url": "https://x.com/Wendys/status/2085863037253071251",
@@ -20160,5 +20180,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-09T16:07:14.387149+00:00"
+  "generated_at": "2026-08-10T16:33:19.011183+00:00"
 }

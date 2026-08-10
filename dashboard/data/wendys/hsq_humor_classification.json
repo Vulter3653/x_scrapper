@@ -11,22 +11,46 @@
     "Non-humorous brand message"
   ],
   "hypothesis_template": "This brand post uses {}.",
-  "post_count": 1007,
+  "post_count": 1008,
   "label_counts": {
+    "Self-enhancing humor": 355,
     "Non-humorous brand message": 634,
-    "Self-enhancing humor": 354,
     "Aggressive humor": 10,
     "Affiliative humor": 5,
     "Self-defeating humor": 4
   },
   "average_scores": {
-    "Affiliative humor": 0.13043304419437704,
-    "Self-enhancing humor": 0.29083702658823773,
-    "Aggressive humor": 0.1140177726446966,
-    "Self-defeating humor": 0.11483215875627682,
-    "Non-humorous brand message": 0.3498799992324562
+    "Affiliative humor": 0.13045141604853266,
+    "Self-enhancing humor": 0.2908358800493824,
+    "Aggressive humor": 0.11407800511622351,
+    "Self-defeating humor": 0.11489336230858628,
+    "Non-humorous brand message": 0.34974133790669765
   },
   "posts": [
+    {
+      "id": "2086835672938148239",
+      "tweet_url": "https://x.com/Wendys/status/2086835672938148239",
+      "created_at": "Mon Aug 10 15:22:50 +0000 2026",
+      "text": "Ohhhhh you wanna break up. I thought you said you bought me a pretzel bacon pub cheeseburger, ok.",
+      "model": "typeform/distilbert-base-uncased-mnli",
+      "codebook": "HSQ 기반 네 가지 유머 유형 Zero-shot Classification Codebook",
+      "labels": [
+        "Affiliative humor",
+        "Self-enhancing humor",
+        "Aggressive humor",
+        "Self-defeating humor",
+        "Non-humorous brand message"
+      ],
+      "top_label": "Self-enhancing humor",
+      "top_score": 0.2896813154220581,
+      "scores": {
+        "Self-enhancing humor": 0.2896813154220581,
+        "Non-humorous brand message": 0.2101093828678131,
+        "Self-defeating humor": 0.17652533948421478,
+        "Aggressive humor": 0.17473210394382477,
+        "Affiliative humor": 0.14895187318325043
+      }
+    },
     {
       "id": "2085863037253071251",
       "tweet_url": "https://x.com/Wendys/status/2085863037253071251",
@@ -24196,5 +24220,5 @@
       }
     }
   ],
-  "generated_at": "2026-08-09T16:10:49.866999+00:00"
+  "generated_at": "2026-08-10T16:36:34.575940+00:00"
 }
