@@ -1,16 +1,16 @@
 # Zero-Shot Sentiment for @Wendys
 
-- Posts analyzed: 1008
+- Posts analyzed: 1009
 - Model: `typeform/distilbert-base-uncased-mnli`
 
 ## Label Counts
-- negative: 506
+- negative: 507
 - positive: 464
 - neutral: 38
 
 ## Average Scores
-- positive: 0.4587
-- negative: 0.4121
+- positive: 0.4586
+- negative: 0.4122
 - neutral: 0.1293
 
 ## Highest Confidence Examples
