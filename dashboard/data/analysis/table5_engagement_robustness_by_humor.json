@@ -8,7 +8,7 @@
     "p75_engagement": 862.0,
     "p90_engagement": 16206.600000000006,
     "max_engagement": 50315.0,
-    "average_humor_score": 0.3457047711400425
+    "average_humor_score": 0.34570393229232116
   },
   {
     "humor_type": "Aggressive humor",
@@ -19,7 +19,7 @@
     "p75_engagement": 4470.75,
     "p90_engagement": 13758.499999999998,
     "max_engagement": 15940.0,
-    "average_humor_score": 0.37929661199450493
+    "average_humor_score": 0.37929671443998814
   },
   {
     "humor_type": "Non-humorous brand message",
@@ -30,7 +30,7 @@
     "p75_engagement": 4009.0,
     "p90_engagement": 11416.000000000022,
     "max_engagement": 990761.0,
-    "average_humor_score": 0.4496038025091177
+    "average_humor_score": 0.4496042423523389
   },
   {
     "humor_type": "Self-defeating humor",
@@ -41,7 +41,7 @@
     "p75_engagement": 5202.75,
     "p90_engagement": 39368.000000000044,
     "max_engagement": 99388.0,
-    "average_humor_score": 0.3227970504334995
+    "average_humor_score": 0.32279674283095766
   },
   {
     "humor_type": "Self-enhancing humor",
@@ -52,6 +52,6 @@
     "p75_engagement": 2600.0,
     "p90_engagement": 8158.599999999997,
     "max_engagement": 102272.0,
-    "average_humor_score": 0.48056717521832615
+    "average_humor_score": 0.4805665207718185
   }
 ]
