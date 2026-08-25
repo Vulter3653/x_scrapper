@@ -23,7 +23,7 @@
 | Self-defeating humor | positive | 1 | 0.000 | 288.00 | 288.00 | 0.274 | 0.638 |
 | Self-enhancing humor | negative | 443 | 0.158 | 4466.38 | 802.00 | 0.403 | 0.640 |
 | Self-enhancing humor | neutral | 18 | 0.006 | 2985.83 | 1055.50 | 0.351 | 0.443 |
-| Self-enhancing humor | positive | 541 | 0.192 | 2235.70 | 553.00 | 0.549 | 0.769 |
+| Self-enhancing humor | positive | 541 | 0.192 | 2235.70 | 553.00 | 0.548 | 0.769 |
 
 ## Table 5: Engagement Robustness by Humor Type
 
