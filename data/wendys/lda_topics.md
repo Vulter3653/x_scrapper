@@ -43,7 +43,7 @@ https://t.co/p8NxAexkV4
 - [1425804264178323456](https://x.com/Wendys/status/1425804264178323456): Tomorrow and Saturday, let your free flag fly! ‘Cause you can get a Bacon or Sausage, Egg &amp; Swiss Croissant FOR FREE. No catch. Available during breakfast hours only.
 
 ## Topic 1
-wendy, bacon, live, pm, pretzel, bag, big, cheeseburger, pub, pretzel bacon, bacon pub, say
+wendy, bacon, live, pm, pretzel, bag, big, cheeseburger, pub, bacon pub, pretzel bacon, say
 
 - [1641560467918270465](https://x.com/Wendys/status/1641560467918270465): Your hour starts now!
 
@@ -65,7 +65,7 @@ Catch Notre Dame vs Wisconsin with @RJ_Young, @geoffschwartz and special guests 
 Catch Notre Dame vs Wisconsin with @RJ_Young, @geoffschwartz and special guests @desho…
 
 ## Topic 3
-fries, time, bracket, brand, breakfast, hot, party, vote, french, day, bestoftweets, brand bracket
+fries, time, bracket, brand, breakfast, hot, party, vote, french, day, bestoftweets brand, bestoftweets
 
 - [1509591862335655943](https://x.com/Wendys/status/1509591862335655943): The  #BestOfTweets Brand Bracket Semifinals are here.
 
@@ -115,8 +115,8 @@ Choose Wisely #ForTheWendys
 - [1268326640972595206](https://x.com/Wendys/status/1268326640972595206): We’re about putting our money where our mouth is. So here’s our money and here’s our mouth. We are committed to donating $500k to support social justice, the youth and education in the Black community starting with the Thurgood Marshall College Fund and we’ll have receipts.
 
 ## Topic 6
-wendy, free, frosty, chicken, honey, biscuit, butter chicken, honey butter, butter, purchase, chicken biscuit, time
+wendy, free, frosty, chicken, honey, biscuit, butter, butter chicken, honey butter, purchase, chicken biscuit, time
 
 - [2039915068729541060](https://x.com/Wendys/status/2039915068729541060): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.
 - [2041274861461586245](https://x.com/Wendys/status/2041274861461586245): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
-- [2041332734883201293](https://x.com/Wendys/status/2041332734883201293): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
+- [2041187810728727004](https://x.com/Wendys/status/2041187810728727004): Offer only available in-restaurant upon request at participating U.S. Wendy’s on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last.
